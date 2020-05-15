@@ -35,8 +35,9 @@ just to prove:
 2\.inductive step  //在证明S(n+1)为真时 不仅是S(n),还有S(n-1)...S(0)都可以用于推导  
 
 **Structural Induction（结构归纳法）**  
-实际上不仅是自然数集，只要是递归定义的概念 都可以用数学归纳法证明    
-集合的集数/势 cardinality    
+可以用归纳方式定义结构，比如自然数集就可以用归纳方式定义：  
+Basis: 0是自然数  
+Induction： 如果n是自然数，那么n+1也是自然数 //集合的集数/势 cardinality    
 
    
 
