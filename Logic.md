@@ -20,6 +20,23 @@ counterexample 反例
 A implies B //A能推出B  
 
 
-proof by induction  
-basis  
-inductive step  
+**数学归纳法（proof by induction）**
+
+**Integer Induction - 一般形式**
+
+to prove $\forall \, n \isin \natnums^+, \, S(n)$  
+
+just to prove:  
+1\.basis: 证明S(0)成立  
+2\.inductive step: 当S(n)成立时，证明S(n+1)也成立 
+
+**Interger Induction - More General Forms（广义形式）**  
+1\.basis //可以有多个basis case    
+2\.inductive step  //在证明S(n+1)为真时 不仅是S(n),还有S(n-1)...S(0)都可以用于推导  
+
+**Structural Induction（结构归纳法）**  
+实际上不仅是自然数集，只要是递归定义的概念 都可以用数学归纳法证明    
+集合的集数/势 cardinality    
+
+   
+
