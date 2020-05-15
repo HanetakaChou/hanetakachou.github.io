@@ -16,3 +16,10 @@ converse 逆命题
 inverse //中文不存在  
 contrapositive 逆否命题  
 counterexample 反例  
+
+A implies B //A能推出B  
+
+
+proof by induction  
+basis  
+inductive step  
