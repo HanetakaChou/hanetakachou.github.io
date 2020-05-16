@@ -38,12 +38,18 @@ That for all -1 < x < 0, 1 + x < $\sqrt[n]{1 + x}$ < 1 implies $\lim\limits_{x \
 
 
 无穷小 Infinitesimal  
-
+  
 等价无穷小代替 提升效率  
-
-sinx ~ x  
-1 - cosx ~ 1/2 x^2
-~ 1/n
-
-
+  
+当$x \rightarrow 0$时 sinx ~ x  
+  
+当$x \rightarrow 0$时 tanx ~ x  
+  
+当$x \rightarrow 0$时 1 - cosx ~ 1/2x^2  
+  
+当$x \rightarrow 0$时 $\sqrt[n]{1 + x} - 1 ～ \frac{1}{n}$  
+证明：  
+根据等比数列求和：$1 + ... + {( \sqrt[n]{1 + x} )}^{n - 2} + {( \sqrt[n]{1 + x} )}^{n - 1} = \frac{1}{\sqrt[n]{1 + x} - 1} ( {( \sqrt[n]{1 + x} )}^{n} - 1 )$  
+  
+  
 等价无穷小具有传递性 //等价类  
