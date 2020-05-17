@@ -1,6 +1,6 @@
-### 极限  
+### 极限（limit）    
   
-极限定义  
+极限定义 //epsilon-delta definition  
 if $\forall \, \epsilon > 0, \, \exists \, N \isin \natnums^+, \, \forall \, n > N, \, |x - a| < \epsilon$ then $\lim\limits_{x \rightarrow \infin}x_n = a$   
 
 证明极限  
@@ -36,7 +36,6 @@ $\lim\limits_{x \rightarrow 0} 1 = 1 + x$
 That for all x > 0,  1 < $\sqrt[n]{1 + x}$ < 1 + x implies $\lim\limits_{x \rightarrow 0^+} \sqrt[n]{1 + x} = 1$   
 That for all -1 < x < 0, 1 + x < $\sqrt[n]{1 + x}$ < 1 implies $\lim\limits_{x \rightarrow 0^-} \sqrt[n]{1 + x} = 1$       
 
-
 无穷小 Infinitesimal  
   
 等价无穷小代替 提升效率  
@@ -47,13 +46,24 @@ That for all -1 < x < 0, 1 + x < $\sqrt[n]{1 + x}$ < 1 implies $\lim\limits_{x \
   
 当$x \rightarrow 0$时 1 - cosx ~ 1/2x^2  
   
-当$x \rightarrow 0$时 $\sqrt[n]{1 + x} - 1 ～ \frac{1}{n}$  
+当$x \rightarrow 0$时 $\sqrt[n]{1 + x} - 1$ ~ $\frac{1}{n}$  
 证明：  
-根据等比数列求和：$1 + ... + {( \sqrt[n]{1 + x} )}^{n - 2} + {( \sqrt[n]{1 + x} )}^{n - 1} = \frac{1}{\sqrt[n]{1 + x} - 1} ( {( \sqrt[n]{1 + x} )}^{n} - 1 )$  
+根据等比数列求和：$1 + ... + {( \sqrt[n]{1 + x} )}^{n - 2} + {( \sqrt[n]{1 + x} )}^{n - 1} = \frac{1}{\sqrt[n]{1 + x} - 1} ( {( \sqrt[n]{1 + x} )}^{n} - 1 )$ //恒等变形需要存在某个去心邻域能使其成立   
   
-  
+$\lim\limits_{x \rightarrow 0} \frac{\sqrt[n]{1 + x} - 1}{\frac{x}{n}}$    
+$=\lim\limits_{x \rightarrow 0} \frac{\frac{{\sqrt[n]{1 + x} )}^{n} - 1}{1 + ... + {( \sqrt[n]{1 + x} )}^{n - 2} + {( \sqrt[n]{1 + x} )}^{n - 1}}}{\frac{x}{n}}$  
+
 等价无穷小具有传递性 //等价类  
 
+### 连续（continuous）    
+
+函数连续定义  
+if $\lim\limits_{x \rightarrow x_0} \operatorname{f}(x) = \operatorname{f}(x_0)$ then f(x)在$x_0$处连续     
+
+连续函数运算  
+
+
+初等函数 Elementary function    
 
 ### 积分（Integral）    
 
@@ -79,7 +89,5 @@ $\int_a^b g(x) \, dx$ = G(b) - G(a) = F\[φ(b)\]  - F\[φ(a)\] （等式2）
    
 第二类换元法  
    
-
-  
   
 
