@@ -53,3 +53,27 @@ That for all -1 < x < 0, 1 + x < $\sqrt[n]{1 + x}$ < 1 implies $\lim\limits_{x \
   
   
 等价无穷小具有传递性 //等价类  
+
+
+### 积分（Integral）    
+
+定积分/黎曼积分 Riemann Integral  
+反常积分/广义积分  Henstock–Kurzweil Integral/Generalized Riemann Integral  
+
+换元积分法 Integration by Substitution  
+分部积分法 Integration by Parts  
+
+第一类换元法  
+如果g(x)可以写成g(x)=f\[φ(x)\]φ'(x)的形式  
+那么$\int_a^b g(x) \, dx = \int_{\phi(a)}^{\phi(b)} f(u) \, du$  
+证明  
+设F(u)是f(u)的原函数  
+$\int_{\phi(a)}^{\phi(b)} f(u) \, du$ = F\[φ(b)\]  - F\[φ(a)\]  
+
+设G(x)=F\[φ(x)\]  
+有G'(x)=F'\[φ(x)\]φ'(x)=f\[φ(x)\]φ'(x)   
+因此G(x)是g(x)的原函数  
+$\int_a^b g(x) \, dx$ = G(b) - G(a) = F\[φ(b)\]  - F\[φ(a)\]  
+  
+  
+
