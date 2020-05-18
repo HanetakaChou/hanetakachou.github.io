@@ -66,14 +66,18 @@ That for all -1 < x < 0, 1 + x < $\sqrt[n]{1 + x}$ < 1 implies $\lim\limits_{x \
 第一类换元法  
 如果g(x)可以写成g(x)=f\[φ(x)\]φ'(x)的形式  
 那么$\int_a^b g(x) \, dx = \int_{\phi(a)}^{\phi(b)} f(u) \, du$  
+
 证明  
 设F(u)是f(u)的原函数  
-$\int_{\phi(a)}^{\phi(b)} f(u) \, du$ = F\[φ(b)\]  - F\[φ(a)\]  
+$\int_{\phi(a)}^{\phi(b)} f(u) \, du$ = F\[φ(b)\]  - F\[φ(a)\] （等式1）  
 
 设G(x)=F\[φ(x)\]  
-有G'(x)=F'\[φ(x)\]φ'(x)=f\[φ(x)\]φ'(x)   
-因此G(x)是g(x)的原函数  
-$\int_a^b g(x) \, dx$ = G(b) - G(a) = F\[φ(b)\]  - F\[φ(a)\]  
+**有G'(x)=F'\[φ(x)\]φ'(x)=f\[φ(x)\]φ'(x) => 因此G(x)是g(x)的原函数** //证明的关键     
+$\int_a^b g(x) \, dx$ = G(b) - G(a) = F\[φ(b)\]  - F\[φ(a)\] （等式2）
+
+结合（等式1）（等式2），我们有$\int_a^b g(x) \, dx = \int_{\phi(a)}^{\phi(b)} f(u) \, du$，命题得证  
+
+
   
   
 
