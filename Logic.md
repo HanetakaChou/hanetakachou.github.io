@@ -45,9 +45,14 @@ just to prove:
 2\.inductive step  //在证明S(n+1)为真时 不仅是S(n),还有S(n-1)...S(0)都可以用于推导  
   
 **Structural Induction（结构归纳法）**  
-可以用归纳方式定义结构，比如自然数集就可以用归纳方式定义：  
+可以用递归方式定义（Recursive Definition）结构，比如自然数集就可以用归纳方式定义：  
 Basis: 0是自然数  
 Induction： 如果n是自然数，那么n+1也是自然数 //集合的集数/势 cardinality    
 
-   
+设X是递归方式定义的结构，证明$\forall X , \, S(X)$时，可用结构归纳法  
+ 1\.basis S(X)对基本结构成立  
+ 2\.inductive step 设（take）X是基于Y1,Y2...Yk递归定义的结构， 证明当S(Y1),S(Y2)...S(YK)成立时，S(X)成立    
 
+**Mutual Induction**  
+证明$\forall X , \, \operatorname{S_1}(X) \operatorname{AND} \operatorname{S_2}(X) \operatorname{AND} ... \operatorname{AND} \operatorname{S_k}(X)$  
+在某些情况下 可以用归纳法对各个命题分开证明  
