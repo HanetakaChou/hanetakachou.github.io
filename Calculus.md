@@ -1,4 +1,13 @@
 
+实数完备性（Completeness of the real numbers） //实数系连续性  
+
+柯西完备性（Cauchy completeness）
+柯西收敛准则（Cauchy's convergence test） //柯西极限存在准则/柯西审敛原理  
+
+区间套原理（Nested intervals theorem）  
+
+单调收敛定理（Monotone Convergence Theorem） //单调收敛原理    
+
 单调递增 monotonically increasing  
 单调递减 monotonically decreasing  
    
@@ -12,9 +21,6 @@ if $\forall \, \epsilon > 0, \, \exists \, N \isin \natnums^+, \, \forall \, n >
 
 证明极限不存在  
 给出反例ϵ 证明相应的N不存在（根据之前的总结，证明不存在往往可以用反证法） //严格地来讲，只需证明反例ϵ存在，并不需要给出ϵ的具体值，但大多数情况下都能较便利地求出  
-
-柯西极限存在准则/柯西审敛原理/柯西收敛准则 Cauchy's convergence test  
-  
   
 极限运算法则  
 根据定义求极限的效率太低，因此引入了极限运算法则，但是这也是出错的开始  
@@ -22,11 +28,15 @@ if $\forall \, \epsilon > 0, \, \exists \, N \isin \natnums^+, \, \forall \, n >
 商法则  //分母不能为0   
 复合函数  //存在去心邻域 满足g(x)不等于极限  
 
-有理整函数 或 (代入后分母不等于零的)有理分式函数 直接代入即极限 //未提供证明 却一直再用   
-
+有理整函数（polynomial function） 或 (代入后分母不等于零的)有理分式函数（rational function） 直接代入即极限 //为提供证明 后文会扩充到初等函数     
+  
 根据定义易知 对函数进行的恒等变形（比如“约分”等） 只要 存在某个去心邻域 能使相应的恒等变形成立 即可  
 
-夹逼准则（Squeeze Theorem） //效率较低 //实际中不常用 //思路上一般是借助有理整函数 
+~~单调收敛原理/单调收敛定理（Monotone Convergence Theorem） 单调有界数列必有极限 //仅适用于数列 且不能求出极限的具体值~~    
+  
+夹逼准则（Squeeze Theorem） //由于效率较低，在求函数极限时，一般借助于初等函数的连续性，并不常用 //但求数列极限的方法较少，可能会用到夹逼准则  
+
+~~柯西收敛准则 Cauchy's convergence test //柯西极限存在准则/柯西审敛原理~~  
 
 $\lim\limits_{x \rightarrow  0}\frac{\sin ( x ) }{x} = 1$   
 
@@ -43,7 +53,7 @@ $\lim\limits_{x \rightarrow 0} 1 = 1 + x$
 That for all x > 0,  1 < $\sqrt[n]{1 + x}$ < 1 + x implies $\lim\limits_{x \rightarrow 0^+} \sqrt[n]{1 + x} = 1$   
 That for all -1 < x < 0, 1 + x < $\sqrt[n]{1 + x}$ < 1 implies $\lim\limits_{x \rightarrow 0^-} \sqrt[n]{1 + x} = 1$       
 
-无穷小 Infinitesimal  
+无穷小 infinitesimal  
   
 等价无穷小代替 提升效率  
   
@@ -67,20 +77,34 @@ $=\lim\limits_{x \rightarrow 0} \frac{\frac{{\sqrt[n]{1 + x} )}^{n} - 1}{1 + ...
 函数连续定义  
 if $\lim\limits_{x \rightarrow x_0} \operatorname{f}(x) = \operatorname{f}(x_0)$ then f(x)在$x_0$处连续     
 
+连续函数的性质
+
 连续函数运算  
 
-
-初等函数 Elementary function    
+初等函数 elementary function    
   
-常函数 Constant function  
-幂函数  Power  
-指数函数 Exponential function  
-对数函数 Logarithm  
-三角函数 Trigonometric function  
-反三角函数 Inverse trigonometric function 
+常函数 constant function  
+幂函数  power  
+指数函数 exponential function  
+对数函数 logarithm  
+三角函数 trigonometric function  
+反三角函数 inverse trigonometric function 
 
 monomial 单项式  
-polynomial 多项式   
+polynomial function 多项式函数 / 有理整函数？     
+rational function 分式函数 / 有理分式函数？ 
+
+闭区间上连续函数的性质  
+连续函数的性质 -> 函数在连续点处的局部性质  
+
+区间 interval  
+开区间 open interval  
+闭区间 closed interval  
+半开区间 half-open interval  
+
+### 导数（Derivative）
+
+洛必达法则（L'Hôpital's rule）  
 
 
 ### 积分（Integral）    
