@@ -1,38 +1,90 @@
-等价关系 等价类 商集 划分    
+~~等价关系 等价类 商集 划分~~    
 
-等价类要么相等要么不相交 //即不相等的等价类一定不相交   
+~~等价类要么相等要么不相交 //即不相等的等价类一定不相交   
 证明： //参考： 定理3-10.1 定理3-10.2 离散数学 左孝凌  
-反证法 //Proof by contradiction
+反证法 //Proof by contradiction~~
 
-假设 $a \isin [b]_\sim$ 、$a \isin [c]_\sim$ 且 $[b]_\sim \ne [c]_\sim$  
-我们有 $a \sim b$ 、$a \sim c$ 由于$\sim$是等价关系 我们有$b \sim c$   
+~~假设 $a \isin [b]_\sim$ 、$a \isin [c]_\sim$ 且 $[b]_\sim \ne [c]_\sim$~~  
+~~我们有 $a \sim b$ 、$a \sim c$ 由于$\sim$是等价关系 我们有$b \sim c$~~   
 
-$\forall \, e \isin [b]_\sim$ 有$e \sim b$ 又因为$b \sim c$ 有$e \sim c$ 即$e \isin [c]_\sim$  
-并且$\forall \, e \isin [c]_\sim$ 有$e \sim c$ 又因为$b \sim c$ 有$e \sim b$ 即$e \isin [b]_\sim$  
-即$\forall \, e \, , \, e \isin [b]_\sim \Leftrightarrow e \isin [c]_\sim$ 即$[b]_\sim = [c]_\sim$ 但是，这与 $[b]_\sim \ne [c]_\sim$ 矛盾，命题得证 //事实上，可以证明：$b \sim c \Leftrightarrow [b]_\sim = [c]_\sim$    
+~~$\forall \, e \isin [b]_\sim$ 有$e \sim b$ 又因为$b \sim c$ 有$e \sim c$ 即$e \isin [c]_\sim$~~  
+~~并且$\forall \, e \isin [c]_\sim$ 有$e \sim c$ 又因为$b \sim c$ 有$e \sim b$ 即$e \isin [b]_\sim$~~  
+~~即$\forall \, e \, , \, e \isin [b]_\sim \Leftrightarrow e \isin [c]_\sim$ 即$[b]_\sim = [c]_\sim$ 但是，这与 $[b]_\sim \ne [c]_\sim$ 矛盾，命题得证 //事实上，可以证明：$b \sim c \Leftrightarrow [b]_\sim = [c]_\sim$~~    
 
-上确界 supremum  
-下确界 infimum  
 最大数 max  
-最小数 min  
+最小数 min    
+上界 upper bound
+上确界 supremum //最小上界 least upper bound       
+下确界 infimum //最大下界   
+  
+Theroem 设M = supE，则 $\forall  \, \epsilon > 0, \, \exists \, x \isin E, \, x > M - \epsilon$    
+Proof by Contradiction  
+suppose $\exists \, x \isin E, \, x > M - \epsilon$ is not true  
+then $\forall \, x \isin E, \, x <= M - \epsilon$, which implies $M - \epsilon$ is an upper bound of E  
+since $\epsilon > 0$, $M - \epsilon$ is less than M, which contradicts the given statement "M is the least upper bound"  
 
-戴德金分割（Dedekind cut）  
+Theroem 设M = supE，则 $\forall  \, \epsilon < 0, \, \exists \, x \isin E, \, x < M + \epsilon$  
+证明从略
+
+~~实数的构造（Construction of the real numbers）~~  
+
+~~戴德金分割（Dedekind Cut） //实数集构造 //定义   
 对有理数集Q的划分（A|B） A中的数都小于B且A中无最大数  
 所有划分构成的集合即为实数集R  
 显然：  
 如果B中存在最小数，(A|B)称为有理划分，即对应于R中的有理数（即B中的最小数）  
-如果B中不存在最小数， (A|B)称为无理划分，即对应于R中的无理数  
+如果B中不存在最小数， (A|B)称为无理划分，即对应于R中的无理数~~  
   
+~~戴德金性质（Dedekind Property） //戴德金定理/戴德金分割定理  
+R的划分A|B 满足A中的数都小于B， 一定有 A有最大数 或 B有最小数  
+证明:  
+A中的有理数记作A' B中的有理数记作B'  
+根据戴德金分割，有理数集的划分(A'|B')是一个实数，记作r   
+对 r属于A 和 r属于B 的情形 分类讨论  
+r属于A的情形  
+反证法 假设r不是A的最大数   
+由于r不是A的最大数 在A中某个实数r'大于r   
+显然 **存在某个有理数q 满足r\<q\<r'** //有理数q在r和r'的“间隙”中   
+显然 q属于A 根据A'的定义（A'包含A中的所有有理数） 有q属于A'  
+但是 q属于A' 且 q大于划分(A'|B')对应的实数r 与 戴德金分割 的定义矛盾  
+r属于B的情形  
+反证法 假设r不是B的最小数 从略~~     
+
 实数完备性（Completeness of the real numbers） //实数系连续性  
   
-戴德金完备性（Dedekind completeness）  
-最小上界性（Least Upper Bound Property） //LUB公理  
+最小上界性（Least Upper Bound Property）有上界的非空实数集一定有上确界 //戴德金完备性（Dedekind Completeness）     
+
+~~可以由戴德金分割推出 //逻辑状态属于定理   
+根据E中有无最大数 分类讨论~~  
   
-柯西完备性（Cauchy completeness）  
-柯西收敛准则（Cauchy's convergence test） //柯西极限存在准则/柯西审敛原理  
+LUB公理 //也可以直接看作公理   
+
+最大下界原理 有下界的非空实数集一定有下确界  
+
+LUB公理 推出 戴德金性质——R的划分A|B 满足A中的数都小于B， 一定有 A有最大数 或 B有最小数   
+任取B中的某个实数，即为A的上界 即A的上界存在 根据LUB公理，A的上确界存在，不妨设w=supA  
+由于A|B是R的划分，必有w属于A或w属于B  
+根据w属于A和w属于B分类讨论  
+w属于A  
+即A中有最大数w，命题成立  
+w属于B  
+显然，对于任意y属于B，有y是A的上界 
+由于w是A的最小上界 w是B的最小数    
+
+再由 戴德金性质 推出 最大下界原理  
+H = { y属于R : y是S的下界 }  
+K = { y属于R : y不是S的下界 }  
+由于下界存在 H非空 (H|K)是R的划分   
+显然 H中的数都小于K   
+根据 戴德金性质 H有最大数 或 K有最小数   
+用反证法证明 K没有最小数  
+不妨设K有最小数b 由于b不是S的下界 存在某个小于b且属于S的实数，不妨设为a  
+显然(a+b)/2 > a 即(a+b)/2不是S的下界 即(a+b)/2属于K 但是(a+b)/2 < b，这与b是K的最小数矛盾  
+
+柯西收敛准则（Cauchy's convergence test） //柯西极限存在准则/柯西审敛原理 //柯西完备性（Cauchy Completeness）    
   
-区间套原理（Nested intervals theorem）  
-  
+区间套原理（Nested intervals theorem） 
+
 单调收敛定理（Monotone Convergence Theorem） //单调收敛原理    
   
 单调递增 monotonically increasing  
