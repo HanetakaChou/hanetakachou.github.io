@@ -67,6 +67,17 @@ if $\lim\limits_{x \rightarrow x_0} \operatorname{f}(x) = \operatorname{f}(x_0)$
 
 
 初等函数 Elementary function    
+  
+常函数 Constant function  
+幂函数  Power  
+指数函数 Exponential function  
+对数函数 Logarithm  
+三角函数 Trigonometric function  
+反三角函数 Inverse trigonometric function 
+
+monomial 单项式  
+polynomial 多项式   
+
 
 ### 积分（Integral）    
 
