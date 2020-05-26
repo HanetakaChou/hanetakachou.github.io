@@ -1,3 +1,7 @@
+
+单调递增 monotonically increasing  
+单调递减 monotonically decreasing  
+   
 ### 极限（limit）    
   
 极限定义 //epsilon-delta definition  
@@ -9,9 +13,9 @@ if $\forall \, \epsilon > 0, \, \exists \, N \isin \natnums^+, \, \forall \, n >
 证明极限不存在  
 给出反例ϵ 证明相应的N不存在（根据之前的总结，证明不存在往往可以用反证法） //严格地来讲，只需证明反例ϵ存在，并不需要给出ϵ的具体值，但大多数情况下都能较便利地求出  
 
-
-柯西 Cauchy  
-
+柯西极限存在准则/柯西审敛原理/柯西收敛准则 Cauchy's convergence test  
+  
+  
 极限运算法则  
 根据定义求极限的效率太低，因此引入了极限运算法则，但是这也是出错的开始  
 
