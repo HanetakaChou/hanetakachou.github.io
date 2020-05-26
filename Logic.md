@@ -34,7 +34,7 @@ A only if B //“仅当”（中文一般不用） //B是A的必要条件 即 A�
   
 **数学归纳法（proof by induction）**  
   
-**Integer Induction - 一般形式**  
+**Integer Induction**  //第一数学归纳法  
   
 to prove $\forall \, n \isin \natnums^+, \, S(n)$  
   
@@ -42,7 +42,7 @@ just to prove:
 1\.basis: 证明S(0)成立  
 2\.inductive step: 当S(n)成立时，证明S(n+1)也成立 
   
-**Interger Induction - More General Forms（广义形式）**  
+**Interger Induction - Complete Induction / Strong Induction**  //第二数学归纳法/完整归纳法    
 1\.basis //可以有多个basis case    
 2\.inductive step  //在证明S(n+1)为真时 不仅是S(n),还有S(n-1)...S(0)都可以用于推导  
   

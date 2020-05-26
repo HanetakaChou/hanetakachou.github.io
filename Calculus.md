@@ -9,17 +9,26 @@
 
 $\forall \, e \isin [b]_\sim$ 有$e \sim b$ 又因为$b \sim c$ 有$e \sim c$ 即$e \isin [c]_\sim$  
 并且$\forall \, e \isin [c]_\sim$ 有$e \sim c$ 又因为$b \sim c$ 有$e \sim b$ 即$e \isin [b]_\sim$  
-即$\forall \, e \, , \, e \isin [b]_\sim \Leftrightarrow e \isin [c]_\sim$ 即$[b]_\sim = [c]_\sim$ 但是，这与 $[b]_\sim \ne [c]_\sim$ 矛盾，命题得证 //事实上$b \sim c \Leftrightarrow [b]_\sim = [c]_\sim$    
+即$\forall \, e \, , \, e \isin [b]_\sim \Leftrightarrow e \isin [c]_\sim$ 即$[b]_\sim = [c]_\sim$ 但是，这与 $[b]_\sim \ne [c]_\sim$ 矛盾，命题得证 //事实上，可以证明：$b \sim c \Leftrightarrow [b]_\sim = [c]_\sim$    
 
+上确界 supremum  
+下确界 infimum  
+最大数 max  
+最小数 min  
 
 戴德金分割（Dedekind cut）  
+对有理数集Q的划分（A|B） A中的数都小于B且A中无最大数  
+所有划分构成的集合即为实数集R  
+显然：  
+如果B中存在最小数，(A|B)称为有理划分，即对应于R中的有理数（即B中的最小数）  
+如果B中不存在最小数， (A|B)称为无理划分，即对应于R中的无理数  
   
 实数完备性（Completeness of the real numbers） //实数系连续性  
-
+  
 戴德金完备性（Dedekind completeness）  
 最小上界性（Least Upper Bound Property） //LUB公理  
   
-柯西完备性（Cauchy completeness）
+柯西完备性（Cauchy completeness）  
 柯西收敛准则（Cauchy's convergence test） //柯西极限存在准则/柯西审敛原理  
   
 区间套原理（Nested intervals theorem）  
