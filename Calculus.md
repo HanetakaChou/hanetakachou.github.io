@@ -1,13 +1,31 @@
+等价关系 等价类 商集 划分    
 
+等价类要么相等要么不相交 //即不相等的等价类一定不相交   
+证明： //参考： 定理3-10.1 定理3-10.2 离散数学 左孝凌  
+反证法 //Proof by contradiction
+
+假设 $a \isin [b]_\sim$ 、$a \isin [c]_\sim$ 且 $[b]_\sim \ne [c]_\sim$  
+我们有 $a \sim b$ 、$a \sim c$ 由于$\sim$是等价关系 我们有$b \sim c$   
+
+$\forall \, e \isin [b]_\sim$ 有$e \sim b$ 又因为$b \sim c$ 有$e \sim c$ 即$e \isin [c]_\sim$  
+并且$\forall \, e \isin [c]_\sim$ 有$e \sim c$ 又因为$b \sim c$ 有$e \sim b$ 即$e \isin [b]_\sim$  
+即$\forall \, e \, , \, e \isin [b]_\sim \Leftrightarrow e \isin [c]_\sim$ 即$[b]_\sim = [c]_\sim$ 但是，这与 $[b]_\sim \ne [c]_\sim$ 矛盾，命题得证 //事实上$b \sim c \Leftrightarrow [b]_\sim = [c]_\sim$    
+
+
+戴德金分割（Dedekind cut）  
+  
 实数完备性（Completeness of the real numbers） //实数系连续性  
 
+戴德金完备性（Dedekind completeness）  
+最小上界性（Least Upper Bound Property） //LUB公理  
+  
 柯西完备性（Cauchy completeness）
 柯西收敛准则（Cauchy's convergence test） //柯西极限存在准则/柯西审敛原理  
-
+  
 区间套原理（Nested intervals theorem）  
-
+  
 单调收敛定理（Monotone Convergence Theorem） //单调收敛原理    
-
+  
 单调递增 monotonically increasing  
 单调递减 monotonically decreasing  
    
@@ -15,10 +33,10 @@
   
 极限定义 //epsilon-delta definition  
 if $\forall \, \epsilon > 0, \, \exists \, N \isin \natnums^+, \, \forall \, n > N, \, |x - a| < \epsilon$ then $\lim\limits_{x \rightarrow \infin}x_n = a$   
-
+  
 证明极限  
 对每个ϵ，求出相应的N //严格地来讲，只需证明N存在，并不需要给出N的具体值，但大多数情况下都能较便利地求出   
-
+  
 证明极限不存在  
 给出反例ϵ 证明相应的N不存在（根据之前的总结，证明不存在往往可以用反证法） //严格地来讲，只需证明反例ϵ存在，并不需要给出ϵ的具体值，但大多数情况下都能较便利地求出  
   

@@ -7,6 +7,8 @@
 3\.其余情况，一般可以用演绎（Deductive）证明  
   
 肯定前件 MP（Modus Ponens）  
+
+axiom 公理  
   
 hypothesis 假说/条件  
 conclusion 结论  
