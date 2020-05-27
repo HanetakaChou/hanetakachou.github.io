@@ -54,28 +54,53 @@ K = { y属于R : y不是S的下界 }
 不妨设K有最小数b 由于b不是S的下界 存在某个小于b且属于S的实数，不妨设为a  
 显然(a+b)/2 > a 即(a+b)/2不是S的下界 即(a+b)/2属于K 但是(a+b)/2 < b，这与b是K的最小数矛盾  
 
-柯西收敛准则（Cauchy's Convergence Test） 数列{xn}有极限的充分必要条件是：$\forall \, \epsilon > 0 , \, \exists \, N \isin \natnums^+ , \, \forall \, m > N , \, n > N , \, |x_m - x_n| < \epsilon$ //柯西极限存在准则/柯西审敛原理 //柯西完备性（Cauchy Completeness）    
-  
-区间套原理（Nested Intervals Theorem） 
-
 单调收敛定理（Monotone Convergence Theorem） 单调有界数列必有极限 //单调收敛原理    
-> 
+>  
 >单调递增 monotonically increasing  
 >单调递减 monotonically decreasing  
->
+>   
 >证明 单调递增情形  
 由于{xn}有界 根据LUB公理 {xn}有上确界，不妨设c=sup{xn}  
 根据上确界性质 对任意ϵ>0 存在a属于{xn} 满足a>c-ϵ 不妨设a的下标为A 即a=xA   
 由于{xn}单调递增 取N=A 对任意n>N 满足xn>xN=xA>c-ϵ 即xn-c>-ϵ  
 又由于上界的定义 任意xn\<c 即xn-c\<0 由于ϵ>0 有xn-c<ϵ  
-综上|xn-c|<ϵ 命题得证 
-
-
+综上|xn-c|<ϵ 命题得证   
    
+区间套原理（Nested Intervals Theorem）  
+闭区间序列$\{[a_n, b_n]\}$满足$\forall n \isin \N^+ , \,  [a_n, b_n] \supe [a_{n+1},b_{n+1}]$，一定有 $\exists \, \zeta, \eta \isin \R , \, \cap_{n=1}^\infin [a_n, b_n] = \{ x : \zeta \le x \le \eta \}$  
+//注：所有闭区间的交集$\cap_{n=1}^\infin [a_n, b_n]$可以严谨地表示为$\{ x : \forall n \isin \N^+ , \,  x \isin [a_n, b_n] \}$    
+//当$\zeta \ne \eta$时，$\{ x : \zeta \le x \le \eta \}$为闭区间$[\zeta, \eta]$；当$\zeta = \eta$时，$\{ x : \zeta \le x \le \eta \}$退化为某一实数  
+>证明：  
+>  
+>根据题意，我们有 a1<=a2<=......<=an<=......<=bn<=......<=b2<=b1  
+显然 数列{an}单调递增且有界（比如：b1是{an}的一个上界） 数列{bn}单调递减且有界（比如：a1是{bn}的一个下界）      
+根据 单调收敛定理 不妨设ζ=sup{an} η=inf{bn} 我们有 {an}收敛于ζ {bn}收敛于η  
+>
+>接下来用反证法证明ζ<=η  
+假设ζ>η  
+由于ζ是{an}的上确界 不妨取ϵ=(ζ-η)/2 根据上确界性质 存在aA属于{an} 满足aA > ζ-ϵ = (ζ+η)/2  
+由于η是{bn}的下确界 不妨取ϵ=(ζ-η)/2 根据下确界性质 存在bB属于{bn} 满足bB < η+ϵ = (ζ+η)/2  
+综上，即 存在 aA属于{an} bB属于{bn} 满足 aA > bB //显然，这与题意矛盾  
+>
+>由于 对任意n 都有an<=ζ<=η<=bn成立 我们有$\{ x : \zeta \le x \le \eta \} \sube \cap_{n=1}^\infin [a_n, b_n]$成立  
+接下来 只要证明$\cap_{n=1}^\infin [a_n, b_n] \sube \{ x : \zeta \le x \le \eta \}$ 命题即得证  
+我们用反证法证明  
+假设x属于$\cap_{n=1}^\infin [a_n, b_n]$且x不属于$\{ x : \zeta \le x \le \eta \}$  
+对x<ζ和x>η两种情形分类讨论  
+当x<ζ时  
+不妨取ϵ=(ζ-x) 根据上确界性质 存在aK属于{an} 满足aK > ζ-ϵ = x 即x不属于\[ak,bK\] 但是，这与x属于$\cap_{n=1}^\infin [a_n, b_n]$矛盾  
+当x>η时
+证明从略  
+
+
+
+柯西收敛准则（Cauchy's Convergence Test） 数列{xn}有极限的充分必要条件是：$\forall \, \epsilon > 0 , \, \exists \, N \isin \N^+ , \, \forall \, m > N , \, n > N , \, |x_m - x_n| < \epsilon$ //柯西极限存在准则/柯西审敛原理 //柯西完备性（Cauchy Completeness）    
+      
+    
 ### 极限（limit）    
   
 极限定义 //epsilon-delta definition  
-if $\forall \, \epsilon > 0, \, \exists \, N \isin \natnums^+, \, \forall \, n > N, \, |x_n - a| < \epsilon$ then $\lim\limits_{x \rightarrow \infin}x_n = a$   
+if $\forall \, \epsilon > 0, \, \exists \, N \isin \N^+, \, \forall \, n > N, \, |x_n - a| < \epsilon$ then $\lim\limits_{x \rightarrow \infin}x_n = a$   
   
 证明极限  
 对每个ϵ，求出相应的N //严格地来讲，只需证明N存在，并不需要给出N的具体值，但大多数情况下都能较便利地求出   

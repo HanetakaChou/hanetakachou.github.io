@@ -20,6 +20,9 @@ inverse 否命题 if not p then not q
 converse 逆命题 if q then p 
 contrapositive 逆否命题 if not q then not p  
 counterexample 反例  
+
+necessity 必要性  
+sufficiency 充分性  
   
 observation //也表示真命题(用于不含全称量词时)   
 
