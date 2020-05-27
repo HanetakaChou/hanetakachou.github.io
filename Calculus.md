@@ -32,10 +32,9 @@ Theroem 设M = supE，则 $\forall  \, \epsilon < 0, \, \exists \, x \isin E, \,
   
 LUB公理 //直接看作公理   
 
-最大下界原理 有下界的非空实数集一定有下确界  
-
-LUB公理 推出 戴德金性质——R的划分A|B 满足A中的数都小于B， 一定有 A有最大数 或 B有最小数   
-任取B中的某个实数，即为A的上界 即A的上界存在 根据LUB公理，A的上确界存在，不妨设w=supA  
+戴德金性质（Dedekind Property） R的划分A|B 满足A中的数都小于B， 一定有 A有最大数 或 B有最小数 //戴德金定理  
+>证明：  
+>任取B中的某个实数，即为A的上界 即A的上界存在 根据LUB公理，A的上确界存在，不妨设w=supA  
 由于A|B是R的划分，必有w属于A或w属于B  
 根据w属于A和w属于B分类讨论  
 w属于A  
@@ -44,8 +43,9 @@ w属于B
 显然，对于任意y属于B，有y是A的上界 
 由于w是A的最小上界 w是B的最小数    
 
-再由 戴德金性质 推出 最大下界原理  
-H = { y属于R : y是S的下界 }  
+最大下界原理 有下界的非空实数集一定有下确界  
+>证明：  
+>H = { y属于R : y是S的下界 }  
 K = { y属于R : y不是S的下界 }  
 由于下界存在 H非空 (H|K)是R的划分   
 显然 H中的数都小于K   
@@ -54,16 +54,16 @@ K = { y属于R : y不是S的下界 }
 不妨设K有最小数b 由于b不是S的下界 存在某个小于b且属于S的实数，不妨设为a  
 显然(a+b)/2 > a 即(a+b)/2不是S的下界 即(a+b)/2属于K 但是(a+b)/2 < b，这与b是K的最小数矛盾  
 
-柯西收敛准则（Cauchy's convergence test） //柯西极限存在准则/柯西审敛原理 //柯西完备性（Cauchy Completeness）    
+柯西收敛准则（Cauchy's Convergence Test） 数列{xn}有极限的充分必要条件是：$\forall \, \epsilon > 0 , \, \exists \, N \isin \natnums^+ , \, \forall \, m > N , \, n > N , \, |x_m - x_n| < \epsilon$ //柯西极限存在准则/柯西审敛原理 //柯西完备性（Cauchy Completeness）    
   
-区间套原理（Nested intervals theorem） 
+区间套原理（Nested Intervals Theorem） 
 
 单调收敛定理（Monotone Convergence Theorem） 单调有界数列必有极限 //单调收敛原理    
-  
-单调递增 monotonically increasing  
-单调递减 monotonically decreasing  
-
-证明 单调递增情形  
+> 
+>单调递增 monotonically increasing  
+>单调递减 monotonically decreasing  
+>
+>证明 单调递增情形  
 由于{xn}有界 根据LUB公理 {xn}有上确界，不妨设c=sup{xn}  
 根据上确界性质 对任意ϵ>0 存在a属于{xn} 满足a>c-ϵ 不妨设a的下标为A 即a=xA   
 由于{xn}单调递增 取N=A 对任意n>N 满足xn>xN=xA>c-ϵ 即xn-c>-ϵ  
@@ -75,7 +75,7 @@ K = { y属于R : y不是S的下界 }
 ### 极限（limit）    
   
 极限定义 //epsilon-delta definition  
-if $\forall \, \epsilon > 0, \, \exists \, N \isin \natnums^+, \, \forall \, n > N, \, |x - a| < \epsilon$ then $\lim\limits_{x \rightarrow \infin}x_n = a$   
+if $\forall \, \epsilon > 0, \, \exists \, N \isin \natnums^+, \, \forall \, n > N, \, |x_n - a| < \epsilon$ then $\lim\limits_{x \rightarrow \infin}x_n = a$   
   
 证明极限  
 对每个ϵ，求出相应的N //严格地来讲，只需证明N存在，并不需要给出N的具体值，但大多数情况下都能较便利地求出   
