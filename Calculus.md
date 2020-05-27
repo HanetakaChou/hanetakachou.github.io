@@ -1,15 +1,15 @@
-~~等价关系 等价类 商集 划分~~    
+等价关系 等价类 商集 划分    
 
-~~等价类要么相等要么不相交 //即不相等的等价类一定不相交   
+等价类要么相等要么不相交 //即不相等的等价类一定不相交   
 证明： //参考： 定理3-10.1 定理3-10.2 离散数学 左孝凌  
-反证法 //Proof by contradiction~~
+反证法 //Proof by contradiction
 
-~~假设 $a \isin [b]_\sim$ 、$a \isin [c]_\sim$ 且 $[b]_\sim \ne [c]_\sim$~~  
-~~我们有 $a \sim b$ 、$a \sim c$ 由于$\sim$是等价关系 我们有$b \sim c$~~   
+假设 $a \isin [b]_\sim$ 、$a \isin [c]_\sim$ 且 $[b]_\sim \ne [c]_\sim$   
+我们有 $a \sim b$ 、$a \sim c$ 由于$\sim$是等价关系 我们有$b \sim c$   
 
-~~$\forall \, e \isin [b]_\sim$ 有$e \sim b$ 又因为$b \sim c$ 有$e \sim c$ 即$e \isin [c]_\sim$~~  
-~~并且$\forall \, e \isin [c]_\sim$ 有$e \sim c$ 又因为$b \sim c$ 有$e \sim b$ 即$e \isin [b]_\sim$~~  
-~~即$\forall \, e \, , \, e \isin [b]_\sim \Leftrightarrow e \isin [c]_\sim$ 即$[b]_\sim = [c]_\sim$ 但是，这与 $[b]_\sim \ne [c]_\sim$ 矛盾，命题得证 //事实上，可以证明：$b \sim c \Leftrightarrow [b]_\sim = [c]_\sim$~~    
+$\forall \, e \isin [b]_\sim$ 有$e \sim b$ 又因为$b \sim c$ 有$e \sim c$ 即$e \isin [c]_\sim$  
+并且$\forall \, e \isin [c]_\sim$ 有$e \sim c$ 又因为$b \sim c$ 有$e \sim b$ 即$e \isin [b]_\sim$  
+即$\forall \, e \, , \, e \isin [b]_\sim \Leftrightarrow e \isin [c]_\sim$ 即$[b]_\sim = [c]_\sim$ 但是，这与 $[b]_\sim \ne [c]_\sim$ 矛盾，命题得证 //事实上，可以证明：$b \sim c \Leftrightarrow [b]_\sim = [c]_\sim$    
 
 最大数 max  
 最小数 min    
@@ -24,40 +24,13 @@ then $\forall \, x \isin E, \, x <= M - \epsilon$, which implies $M - \epsilon$ 
 since $\epsilon > 0$, $M - \epsilon$ is less than M, which contradicts the given statement "M is the least upper bound"  
 
 Theroem 设M = supE，则 $\forall  \, \epsilon < 0, \, \exists \, x \isin E, \, x < M + \epsilon$  
-证明从略
-
-~~实数的构造（Construction of the real numbers）~~  
-
-~~戴德金分割（Dedekind Cut） //实数集构造 //定义   
-对有理数集Q的划分（A|B） A中的数都小于B且A中无最大数  
-所有划分构成的集合即为实数集R  
-显然：  
-如果B中存在最小数，(A|B)称为有理划分，即对应于R中的有理数（即B中的最小数）  
-如果B中不存在最小数， (A|B)称为无理划分，即对应于R中的无理数~~  
-  
-~~戴德金性质（Dedekind Property） //戴德金定理/戴德金分割定理  
-R的划分A|B 满足A中的数都小于B， 一定有 A有最大数 或 B有最小数  
-证明:  
-A中的有理数记作A' B中的有理数记作B'  
-根据戴德金分割，有理数集的划分(A'|B')是一个实数，记作r   
-对 r属于A 和 r属于B 的情形 分类讨论  
-r属于A的情形  
-反证法 假设r不是A的最大数   
-由于r不是A的最大数 在A中某个实数r'大于r   
-显然 **存在某个有理数q 满足r\<q\<r'** //有理数q在r和r'的“间隙”中   
-显然 q属于A 根据A'的定义（A'包含A中的所有有理数） 有q属于A'  
-但是 q属于A' 且 q大于划分(A'|B')对应的实数r 与 戴德金分割 的定义矛盾  
-r属于B的情形  
-反证法 假设r不是B的最小数 从略~~     
+证明从略   
 
 实数完备性（Completeness of the real numbers） //实数系连续性  
   
 最小上界性（Least Upper Bound Property）有上界的非空实数集一定有上确界 //戴德金完备性（Dedekind Completeness）     
-
-~~可以由戴德金分割推出 //逻辑状态属于定理   
-根据E中有无最大数 分类讨论~~  
   
-LUB公理 //也可以直接看作公理   
+LUB公理 //直接看作公理   
 
 最大下界原理 有下界的非空实数集一定有下确界  
 
