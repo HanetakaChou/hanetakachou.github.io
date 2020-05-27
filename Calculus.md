@@ -85,10 +85,19 @@ K = { y属于R : y不是S的下界 }
   
 区间套原理（Nested intervals theorem） 
 
-单调收敛定理（Monotone Convergence Theorem） //单调收敛原理    
+单调收敛定理（Monotone Convergence Theorem） 单调有界数列必有极限 //单调收敛原理    
   
 单调递增 monotonically increasing  
 单调递减 monotonically decreasing  
+
+证明 单调递增情形  
+由于{xn}有界 根据LUB公理 {xn}有上确界，不妨设c=sup{xn}  
+根据上确界性质 对任意ϵ>0 存在a属于{xn} 满足a>c-ϵ 不妨设a的下标为A 即a=xA   
+由于{xn}单调递增 取N=A 对任意n>N 满足xn>xN=xA>c-ϵ 即xn-c>-ϵ  
+又由于上界的定义 任意xn\<c 即xn-c\<0 由于ϵ>0 有xn-c<ϵ  
+综上|xn-c|<ϵ 命题得证 
+
+
    
 ### 极限（limit）    
   
