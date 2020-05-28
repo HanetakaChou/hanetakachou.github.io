@@ -55,10 +55,10 @@ K = { y属于R : y不是S的下界 }
 显然(a+b)/2 > a 即(a+b)/2不是S的下界 即(a+b)/2属于K 但是(a+b)/2 < b，这与b是K的最小数矛盾  
 
 单调收敛定理（Monotone Convergence Theorem） 单调有界数列必有极限 //单调收敛原理    
->  
->单调递增 monotonically increasing  
->单调递减 monotonically decreasing  
->   
+   
+单调递增 monotonically increasing  
+单调递减 monotonically decreasing  
+   
 >证明 单调递增情形  
 由于{xn}有界 根据LUB公理 {xn}有上确界，不妨设c=sup{xn}  
 根据上确界性质 对任意ϵ>0 存在a属于{xn} 满足a>c-ϵ 不妨设a的下标为A 即a=xA   
@@ -70,6 +70,12 @@ K = { y属于R : y不是S的下界 }
 闭区间序列$\{[a_n, b_n]\}$满足$\forall n \isin \N^+ , \,  [a_n, b_n] \supe [a_{n+1},b_{n+1}]$，一定有 $\exists \, \zeta, \eta \isin \R , \, \cap_{n=1}^\infin [a_n, b_n] = \{ x : \zeta \le x \le \eta \}$  
 //注：所有闭区间的交集$\cap_{n=1}^\infin [a_n, b_n]$可以严谨地表示为$\{ x : \forall n \isin \N^+ , \,  x \isin [a_n, b_n] \}$    
 //当$\zeta \ne \eta$时，$\{ x : \zeta \le x \le \eta \}$为闭区间$[\zeta, \eta]$；当$\zeta = \eta$时，$\{ x : \zeta \le x \le \eta \}$退化为某一实数  
+  
+区间 interval  
+开区间 open interval  
+闭区间 closed interval  
+半开区间 half-open interval  
+  
 >证明：  
 >  
 >根据题意，我们有 a1<=a2<=......<=an<=......<=bn<=......<=b2<=b1  
@@ -92,6 +98,7 @@ K = { y属于R : y不是S的下界 }
 当x>η时
 证明从略  
 
+波尔查诺-魏尔斯特拉斯定理（Bolzano-Weierstrass Theorem）/聚点定理  
 
 
 柯西收敛准则（Cauchy's Convergence Test） 数列{xn}有极限的充分必要条件是：$\forall \, \epsilon > 0 , \, \exists \, N \isin \N^+ , \, \forall \, m > N , \, n > N , \, |x_m - x_n| < \epsilon$ //柯西极限存在准则/柯西审敛原理 //柯西完备性（Cauchy Completeness）    
@@ -183,10 +190,8 @@ rational function 分式函数 / 有理分式函数？
 闭区间上连续函数的性质  
 连续函数的性质 -> 函数在连续点处的局部性质  
 
-区间 interval  
-开区间 open interval  
-闭区间 closed interval  
-半开区间 half-open interval  
+有界性定理（Boundedness Theorem）  
+
 
 ### 导数（Derivative）
 
