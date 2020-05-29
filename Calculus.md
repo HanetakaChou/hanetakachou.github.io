@@ -115,6 +115,9 @@ if $\forall \, \epsilon > 0, \, \exists \, N \isin \N^+, \, \forall \, n > N, \,
 证明极限不存在  
 给出反例ϵ 证明相应的N不存在（根据之前的总结，证明不存在往往可以用反证法） //严格地来讲，只需证明反例ϵ存在，并不需要给出ϵ的具体值，但大多数情况下都能较便利地求出  
   
+The Sequential Criterion for a Limit of a Function  //函数极限与数列极限的关系  
+函数f(x)在x0处的极限为A 数列{xn}的极限为x0 且 存在N，当n>N时，有xn≠x0 -> 数列{f(xn)}的极限为A  
+
 极限运算法则  
 根据定义求极限的效率太低，因此引入了极限运算法则，但是这也是出错的开始  
 
@@ -171,6 +174,10 @@ $=\lim\limits_{x \rightarrow 0} \frac{\frac{{\sqrt[n]{1 + x} )}^{n} - 1}{1 + ...
 if $\lim\limits_{x \rightarrow x_0} \operatorname{f}(x) = \operatorname{f}(x_0)$ then f(x)在$x_0$处连续     
 
 连续函数的性质
+
+Sequential Criterion for the Continuity of a Function //将数列看作函数 利用复合函数的连续性    
+函数f(x)在x0处的极限为A 且 函数f(x)在x0处连续 数列{xn}的极限为x0 -> 数列{f(xn)}的极限为A   
+注：与极限时的区别在于， 不再有”存在N，当n>N时，有xn≠x0“的限制  
 
 连续函数运算  
 
