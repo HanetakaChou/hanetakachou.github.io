@@ -106,17 +106,24 @@ K = { y属于R : y不是S的下界 }
     
 ### 极限（limit）    
   
-极限定义 //epsilon-delta definition  
+去心领域 deleted neighborhood  
+
+数列极限定义 //epsilon-delta definition  
 if $\forall \, \epsilon > 0, \, \exists \, N \isin \N^+, \, \forall \, n > N, \, |x_n - a| < \epsilon$ then $\lim\limits_{x \rightarrow \infin}x_n = a$   
-  
+
+函数极限定义   
+$\delta$    
+
 证明极限  
 对每个ϵ，求出相应的N //严格地来讲，只需证明N存在，并不需要给出N的具体值，但大多数情况下都能较便利地求出   
   
 证明极限不存在  
 给出反例ϵ 证明相应的N不存在（根据之前的总结，证明不存在往往可以用反证法） //严格地来讲，只需证明反例ϵ存在，并不需要给出ϵ的具体值，但大多数情况下都能较便利地求出  
   
-The Sequential Criterion for a Limit of a Function  //函数极限与数列极限的关系  
+Sequential Criterion for Limits //函数极限与数列极限的关系 //Robert Bartle, Donald Sherbert. "Introduction to Real Analysis, Fourth Edition" 4.1.8 Theorem  
 函数f(x)在x0处的极限为A 数列{xn}的极限为x0 且 存在N，当n>N时，有xn≠x0 -> 数列{f(xn)}的极限为A  
+
+函数极限的局部有界性 //Robert Bartle, Donald Sherbert. "Introduction to Real Analysis, Fourth Edition" 4.1.8 Theorem  
 
 极限运算法则  
 根据定义求极限的效率太低，因此引入了极限运算法则，但是这也是出错的开始  
@@ -173,9 +180,9 @@ $=\lim\limits_{x \rightarrow 0} \frac{\frac{{\sqrt[n]{1 + x} )}^{n} - 1}{1 + ...
 函数连续定义  
 if $\lim\limits_{x \rightarrow x_0} \operatorname{f}(x) = \operatorname{f}(x_0)$ then f(x)在$x_0$处连续     
 
-连续函数的性质
+连续函数的性质 //局部性质  
 
-Sequential Criterion for the Continuity of a Function //将数列看作函数 利用复合函数的连续性    
+Sequential Criterion for Continuity //将数列看作函数 利用复合函数的连续性 //Robert Bartle, Donald Sherbert. "Introduction to Real Analysis, Fourth Edition" 5.1.3 Theorem     
 函数f(x)在x0处的极限为A 且 函数f(x)在x0处连续 数列{xn}的极限为x0 -> 数列{f(xn)}的极限为A   
 注：与极限时的区别在于， 不再有”存在N，当n>N时，有xn≠x0“的限制  
 
@@ -198,6 +205,40 @@ rational function 分式函数 / 有理分式函数？
 连续函数的性质 -> 函数在连续点处的局部性质  
 
 有界性定理（Boundedness Theorem）  
+f(x)在\[a,b\]上连续 -> f(x)在\[a,b\]上有界   
+//参考 陈天权 "数学分析讲义" 第一册 定理4.2.2  
+> 证明   
+>  
+> 令 S = { y ∈ \[a,b\] : f(x)在\[a,y\]上有界 }  
+f(x)在\[a,b\]上连续 -> f(x)在a上连续 -> a ∈ S -> S非空  
+根据S的定义，显然 b是S的一个上界  
+根据LUB公理 S有上确界 不妨设为ζ=supS  
+>
+> 下面证明f(x)在\[a,ζ\]上有界   
+>
+> f(x)在a上连续 -> f(x)在a的某个邻域内有界 -> ζ > a  
+b是S的一个上界 -> ζ \<= b  
+a < ζ <= b 即 ζ ∈ \[a,b\] -> f(x)在ζ上连续  
+根据 函数极限的局部有界性 不妨设f(x)在(ζ - δ, ζ)上有界  
+又f(x)连续 f(x)在(ζ - δ, ζ]上有界
+>
+> ζ是S的上确界 不妨取某个小于δ的ϵ 即ζ - e > ζ - δ 存在η ∈ S且η > ζ - e(> ζ - δ) 
+η ∈ S -> f(x)在\[a,η\]上有界  
+>
+> 综上f(x)在\[a,η\]∪(ζ - δ, ζ\]上有界（且η > ζ - δ） -> f(x)在\[a,ζ\]上有界  
+>
+> 下面证明ζ=b  
+>
+> 反证法，假设ζ≠b 由于ζ<=b 必有ζ\<b  
+由于f(x)在ζ上连续  
+根据 函数极限的局部有界性 不妨设f(x)在(ζ, ζ+δ2)上有界  
+取某个δ3<δ2 有f(x)在(ζ, ζ+δ3]上有界  
+由于f(x)在\[a,ζ\]上有界 -> f(x)在\[a,ζ\]∪(ζ, ζ+δ3\]上有界 -> f(x)在\[a,ζ+δ3\]上有界  
+因此ζ+δ3 ∈ S 而 ζ+δ3 > ζ 这与ζ是S的上确界矛盾 命题得证  
+
+
+
+
 
 
 ### 导数（Derivative）
