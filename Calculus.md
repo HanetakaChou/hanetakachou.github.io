@@ -29,31 +29,8 @@ Theroem 设M = supE，则 $\forall  \, \epsilon < 0, \, \exists \, x \isin E, \,
 实数完备性（Completeness of the real numbers） //实数系连续性  
   
 最小上界性（Least Upper Bound Property）有上界的非空实数集一定有上确界 //戴德金完备性（Dedekind Completeness）     
+LUB公理（LUB Axiom) //直接看作公理   
   
-LUB公理 //直接看作公理   
-
-戴德金性质（Dedekind Property） R的划分A|B 满足A中的数都小于B， 一定有 A有最大数 或 B有最小数 //戴德金定理  
->证明：  
->任取B中的某个实数，即为A的上界 即A的上界存在 根据LUB公理，A的上确界存在，不妨设w=supA  
-由于A|B是R的划分，必有w属于A或w属于B  
-根据w属于A和w属于B分类讨论  
-w属于A  
-即A中有最大数w，命题成立  
-w属于B  
-显然，对于任意y属于B，有y是A的上界 
-由于w是A的最小上界 w是B的最小数    
-
-最大下界原理 有下界的非空实数集一定有下确界  
->证明：  
->H = { y属于R : y是S的下界 }  
-K = { y属于R : y不是S的下界 }  
-由于下界存在 H非空 (H|K)是R的划分   
-显然 H中的数都小于K   
-根据 戴德金性质 H有最大数 或 K有最小数   
-用反证法证明 K没有最小数  
-不妨设K有最小数b 由于b不是S的下界 存在某个小于b且属于S的实数，不妨设为a  
-显然(a+b)/2 > a 即(a+b)/2不是S的下界 即(a+b)/2属于K 但是(a+b)/2 < b，这与b是K的最小数矛盾  
-
 单调收敛定理（Monotone Convergence Theorem） 单调有界数列必有极限 //单调收敛原理    
    
 单调递增 monotonically increasing  
@@ -65,41 +42,11 @@ K = { y属于R : y不是S的下界 }
 由于{xn}单调递增 取N=A 对任意n>N 满足xn>xN=xA>c-ϵ 即xn-c>-ϵ  
 又由于上界的定义 任意xn\<c 即xn-c\<0 由于ϵ>0 有xn-c<ϵ  
 综上|xn-c|<ϵ 命题得证   
+>
+> 单调递减情形   
+根据之前的证明{-xn}有极限  
+不妨设{-xn}极限为A 根据极限的定义不难证明 {xn}的极限为-A  
    
-区间套原理（Nested Intervals Theorem）  
-闭区间序列$\{[a_n, b_n]\}$满足$\forall n \isin \N^+ , \,  [a_n, b_n] \supe [a_{n+1},b_{n+1}]$，一定有 $\exists \, \zeta, \eta \isin \R , \, \cap_{n=1}^\infin [a_n, b_n] = \{ x : \zeta \le x \le \eta \}$  
-//注：所有闭区间的交集$\cap_{n=1}^\infin [a_n, b_n]$可以严谨地表示为$\{ x : \forall n \isin \N^+ , \,  x \isin [a_n, b_n] \}$    
-//当$\zeta \ne \eta$时，$\{ x : \zeta \le x \le \eta \}$为闭区间$[\zeta, \eta]$；当$\zeta = \eta$时，$\{ x : \zeta \le x \le \eta \}$退化为某一实数  
-  
-区间 interval  
-开区间 open interval  
-闭区间 closed interval  
-半开区间 half-open interval  
-  
->证明：  
->  
->根据题意，我们有 a1<=a2<=......<=an<=......<=bn<=......<=b2<=b1  
-显然 数列{an}单调递增且有界（比如：b1是{an}的一个上界） 数列{bn}单调递减且有界（比如：a1是{bn}的一个下界）      
-根据 单调收敛定理 不妨设ζ=sup{an} η=inf{bn} 我们有 {an}收敛于ζ {bn}收敛于η  
->
->接下来用反证法证明ζ<=η  
-假设ζ>η  
-由于ζ是{an}的上确界 不妨取ϵ=(ζ-η)/2 根据上确界性质 存在aA属于{an} 满足aA > ζ-ϵ = (ζ+η)/2  
-由于η是{bn}的下确界 不妨取ϵ=(ζ-η)/2 根据下确界性质 存在bB属于{bn} 满足bB < η+ϵ = (ζ+η)/2  
-综上，即 存在 aA属于{an} bB属于{bn} 满足 aA > bB //显然，这与题意矛盾  
->
->由于 对任意n 都有an<=ζ<=η<=bn成立 我们有$\{ x : \zeta \le x \le \eta \} \sube \cap_{n=1}^\infin [a_n, b_n]$成立  
-接下来 只要证明$\cap_{n=1}^\infin [a_n, b_n] \sube \{ x : \zeta \le x \le \eta \}$ 命题即得证  
-我们用反证法证明  
-假设x属于$\cap_{n=1}^\infin [a_n, b_n]$且x不属于$\{ x : \zeta \le x \le \eta \}$  
-对x<ζ和x>η两种情形分类讨论  
-当x<ζ时  
-不妨取ϵ=(ζ-x) 根据上确界性质 存在aK属于{an} 满足aK > ζ-ϵ = x 即x不属于\[ak,bK\] 但是，这与x属于$\cap_{n=1}^\infin [a_n, b_n]$矛盾  
-当x>η时
-证明从略  
-
-波尔查诺-魏尔斯特拉斯定理（Bolzano-Weierstrass Theorem）/聚点定理  
-
 
 柯西收敛准则（Cauchy's Convergence Test） 数列{xn}有极限的充分必要条件是：$\forall \, \epsilon > 0 , \, \exists \, N \isin \N^+ , \, \forall \, m > N , \, n > N , \, |x_m - x_n| < \epsilon$ //柯西极限存在准则/柯西审敛原理 //柯西完备性（Cauchy Completeness）    
       
@@ -204,7 +151,7 @@ rational function 分式函数 / 有理分式函数？
 闭区间上连续函数的性质  
 连续函数的性质 -> 函数在连续点处的局部性质  
 
-有界性定理（Boundedness Theorem）  
+有界性定理（Boundedness Theorem） //Robert Bartle, Donald Sherbert. "Introduction to Real Analysis, Fourth Edition" 2011 5.3.2 Boundedness Theorem  
 f(x)在\[a,b\]上连续 -> f(x)在\[a,b\]上有界   
 //参考 陈天权 "数学分析讲义" 第一册 定理4.2.2  
 > 证明   
@@ -238,6 +185,7 @@ a < ζ <= b -> ζ ∈ \[a,b\] -> f(x)在ζ上连续 //**注：如果为半开区
 
 //**注：必须闭区间才能成立 比如f(x)=1/x在[-1,0)上连续 但在[-1,0)上无界**    
 
+极值定理（Extreme Value Theorem） //Robert Bartle, Donald Sherbert. "Introduction to Real Analysis, Fourth Edition" 2011 5.3.4 Maximum-Minimum Theorem  
 
 
 
