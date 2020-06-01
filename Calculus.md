@@ -220,3 +220,56 @@ $\int_a^b g(x) \, dx$ = G(b) - G(a) = F\[φ(b)\]  - F\[φ(a)\] （等式2）
    
   
 
+### 级数（Series）  
+
+##### 级数收敛的必要条件  
+The nth Term Test //\[Bartle 2011\] \\ 3\.7\.3 The nth Term Test  
+级数收敛的必要条件 //\[同济大学数学系 2014\] 第十二章 无穷级数 / 第一节 常数项级数的概念和性质 / 二 收敛级数的基本性质 性质5  
+
+级数 $\displaystyle{\sum_{n = 1}^\infin} x_n$ 收敛 $\Rightarrow \lim\limits_{n \rightarrow \infin}x_n = 0$  
+>Proof //证明  
+let $\displaystyle{\sum_{n = 1}^\infin} x_n = a$ and $s_n = \displaystyle{\sum_{k = 1}^n} x_k$   
+then $\lim\limits_{n \rightarrow \infin} x_n = \lim\limits_{n \rightarrow \infin} (s_n - s_{n-1}) = \lim\limits_{n \rightarrow \infin} s_n - \lim\limits_{n \rightarrow \infin} s_{n-1} = a - a = 0$ //数列极限的运算法则  
+
+##### 柯西审敛原理  
+Cauchy's convergence test //Wikipedia  
+Cauchy Criterion for Series //\[Bartle 2011\] \\ 3\.7\.4 Cauchy Criterion for Series  
+柯西审敛原理 //\[同济大学数学系 2014\] 第十二章 无穷级数 / 第一节 常数项级数的概念和性质 / 三 柯西审敛原理  
+级数 $\displaystyle{\sum_{n = 1}^\infin} x_n$ 收敛 $\Leftrightarrow \forall \, \epsilon > 0, \, \exists \, H(\epsilon) \isin \N, \, \forall \, m > n \ge H(\epsilon), \, |\displaystyle{\sum_{k = n}^m} x_n| < \epsilon$    
+//由于级数本身也是一种数列 将 对数列的柯西审敛原理 应用至此即可   
+
+##### 正项级数及其审敛法   
+正项级数 //let xn be a sequence of nonnegative real numbers //零或正数  
+
+正项级数收敛 ⇔ 部分和数列有界 //\[Bartle 2011\] \\ 3\.7\.5 Theorem  
+>证明  
+显然 正项级数的部分和数列单调递增  
+根据 单调收敛定理 命题即得证   
+
+调和级数（Harmonic Series） $\displaystyle{\sum_{n = 1}^\infin} \frac{1}{n}$ 发散    
+> Proof //证明  
+>    
+> 下面证明 $\displaystyle{\sum_{n = 1}^{2^n}} \frac{1}{n}$ 无界 //\[Bartle 2011\] / 3\.3\.3 Examples(b)   
+>  
+> $\displaystyle{\sum_{k=1}^{2^n}} \frac{1}{k}$ = $1 +\frac{1}{2} + (\frac{1}{3} + \frac{1}{4}) + ... + (\frac{1}{2^{n-1}+1} + ... + \frac{1}{2^n})$  
+\> $1 +\frac{1}{2} + (\frac{1}{4} + \frac{1}{4}) + ... + (\frac{1}{2^{n}} + ... + \frac{1}{2^n})$  
+= $1 + \frac{1}{2} + ... + \frac{1}{2}$  
+= $1 + \frac{k}{2}$  
+>  
+> 我们有 $\forall \, M > 0, \, \exists \, H(M) = 2^{2M} \isin \N , \, \forall \, n > H, \, |\displaystyle{\sum_{k=1}^{n}} \frac{1}{k}| >= |\displaystyle{\sum_{k=1}^{2^{2M}}} \frac{1}{k}| > 1 + \frac{2M}{2} > M$ 因此 $\displaystyle{\sum_{n=1}^{2^n}} \frac{1}{n}$ 无界  
+> 
+> 根据 正项级数及其审敛法 我们有 $\displaystyle{\sum_{n = 1}^{2^n}} \frac{1}{n}$ 发散  
+
+p-series $\displaystyle{\sum_{n = 1}^\infin} \frac{1}{n^p}$ 当p>1时 收敛  
+> 证明  
+>
+> 下面证明有界 //\[Bartle 2011\] / 3\.7\.6 Examples(d)  
+>
+> $\displaystyle{\sum_{k = 1}^{2^n -1}} \frac{1}{k^p}$ = $1 + (\frac{1}{2^p} + \frac{1}{3^p}) + ... + + (\frac{1}{{(2^{n-1})}^p} + ... + \frac{1}{{(2^n)}^p})$   
+\< $1 + (\frac{1}{2^p} + \frac{1}{2^p}) + ... + + (\frac{1}{{(2^{n-1})}^p} + ... + \frac{1}{{(2^{n-1})}^p})$   
+= $1 + \frac{1}{2^{p-1}} + ... + {(\frac{1}{2^{p-1}})}^{n-1}$ //p>1 $\frac{1}{2^{p-1}} \ne 1$     
+= $\frac{1 - {(\frac{1}{2^{p-1}})}^n}{1 - \frac{1}{2^{p-1}}}$ < $\frac{1}{1 - \frac{1}{2^{p-1}}}$ 
+> 
+> 取M=$\frac{1}{1 - \frac{1}{2^{p-1}}}$ 即证明有界  
+  
+交错调和级数 （Alternating Harmonic Series）      
