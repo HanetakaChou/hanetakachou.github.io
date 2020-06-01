@@ -48,24 +48,122 @@ LUB公理（LUB Axiom) //直接看作公理
 不妨设{-xn}极限为A 根据极限的定义不难证明 {xn}的极限为-A  
    
 
-柯西收敛准则（Cauchy's Convergence Test） 数列{xn}有极限的充分必要条件是：$\forall \, \epsilon > 0 , \, \exists \, N \isin \N^+ , \, \forall \, m > N , \, n > N , \, |x_m - x_n| < \epsilon$ //柯西极限存在准则/柯西审敛原理 //柯西完备性（Cauchy Completeness）    
-      
+柯西收敛准则（Cauchy's Convergence Test） //柯西极限存在准则/柯西审敛原理 //柯西完备性（Cauchy Completeness）    
+数列{xn}有极限的充分必要条件是：$\exists \ \Leftrightarrow \forall \, \epsilon > 0 , \, \exists \, N \isin \N^+ , \, \forall \, m > N , \, n > N , \, |x_m - x_n| < \epsilon$   
+//Robert Bartle, Donald Sherbert. "Introduction to Real Analysis, Fourth Edition" 2011 / 3.5.5 Cauchy Convergence Criterion  
+>证明  
+>  
+> 必要性 //Necessary    
+let lim Xn = a  
+for all given ϵ > 0  
+by the definition of the limit of a sequence, there exists a K(ϵ/2) ∈ N such that for all n > K(ϵ/2) ∈ N, we have |xn - a| < ϵ/2    
+let H(ϵ) = K(ϵ/2)   
+for all n,m > H(ϵ),  we have |xn - xm| = |(xm - a) - (xn -a)| =
+
+
+充分性 //Sufficiency  
     
-### 极限（limit）    
-  
-去心领域 deleted neighborhood  
 
-数列极限定义 //epsilon-delta definition  
-if $\forall \, \epsilon > 0, \, \exists \, N \isin \N^+, \, \forall \, n > N, \, |x_n - a| < \epsilon$ then $\lim\limits_{x \rightarrow \infin}x_n = a$   
+### 数列（sequence）  
 
-函数极限定义   
-$\delta$    
+数列极限定义   
+$\forall \, \epsilon > 0, \, \exists \, K(\epsilon) \isin \N, \, \forall \, n > K(\epsilon), \, |x_n - a| < \epsilon \Leftrightarrow \lim\limits_{x \rightarrow \infin}x_n = a$   
+N(ϵ)用于强调N的选择依赖于ϵ //[Bartle 2011] \\ 3\.1\.3 Definition  
 
 证明极限  
 对每个ϵ，求出相应的N //严格地来讲，只需证明N存在，并不需要给出N的具体值，但大多数情况下都能较便利地求出   
   
 证明极限不存在  
 给出反例ϵ 证明相应的N不存在（根据之前的总结，证明不存在往往可以用反证法） //严格地来讲，只需证明反例ϵ存在，并不需要给出ϵ的具体值，但大多数情况下都能较便利地求出  
+
+### 级数（series）  
+
+部分和 partial sum  
+收敛 convergent  
+发散 divergent  
+(一般)项 term   
+
+数列{xn}的部分和数列{sn} 即数列{xn}生成的级数  
+xn称为级数的一般项  
+数列{sn}的极限称为级数的和（sum）或值（value） //通常记作$\displaystyle{\sum_{n=1}^\infin} x_n$   
+
+调和级数（Harmonic Series）  
+$\displaystyle{\sum_{n=1}^\infin} \frac{1}{n} = 1 + \frac{1}{2} + \frac{1}{3} + ... + \frac{1}{n} + ...$   
+
+几何级数（Geometric Series） //等比数列部分和  
+$\displaystyle{\sum_{n=0}^\infin} r^n = 1 + r + r^2 + ... + r^n + ...$   
+
+##### 级数收敛的必要条件  
+The nth Term Test //\[Bartle 2011\] \\ 3\.7\.3 The nth Term Test  
+级数收敛的必要条件 //\[同济大学数学系 2014\] 第十二章 无穷级数 / 第一节 常数项级数的概念和性质 / 二 收敛级数的基本性质 性质5  
+
+级数 $\displaystyle{\sum_{n = 1}^\infin} x_n$ 收敛 $\Rightarrow \lim\limits_{n \rightarrow \infin}x_n = 0$  
+>Proof //证明  
+let $\displaystyle{\sum_{n = 1}^\infin} x_n = a$ and $s_n = \displaystyle{\sum_{k = 1}^n} x_k$   
+then $\lim\limits_{n \rightarrow \infin} x_n = \lim\limits_{n \rightarrow \infin} (s_n - s_{n-1}) = \lim\limits_{n \rightarrow \infin} s_n - \lim\limits_{n \rightarrow \infin} s_{n-1} = a - a = 0$ //数列极限的运算法则  
+
+##### 柯西审敛原理  
+Cauchy's convergence test //Wikipedia  
+Cauchy Criterion for Series //\[Bartle 2011\] \\ 3\.7\.4 Cauchy Criterion for Series  
+柯西审敛原理 //\[同济大学数学系 2014\] 第十二章 无穷级数 / 第一节 常数项级数的概念和性质 / 三 柯西审敛原理  
+级数 $\displaystyle{\sum_{n = 1}^\infin} x_n$ 收敛 $\Leftrightarrow \forall \, \epsilon > 0, \, \exists \, H(\epsilon) \isin \N, \, \forall \, m > n \ge H(\epsilon), \, |\displaystyle{\sum_{k = n}^m} x_n| < \epsilon$    
+//由于级数本身也是一种数列 将 对数列的柯西审敛原理 应用至此即可   
+
+##### 正项级数及其审敛法   
+正项级数 //let xn be a sequence of nonnegative real numbers //零或正数  
+
+正项级数收敛 ⇔ 部分和数列有界 //\[Bartle 2011\] \\ 3\.7\.5 Theorem  
+>证明  
+显然 正项级数的部分和数列单调递增  
+根据 单调收敛定理 命题即得证   
+
+调和级数（Harmonic Series） $\displaystyle{\sum_{n = 1}^\infin} \frac{1}{n}$ 发散    
+> Proof //证明  
+>    
+> 下面证明 $\displaystyle{\sum_{n = 1}^{2^n}} \frac{1}{n}$ 无界 //\[Bartle 2011\] / 3\.3\.3 Examples(b)   
+>  
+> $\displaystyle{\sum_{k=1}^{2^n}} \frac{1}{k}$ = $1 +\frac{1}{2} + (\frac{1}{3} + \frac{1}{4}) + ... + (\frac{1}{2^{n-1}+1} + ... + \frac{1}{2^n})$  
+\> $1 +\frac{1}{2} + (\frac{1}{4} + \frac{1}{4}) + ... + (\frac{1}{2^{n}} + ... + \frac{1}{2^n})$  
+= $1 + \frac{1}{2} + ... + \frac{1}{2}$  
+= $1 + \frac{k}{2}$  
+>  
+> 我们有 $\forall \, M > 0, \, \exists \, H(M) = 2^{2M} \isin \N , \, \forall \, n > H, \, |\displaystyle{\sum_{k=1}^{n}} \frac{1}{k}| >= |\displaystyle{\sum_{k=1}^{2^{2M}}} \frac{1}{k}| > 1 + \frac{2M}{2} > M$ 因此 $\displaystyle{\sum_{n=1}^{2^n}} \frac{1}{n}$ 无界  
+> 
+> 根据 正项级数及其审敛法 我们有 $\displaystyle{\sum_{n = 1}^{2^n}} \frac{1}{n}$ 发散  
+
+p-series $\displaystyle{\sum_{n = 1}^\infin} \frac{1}{n^p}$ 当p>1时 收敛  
+> 证明  
+>
+> 下面证明有界 //\[Bartle 2011\] / 3\.7\.6 Examples(d)  
+>
+> $\displaystyle{\sum_{k = 1}^{2^n -1}} \frac{1}{k^p}$ = $1 + (\frac{1}{2^p} + \frac{1}{3^p}) + ... + + (\frac{1}{{(2^{n-1})}^p} + ... + \frac{1}{{(2^n)}^p})$   
+\< $1 + (\frac{1}{2^p} + \frac{1}{2^p}) + ... + + (\frac{1}{{(2^{n-1})}^p} + ... + \frac{1}{{(2^{n-1})}^p})$   
+= $1 + \frac{1}{2^{p-1}} + ... + {(\frac{1}{2^{p-1}})}^{n-1}$ //p>1 $\frac{1}{2^{p-1}} \ne 1$     
+= $\frac{1 - {(\frac{1}{2^{p-1}})}^n}{1 - \frac{1}{2^{p-1}}}$ < $\frac{1}{1 - \frac{1}{2^{p-1}}}$ 
+> 
+> 取M=$\frac{1}{1 - \frac{1}{2^{p-1}}}$ 即证明有界  
+  
+交错调和级数 （Alternating Harmonic Series） $\displaystyle{\sum_{n = 1}^\infin} \frac{{(-1)}^{n+1}}{n}$ 收敛  
+> 证明  
+> 
+>      
+
+##### 绝对收敛与条件收敛
+
+### e（Euler's number）   
+$e = \lim\limits_{n \rightarrow \infin} (1+\frac{1}{n})^n$  
+$e = \displaystyle{\sum_{n=0}^\infin} \frac{1}{n!} = 1 + 1 + \frac{1}{1 \cdot 2} +  \frac{1}{1 \cdot 2 \cdot 3} + ...$  
+
+### 极限（limit）    
+
+虽然 数列可以认为是一种特殊的函数  
+但是 数列极限却不可以认为是一种特殊的函数极限 //在函数极限的定义中 要求函数在去心领域上有定义 而去心领域包含一段连续的实数 这是数列所不具备的   
+
+去心领域 deleted neighborhood    
+领域 neighborhood  
+  
+函数极限定义 //epsilon-delta definition   
+$\delta$    
   
 Sequential Criterion for Limits //函数极限与数列极限的关系 //Robert Bartle, Donald Sherbert. "Introduction to Real Analysis, Fourth Edition" 4.1.8 Theorem  
 函数f(x)在x0处的极限为A 数列{xn}的极限为x0 且 存在N，当n>N时，有xn≠x0 -> 数列{f(xn)}的极限为A  
@@ -220,56 +318,4 @@ $\int_a^b g(x) \, dx$ = G(b) - G(a) = F\[φ(b)\]  - F\[φ(a)\] （等式2）
    
   
 
-### 级数（Series）  
-
-##### 级数收敛的必要条件  
-The nth Term Test //\[Bartle 2011\] \\ 3\.7\.3 The nth Term Test  
-级数收敛的必要条件 //\[同济大学数学系 2014\] 第十二章 无穷级数 / 第一节 常数项级数的概念和性质 / 二 收敛级数的基本性质 性质5  
-
-级数 $\displaystyle{\sum_{n = 1}^\infin} x_n$ 收敛 $\Rightarrow \lim\limits_{n \rightarrow \infin}x_n = 0$  
->Proof //证明  
-let $\displaystyle{\sum_{n = 1}^\infin} x_n = a$ and $s_n = \displaystyle{\sum_{k = 1}^n} x_k$   
-then $\lim\limits_{n \rightarrow \infin} x_n = \lim\limits_{n \rightarrow \infin} (s_n - s_{n-1}) = \lim\limits_{n \rightarrow \infin} s_n - \lim\limits_{n \rightarrow \infin} s_{n-1} = a - a = 0$ //数列极限的运算法则  
-
-##### 柯西审敛原理  
-Cauchy's convergence test //Wikipedia  
-Cauchy Criterion for Series //\[Bartle 2011\] \\ 3\.7\.4 Cauchy Criterion for Series  
-柯西审敛原理 //\[同济大学数学系 2014\] 第十二章 无穷级数 / 第一节 常数项级数的概念和性质 / 三 柯西审敛原理  
-级数 $\displaystyle{\sum_{n = 1}^\infin} x_n$ 收敛 $\Leftrightarrow \forall \, \epsilon > 0, \, \exists \, H(\epsilon) \isin \N, \, \forall \, m > n \ge H(\epsilon), \, |\displaystyle{\sum_{k = n}^m} x_n| < \epsilon$    
-//由于级数本身也是一种数列 将 对数列的柯西审敛原理 应用至此即可   
-
-##### 正项级数及其审敛法   
-正项级数 //let xn be a sequence of nonnegative real numbers //零或正数  
-
-正项级数收敛 ⇔ 部分和数列有界 //\[Bartle 2011\] \\ 3\.7\.5 Theorem  
->证明  
-显然 正项级数的部分和数列单调递增  
-根据 单调收敛定理 命题即得证   
-
-调和级数（Harmonic Series） $\displaystyle{\sum_{n = 1}^\infin} \frac{1}{n}$ 发散    
-> Proof //证明  
->    
-> 下面证明 $\displaystyle{\sum_{n = 1}^{2^n}} \frac{1}{n}$ 无界 //\[Bartle 2011\] / 3\.3\.3 Examples(b)   
->  
-> $\displaystyle{\sum_{k=1}^{2^n}} \frac{1}{k}$ = $1 +\frac{1}{2} + (\frac{1}{3} + \frac{1}{4}) + ... + (\frac{1}{2^{n-1}+1} + ... + \frac{1}{2^n})$  
-\> $1 +\frac{1}{2} + (\frac{1}{4} + \frac{1}{4}) + ... + (\frac{1}{2^{n}} + ... + \frac{1}{2^n})$  
-= $1 + \frac{1}{2} + ... + \frac{1}{2}$  
-= $1 + \frac{k}{2}$  
->  
-> 我们有 $\forall \, M > 0, \, \exists \, H(M) = 2^{2M} \isin \N , \, \forall \, n > H, \, |\displaystyle{\sum_{k=1}^{n}} \frac{1}{k}| >= |\displaystyle{\sum_{k=1}^{2^{2M}}} \frac{1}{k}| > 1 + \frac{2M}{2} > M$ 因此 $\displaystyle{\sum_{n=1}^{2^n}} \frac{1}{n}$ 无界  
-> 
-> 根据 正项级数及其审敛法 我们有 $\displaystyle{\sum_{n = 1}^{2^n}} \frac{1}{n}$ 发散  
-
-p-series $\displaystyle{\sum_{n = 1}^\infin} \frac{1}{n^p}$ 当p>1时 收敛  
-> 证明  
->
-> 下面证明有界 //\[Bartle 2011\] / 3\.7\.6 Examples(d)  
->
-> $\displaystyle{\sum_{k = 1}^{2^n -1}} \frac{1}{k^p}$ = $1 + (\frac{1}{2^p} + \frac{1}{3^p}) + ... + + (\frac{1}{{(2^{n-1})}^p} + ... + \frac{1}{{(2^n)}^p})$   
-\< $1 + (\frac{1}{2^p} + \frac{1}{2^p}) + ... + + (\frac{1}{{(2^{n-1})}^p} + ... + \frac{1}{{(2^{n-1})}^p})$   
-= $1 + \frac{1}{2^{p-1}} + ... + {(\frac{1}{2^{p-1}})}^{n-1}$ //p>1 $\frac{1}{2^{p-1}} \ne 1$     
-= $\frac{1 - {(\frac{1}{2^{p-1}})}^n}{1 - \frac{1}{2^{p-1}}}$ < $\frac{1}{1 - \frac{1}{2^{p-1}}}$ 
-> 
-> 取M=$\frac{1}{1 - \frac{1}{2^{p-1}}}$ 即证明有界  
-  
-交错调和级数 （Alternating Harmonic Series）      
+[Bartle 2011] Robert Bartle, Donald Sherbert. "Introduction to Real Analysis, Fourth Edition" 2011. 
