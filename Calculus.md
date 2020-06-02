@@ -67,7 +67,7 @@ for all n,m > H(ϵ),  we have |xn - xm| = |(xm - a) - (xn -a)| =
 ### 数列（sequence）  
 
 数列极限定义   
-$\forall \, \epsilon > 0, \, \exists \, K(\epsilon) \isin \N, \, \forall \, n > K(\epsilon), \, |x_n - a| < \epsilon \Leftrightarrow \lim\limits_{x \rightarrow \infin}x_n = a$   
+$\forall \, \epsilon > 0 , \, \exists \, K(\epsilon) \isin \N , \, \forall \, n > K(\epsilon) , \, |x_n - a| < \epsilon \Leftrightarrow \lim\limits_{n \rightarrow \infin}x_n = a$   
 N(ϵ)用于强调N的选择依赖于ϵ //[Bartle 2011] \\ 3\.1\.3 Definition  
 
 证明极限  
@@ -149,6 +149,11 @@ p-series $\displaystyle{\sum_{n = 1}^\infin} \frac{1}{n^p}$ 当p>1时 收敛
 >      
 
 ##### 绝对收敛与条件收敛
+
+### 函数项级数（Series of Functions）  
+
+##### 函数项数列（Sequences of Functions）  
+$\forall x \isin A , \, \lim\limits_{n \rightarrow \infin}\operatorname{f_n}(x) = \operatorname{f}(x)$ //对给定x，fn(x)即常数项数列  
 
 ### e（Euler's number）   
 $e = \lim\limits_{n \rightarrow \infin} (1+\frac{1}{n})^n$  
@@ -249,7 +254,7 @@ rational function 分式函数 / 有理分式函数？
 闭区间上连续函数的性质  
 连续函数的性质 -> 函数在连续点处的局部性质  
 
-有界性定理（Boundedness Theorem） //Robert Bartle, Donald Sherbert. "Introduction to Real Analysis, Fourth Edition" 2011 5.3.2 Boundedness Theorem  
+有界性定理（Boundedness Theorem）在闭区间上连续的函数在该区间上有界 //Robert Bartle, Donald Sherbert. "Introduction to Real Analysis, Fourth Edition" 2011 5.3.2 Boundedness Theorem  
 f(x)在\[a,b\]上连续 -> f(x)在\[a,b\]上有界   
 //参考 陈天权 "数学分析讲义" 第一册 定理4.2.2  
 > 证明   
@@ -283,10 +288,28 @@ a < ζ <= b -> ζ ∈ \[a,b\] -> f(x)在ζ上连续 //**注：如果为半开区
 
 //**注：必须闭区间才能成立 比如f(x)=1/x在[-1,0)上连续 但在[-1,0)上无界**    
 
-极值定理（Extreme Value Theorem） //Robert Bartle, Donald Sherbert. "Introduction to Real Analysis, Fourth Edition" 2011 5.3.4 Maximum-Minimum Theorem  
+极值定理（Extreme Value Theorem）/最大值最小值定理 在闭区间上连续的函数在该区间上一定能取得它的最大值和最小值 //[Bartle 2011] / 5.3.4 Maximum-Minimum Theorem  
+//\[陈天权 2009\] 定理 4.2.3  
+> 证明
+> 
+> 证明最大值的情形 
+>
+> 根据有界性定理 f(x)在\[a, b\]上有界  
+根据LUB公理 { f(x) : a \<= x \<= b }有上确界 不妨设为α  
+> 
+> 下面证明 ∃ x ∈ \[a, b\], f(x) = α  
+>
+> 反证法 假设 ∀ x ∈ \[a, b\], f(x) ≠ α  
+由于α是上确界 我们有f(x) < α 
+>
+> 构造 g(x) = 1/(α - f(x))  
+根据极限的运算法则 可以证明g(x)在[a, b\]上连续  
+根据有界性定理 g(x)在[a, b\]上有界 不妨设 1/(α - f(x)) < M (M>0)   
+由于f(x) < α 有f(x) < α - 1/M (M>0)   
+因此 α - 1/M 是f(x)的一个上界 且 α - 1/M < α 这与α是上确界矛盾  
+   
 
-
-
+   
 ### 导数（Derivative）
 
 洛必达法则（L'Hôpital's rule）  
@@ -317,5 +340,6 @@ $\int_a^b g(x) \, dx$ = G(b) - G(a) = F\[φ(b)\]  - F\[φ(a)\] （等式2）
 第二类换元法  
    
   
-
-[Bartle 2011] Robert Bartle, Donald Sherbert. "Introduction to Real Analysis, Fourth Edition" 2011. 
+### 参考文献  
+\[Bartle 2011\] Robert Bartle, Donald Sherbert. "Introduction to Real Analysis, Fourth Edition" 2011.   
+\[陈天权 2009\] 陈天权. "数学分析讲义 第一册" 2009.
