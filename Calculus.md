@@ -63,6 +63,10 @@ for all n,m > H(ϵ),  we have |xn - xm| = |(xm - a) - (xn -a)| =
 
 充分性 //Sufficiency  
     
+### e（Euler's number）   
+$e = \lim\limits_{n \rightarrow \infin} (1+\frac{1}{n})^n$  
+$e = \displaystyle{\sum_{n=0}^\infin} \frac{1}{n!} = 1 + 1 + \frac{1}{1 \cdot 2} +  \frac{1}{1 \cdot 2 \cdot 3} + ...$  
+
 
 ### 数列（sequence）  
 
@@ -153,11 +157,22 @@ p-series $\displaystyle{\sum_{n = 1}^\infin} \frac{1}{n^p}$ 当p>1时 收敛
 ### 函数项级数（Series of Functions）  
 
 ##### 函数项数列（Sequences of Functions）  
-$\forall x \isin A , \, \lim\limits_{n \rightarrow \infin}\operatorname{f_n}(x) = \operatorname{f}(x)$ //对给定x，fn(x)即常数项数列  
+//函数项数列fn(x)在A上逐点（Pointwise）收敛 //$\operatorname{f_n}(x) \rightarrow \operatorname{f}(x)$ on A   
+$\forall \, x \isin A , \, \lim\limits_{n \rightarrow \infin} \operatorname{f_n}(x) = \operatorname{f}(x)$ //对给定x，fn(x)即常数项数列   
+$\forall \, \epsilon > 0 , \, x \isin A , \, \exists \, K(\epsilon , \, x) \isin \N , \, \forall \, n > K(\epsilon , \, x) , \, |\operatorname{f_n}(x) - \operatorname{f}(x)| < \epsilon$ ⇔ $\operatorname{f_n}(x) \rightarrow \operatorname{f}(x)$ on A  
+  
+//函数项数列fn(x)在A上一致（Uniform）收敛 //$\operatorname{f_n}(x) \rightrightarrows \operatorname{f}(x)$ on A    
+$\forall \, \epsilon > 0 , \, \exists \, K(\epsilon) \isin \N , \, \forall \, n > K(\epsilon)  , \, x \isin A , \, |\operatorname{f_n}(x) - \operatorname{f}(x)| < \epsilon$ ⇔ $\operatorname{f_n}(x) \rightrightarrows \operatorname{f}(x)$ on A  
 
-### e（Euler's number）   
-$e = \lim\limits_{n \rightarrow \infin} (1+\frac{1}{n})^n$  
-$e = \displaystyle{\sum_{n=0}^\infin} \frac{1}{n!} = 1 + 1 + \frac{1}{1 \cdot 2} +  \frac{1}{1 \cdot 2 \cdot 3} + ...$  
+##### 函数项级数（Series of Functions）  
+\[Bartle 2011\] 基于 函数项数列的逐点收敛 定义 函数项级数  
+
+
+##### 幂级数（Power Series）  
+$\displaystyle{\sum_{n = 0}^{\infin}} a_nx^n$ = $a_0 + a_1x + ... + + a_nx^n + ...$        
+
+收敛半径 radius of convergence  
+Cauchy-Hadamard Theorem  
 
 ### 极限（limit）    
 
@@ -308,8 +323,9 @@ a < ζ <= b -> ζ ∈ \[a,b\] -> f(x)在ζ上连续 //**注：如果为半开区
 由于f(x) < α 有f(x) < α - 1/M (M>0)   
 因此 α - 1/M 是f(x)的一个上界 且 α - 1/M < α 这与α是上确界矛盾  
    
+##### 一致连续性（Uniform Continuity） 
 
-   
+
 ### 导数（Derivative）
 
 洛必达法则（L'Hôpital's rule）  
