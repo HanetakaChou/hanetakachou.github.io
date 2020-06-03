@@ -358,4 +358,6 @@ $\int_a^b g(x) \, dx$ = G(b) - G(a) = F\[φ(b)\]  - F\[φ(a)\] （等式2）
   
 ### 参考文献  
 \[Bartle 2011\] Robert Bartle, Donald Sherbert. "Introduction to Real Analysis, Fourth Edition" 2011.   
-\[陈天权 2009\] 陈天权. "数学分析讲义 第一册" 2009.
+\[陈天权 2009\] 陈天权. "数学分析讲义 第一册" 2009.  
+\[Rudin 1964\] Walter Rudin. "Principles of Mathematical Analysis, Third Edition." McGraw-Hill 1964.  
+  
