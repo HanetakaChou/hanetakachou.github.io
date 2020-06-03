@@ -113,7 +113,7 @@ Cauchy Criterion for Series //\[Bartle 2011\] \\ 3\.7\.4 Cauchy Criterion for Se
 级数 $\displaystyle{\sum_{n = 1}^\infin} x_n$ 收敛 $\Leftrightarrow \forall \, \epsilon > 0, \, \exists \, H(\epsilon) \isin \N, \, \forall \, m > n \ge H(\epsilon), \, |\displaystyle{\sum_{k = n}^m} x_n| < \epsilon$    
 //由于级数本身也是一种数列 将 对数列的柯西审敛原理 应用至此即可   
 
-##### 正项级数及其审敛法   
+##### 正项级数及其审敛法 //非负项级数    
 正项级数 //let xn be a sequence of nonnegative real numbers //零或正数  
 
 正项级数收敛 ⇔ 部分和数列有界 //\[Bartle 2011\] \\ 3\.7\.5 Theorem  
@@ -146,7 +146,9 @@ p-series $\displaystyle{\sum_{n = 1}^\infin} \frac{1}{n^p}$ 当p>1时 收敛
 = $\frac{1 - {(\frac{1}{2^{p-1}})}^n}{1 - \frac{1}{2^{p-1}}}$ < $\frac{1}{1 - \frac{1}{2^{p-1}}}$ 
 > 
 > 取M=$\frac{1}{1 - \frac{1}{2^{p-1}}}$ 即证明有界  
-  
+
+##### 交错级数及其审敛法  
+
 交错调和级数 （Alternating Harmonic Series） $\displaystyle{\sum_{n = 1}^\infin} \frac{{(-1)}^{n+1}}{n}$ 收敛  
 > 证明  
 > 
