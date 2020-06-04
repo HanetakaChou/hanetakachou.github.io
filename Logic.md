@@ -28,12 +28,25 @@ observation //也表示真命题(用于不含全称量词时)
 
 by symmetry //由于对称性 //同理可得  
   
+since //由于 //因为    
+it follows that //因此 //所以  
+
+and / but //且
+
+we have shown that //我们已经证明 //我们得到  
+
+in other words //即  
+  
+call it a //将它称作a  
+
+let //不妨设  
+
+
+
 A implies B //A能推出B    
 whenever/if A holds, B follows/holds //当A成立时 B也成立      
 A if and only if / iff  B //A当且仅当B  
 A only if B //“仅当”（中文一般不用） //B是A的必要条件 即 A能推出B  
-  
-  
   
 **数学归纳法（proof by induction）**  
   

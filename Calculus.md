@@ -13,9 +13,12 @@ $\forall \, e \isin [b]_\sim$ 有$e \sim b$ 又因为$b \sim c$ 有$e \sim c$ �
 
 最大数 max  
 最小数 min    
-上界 upper bound
+有上界 （be） bounded above  
+有下界 （be） bounded belowed    
+上界 upper bound  
+下界 lower bound  
 上确界 supremum //最小上界 least upper bound       
-下确界 infimum //最大下界   
+下确界 infimum //最大下界 greatest lower bound    
   
 Theroem 设M = supE，则 $\forall  \, \epsilon > 0, \, \exists \, x \isin E, \, x > M - \epsilon$    
 Proof by Contradiction  
@@ -28,9 +31,22 @@ Theroem 设M = supE，则 $\forall  \, \epsilon < 0, \, \exists \, x \isin E, \,
 
 实数完备性（Completeness of the real numbers） //实数系连续性  
   
-最小上界性（Least Upper Bound Property）有上界的非空实数集一定有上确界 //戴德金完备性（Dedekind Completeness）     
-LUB公理（LUB Axiom) //直接看作公理   
+最小上界性（Least Upper Bound Property）如果非空的实数子集有上界，那么它一定有上确界 //戴德金完备性（Dedekind Completeness）     
+LUB公理（LUB Axiom) //直接看作公理 //\[Rudin 1976\] 1.10 Definition    
   
+最大下界性（Greatest Lower Bound Property）   
+> 证明 //\[Rudin 1976\] 1.11 Theorem  
+> 
+> 不妨设 非空的实数子集为B 设 L = { y : y是B的一个下界 }  
+> 由于B非空 任取B中的某个x 容易证明 有 x是L的一个上界 根据最小上界性 L有上确界 不妨设为α  
+>
+> 容易证明 对B中的任意x 都有 x是L的一个上界   
+由于α是L的上确界 根据上确界定义 对任意y<α 都有 y不是L的一个上界 //根据逆否命题等价性 对任意L的上界x 都有x>=α  
+因此 对B中的任意x 都有 都有x>=α 即α是B的一个下界 即α属于L 
+> 
+> 又因为α是L的一个上界  
+对任意β>α 都有β不属于L 即β不是y的下界   
+
 单调收敛定理（Monotone Convergence Theorem） 单调有界数列必有极限 //单调收敛原理    
    
 单调递增 monotonically increasing  
@@ -361,5 +377,5 @@ $\int_a^b g(x) \, dx$ = G(b) - G(a) = F\[φ(b)\]  - F\[φ(a)\] （等式2）
 ### 参考文献  
 \[Bartle 2011\] Robert Bartle, Donald Sherbert. "Introduction to Real Analysis, Fourth Edition" 2011.   
 \[陈天权 2009\] 陈天权. "数学分析讲义 第一册" 2009.  
-\[Rudin 1964\] Walter Rudin. "Principles of Mathematical Analysis, Third Edition." McGraw-Hill 1964.  
+\[Rudin 1976\] Walter Rudin. "Principles of Mathematical Analysis, Third Edition." McGraw-Hill 1976.  
   
