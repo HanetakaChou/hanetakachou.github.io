@@ -67,8 +67,9 @@ LUB公理（LUB Axiom) //直接看作公理 //\[Rudin 1976\] 1.10 Definition
    
 
 柯西收敛准则（Cauchy's Convergence Test） //柯西极限存在准则/柯西审敛原理 //柯西完备性（Cauchy Completeness）    
-数列{xn}有极限的充分必要条件是：$\exists \ \Leftrightarrow \forall \, \epsilon > 0 , \, \exists \, N \isin \N^+ , \, \forall \, m > N , \, n > N , \, |x_m - x_n| < \epsilon$   
-//Robert Bartle, Donald Sherbert. "Introduction to Real Analysis, Fourth Edition" 2011 / 3.5.5 Cauchy Convergence Criterion  
+数列{xn}有极限的充分必要条件：$\exists \, A \isin \R , \, \lim\limits_{n \rightarrow \infin}x_n = A \ \Leftrightarrow \forall \, \epsilon > 0 , \, \exists \, N \isin \N^+ , \, \forall \, m > N , \, n > N , \, |x_m - x_n| < \epsilon$   
+//\[Bartle 2011\] / 3.5.5 Cauchy Convergence Criterion  
+//\[陈天权 2009\] / 定理 3.2.3  
 >证明  
 >  
 > 必要性 //Necessary    
@@ -76,10 +77,54 @@ let lim Xn = a
 for all given ϵ > 0  
 by the definition of the limit of a sequence, there exists a K(ϵ/2) ∈ N such that for all n > K(ϵ/2) ∈ N, we have |xn - a| < ϵ/2    
 let H(ϵ) = K(ϵ/2)   
-for all n,m > H(ϵ),  we have |xn - xm| = |(xm - a) - (xn -a)| =
+for all n,m > H(ϵ),  we have |xn - xm| = |(xm - a) - (xn -a)| <= | xm - a | + | xn -a | = ϵ/2 + ϵ/2 = ϵ //triangle inequality  //绝对值不等式  
+>
+> 充分性 //Sufficiency  
+> we construct two sequence ix_k = inf{ xn | n > k } and sx_k = sup{ xn | n > k }  
+> 
+> first we try to prove that the limit of ix_k and sx_k exists  
+> 
+> let ϵ = 1, there exists a H(1) ∈ N such that for all n,m > H(ϵ)， it holds that |xn - xm| < 1  
+in other words, xm - 1 < xn < xm + 1
+>  
+> let m = H(1)， we have that for all n > H(1) it holds that xH(1) - 1 < xn < xH(1) + 1
+> 
+> let M = max { |x1|, |x2| ... |xH(1)|, |xH(1) - 1|, |xH(1) + 1| }, we have that for all xn, it holds that |xn| < M  
+> by the definition of bounded above/below, xn is bounded   
+>
+> by the definition of the supremum and infimum, sx_k is monotonically decreasing and ix_k is  monotonically increasing  
+>
+> by the Monotone Convergence Theorem, the limit of ix_k and sx_K exists  
+> let lim ix_k = α and lim sx_k = β  
+>
+> second we try to prove that lim (sx_k - ix_k) = 0  
+> for all given ϵ > 0  
+>
+> there exists a H(ϵ/2) ∈ N such that for all n,m > H(ϵ)， it holds that |xn - xm| < ϵ   
+in other words, xm - ϵ < xn < xm + ϵ
+> 
+> let m = H(ϵ)， we have that for all n > H(ϵ) it holds that xH(ϵ) - ϵ < xn < xH(ϵ) + ϵ  
+>
+> by the definition of the upper/lower bound, xH(ϵ) - ϵ is an lower bound of { xn | n > H(ϵ) } and xH(ϵ) + ϵ is an upper bound of { xn | n > H(ϵ) }  
+>
+> by the definition of the supremum(least upper bound) and infimum(greatest lower bound), we have that xH(ϵ) - ϵ <= inf{ xn | n > H(ϵ) } <= { xn | n > H(ϵ) } <= xH(ϵ) + ϵ  
+it follows that 0 <= sup{{ xn | n > H(ϵ) } - inf{ xn | n > H(ϵ) } <= xH(ϵ) + ϵ - (xH(ϵ) - ϵ) = 2ϵ 
+> 
+> we have shown that for all given ϵ > 0 there exists a H(ϵ/2) ∈ N such that | (sx_k - ix_k) - 0 | < 2ϵ  
+>
+> in other words, for all given η > 0, let e = η/2, we have that there exists a H(ϵ/2) ∈ N such that | (sx_k - ix_k) - 0 | < 2ϵ = 2*(η/2) = η  
+> 
+> by the definition of the limit of the sequence, lim (sx_k - ix_k) = 0 
+>
+> third we try to prove the conclusion  
+> by 极限的四则运算, lim (sx_k - ix_k) = lim sx_k - lim ix_k = α - β  
+since lim (sx_k - ix_k) = 0, we have that α - β = 0 in other words α = β  
+>  
+> by the construction of ix_k and sx_k, we have that ix_k <= xn <= sx_k  
+by the Squeeze Thereom, we have that the limit of xn exists and lim xn = α = β  
 
 
-充分性 //Sufficiency  
+
     
 ### e（Euler's number）   
 $e = \lim\limits_{n \rightarrow \infin} (1+\frac{1}{n})^n$  
@@ -119,10 +164,13 @@ $\displaystyle{\sum_{n=0}^\infin} r^n = 1 + r + r^2 + ... + r^n + ...$
 The nth Term Test //\[Bartle 2011\] \\ 3\.7\.3 The nth Term Test  
 级数收敛的必要条件 //\[同济大学数学系 2014\] 第十二章 无穷级数 / 第一节 常数项级数的概念和性质 / 二 收敛级数的基本性质 性质5  
 
+//一般使用逆否命题 用于证明级数发散  
+  
 级数 $\displaystyle{\sum_{n = 1}^\infin} x_n$ 收敛 $\Rightarrow \lim\limits_{n \rightarrow \infin}x_n = 0$  
 >Proof //证明  
 let $\displaystyle{\sum_{n = 1}^\infin} x_n = a$ and $s_n = \displaystyle{\sum_{k = 1}^n} x_k$   
 then $\lim\limits_{n \rightarrow \infin} x_n = \lim\limits_{n \rightarrow \infin} (s_n - s_{n-1}) = \lim\limits_{n \rightarrow \infin} s_n - \lim\limits_{n \rightarrow \infin} s_{n-1} = a - a = 0$ //数列极限的运算法则  
+
 
 ##### 柯西审敛原理  
 Cauchy's convergence test //Wikipedia  

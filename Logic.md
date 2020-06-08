@@ -29,6 +29,8 @@ observation //也表示真命题(用于不含全称量词时)
 by symmetry //由于对称性 //同理可得  
   
 since //由于 //因为    
+by //根据（...定理)    
+
 it follows that //因此 //所以  
 
 and / but //且
@@ -36,12 +38,14 @@ and / but //且
 we have shown that //我们已经证明 //我们得到  
 
 in other words //即  
-  
-call it a //将它称作a  
+this means that //这意味着/即
 
 let //不妨设  
+call it a //将它称作a  
 
 
+we have (that) //我们有  
+it holds that //...成立  
 
 A implies B //A能推出B    
 whenever/if A holds, B follows/holds //当A成立时 B也成立      
