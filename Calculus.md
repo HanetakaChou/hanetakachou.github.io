@@ -166,17 +166,17 @@ The nth Term Test //\[Bartle 2011\] \\ 3\.7\.3 The nth Term Test
 
 //一般使用逆否命题 用于证明级数发散  
   
-级数 $\displaystyle{\sum_{n = 1}^\infin} x_n$ 收敛 $\Rightarrow \lim\limits_{n \rightarrow \infin}x_n = 0$  
+级数 $\displaystyle{\sum_{n = 1}^\infin} x_n$ ⇒ 收敛 $\lim\limits_{n \rightarrow \infin}x_n = 0$  
 >Proof //证明  
 let $\displaystyle{\sum_{n = 1}^\infin} x_n = a$ and $s_n = \displaystyle{\sum_{k = 1}^n} x_k$   
 then $\lim\limits_{n \rightarrow \infin} x_n = \lim\limits_{n \rightarrow \infin} (s_n - s_{n-1}) = \lim\limits_{n \rightarrow \infin} s_n - \lim\limits_{n \rightarrow \infin} s_{n-1} = a - a = 0$ //数列极限的运算法则  
-
-
+  
+  
 ##### 柯西审敛原理  
 Cauchy's convergence test //Wikipedia  
 Cauchy Criterion for Series //\[Bartle 2011\] \\ 3\.7\.4 Cauchy Criterion for Series  
 柯西审敛原理 //\[同济大学数学系 2014\] 第十二章 无穷级数 / 第一节 常数项级数的概念和性质 / 三 柯西审敛原理  
-级数 $\displaystyle{\sum_{n = 1}^\infin} x_n$ 收敛 $\Leftrightarrow \forall \, \epsilon > 0, \, \exists \, H(\epsilon) \isin \N, \, \forall \, m > n \ge H(\epsilon), \, |\displaystyle{\sum_{k = n}^m} x_n| < \epsilon$    
+级数 $\displaystyle{\sum_{n = 1}^\infin} x_n$ 收敛 ⇔ $\forall \, \epsilon > 0, \, \exists \, H(\epsilon) \isin \N, \, \forall \, m > n \ge H(\epsilon), \, |\displaystyle{\sum_{k = n}^m} x_n| < \epsilon$    
 //由于级数本身也是一种数列 将 对数列的柯西审敛原理 应用至此即可   
 
 ##### 正项级数及其审敛法 //非负项级数    
@@ -220,7 +220,18 @@ p-series $\displaystyle{\sum_{n = 1}^\infin} \frac{1}{n^p}$ 当p>1时 收敛
 > 
 >      
 
-##### 绝对收敛与条件收敛
+##### 绝对收敛（Absolute Convergence）与条件收敛（Conditionally Convergent / Nonabsolutely Convergent）  
+级数 $\displaystyle{\sum_{n = 1}^\infin} |x_n|$ 收敛 ⇒ 级数 $\displaystyle{\sum_{n = 1}^\infin} x_n$ 收敛  
+> 证明  
+> 
+> 根据柯西收敛准则  由于 级数 $\displaystyle{\sum_{n = 1}^\infin} |x_n|$ 收敛 我们有 $\forall \, \epsilon > 0, \, \exists \, H(\epsilon) \isin \N, \, \forall \, m > n \ge H(\epsilon), \, | \displaystyle{\sum_{k = n}^m} |x_n| | < \epsilon$     
+>
+> 根据三角不等式 $| \displaystyle{\sum_{k = n}^m} x_n | \le \displaystyle{\sum_{k = n}^m} |x_n| = | \displaystyle{\sum_{k = n}^m} |x_n| | < \epsilon$  
+>
+> 因此 我们有  $\forall \, \epsilon > 0, \, \exists \, H(\epsilon) \isin \N, \, \forall \, m > n \ge H(\epsilon), \, | \displaystyle{\sum_{k = n}^m} x_n | < \epsilon$ 根据柯西收敛准则 级数 $\displaystyle{\sum_{n = 1}^\infin} x_n$ 收敛   
+
+绝对收敛（Absolute Convergence） 一定 收敛  
+只收敛 但不绝对收敛 称为 条件收敛 //举例 交错调和级数收敛 但调和级数分散 因此调和级数绝对收敛  
 
 ### 函数项级数（Series of Functions）  
 
@@ -425,7 +436,7 @@ $\int_a^b g(x) \, dx$ = G(b) - G(a) = F\[φ(b)\]  - F\[φ(a)\] （等式2）
    
   
 ### 参考文献  
-\[Bartle 2011\] Robert Bartle, Donald Sherbert. "Introduction to Real Analysis, Fourth Edition" 2011.   
+\[Bartle 2011\] Robert Bartle, Donald Sherbert. "Introduction to Real Analysis, Fourth Edition" Wiley 2011.   
 \[陈天权 2009\] 陈天权. "数学分析讲义 第一册" 2009.  
 \[Rudin 1976\] Walter Rudin. "Principles of Mathematical Analysis, Third Edition." McGraw-Hill 1976.  
   
