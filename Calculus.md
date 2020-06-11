@@ -214,17 +214,15 @@ p-series $\displaystyle{\sum_{n = 1}^\infin} \frac{1}{n^p}$ 当p>1时 收敛
 > = $3 - \frac{1}{2^{n-1}}$  
 > < 3  
   
-我们定义$e = \displaystyle{\sum_{n=0}^\infin} \frac{1}{n!}$，证明$\lim\limits_{n \rightarrow  \infin} {(1+\frac{1}{n})}^n = e$  
+我们定义$e = {\displaystyle\sum_{n=0}^\infin} \frac{1}{n!}$，证明$\lim\limits_{n \rightarrow  \infin} {(1+\frac{1}{n})}^n = e$  
 > 证明   
 > 
 > ${(1+\frac{1}{n})}^n$  
 > = $C_n^0 \cdot 1^n + C_n^1 \cdot 1^{n-1} \cdot {(\frac{1}{n})}^1 + C_n^2 \cdot 1^{n-2} \cdot {(\frac{1}{n})}^2 + C_n^3 \cdot 1^{n-3} \cdot {(\frac{1}{n})}^3 + ... + C_n^n \cdot {(\frac{1}{n})}^n$ //二项式定理 //binormial theorem    
 > = $1 + \frac{n}{n} + \frac{1}{2!} \cdot \frac{(n) \cdot (n-1)}{n^2} + \frac{1}{3!} \cdot \frac{(n) \cdot (n-1) \cdot (n-2)}{n^3} + ... + \frac{1}{n!} \cdot \frac{(n) \cdot (n-1) \cdot (n-(n-1))}{n^n}$  
 > = $1 + 1 + \frac{1}{2!} \cdot (1 - \frac{1}{n}) + \frac{1}{3!} \cdot (1 - \frac{1}{n}) \cdot (1 - \frac{2}{n}) + ... + \frac{1}{n!} \cdot (1 - \frac{1}{n}) \cdot (1 - \frac{2}{n}) \cdot ... \cdot (1 - \frac{n-1}{n})$  
-> <= $1 + 1 + \frac{1}{2!} + \frac{1}{3!} + ... + \frac{1}{n!}$  
-  
-$e = \displaystyle{\sum_{n=0}^\infin} \frac{1}{n!} = 1 + 1 + \frac{1}{1 \cdot 2} +  \frac{1}{1 \cdot 2 \cdot 3} + ... + $  
-
+> ≤ $1 + 1 + \frac{1}{2!} + \frac{1}{3!} + ... + \frac{1}{n!}$  
+> = ${\displaystyle\sum_{n=0}^\infin} \frac{1}{n!}$  
 
 ##### 交错级数及其审敛法  
 
