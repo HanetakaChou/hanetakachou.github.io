@@ -123,14 +123,6 @@ since lim (sx_k - ix_k) = 0, we have that α - β = 0 in other words α = β
 > by the construction of ix_k and sx_k, we have that ix_k <= xn <= sx_k  
 by the Squeeze Thereom, we have that the limit of xn exists and lim xn = α = β  
 
-
-
-    
-### e（Euler's number）   
-$e = \lim\limits_{n \rightarrow \infin} (1+\frac{1}{n})^n$  
-$e = \displaystyle{\sum_{n=0}^\infin} \frac{1}{n!} = 1 + 1 + \frac{1}{1 \cdot 2} +  \frac{1}{1 \cdot 2 \cdot 3} + ...$  
-
-
 ### 数列（sequence）  
 
 数列极限定义   
@@ -212,6 +204,27 @@ p-series $\displaystyle{\sum_{n = 1}^\infin} \frac{1}{n^p}$ 当p>1时 收敛
 = $\frac{1 - {(\frac{1}{2^{p-1}})}^n}{1 - \frac{1}{2^{p-1}}}$ < $\frac{1}{1 - \frac{1}{2^{p-1}}}$ 
 > 
 > 取M=$\frac{1}{1 - \frac{1}{2^{p-1}}}$ 即证明有界  
+
+欧拉数（Euler's number）$e = \displaystyle{\sum_{n=0}^\infin} \frac{1}{n!}$收敛   
+> 证明 //\[Rudin 1976\] / 3.30 Definition       
+>   
+> $\displaystyle{\sum_{n=0}^\infin} \frac{1}{n!} = 1 + 1 + \frac{1}{1 \cdot 2} + \frac{1}{1 \cdot 2 \cdot 3} + ... + \frac{1}{1 \cdot 2 \cdot ... \cdot n}$    
+> < $1 + 1 + \frac{1}{2} + \frac{1}{2^2} + ... + \frac{1}{2^{n-1}}$      
+> = $1 + 1 + (1 - \frac{1}{2^{n-1}})$  
+> = $3 - \frac{1}{2^{n-1}}$  
+> < 3  
+  
+我们定义$e = \displaystyle{\sum_{n=0}^\infin} \frac{1}{n!}$，证明$\lim\limits_{n \rightarrow  \infin} {(1+\frac{1}{n})}^n = e$  
+> 证明   
+> 
+> ${(1+\frac{1}{n})}^n$  
+> = $C_n^0 \cdot 1^n + C_n^1 \cdot 1^{n-1} \cdot {(\frac{1}{n})}^1 + C_n^2 \cdot 1^{n-2} \cdot {(\frac{1}{n})}^2 + C_n^3 \cdot 1^{n-3} \cdot {(\frac{1}{n})}^3 + ... + C_n^n \cdot {(\frac{1}{n})}^n$ //二项式定理 //binormial theorem    
+> = $1 + \frac{n}{n} + \frac{1}{2!} \cdot \frac{(n) \cdot (n-1)}{n^2} + \frac{1}{3!} \cdot \frac{(n) \cdot (n-1) \cdot (n-2)}{n^3} + ... + \frac{1}{n!} \cdot \frac{(n) \cdot (n-1) \cdot (n-(n-1))}{n^n}$  
+> = $1 + 1 + \frac{1}{2!} \cdot (1 - \frac{1}{n}) + \frac{1}{3!} \cdot (1 - \frac{1}{n}) \cdot (1 - \frac{2}{n}) + ... + \frac{1}{n!} \cdot (1 - \frac{1}{n}) \cdot (1 - \frac{2}{n}) \cdot ... \cdot (1 - \frac{n-1}{n})$  
+> <= $1 + 1 + \frac{1}{2!} + \frac{1}{3!} + ... + \frac{1}{n!}$  
+  
+$e = \displaystyle{\sum_{n=0}^\infin} \frac{1}{n!} = 1 + 1 + \frac{1}{1 \cdot 2} +  \frac{1}{1 \cdot 2 \cdot 3} + ... + $  
+
 
 ##### 交错级数及其审敛法  
 
@@ -405,9 +418,12 @@ a < ζ <= b -> ζ ∈ \[a,b\] -> f(x)在ζ上连续 //**注：如果为半开区
 ##### 一致连续性（Uniform Continuity） 
 
 
-### 导数（Derivative）
+### 微分（Differential）/导数（Derivative）
 
 洛必达法则（L'Hôpital's rule）  
+
+
+### 测度（Measure）  
 
 
 ### 积分（Integral）    
