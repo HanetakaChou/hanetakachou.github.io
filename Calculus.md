@@ -147,10 +147,10 @@ xn称为级数的一般项
 数列{sn}的极限称为级数的和（sum）或值（value） //通常记作$\displaystyle{\sum_{n=1}^\infin} x_n$   
 
 调和级数（Harmonic Series）  
-$\displaystyle{\sum_{n=1}^\infin} \frac{1}{n} = 1 + \frac{1}{2} + \frac{1}{3} + ... + \frac{1}{n} + ...$   
+${\displaystyle\sum_{n=1}^\infin} \frac{1}{n} = 1 + \frac{1}{2} + \frac{1}{3} + ... + \frac{1}{n} + ...$   
 
 几何级数（Geometric Series） //等比数列部分和  
-$\displaystyle{\sum_{n=0}^\infin} r^n = 1 + r + r^2 + ... + r^n + ...$   
+${\displaystyle\sum_{n=0}^\infin} r^n = 1 + r + r^2 + ... + r^n + ...$   
 
 ##### 级数收敛的必要条件  
 The nth Term Test //\[Bartle 2011\] \\ 3\.7\.3 The nth Term Test  
@@ -163,7 +163,6 @@ The nth Term Test //\[Bartle 2011\] \\ 3\.7\.3 The nth Term Test
 let $\displaystyle{\sum_{n = 1}^\infin} x_n = a$ and $s_n = \displaystyle{\sum_{k = 1}^n} x_k$   
 then $\lim\limits_{n \rightarrow \infin} x_n = \lim\limits_{n \rightarrow \infin} (s_n - s_{n-1}) = \lim\limits_{n \rightarrow \infin} s_n - \lim\limits_{n \rightarrow \infin} s_{n-1} = a - a = 0$ //数列极限的运算法则  
   
-  
 ##### 柯西审敛原理  
 Cauchy's convergence test //Wikipedia  
 Cauchy Criterion for Series //\[Bartle 2011\] \\ 3\.7\.4 Cauchy Criterion for Series  
@@ -174,7 +173,10 @@ Cauchy Criterion for Series //\[Bartle 2011\] \\ 3\.7\.4 Cauchy Criterion for Se
 ##### 正项级数及其审敛法 //非负项级数    
 正项级数 //let xn be a sequence of nonnegative real numbers //零或正数  
 
-正项级数收敛 ⇔ 部分和数列有界 //\[Bartle 2011\] \\ 3\.7\.5 Theorem  
+###### 正项级数收敛 ⇔ 部分和数列有界 
+//\[Bartle 2011\] / 3\.7\.5 Theorem  
+//\[同济大学数学系 2014\] 第十二章 无穷级数 / 第二节 常数项级数的审敛法 / 一 正项级数及其审敛法 定理1  
+//\[陈天权 2009\] 定理 3.3.1  
 >证明  
 显然 正项级数的部分和数列单调递增  
 根据 单调收敛定理 命题即得证   
@@ -223,23 +225,46 @@ p-series $\displaystyle{\sum_{n = 1}^\infin} \frac{1}{n^p}$ 当p>1时 收敛
 > = $1 + 1 + \frac{1}{2!} \cdot (1 - \frac{1}{n}) + \frac{1}{3!} \cdot (1 - \frac{1}{n}) \cdot (1 - \frac{2}{n}) + ... + \frac{1}{n!} \cdot (1 - \frac{1}{n}) \cdot (1 - \frac{2}{n}) \cdot ... \cdot (1 - \frac{n-1}{n})$  
 > ≤ $1 + 1 + \frac{1}{2!} + \frac{1}{3!} + ... + \frac{1}{n!}$  
 > = ${\displaystyle\sum_{n=0}^\infin} \frac{1}{n!}$  
+> 
+> 尝试用 Squeeze Theorem   
+
+//注：${(1+\frac{1}{n})}^n$是单调递增的  
+
+###### 比较审敛法/Comparison Test  
+
+正项级数${\displaystyle\sum_{n=0}^\infin} a_n$和${\displaystyle\sum_{n=0}^\infin} b_n$满足$a_n$ >= $b_n$ ⇒ ${\displaystyle\sum_{n=0}^\infin} a_n$收敛，则${\displaystyle\sum_{n=0}^\infin} b_n$一定收敛（即逆否命题：${\displaystyle\sum_{n=0}^\infin} b_n$发散，则${\displaystyle\sum_{n=0}^\infin} a_n$一定发散）  
+//\[Bartle 2011\] / 3\.7\.7 Comparison Test  
+//\[Rudin 1976\] / 3\.25 Theorem   
+//\[同济大学数学系 2014\] 第十二章 无穷级数 / 第二节 常数项级数的审敛法 / 一 正项级数及其审敛法 定理2（比较审敛法）  
+//\[陈天权 2009\] 定理 3\.3\.3  
+
+> 证明  
+>  
+> ${\displaystyle\sum_{n=0}^\infin} a_n$收敛 则${\displaystyle\sum_{n=0}^\infin} a_n$有界  
+> 由于$a_n$ >= $b_n$ 因此${\displaystyle\sum_{n=0}^\infin} b_n$一定有界   
+> 根据“正项级数收敛 ⇔ 部分和数列有界” 则${\displaystyle\sum_{n=0}^\infin} b_n$一定收敛   
 
 ##### 交错级数及其审敛法  
 
 交错调和级数 （Alternating Harmonic Series） $\displaystyle{\sum_{n = 1}^\infin} \frac{{(-1)}^{n+1}}{n}$ 收敛  
 > 证明  
 > 
->      
+> $|\displaystyle{\sum_{k = n}^m} \frac{{(-1)}^{k+1}}{k}|$   
+> = $\frac{1}{n} - (\frac{1}{n+1} - \frac{1}{n+2}) - ... - \frac{1}{n+(m-n)+1}$  
+> < $\frac{1}{n}$    
+>
+> 对任意给定的ϵ>0 取H(ϵ)为任意某个大于$\frac{1}{\epsilon}$的整数 对于任意m>n≥H(ϵ) $|\displaystyle{\sum_{k = n}^m} \frac{{(-1)}^{k+1}}{k}|$ < $\frac{1}{n}$ < $\frac{1}{\frac{1}{\epsilon}}$ = ϵ   
+> 根据柯西收敛准则 级数 $\displaystyle{\sum_{n = 1}^\infin} \frac{{(-1)}^{n+1}}{n}$ 收敛
 
 ##### 绝对收敛（Absolute Convergence）与条件收敛（Conditionally Convergent / Nonabsolutely Convergent）  
 级数 $\displaystyle{\sum_{n = 1}^\infin} |x_n|$ 收敛 ⇒ 级数 $\displaystyle{\sum_{n = 1}^\infin} x_n$ 收敛  
 > 证明  
 > 
-> 根据柯西收敛准则  由于 级数 $\displaystyle{\sum_{n = 1}^\infin} |x_n|$ 收敛 我们有 $\forall \, \epsilon > 0, \, \exists \, H(\epsilon) \isin \N, \, \forall \, m > n \ge H(\epsilon), \, | \displaystyle{\sum_{k = n}^m} |x_n| | < \epsilon$     
+> 根据柯西收敛准则  由于 级数 $\displaystyle{\sum_{n = 1}^\infin} |x_n|$ 收敛 我们有 $\forall \, \epsilon > 0, \, \exists \, H(\epsilon) \isin \N, \, \forall \, m > n \ge H(\epsilon), \, | \displaystyle{\sum_{k = n}^m} |x_k| | < \epsilon$     
 >
-> 根据三角不等式 $| \displaystyle{\sum_{k = n}^m} x_n | \le \displaystyle{\sum_{k = n}^m} |x_n| = | \displaystyle{\sum_{k = n}^m} |x_n| | < \epsilon$  
+> 根据三角不等式 $| \displaystyle{\sum_{k = n}^m} x_k | \le \displaystyle{\sum_{k = n}^m} |x_k| = | \displaystyle{\sum_{k = n}^m} |x_k| | < \epsilon$  
 >
-> 因此 我们有  $\forall \, \epsilon > 0, \, \exists \, H(\epsilon) \isin \N, \, \forall \, m > n \ge H(\epsilon), \, | \displaystyle{\sum_{k = n}^m} x_n | < \epsilon$ 根据柯西收敛准则 级数 $\displaystyle{\sum_{n = 1}^\infin} x_n$ 收敛   
+> 因此 我们有  $\forall \, \epsilon > 0, \, \exists \, H(\epsilon) \isin \N, \, \forall \, m > n \ge H(\epsilon), \, | \displaystyle{\sum_{k = n}^m} x_k | < \epsilon$ 根据柯西收敛准则 级数 $\displaystyle{\sum_{n = 1}^\infin} x_n$ 收敛   
 
 绝对收敛（Absolute Convergence） 一定 收敛  
 只收敛 但不绝对收敛 称为 条件收敛 //举例 交错调和级数收敛 但调和级数分散 因此调和级数绝对收敛  
@@ -259,10 +284,52 @@ $\forall \, \epsilon > 0 , \, \exists \, K(\epsilon) \isin \N , \, \forall \, n 
 
 
 ##### 幂级数（Power Series）  
-$\displaystyle{\sum_{n = 0}^{\infin}} a_nx^n$ = $a_0 + a_1x + ... + + a_nx^n + ...$        
+${\displaystyle\sum_{n = 0}^{\infin}} a_nx^n$ = $a_0 + a_1x + ... + + a_nx^n + ...$        
 
-收敛半径 radius of convergence  
-Cauchy-Hadamard Theorem  
+> Cauchy-Hadamard Theorem  
+//\[Bartle 2011\] / 9\.4\.9 Cauchy-Hadamard Theorem  
+//\[Rudin 1976\] / 3\.39 Theorem  
+//\[同济大学数学系 2014\] / 第十二章 无穷级数 / 第三节 幂级数 / 二 幂级数及其收敛性 定理2    
+//\[陈天权 2009\] / 定理 3\.5\.1   
+  
+极限$\lim\limits_{n \rightarrow \infin} \sqrt[n]{| a_n |}$存在 ⇒ 设R = $\frac{1}{\lim\limits_{n \rightarrow \infin} \sqrt[n]{| a_n |}}$，我们有：当|x| \< R时，幂级数${\displaystyle\sum_{n = 0}^{\infin}} a_nx^n$收敛；当|x| \> R时，幂级数${\displaystyle\sum_{n = 0}^{\infin}} a_nx^n$发散。   
+//R又被称作 收敛半径（radius of convergence）    
+
+> 证明  
+>    
+> 由于$\lim\limits_{n \rightarrow \infin} \sqrt[n]{| a_n |}$存在  
+>  
+> 根据极限的运算法则 $\lim\limits_{n \rightarrow \infin} \sqrt[n]{| a_n x^n |}$存在 且 $\lim\limits_{n \rightarrow \infin} \sqrt[n]{| a_n x^n |}$ = $\lim\limits_{n \rightarrow \infin} \sqrt[n]{| a_n |} \cdot \lim\limits_{n \rightarrow \infin} x$ = $\lim\limits_{n \rightarrow \infin} \sqrt[n]{| a_n |} \cdot x$  
+>  
+> ---
+>
+> 当|x| \< R 时    
+>  
+> $\lim\limits_{n \rightarrow \infin} \sqrt[n]{| a_n x^n |}$ = $\lim\limits_{n \rightarrow \infin} \sqrt[n]{| a_n |} \cdot x$ < $\lim\limits_{n \rightarrow \infin} \sqrt[n]{| a_n |} \cdot \frac{1}{\lim\limits_{n \rightarrow \infin} \sqrt[n]{| a_n |}}$ = 1  
+> 不妨设$\lim\limits_{n \rightarrow \infin} \sqrt[n]{| a_n x^n |}$ = A 有 A < 1  
+>   
+> 我们有$\frac{1-\text{A}}{2}$ > 0  
+> 根据极限的定义 取ϵ = $\frac{1-A}{2}$ > 0 存在H(ϵ) 当n > H(ϵ)时， $|\sqrt[n]{| a_n x^n |} - \text{A}|$ \< ϵ = $\frac{1-\text{A}}{2}$ 即 $\sqrt[n]{| a_n x^n |}$ < A + $\frac{1-\text{A}}{2}$ < $\frac{1}{2}$ + $\frac{\text{A}}{2}$ < 1    
+> 取B = $\frac{1}{2}$ + $\frac{\text{A}}{2}$ 即 当n > H(ϵ)时 有$\sqrt[n]{| a_n x^n |}$ < B 且 B < 1 即 $| a_n x^n |$ < $\text{B}^n$ 且 B < 1  
+>   
+> 由于 几何级数${\displaystyle\sum_{n=0}^\infin} r^n$ 当r<1时 收敛  
+> 根据 比较审敛法 $| a_n x^n |$收敛 即 $a_n x^n$绝对收敛 因此 $a_n x^n$收敛  
+>  
+> ---
+>
+> 当|x| \> R 时     
+>  
+> $\lim\limits_{n \rightarrow \infin} \sqrt[n]{| a_n x^n |}$ = $\lim\limits_{n \rightarrow \infin} \sqrt[n]{| a_n |} \cdot x$ > $\lim\limits_{n \rightarrow \infin} \sqrt[n]{| a_n |} \cdot \frac{1}{\lim\limits_{n \rightarrow \infin} \sqrt[n]{| a_n |}}$ = 1  
+> 不妨设$\lim\limits_{n \rightarrow \infin} \sqrt[n]{| a_n x^n |}$ = A 有 A > 1  
+> 
+> 我们有$\frac{\text{A}-1}{2}$ > 0  
+> 根据极限的定义 取ϵ = $\frac{\text{A}-1}{2}$ > 0 存在H(ϵ) 当n > H(ϵ)时， $|\sqrt[n]{| a_n x^n |} - \text{A}|$ \< ϵ = $\frac{1-\text{A}}{2}$ 即 $\sqrt[n]{| a_n x^n |}$ > A - $\frac{\text{A}-1}{2}$ < $\frac{1}{2}$ + $\frac{\text{A}}{2}$ > 1  
+> 取B = $\frac{1}{2}$ + $\frac{\text{A}}{2}$ 即 当n > H(ϵ)时 有$\sqrt[n]{| a_n x^n |}$ > B 且 B > 1 即 $| a_n x^n |$ > $\text{B}^n$ > 1  
+>  
+> 取ϵ \< B 即能满足 | a_n x^n | \> ϵ 因此 $\lim\limits_{n \rightarrow \infin} a_n x^n$ = 0不成立   
+> 根据 级数收敛的必要条件 $a_n x^n$发散    
+
+
 
 ### 极限（limit）    
 
@@ -450,7 +517,7 @@ $\int_a^b g(x) \, dx$ = G(b) - G(a) = F\[φ(b)\]  - F\[φ(a)\] （等式2）
    
   
 ### 参考文献  
-\[Bartle 2011\] Robert Bartle, Donald Sherbert. "Introduction to Real Analysis, Fourth Edition" Wiley 2011.   
 \[陈天权 2009\] 陈天权. "数学分析讲义 第一册" 2009.  
+\[Bartle 2011\] Robert Bartle, Donald Sherbert. "Introduction to Real Analysis, Fourth Edition" Wiley 2011.   
 \[Rudin 1976\] Walter Rudin. "Principles of Mathematical Analysis, Third Edition." McGraw-Hill 1976.  
   
