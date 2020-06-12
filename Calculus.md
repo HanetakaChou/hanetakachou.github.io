@@ -142,6 +142,8 @@ N(ϵ)用于强调N的选择依赖于ϵ //[Bartle 2011] \\ 3\.1\.3 Definition
 发散 divergent  
 (一般)项 term   
 
+
+
 数列{xn}的部分和数列{sn} 即数列{xn}生成的级数  
 xn称为级数的一般项  
 数列{sn}的极限称为级数的和（sum）或值（value） //通常记作$\displaystyle{\sum_{n=1}^\infin} x_n$   
@@ -185,27 +187,27 @@ Cauchy Criterion for Series //\[Bartle 2011\] \\ 3\.7\.4 Cauchy Criterion for Se
 > Proof //证明  
 >    
 > 下面证明 $\displaystyle{\sum_{n = 1}^{2^n}} \frac{1}{n}$ 无界 //\[Bartle 2011\] / 3\.3\.3 Examples(b)   
->  
+>    
 > $\displaystyle{\sum_{k=1}^{2^n}} \frac{1}{k}$ = $1 +\frac{1}{2} + (\frac{1}{3} + \frac{1}{4}) + ... + (\frac{1}{2^{n-1}+1} + ... + \frac{1}{2^n})$  
 \> $1 +\frac{1}{2} + (\frac{1}{4} + \frac{1}{4}) + ... + (\frac{1}{2^{n}} + ... + \frac{1}{2^n})$  
 = $1 + \frac{1}{2} + ... + \frac{1}{2}$  
 = $1 + \frac{k}{2}$  
->  
+>   
 > 我们有 $\forall \, M > 0, \, \exists \, H(M) = 2^{2M} \isin \N , \, \forall \, n > H, \, |\displaystyle{\sum_{k=1}^{n}} \frac{1}{k}| >= |\displaystyle{\sum_{k=1}^{2^{2M}}} \frac{1}{k}| > 1 + \frac{2M}{2} > M$ 因此 $\displaystyle{\sum_{n=1}^{2^n}} \frac{1}{n}$ 无界  
-> 
-> 根据 正项级数及其审敛法 我们有 $\displaystyle{\sum_{n = 1}^{2^n}} \frac{1}{n}$ 发散  
-
-p-series $\displaystyle{\sum_{n = 1}^\infin} \frac{1}{n^p}$ 当p>1时 收敛  
-> 证明  
->
-> 下面证明有界 //\[Bartle 2011\] / 3\.7\.6 Examples(d)  
->
+>   
+> 根据 正项级数及其审敛法 我们有 $\displaystyle{\sum_{n = 1}^{2^n}} \frac{1}{n}$ 发散   
+  
+p-series $\displaystyle{\sum_{n = 1}^\infin} \frac{1}{n^p}$ 当p>1时 收敛   
+> 证明   
+>   
+> 下面证明有界 //\[Bartle 2011\] / 3\.7\.6 Examples(d)   
+>  
 > $\displaystyle{\sum_{k = 1}^{2^n -1}} \frac{1}{k^p}$ = $1 + (\frac{1}{2^p} + \frac{1}{3^p}) + ... + + (\frac{1}{{(2^{n-1})}^p} + ... + \frac{1}{{(2^n)}^p})$   
 \< $1 + (\frac{1}{2^p} + \frac{1}{2^p}) + ... + + (\frac{1}{{(2^{n-1})}^p} + ... + \frac{1}{{(2^{n-1})}^p})$   
 = $1 + \frac{1}{2^{p-1}} + ... + {(\frac{1}{2^{p-1}})}^{n-1}$ //p>1 $\frac{1}{2^{p-1}} \ne 1$     
 = $\frac{1 - {(\frac{1}{2^{p-1}})}^n}{1 - \frac{1}{2^{p-1}}}$ < $\frac{1}{1 - \frac{1}{2^{p-1}}}$ 
-> 
-> 取M=$\frac{1}{1 - \frac{1}{2^{p-1}}}$ 即证明有界  
+>   
+> 取M=$\frac{1}{1 - \frac{1}{2^{p-1}}}$ 即证明有界    
 
 欧拉数（Euler's number）$e = \displaystyle{\sum_{n=0}^\infin} \frac{1}{n!}$收敛   
 > 证明 //\[Rudin 1976\] / 3.30 Definition       
@@ -334,6 +336,10 @@ ${\displaystyle\sum_{n = 0}^{\infin}} a_nx^n$ = $a_0 + a_1x + ... + + a_nx^n + .
 定义 exp(x) = ${\displaystyle\sum_{n = 0}^{\infin}} \frac{1}{n!}x^n$   
 //\[Rudin 1976\] / 8\.6 Theorem  
 //\[陈天权 2009\] / 定义 3\.5\.2     
+
+级数相乘  
+//\[Rudin 1976\] / 3\.50 Theorem  
+//\[陈天权 2009\] / 定理 3\.3\.6     
 
 
 ### 极限（limit）    
@@ -522,7 +528,6 @@ $\int_a^b g(x) \, dx$ = G(b) - G(a) = F\[φ(b)\]  - F\[φ(a)\] （等式2）
    
   
 ### 参考文献  
-\[陈天权 2009\] 陈天权. "数学分析讲义 第一册" 2009.  
-\[Bartle 2011\] Robert Bartle, Donald Sherbert. "Introduction to Real Analysis, Fourth Edition" Wiley 2011.   
-\[Rudin 1976\] Walter Rudin. "Principles of Mathematical Analysis, Third Edition." McGraw-Hill 1976.  
-  
+\[Bartle 2011\] Robert Bartle, Donald Sherbert. "Introduction to Real Analysis, Fourth Edition." Wiley 2011.   
+\[Rudin 1976\] Walter Rudin. "Principles of Mathematical Analysis, Third Edition." McGraw-Hill 1976.   
+\[陈天权 2009\] 陈天权. "数学分析讲义." 北京大学出版社 2009.  
