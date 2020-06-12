@@ -152,7 +152,7 @@ ${\displaystyle\sum_{n=1}^\infin} \frac{1}{n} = 1 + \frac{1}{2} + \frac{1}{3} + 
 几何级数（Geometric Series） //等比数列部分和  
 ${\displaystyle\sum_{n=0}^\infin} r^n = 1 + r + r^2 + ... + r^n + ...$   
 
-##### 级数收敛的必要条件  
+#### 级数收敛的必要条件  
 The nth Term Test //\[Bartle 2011\] \\ 3\.7\.3 The nth Term Test  
 级数收敛的必要条件 //\[同济大学数学系 2014\] 第十二章 无穷级数 / 第一节 常数项级数的概念和性质 / 二 收敛级数的基本性质 性质5  
 
@@ -163,17 +163,17 @@ The nth Term Test //\[Bartle 2011\] \\ 3\.7\.3 The nth Term Test
 let $\displaystyle{\sum_{n = 1}^\infin} x_n = a$ and $s_n = \displaystyle{\sum_{k = 1}^n} x_k$   
 then $\lim\limits_{n \rightarrow \infin} x_n = \lim\limits_{n \rightarrow \infin} (s_n - s_{n-1}) = \lim\limits_{n \rightarrow \infin} s_n - \lim\limits_{n \rightarrow \infin} s_{n-1} = a - a = 0$ //数列极限的运算法则  
   
-##### 柯西审敛原理  
+#### 柯西审敛原理  
 Cauchy's convergence test //Wikipedia  
 Cauchy Criterion for Series //\[Bartle 2011\] \\ 3\.7\.4 Cauchy Criterion for Series  
 柯西审敛原理 //\[同济大学数学系 2014\] 第十二章 无穷级数 / 第一节 常数项级数的概念和性质 / 三 柯西审敛原理  
 级数 $\displaystyle{\sum_{n = 1}^\infin} x_n$ 收敛 ⇔ $\forall \, \epsilon > 0, \, \exists \, H(\epsilon) \isin \N, \, \forall \, m > n \ge H(\epsilon), \, |\displaystyle{\sum_{k = n}^m} x_n| < \epsilon$    
 //由于级数本身也是一种数列 将 对数列的柯西审敛原理 应用至此即可   
 
-##### 正项级数及其审敛法 //非负项级数    
+#### 正项级数及其审敛法 //非负项级数    
 正项级数 //let xn be a sequence of nonnegative real numbers //零或正数  
 
-###### 正项级数收敛 ⇔ 部分和数列有界 
+##### 正项级数收敛 ⇔ 部分和数列有界 
 //\[Bartle 2011\] / 3\.7\.5 Theorem  
 //\[同济大学数学系 2014\] 第十二章 无穷级数 / 第二节 常数项级数的审敛法 / 一 正项级数及其审敛法 定理1  
 //\[陈天权 2009\] 定理 3.3.1  
@@ -230,7 +230,7 @@ p-series $\displaystyle{\sum_{n = 1}^\infin} \frac{1}{n^p}$ 当p>1时 收敛
 
 //注：${(1+\frac{1}{n})}^n$是单调递增的  
 
-###### 比较审敛法/Comparison Test  
+##### 比较审敛法/Comparison Test  
 
 正项级数${\displaystyle\sum_{n=0}^\infin} a_n$和${\displaystyle\sum_{n=0}^\infin} b_n$满足$a_n$ >= $b_n$ ⇒ ${\displaystyle\sum_{n=0}^\infin} a_n$收敛，则${\displaystyle\sum_{n=0}^\infin} b_n$一定收敛（即逆否命题：${\displaystyle\sum_{n=0}^\infin} b_n$发散，则${\displaystyle\sum_{n=0}^\infin} a_n$一定发散）  
 //\[Bartle 2011\] / 3\.7\.7 Comparison Test  
@@ -244,7 +244,7 @@ p-series $\displaystyle{\sum_{n = 1}^\infin} \frac{1}{n^p}$ 当p>1时 收敛
 > 由于$a_n$ >= $b_n$ 因此${\displaystyle\sum_{n=0}^\infin} b_n$一定有界   
 > 根据“正项级数收敛 ⇔ 部分和数列有界” 则${\displaystyle\sum_{n=0}^\infin} b_n$一定收敛   
 
-##### 交错级数及其审敛法  
+#### 交错级数及其审敛法  
 
 交错调和级数 （Alternating Harmonic Series） $\displaystyle{\sum_{n = 1}^\infin} \frac{{(-1)}^{n+1}}{n}$ 收敛  
 > 证明  
@@ -256,7 +256,7 @@ p-series $\displaystyle{\sum_{n = 1}^\infin} \frac{1}{n^p}$ 当p>1时 收敛
 > 对任意给定的ϵ>0 取H(ϵ)为任意某个大于$\frac{1}{\epsilon}$的整数 对于任意m>n≥H(ϵ) $|\displaystyle{\sum_{k = n}^m} \frac{{(-1)}^{k+1}}{k}|$ < $\frac{1}{n}$ < $\frac{1}{\frac{1}{\epsilon}}$ = ϵ   
 > 根据柯西收敛准则 级数 $\displaystyle{\sum_{n = 1}^\infin} \frac{{(-1)}^{n+1}}{n}$ 收敛
 
-##### 绝对收敛（Absolute Convergence）与条件收敛（Conditionally Convergent / Nonabsolutely Convergent）  
+#### 绝对收敛（Absolute Convergence）与条件收敛（Conditionally Convergent / Nonabsolutely Convergent）  
 级数 $\displaystyle{\sum_{n = 1}^\infin} |x_n|$ 收敛 ⇒ 级数 $\displaystyle{\sum_{n = 1}^\infin} x_n$ 收敛  
 > 证明  
 > 
@@ -271,7 +271,7 @@ p-series $\displaystyle{\sum_{n = 1}^\infin} \frac{1}{n^p}$ 当p>1时 收敛
 
 ### 函数项级数（Series of Functions）  
 
-##### 函数项数列（Sequences of Functions）  
+#### 函数项数列（Sequences of Functions）  
 //函数项数列fn(x)在A上逐点（Pointwise）收敛 //$\operatorname{f_n}(x) \rightarrow \operatorname{f}(x)$ on A   
 $\forall \, x \isin A , \, \lim\limits_{n \rightarrow \infin} \operatorname{f_n}(x) = \operatorname{f}(x)$ //对给定x，fn(x)即常数项数列   
 $\forall \, \epsilon > 0 , \, x \isin A , \, \exists \, K(\epsilon , \, x) \isin \N , \, \forall \, n > K(\epsilon , \, x) , \, |\operatorname{f_n}(x) - \operatorname{f}(x)| < \epsilon$ ⇔ $\operatorname{f_n}(x) \rightarrow \operatorname{f}(x)$ on A  
@@ -279,11 +279,11 @@ $\forall \, \epsilon > 0 , \, x \isin A , \, \exists \, K(\epsilon , \, x) \isin
 //函数项数列fn(x)在A上一致（Uniform）收敛 //$\operatorname{f_n}(x) \rightrightarrows \operatorname{f}(x)$ on A    
 $\forall \, \epsilon > 0 , \, \exists \, K(\epsilon) \isin \N , \, \forall \, n > K(\epsilon)  , \, x \isin A , \, |\operatorname{f_n}(x) - \operatorname{f}(x)| < \epsilon$ ⇔ $\operatorname{f_n}(x) \rightrightarrows \operatorname{f}(x)$ on A  
 
-##### 函数项级数（Series of Functions）  
+#### 函数项级数（Series of Functions）  
 \[Bartle 2011\] 基于 函数项数列的逐点收敛 定义 函数项级数  
 
 
-##### 幂级数（Power Series）  
+#### 幂级数（Power Series）  
 ${\displaystyle\sum_{n = 0}^{\infin}} a_nx^n$ = $a_0 + a_1x + ... + + a_nx^n + ...$        
 
 > Cauchy-Hadamard Theorem  
@@ -326,9 +326,14 @@ ${\displaystyle\sum_{n = 0}^{\infin}} a_nx^n$ = $a_0 + a_1x + ... + + a_nx^n + .
 > 根据极限的定义 取ϵ = $\frac{\text{A}-1}{2}$ > 0 存在H(ϵ) 当n > H(ϵ)时， $|\sqrt[n]{| a_n x^n |} - \text{A}|$ \< ϵ = $\frac{1-\text{A}}{2}$ 即 $\sqrt[n]{| a_n x^n |}$ > A - $\frac{\text{A}-1}{2}$ < $\frac{1}{2}$ + $\frac{\text{A}}{2}$ > 1  
 > 取B = $\frac{1}{2}$ + $\frac{\text{A}}{2}$ 即 当n > H(ϵ)时 有$\sqrt[n]{| a_n x^n |}$ > B 且 B > 1 即 $| a_n x^n |$ > $\text{B}^n$ > 1  
 >  
-> 取ϵ \< B 即能满足 | a_n x^n | \> ϵ 因此 $\lim\limits_{n \rightarrow \infin} a_n x^n$ = 0不成立   
+> 取ϵ \< B 即能满足 $| a_n x^n |$ \> ϵ 因此 $\lim\limits_{n \rightarrow \infin} a_n x^n$ = 0不成立   
 > 根据 级数收敛的必要条件 $a_n x^n$发散    
 
+#### 指数函数（Exponential Functions）    
+
+定义 exp(x) = ${\displaystyle\sum_{n = 0}^{\infin}} \frac{1}{n!}x^n$   
+//\[Rudin 1976\] / 8\.6 Theorem  
+//\[陈天权 2009\] / 定义 3\.5\.2     
 
 
 ### 极限（limit）    
