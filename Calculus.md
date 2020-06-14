@@ -146,7 +146,7 @@ N(ϵ)用于强调N的选择依赖于ϵ //[Bartle 2011] \\ 3\.1\.3 Definition
 
 数列{xn}的部分和数列{sn} 即数列{xn}生成的级数  
 xn称为级数的一般项  
-数列{sn}的极限称为级数的和（sum）或值（value） //通常记作$\displaystyle{\sum_{n=1}^\infin} x_n$   
+数列{sn}的极限称为级数的和（sum）或值（value） //通常记作${\displaystyle\sum_{n=1}^\infin} x_n$   
 
 调和级数（Harmonic Series）  
 ${\displaystyle\sum_{n=1}^\infin} \frac{1}{n} = 1 + \frac{1}{2} + \frac{1}{3} + ... + \frac{1}{n} + ...$   
@@ -209,7 +209,8 @@ p-series $\displaystyle{\sum_{n = 1}^\infin} \frac{1}{n^p}$ 当p>1时 收敛
 >   
 > 取M=$\frac{1}{1 - \frac{1}{2^{p-1}}}$ 即证明有界    
 
-欧拉数（Euler's number）$e = \displaystyle{\sum_{n=0}^\infin} \frac{1}{n!}$收敛   
+欧拉数（Euler's number）  
+级数 $\displaystyle{\sum_{n=0}^\infin} \frac{1}{n!}$ 收敛   
 > 证明 //\[Rudin 1976\] / 3.30 Definition       
 >   
 > $\displaystyle{\sum_{n=0}^\infin} \frac{1}{n!} = 1 + 1 + \frac{1}{1 \cdot 2} + \frac{1}{1 \cdot 2 \cdot 3} + ... + \frac{1}{1 \cdot 2 \cdot ... \cdot n}$    
@@ -218,19 +219,23 @@ p-series $\displaystyle{\sum_{n = 1}^\infin} \frac{1}{n^p}$ 当p>1时 收敛
 > = $3 - \frac{1}{2^{n-1}}$  
 > < 3  
   
-我们定义$e = {\displaystyle\sum_{n=0}^\infin} \frac{1}{n!}$，证明$\lim\limits_{n \rightarrow  \infin} {(1+\frac{1}{n})}^n = e$  
+欧拉数定义：$\displaystyle e = \sum_{n=0}^\infin \frac{1}{n!}$  
+  
+---  
+  
+$\lim\limits_{n \rightarrow  \infin} {(1+\frac{1}{n})}^n = e$  
 > 证明   
 > 
 > ${(1+\frac{1}{n})}^n$  
-> = $C_n^0 \cdot 1^n + C_n^1 \cdot 1^{n-1} \cdot {(\frac{1}{n})}^1 + C_n^2 \cdot 1^{n-2} \cdot {(\frac{1}{n})}^2 + C_n^3 \cdot 1^{n-3} \cdot {(\frac{1}{n})}^3 + ... + C_n^n \cdot {(\frac{1}{n})}^n$ //二项式定理 //binormial theorem    
+> //二项式定理 //Binormial Theorem    
+> = $C_n^0 \cdot 1^n + C_n^1 \cdot 1^{n-1} \cdot {(\frac{1}{n})}^1 + C_n^2 \cdot 1^{n-2} \cdot {(\frac{1}{n})}^2 + C_n^3 \cdot 1^{n-3} \cdot {(\frac{1}{n})}^3 + ... + C_n^n \cdot {(\frac{1}{n})}^n$ //二项式定理   
 > = $1 + \frac{n}{n} + \frac{1}{2!} \cdot \frac{(n) \cdot (n-1)}{n^2} + \frac{1}{3!} \cdot \frac{(n) \cdot (n-1) \cdot (n-2)}{n^3} + ... + \frac{1}{n!} \cdot \frac{(n) \cdot (n-1) \cdot (n-(n-1))}{n^n}$  
 > = $1 + 1 + \frac{1}{2!} \cdot (1 - \frac{1}{n}) + \frac{1}{3!} \cdot (1 - \frac{1}{n}) \cdot (1 - \frac{2}{n}) + ... + \frac{1}{n!} \cdot (1 - \frac{1}{n}) \cdot (1 - \frac{2}{n}) \cdot ... \cdot (1 - \frac{n-1}{n})$  
 > ≤ $1 + 1 + \frac{1}{2!} + \frac{1}{3!} + ... + \frac{1}{n!}$  
 > = ${\displaystyle\sum_{n=0}^\infin} \frac{1}{n!}$  
 > 
 > 尝试用 Squeeze Theorem   
-
-//注：${(1+\frac{1}{n})}^n$是单调递增的  
+> 注：${(1+\frac{1}{n})}^n$是单调递增的 //尝试根据单调递增找出下限   
 
 ##### 比较审敛法/Comparison Test  
 
@@ -286,9 +291,9 @@ $\forall \, \epsilon > 0 , \, \exists \, K(\epsilon) \isin \N , \, \forall \, n 
 
 
 #### 幂级数（Power Series）  
-${\displaystyle\sum_{n = 0}^{\infin}} a_nx^n$ = $a_0 + a_1x + ... + + a_nx^n + ...$        
+${\displaystyle\sum_{n = 0}^{\infin}} a_nx^n$ = $a_0 + a_1x + ... + + a_nx^n + ...$ //因为$0^0$没有定义，是否应当写为$\displaystyle 1 + \sum_{n = 1}^{\infin} a_nx^n$？          
 
-> Cauchy-Hadamard Theorem  
+ Cauchy-Hadamard Theorem  
 //\[Bartle 2011\] / 9\.4\.9 Cauchy-Hadamard Theorem  
 //\[Rudin 1976\] / 3\.39 Theorem  
 //\[同济大学数学系 2014\] / 第十二章 无穷级数 / 第三节 幂级数 / 二 幂级数及其收敛性 定理2    
@@ -332,16 +337,73 @@ ${\displaystyle\sum_{n = 0}^{\infin}} a_nx^n$ = $a_0 + a_1x + ... + + a_nx^n + .
 > 根据 级数收敛的必要条件 $a_n x^n$发散    
 
 #### 指数函数（Exponential Functions）    
-
-定义 exp(x) = ${\displaystyle\sum_{n = 0}^{\infin}} \frac{1}{n!}x^n$   
-//\[Rudin 1976\] / 8\.6 Theorem  
-//\[陈天权 2009\] / 定义 3\.5\.2     
-
+  
 级数相乘  
 //\[Rudin 1976\] / 3\.50 Theorem  
 //\[陈天权 2009\] / 定理 3\.3\.6     
+${\displaystyle\sum_{n=0}^\infin} a_n$ = A 且 ${\displaystyle\sum_{n=0}^\infin} a_n$绝对收敛 ${\displaystyle\sum_{n=0}^\infin} b_n$ = B ⇒ ${\displaystyle\sum_{n=0}^\infin} ({\displaystyle\sum_{k=0}^n} a_k b_{n-k})$ = C  
+  
+证明：  
+> ${\displaystyle\sum_{j=0}^n} ({\displaystyle\sum_{k=0}^j} a_k b_{j-k})$  
+= $a_0 b_0 + (a_0 b_1 + a_1 b_0) + ... +  (a_0 b_n + a_1 b_{n-1} + ... + a_n b_0)$  
+= $a_0 ( b_0 + b_1 + ... + b_n ) + a_1 ( b_0 + b_1 ... + b_{n-1} ) + ... +  a_n b_0$  
+= $a_0 ( b_0 + b_1 + ... + b_n ) + a_1 ( b_0 + b_1 ... + b_{n-1} ) + ... +  a_n b_0$   
+= $a_0 {\displaystyle\sum_{j=0}^n} b_j + a_1 {\displaystyle\sum_{j=0}^{n-1}} b_j + ... +  a_n {\displaystyle\sum_{j=0}^0} b_j$   
+>  
+> 设$\beta_n = {\displaystyle\sum_{j=0}^n} b_j - B$  
+上式 = $a_0(B + \beta_n) + a_1(B + \beta_{n-1}) + ... + a_n(B + \beta_0)$  
+= $(a_0 + a_1 + ... + a_n)B + a_0\beta_n + a_1\beta_{n-1} + ... + a_n\beta_0$  
+= $({\displaystyle\sum_{j=0}^n} a_j) \cdot B + a_0\beta_n + a_1\beta_{n-1} + ... + a_n\beta_0$  
+>    
+> 设$\gamma_n = a_0\beta_n + a_1\beta_{n-1} + ... + a_n\beta_0$ 下面证明$\lim\limits_{n \rightarrow \infin} \gamma_n = 0$  
+>   
+> 未完待续  
+  
+---  
+  
+指数函数定义： $\displaystyle \operatorname{exp}(x) = \sum_{n = 0}^{\infin} \frac{x^n}{n!}$  
+//\[Rudin 1976\] / 8\.6 Theorem  
+//\[陈天权 2009\] / 定义 3\.5\.2     
 
+---  
+  
+$\displaystyle \operatorname{exp}(x) \cdot \operatorname{exp}(y) = \operatorname{exp}(x + y)$  
+//\[Rudin 1976\] / 8\.6 Theorem   
+//\[陈天权 2009\] / 定理 3\.5\.2       
+   
+证明：  
+> $\displaystyle \operatorname{exp}(x) \cdot \operatorname{exp}(y)$    
+= $\displaystyle \sum_{n=0}^\infin (\sum_{k=0}^n \frac{x^k \cdot y^{n-k}}{k! \cdot (n-k)!})$  
+= $\displaystyle \sum_{n=0}^\infin (\frac{1}{n!} \sum_{k=0}^n \frac{n! \cdot x^k \cdot y^{n-k}}{k! \cdot (n-k)!})$  
+= $\displaystyle \sum_{n=0}^\infin (\frac{1}{n!} \sum_{k=0}^n C_n^k \cdot x^k \cdot y^{n-k})$    
+= $\displaystyle \sum_{n=0}^\infin \frac{ {(x + y)}^n }{n!}$ //逆用二项式定理      
+= $\displaystyle \operatorname{exp}(x + y)$  
+  
+---  
+   
+根据 指数函数定义 $\displaystyle \operatorname{exp}(0) = 1$  
+   
+根据 欧拉数定义 $\displaystyle \operatorname{exp}(1) = \sum_{n=0}^\infin \frac{1}{n!} = e$  
+   
+可以证明 对任意实数x 有 $\displaystyle \operatorname{exp}(x) =  e^x$  //证明从略  
 
+#### 三角函数（Trigonometric Functions）    
+  
+余弦定义：$\displaystyle \operatorname{cos}(x) = \frac{\operatorname{exp}(ix) + \operatorname{exp}(-ix)}{2}$  
+  
+正弦定义：$\displaystyle \operatorname{sin}(x) = \frac{\operatorname{exp}(ix) - \operatorname{exp}(-ix)}{2 i}$  
+
+$\displaystyle \operatorname{exp}(ix) = 1 + ix - \frac{x^2}{2!} - \frac{ix^3}{3!} + \frac{x^4}{4!} + ...$  //i -1 -i 1  
+
+$\displaystyle \operatorname{exp}(-ix) = 1 -ix - \frac{x^2}{2!} + \frac{ix^3}{3!} + \frac{x^4}{4!} + ...$  //-i -1 i 1  
+
+$\displaystyle \operatorname{cos}(x) = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} + ...$  
+
+$\displaystyle \operatorname{sin}(x) = x - \frac{x^3}{3!} + \frac{x^5}{5!} + ...$  
+  
+$\displaystyle \operatorname{exp}(ix) = \operatorname{cos}(x) + i\operatorname{sin}(x)$  
+  
+  
 ### 极限（limit）    
 
 虽然 数列可以认为是一种特殊的函数  
