@@ -296,7 +296,7 @@ ${\displaystyle\sum_{n = 0}^{\infin}} a_nx^n$ = $a_0 + a_1x + ... + + a_nx^n + .
  Cauchy-Hadamard Theorem  
 //\[Bartle 2011\] / 9\.4\.9 Cauchy-Hadamard Theorem  
 //\[Rudin 1976\] / 3\.39 Theorem  
-//\[同济大学数学系 2014\] / 第十二章 无穷级数 / 第三节 幂级数 / 二 幂级数及其收敛性 定理2    
+//\[同济大学数学系 2014\] / 第十二章 无穷级数 / 第三节 幂级数 / 二 幂级数及其收敛性 / 定理2    
 //\[陈天权 2009\] / 定理 3\.5\.1   
   
 极限$\lim\limits_{n \rightarrow \infin} \sqrt[n]{| a_n |}$存在 ⇒ 设R = $\frac{1}{\lim\limits_{n \rightarrow \infin} \sqrt[n]{| a_n |}}$，我们有：当|x| \< R时，幂级数${\displaystyle\sum_{n = 0}^{\infin}} a_nx^n$收敛；当|x| \> R时，幂级数${\displaystyle\sum_{n = 0}^{\infin}} a_nx^n$发散。   
@@ -401,9 +401,22 @@ $\displaystyle \operatorname{cos}(x) = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} + ...
 
 $\displaystyle \operatorname{sin}(x) = x - \frac{x^3}{3!} + \frac{x^5}{5!} + ...$  
   
-$\displaystyle \operatorname{exp}(ix) = \operatorname{cos}(x) + i\operatorname{sin}(x)$  
-  
-  
+---  
+   
+Euler公式：$\displaystyle \operatorname{exp}(ix) = \operatorname{cos}(x) + i\operatorname{sin}(x)$   
+
+//证明  
+//根据定义   
+//正弦定义×i + 余弦定义 即可得证  
+
+Euler公式 与 余弦/正弦定义 等价  
+可以 基于Euler公式 推出  余弦/正弦定义   
+将-ix代入Euler公式后 得到 $\displaystyle \operatorname{exp}(-ix) = \operatorname{exp}(i(-x)) = \operatorname{cos}(-x) + i\operatorname{sin}(-x) = \operatorname{cos}(x) - i\operatorname{sin}(x)$  
+与欧拉公式相加/减后 即可得到 余弦/正弦定义  
+    
+    
+   
+   
 ### 极限（limit）    
 
 虽然 数列可以认为是一种特殊的函数  
@@ -413,7 +426,7 @@ $\displaystyle \operatorname{exp}(ix) = \operatorname{cos}(x) + i\operatorname{s
 领域 neighborhood  
   
 函数极限定义 //epsilon-delta definition   
-$\delta$    
+$\forall \, \epsilon > 0 , \, \exists \, \delta > 0 , \, \forall \, 0 < |x - x_0| < \delta \, , \, |\operatorname{f}(x) - A| < \epsilon \Leftrightarrow \lim\limits_{x \rightarrow x_0} \operatorname{f}(x) = A$    
   
 Sequential Criterion for Limits //函数极限与数列极限的关系 //Robert Bartle, Donald Sherbert. "Introduction to Real Analysis, Fourth Edition" 4.1.8 Theorem  
 函数f(x)在x0处的极限为A 数列{xn}的极限为x0 且 存在N，当n>N时，有xn≠x0 -> 数列{f(xn)}的极限为A  
@@ -423,26 +436,53 @@ Sequential Criterion for Limits //函数极限与数列极限的关系 //Robert 
 极限运算法则  
 根据定义求极限的效率太低，因此引入了极限运算法则，但是这也是出错的开始  
 
+有界函数与无穷小的乘积是无穷小  //\[同济大学数学系 2014\] 第一章 函数与极限 / 第五节 极限运算法则 / 定理2  
+
 商法则  //分母不能为0   
 复合函数  //存在去心邻域 满足g(x)不等于极限  
 
 有理整函数（polynomial function） 或 (代入后分母不等于零的)有理分式函数（rational function） 直接代入即极限 //为提供证明 后文会扩充到初等函数     
   
-根据定义易知 对函数进行的恒等变形（比如“约分”等） 只要 存在某个去心邻域 能使相应的恒等变形成立 即可  
+**根据极限定义易知 对函数进行的恒等变形（比如“约分”等）或比较大小（比如“有界函数与无穷小乘积”/“夹逼准则”等） 只要 存在某个去心邻域 能使相应的恒等变形或比较大小成立 即可**    
 
 ~~单调收敛原理/单调收敛定理（Monotone Convergence Theorem） 单调有界数列必有极限 //仅适用于数列 且不能求出极限的具体值~~    
   
 夹逼准则（Squeeze Theorem） //由于效率较低，在求函数极限时，一般借助于初等函数的连续性，并不常用 //但求数列极限的方法较少，可能会用到夹逼准则  
 
 ~~柯西收敛准则 Cauchy's convergence test //柯西极限存在准则/柯西审敛原理~~  
+            
+---    
+   
 
-$\lim\limits_{x \rightarrow  0}\frac{\sin ( x ) }{x} = 1$   
+---    
+     
+$\displaystyle \lim\limits_{x \rightarrow  0}\frac{\sin ( x ) }{x} = 1$   
+   
+\[陈天权 2009\] / 例 3\.6\.4   
+$\displaystyle \frac{\sin x}{x}$  
+= $\displaystyle \frac{x - \frac{x^3}{3!} + \frac{x^5}{5!} + ...}{x}$  
+= $\displaystyle 1 - \frac{x^2}{3!} + \frac{x^4}{5!} + ...$  
+= $\displaystyle 1 + x^2 \cdot (- \frac{1}{3!} + \frac{x^2}{5!} + ...)$    
+        
+又 $\displaystyle  \lim\limits_{x \rightarrow 0} x^2 = 0$ 是无穷小   
+    
+**根据极限定义易知 对函数进行的恒等变形（比如“约分”等）或比较大小（比如“有界函数与无穷小乘积”/“夹逼准则”等） 只要 存在某个去心邻域 能使相应的恒等变形或比较大小成立 即可**      
+且 当0<|x-0|<1时 $\displaystyle | - \frac{1}{3!} + \frac{x^2}{5!} + ... |$ ≤ $\displaystyle | 1 + 1 + \frac{1}{2!} + \frac{1}{3!} + \frac{1}{5!} + ... |$ = e 有界 //严格意义上，应当对满足0<|x-0|<1的任意给定x，证明级数收敛（有界->正项级数收敛->绝对收敛->收敛），级数的值是关于x的函数 //并且函数又在0<|x-0|<1上有界   
 
+因此 $\displaystyle  \lim\limits_{x \rightarrow 0} x^2 \cdot (- \frac{1}{3!} + \frac{x^2}{5!} + ...) =0$ //有界函数与无穷小的乘积是无穷小   
+  
+$\displaystyle \lim\limits_{x \rightarrow 0} 1 + x^2 \cdot (- \frac{1}{3!} + \frac{x^2}{5!} + ...) = 1$ //极限加法运算法则    
+   
+      
+---    
+   
 $\lim\limits_{x \rightarrow \infin} {( 1 + \frac{1}{x} )}^x = e$  
 $=\lim\limits_{x \rightarrow \infin} e^{ ( \ln ( { ( 1 + \frac{1}{x} ) } ^ x ) ) }$  
 $=\lim\limits_{x \rightarrow \infin} e^{ ( x \ln ( 1 + \frac{1}{x} ) ) }$  
 $=\lim\limits_{x \rightarrow \infin} e^{ \frac{\ln ( 1 + \frac{1}{x} )}{\frac{1}{x}} }$  
 $=\lim\limits_{x \rightarrow 0} e^{ \frac{\ln ( 1 + x )}{x} }$  
+    
+---
 
 $\lim\limits_{x \rightarrow 0} \sqrt[n]{1 + x} = 1$    
 证明   
@@ -591,5 +631,6 @@ $\int_a^b g(x) \, dx$ = G(b) - G(a) = F\[φ(b)\]  - F\[φ(a)\] （等式2）
   
 ### 参考文献  
 \[Bartle 2011\] Robert Bartle, Donald Sherbert. "Introduction to Real Analysis, Fourth Edition." Wiley 2011.   
-\[Rudin 1976\] Walter Rudin. "Principles of Mathematical Analysis, Third Edition." McGraw-Hill 1976.   
+\[Rudin 1976\] Walter Rudin. "Principles of Mathematical Analysis, Third Edition." McGraw-Hill 1976.    
+\[同济大学数学系 2014\] 同济大学数学系. "高等数学 第七版." 高等教育出版社 2014.    
 \[陈天权 2009\] 陈天权. "数学分析讲义." 北京大学出版社 2009.  
