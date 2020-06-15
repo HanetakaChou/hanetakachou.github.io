@@ -361,49 +361,49 @@ ${\displaystyle\sum_{n=0}^\infin} a_n$ = A 且 ${\displaystyle\sum_{n=0}^\infin}
   
 ---  
   
-指数函数定义： $\displaystyle \operatorname{exp}(x) = \sum_{n = 0}^{\infin} \frac{x^n}{n!}$  
+指数函数定义： $\displaystyle \exp(x) = \sum_{n = 0}^{\infin} \frac{x^n}{n!}$  
 //\[Rudin 1976\] / 8\.6 Theorem  
 //\[陈天权 2009\] / 定义 3\.5\.2     
 
 ---  
   
-$\displaystyle \operatorname{exp}(x) \cdot \operatorname{exp}(y) = \operatorname{exp}(x + y)$  
+$\displaystyle \exp(x) \cdot \exp(y) = \exp(x + y)$  
 //\[Rudin 1976\] / 8\.6 Theorem   
 //\[陈天权 2009\] / 定理 3\.5\.2       
    
 证明：  
-> $\displaystyle \operatorname{exp}(x) \cdot \operatorname{exp}(y)$    
+> $\displaystyle \exp(x) \cdot \exp(y)$    
 = $\displaystyle \sum_{n=0}^\infin (\sum_{k=0}^n \frac{x^k \cdot y^{n-k}}{k! \cdot (n-k)!})$  
 = $\displaystyle \sum_{n=0}^\infin (\frac{1}{n!} \sum_{k=0}^n \frac{n! \cdot x^k \cdot y^{n-k}}{k! \cdot (n-k)!})$  
 = $\displaystyle \sum_{n=0}^\infin (\frac{1}{n!} \sum_{k=0}^n C_n^k \cdot x^k \cdot y^{n-k})$    
 = $\displaystyle \sum_{n=0}^\infin \frac{ {(x + y)}^n }{n!}$ //逆用二项式定理      
-= $\displaystyle \operatorname{exp}(x + y)$  
+= $\displaystyle \exp(x + y)$  
   
 ---  
    
-根据 指数函数定义 $\displaystyle \operatorname{exp}(0) = 1$  
+根据 指数函数定义 $\displaystyle \exp(0) = 1$  
    
-根据 欧拉数定义 $\displaystyle \operatorname{exp}(1) = \sum_{n=0}^\infin \frac{1}{n!} = e$  
+根据 欧拉数定义 $\displaystyle \exp(1) = \sum_{n=0}^\infin \frac{1}{n!} = e$  
    
-可以证明 对任意实数x 有 $\displaystyle \operatorname{exp}(x) =  e^x$  //证明从略  
+可以证明 对任意实数x 有 $\displaystyle \exp(x) =  e^x$  //证明从略  
 
 #### 三角函数（Trigonometric Functions）    
   
-余弦定义：$\displaystyle \operatorname{cos}(x) = \frac{\operatorname{exp}(ix) + \operatorname{exp}(-ix)}{2}$  
+余弦定义：$\displaystyle \cos(x) = \frac{\exp(ix) + \exp(-ix)}{2}$  
   
-正弦定义：$\displaystyle \operatorname{sin}(x) = \frac{\operatorname{exp}(ix) - \operatorname{exp}(-ix)}{2 i}$  
+正弦定义：$\displaystyle \sin(x) = \frac{\exp(ix) - \exp(-ix)}{2 i}$  
 
-$\displaystyle \operatorname{exp}(ix) = 1 + ix - \frac{x^2}{2!} - \frac{ix^3}{3!} + \frac{x^4}{4!} + ...$  //i -1 -i 1  
+$\displaystyle \exp(ix) = 1 + ix - \frac{x^2}{2!} - \frac{ix^3}{3!} + \frac{x^4}{4!} + ...$  //i -1 -i 1  
 
-$\displaystyle \operatorname{exp}(-ix) = 1 -ix - \frac{x^2}{2!} + \frac{ix^3}{3!} + \frac{x^4}{4!} + ...$  //-i -1 i 1  
+$\displaystyle \exp(-ix) = 1 -ix - \frac{x^2}{2!} + \frac{ix^3}{3!} + \frac{x^4}{4!} + ...$  //-i -1 i 1  
 
-$\displaystyle \operatorname{cos}(x) = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} + ...$  
+$\displaystyle \cos(x) = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} + ...$  
 
-$\displaystyle \operatorname{sin}(x) = x - \frac{x^3}{3!} + \frac{x^5}{5!} + ...$  
+$\displaystyle \sin(x) = x - \frac{x^3}{3!} + \frac{x^5}{5!} + ...$  
   
 ---  
    
-Euler公式：$\displaystyle \operatorname{exp}(ix) = \operatorname{cos}(x) + i\operatorname{sin}(x)$   
+Euler公式：$\displaystyle \exp(ix) = \cos(x) + i\sin(x)$   
 
 //证明  
 //根据定义   
@@ -411,7 +411,7 @@ Euler公式：$\displaystyle \operatorname{exp}(ix) = \operatorname{cos}(x) + i\
 
 Euler公式 与 余弦/正弦定义 等价  
 可以 基于Euler公式 推出  余弦/正弦定义   
-将-ix代入Euler公式后 得到 $\displaystyle \operatorname{exp}(-ix) = \operatorname{exp}(i(-x)) = \operatorname{cos}(-x) + i\operatorname{sin}(-x) = \operatorname{cos}(x) - i\operatorname{sin}(x)$  
+将-ix代入Euler公式后 得到 $\displaystyle \exp(-ix) = \exp(i(-x)) = \cos(-x) + i\sin(-x) = \cos(x) - i\sin(x)$  
 与欧拉公式相加/减后 即可得到 余弦/正弦定义  
     
     
@@ -451,12 +451,29 @@ Sequential Criterion for Limits //函数极限与数列极限的关系 //Robert 
 
 ~~柯西收敛准则 Cauchy's convergence test //柯西极限存在准则/柯西审敛原理~~  
             
----    
+---   
+       
+$\displaystyle \lim\limits_{x \rightarrow  0} \frac{\exp(x) - 1}{x} = 1$   
    
+\[陈天权 2009\] / 例 3\.6\.2   
+$\displaystyle \frac{\exp(x) - 1}{x}$  
+= $\displaystyle \frac{(1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \frac{x^4}{4!} + ...) - 1}{x}$    
+= $\displaystyle 1 + \frac{x}{2!} + \frac{x^2}{3!} + \frac{x^3}{4!} + ...$  
+= $\displaystyle 1 + x \cdot (\frac{1}{2!} + \frac{x}{3!} + \frac{x^2}{4!} + ...)$  
+    
+    
+又 $\displaystyle  \lim\limits_{x \rightarrow 0} x = 0$ 是无穷小   
+  
+**根据极限定义易知 对函数进行的恒等变形（比如“约分”等）或比较大小（比如“有界函数与无穷小乘积”/“夹逼准则”等） 只要 存在某个去心邻域 能使相应的恒等变形或比较大小成立 即可**    
+且 当0<|x-0|<1时 $\displaystyle | \frac{1}{2!} + \frac{x}{3!} + \frac{x^2}{4!} + ... |$ ≤ $\displaystyle | 1 + 1 + \frac{1}{2!} + \frac{1}{3!} + \frac{1}{5!} + ... |$ = e 有界 //严格意义上，应当对满足0<|x-0|<1的任意给定x，证明级数收敛（有界->正项级数收敛->绝对收敛->收敛），级数的值是关于x的函数 //并且函数又在0<|x-0|<1上有界        
+    
+因此 $\displaystyle  \lim\limits_{x \rightarrow 0} x \cdot (\frac{1}{2!} + \frac{x}{3!} + \frac{x^2}{4!} + ...) =0$ //有界函数与无穷小的乘积是无穷小        
+
+$\displaystyle \lim\limits_{x \rightarrow 0} 1 + x \cdot (\frac{1}{2!} + \frac{x}{3!} + \frac{x^2}{4!} + ...) = 1$ //极限加法运算法则   
 
 ---    
-     
-$\displaystyle \lim\limits_{x \rightarrow  0}\frac{\sin ( x ) }{x} = 1$   
+       
+$\displaystyle \lim\limits_{x \rightarrow  0} \frac{\sin(x) }{x} = 1$   
    
 \[陈天权 2009\] / 例 3\.6\.4   
 $\displaystyle \frac{\sin x}{x}$  
