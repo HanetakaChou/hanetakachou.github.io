@@ -30,6 +30,10 @@ $\displaystyle \wp(X)$ //X的所有子集
 $\displaystyle \tau$是X的拓扑(Topology) ⇔  $\displaystyle \tau \subset \wp(X)$ 满足 $\displaystyle \emptyset \isin \tau \land X \isin \tau$ 且 $\displaystyle \tau$中有限或无限个元素的并仍属于$\displaystyle \tau$ 且 $\displaystyle \tau$中有限个元素的交仍属于$\displaystyle \tau$   
                       
 并且 (X,$\displaystyle \tau$)被称作拓扑空间(Topological Space) 且 $\displaystyle \tau$中的元素被称作开集(Open Set)      
+   
+拓扑间的包含关系     
+finer/smaller/weaker    
+coarser/larger/stronger  
 
 ---   
 
@@ -54,7 +58,8 @@ R上的开集
 U是R上的开集 ⇔ $\displaystyle \forall x \isin U , \exists \epsilon > 0 , \{ y : |y-x|< \epsilon\} \subset U$ //\[陈天权 2009\] / §2\.5 23    
 
 R上的通常拓扑(Usual Topology)  
-R上所有开区间的并的集合(Set)组成的集族(Collection：与Set同义，表示“集合的集合”时，用Collection) //\[陈天权 2009\] / 例 7\.1\.3     
+R上的通常拓扑：R的所有可以表示为开区间的并的集合(Set)组成的集族(Collection) //\[陈天权 2009\] / 例 7\.1\.3     
+//Collection与Set同义，表示“集合的集合”时，用Collection   
 
 $\displaystyle R^2$上的开集    
 \[同济大学数学系 2014\] 第九章 多元函数微分法及其应用 / 第一节 多元函数的基本概念 / 一、平面点集 *n维空间 / 1. 平面点集     
@@ -62,6 +67,11 @@ $\displaystyle R^2$上的开集
      
 ---        
      
+领域 Neighborhood  
+$\displaystyle \tau$是X的拓扑(Topology) 且 x $\displaystyle \isin$ X 且 N是开集（即N $\displaystyle \isin \tau$） ⇒ ( x $\displaystyle \isin$ N ⇔ N是x的领域(Neighborhood) ) //\[陈天权 2009\] / 定义 7\.1\.3   
+
+
+
 一致收敛拓扑(Topology of Uniform Convergence)    
     
    

@@ -12,13 +12,17 @@ axiom 公理
   
 hypothesis 假说/条件  
 conclusion 结论  
+
 statement 命题  
+
 theorem 定理/真命题    
 nontheorem 假命题    
+
 negative 命题的否定 not(if p then q)  
 inverse 否命题 if not p then not q  
-converse 逆命题 if q then p 
+converse 逆命题 if q then p   
 contrapositive 逆否命题 if not q then not p  
+
 counterexample 反例  
 
 necessity 必要性  
@@ -48,7 +52,7 @@ call it a //将它称作a
 
 we have (that) //我们有  
 it holds that //...成立  
-
+  
 A implies B //A能推出B    
 whenever/if A holds, B follows/holds //当A成立时 B也成立      
 A if and only if / iff  B //A当且仅当B  
