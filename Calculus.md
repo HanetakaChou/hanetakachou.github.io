@@ -19,12 +19,11 @@ $\forall \, e \isin [b]_\sim$ 有$e \sim b$ 又因为$b \sim c$ 有$e \sim c$ �
 //指标集 Index Set   
 
 幂集 Power Set   
-$\displaystyle \wp(X)$ //X的所有子集  
-  
-拓扑空间 Topological Space          
+$\displaystyle \wp(X)$ //X的所有子集    
    
 ---
-   
+拓扑空间 Topological Space             
+
 拓扑的开集定义   
 //\[陈天权 2009\] / 定义 7\.1\.1     
    
@@ -40,11 +39,11 @@ $\displaystyle \tau$是X的拓扑(Topology) ⇔  $\displaystyle \tau \subset \wp
    
 ---
 
-$\displaystyle R^n$通常拓扑(Usual Topology)   
+$\displaystyle R^n$上的通常拓扑(Usual Topology)   
 //\[陈天权 2009\] / 例 7\.1\.5   
       
 U是$\displaystyle R^n$上的开集(Open Set) ⇔ $\displaystyle \forall \overrightarrow{x} \isin U , \exists \epsilon > 0 , \{ \overrightarrow{y}: |\overrightarrow{y} - \overrightarrow{x}|< \epsilon\} \subset U$    
-其中：$\displaystyle |\overrightarrow{y} - \overrightarrow{x}|$为欧氏空间中的长度 且 $\displaystyle \operatorname{B}(\overrightarrow{x} , \epsilon) = \{ \overrightarrow{y}: |\overrightarrow{y} - \overrightarrow{x}|< \epsilon\}$是以$displaystyle \overrightarrow{x}$为球心$\displaystyle \epsilon$为半径的开球  
+其中：$\displaystyle |\overrightarrow{y} - \overrightarrow{x}|$为欧氏空间中的长度 且 $\displaystyle \operatorname{B}(\overrightarrow{x} , \epsilon) = \{ \overrightarrow{y}: |\overrightarrow{y} - \overrightarrow{x}|< \epsilon\}$是以$\displaystyle \overrightarrow{x}$为球心$\displaystyle \epsilon$为半径的开球  
     
 $\displaystyle R^n$上的通常拓扑(Usual Topology) T = { U | U是$\displaystyle R^n$上的开集 }     
 
@@ -60,13 +59,22 @@ R上所有开区间的并的集合(Set)组成的集族(Collection：与Set同义
 $\displaystyle R^2$上的开集    
 \[同济大学数学系 2014\] 第九章 多元函数微分法及其应用 / 第一节 多元函数的基本概念 / 一、平面点集 *n维空间 / 1. 平面点集     
 开集：如果点集E的点都是E的内点，那么称E为开集     
+     
+---        
+     
+一致收敛拓扑(Topology of Uniform Convergence)    
+    
    
-
+    
+    
+### 度量 Metric     
+     
 度量空间 Metric Space       
         
         
-          
-       
+### 测度 Measure    
+             
+         
 ### 实数完备性（Completeness of the real numbers） //实数系连续性  
 
 最大数 max  
@@ -673,12 +681,9 @@ a < ζ <= b -> ζ ∈ \[a,b\] -> f(x)在ζ上连续 //**注：如果为半开区
 
 ### 微分（Differential）/导数（Derivative）
 
-洛必达法则（L'Hôpital's rule）  
-
-
-### 测度（Measure）  
-
-
+洛必达法则（L'Hôpital's rule）   
+    
+    
 ### 积分（Integral）    
 
 定积分/黎曼积分 Riemann Integral  
