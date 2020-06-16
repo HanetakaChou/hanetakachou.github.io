@@ -31,9 +31,11 @@ by symmetry //由于对称性 //同理可得
 since //由于 //因为    
 by //根据（...定理)    
 
-it follows that //因此 //所以  
+evident //显然   
 
-and / but //且
+it follows that //因此 //所以   
+
+and / but //且   
 
 we have shown that //我们已经证明 //我们得到  
 

@@ -10,7 +10,45 @@
 $\forall \, e \isin [b]_\sim$ 有$e \sim b$ 又因为$b \sim c$ 有$e \sim c$ 即$e \isin [c]_\sim$  
 并且$\forall \, e \isin [c]_\sim$ 有$e \sim c$ 又因为$b \sim c$ 有$e \sim b$ 即$e \isin [b]_\sim$  
 即$\forall \, e \, , \, e \isin [b]_\sim \Leftrightarrow e \isin [c]_\sim$ 即$[b]_\sim = [c]_\sim$ 但是，这与 $[b]_\sim \ne [c]_\sim$ 矛盾，命题得证 //事实上，可以证明：$b \sim c \Leftrightarrow [b]_\sim = [c]_\sim$    
+      
 
+//指标集 Index Set   
+
+幂集 Power Set   
+$\displaystyle \wp(X)$ //X的所有子集  
+  
+拓扑空间 Topological Space          
+   
+拓扑的开集定义   
+\[陈天权 2009\] / 定义 7\.1\.1      
+$\displaystyle \tau$是X的拓扑(Topology) ⇔  $\displaystyle \tau \subset \wp(X)$ 满足 $\displaystyle \emptyset \isin \tau \land X \isin \tau$ 且 $\displaystyle \tau$中有限或无限个元素的并仍属于$\displaystyle \tau$ 且 $\displaystyle \tau$中有限个元素的交仍属于$\displaystyle \tau$                       
+并且 (X,$\displaystyle \tau$)被称作拓扑空间(Topological Space) 且 $\displaystyle \tau$中的元素被称作开集(Open Sets)  
+             
+显然，对于任意集合X：  
+{$\displaystyle \emptyset$, X}是X的拓扑 被称为平凡拓扑(Trivial Topology)        
+$\wp(X)$是X的拓扑 被称为离散拓扑(Discrete Topology)    
+
+R上的开集 
+\[陈天权 2009\] / §2\.5 23  
+U是开集 ⇔ $\forall x \isin U, \exists \epsilon > 0, \{ y : |y-x|< \epsilon\} \subset U$   
+
+$\displaystyle R^2$上的开集    
+\[同济大学数学系 2014\] 第九章 多元函数微分法及其应用 / 第一节 多元函数的基本概念 / 一、平面点集 *n维空间 / 1. 平面点集     
+开集：如果点集E的点都是E的内点，那么称E为开集     
+   
+通常拓扑(Usual Topology)   
+\[陈天权 2009\] / 例 7\.1\.5
+$\displaystyle R^n$上的 通常拓扑(Usual Topology) T = { U | U是$\displaystyle R^n$上的开集 }  
+   
+
+
+度量空间 Metric Space       
+        
+        
+          
+       
+---  
+  
 最大数 max  
 最小数 min    
 有上界 （be） bounded above  
@@ -29,17 +67,17 @@ since $\epsilon > 0$, $M - \epsilon$ is less than M, which contradicts the given
 Theroem 设M = supE，则 $\forall  \, \epsilon < 0, \, \exists \, x \isin E, \, x < M + \epsilon$  
 证明从略   
 
-实数完备性（Completeness of the real numbers） //实数系连续性  
+### 实数完备性（Completeness of the real numbers） //实数系连续性  
   
 最小上界性（Least Upper Bound Property）如果非空的实数子集有上界，那么它一定有上确界 //戴德金完备性（Dedekind Completeness）     
 LUB公理（LUB Axiom) //直接看作公理 //\[Rudin 1976\] 1.10 Definition    
-  
-最大下界性（Greatest Lower Bound Property）   
-> 证明 //\[Rudin 1976\] 1.11 Theorem  
-> 
-> 不妨设 非空的实数子集为B 设 L = { y : y是B的一个下界 }  
-> 由于B非空 任取B中的某个x 容易证明 有 x是L的一个上界 根据最小上界性 L有上确界 不妨设为α  
->
+    
+最大下界性（Greatest Lower Bound Property）    
+> 证明 //\[Rudin 1976\] 1.11 Theorem    
+>    
+> 不妨设 非空的实数子集为B 设 L = { y : y是B的一个下界 }   
+> 由于B非空 任取B中的某个x 容易证明 有 x是L的一个上界 根据最小上界性 L有上确界 不妨设为α    
+>   
 > 容易证明 **对B中的任意x 都有 x是L的一个上界** //证明的关键   
 由于α是L的上确界 根据上确界定义 对任意y<α 都有 y不是L的一个上界 //根据逆否命题等价性 对任意L的上界x 都有x>=α  
 因此 对B中的任意x 都有 都有x>=α 即α是B的一个下界 **可以理解成：上确界是最小上界 既然B中的元素都是L的上界，那么B中的元素都大于上确界α**  
@@ -361,7 +399,7 @@ ${\displaystyle\sum_{n=0}^\infin} a_n$ = A 且 ${\displaystyle\sum_{n=0}^\infin}
   
 ---  
   
-指数函数定义： $\displaystyle \exp(x) = \sum_{n = 0}^{\infin} \frac{x^n}{n!}$  
+指数函数定义： $\displaystyle \exp(x) = \sum_{n = 0}^{\infin} \frac{x^n}{n!} = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \frac{x^4}{4!} + ...$  
 //\[Rudin 1976\] / 8\.6 Theorem  
 //\[陈天权 2009\] / 定义 3\.5\.2     
 
@@ -530,7 +568,7 @@ $=\lim\limits_{x \rightarrow 0} \frac{\frac{{\sqrt[n]{1 + x} )}^{n} - 1}{1 + ...
 ### 连续（continuous）    
 
 函数连续定义  
-if $\lim\limits_{x \rightarrow x_0} \operatorname{f}(x) = \operatorname{f}(x_0)$ then f(x)在$x_0$处连续     
+$\displaystyle \lim\limits_{x \rightarrow x_0} \operatorname{f}(x) = \operatorname{f}(x_0)$ ⇒ f(x)在$x_0$处连续     
 
 连续函数的性质 //局部性质  
 
