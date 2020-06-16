@@ -1,3 +1,5 @@
+### 集合    
+
 等价关系 等价类 商集 划分    
 
 等价类要么相等要么不相交 //即不相等的等价类一定不相交   
@@ -10,7 +12,9 @@
 $\forall \, e \isin [b]_\sim$ 有$e \sim b$ 又因为$b \sim c$ 有$e \sim c$ 即$e \isin [c]_\sim$  
 并且$\forall \, e \isin [c]_\sim$ 有$e \sim c$ 又因为$b \sim c$ 有$e \sim b$ 即$e \isin [b]_\sim$  
 即$\forall \, e \, , \, e \isin [b]_\sim \Leftrightarrow e \isin [c]_\sim$ 即$[b]_\sim = [c]_\sim$ 但是，这与 $[b]_\sim \ne [c]_\sim$ 矛盾，命题得证 //事实上，可以证明：$b \sim c \Leftrightarrow [b]_\sim = [c]_\sim$    
-      
+
+
+### 拓扑 Topology
 
 //指标集 Index Set   
 
@@ -63,8 +67,8 @@ $\displaystyle R^2$上的开集
         
           
        
----  
-  
+### 实数完备性（Completeness of the real numbers） //实数系连续性  
+
 最大数 max  
 最小数 min    
 有上界 （be） bounded above  
@@ -82,9 +86,9 @@ since $\epsilon > 0$, $M - \epsilon$ is less than M, which contradicts the given
 
 Theroem 设M = supE，则 $\forall  \, \epsilon < 0, \, \exists \, x \isin E, \, x < M + \epsilon$  
 证明从略   
-
-### 实数完备性（Completeness of the real numbers） //实数系连续性  
-  
+   
+---   
+    
 最小上界性（Least Upper Bound Property）如果非空的实数子集有上界，那么它一定有上确界 //戴德金完备性（Dedekind Completeness）     
 LUB公理（LUB Axiom) //直接看作公理 //\[Rudin 1976\] 1.10 Definition    
     
