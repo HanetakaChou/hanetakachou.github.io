@@ -19,28 +19,44 @@ $\displaystyle \wp(X)$ //X的所有子集
   
 拓扑空间 Topological Space          
    
+---
+   
 拓扑的开集定义   
-\[陈天权 2009\] / 定义 7\.1\.1      
-$\displaystyle \tau$是X的拓扑(Topology) ⇔  $\displaystyle \tau \subset \wp(X)$ 满足 $\displaystyle \emptyset \isin \tau \land X \isin \tau$ 且 $\displaystyle \tau$中有限或无限个元素的并仍属于$\displaystyle \tau$ 且 $\displaystyle \tau$中有限个元素的交仍属于$\displaystyle \tau$                       
-并且 (X,$\displaystyle \tau$)被称作拓扑空间(Topological Space) 且 $\displaystyle \tau$中的元素被称作开集(Open Sets)  
-             
-显然，对于任意集合X：  
-{$\displaystyle \emptyset$, X}是X的拓扑 被称为平凡拓扑(Trivial Topology)        
-$\wp(X)$是X的拓扑 被称为离散拓扑(Discrete Topology)    
+//\[陈天权 2009\] / 定义 7\.1\.1     
+   
+$\displaystyle \tau$是X的拓扑(Topology) ⇔  $\displaystyle \tau \subset \wp(X)$ 满足 $\displaystyle \emptyset \isin \tau \land X \isin \tau$ 且 $\displaystyle \tau$中有限或无限个元素的并仍属于$\displaystyle \tau$ 且 $\displaystyle \tau$中有限个元素的交仍属于$\displaystyle \tau$   
+                      
+并且 (X,$\displaystyle \tau$)被称作拓扑空间(Topological Space) 且 $\displaystyle \tau$中的元素被称作开集(Open Set)      
 
-R上的开集 
-\[陈天权 2009\] / §2\.5 23  
-U是开集 ⇔ $\forall x \isin U, \exists \epsilon > 0, \{ y : |y-x|< \epsilon\} \subset U$   
+---   
+
+//显然，对于任意集合X：  
+//{$\displaystyle \emptyset$, X}是X的拓扑 被称为平凡拓扑(Trivial Topology) //\[陈天权 2009\] / 例 7\.1\.2         
+//$\wp(X)$是X的拓扑 被称为离散拓扑(Discrete Topology) //\[陈天权 2009\] / 例 7\.1\.1     
+   
+---
+
+$\displaystyle R^n$通常拓扑(Usual Topology)   
+//\[陈天权 2009\] / 例 7\.1\.5   
+      
+U是$\displaystyle R^n$上的开集(Open Set) ⇔ $\displaystyle \forall \overrightarrow{x} \isin U , \exists \epsilon > 0 , \{ \overrightarrow{y}: |\overrightarrow{y} - \overrightarrow{x}|< \epsilon\} \subset U$    
+其中：$\displaystyle |\overrightarrow{y} - \overrightarrow{x}|$为欧氏空间中的长度 且 $\displaystyle \operatorname{B}(\overrightarrow{x} , \epsilon) = \{ \overrightarrow{y}: |\overrightarrow{y} - \overrightarrow{x}|< \epsilon\}$是以$displaystyle \overrightarrow{x}$为球心$\displaystyle \epsilon$为半径的开球  
+    
+$\displaystyle R^n$上的通常拓扑(Usual Topology) T = { U | U是$\displaystyle R^n$上的开集 }     
+
+--- 
+
+    
+R上的开集    
+U是R上的开集 ⇔ $\displaystyle \forall x \isin U , \exists \epsilon > 0 , \{ y : |y-x|< \epsilon\} \subset U$ //\[陈天权 2009\] / §2\.5 23    
+
+R上的通常拓扑(Usual Topology)  
+R上所有开区间的并的集合(Set)组成的集族(Collection：与Set同义，表示“集合的集合”时，用Collection) //\[陈天权 2009\] / 例 7\.1\.3     
 
 $\displaystyle R^2$上的开集    
 \[同济大学数学系 2014\] 第九章 多元函数微分法及其应用 / 第一节 多元函数的基本概念 / 一、平面点集 *n维空间 / 1. 平面点集     
 开集：如果点集E的点都是E的内点，那么称E为开集     
    
-通常拓扑(Usual Topology)   
-\[陈天权 2009\] / 例 7\.1\.5
-$\displaystyle R^n$上的 通常拓扑(Usual Topology) T = { U | U是$\displaystyle R^n$上的开集 }  
-   
-
 
 度量空间 Metric Space       
         
