@@ -27,9 +27,9 @@ $\displaystyle \wp(X)$ //X的所有子集
 拓扑的开集定义   
 //\[陈天权 2009\] / 定义 7\.1\.1     
    
-$\displaystyle \tau$是X的拓扑(Topology) ⇔  $\displaystyle \tau \subset \wp(X)$ 满足 $\displaystyle \emptyset \isin \tau \land X \isin \tau$ 且 $\displaystyle \tau$中有限或无限个元素的并仍属于$\displaystyle \tau$ 且 $\displaystyle \tau$中有限个元素的交仍属于$\displaystyle \tau$   
+(X,$\displaystyle \tau$)是拓扑空间(Topological Space) ⇔ $\displaystyle \tau$是X上的拓扑(Topology) ⇔ $\displaystyle \tau \subset \wp(X)$ 满足 $\displaystyle \emptyset \isin \tau \land X \isin \tau$ 且 $\displaystyle \tau$中有限或无限个元素的并仍属于$\displaystyle \tau$ 且 $\displaystyle \tau$中有限个元素的交仍属于$\displaystyle \tau$      
                       
-并且 (X,$\displaystyle \tau$)被称作拓扑空间(Topological Space) 且 $\displaystyle \tau$中的元素被称作开集(Open Set)      
+并且 $\displaystyle \tau$是X上的拓扑(Topology) ⇒ ( U $\displaystyle \isin \tau$ ⇔ U是开集(Open Set))      
    
 拓扑间的包含关系     
 finer/smaller/weaker    
@@ -38,8 +38,8 @@ coarser/larger/stronger
 ---   
 
 //显然，对于任意集合X：  
-//{$\displaystyle \emptyset$, X}是X的拓扑 被称为平凡拓扑(Trivial Topology) //\[陈天权 2009\] / 例 7\.1\.2         
-//$\wp(X)$是X的拓扑 被称为离散拓扑(Discrete Topology) //\[陈天权 2009\] / 例 7\.1\.1     
+//{$\displaystyle \emptyset$, X}是X上的拓扑 被称为平凡拓扑(Trivial Topology) //\[陈天权 2009\] / 例 7\.1\.2         
+//$\wp(X)$是X上的拓扑 被称为离散拓扑(Discrete Topology) //\[陈天权 2009\] / 例 7\.1\.1     
    
 ---
 
@@ -50,6 +50,8 @@ U是$\displaystyle R^n$上的开集(Open Set) ⇔ $\displaystyle \forall \overri
 其中：$\displaystyle |\overrightarrow{y} - \overrightarrow{x}|$为欧氏空间中的长度 且 $\displaystyle \operatorname{B}(\overrightarrow{x} , \epsilon) = \{ \overrightarrow{y}: |\overrightarrow{y} - \overrightarrow{x}|< \epsilon\}$是以$\displaystyle \overrightarrow{x}$为球心$\displaystyle \epsilon$为半径的开球  
     
 $\displaystyle R^n$上的通常拓扑(Usual Topology) T = { U | U是$\displaystyle R^n$上的开集 }     
+
+//~~一致收敛拓扑(Topology of Uniform Convergence)~~      
 
 --- 
 
@@ -62,17 +64,34 @@ R上的通常拓扑：R的所有可以表示为开区间的并的集合(Set)组�
 //Collection与Set同义，表示“集合的集合”时，用Collection   
 
 $\displaystyle R^2$上的开集    
-\[同济大学数学系 2014\] 第九章 多元函数微分法及其应用 / 第一节 多元函数的基本概念 / 一、平面点集 *n维空间 / 1. 平面点集     
+\[同济大学数学系 2014\] / 第九章 多元函数微分法及其应用 / 第一节 多元函数的基本概念 / 一、平面点集 *n维空间 / 1. 平面点集     
 开集：如果点集E的点都是E的内点，那么称E为开集     
      
 ---        
      
 领域 Neighborhood  
-$\displaystyle \tau$是X的拓扑(Topology) 且 x $\displaystyle \isin$ X 且 N是开集（即N $\displaystyle \isin \tau$） ⇒ ( x $\displaystyle \isin$ N ⇔ N是x的领域(Neighborhood) ) //\[陈天权 2009\] / 定义 7\.1\.3   
+$\displaystyle \tau$是X上的拓扑(Topology) 且 x $\displaystyle \isin$ X  ⇒ ( U $\displaystyle \isin \tau$(即U是开集) 且 x $\displaystyle \isin$ U  ⇔ U是x的领域(Neighborhood) ) //\[陈天权 2009\] / 定义 7\.1\.3   
 
+内点 Interior  
+$\displaystyle \tau$是X上的拓扑(Topology) 且 x $\displaystyle \isin$ X 且 N $\displaystyle \subset$ X ⇒ ( $\displaystyle \exists$ U是x的领域 且 U $\displaystyle \subset$ N ⇔ x是N的内点(Interior) )   
 
-
-一致收敛拓扑(Topology of Uniform Convergence)    
+$\displaystyle \tau$是X上的拓扑(Topology) ⇒ ( E $\displaystyle \isin \tau$(即E是开集) ⇔ $\displaystyle \forall x \isin E$, x是E的内点(即E的任何点都是E的内点) )    
+      
+> 证明 //\[陈天权 2009\] / 命题 7\.1\.1   
+>    
+> 必要性  
+> E是开集  
+> 对任意x∈E 存在E E是x的领域(因为x ∈ E ⊂ E 且 E是开集)    
+> 
+> 充分性  
+> 对任意x∈E 存在$\displaystyle U_x$是x的领域 且 $\displaystyle U_x$ ⊂ E  
+> 因此 以上领域的并集 $\displaystyle \cup_{x \isin E} U_x$ ⊂ E  
+>
+> 但 对任意x∈E 一定有x∈以上其中的某一个$\displaystyle U_x$   
+> 因此 E ⊂ $\displaystyle \cup_{x \isin E} U_x$  
+>     
+> 综上 E = $\displaystyle \cup_{x \isin E} U_x$   
+> 根据拓扑的定义 E ∈ τ 即E是开集      
     
    
     
