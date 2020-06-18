@@ -107,13 +107,13 @@ $\displaystyle \tau$是X上的拓扑(Topology) ⇒ ( X - A 是开集(Open Set) �
 闭集的有限或无限次交仍是闭集        
       
 极点(Limit Point)/聚点(Cluster Point / Accumulation Point)     
-$\displaystyle \tau$是X上的拓扑(Topology) 且 S $\displaystyle \subset$ X ⇒ ( x是S的聚点 ⇔ x $\displaystyle \isin$ S 且 $\displaystyle \forall$ U是x的领域(Neighborhood), $(U - \{x\}) \cap E \ne \emptyset$ )      
+$\displaystyle \tau$是X上的拓扑(Topology) 且 E $\displaystyle \subset$ X ⇒ ( x是E的聚点 ⇔ x $\displaystyle \isin$ E 且 $\displaystyle \forall$ U是x的领域(Neighborhood), $(U - \{x\}) \cap E \ne \emptyset$ )      
 
 孤立点(Isolated Point)  
-$\displaystyle \tau$是X上的拓扑(Topology) 且 S $\displaystyle \subset$ X ⇒ ( x是S的孤立点 ⇔ x $\displaystyle \isin$ S 且 x不是S的聚点 )  
+$\displaystyle \tau$是X上的拓扑(Topology) 且 E $\displaystyle \subset$ X ⇒ ( x是E的孤立点 ⇔ x $\displaystyle \isin$ E 且 x不是E的聚点 )  
    
 导集(Derived Set)   
- 
+
 
 ---      
                
