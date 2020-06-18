@@ -107,8 +107,14 @@ $\displaystyle \tau$是X上的拓扑(Topology) ⇒ ( X - A 是开集(Open Set) �
 闭集的有限或无限次交仍是闭集        
       
 极点(Limit Point)/聚点(Cluster Point / Accumulation Point)     
-$\displaystyle \tau$是X上的拓扑(Topology) ⇒ ( x是聚点 ⇔ $\displaystyle \forall$ U是x的领域(Neighborhood), $(U - X) \cap E \ne \emptyset$ )      
-       
+$\displaystyle \tau$是X上的拓扑(Topology) 且 S $\displaystyle \subset$ X ⇒ ( x是S的聚点 ⇔ x $\displaystyle \isin$ S 且 $\displaystyle \forall$ U是x的领域(Neighborhood), $(U - \{x\}) \cap E \ne \emptyset$ )      
+
+孤立点(Isolated Point)  
+$\displaystyle \tau$是X上的拓扑(Topology) 且 S $\displaystyle \subset$ X ⇒ ( x是S的孤立点 ⇔ x $\displaystyle \isin$ S 且 x不是S的聚点 )  
+   
+导集(Derived Set)   
+ 
+
 ---      
                
 点集E以及它的边界∂E上的一切点都是E的聚点 //\[同济大学数学系 2014\] / 第九章 多元函数微分法及其应用 / 第一节 多元函数的基本概念 / 一、平面点集 *n维空间 / 1. 平面点集    
