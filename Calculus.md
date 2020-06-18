@@ -31,6 +31,8 @@ $\displaystyle \wp(X)$ //X的所有子集
                       
 并且 $\displaystyle \tau$是X上的拓扑(Topology) ⇒ ( U $\displaystyle \isin \tau$ ⇔ U是开集(Open Set))      
    
+X是拓扑空间 ⇔ $\exists \tau$, (X,$\displaystyle \tau$)是拓扑空间(Topological Space) ⇔ $\exists \tau$, $\displaystyle \tau$是X上的拓扑(Topology) //用于不强调$\displaystyle \tau$时       
+
 拓扑间的包含关系     
 finer/smaller/weaker    
 coarser/larger/stronger  
@@ -93,9 +95,27 @@ $\displaystyle \tau$是X上的拓扑(Topology) ⇒ ( E $\displaystyle \isin \tau
 > 综上 E = $\displaystyle \cup_{x \isin E} U_x$   
 > 根据拓扑的定义 E ∈ τ 即E是开集      
     
-   
-    
-    
+补集 Complement   
+
+闭集 Closed Set    
+//\[陈天权 2009\] / 定义 7\.1\.4      
+$\displaystyle \tau$是X上的拓扑(Topology) ⇒ ( X - A 是开集(Open Set) ⇔ A是闭集(Closed Set) )                 
+     
+并且 可以用 德摩根定律(De Morgan's laws) 证明：    
+对X上的离散拓扑： ∅是闭集 X是闭集 //一个集合可能既是开集又是闭集     
+闭集的有限次并仍是闭集      
+闭集的有限或无限次交仍是闭集        
+      
+极点(Limit Point)/聚点(Cluster Point / Accumulation Point)     
+$\displaystyle \tau$是X上的拓扑(Topology) ⇒ ( x是聚点 ⇔ $\displaystyle \forall$ U是x的领域(Neighborhood), $(U - X) \cap E \ne \emptyset$ )      
+       
+---      
+               
+点集E以及它的边界∂E上的一切点都是E的聚点 //\[同济大学数学系 2014\] / 第九章 多元函数微分法及其应用 / 第一节 多元函数的基本概念 / 一、平面点集 *n维空间 / 1. 平面点集    
+       
+---      
+      
+      
 ### 度量 Metric     
      
 度量空间 Metric Space       
