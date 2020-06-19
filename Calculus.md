@@ -93,19 +93,10 @@ $\displaystyle \tau$是X上的拓扑(Topology) ⇒ ( E $\displaystyle \isin \tau
 > 因此 E ⊂ $\displaystyle \cup_{x \isin E} U_x$  
 >     
 > 综上 E = $\displaystyle \cup_{x \isin E} U_x$   
-> 根据拓扑的定义 E ∈ τ 即E是开集      
-    
-补集 Complement   
+> 根据拓扑的定义 E ∈ τ 即E是开集           
 
-闭集 Closed Set    
-//\[陈天权 2009\] / 定义 7\.1\.4      
-$\displaystyle \tau$是X上的拓扑(Topology) ⇒ ( X - A 是开集(Open Set) ⇔ A是闭集(Closed Set) )                 
-     
-并且 可以用 德摩根定律(De Morgan's laws) 证明：    
-对X上的离散拓扑： ∅是闭集 X是闭集 //一个集合可能既是开集又是闭集     
-闭集的有限次并仍是闭集      
-闭集的有限或无限次交仍是闭集        
-      
+---         
+
 极点(Limit Point)/聚点(Cluster Point / Accumulation Point)     
 $\displaystyle \tau$是X上的拓扑(Topology) 且 E $\displaystyle \subset$ X ⇒ ( x是E的聚点 ⇔ x $\displaystyle \isin$ E 且 $\displaystyle \forall$ U是x的领域(Neighborhood), $(U - \{x\}) \cap E \ne \emptyset$ )      
 
@@ -113,7 +104,7 @@ $\displaystyle \tau$是X上的拓扑(Topology) 且 E $\displaystyle \subset$ X �
 $\displaystyle \tau$是X上的拓扑(Topology) 且 E $\displaystyle \subset$ X ⇒ ( x是E的孤立点 ⇔ x $\displaystyle \isin$ E 且 x不是E的聚点 )  
    
 导集(Derived Set)   
-
+$\displaystyle \tau$是X上的拓扑(Topology) 且 E $\displaystyle \subset$ X ⇒ E的导集E' = { x : x是E的聚点 }  
 
 ---      
                
@@ -121,6 +112,30 @@ $\displaystyle \tau$是X上的拓扑(Topology) 且 E $\displaystyle \subset$ X �
        
 ---      
       
+补集 Complement   
+
+闭集 Closed Set    
+//\[陈天权 2009\] / 定义 7\.1\.4      
+$\displaystyle \tau$是X上的拓扑(Topology) ⇒ ( X - U 是开集(Open Set) ⇔ U是闭集(Closed Set) )                 
+     
+并且 可以用 德摩根定律(De Morgan's laws) 证明：    
+对X上的离散拓扑： ∅是闭集 X是闭集 //一个集合可能既是开集又是闭集     
+闭集的有限次并仍是闭集      
+闭集的有限或无限次交仍是闭集   
+   
+闭包 Closure   
+$\displaystyle \tau$是X上的拓扑(Topology) 且 E $\displaystyle \subset$ X ⇒ E的闭包(Closure) $\displaystyle \overline{E}$ = { x : $\displaystyle \forall$ S 满足 E $\displaystyle \subset$ S 且 S是闭集, x $\displaystyle \isin$ S } /\*所有包含E的闭集的交\*/  
+
+$\displaystyle \tau$是X上的拓扑(Topology) 且 E $\displaystyle \subset$ X ⇒ ( E是闭集 ⇔ E = $\displaystyle \overline{E}$ )  
+
+> 证明  
+>   
+> 必要性  
+> 显然 E $\displaystyle \subset$ $\displaystyle \overline{E}$ //证明：∀ x ∈ E ⇒ ∀ S 满足 E ⊂ S 且 S是闭集, x ∈ E ⊂ S（即x ∈ S） ⇒ x ∈ $\displaystyle \overline{E}$  
+>
+> 又因为  
+
+
       
 ### 度量 Metric     
      
