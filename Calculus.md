@@ -124,8 +124,9 @@ $\displaystyle \tau$是X上的拓扑(Topology) ⇒ ( X - U 是开集(Open Set) �
 闭集的有限或无限次交仍是闭集   
    
 闭包 Closure   
-$\displaystyle \tau$是X上的拓扑(Topology) 且 E $\displaystyle \subset$ X ⇒ E的闭包(Closure) $\displaystyle \overline{E}$ = { x : $\displaystyle \forall$ S 满足 E $\displaystyle \subset$ S 且 S是闭集, x $\displaystyle \isin$ S } /\*所有包含E的闭集的交\*/  
+闭包的定义： $\displaystyle \tau$是X上的拓扑(Topology) 且 E $\displaystyle \subset$ X ⇒ E的闭包(Closure) $\displaystyle \overline{E}$ = { x : $\displaystyle \forall$ S 满足 E $\displaystyle \subset$ S 且 S是闭集, x $\displaystyle \isin$ S } /\*所有包含E的闭集的交\*/  
 
+定理： //E的闭包是包含E的“最小”闭集   
 $\displaystyle \tau$是X上的拓扑(Topology) 且 E $\displaystyle \subset$ X ⇒ ( E是闭集 ⇔ E = $\displaystyle \overline{E}$ )  
 
 > 证明  
@@ -135,7 +136,9 @@ $\displaystyle \tau$是X上的拓扑(Topology) 且 E $\displaystyle \subset$ X �
 >
 > 又因为  
 
-
+---      
+定理：  
+$\displaystyle \tau$是X上的拓扑(Topology) 且 E $\displaystyle \subset$ X ⇒ ( $\displaystyle \overline{E}$ = E' ∪ E )   
       
 ### 度量 Metric     
      
