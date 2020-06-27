@@ -15,12 +15,13 @@ $\forall \, e \isin [b]_\sim$ 有$e \sim b$ 又因为$b \sim c$ 有$e \sim c$ �
 
 
 ### 拓扑 Topology
-
-//指标集 Index Set   
+//补集 Complement   
 
 幂集 Power Set   
 $\displaystyle \wp(X)$ //X的所有子集    
-   
+
+//指标集 Index Set   
+
 ---
 拓扑空间 Topological Space             
 
@@ -45,78 +46,75 @@ coarser/larger/stronger
    
 ---
 
-$\displaystyle R^n$上的通常拓扑(Usual Topology)   
-//\[陈天权 2009\] / 例 7\.1\.5   
-      
-U是$\displaystyle R^n$上的开集(Open Set) ⇔ $\displaystyle \forall \overrightarrow{x} \isin U , \exists \epsilon > 0 , \{ \overrightarrow{y}: |\overrightarrow{y} - \overrightarrow{x}|< \epsilon\} \subset U$    
-其中：$\displaystyle |\overrightarrow{y} - \overrightarrow{x}|$为欧氏空间中的长度 且 $\displaystyle \operatorname{B}(\overrightarrow{x} , \epsilon) = \{ \overrightarrow{y}: |\overrightarrow{y} - \overrightarrow{x}|< \epsilon\}$是以$\displaystyle \overrightarrow{x}$为球心$\displaystyle \epsilon$为半径的开球  
-    
-$\displaystyle R^n$上的通常拓扑(Usual Topology) T = { U | U是$\displaystyle R^n$上的开集 }     
-
-//~~一致收敛拓扑(Topology of Uniform Convergence)~~      
-
---- 
-
-    
 R上的开集    
 U是R上的开集 ⇔ $\displaystyle \forall x \isin U , \exists \epsilon > 0 , \{ y : |y-x|< \epsilon\} \subset U$ //\[陈天权 2009\] / §2\.5 23    
 
-R上的通常拓扑(Usual Topology)  
+R上的通常拓扑(Usual Topology)    
 R上的通常拓扑：R的所有可以表示为开区间的并的集合(Set)组成的集族(Collection) //\[陈天权 2009\] / 例 7\.1\.3     
-//Collection与Set同义，表示“集合的集合”时，用Collection   
+//注：Collection与Set同义，表示“集合的集合”时，用Collection    
 
-$\displaystyle R^2$上的开集    
-\[同济大学数学系 2014\] / 第九章 多元函数微分法及其应用 / 第一节 多元函数的基本概念 / 一、平面点集 *n维空间 / 1. 平面点集     
-开集：如果点集E的点都是E的内点，那么称E为开集     
+$\displaystyle R^n$上的开集(Open Set)        
+U是$\displaystyle R^n$上的开集(Open Set) ⇔ $\displaystyle \forall \overrightarrow{x} \isin U , \exists \epsilon > 0 , \{ \overrightarrow{y}: |\overrightarrow{y} - \overrightarrow{x}|< \epsilon\} \subset U$    
+其中：$\displaystyle |\overrightarrow{y} - \overrightarrow{x}|$为欧氏空间中的长度 且 $\displaystyle \operatorname{B}(\overrightarrow{x} , \epsilon) = \{ \overrightarrow{y}: |\overrightarrow{y} - \overrightarrow{x}|< \epsilon\}$是以$\displaystyle \overrightarrow{x}$为球心$\displaystyle \epsilon$为半径的开球  
+    
+$\displaystyle R^n$上的通常拓扑(Usual Topology)   
+$\displaystyle R^n$上的通常拓扑(Usual Topology) T = { U | U是$\displaystyle R^n$上的开集 } //\[陈天权 2009\] / 例 7\.1\.5            
+
+//~~一致收敛拓扑(Topology of Uniform Convergence)~~      
      
 ---        
      
 领域 Neighborhood  
-$\displaystyle \tau$是X上的拓扑(Topology) 且 x $\displaystyle \isin$ X  ⇒ ( U $\displaystyle \isin \tau$(即U是开集) 且 x $\displaystyle \isin$ U  ⇔ U是x的领域(Neighborhood) ) //\[陈天权 2009\] / 定义 7\.1\.3   
+τ是X上的拓扑 且 x ∈ X  ⇒ ( x ∈ U 且 U是开集(即U ∈ τ) ⇔ U是x的领域(Neighborhood) ) //\[陈天权 2009\] / 定义 7\.1\.3   
 
 内点 Interior  
-$\displaystyle \tau$是X上的拓扑(Topology) 且 x $\displaystyle \isin$ X 且 N $\displaystyle \subset$ X ⇒ ( $\displaystyle \exists$ U是x的领域 且 U $\displaystyle \subset$ N ⇔ x是N的内点(Interior) )   
+τ是X上的拓扑 且 x ∈ X 且 N ⊂ X ⇒ ( ∃ x的领域U, U ⊂ N ⇔ x是N的内点(Interior) )   
 
-$\displaystyle \tau$是X上的拓扑(Topology) ⇒ ( E $\displaystyle \isin \tau$(即E是开集) ⇔ $\displaystyle \forall x \isin E$, x是E的内点(即E的任何点都是E的内点) )    
+开集-内点  
+τ是X上的拓扑 ⇒ ( E是开集(即 E ∈ τ) ⇔ ∀ x ∈ E, x是E的内点(即E的任何点都是E的内点) )    
       
 > 证明 //\[陈天权 2009\] / 命题 7\.1\.1   
 >    
-> 必要性  
-> E是开集  
-> 对任意x∈E 存在E E是x的领域(因为x ∈ E ⊂ E 且 E是开集)    
+> 必要性    
+> 对任意x ∈ E  
+> 由于E是开集 我们有 存在E E是x的领域(因为x ∈ E 且 E是开集) 且 E ⊂ E   
+> 即x是E的内点  
 > 
 > 充分性  
-> 对任意x∈E 存在$\displaystyle U_x$是x的领域 且 $\displaystyle U_x$ ⊂ E  
-> 因此 以上领域的并集 $\displaystyle \cup_{x \isin E} U_x$ ⊂ E  
+> 对任意x ∈ E 存在x的领域$\displaystyle U_x$ 满足 $\displaystyle U_x$ ⊂ E  
+> 因此 以上领域的并集 $\displaystyle \bigcup_{x \isin E} U_x$ ⊂ E  
 >
-> 但 对任意x∈E 一定有x∈以上其中的某一个$\displaystyle U_x$   
-> 因此 E ⊂ $\displaystyle \cup_{x \isin E} U_x$  
+> 并且 对任意x ∈ E 一定有x ∈ 以上其中的某一个$\displaystyle U_x$   
+> 因此 E ⊂ $\displaystyle \bigcup_{x \isin E} U_x$  
 >     
-> 综上 E = $\displaystyle \cup_{x \isin E} U_x$   
+> 综上 E = $\displaystyle \bigcup_{x \isin E} U_x$   
 > 根据拓扑的定义 E ∈ τ 即E是开集           
+   
+--- 
+$\displaystyle R^2$上的内点    
+[同济大学数学系 2014] / 第九章 多元函数微分法及其应用 / 第一节 多元函数的基本概念 / 一、平面点集 *n维空间 / 1. 平面点集    
+内点：如果存在P的某个领域U(P)，使得U(P) ⊂ E，那么称P为E的内点  
+
+$\displaystyle R^2$上的开集-内点    
+\[同济大学数学系 2014\] / 第九章 多元函数微分法及其应用 / 第一节 多元函数的基本概念 / 一、平面点集 *n维空间 / 1. 平面点集     
+开集：如果点集E的点都是E的内点，那么称E为开集        
 
 ---         
 
 极点(Limit Point)/聚点(Cluster Point / Accumulation Point)     
-$\displaystyle \tau$是X上的拓扑(Topology) 且 E $\displaystyle \subset$ X ⇒ ( x是E的聚点 ⇔ x $\displaystyle \isin$ E 且 $\displaystyle \forall$ U是x的领域(Neighborhood), $(U - \{x\}) \cap E \ne \emptyset$ )      
+τ是X上的拓扑 且 E ⊂ X ⇒ ( x是E的聚点 ⇔ x ∈ E 且 ∀ x的领域U, (U - {x}) ∩ E ≠ ∅ )      
 
 孤立点(Isolated Point)  
-$\displaystyle \tau$是X上的拓扑(Topology) 且 E $\displaystyle \subset$ X ⇒ ( x是E的孤立点 ⇔ x $\displaystyle \isin$ E 且 x不是E的聚点 )  
+τ是X上的拓扑 且 E ⊂ X ⇒ ( x是E的孤立点 ⇔ x ∈ E 且 x不是E的聚点（即 ∃ x的领域U, (U - {x}) ∩ E = ∅） )  
    
 导集(Derived Set)   
-$\displaystyle \tau$是X上的拓扑(Topology) 且 E $\displaystyle \subset$ X ⇒ E的导集E' = { x : x是E的聚点 }  
-
----      
-               
-点集E以及它的边界∂E上的一切点都是E的聚点 //\[同济大学数学系 2014\] / 第九章 多元函数微分法及其应用 / 第一节 多元函数的基本概念 / 一、平面点集 *n维空间 / 1. 平面点集    
-       
----      
+τ是X上的拓扑 且 E ⊂ X ⇒ E的导集E' = { x : x是E的聚点 }  
       
-补集 Complement   
+---   
 
 闭集 Closed Set    
 //\[陈天权 2009\] / 定义 7\.1\.4      
-$\displaystyle \tau$是X上的拓扑(Topology) ⇒ ( X - U 是开集(Open Set) ⇔ U是闭集(Closed Set) )                 
+τ是X上的拓扑(Topology) ⇒ ( X - U 是开集(Open Set) ⇔ U是闭集(Closed Set) )                 
      
 并且 可以用 德摩根定律(De Morgan's laws) 证明：    
 对X上的离散拓扑： ∅是闭集 X是闭集 //一个集合可能既是开集又是闭集     
@@ -124,22 +122,68 @@ $\displaystyle \tau$是X上的拓扑(Topology) ⇒ ( X - U 是开集(Open Set) �
 闭集的有限或无限次交仍是闭集   
    
 闭包 Closure   
-闭包的定义： $\displaystyle \tau$是X上的拓扑(Topology) 且 E $\displaystyle \subset$ X ⇒ E的闭包(Closure) $\displaystyle \overline{E}$ = { x : $\displaystyle \forall$ S 满足 E $\displaystyle \subset$ S 且 S是闭集, x $\displaystyle \isin$ S } /\*所有包含E的闭集的交\*/  
+定义： τ是X上的拓扑 且 E ⊂ X ⇒ E的闭包 $\displaystyle \overline{E}$ = $\displaystyle \bigcap_{S是闭集 且 E ⊂ S} S$ //E的闭包是所有包含E的闭集的交集    
 
-定理： //E的闭包是包含E的“最小”闭集   
-$\displaystyle \tau$是X上的拓扑(Topology) 且 E $\displaystyle \subset$ X ⇒ ( E是闭集 ⇔ E = $\displaystyle \overline{E}$ )  
+定理： τ是X上的拓扑 且 E ⊂ X ⇒ ( E是闭集 ⇔ E = $\displaystyle \overline{E}$ ) //E的闭包是包含E的“最小”闭集   
 
 > 证明  
 >   
 > 必要性  
-> 显然 E $\displaystyle \subset$ $\displaystyle \overline{E}$ //证明：∀ x ∈ E ⇒ ∀ S 满足 E ⊂ S 且 S是闭集, x ∈ E ⊂ S（即x ∈ S） ⇒ x ∈ $\displaystyle \overline{E}$  
+> 显然 E ⊂ $\displaystyle \overline{E}$ //因为E的闭包是所有包含E的闭集的交集   
+> 由于E也是“包含E的闭集“，因此 我们有 所有“包含E的闭集”的交集——即E的闭包——包含于E //即$\displaystyle \overline{E}$ ⊂ E   
+> 综上 我们有 E = $\displaystyle \overline{E}$
 >
-> 又因为  
+> 充分性  
+> 显然 所有“包含E的闭集”的交集——即E的闭包——是闭集 //即$\displaystyle \overline{E}$是闭集          
+> 由于E = $\displaystyle \overline{E}$ 即E是闭集    
+> 
+   
+---   
+定理：  τ是X上的拓扑 且 E ⊂ X ⇒ ( x ∈ $\displaystyle \overline{E}$ ⇔ ∀ x的领域U, U ∩ E ≠ ∅ ) //\[陈天权 2009\] / 命题 7\.1\.2   
+   
+> 证明    
+>   
+> 下面证明 x ∉ $\displaystyle \overline{E}$ ⇒ ∃ x的领域U, U ∩ E = ∅  
+> 
+> 因为 x ∉ $\displaystyle \overline{E}$ 我们有 x ∈ X - $\displaystyle \overline{E}$  
+> 因为 $\displaystyle \overline{E}$是闭集 我们有X - $\displaystyle \overline{E}$是开集 因此X - $\displaystyle \overline{E}$是x的领域  
+> 并且 显然 ( X - $\displaystyle \overline{E}$ ) ∩ E = ∅ 命题得证   
+> 
+> 因此 逆否命题成立 ∀ x的领域U, U ∩ E ≠ ∅ ⇒ x ∈ $\displaystyle \overline{E}$  
+> 
+> 下面证明 ∃ x的领域U, U ∩ E = ∅ ⇒ x ∉ $\displaystyle \overline{E}$  
+> 
+> 由于 U是X的领域 因此 x ∈ U 即 x ∉ X - U   
+>   
+> 由于 U是X的领域 因此 U是开集 从而 ( X - U )是闭集  
+> 并且 由于 U ∩ E = ∅ 因此 E ⊂ ( X - U ) 从而 ( X - U )是包含E的闭集  
+>   
+> 由于 x ∉ X - U 因此 x不属于 所有“包含E的闭集”的交集——即E的闭包$\displaystyle \overline{E}$ 命题得证  
+>   
+> 因此 逆否命题成立 x ∈ $\displaystyle \overline{E}$ ⇒ ∀ x的领域U, U ∩ E ≠ ∅      
+> 
+> 综上 命题得证   
+>  
+ 
+       
+定理： τ是X上的拓扑 且 E ⊂ X ⇒ ( $\displaystyle \overline{E}$ = E ∪ E' ) //\[陈天权 2009\] / 定义 7\.1\.6      
+
+> 证明     
+> 
+> 由于  
+> $\displaystyle \overline{E}$ = { x :  ∀ x的领域U, U ∩ E ≠ ∅ } //根据上面已经证明的定理   
+> E = { x : {x} ∩ E ≠ ∅ } //显然  
+> E' = { x : ∀ x的领域U, (U - {x}) ∩ E ≠ ∅ } //根据 聚点 和 导集 的定义  
+>   
+> 显然 命题成立    
+>  
 
 ---      
-定理：  
-$\displaystyle \tau$是X上的拓扑(Topology) 且 E $\displaystyle \subset$ X ⇒ ( $\displaystyle \overline{E}$ = E' ∪ E )   
-      
+               
+点集E以及它的边界∂E上的一切点都是E的聚点 //\[同济大学数学系 2014\] / 第九章 多元函数微分法及其应用 / 第一节 多元函数的基本概念 / 一、平面点集 *n维空间 / 1. 平面点集    
+       
+---      
+
 ### 度量 Metric     
      
 度量空间 Metric Space       
@@ -197,7 +241,7 @@ LUB公理（LUB Axiom) //直接看作公理 //\[Rudin 1976\] 1.10 Definition
 由于{xn}有界 根据LUB公理 {xn}有上确界，不妨设c=sup{xn}  
 根据上确界性质 对任意ϵ>0 存在a属于{xn} 满足a>c-ϵ 不妨设a的下标为A 即a=xA   
 由于{xn}单调递增 取N=A 对任意n>N 满足xn>xN=xA>c-ϵ 即xn-c>-ϵ  
-又由于上界的定义 任意xn\<c 即xn-c\<0 由于ϵ>0 有xn-c<ϵ  
+又由于上界的定义 任意xn\<c 即xn-c \< 0 由于ϵ>0 有xn-c<ϵ  
 综上|xn-c|<ϵ 命题得证   
 >
 > 单调递减情形   
