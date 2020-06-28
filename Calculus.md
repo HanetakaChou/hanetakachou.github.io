@@ -186,7 +186,10 @@ $\displaystyle R^2$上的开集-内点
 
 ### 度量 Metric     
      
-度量空间 Metric Space       
+度量空间 Metric Space  
+
+度量空间是特殊的拓扑空间  度量空间的开集是通过度量定义的开球 //度量即点之间的距离    
+
         
         
 ### 测度 Measure    
