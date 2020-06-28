@@ -188,18 +188,36 @@ $\displaystyle R^2$上的开集-内点
       
 度量空间 Metric Space   
                       
-距离函数(Distance Function)/度量(Metric)   
-           
-度量空间是特殊的拓扑空间 度量空间的开集是通过度量定义的开球 //度量即点之间的距离             
+距离函数 Distance Function 
+度量 Metric      
+不可分的同一性 Identity of Indiscernibles  
+对称性 Symmetric   
+次可加性 Subadditivity  
+三角不等式 Triangle Inequality  
+//\[陈天权 2009\] / 定义 7\.3\.1       
+//\[Rudin 1976\] / 2.15 Definition
+(M,d)是度量空间 ⇔ d是M上的距离函数/度量 ⇔ d是M×M到R的映射 且 满足 不可分的同一性 d(x,y) = 0 ⇔ x = y 、 对称性 d(x,y) = d(y,x) 和 次可加性/三角不等式 d(x,z) ≤ d(x,y) + d(y,z)    
    
-欧几里得空间(Euclidean Space)  
+度量空间 诱导 拓扑空间   
+//\[陈天权 2009\] / 命题 7\.3\.1   
+//\[陈天权 2009\] / 定义 7\.3\.3   
+度量空间 可诱导得到 对应的拓扑空间   
+拓扑空间的开集 被定义为 由度量定义的开球                
+                  
+                       
+欧几里得空间 Euclidean Space     
 $\displaystyle R^k$上的欧几里得空间 度量 d(x,y) = |x - y| //度量被定义为向量的模   
+   
+紧空间 Compact Space
+
+
+魏尔施特拉斯逼近定理 //Stone-Weierstrass Theorem  
 
 
 ### 测度 Measure    
              
          
-### 实数完备性（Completeness of the real numbers） //实数系连续性  
+### 实数完备性 Completeness of the real numbers //实数系连续性  
 
 最大数 max  
 最小数 min    
