@@ -12,6 +12,25 @@
 $\forall \, e \isin [b]_\sim$ 有$e \sim b$ 又因为$b \sim c$ 有$e \sim c$ 即$e \isin [c]_\sim$  
 并且$\forall \, e \isin [c]_\sim$ 有$e \sim c$ 又因为$b \sim c$ 有$e \sim b$ 即$e \isin [b]_\sim$  
 即$\forall \, e \, , \, e \isin [b]_\sim \Leftrightarrow e \isin [c]_\sim$ 即$[b]_\sim = [c]_\sim$ 但是，这与 $[b]_\sim \ne [c]_\sim$ 矛盾，命题得证 //事实上，可以证明：$b \sim c \Leftrightarrow [b]_\sim = [c]_\sim$    
+     
+---       
+     
+集合的基数/势 Cardinal Number   
+//\[Rudin 1976\] / 2\.3 Definition      
+
+等势 equivalent  
+   
+可数的 countable / enumerable /denumerable  //与 正整数集 等势   
+   
+有理数集Q 是 可数的   
+证明：  
+表示成n/m //n可数 m可数  
+   
+实数集R 不是 可数的   
+证明:  
+Cantor //\[Rudin 1976\] / 2\.14 Theorem    
+   
+---  
 
 
 ### 拓扑 Topology
