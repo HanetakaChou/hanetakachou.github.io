@@ -64,16 +64,25 @@ $\displaystyle R^n$上的通常拓扑(Usual Topology) T = { U | U是$\displaysty
      
 ---        
      
-领域 Neighborhood  
-τ是X上的拓扑 且 x ∈ X  ⇒ ( x ∈ U 且 U是开集(即U ∈ τ) ⇔ U是x的领域(Neighborhood) ) //\[陈天权 2009\] / 定义 7\.1\.3   
+领域 Neighborhood    
+\[陈天权 2009\] / 定义 7\.1\.3   
+\[Rudin 1976\] / 2.18 Definition (a)  
+τ是X上的拓扑 且 x ∈ X  ⇒ ( x ∈ U 且 U是开集(即U ∈ τ) ⇔ U是x的领域(Neighborhood) )  
 
-内点 Interior  
+//\[Rudin 1976\]并没有引入拓扑空间，而是直接以定义的方式引入度量空间  
+//领域是开集 \[Rudin 1976\] / 2.19 Thereom   
+
+内点 Interior   
+\[陈天权 2009\] / 定义 7\.1\.3   
+\[Rudin 1976\] / 2.18 Definition (e)   
 τ是X上的拓扑 且 x ∈ X 且 N ⊂ X ⇒ ( ∃ x的领域U, U ⊂ N ⇔ x是N的内点(Interior) )   
 
-开集-内点  
+开集-内点   
+\[陈天权 2009\] / 命题 7\.1\.1   
+\[Rudin 1976\] / 2.18 Definition (f)   
 τ是X上的拓扑 ⇒ ( E是开集(即 E ∈ τ) ⇔ ∀ x ∈ E, x是E的内点(即E的任何点都是E的内点) )    
       
-> 证明 //\[陈天权 2009\] / 命题 7\.1\.1   
+> 证明   
 >    
 > 必要性    
 > 对任意x ∈ E  
@@ -102,12 +111,17 @@ $\displaystyle R^2$上的开集-内点
 ---         
 
 极点(Limit Point)/聚点(Cluster Point / Accumulation Point)     
+\[陈天权 2009\] / 定义 7\.1\.6   
+\[Rudin 1976\] / 2.18 Definition (b)   
 τ是X上的拓扑 且 E ⊂ X ⇒ ( x是E的聚点 ⇔ x ∈ E 且 ∀ x的领域U, (U - {x}) ∩ E ≠ ∅ )      
 
-孤立点(Isolated Point)  
+孤立点(Isolated Point)   
+\[陈天权 2009\] / 定义 7\.1\.6   
+\[Rudin 1976\] / 2.18 Definition (c)   
 τ是X上的拓扑 且 E ⊂ X ⇒ ( x是E的孤立点 ⇔ x ∈ E 且 x不是E的聚点（即 ∃ x的领域U, (U - {x}) ∩ E = ∅） )  
    
-导集(Derived Set)   
+导集(Derived Set)    
+\[陈天权 2009\] / 定义 7\.1\.6   
 τ是X上的拓扑 且 E ⊂ X ⇒ E的导集E' = { x : x是E的聚点 }  
       
 ---   
@@ -121,6 +135,10 @@ $\displaystyle R^2$上的开集-内点
 闭集的有限次并仍是闭集      
 闭集的有限或无限次交仍是闭集   
    
+闭集-聚点  
+\[Rudin 1976\] / 2.18 Definition (d)   
+
+
 闭包 Closure   
 定义： τ是X上的拓扑 且 E ⊂ X ⇒ E的闭包 $\displaystyle \overline{E}$ = $\displaystyle \bigcap_{S是闭集 且 E ⊂ S} S$ //E的闭包是所有包含E的闭集的交集    
 
