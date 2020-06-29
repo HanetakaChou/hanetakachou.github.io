@@ -23,7 +23,9 @@ $\displaystyle \wp(X)$ //X的所有子集
 //指标集 Index Set   
 
 ---
-拓扑空间 Topological Space             
+拓扑空间 Topological Space           
+
+\[Rudin 1976\]并没有引入拓扑空间，而是以直接定义的方式引入度量空间  
 
 拓扑的开集定义   
 //\[陈天权 2009\] / 定义 7\.1\.1     
@@ -68,9 +70,6 @@ $\displaystyle R^n$上的通常拓扑(Usual Topology) T = { U | U是$\displaysty
 \[陈天权 2009\] / 定义 7\.1\.3   
 \[Rudin 1976\] / 2.18 Definition (a)  
 τ是X上的拓扑 且 x ∈ X  ⇒ ( x ∈ U 且 U是开集(即U ∈ τ) ⇔ U是x的领域(Neighborhood) )  
-
-//\[Rudin 1976\]并没有引入拓扑空间，而是直接以定义的方式引入度量空间  
-//领域是开集 \[Rudin 1976\] / 2.19 Thereom   
 
 内点 Interior   
 \[陈天权 2009\] / 定义 7\.1\.3   
@@ -249,16 +248,16 @@ $\displaystyle R^k$上的欧几里得空间 度量 d(x,y) = |x - y| //度量被�
 有下界 （be） bounded belowed    
 上界 upper bound  
 下界 lower bound  
-上确界 supremum //最小上界 least upper bound       
+上确界 supremum //最小上界 least upper bound //最小：任何比它小的实数值都不是上界        
 下确界 infimum //最大下界 greatest lower bound    
   
-Theroem 设M = supE，则 $\forall  \, \epsilon > 0, \, \exists \, x \isin E, \, x > M - \epsilon$    
+定理： 设M = supE，则 $\forall  \, \epsilon > 0, \, \exists \, x \isin E, \, x > M - \epsilon$    
 Proof by Contradiction  
 suppose $\exists \, x \isin E, \, x > M - \epsilon$ is not true  
 then $\forall \, x \isin E, \, x <= M - \epsilon$, which implies $M - \epsilon$ is an upper bound of E  
 since $\epsilon > 0$, $M - \epsilon$ is less than M, which contradicts the given statement "M is the least upper bound"  
 
-Theroem 设M = supE，则 $\forall  \, \epsilon < 0, \, \exists \, x \isin E, \, x < M + \epsilon$  
+定理： 设M = supE，则 $\forall  \, \epsilon < 0, \, \exists \, x \isin E, \, x < M + \epsilon$  
 证明从略   
    
 ---   
