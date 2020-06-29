@@ -28,41 +28,51 @@ counterexample 反例
 necessity 必要性  
 sufficiency 充分性  
   
-observation //也表示真命题(用于不含全称量词时)   
+//observation //也表示真命题(用于不含全称量词时)   
 
-by symmetry //由于对称性 //同理可得  
-  
-since //由于 //因为    
-by //根据（...定理)    
+... if and only if / iff ... //...当且仅当...  
+... only if ... //“仅当”（中文一般不用） //...是...的必要条件 即 ...能推出...  
 
-evident //显然   
+... such that ... //满足...的...
 
-it follows that //因此 //所以   
+there exists/is a (associated) ... //存在量词  //associated 相关联的 比如用于极限定义中   
+
+to each //全称量词
 
 and / but //且   
-
-we have shown that //我们已经证明 //我们得到  
-
-in other words //即  
-this means that //这意味着/即
-
+  
 let //不妨设  
 call it a //将它称作a  
 
+evident //显然   
+
+since //由于 //因为 
+
+by //根据（...定理)    
+
+by symmetry //由于对称性 //同理可得  
 
 we have (that) //我们有  
+we have observed (that) //我们已经观察到 //我们得到
+we have shown (that) //我们已经证明 //我们得到  
+
+whenever/if ... holds, ... follows/holds //当...成立时 ...也成立      
+
+it follows that //因此 //所以   
 it holds that //...成立  
-  
-A implies B //A能推出B    
-whenever/if A holds, B follows/holds //当A成立时 B也成立      
-A if and only if / iff  B //A当且仅当B  
-A only if B //“仅当”（中文一般不用） //B是A的必要条件 即 A能推出B  
-  
-**数学归纳法（proof by induction）**  
-  
-**Integer Induction**  //第一数学归纳法  
-  
-to prove $\forall \, n \isin \natnums^+, \, S(n)$  
+
+... implies ... //表明 //能推出    
+
+in other words //换句话说 //即  
+this means that //这意味着 //即    
+   
+to say that ... means that ... //...意味着... //即   
+    
+**数学归纳法（proof by induction）**    
+    
+**Integer Induction**  //第一数学归纳法    
+    
+to prove $\forall \, n \isin \natnums^+, \, S(n)$   
   
 just to prove:  
 1\.basis: 证明S(0)成立  

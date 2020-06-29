@@ -98,7 +98,7 @@ $\displaystyle R^n$上的通常拓扑(Usual Topology) T = { U | U是$\displaysty
 开集-内点   
 \[陈天权 2009\] / 命题 7\.1\.1   
 \[Rudin 1976\] / 2.18 Definition (f)   
-τ是X上的拓扑 ⇒ ( E是开集(即 E ∈ τ) ⇔ ∀ x ∈ E, x是E的内点(即E的任何点都是E的内点) )    
+τ是X上的拓扑 ⇒ ( E是开集(即 E ∈ τ) ⇔ ∀ x ∈ E, x是E的内点 ) //E是开集 当且仅当 E的任何点都是E的内点   
       
 > 证明   
 >    
@@ -125,9 +125,9 @@ $\displaystyle R^2$上的内点
 $\displaystyle R^2$上的开集-内点    
 \[同济大学数学系 2014\] / 第九章 多元函数微分法及其应用 / 第一节 多元函数的基本概念 / 一、平面点集 *n维空间 / 1. 平面点集     
 开集：如果点集E的点都是E的内点，那么称E为开集        
-
+       
 ---         
-
+      
 极点(Limit Point)/聚点(Cluster Point / Accumulation Point)     
 \[陈天权 2009\] / 定义 7\.1\.6   
 \[Rudin 1976\] / 2.18 Definition (b)   
@@ -140,24 +140,24 @@ $\displaystyle R^2$上的开集-内点
    
 导集(Derived Set)    
 \[陈天权 2009\] / 定义 7\.1\.6   
+\[Rudin 1976\] / 2.26 Definition
 τ是X上的拓扑 且 E ⊂ X ⇒ E的导集E' = { x : x是E的聚点 }  
       
 ---   
 
 闭集 Closed Set    
-//\[陈天权 2009\] / 定义 7\.1\.4      
+\[陈天权 2009\] / 定义 7\.1\.4      
 τ是X上的拓扑(Topology) ⇒ ( X - U 是开集(Open Set) ⇔ U是闭集(Closed Set) )                 
      
 并且 可以用 德摩根定律(De Morgan's laws) 证明：    
 对X上的离散拓扑： ∅是闭集 X是闭集 //一个集合可能既是开集又是闭集     
 闭集的有限次并仍是闭集      
 闭集的有限或无限次交仍是闭集   
-   
-闭集-聚点  
-\[Rudin 1976\] / 2.18 Definition (d)   
 
 
 闭包 Closure   
+\[陈天权 2009\] / 定义 7\.1\.5      
+\[Rudin 1976\] / 2\.27 Theorem         
 定义： τ是X上的拓扑 且 E ⊂ X ⇒ E的闭包 $\displaystyle \overline{E}$ = $\displaystyle \bigcap_{S是闭集 且 E ⊂ S} S$ //E的闭包是所有包含E的闭集的交集    
 
 定理： τ是X上的拓扑 且 E ⊂ X ⇒ ( E是闭集 ⇔ E = $\displaystyle \overline{E}$ ) //E的闭包是包含E的“最小”闭集   
@@ -202,7 +202,10 @@ $\displaystyle R^2$上的开集-内点
 >  
  
        
-定理： τ是X上的拓扑 且 E ⊂ X ⇒ ( $\displaystyle \overline{E}$ = E ∪ E' ) //\[陈天权 2009\] / 定义 7\.1\.6      
+定理：   
+\[陈天权 2009\] / 定义 7\.1\.6   
+\[Rudin 1976\] / 2\.26 Definition     
+τ是X上的拓扑 且 E ⊂ X ⇒ ( $\displaystyle \overline{E}$ = E ∪ E' )           
 
 > 证明     
 > 
@@ -224,8 +227,13 @@ $\displaystyle R^2$上的闭集
 \[同济大学数学系 2014\] / 第九章 多元函数微分法及其应用 / 第一节 多元函数的基本概念 / 一、平面点集 *n维空间 / 1. 平面点集    
 闭集：如果点集E的边界∂E⊂E，那么称E为闭集   
    
----      
-
+#### 紧空间 Compact Space    
+   
+开覆盖 Open Cover   
+    
+    
+    
+    
 ### 度量 Metric     
       
 度量空间 Metric Space   
@@ -250,7 +258,6 @@ $\displaystyle R^2$上的闭集
 欧几里得空间 Euclidean Space     
 $\displaystyle R^k$上的欧几里得空间 度量 d(x,y) = |x - y| //度量被定义为向量的模   
    
-紧空间 Compact Space
 
 
 魏尔施特拉斯逼近定理 //Stone-Weierstrass Theorem  
@@ -275,7 +282,7 @@ Proof by Contradiction
 suppose $\exists \, x \isin E, \, x > M - \epsilon$ is not true  
 then $\forall \, x \isin E, \, x <= M - \epsilon$, which implies $M - \epsilon$ is an upper bound of E  
 since $\epsilon > 0$, $M - \epsilon$ is less than M, which contradicts the given statement "M is the least upper bound"  
-
+   
 定理： 设M = supE，则 $\forall  \, \epsilon < 0, \, \exists \, x \isin E, \, x < M + \epsilon$  
 证明从略   
    
