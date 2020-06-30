@@ -156,7 +156,7 @@ $\displaystyle R^2$上的开集-内点
 
 闭集 Closed Set    
 \[陈天权 2009\] / 定义 7\.1\.4      
-τ是X上的拓扑(Topology) ⇒ ( X - U 是开集(Open Set) ⇔ U是闭集(Closed Set) )                 
+τ是X上的拓扑 ⇒ ( X - U 是开集 ⇔ U是闭集 )                 
      
 并且 可以用 德摩根定律(De Morgan's laws) 证明：    
 对X上的离散拓扑： ∅是闭集 X是闭集 //一个集合可能既是开集又是闭集     
@@ -219,7 +219,7 @@ $\displaystyle R^2$上的开集-内点
 > 证明     
 > 
 > 由于  
-> $\displaystyle \overline{E}$ = { x :  ∀ x的领域U, U ∩ E ≠ ∅ } //根据上面已经证明的定理   
+> $\displaystyle \overline{E}$ = { x : ∀ x的领域U, U ∩ E ≠ ∅ } //根据上面已经证明的定理   
 > E = { x : {x} ∩ E ≠ ∅ } //显然  
 > E' = { x : ∀ x的领域U, (U - {x}) ∩ E ≠ ∅ } //根据 聚点 和 导集 的定义  
 >   
@@ -239,10 +239,12 @@ $\displaystyle R^2$上的闭集
 #### 紧空间 Compact Space    
    
 开覆盖 Open Cover   
-    
-    
-    
-    
+\[陈天权 2009\] / 定义 7\.6\.1       
+\[Rudin 1976\] / 2\.31 Definition      
+τ是X上的拓扑 且 E ⊂ X ⇒ ( $\displaystyle \bigcup_{\alpha \isin A} G_\alpha$是E的开覆盖 ⇔ E ⊂ $\displaystyle \bigcup_{\alpha \isin A} G_\alpha$ 且 ∀α ∈ A, $\displaystyle G_\alpha$是开集 )  
+       
+      
+       
 ### 度量 Metric     
       
 度量空间 Metric Space   
