@@ -290,7 +290,7 @@ $\displaystyle R^2$上的闭集
 >     
 > By the LUB Axiom, there exists a supremum of K. Let M=supK.  
 > 
-> Next we try to show that M∈\[a,b\].   
+> Next we try to show that M∈K.   
 >   
 > Since M is the supremum of K, we have that M is an upper bound of K. By the above y such that y∈K, we have that y≤M. Since a\<y， we have that a\<M.     
 > Since M is the supremum of K and b is an upper bound of K, we have that M≤b. //The supremum is the smallest upper bound.    
