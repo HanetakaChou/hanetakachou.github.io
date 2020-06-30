@@ -46,40 +46,49 @@ $\displaystyle \wp(X)$ //X的所有子集
 
 \[Rudin 1976\]并没有引入拓扑空间，而是以直接定义的方式引入度量空间  
 
+拓扑 Topology  
+
 拓扑的开集定义   
 //\[陈天权 2009\] / 定义 7\.1\.1     
    
-(X,$\displaystyle \tau$)是拓扑空间(Topological Space) ⇔ $\displaystyle \tau$是X上的拓扑(Topology) ⇔ $\displaystyle \tau \subset \wp(X)$ 满足 $\displaystyle \emptyset \isin \tau \land X \isin \tau$ 且 $\displaystyle \tau$中有限或无限个元素的并仍属于$\displaystyle \tau$ 且 $\displaystyle \tau$中有限个元素的交仍属于$\displaystyle \tau$      
-                      
-并且 $\displaystyle \tau$是X上的拓扑(Topology) ⇒ ( U $\displaystyle \isin \tau$ ⇔ U是开集(Open Set))      
+(X,τ)是拓扑空间 ⇔ τ是X上的拓扑 ⇔ τ ⊂ ℘(X) 满足 ∅ ∈ τ ∧ X ∈ τ 且 τ中有限或无限个元素的并仍属于τ 且 τ中有限个元素的交仍属于τ         
+
+开集 Open Set                      
+并且 τ是X上的拓扑(Topology) ⇒ ( U ∈ τ ⇔ U是开集 )      
    
-X是拓扑空间 ⇔ $\exists \tau$, (X,$\displaystyle \tau$)是拓扑空间(Topological Space) ⇔ $\exists \tau$, $\displaystyle \tau$是X上的拓扑(Topology) //用于不强调$\displaystyle \tau$时       
+X是拓扑空间 ⇔ ∃τ, (X,τ)是拓扑空间 ⇔ ∃τ, τ是X上的拓扑 //用于不强调τ的情形          
 
 拓扑间的包含关系     
 finer/smaller/weaker    
-coarser/larger/stronger  
+coarser/larger/stronger    
 
 ---   
-
+平凡拓扑 Trivial Topology     
+离散拓扑 Discrete Topology   
+    
 //显然，对于任意集合X：  
-//{$\displaystyle \emptyset$, X}是X上的拓扑 被称为平凡拓扑(Trivial Topology) //\[陈天权 2009\] / 例 7\.1\.2         
-//$\wp(X)$是X上的拓扑 被称为离散拓扑(Discrete Topology) //\[陈天权 2009\] / 例 7\.1\.1     
+//{∅, X}是X上的拓扑 被称为平凡拓扑 //\[陈天权 2009\] / 例 7\.1\.2         
+//$\wp(X)$是X上的拓扑 被称为离散拓扑 //\[陈天权 2009\] / 例 7\.1\.1     
    
 ---
 
 R上的开集    
-U是R上的开集 ⇔ $\displaystyle \forall x \isin U , \exists \epsilon > 0 , \{ y : |y-x|< \epsilon\} \subset U$ //\[陈天权 2009\] / §2\.5 23    
+U是R上的开集 ⇔  ∀x ∈ U, ∃ϵ > 0, { y : ∣y − x∣ < ϵ } ⊂ U //\[陈天权 2009\] / §2\.5 23    
 
-R上的通常拓扑(Usual Topology)    
+通常拓扑 Usual Topology
+
+R上的通常拓扑   
 R上的通常拓扑：R的所有可以表示为开区间的并的集合(Set)组成的集族(Collection) //\[陈天权 2009\] / 例 7\.1\.3     
 //注：Collection与Set同义，表示“集合的集合”时，用Collection    
-
-$\displaystyle R^n$上的开集(Open Set)        
-U是$\displaystyle R^n$上的开集(Open Set) ⇔ $\displaystyle \forall \overrightarrow{x} \isin U , \exists \epsilon > 0 , \{ \overrightarrow{y}: |\overrightarrow{y} - \overrightarrow{x}|< \epsilon\} \subset U$    
-其中：$\displaystyle |\overrightarrow{y} - \overrightarrow{x}|$为欧氏空间中的长度 且 $\displaystyle \operatorname{B}(\overrightarrow{x} , \epsilon) = \{ \overrightarrow{y}: |\overrightarrow{y} - \overrightarrow{x}|< \epsilon\}$是以$\displaystyle \overrightarrow{x}$为球心$\displaystyle \epsilon$为半径的开球  
     
-$\displaystyle R^n$上的通常拓扑(Usual Topology)   
-$\displaystyle R^n$上的通常拓扑(Usual Topology) T = { U | U是$\displaystyle R^n$上的开集 } //\[陈天权 2009\] / 例 7\.1\.5            
+欧几里得空间 Euclidean Space     
+
+$\displaystyle R^n$上的开集         
+U是$\displaystyle R^n$上的开集 ⇔ ∀$\displaystyle \overrightarrow{x}$ ∈ U, ∃ϵ > 0, { $\displaystyle \overrightarrow{y}$ : | $\displaystyle \overrightarrow{y}$ − $\displaystyle \overrightarrow{x}$| < ϵ } ⊂ U     
+其中： |$\displaystyle \overrightarrow{y}$ − $\displaystyle \overrightarrow{x}$|为欧几里得空间中的长度 且 B($\displaystyle \overrightarrow{x}$, ϵ) = { $\displaystyle \overrightarrow{y}$ : | $\displaystyle \overrightarrow{y}$ − $\displaystyle \overrightarrow{x}$| < ϵ }是以$\displaystyle \overrightarrow{x}$为球心ϵ为半径的开球    
+    
+$\displaystyle R^n$上的通常拓扑   
+$\displaystyle R^n$上的通常拓扑 T = { U | U是$\displaystyle R^n$上的开集 } //\[陈天权 2009\] / 例 7\.1\.5            
 
 //~~一致收敛拓扑(Topology of Uniform Convergence)~~      
      
@@ -88,12 +97,12 @@ $\displaystyle R^n$上的通常拓扑(Usual Topology) T = { U | U是$\displaysty
 领域 Neighborhood    
 \[陈天权 2009\] / 定义 7\.1\.3   
 \[Rudin 1976\] / 2.18 Definition (a)  
-τ是X上的拓扑 且 x ∈ X  ⇒ ( x ∈ U 且 U是开集(即U ∈ τ) ⇔ U是x的领域(Neighborhood) )  
+τ是X上的拓扑 且 x ∈ X  ⇒ ( x ∈ U 且 U是开集(即U ∈ τ) ⇔ U是x的领域 )  
 
 内点 Interior   
 \[陈天权 2009\] / 定义 7\.1\.3   
 \[Rudin 1976\] / 2.18 Definition (e)   
-τ是X上的拓扑 且 x ∈ X 且 N ⊂ X ⇒ ( ∃ x的领域U, U ⊂ N ⇔ x是N的内点(Interior) )   
+τ是X上的拓扑 且 x ∈ X 且 N ⊂ X ⇒ ( ∃ x的领域U, U ⊂ N ⇔ x是N的内点 )   
 
 开集-内点   
 \[陈天权 2009\] / 命题 7\.1\.1   
@@ -245,7 +254,7 @@ $\displaystyle R^2$上的闭集
 次可加性 Subadditivity  
 三角不等式 Triangle Inequality  
 //\[陈天权 2009\] / 定义 7\.3\.1       
-//\[Rudin 1976\] / 2.15 Definition
+//\[Rudin 1976\] / 2.15 Definition   
 (M,d)是度量空间 ⇔ d是M上的距离函数/度量 ⇔ d是M×M到R的映射 且 满足 不可分的同一性 d(x,y) = 0 ⇔ x = y 、 对称性 d(x,y) = d(y,x) 和 次可加性/三角不等式 d(x,z) ≤ d(x,y) + d(y,z)    
    
 度量空间 诱导 拓扑空间   
