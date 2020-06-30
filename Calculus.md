@@ -236,15 +236,79 @@ $\displaystyle R^2$上的闭集
 \[同济大学数学系 2014\] / 第九章 多元函数微分法及其应用 / 第一节 多元函数的基本概念 / 一、平面点集 *n维空间 / 1. 平面点集    
 闭集：如果点集E的边界∂E⊂E，那么称E为闭集   
    
-#### 紧空间 Compact Space    
+#### 紧集 Compact Set    
    
-开覆盖 Open Cover   
+有限覆盖定理/海涅-博雷尔定理 Heine–Borel theorem   
+\[陈天权 2009\] / §2.5 6    
+闭区间[a,b]被开区间族（$\displaystyle \bigcup_{\alpha \isin A} I_\alpha$）覆盖 ⇒ 可以从开区间族中**选择**某个有限子族（$\displaystyle \bigcup_{\alpha \isin B} I_\alpha$ 且 B ⊂ A）覆盖闭区间[a,b]   
+   
+> 证明 //证明过程与 \[陈天权 2009\] / 定理4.2.2 有一定相似性     
+>  
+> 构造集合 K = { x ∈ \[a,b\] : 存在开区间族的某个有限子族可以覆盖闭区间\[a,x\] }   
+>
+> 由于 闭区间\[a,b\]被开区间族覆盖 又因为a ∈ \[a,b\] 显然 存在某个开区间(m,n)满足a ∈ (m,n)   
+> 在a和n之间任取一实数x 则有 存在有限子族{(m,n)}可以覆盖闭区间\[a,x\]   
+> 因此 x ∈ K 从而 K不是空集
+>     
+> 根据K的定义 显然K中的元素一定小于或等于b 因此b是K的一个上界       
+> 
+> 根据LUB公理 K有上确界 不妨设M = sup K   
+>      
+> 下面证明 存在某个有限子族可以覆盖闭区间\[a,M\] 即M ∈ \[a,b\]      
+> 
+> 由于M是K的上确界 从而M是K的一个上界 对于上文中属于K的x 有x≤M 又因为a\<x 从而有a\<M   
+> 由于M是K的上确界 且b是K的一个上界 因此M≤b //上确界是最小上界  
+> 综上 a\<M≤b 即 M ∈ \[a,b\]   
+> 由于 闭区间\[a,b\]被开区间族覆盖 且 M ∈ \[a,b\] 显然 存在某个开区间(p,q)满足M ∈ (p,q)   
+> 
+> 因此 M−q \> 0   
+> 由于 M是K的上确界 不妨取某个小于M−q且大于0的ϵ 根据上确界的性质 存在η>M-ϵ 满足η∈K 即存在某个有限子族（不妨设为H）可以覆盖\[a,η\]   
+>    
+> 由于 ϵ \< M−q 因此 M−ϵ > M−(M−q) = q 从而 η > q    
+> 因此 存在有限子族H∪{(p,q)}可以覆盖\[a,M\] 即 M ∈ K  
+>  
+> 下面证明 M=b  
+>    
+> 反证法，假设M≠b 由于M<=b 必有M\<b       
+> 
+> 对于上文中满足M ∈ (p,q)的开区间(p,q)   
+> 在M和q之间任取一实数q1 
+> 由于 存在某个有限子族（不妨设为H1）可以覆盖\[a,M\] 
+> 因此 存在有限子族H1∪{(p,q)}可以覆盖\[a,q1\] 即 q1 ∈ K  
+> 
+> 但是 q1 > M 这与M是K的上界矛盾 命题得证          
+>    
+   
+
+//紧 compat -> 有限 finite    
+
+开覆盖 Open Cover    
 \[陈天权 2009\] / 定义 7\.6\.1       
 \[Rudin 1976\] / 2\.31 Definition      
-τ是X上的拓扑 且 E ⊂ X ⇒ ( $\displaystyle \bigcup_{\alpha \isin A} G_\alpha$是E的开覆盖 ⇔ E ⊂ $\displaystyle \bigcup_{\alpha \isin A} G_\alpha$ 且 ∀α ∈ A, $\displaystyle G_\alpha$是开集 )  
+    
+τ是X上的拓扑 且 E ⊂ X ⇒ ( $\displaystyle \bigcup_{\alpha \isin A} G_\alpha$是E的开覆盖 ⇔ E ⊂ $\displaystyle \bigcup_{\alpha \isin A} G_\alpha$ 且 ∀α ∈ A, $\displaystyle G_\alpha$是开集 )    
+
+子覆盖 Subcover   
+\[陈天权 2009\] / 定义 7\.6\.1       
+\[Rudin 1976\] / 2\.31 Definition  
+
+τ是X上的拓扑 且 E ⊂ X 且 $\displaystyle \bigcup_{\alpha \isin A} G_\alpha$是E的开覆盖 ⇒ ( $\displaystyle \bigcup_{\alpha \isin B} G_\alpha$是$\displaystyle \bigcup_{\alpha \isin A} G_\alpha$（关于E）的子覆盖 ⇔ B ⊂ A 且 E ⊂ $\displaystyle \bigcup_{\alpha \isin B} G_\alpha$ )   
+
+有限子覆盖 Finite Subcover     
+\[陈天权 2009\] / 定义 7\.6\.1       
+\[Rudin 1976\] / 2\.31 Definition   
+          
+τ是X上的拓扑 且 E ⊂ X 且 $\displaystyle \bigcup_{\alpha \isin A} G_\alpha$是E的开覆盖 ⇒ ( $\displaystyle \bigcup_{\alpha \isin B} G_\alpha$是$\displaystyle \bigcup_{\alpha \isin A} G_\alpha$（关于E）的子覆盖 ⇔ B是有限集 且 $\displaystyle \bigcup_{\alpha \isin B} G_\alpha$是$\displaystyle \bigcup_{\alpha \isin A} G_\alpha$（关于E）的子覆盖 )    
        
+紧集 Compact Set   
+\[陈天权 2009\] / 定义 7\.6\.1       
+\[Rudin 1976\] / 2\.31 Definition    
       
-       
+τ是X上的拓扑 且 K ⊂ X ⇒ ( K是紧集 ⇔ ∀G,G是K的开覆盖 ∃H,H是G（关于K）的有限子覆盖 ) //从（有限或无限）开覆盖G中**选择**有限个开集（H的元素）来覆盖K     
+         
+
+
+     
 ### 度量 Metric     
       
 度量空间 Metric Space   
@@ -826,7 +890,7 @@ rational function 分式函数 / 有理分式函数？
 
 有界性定理（Boundedness Theorem）在闭区间上连续的函数在该区间上有界 //Robert Bartle, Donald Sherbert. "Introduction to Real Analysis, Fourth Edition" 2011 5.3.2 Boundedness Theorem  
 f(x)在\[a,b\]上连续 -> f(x)在\[a,b\]上有界   
-//参考 陈天权 "数学分析讲义" 第一册 定理4.2.2  
+\[陈天权 2009\] / 定理4.2.2  
 > 证明   
 >  
 > 令 S = { y ∈ \[a,b\] : f(x)在\[a,y\]上有界 }  

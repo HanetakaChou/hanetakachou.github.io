@@ -44,6 +44,8 @@ and / but //且
 let //不妨设  
 call it a //将它称作a  
 
+suppose //假设 //比如用于反证法  
+
 evident //显然   
 
 since //由于 //因为 
@@ -53,8 +55,8 @@ by //根据（...定理)
 by symmetry //由于对称性 //同理可得  
 
 we have (that) //我们有  
-we have observed (that) //我们已经观察到 //我们得到
-we have shown (that) //我们已经证明 //我们得到  
+we have observed (that) //我们已经观察到 //我们得到    
+we have shown (that) //我们已经证明 //我们得到   
 
 whenever/if ... holds, ... follows/holds //当...成立时 ...也成立      
 
