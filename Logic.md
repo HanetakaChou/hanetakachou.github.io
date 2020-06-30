@@ -50,7 +50,7 @@ evident //显然
 
 since //由于 //因为 
 
-by //根据（...定理)    
+by //根据 /比如用于XXX定理    
 
 by symmetry //由于对称性 //同理可得  
 

@@ -240,45 +240,82 @@ $\displaystyle R^2$上的闭集
    
 有限覆盖定理/海涅-博雷尔定理 Heine–Borel theorem   
 \[陈天权 2009\] / §2.5 6    
-闭区间[a,b]被开区间族（$\displaystyle \bigcup_{\alpha \isin A} I_\alpha$）覆盖 ⇒ 可以从开区间族中**选择**某个有限子族（$\displaystyle \bigcup_{\alpha \isin B} I_\alpha$ 且 B ⊂ A）覆盖闭区间[a,b]   
+闭区间[a,b]被开区间族G（$\displaystyle \bigcup_{\alpha \isin A} I_\alpha$）覆盖 ⇒ 可以从开区间族中**选择**某个有限子族H（$\displaystyle \bigcup_{\alpha \isin B} I_\alpha$ 且 B ⊂ A）覆盖闭区间[a,b]   
    
 > 证明 //证明过程与 \[陈天权 2009\] / 定理4.2.2 有一定相似性     
 >  
-> 构造集合 K = { x ∈ \[a,b\] : 存在开区间族的某个有限子族可以覆盖闭区间\[a,x\] }   
+> 构造集合 K = { x∈\[a,b\] : 存在开区间族的某个有限子族可以覆盖闭区间\[a,x\] }   
 >
-> 由于 闭区间\[a,b\]被开区间族覆盖 又因为a ∈ \[a,b\] 显然 存在某个开区间(m,n)满足a ∈ (m,n)   
-> 在a和n之间任取一实数x 则有 存在有限子族{(m,n)}可以覆盖闭区间\[a,x\]   
-> 因此 x ∈ K 从而 K不是空集
+> 由于 闭区间\[a,b\]被开区间族G覆盖 又因为a∈\[a,b\] 显然 存在某个开区间(m,n)∈G 满足a∈(m,n)   
+> 在a和n之间任取一实数y 则有 \[a,y\]⊂(m,n) 即 存在有限子族{(m,n)}可以覆盖闭区间\[a,y\]   
+> 即 y∈K 从而 K非空
 >     
 > 根据K的定义 显然K中的元素一定小于或等于b 因此b是K的一个上界       
 > 
-> 根据LUB公理 K有上确界 不妨设M = sup K   
+> 根据LUB公理 K有上确界 不妨设M=supK   
 >      
-> 下面证明 存在某个有限子族可以覆盖闭区间\[a,M\] 即M ∈ \[a,b\]      
+> 下面证明 存在某个有限子族可以覆盖闭区间\[a,M\] 即M∈\[a,b\]      
 > 
-> 由于M是K的上确界 从而M是K的一个上界 对于上文中属于K的x 有x≤M 又因为a\<x 从而有a\<M   
+> 由于M是K的上确界 从而M是K的一个上界 对于上文中属于K的y 有y≤M 又因为a\<y 从而有a\<M   
 > 由于M是K的上确界 且b是K的一个上界 因此M≤b //上确界是最小上界  
-> 综上 a\<M≤b 即 M ∈ \[a,b\]   
-> 由于 闭区间\[a,b\]被开区间族覆盖 且 M ∈ \[a,b\] 显然 存在某个开区间(p,q)满足M ∈ (p,q)   
+> 综上 a\<M≤b 即 M∈\[a,b\]   
+> 由于 闭区间\[a,b\]被开区间族覆盖 且 M∈\[a,b\] 显然 存在某个开区间(p,q)∈G 满足M∈(p,q)   
 > 
-> 因此 M−q \> 0   
-> 由于 M是K的上确界 不妨取某个小于M−q且大于0的ϵ 根据上确界的性质 存在η>M-ϵ 满足η∈K 即存在某个有限子族（不妨设为H）可以覆盖\[a,η\]   
+> 因此 M−q\>0 不妨取某个小于M−q且大于0的ϵ   
+> 由于 M是K的上确界 根据上确界的性质 存在η>M-ϵ 满足η∈K 即存在某个有限子族（不妨设为H）可以覆盖\[a,η\]   
 >    
-> 由于 ϵ \< M−q 因此 M−ϵ > M−(M−q) = q 从而 η > q    
-> 因此 存在有限子族H∪{(p,q)}可以覆盖\[a,M\] 即 M ∈ K  
+> 由于 ϵ\<M−q 因此 M−ϵ\>M−(M−q)=q 从而 η>q    
+> 因此 存在有限子族H∪{(p,q)}可以覆盖\[a,M\] 即 M∈K  
 >  
 > 下面证明 M=b  
 >    
-> 反证法，假设M≠b 由于M<=b 必有M\<b       
+> 反证法，假设M≠b 由于M<=b(在上文中已经证明) 必有M\<b       
 > 
-> 对于上文中满足M ∈ (p,q)的开区间(p,q)   
-> 在M和q之间任取一实数q1 
-> 由于 存在某个有限子族（不妨设为H1）可以覆盖\[a,M\] 
-> 因此 存在有限子族H1∪{(p,q)}可以覆盖\[a,q1\] 即 q1 ∈ K  
+> 对于上文中满足M∈(p,q)的开区间(p,q) 在M和q之间任取一实数q1 
+> 由于M∈\[a,b\](在上文中已经证明) 存在某个有限子族（不妨设为H1）可以覆盖\[a,M\] 
+> 因此 存在有限子族H1∪{(p,q)}可以覆盖\[a,q1\] 即 q1∈K  
 > 
-> 但是 q1 > M 这与M是K的上界矛盾 命题得证          
+> 但是 q1\>M 这与M是K的上界矛盾 命题得证          
 >    
    
+> Proof   
+>   
+> We construct a set K = { x∈\[a,b\] : there exists a finite subcover of \[a,x\] }.      
+> 
+> Since G is the open cover of \[a,b\] and a∈\[a,b\], it is evident that there exists an open interval (m,n)∈G such that a∈(m,n).   
+> Let y be a real number such that a\<y\<n. We have that \[a,y\]⊂(m,n). This means that {(m,n)} is a finite subcover of \[a,y\]. 
+> This means that y∈K. It follows that K is not the empty set.    
+>     
+> By the definition of K, it is evident that all elements in K are less or equal than b. This means that b is an upper bound of K.              
+>     
+> By the LUB Axiom, there exists a supremum of K. Let M=supK.  
+> 
+> Next we try to show that M∈\[a,b\].   
+>   
+> Since M is the supremum of K, we have that M is an upper bound of K. By the above y such that y∈K, we have that y≤M. Since a\<y， we have that a\<M.     
+> Since M is the supremum of K and b is an upper bound of K, we have that M≤b. //The supremum is the smallest upper bound.    
+> Then we have that a\<M≤b. This means that M∈\[a,b\].  
+>    
+> Since G is the open cover of \[a,b\] and M∈\[a,b\], it is evident that there exists an open interval (p,q)∈G such that M∈(p,q).   
+>      
+> It follows that M−q\>0. Let ϵ be a real number such that 0\<ϵ\<M−q.      
+> Since M is the supremum of K, by the property of the supremum, there exists a real number η such that η∈K. This means that there exists a finite subcover of \[a,η\]. We call that finite subcover H.                   
+>       
+> Since ϵ\<M−q, it follows that M−ϵ\>M−(M−q)=q. Thus, we have that η>q.         
+> It follows that H∪{(p,q)} is a finite subcover of \[a,M\]. This means that M∈K.     
+>        
+> Next we try to show that M=b.     
+>      
+> Proof by Contradiction
+> We suppose M≠b. Since M<=b which we have shown above, we have that M\<b.   
+>     
+> By the above open interval (p,q) such that M∈(p,q), let q1 be a real number such that M\<q1\<q.   
+> Since M∈\[a,b\] which we have shown above, there exists a finite subcover of \[a,M\]. We call that finite subcover H1.   
+> It follows that H1∪{(p,q)} is a finite subcover of \[a,q1\]. This means that q1∈K.  
+> 
+> However M\<q1. This contradicts the fact that M is an upper bound of K.   
+>   
+>                              
 
 //紧 compat -> 有限 finite    
 
