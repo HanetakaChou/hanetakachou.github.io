@@ -306,8 +306,8 @@ $\displaystyle R^2$上的闭集
 >        
 > Next we try to show that M=b.     
 >      
-> Proof by Contradiction
-> We suppose M≠b. Since M<=b which we have shown above, we have that M\<b.   
+> Proof by Contradiction     
+> We suppose M≠b. Since M<=b which we have shown above, we have that M\<b.     
 >     
 > By the above open interval (p,q) such that M∈(p,q), let q1 be a real number such that M\<q1\<q.   
 > Since M∈\[a,b\] which we have shown above, there exists a finite subcover of \[a,M\]. We call that finite subcover H1.   
