@@ -69,6 +69,8 @@ in other words //换句话说 //即
 this means that //这意味着 //即    
    
 to say that ... means that ... //...意味着... //即   
+
+by ... we mean ... //...即... //比如用于给出定义  
     
 **数学归纳法（proof by induction）**    
     
