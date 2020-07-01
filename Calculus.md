@@ -254,28 +254,28 @@ $\displaystyle R^2$上的闭集
 > 
 > 根据LUB公理 K有上确界 不妨设M=supK   
 >      
-> 下面证明 存在某个有限子族可以覆盖闭区间\[a,M\] 即M∈\[a,b\]      
-> 
+> 下面证明 存在某个有限子族可以覆盖闭区间\[a,M\] 即M∈K      
+>              
 > 由于M是K的上确界 从而M是K的一个上界 对于上文中属于K的y 有y≤M 又因为a\<y 从而有a\<M   
 > 由于M是K的上确界 且b是K的一个上界 因此M≤b //上确界是最小上界  
 > 综上 a\<M≤b 即 M∈\[a,b\]   
 > 由于 闭区间\[a,b\]被开区间族覆盖 且 M∈\[a,b\] 显然 存在某个开区间(p,q)∈G 满足M∈(p,q)   
-> 
+>              
 > 因此 M−q\>0 不妨取某个小于M−q且大于0的ϵ   
 > 由于 M是K的上确界 根据上确界的性质 存在η>M-ϵ 满足η∈K 即存在某个有限子族（不妨设为H）可以覆盖\[a,η\]   
 >    
 > 由于 ϵ\<M−q 因此 M−ϵ\>M−(M−q)=q 从而 η>q    
-> 因此 存在有限子族H∪{(p,q)}可以覆盖\[a,M\] 即 M∈K  
->  
-> 下面证明 M=b  
->    
-> 反证法，假设M≠b 由于M<=b(在上文中已经证明) 必有M\<b       
-> 
-> 对于上文中满足M∈(p,q)的开区间(p,q) 在M和q之间任取一实数q1 
-> 由于M∈\[a,b\](在上文中已经证明) 存在某个有限子族（不妨设为H1）可以覆盖\[a,M\] 
-> 因此 存在有限子族H1∪{(p,q)}可以覆盖\[a,q1\] 即 q1∈K  
-> 
-> 但是 q1\>M 这与M是K的上界矛盾 命题得证          
+> 因此 存在有限子族H∪{(p,q)}可以覆盖\[a,M\] 即 M∈K   
+>         
+> 下面证明 M=b   
+>     
+> 反证法，假设M≠b 由于M<=b(在上文中已经证明) 必有M\<b        
+>         
+> 对于上文中满足M∈(p,q)的开区间(p,q) 在M和q之间任取一实数q1     
+> 由于M∈\[a,b\](在上文中已经证明) 存在某个有限子族（不妨设为H1）可以覆盖\[a,M\]       
+> 因此 存在有限子族H1∪{(p,q)}可以覆盖\[a,q1\] 即 q1∈K    
+>           
+> 但是 q1\>M 这与M是K的上界矛盾 命题得证           
 >    
    
 > Proof   
@@ -299,7 +299,7 @@ $\displaystyle R^2$上的闭集
 > Since G is the open cover of \[a,b\] and M∈\[a,b\], it is evident that there exists an open interval (p,q)∈G such that M∈(p,q).   
 >      
 > It follows that M−q\>0. Let ϵ be a real number such that 0\<ϵ\<M−q.      
-> Since M is the supremum of K, by the property of the supremum, there exists a real number η such that η∈K. This means that there exists a finite subcover of \[a,η\]. We call that finite subcover H.                   
+> Since M is the supremum of K, by the property of the supremum, there exists a real number η>M-ϵ such that η∈K. This means that there exists a finite subcover of \[a,η\]. We call that finite subcover H.                   
 >       
 > Since ϵ\<M−q, it follows that M−ϵ\>M−(M−q)=q. Thus, we have that η>q.         
 > It follows that H∪{(p,q)} is a finite subcover of \[a,M\]. This means that M∈K.     
@@ -343,6 +343,11 @@ $\displaystyle R^2$上的闭集
       
 τ是X上的拓扑 且 K ⊂ X ⇒ ( K是紧集 ⇔ ∀G,G是K的开覆盖 ∃H,H是G（关于K）的有限子覆盖 ) //从（有限或无限）开覆盖G中**选择**有限个开集（H的元素）来覆盖K     
          
+R上的闭区间是（关于R的通常拓扑的）紧集   
+\[陈天权 2009\] / 例 7\.6\.1       
+
+根据 有限覆盖定理 即可证明
+
 
 
      
