@@ -246,9 +246,9 @@ $\displaystyle R^2$上的闭集
 >  
 > 构造集合 K = { x∈\[a,b\] : 存在开区间族的某个有限子族可以覆盖闭区间\[a,x\] }   
 >
-> 由于 闭区间\[a,b\]被开区间族G覆盖 又因为a∈\[a,b\] 显然 存在某个开区间(m,n)∈G 满足a∈(m,n)   
+> 由于 闭区间\[a,b\]被开区间族G覆盖 又因为a∈\[a,b\] 显然 存在某个开区间(m,n)∈G 满足a∈(m,n) //**注：如果G为闭区间族，那么 这样的(m,n)就不一定存在**   
 > 在a和n之间任取一实数y 则有 \[a,y\]⊂(m,n) 即 存在有限子族{(m,n)}可以覆盖闭区间\[a,y\]   
-> 即 y∈K 从而 K非空
+> 即 y∈K 从而 K非空            
 >     
 > 根据K的定义 显然K中的元素一定小于或等于b 因此b是K的一个上界       
 > 
@@ -258,8 +258,8 @@ $\displaystyle R^2$上的闭集
 >              
 > 由于M是K的上确界 从而M是K的一个上界 对于上文中属于K的y 有y≤M 又因为a\<y 从而有a\<M   
 > 由于M是K的上确界 且b是K的一个上界 因此M≤b //上确界是最小上界  
-> 综上 a\<M≤b 即 M∈\[a,b\]   
-> 由于 闭区间\[a,b\]被开区间族覆盖 且 M∈\[a,b\] 显然 存在某个开区间(p,q)∈G 满足M∈(p,q)   
+> 从而 a\<M≤b 即 M∈\[a,b\]     
+> 由于 闭区间\[a,b\]被开区间族覆盖 且 M∈\[a,b\] 显然 存在某个开区间(p,q)∈G 满足M∈(p,q) //**注：如果\[a,b\)为半开区间，那么 当M=b时 就不一定有点M被开区间族覆盖**    
 >              
 > 因此 M−q\>0 不妨取某个小于M−q且大于0的ϵ   
 > 由于 M是K的上确界 根据上确界的性质 存在η>M-ϵ 满足η∈K 即存在某个有限子族（不妨设为H）可以覆盖\[a,η\]   
@@ -282,7 +282,7 @@ $\displaystyle R^2$上的闭集
 >   
 > We construct a set K = { x∈\[a,b\] : there exists a finite subcover of \[a,x\] }.      
 > 
-> Since G is the open cover of \[a,b\] and a∈\[a,b\], it is evident that there exists an open interval (m,n)∈G such that a∈(m,n).   
+> Since G is the open cover of \[a,b\] and a∈\[a,b\], it is evident that there exists an open interval (m,n)∈G such that a∈(m,n). //**Note: If G was the closed cover, then such (m,n) would not exist.**      
 > Let y be a real number such that a\<y\<n. We have that \[a,y\]⊂(m,n). This means that {(m,n)} is a finite subcover of \[a,y\]. 
 > This means that y∈K. It follows that K is not the empty set.    
 >     
@@ -294,9 +294,8 @@ $\displaystyle R^2$上的闭集
 >   
 > Since M is the supremum of K, we have that M is an upper bound of K. By the above y such that y∈K, we have that y≤M. Since a\<y， we have that a\<M.     
 > Since M is the supremum of K and b is an upper bound of K, we have that M≤b. //The supremum is the smallest upper bound.    
-> Then we have that a\<M≤b. This means that M∈\[a,b\].  
->    
-> Since G is the open cover of \[a,b\] and M∈\[a,b\], it is evident that there exists an open interval (p,q)∈G such that M∈(p,q).   
+> Then we have that a\<M≤b. This means that M∈\[a,b\].         
+> Since G is the open cover of \[a,b\] and M∈\[a,b\], it is evident that there exists an open interval (p,q)∈G such that M∈(p,q). //**Note: If \[a,b\) was a half-open interval, then M would not be covered by G when M equals b.**       
 >      
 > It follows that M−q\>0. Let ϵ be a real number such that 0\<ϵ\<M−q.      
 > Since M is the supremum of K, by the property of the supremum, there exists a real number η>M-ϵ such that η∈K. This means that there exists a finite subcover of \[a,η\]. We call that finite subcover H.                   
