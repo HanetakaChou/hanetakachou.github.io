@@ -235,7 +235,27 @@ $\displaystyle R^2$上的聚点
 $\displaystyle R^2$上的闭集    
 \[同济大学数学系 2014\] / 第九章 多元函数微分法及其应用 / 第一节 多元函数的基本概念 / 一、平面点集 *n维空间 / 1. 平面点集    
 闭集：如果点集E的边界∂E⊂E，那么称E为闭集   
-   
+      
+
+#### 完备集 Perfect Set    
+
+分离公理 Separation Axiom   
+T -> Tychonoff 吉洪诺夫     
+
+Hausdorff 豪斯多夫   
+分离空间 Separated Space  
+T2空间   
+\[陈天权 2009\] / 定义 7\.5\.2    
+τ是X上的拓扑 ⇒ ( X是豪斯多夫空间 ⇔ ∀x,y∈X, ∃x的领域U,y的领域V, U∩V=∅ )     
+
+
+
+\[Rudin 1976\] / 2.18 Definition (h)   
+
+         
+
+
+      
 #### 紧集 Compact Set    
    
 有限覆盖定理/海涅-博雷尔定理 Heine–Borel theorem   
@@ -364,6 +384,8 @@ R上的闭区间是（关于R的通常拓扑的）紧集
 //\[Rudin 1976\] / 2.15 Definition   
 (M,d)是度量空间 ⇔ d是M上的距离函数/度量 ⇔ d是M×M到R的映射 且 满足 不可分的同一性 d(x,y) = 0 ⇔ x = y 、 对称性 d(x,y) = d(y,x) 和 次可加性/三角不等式 d(x,z) ≤ d(x,y) + d(y,z)    
    
+诱导 Induce   
+   
 度量空间 诱导 拓扑空间   
 //\[陈天权 2009\] / 命题 7\.3\.1   
 //\[陈天权 2009\] / 定义 7\.3\.3   
@@ -373,9 +395,9 @@ R上的闭区间是（关于R的通常拓扑的）紧集
                        
 欧几里得空间 Euclidean Space     
 $\displaystyle R^k$上的欧几里得空间 度量 d(x,y) = |x - y| //度量被定义为向量的模   
-   
-
-
+         
+         
+          
 魏尔施特拉斯逼近定理 //Stone-Weierstrass Theorem  
 
 
