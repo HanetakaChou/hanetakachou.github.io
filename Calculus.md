@@ -379,7 +379,7 @@ R上的闭区间是（关于R的通常拓扑的）紧集
 
 豪斯多夫空间-紧集-闭集        
 \[陈天权 2009\] / 命题 7\.6\.4       
-X是豪斯多夫空间 且 K⊂X ⇒ ( K是紧集 ⇒ K是闭集 )    
+X是豪斯多夫空间 且 K⊂X ⇒ ( K是紧集 ⇒ K是闭集 ) //紧集必闭          
 
 > 证明        
 >                    
@@ -411,9 +411,14 @@ X是豪斯多夫空间 且 K⊂X ⇒ ( K是紧集 ⇒ K是闭集 )
 > 根据定理“E是闭集 ⇔ E = $\displaystyle \overline{E}$“，E是闭集    
 >          
 >                                                                    
+          
+        
+---                
+          
+斯通-魏尔施特拉斯逼近定理 / Stone-Weierstrass Theorem      
+//\[陈天权 2009\] / 定理 7\.7\.2         
+//\[Rudin 1976\] / 7\.32 Theorem       
          
-           
-           
                 
 ### 度量 Metric      
       
@@ -441,14 +446,13 @@ X是豪斯多夫空间 且 K⊂X ⇒ ( K是紧集 ⇒ K是闭集 )
 欧几里得空间 Euclidean Space     
 $\displaystyle R^k$上的欧几里得空间 度量 d(x,y) = |x - y| //度量被定义为向量的模   
          
-         
-          
-魏尔施特拉斯逼近定理 //Stone-Weierstrass Theorem  
+           
 
 
 ### 测度 Measure    
              
-         
+
+
 ### 实数完备性 Completeness of the real numbers //实数系连续性  
 
 最大数 max  
