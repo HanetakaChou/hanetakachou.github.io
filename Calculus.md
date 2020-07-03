@@ -206,12 +206,12 @@ $\displaystyle R^2$上的开集-内点
 > 
 > 因此 逆否命题成立 ∀ x的领域U, U ∩ E ≠ ∅ ⇒ x ∈ $\displaystyle \overline{E}$  
 > 
-> 下面证明 ∃ x的领域U, U ∩ E = ∅ ⇒ x ∉ $\displaystyle \overline{E}$  
+> 下面证明 ∃x的领域U, U∩E=∅ ⇒ x∉$\displaystyle \overline{E}$  
 > 
-> 由于 U是X的领域 因此 x ∈ U 即 x ∉ X - U   
+> 由于 U是X的领域 因此 x∈U 即 x∉X-U   
 >   
-> 由于 U是X的领域 因此 U是开集 从而 ( X - U )是闭集  
-> 并且 由于 U ∩ E = ∅ 因此 E ⊂ ( X - U ) 从而 ( X - U )是包含E的闭集  
+> 由于 U是X的领域 因此 U是开集 从而 ( X-U )是闭集  
+> 并且 由于 U∩E=∅ 因此 E ⊂ ( X-U ) 从而 ( X-U )是包含E的闭集  
 >   
 > 由于 x ∉ X - U 因此 x不属于 所有“包含E的闭集”的交集——即E的闭包$\displaystyle \overline{E}$ 命题得证  
 >   
@@ -377,14 +377,16 @@ R上的闭区间是（关于R的通常拓扑的）紧集
 
 根据 有限覆盖定理 即可证明
 
-豪斯多夫空间-紧集-闭集
+豪斯多夫空间-紧集-闭集        
 \[陈天权 2009\] / 命题 7\.6\.4       
 X是豪斯多夫空间 且 K⊂X ⇒ ( K是紧集 ⇒ K是闭集 )    
 
 > 证明        
 >                    
 > 下面证明 ∀x∉E ⇒ x∉$\displaystyle \overline{E}$    
->              
+>
+> 对任意给定的x∉E，我们有：  
+>            
 > 对于任意y∈E，我们有：    
 > 因为x∉E 从而x≠y    
 > 由于X是豪斯多夫空间 存在x的领域$\displaystyle U_x$和y的领域$\displaystyle V_y$ 满足$\displaystyle U_x$∩$\displaystyle V_y$=∅       
@@ -393,8 +395,22 @@ X是豪斯多夫空间 且 K⊂X ⇒ ( K是紧集 ⇒ K是闭集 )
 > 从而 $\displaystyle \bigcup_{y \isin K} V_y$是E的一个开覆盖  
 > 由于 E是紧集 存在E的有限子覆盖$\displaystyle \bigcup_{y \isin F} V_y$ //F是有限集 //即从K中选择有限个点组成的集合F       
 >         
-> 从而 与以上y的领域对应的x的领域（即满足$\displaystyle U_x$∩$\displaystyle V_y$=∅的x的领域）的交集$\displaystyle \bigcup_{y \isin F} U_x$是开集 //根据拓扑的定义 **有限个**开集的交集才一定是开集 因此我们必须先证明F是有限集            
-        
+> 从而 与以上y的领域对应的x的领域（即满足$\displaystyle U_x$∩$\displaystyle V_y$=∅的x的领域）的交集$\displaystyle \bigcap_{y \isin F} {U_x}_y$是开集 //根据拓扑的定义 **有限个**开集的交集才一定是开集 因此我们必须先证明F是有限集            
+>         
+> 显然 x∈$\displaystyle \bigcap_{y \isin F} {U_x}_y$ //因为x属于任意x的领域  
+>     
+> 又因为 E ∩ $\displaystyle \bigcap_{y \isin F} {U_x}_y$ ⊂ $\displaystyle \bigcup_{y \isin K} V_y$ ∩ $\displaystyle \bigcap_{y \isin F} {U_x}_y$ = $\displaystyle \bigcup_{y \isin K} (V_y \cap \bigcap_{y \isin F} {U_x}_y)$ ⊂ $\displaystyle \bigcup_{y \isin K} (V_y \cap U_x )$ = ∅     
+> 
+> 根据定理“$\displaystyle \overline{E}$ = { x : ∀x的领域U, U∩E≠∅ }”，我们有x∉$\displaystyle \overline{E}$    
+>    
+> 从而 以上命题的逆否命题成立：∀x∈$\displaystyle \overline{E}$ ⇒ x∈E 即 $\displaystyle \overline{E}$ ⊂ E          
+>               
+> 又因为 E ⊂ $\displaystyle \overline{E}$ //根据闭包的定义，显然      
+> 我们有 E = $\displaystyle \overline{E}$         
+> 
+> 根据定理“E是闭集 ⇔ E = $\displaystyle \overline{E}$“，E是闭集    
+>          
+>                                                                    
          
            
            
