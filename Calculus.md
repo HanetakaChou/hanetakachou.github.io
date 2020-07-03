@@ -51,7 +51,7 @@ $\displaystyle \wp(X)$ //X的所有子集
 拓扑的开集定义   
 //\[陈天权 2009\] / 定义 7\.1\.1     
    
-(X,τ)是拓扑空间 ⇔ τ是X上的拓扑 ⇔ τ ⊂ ℘(X) 满足 ∅ ∈ τ ∧ X ∈ τ 且 τ中有限或无限个元素的并仍属于τ 且 τ中有限个元素的交仍属于τ         
+(X,τ)是拓扑空间 ⇔ τ是X上的拓扑 ⇔ τ⊂℘(X) 满足 ∅∈τ ∧ X∈τ 且 τ中有限或无限个元素的并仍属于τ 且 τ中有限个元素的交仍属于τ         
 
 开集 Open Set                      
 并且 τ是X上的拓扑(Topology) ⇒ ( U ∈ τ ⇔ U是开集 )      
@@ -59,6 +59,9 @@ $\displaystyle \wp(X)$ //X的所有子集
 X是拓扑空间 ⇔ ∃τ, (X,τ)是拓扑空间 ⇔ ∃τ, τ是X上的拓扑 //用于不强调τ的情形          
 
 开集的 有限次交 以及 有限或无限次并 仍是开集 //用于不强调τ的情形     
+
+开集的概念源于对R上的开区间/闭区间的抽象      
+无限个开区间的交可能是闭区间 比如：$\displaystyle \bigcap_{n \isin \N} (1-\frac{1}{n}, 2+\frac{1}{n})$=\[1,2\] //根据定义即可证明 //可能用到反证法       
 
 拓扑间的包含关系     
 finer/smaller/weaker    
@@ -72,30 +75,6 @@ coarser/larger/stronger
 //{∅, X}是X上的拓扑 被称为平凡拓扑 //\[陈天权 2009\] / 例 7\.1\.2         
 //$\wp(X)$是X上的拓扑 被称为离散拓扑 //\[陈天权 2009\] / 例 7\.1\.1     
    
----
-
-R上的开集    
-U是R上的开集 ⇔  ∀x ∈ U, ∃ϵ > 0, { y : ∣y − x∣ < ϵ } ⊂ U //\[陈天权 2009\] / §2\.5 23    
-
-通常拓扑 Usual Topology
-
-R上的通常拓扑   
-R上的通常拓扑：R的所有可以表示为开区间的并的集合(Set)组成的集族(Collection) //\[陈天权 2009\] / 例 7\.1\.3     
-//注：Collection与Set同义，表示“集合的集合”时，用Collection    
-    
-欧几里得空间 Euclidean Space     
-
-$\displaystyle R^n$上的开集         
-U是$\displaystyle R^n$上的开集 ⇔ ∀$\displaystyle \overrightarrow{x}$ ∈ U, ∃ϵ > 0, { $\displaystyle \overrightarrow{y}$ : | $\displaystyle \overrightarrow{y}$ − $\displaystyle \overrightarrow{x}$| < ϵ } ⊂ U     
-其中： |$\displaystyle \overrightarrow{y}$ − $\displaystyle \overrightarrow{x}$|为欧几里得空间中的长度 且 B($\displaystyle \overrightarrow{x}$, ϵ) = { $\displaystyle \overrightarrow{y}$ : | $\displaystyle \overrightarrow{y}$ − $\displaystyle \overrightarrow{x}$| < ϵ }是以$\displaystyle \overrightarrow{x}$为球心ϵ为半径的开球    
-    
-$\displaystyle R^n$上的通常拓扑   
-$\displaystyle R^n$上的通常拓扑 T = { U | U是$\displaystyle R^n$上的开集 } //\[陈天权 2009\] / 例 7\.1\.5            
-
-//~~一致收敛拓扑(Topology of Uniform Convergence)~~      
-     
----        
-     
 领域 Neighborhood    
 \[陈天权 2009\] / 定义 7\.1\.3   
 \[Rudin 1976\] / 2.18 Definition (a)  
@@ -128,6 +107,33 @@ $\displaystyle R^n$上的通常拓扑 T = { U | U是$\displaystyle R^n$上的开
 > 综上 E = $\displaystyle \bigcup_{x \isin E} U_x$   
 > 根据拓扑的定义 E ∈ τ 即E是开集           
    
+---
+通常拓扑 Usual Topology  
+
+R上的开集    
+//\[陈天权 2009\] / §2\.5 23    
+//定义方式在一定程度上源于“开集-内点”       
+U是R上的开集 ⇔  ∀x ∈ U, ∃ϵ > 0, { y : ∣y − x∣ < ϵ } ⊂ U 
+
+R上的通常拓扑   
+R上的通常拓扑 T = { U | U是R上的开集 }               
+//R上的通常拓扑：R的所有可以表示为开区间的并的集合(Set)组成的集族(Collection) //\[陈天权 2009\] / 例 7\.1\.3     
+//注：Collection与Set同义，表示“集合的集合”时，用Collection    
+    
+欧几里得空间 Euclidean Space     
+
+$\displaystyle R^n$上的开集     
+//\[陈天权 2009\] / 例 7\.1\.5           
+//定义方式在一定程度上源于“开集-内点”       
+U是$\displaystyle R^n$上的开集 ⇔ ∀$\displaystyle \overrightarrow{x}$ ∈ U, ∃ϵ > 0, { $\displaystyle \overrightarrow{y}$ : | $\displaystyle \overrightarrow{y}$ − $\displaystyle \overrightarrow{x}$| < ϵ } ⊂ U     
+其中： |$\displaystyle \overrightarrow{y}$ − $\displaystyle \overrightarrow{x}$|为欧几里得空间中的长度 且 B($\displaystyle \overrightarrow{x}$, ϵ) = { $\displaystyle \overrightarrow{y}$ : | $\displaystyle \overrightarrow{y}$ − $\displaystyle \overrightarrow{x}$| < ϵ }是以$\displaystyle \overrightarrow{x}$为球心ϵ为半径的开球    
+    
+$\displaystyle R^n$上的通常拓扑      
+//\[陈天权 2009\] / 例 7\.1\.5           
+$\displaystyle R^n$上的通常拓扑 T = { U | U是$\displaystyle R^n$上的开集 }             
+
+//~~一致收敛拓扑(Topology of Uniform Convergence)~~      
+
 --- 
 $\displaystyle R^2$上的内点    
 [同济大学数学系 2014] / 第九章 多元函数微分法及其应用 / 第一节 多元函数的基本概念 / 一、平面点集 *n维空间 / 1. 平面点集    
@@ -186,7 +192,9 @@ $\displaystyle R^2$上的开集-内点
 > 
    
 ---   
-定理：  τ是X上的拓扑 且 E ⊂ X ⇒ ( x ∈ $\displaystyle \overline{E}$ ⇔ ∀ x的领域U, U ∩ E ≠ ∅ ) //\[陈天权 2009\] / 命题 7\.1\.2   
+定理：      
+\[陈天权 2009\] / 命题 7\.1\.2       
+τ是X上的拓扑 且 E ⊂ X ⇒ ( x ∈ $\displaystyle \overline{E}$ ⇔ ∀x的领域U, U∩E≠∅ ) //即$\displaystyle \overline{E}$ = { x : ∀x的领域U, U∩E≠∅ }         
    
 > 证明    
 >   
@@ -268,7 +276,7 @@ T2空间
 >  
 > 构造集合 K = { x∈\[a,b\] : 存在开区间族的某个有限子族可以覆盖闭区间\[a,x\] }   
 >
-> 由于 闭区间\[a,b\]被开区间族G覆盖 又因为a∈\[a,b\] 显然 存在某个开区间(m,n)∈G 满足a∈(m,n) //**注：如果G为闭区间族，那么 这样的(m,n)就不一定存在**   
+> 由于 闭区间\[a,b\]被开区间族G覆盖 又因为a∈\[a,b\] 显然 存在某个开区间(m,n)∈G 满足a∈(m,n) //**注：如果G为闭区间族，那么 这样的(m,n)就不一定存在** //可以结合闭集的定义：无限个闭集的并集并不一定是闭集     
 > 在a和n之间任取一实数y 则有 \[a,y\]⊂(m,n) 即 存在有限子族{(m,n)}可以覆盖闭区间\[a,y\]   
 > 即 y∈K 从而 K非空            
 >     
@@ -304,7 +312,7 @@ T2空间
 >   
 > We construct a set K = { x∈\[a,b\] : there exists a finite subcover of \[a,x\] }.      
 > 
-> Since G is the open cover of \[a,b\] and a∈\[a,b\], it is evident that there exists an open interval (m,n)∈G such that a∈(m,n). //**Note: If G was the closed cover, then such (m,n) would not exist.**      
+> Since G is the open cover of \[a,b\] and a∈\[a,b\], it is evident that there exists an open interval (m,n)∈G such that a∈(m,n). //**Note: If G was the closed cover, then such (m,n) would not exist.** //可以结合闭集的定义：无限个闭集的并集并不一定是闭集           
 > Let y be a real number such that a\<y\<n. We have that \[a,y\]⊂(m,n). This means that {(m,n)} is a finite subcover of \[a,y\]. 
 > This means that y∈K. It follows that K is not the empty set.    
 >     
@@ -350,19 +358,19 @@ T2空间
 \[陈天权 2009\] / 定义 7\.6\.1       
 \[Rudin 1976\] / 2\.31 Definition  
 
-τ是X上的拓扑 且 E ⊂ X 且 $\displaystyle \bigcup_{\alpha \isin A} G_\alpha$是E的开覆盖 ⇒ ( $\displaystyle \bigcup_{\alpha \isin B} G_\alpha$是$\displaystyle \bigcup_{\alpha \isin A} G_\alpha$（关于E）的子覆盖 ⇔ B ⊂ A 且 E ⊂ $\displaystyle \bigcup_{\alpha \isin B} G_\alpha$ )   
+τ是X上的拓扑 且 E⊂X 且 $\displaystyle \bigcup_{\alpha \isin A} G_\alpha$是E的开覆盖 ⇒ ( $\displaystyle \bigcup_{\alpha \isin B} G_\alpha$是$\displaystyle \bigcup_{\alpha \isin A} G_\alpha$（关于E）的子覆盖 ⇔ B ⊂ A 且 E ⊂ $\displaystyle \bigcup_{\alpha \isin B} G_\alpha$ )   
 
 有限子覆盖 Finite Subcover     
 \[陈天权 2009\] / 定义 7\.6\.1       
 \[Rudin 1976\] / 2\.31 Definition   
           
-τ是X上的拓扑 且 E ⊂ X 且 $\displaystyle \bigcup_{\alpha \isin A} G_\alpha$是E的开覆盖 ⇒ ( $\displaystyle \bigcup_{\alpha \isin B} G_\alpha$是$\displaystyle \bigcup_{\alpha \isin A} G_\alpha$（关于E）的子覆盖 ⇔ B是有限集 且 $\displaystyle \bigcup_{\alpha \isin B} G_\alpha$是$\displaystyle \bigcup_{\alpha \isin A} G_\alpha$（关于E）的子覆盖 )    
+τ是X上的拓扑 且 E⊂X 且 $\displaystyle \bigcup_{\alpha \isin A} G_\alpha$是E的开覆盖 ⇒ ( $\displaystyle \bigcup_{\alpha \isin B} G_\alpha$是$\displaystyle \bigcup_{\alpha \isin A} G_\alpha$（关于E）的子覆盖 ⇔ B是有限集 且 $\displaystyle \bigcup_{\alpha \isin B} G_\alpha$是$\displaystyle \bigcup_{\alpha \isin A} G_\alpha$（关于E）的子覆盖 )    
        
 紧集 Compact Set   
 \[陈天权 2009\] / 定义 7\.6\.1       
 \[Rudin 1976\] / 2\.31 Definition    
       
-τ是X上的拓扑 且 K ⊂ X ⇒ ( K是紧集 ⇔ ∀G,G是K的开覆盖 ∃H,H是G（关于K）的有限子覆盖 ) //从（有限或无限）开覆盖G中**选择**有限个开集（H的元素）来覆盖K     
+τ是X上的拓扑 且 K⊂X ⇒ ( K是紧集 ⇔ ∀G,G是K的开覆盖 ∃H,H是G（关于K）的有限子覆盖 ) //从（有限或无限）开覆盖G中**选择**有限个开集（H的元素）来覆盖K     
          
 R上的闭区间是（关于R的通常拓扑的）紧集   
 \[陈天权 2009\] / 例 7\.6\.1       
@@ -371,13 +379,27 @@ R上的闭区间是（关于R的通常拓扑的）紧集
 
 豪斯多夫空间-紧集-闭集
 \[陈天权 2009\] / 命题 7\.6\.4       
-X是豪斯多夫空间 且 K ⊂ X ⇒ ( K是紧集 ⇒ K是闭集 )    
+X是豪斯多夫空间 且 K⊂X ⇒ ( K是紧集 ⇒ K是闭集 )    
 
 > 证明        
->      
-
-     
-### 度量 Metric     
+>                    
+> 下面证明 ∀x∉E ⇒ x∉$\displaystyle \overline{E}$    
+>              
+> 对于任意y∈E，我们有：    
+> 因为x∉E 从而x≠y    
+> 由于X是豪斯多夫空间 存在x的领域$\displaystyle U_x$和y的领域$\displaystyle V_y$ 满足$\displaystyle U_x$∩$\displaystyle V_y$=∅       
+>                 
+> 显然 E中的任意一点 一定属于 以上的某一个y的领域 即 E⊂$\displaystyle \bigcup_{y \isin K} V_y$        
+> 从而 $\displaystyle \bigcup_{y \isin K} V_y$是E的一个开覆盖  
+> 由于 E是紧集 存在E的有限子覆盖$\displaystyle \bigcup_{y \isin F} V_y$ //F是有限集 //即从K中选择有限个点组成的集合F       
+>         
+> 从而 与以上y的领域对应的x的领域（即满足$\displaystyle U_x$∩$\displaystyle V_y$=∅的x的领域）的交集$\displaystyle \bigcup_{y \isin F} U_x$是开集 //根据拓扑的定义 **有限个**开集的交集才一定是开集 因此我们必须先证明F是有限集            
+        
+         
+           
+           
+                
+### 度量 Metric      
       
 度量空间 Metric Space   
                       
