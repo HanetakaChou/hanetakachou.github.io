@@ -113,10 +113,10 @@ coarser/larger/stronger
 R上的开集    
 //\[陈天权 2009\] / §2\.5 23    
 //定义方式在一定程度上源于“开集-内点”       
-U是R上的开集 ⇔  ∀x ∈ U, ∃ϵ > 0, { y : ∣y − x∣ < ϵ } ⊂ U 
+$\displaystyle \mathcal{U}$是R上的开集 ⇔  ∀x ∈ $\displaystyle \mathcal{U}$, ∃ϵ > 0, { y : ∣y − x∣ < ϵ } ⊂ $\displaystyle \mathcal{U}$ 
 
 R上的通常拓扑   
-R上的通常拓扑 T = { U | U是R上的开集 }               
+R上的通常拓扑 T = { $\displaystyle \mathcal{U}$ | $\displaystyle \mathcal{U}$是R上的开集 }               
 //R上的通常拓扑：R的所有可以表示为开区间的并的集合(Set)组成的集族(Collection) //\[陈天权 2009\] / 例 7\.1\.3     
 //注：Collection与Set同义，表示“集合的集合”时，用Collection    
     
@@ -125,12 +125,12 @@ R上的通常拓扑 T = { U | U是R上的开集 }
 $\displaystyle R^n$上的开集     
 //\[陈天权 2009\] / 例 7\.1\.5           
 //定义方式在一定程度上源于“开集-内点”       
-U是$\displaystyle R^n$上的开集 ⇔ ∀$\displaystyle \overrightarrow{x}$ ∈ U, ∃ϵ > 0, { $\displaystyle \overrightarrow{y}$ : | $\displaystyle \overrightarrow{y}$ − $\displaystyle \overrightarrow{x}$| < ϵ } ⊂ U     
+$\displaystyle \mathcal{U}$是$\displaystyle R^n$上的开集 ⇔ ∀$\displaystyle \overrightarrow{x}$ ∈ $\displaystyle \mathcal{U}$, ∃ϵ > 0, { $\displaystyle \overrightarrow{y}$ : | $\displaystyle \overrightarrow{y}$ − $\displaystyle \overrightarrow{x}$| < ϵ } ⊂ $\displaystyle \mathcal{U}$     
 其中： |$\displaystyle \overrightarrow{y}$ − $\displaystyle \overrightarrow{x}$|为欧几里得空间中的长度 且 B($\displaystyle \overrightarrow{x}$, ϵ) = { $\displaystyle \overrightarrow{y}$ : | $\displaystyle \overrightarrow{y}$ − $\displaystyle \overrightarrow{x}$| < ϵ }是以$\displaystyle \overrightarrow{x}$为球心ϵ为半径的开球    
     
 $\displaystyle R^n$上的通常拓扑      
 //\[陈天权 2009\] / 例 7\.1\.5           
-$\displaystyle R^n$上的通常拓扑 T = { U | U是$\displaystyle R^n$上的开集 }             
+$\displaystyle R^n$上的通常拓扑 T = { $\displaystyle \mathcal{U}$ | $\displaystyle \mathcal{U}$是$\displaystyle R^n$上的开集 }             
 
 //~~一致收敛拓扑(Topology of Uniform Convergence)~~      
 
@@ -446,12 +446,7 @@ X是豪斯多夫空间 且 K⊂X ⇒ ( K是紧集 ⇒ K是闭集 ) //紧集必�
 欧几里得空间 Euclidean Space     
 $\displaystyle R^k$上的欧几里得空间 度量 d(x,y) = |x - y| //度量被定义为向量的模   
          
-           
-
-
-### 测度 Measure    
-             
-
+                     
 
 ### 实数完备性 Completeness of the real numbers //实数系连续性  
 
@@ -1060,25 +1055,45 @@ a < ζ <= b -> ζ ∈ \[a,b\] -> f(x)在ζ上连续 //**注：如果为半开区
 ### 微分（Differential）/导数（Derivative）
 
 洛必达法则（L'Hôpital's rule）   
-    
-    
-### 积分（Integral）    
+     
+     
 
-定积分/黎曼积分 Riemann Integral  
-反常积分/广义积分  Henstock–Kurzweil Integral/Generalized Riemann Integral  
+### 测度 Measure    
+     
+集函数 Set Function     
 
-换元积分法 Integration by Substitution  
-分部积分法 Integration by Parts  
+//概率测度   
+//概率论中的 概率密度函数 可以看作集函数 //加法原理    
+\[陈天权 2009\] / 例 9.1.3     
+          
 
-第一类换元法  
-如果g(x)可以写成g(x)=f\[φ(x)\]φ'(x)的形式  
-那么$\int_a^b g(x) \, dx = \int_{\phi(a)}^{\phi(b)} f(u) \, du$  
+//图形学中的立体角可以看作集函数     
+     
+     
+σ代数 σ-algebra       
+\[陈天权 2009\] / 定义 9.1.1     
+X非空 且 $\displaystyle \mathcal{A}$ ⊂ ℘(X) ⇒ ( $\displaystyle \mathcal{A}$是（X上的）σ代数 ⇔ ∅∈$\displaystyle \mathcal{A}$ 且 ∀A∈$\displaystyle \mathcal{A}$, X−A∈$\displaystyle \mathcal{A}$ 且 ∀k∈$\displaystyle \N$,$\displaystyle A_k$∈$\displaystyle \mathcal{A}$, $\displaystyle \bigcup_{k=1}^{\infin} A_k$∈A ) //可数可加 //可数即和自然数集等势 -> 集合的势/基数           
 
-证明  
-设F(u)是f(u)的原函数  
-$\int_{\phi(a)}^{\phi(b)} f(u) \, du$ = F\[φ(b)\]  - F\[φ(a)\] （等式1）  
-
-设G(x)=F\[φ(x)\]  
+波莱尔代数 Borel Algebra  
+         
+           
+### 积分 Integral         
+     
+定积分/黎曼积分 Riemann Integral   
+反常积分/广义积分  Henstock–Kurzweil Integral/Generalized Riemann Integral    
+     
+换元积分法 Integration by Substitution    
+分部积分法 Integration by Parts    
+     
+第一类换元法     
+如果g(x)可以写成g(x)=f\[φ(x)\]φ'(x)的形式    
+那么$\int_a^b g(x) \, dx = \int_{\phi(a)}^{\phi(b)} f(u) \, du$    
+         
+证明    
+设F(u)是f(u)的原函数    
+$\int_{\phi(a)}^{\phi(b)} f(u) \, du$ = F\[φ(b)\]  - F\[φ(a)\] （等式1）    
+          
+设G(x)=F\[φ(x)\]     
 **有G'(x)=F'\[φ(x)\]φ'(x)=f\[φ(x)\]φ'(x) => 因此G(x)是g(x)的原函数** //证明的关键     
 $\int_a^b g(x) \, dx$ = G(b) - G(a) = F\[φ(b)\]  - F\[φ(a)\] （等式2）
 
