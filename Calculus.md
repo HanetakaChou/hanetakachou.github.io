@@ -52,6 +52,7 @@ $\displaystyle \wp(X)$ //X的所有子集
 //\[陈天权 2009\] / 定义 7\.1\.1     
    
 (X,τ)是拓扑空间 ⇔ τ是X上的拓扑 ⇔ τ⊂℘(X) 满足 ∅∈τ ∧ X∈τ 且 τ中有限或无限个元素的并仍属于τ 且 τ中有限个元素的交仍属于τ         
+//注：严格意义上，“有限个”/“无限个”可以用集合的势/基数来定义         
 
 开集 Open Set                      
 并且 τ是X上的拓扑(Topology) ⇒ ( U ∈ τ ⇔ U是开集 )      
@@ -1060,7 +1061,8 @@ a < ζ <= b -> ζ ∈ \[a,b\] -> f(x)在ζ上连续 //**注：如果为半开区
 
 ### 测度 Measure    
      
-集函数 Set Function     
+集函数 Set Function    
+//（可加）集合到实数的映射    
 
 //概率测度   
 //概率论中的 概率密度函数 可以看作集函数 //加法原理    
@@ -1069,13 +1071,16 @@ a < ζ <= b -> ζ ∈ \[a,b\] -> f(x)在ζ上连续 //**注：如果为半开区
 
 //图形学中的立体角可以看作集函数     
      
-     
-σ代数 σ-algebra       
-\[陈天权 2009\] / 定义 9.1.1     
-X非空 且 $\displaystyle \mathcal{A}$ ⊂ ℘(X) ⇒ ( $\displaystyle \mathcal{A}$是（X上的）σ代数 ⇔ ∅∈$\displaystyle \mathcal{A}$ 且 ∀A∈$\displaystyle \mathcal{A}$, X−A∈$\displaystyle \mathcal{A}$ 且 ∀k∈$\displaystyle \N$,$\displaystyle A_k$∈$\displaystyle \mathcal{A}$, $\displaystyle \bigcup_{k=1}^{\infin} A_k$∈A ) //可数可加 //可数即和自然数集等势 -> 集合的势/基数           
+可数可加集函数   
+//可数即和自然数集等势 -> 集合的势/基数     
 
-波莱尔代数 Borel Algebra  
-         
+σ代数 σ Algebra       
+\[陈天权 2009\] / 定义 9.1.1     
+X非空 且 $\displaystyle \mathcal{A}$ ⊂ ℘(X) ⇒ ( $\displaystyle \mathcal{A}$是（X上的）σ代数 ⇔ ∅∈$\displaystyle \mathcal{A}$ 且 ∀A∈$\displaystyle \mathcal{A}$, X−A∈$\displaystyle \mathcal{A}$ 且 ∀k∈$\displaystyle \N$,$\displaystyle A_k$∈$\displaystyle \mathcal{A}$, $\displaystyle \bigcup_{k=1}^{\infin} A_k$∈A )            
+
+博雷尔代数 Borel Algebra     
+
+博雷尔集 Borel Set            
            
 ### 积分 Integral         
      
