@@ -1074,13 +1074,16 @@ a < ζ <= b -> ζ ∈ \[a,b\] -> f(x)在ζ上连续 //**注：如果为半开区
 可数可加集函数   
 //可数即和自然数集等势 -> 集合的势/基数     
 
-σ代数 σ Algebra       
+σ-代数 //σ-Algebra       
 \[陈天权 2009\] / 定义 9.1.1     
 X非空 且 $\displaystyle \mathcal{A}$ ⊂ ℘(X) ⇒ ( $\displaystyle \mathcal{A}$是（X上的）σ代数 ⇔ ∅∈$\displaystyle \mathcal{A}$ 且 ∀A∈$\displaystyle \mathcal{A}$, X−A∈$\displaystyle \mathcal{A}$ 且 ∀k∈$\displaystyle \N$,$\displaystyle A_k$∈$\displaystyle \mathcal{A}$, $\displaystyle \bigcup_{k=1}^{\infin} A_k$∈A )            
 
 博雷尔代数 Borel Algebra     
 
 博雷尔集 Borel Set            
+
+由于σ-代数对补集运算封闭 根据闭集的定义 //开集或闭集定义博雷尔代数是等价的    
+
            
 ### 积分 Integral         
      
