@@ -188,7 +188,7 @@ $\displaystyle R^2$上的开集-内点
 > 综上 我们有 E = $\displaystyle \overline{E}$
 >
 > 充分性  
-> 显然 所有“包含E的闭集”的交集——即E的闭包——是闭集 //即$\displaystyle \overline{E}$是闭集          
+> 根据拓扑和闭集的定义 所有“包含E的闭集”的交集——即E的闭包——是闭集 //即$\displaystyle \overline{E}$是闭集          
 > 由于E = $\displaystyle \overline{E}$ 即E是闭集    
 > 
    
@@ -253,8 +253,22 @@ $\displaystyle R^2$上的闭集
 \[陈天权 2009\] / 定义 7\.1\.7  
 定义： τ是X上的拓扑 且 E ⊂ X ⇒ E的内部$\displaystyle E \degree$ = $\displaystyle \bigcup_{S是开集 且 S ⊂ E} S$ //E的内部是所有包含于E的开集的并集            
 
-根据内点（Interior Point）的定义，显然，在E的内部的点一定是E的内点。  
+//根据内点（Interior Point）的定义，显然，在E的内部的点一定是E的内点。   
      
+定理： τ是X上的拓扑 且 E ⊂ X ⇒ ( E是开集 ⇔ E = $\displaystyle E \degree$ ) //E的内部是包含于E的“最大”开集  
+
+> 证明  
+>   
+> 必要性  
+> 显然 $\displaystyle E \degree$ ⊂ E //因为E的内部是所有包含于E的开集的并集   
+> 由于E也是“包含E的开集“，因此 我们有 所有“包含于E的开集”的并集——即E的内部——包含E //即E ⊂ $\displaystyle E \degree$   
+> 综上 我们有 E = $\displaystyle E \degree$
+>
+> 充分性  
+> 根据拓扑的定义 所有“包含于E的开集”的并集——即E的内部——是开集 //即$\displaystyle  E \degree$是开集          
+> 由于E = $\displaystyle E \degree$ 即E是开集    
+>    
+        
 ---  
     
 边界 Boundary  
@@ -264,11 +278,16 @@ $\displaystyle R^2$上的闭集
 定理： τ是X上的拓扑 且 E ⊂ X ⇒ ( E是开集且E是闭集 ⇔ $\displaystyle \partial E$ = ∅ ) //        
 
 > 证明  
->   
-> 必要性  
 > 
->  
-> 充分性  
+> E是开集 ⇔ E = $\displaystyle E \degree$ //根据上面已经证明的定理   
+> E是闭集 ⇔ E = $\displaystyle \overline{E}$ //根据上面已经证明的定理     
+>      
+> 必要性  
+> E是开集且E是闭集 ⇒ E = $\displaystyle E \degree$ 且 E = $\displaystyle \overline{E}$ ⇒ $\displaystyle \partial E$ = $\displaystyle \overline{E}$ − $\displaystyle E \degree$ = ∅       
+>     
+> 充分性   
+> $\displaystyle \partial E$ = ∅ ⇒ $\displaystyle \overline{E}$ − $\displaystyle E \degree$ = ∅ ⇒ $\displaystyle E \degree$ = $\displaystyle \overline{E}$    
+>                   
 >   
      
     
