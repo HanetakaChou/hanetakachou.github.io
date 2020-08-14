@@ -81,7 +81,7 @@ coarser/larger/stronger
 \[Rudin 1976\] / 2.18 Definition (a)  
 τ是X上的拓扑 且 x ∈ X  ⇒ ( x ∈ U 且 U是开集(即U ∈ τ) ⇔ U是x的领域 )  
 
-内点 Interior   
+内点 Interior Point  
 \[陈天权 2009\] / 定义 7\.1\.3   
 \[Rudin 1976\] / 2.18 Definition (e)   
 τ是X上的拓扑 且 x ∈ X 且 N ⊂ X ⇒ ( ∃ x的领域U, U ⊂ N ⇔ x是N的内点 )   
@@ -247,7 +247,33 @@ $\displaystyle R^2$上的闭集
 \[同济大学数学系 2014\] / 第九章 多元函数微分法及其应用 / 第一节 多元函数的基本概念 / 一、平面点集 *n维空间 / 1. 平面点集    
 闭集：如果点集E的边界∂E⊂E，那么称E为闭集   
       
+---   
+       
+内部 Interior      
+\[陈天权 2009\] / 定义 7\.1\.7  
+定义： τ是X上的拓扑 且 E ⊂ X ⇒ E的内部$\displaystyle E \degree$ = $\displaystyle \bigcup_{S是开集 且 S ⊂ E} S$ //E的内部是所有包含于E的开集的并集            
 
+根据内点（Interior Point）的定义，显然，在E的内部的点一定是E的内点。  
+     
+---  
+    
+边界 Boundary  
+\[陈天权 2009\] / 定义 7\.1\.8     
+定义： τ是X上的拓扑 且 E ⊂ X ⇒ E的边界$\displaystyle \partial E$ = $\displaystyle \overline{E}$ − $\displaystyle E \degree$ //    
+       
+定理： τ是X上的拓扑 且 E ⊂ X ⇒ ( E是开集且E是闭集 ⇔ $\displaystyle \partial E$ = ∅ ) //        
+
+> 证明  
+>   
+> 必要性  
+> 
+>  
+> 充分性  
+>   
+     
+    
+---   
+   
 #### 完备集 Perfect Set    
 
 分离公理 Separation Axiom   
