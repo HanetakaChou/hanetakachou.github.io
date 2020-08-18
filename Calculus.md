@@ -220,13 +220,12 @@ $\displaystyle R^2$上的开集-内点
 > 
 > 综上 命题得证   
 >  
- 
-       
+        
 定理：   
 \[陈天权 2009\] / 定义 7\.1\.6   
 \[Rudin 1976\] / 2\.26 Definition     
 τ是X上的拓扑 且 E ⊂ X ⇒ ( $\displaystyle \overline{E}$ = E ∪ E' )           
-
+    
 > 证明     
 > 
 > 由于  
@@ -276,13 +275,13 @@ $\displaystyle R^2$上的闭集
 定义： τ是X上的拓扑 且 E ⊂ X ⇒ E的边界$\displaystyle \partial E$ = $\displaystyle \overline{E}$ − $\displaystyle E \degree$ //    
        
 定理： τ是X上的拓扑 且 E ⊂ X ⇒ ( E是开集且E是闭集 ⇔ $\displaystyle \partial E$ = ∅ ) //        
-
-> 证明  
-> 
-> E是开集 ⇔ E = $\displaystyle E \degree$ //根据上面已经证明的定理   
-> E是闭集 ⇔ E = $\displaystyle \overline{E}$ //根据上面已经证明的定理     
+    
+> 证明     
 >      
-> 必要性  
+> E是开集 ⇔ E = $\displaystyle E \degree$ //根据上面已经证明的定理     
+> E是闭集 ⇔ E = $\displaystyle \overline{E}$ //根据上面已经证明的定理       
+>       
+> 必要性    
 > E是开集且E是闭集 ⇒ E = $\displaystyle E \degree$ 且 E = $\displaystyle \overline{E}$ ⇒ $\displaystyle \partial E$ = $\displaystyle \overline{E}$ − $\displaystyle E \degree$ = ∅       
 >     
 > 充分性   
@@ -290,11 +289,17 @@ $\displaystyle R^2$上的闭集
 >                   
 >   
      
+//边界一定是闭集   
+//证明  
+    
+---    
+    
+    
     
 ---   
    
 #### 完备集 Perfect Set    
-
+    
 分离公理 Separation Axiom   
 T -> Tychonoff 吉洪诺夫     
 
