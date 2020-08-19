@@ -86,10 +86,10 @@ coarser/larger/stronger
 \[Rudin 1976\] / 2.18 Definition (e)   
 τ是X上的拓扑 且 x ∈ X 且 N ⊂ X ⇒ ( ∃ x的领域U, U ⊂ N ⇔ x是N的内点 )   
 
-开集-内点   
+定理：开集-内点   
 \[陈天权 2009\] / 命题 7\.1\.1   
 \[Rudin 1976\] / 2.18 Definition (f)   
-τ是X上的拓扑 ⇒ ( E是开集(即 E ∈ τ) ⇔ ∀ x ∈ E, x是E的内点 ) //E是开集 当且仅当 E的任何点都是E的内点   
+定理：τ是X上的拓扑 ⇒ ( E是开集(即 E ∈ τ) ⇔ ∀ x ∈ E, x是E的内点 ) //E是开集 当且仅当 E的任何点都是E的内点   
       
 > 证明   
 >    
@@ -256,7 +256,10 @@ $\displaystyle R^2$上的闭集
 
 
 ---   
+可分空间 Separable Space       
+ 
        
+---       
 内部 Interior      
 \[陈天权 2009\] / 定义 7\.1\.7  
 定义： τ是X上的拓扑 且 E ⊂ X ⇒ E的内部$\displaystyle E \degree$ = $\displaystyle \bigcup_{S是开集 且 S ⊂ E} S$ //E的内部是所有包含于E的开集的并集            
