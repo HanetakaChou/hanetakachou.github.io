@@ -193,7 +193,7 @@ $\displaystyle R^2$上的开集-内点
 > 
    
 ---   
-定理：      
+定理：闭包-聚点/孤立点      
 \[陈天权 2009\] / 命题 7\.1\.2       
 τ是X上的拓扑 且 E ⊂ X ⇒ ( x ∈ $\displaystyle \overline{E}$ ⇔ ∀x的领域U, U∩E≠∅ ) //即$\displaystyle \overline{E}$ = { x : ∀x的领域U, U∩E≠∅ }         
    
@@ -221,7 +221,7 @@ $\displaystyle R^2$上的开集-内点
 > 综上 命题得证   
 >  
         
-定理：   
+定理：闭包-导集   
 \[陈天权 2009\] / 定义 7\.1\.6   
 \[Rudin 1976\] / 2\.26 Definition     
 τ是X上的拓扑 且 E ⊂ X ⇒ ( $\displaystyle \overline{E}$ = E ∪ E' )           
@@ -245,7 +245,16 @@ $\displaystyle R^2$上的聚点
 $\displaystyle R^2$上的闭集    
 \[同济大学数学系 2014\] / 第九章 多元函数微分法及其应用 / 第一节 多元函数的基本概念 / 一、平面点集 *n维空间 / 1. 平面点集    
 闭集：如果点集E的边界∂E⊂E，那么称E为闭集   
-      
+
+---   
+稠密集 Dense Set      
+\[陈天权 2009\] / 定义 7\.1\.9  
+定义： τ是X上的拓扑 且 A ⊂ S ⊂ X ⇒ ( A在S中稠密 ⇔ S ⊂ $\displaystyle \overline{A}$ )            
+//特别地，当A在X中稠密时，$\displaystyle \overline{A}$ = X //显然，X ⊂ $\displaystyle \overline{A}$   
+
+根据“定理：闭包-聚点/孤立点”，A在S中稠密 ⇔ ∀x∈S, ∀x的领域U, U ∩ A ≠ ∅ //S中的任一点可以被A中的点很好的逼近 
+
+
 ---   
        
 内部 Interior      
