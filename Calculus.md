@@ -67,20 +67,23 @@ X是拓扑空间 ⇔ ∃τ, (X,τ)是拓扑空间 ⇔ ∃τ, τ是X上的拓扑 
 拓扑间的包含关系     
 finer/smaller/weaker    
 coarser/larger/stronger    
-
----   
+       
+---    
+        
 平凡拓扑 Trivial Topology     
 离散拓扑 Discrete Topology   
     
 //显然，对于任意集合X：  
 //{∅, X}是X上的拓扑 被称为平凡拓扑 //\[陈天权 2009\] / 例 7\.1\.2         
 //$\wp(X)$是X上的拓扑 被称为离散拓扑 //\[陈天权 2009\] / 例 7\.1\.1     
-   
+        
+---     
+        
 领域 Neighborhood    
 \[陈天权 2009\] / 定义 7\.1\.3   
 \[Rudin 1976\] / 2.18 Definition (a)  
 τ是X上的拓扑 且 x ∈ X  ⇒ ( x ∈ U 且 U是开集(即U ∈ τ) ⇔ U是x的领域 )  
-
+   
 内点 Interior Point  
 \[陈天权 2009\] / 定义 7\.1\.3   
 \[Rudin 1976\] / 2.18 Definition (e)   
@@ -132,10 +135,11 @@ $\displaystyle \mathcal{U}$是$\displaystyle R^n$上的开集 ⇔ ∀$\displayst
 $\displaystyle R^n$上的通常拓扑      
 //\[陈天权 2009\] / 例 7\.1\.5           
 $\displaystyle R^n$上的通常拓扑 T = { $\displaystyle \mathcal{U}$ | $\displaystyle \mathcal{U}$是$\displaystyle R^n$上的开集 }             
-
+    
 //~~一致收敛拓扑(Topology of Uniform Convergence)~~      
-
---- 
+    
+---   
+   
 $\displaystyle R^2$上的内点    
 [同济大学数学系 2014] / 第九章 多元函数微分法及其应用 / 第一节 多元函数的基本概念 / 一、平面点集 *n维空间 / 1. 平面点集    
 内点：如果存在P的某个领域U(P)，使得U(P) ⊂ E，那么称P为E的内点  
@@ -193,6 +197,7 @@ $\displaystyle R^2$上的开集-内点
 > 
    
 ---   
+   
 定理：闭包-聚点/孤立点      
 \[陈天权 2009\] / 命题 7\.1\.2       
 τ是X上的拓扑 且 E ⊂ X ⇒ ( x ∈ $\displaystyle \overline{E}$ ⇔ ∀x的领域U, U∩E≠∅ ) //即$\displaystyle \overline{E}$ = { x : ∀x的领域U, U∩E≠∅ }         
@@ -249,16 +254,25 @@ $\displaystyle R^2$上的闭集
 ---   
 稠密集 Dense Set      
 \[陈天权 2009\] / 定义 7\.1\.9  
-定义： τ是X上的拓扑 且 A ⊂ S ⊂ X ⇒ ( A在S中稠密 ⇔ S ⊂ $\displaystyle \overline{A}$ )            
+定义： X是拓扑空间 且 A ⊂ S ⊂ X ⇒ ( A在S中稠密 ⇔ S ⊂ $\displaystyle \overline{A}$ )            
 //特别地，当A在X中稠密时，$\displaystyle \overline{A}$ = X //显然，X ⊂ $\displaystyle \overline{A}$   
 
 根据“定理：闭包-聚点/孤立点”，A在S中稠密 ⇔ ∀x∈S, ∀x的领域U, U ∩ A ≠ ∅ //S中的任一点可以被A中的点很好的逼近 
+      
+---        
+有理数集Q在实数集R的通常拓扑中稠密 //涉及到实数的戴德金构造法          
+\[陈天权 2009\] / 例 7\.1\.10     
+    
+---           
+可分空间 Separable Space      
+\[陈天权 2009\] / 定义 7\.1\.10  
+定义：X是拓扑空间 ⇒ ( X是可分空间 ⇔ ∃ A ⊂ X, A是可数的 且 A在X中稠密 )        
+          
+根据“定理：闭包-聚点/孤立点”， X是可分空间 ⇔ //存在可数的序列  
+         
+实数集R的通常拓扑是可分的 //有理数集Q是可数的 且 有理数集Q在实数集R的通常拓扑中稠密          
+\[陈天权 2009\] / 定义 7\.1\.10     
 
-
----   
-可分空间 Separable Space       
- 
-       
 ---       
 内部 Interior      
 \[陈天权 2009\] / 定义 7\.1\.7  
