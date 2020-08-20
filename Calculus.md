@@ -318,8 +318,14 @@ $\displaystyle R^2$上的闭集
 //边界一定是闭集   
 //证明  
     
+###    
+---   
+连续函数（拓扑空间） Continuous function (Topological Space)  
+
+
 ---    
-    
+同胚 Homeomorphism /Topological Isomorphism/ Bicontinuous function         
+
     
     
 ---   
@@ -513,7 +519,7 @@ X是豪斯多夫空间 且 K⊂X ⇒ ( K是紧集 ⇒ K是闭集 ) //紧集必�
    
 诱导 Induce   
    
-度量空间 诱导 拓扑空间   
+度量空间 诱导 拓扑空间 //拓扑空间是度量空间的弱化 没有距离的概念 只有领域的概念  
 //\[陈天权 2009\] / 命题 7\.3\.1   
 //\[陈天权 2009\] / 定义 7\.3\.3   
 度量空间 可诱导得到 对应的拓扑空间   
