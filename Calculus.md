@@ -79,15 +79,19 @@ coarser/larger/stronger
         
 ---     
         
-领域 Neighborhood    
+领域 Neighborhood        
 \[陈天权 2009\] / 定义 7\.1\.3   
 \[Rudin 1976\] / 2.18 Definition (a)  
-τ是X上的拓扑 且 x ∈ X  ⇒ ( x ∈ U 且 U是开集(即U ∈ τ) ⇔ U是x的领域 )  
+X是拓扑空间 且 x ∈ X ⇒ ( U ⊂ X 且 ( ∃ A, A是开集 且  x ∈ A 且 A ⊂ U ) ⇔ U是x的领域 )  
+
+开领域 Open Neighbourhood    
+\[陈天权 2009\] / 定义 7\.1\.3     
+X是拓扑空间 且 x ∈ X ⇒ ( U是x的领域 且 U是开集 ⇔ U是x的开领域 )  
    
 内点 Interior Point  
 \[陈天权 2009\] / 定义 7\.1\.3   
 \[Rudin 1976\] / 2.18 Definition (e)   
-τ是X上的拓扑 且 x ∈ X 且 N ⊂ X ⇒ ( ∃ x的领域U, U ⊂ N ⇔ x是N的内点 )   
+X是拓扑空间 且 x ∈ X 且 N ⊂ X ⇒ ( ∃ U, U是x的领域 且 U ⊂ N ⇔ x是N的内点 )   
 
 定理：开集-内点   
 \[陈天权 2009\] / 命题 7\.1\.1   
@@ -321,6 +325,12 @@ $\displaystyle R^2$上的闭集
 ###    
 ---   
 连续函数（拓扑空间） Continuous function (Topological Space)  
+\[陈天权 2009\] / 定义 7\.2\.1   
+X是拓扑空间 且 Y是拓扑空间 且 x ∈ X ⇒ ( 映射f :X→Y在点x处连续 ⇔ ∀ V ⊂ Y V是f(x)的领域, ∃ U ⊂ X, U是x的领域 且 像f(U) ⊂ V )       
+
+由于 包含x的领域的集合一定是x的领域 并且 逆像$\displaystyle \operatorname{f^{-1}}$(V)是X的子集中可能满足对应的像包含于V的最大的集合，上述命题又可以简化为：   
+
+X是拓扑空间 且 Y是拓扑空间 且 x ∈ X ⇒ ( 映射f :X→Y在点x处连续 ⇔ ∀ V ⊂ Y V是f(x)的领域, 逆像$\displaystyle \operatorname{f^{-1}}$(V)是x的领域 )       
 
 
 ---    
