@@ -82,7 +82,7 @@ coarser/larger/stronger
 领域 Neighborhood        
 \[陈天权 2009\] / 定义 7\.1\.3   
 \[Rudin 1976\] / 2.18 Definition (a)  
-X是拓扑空间 且 x ∈ X ⇒ ( U ⊂ X 且 ( ∃ A, A是开集 且  x ∈ A 且 A ⊂ U ) ⇔ U是x的领域 )  
+X是拓扑空间 且 x ∈ X ⇒ ( V ⊂ X 且 ( ∃ U, U是开集 且  x ∈ U 且 U ⊂ V ) ⇔ V是x的领域 )  
 
 开领域 Open Neighbourhood    
 \[陈天权 2009\] / 定义 7\.1\.3     
@@ -91,7 +91,7 @@ X是拓扑空间 且 x ∈ X ⇒ ( U是x的领域 且 U是开集 ⇔ U是x的开
 内点 Interior Point  
 \[陈天权 2009\] / 定义 7\.1\.3   
 \[Rudin 1976\] / 2.18 Definition (e)   
-X是拓扑空间 且 x ∈ X 且 N ⊂ X ⇒ ( ∃ U, U是x的领域 且 U ⊂ N ⇔ x是N的内点 )   
+X是拓扑空间 且 x ∈ X 且 E ⊂ X ⇒ ( ∃ U, U是x的领域 且 U ⊂ E ⇔ x是N的内点 )   
 
 定理：开集-内点   
 \[陈天权 2009\] / 命题 7\.1\.1   
@@ -106,8 +106,8 @@ X是拓扑空间 且 x ∈ X 且 N ⊂ X ⇒ ( ∃ U, U是x的领域 且 U ⊂ N
 > 即x是E的内点  
 > 
 > 充分性  
-> 对任意x ∈ E 存在x的领域$\displaystyle U_x$ 满足 $\displaystyle U_x$ ⊂ E  
-> 因此 以上领域的并集 $\displaystyle \bigcup_{x \isin E} U_x$ ⊂ E  
+> 对任意x ∈ E 存在x的开领域$\displaystyle U_x$ 满足 $\displaystyle U_x$ ⊂ E //根据领域的定义，只要存在领域就一定存在开领域       
+> 因此 以上开领域的并集 $\displaystyle \bigcup_{x \isin E} U_x$ ⊂ E  
 >
 > 并且 对任意x ∈ E 一定有x ∈ 以上其中的某一个$\displaystyle U_x$   
 > 因此 E ⊂ $\displaystyle \bigcup_{x \isin E} U_x$  
@@ -157,23 +157,23 @@ $\displaystyle R^2$上的开集-内点
 极点(Limit Point)/聚点(Cluster Point / Accumulation Point)     
 \[陈天权 2009\] / 定义 7\.1\.6   
 \[Rudin 1976\] / 2.18 Definition (b)   
-τ是X上的拓扑 且 E ⊂ X ⇒ ( x是E的聚点 ⇔ x ∈ E 且 ∀ x的领域U, (U - {x}) ∩ E ≠ ∅ )      
+X是拓扑空间 且 E ⊂ X ⇒ ( x是E的聚点 ⇔ x ∈ E 且 ∀ x的领域U, (U - {x}) ∩ E ≠ ∅ )      
 
 孤立点(Isolated Point)   
 \[陈天权 2009\] / 定义 7\.1\.6   
 \[Rudin 1976\] / 2.18 Definition (c)   
-τ是X上的拓扑 且 E ⊂ X ⇒ ( x是E的孤立点 ⇔ x ∈ E 且 x不是E的聚点（即 ∃ x的领域U, (U - {x}) ∩ E = ∅） )  
+X是拓扑空间 且 E ⊂ X ⇒ ( x是E的孤立点 ⇔ x ∈ E 且 x不是E的聚点（即 ∃ x的领域U, (U - {x}) ∩ E = ∅） )  
    
 导集(Derived Set)    
 \[陈天权 2009\] / 定义 7\.1\.6   
 \[Rudin 1976\] / 2.26 Definition
-τ是X上的拓扑 且 E ⊂ X ⇒ E的导集E' = { x : x是E的聚点 }  
+X是拓扑空间 且 E ⊂ X ⇒ E的导集E' = { x : x是E的聚点 }  
       
 ---   
 
 闭集 Closed Set    
 \[陈天权 2009\] / 定义 7\.1\.4      
-τ是X上的拓扑 ⇒ ( X - U 是开集 ⇔ U是闭集 )                 
+X是拓扑空间 ⇒ ( X - U 是开集 ⇔ U是闭集 )                 
      
 并且 可以用 德摩根定律(De Morgan's laws) 证明：    
 对X上的离散拓扑： ∅是闭集 X是闭集 //一个集合可能既是开集又是闭集     
@@ -184,9 +184,9 @@ $\displaystyle R^2$上的开集-内点
 闭包 Closure   
 \[陈天权 2009\] / 定义 7\.1\.5      
 \[Rudin 1976\] / 2\.27 Theorem         
-定义： τ是X上的拓扑 且 E ⊂ X ⇒ E的闭包 $\displaystyle \overline{E}$ = $\displaystyle \bigcap_{S是闭集 且 E ⊂ S} S$ //E的闭包是所有包含E的闭集的交集    
+定义： X是拓扑空间 且 E ⊂ X ⇒ E的闭包 $\displaystyle \overline{E}$ = $\displaystyle \bigcap_{S是闭集 且 E ⊂ S} S$ //E的闭包是所有包含E的闭集的交集    
 
-定理： τ是X上的拓扑 且 E ⊂ X ⇒ ( E是闭集 ⇔ E = $\displaystyle \overline{E}$ ) //E的闭包是包含E的“最小”闭集   
+定理： X是拓扑空间 且 E ⊂ X ⇒ ( E是闭集 ⇔ E = $\displaystyle \overline{E}$ ) //E的闭包是包含E的“最小”闭集   
 
 > 证明  
 >   
@@ -204,7 +204,7 @@ $\displaystyle R^2$上的开集-内点
    
 定理：闭包-聚点/孤立点      
 \[陈天权 2009\] / 命题 7\.1\.2       
-τ是X上的拓扑 且 E ⊂ X ⇒ ( x ∈ $\displaystyle \overline{E}$ ⇔ ∀x的领域U, U∩E≠∅ ) //即$\displaystyle \overline{E}$ = { x : ∀x的领域U, U∩E≠∅ }         
+X是拓扑空间 且 E ⊂ X ⇒ ( x ∈ $\displaystyle \overline{E}$ ⇔ ∀x的领域U, U∩E≠∅ ) //即$\displaystyle \overline{E}$ = { x : ∀x的领域U, U∩E≠∅ }         
    
 > 证明    
 >   
@@ -233,12 +233,12 @@ $\displaystyle R^2$上的开集-内点
 定理：闭包-导集   
 \[陈天权 2009\] / 定义 7\.1\.6   
 \[Rudin 1976\] / 2\.26 Definition     
-τ是X上的拓扑 且 E ⊂ X ⇒ ( $\displaystyle \overline{E}$ = E ∪ E' )           
+X是拓扑空间 且 E ⊂ X ⇒ ( $\displaystyle \overline{E}$ = E ∪ E' )           
     
 > 证明     
 > 
 > 由于  
-> $\displaystyle \overline{E}$ = { x : ∀ x的领域U, U ∩ E ≠ ∅ } //根据上面已经证明的定理   
+> $\displaystyle \overline{E}$ = { x : ∀ x的领域U, U ∩ E ≠ ∅ } //根据”定理：闭包-聚点/孤立点“    
 > E = { x : {x} ∩ E ≠ ∅ } //显然  
 > E' = { x : ∀ x的领域U, (U - {x}) ∩ E ≠ ∅ } //根据 聚点 和 导集 的定义  
 >   
@@ -334,10 +334,10 @@ X是拓扑空间 且 Y是拓扑空间 且 x ∈ X ⇒ ( 映射f :X→Y在点x处
 
 
 ---    
-同胚 Homeomorphism /Topological Isomorphism/ Bicontinuous function         
-
+同胚 Homeomorphism /Topological Isomorphism /Bicontinuous function         
     
-    
+     
+     
 ---   
    
 #### 完备集 Perfect Set    
