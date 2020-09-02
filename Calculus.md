@@ -326,11 +326,20 @@ $\displaystyle R^2$上的闭集
 ---   
 连续函数（拓扑空间） Continuous function (Topological Space)  
 \[陈天权 2009\] / 定义 7\.2\.1   
+
+在点x处连续   
 X是拓扑空间 且 Y是拓扑空间 且 x ∈ X ⇒ ( 映射f :X→Y在点x处连续 ⇔ ∀ V ⊂ Y V是f(x)的领域, ∃ U ⊂ X, U是x的领域 且 像f(U) ⊂ V )       
 
-由于 包含x的领域的集合一定是x的领域 并且 逆像$\displaystyle \operatorname{f^{-1}}$(V)是X的子集中可能满足对应的像包含于V的最大的集合，上述命题又可以简化为：   
+由于 包含x的领域的集合一定是x的领域 并且 逆像$\displaystyle \operatorname{f^{-1}}$(V)是X的子集中可能满足对应的像包含于V的最大的集合，上述命题又可以简化为： X是拓扑空间 且 Y是拓扑空间 且 x ∈ X ⇒ ( 映射f :X→Y在点x处连续 ⇔ ∀ V ⊂ Y V是f(x)的领域, 逆像$\displaystyle \operatorname{f^{-1}}$(V)是x的领域 )       
 
-X是拓扑空间 且 Y是拓扑空间 且 x ∈ X ⇒ ( 映射f :X→Y在点x处连续 ⇔ ∀ V ⊂ Y V是f(x)的领域, 逆像$\displaystyle \operatorname{f^{-1}}$(V)是x的领域 )       
+在集合上连续   
+X是拓扑空间 且 Y是拓扑空间 且 A ⊂ X ⇒ ( 映射f :X→Y在A上连续 ⇔ ∀ x ∈ A, 映射f :X→Y在点x处连续 )    
+
+在定义域上连续  
+X是拓扑空间 且 Y是拓扑空间 ⇒ ( 映射f :X→Y连续 ⇔ 映射f :X→Y在X上连续 )    
+
+---    
+X是拓扑空间 且 Y是拓扑空间 ⇒ ( 映射f :X→Y连续 ⇔ 映射f :X→Y在X上连续 )    
 
 
 ---    
