@@ -325,64 +325,77 @@ $\displaystyle R^2$上的闭集
 ###    
 ---   
 连续函数（拓扑空间） Continuous function (Topological Space)  
-\[陈天权 2009\] / 定义 7\.2\.1   
-
----       
+\[陈天权 2009\] / 定义 7\.2\.1      
+           
+X是拓扑空间 且 Y是拓扑空间 且 x ∈ X ⇒ ( 映射f : X→Y在点x处连续 ⇔ ∀ V是Y中f(x)的领域, ∃ U是X中x的领域 且 f(U) ⊂ V ) //在点x处连续 //像f(U) //半开半闭区间不属于(R的通常拓扑上的)领域               
       
-在点x处连续   
-X是拓扑空间 且 Y是拓扑空间 且 x ∈ X ⇒ ( 映射f :X→Y在点x处连续 ⇔ ∀ V ⊂ Y V是f(x)的领域, ∃ U ⊂ X, U是x的领域 且 像f(U) ⊂ V )       
-
-由于 包含x的领域的集合一定是x的领域 并且 逆像$\displaystyle \operatorname{f^{-1}}$(V)是X的子集中可能满足对应的像包含于V的最大的集合，上述命题又可以简化为：  
-   
-X是拓扑空间 且 Y是拓扑空间 且 x ∈ X ⇒ ( 映射f :X→Y在点x处连续 ⇔ ∀ V ⊂ Y V是f(x)的领域, 逆像$\displaystyle \operatorname{f^{-1}}$(V)是x的领域 )   
-      
-> 证明        
->  
->   
+X是拓扑空间 且 Y是拓扑空间 且 x ∈ X ⇒ ( 映射f : X→Y在点x处连续 ⇔ ∀ V是Y中f(x)的领域,$\displaystyle \operatorname{f^{-1}}$(V)是X中x的领域 ) //等价形式 //逆像$\displaystyle \operatorname{f^{-1}}$(V)         
        
----   
-   
-在集合上连续   
-X是拓扑空间 且 Y是拓扑空间 且 A ⊂ X ⇒ ( 映射f :X→Y在A上连续 ⇔ ∀ x ∈ A, 映射f :X→Y在点x处连续 )    
-   
----   
-   
-在定义域上连续  
-X是拓扑空间 且 Y是拓扑空间 ⇒ ( 映射f :X→Y连续 ⇔ 映射f :X→Y在X上连续 )   
+> 证明         
+>       
+> //包含x的领域的集合一定是x的领域 并且 $\displaystyle \operatorname{f^{-1}}$(V)是X的子集中可能满足对应的像包含于V的最大的集合      
+>      
+        
+X是拓扑空间 且 Y是拓扑空间 且 A ⊂ X ⇒ ( 映射f : X→Y 在A上连续 ⇔ ∀ x ∈ A, 映射f : X→Y 在点x处连续 ) //在集合上连续       
+      
+X是拓扑空间 且 Y是拓扑空间 ⇒ ( 映射f : X→Y 是连续映射 ⇔ 映射f : X→Y 连续 ⇔ 映射f : X→Y 在X上连续 ) //在定义域上连续       
       
 ---    
 
 \[陈天权 2009\] / 命题 7\.2\.1   
-X是拓扑空间 且 Y是拓扑空间 ⇒ ( 映射f :X→Y连续 ⇔ ∀ V ⊂ Y 且 V是开集, 逆像$\displaystyle \operatorname{f^{-1}}$(V)是开集 )    
+X是拓扑空间 且 Y是拓扑空间 ⇒ ( 映射f : X→Y 连续 ⇔ ∀ V是Y中的开集, $\displaystyle \operatorname{f^{-1}}$(V)是X中的开集 )    
    
 > 证明        
 >    
 > 必要性   
 >     
-> 对任意V ⊂ Y 且 V是开集 我们有   
+> 对任意V是Y中的开集 我们有   
 >   
-> 对任意x ∈ 逆像$\displaystyle \operatorname{f^{-1}}$(V)           
+> 对任意x ∈ $\displaystyle \operatorname{f^{-1}}$(V)           
 > 根据逆像的定义 我们有f(x) ⊂ V     
-> 由于 V是开集 根据连续函数的定义 我们有 逆像$\displaystyle \operatorname{f^{-1}}$(V)是x的领域        
+> 由于 V是开集 根据连续函数的定义 我们有 $\displaystyle \operatorname{f^{-1}}$(V)是X中x的领域        
 >    
-> 即 对任意x ∈ 逆像$\displaystyle \operatorname{f^{-1}}$(V) 存在U=逆像$\displaystyle \operatorname{f^{-1}}$(V) U是x的领域 且 U ⊂ 逆像$\displaystyle \operatorname{f^{-1}}$(V)    
-> 根据 开集-内点定理 逆像$\displaystyle \operatorname{f^{-1}}$(V)是开集    
+> 即 对任意x ∈ $\displaystyle \operatorname{f^{-1}}$(V) 存在U=$\displaystyle \operatorname{f^{-1}}$(V) U是X中x的领域 且 U ⊂ $\displaystyle \operatorname{f^{-1}}$(V)    
+> 根据 开集-内点定理 $\displaystyle \operatorname{f^{-1}}$(V)是X中的开集    
 >       
 > 充分性          
 >            
 > 对任意x ∈ X  我们有 
 >    
-> 对任意N ⊂ Y  N是f(x)的领域 我们有         
-> 根据领域的定义 我们有 存在G是开集 满足 f(x) ⊂ G ⊂ N  
+> 对任意N ⊂ Y  N是X中f(x)的领域 我们有         
+> 根据领域的定义 我们有 存在G是X中的开集 满足 f(x) ⊂ G ⊂ N  
 > 
-> 根据命题中的条件 我们有逆像$\displaystyle \operatorname{f^{-1}}$(G)是开集              
-> 由于 f(x) ⊂ G 因此 x ∈ $\displaystyle \operatorname{f^{-1}}$(G) 即 $\displaystyle \operatorname{f^{-1}}$(G) 是 x的领域    
-> 由于 G ⊂ N 因此 $\displaystyle \operatorname{f^{-1}}$(G) ⊂ $\displaystyle \operatorname{f^{-1}}$(N) 根据领域的定义 $\displaystyle \operatorname{f^{-1}}$(N)是x的领域    
+> 根据命题中的条件 我们有 $\displaystyle \operatorname{f^{-1}}$(G)是X中的开集              
+> 由于 f(x) ⊂ G 因此 x ∈ $\displaystyle \operatorname{f^{-1}}$(G) 即 $\displaystyle \operatorname{f^{-1}}$(G)是X中x的领域    
+> 由于 G ⊂ N 因此 $\displaystyle \operatorname{f^{-1}}$(G) ⊂ $\displaystyle \operatorname{f^{-1}}$(N) 根据领域的定义 我们有 $\displaystyle \operatorname{f^{-1}}$(N)是X中x的领域    
 > 
-> 即 对任意N ⊂ Y  N是f(x)的领域 我们有 $\displaystyle \operatorname{f^{-1}}$(N)是x的领域                    
-> 根据连续函数的定义 映射f :X→Y连续       
+> 即 对任意N ⊂ Y  N是f(x)的领域 我们有 $\displaystyle \operatorname{f^{-1}}$(N)是X中x的领域                    
+> 根据连续映射的定义 映射f :X→Y连续       
 >       
 
+\[陈天权 2009\] / 命题 7\.2\.2   
+X是拓扑空间 且 Y是拓扑空间 ⇒ ( 映射f : X→Y 连续 ⇔ ∀ V是Y中的闭集, $\displaystyle \operatorname{f^{-1}}$(V)是X中的开集 )    
+
+//可以用 德摩根定律(De Morgan's laws) 证明    
+   
+---   
+   
+复合映射 Composite  Mapping     
+\[陈天权 2009\] / 命题 7\.2\.3     
+X是拓扑空间 且 Y是拓扑空间 且 Z 是拓扑空间 ⇒ ( 映射f : X→Y 连续 且 映射g : Y→Z 连续 ⇒ 映射 f ∘ g : X→Z 连续 ) //复合映射f ∘ g : X→Z    
+
+> 证明        
+>  
+> 对任意V是Z中的开集 我们有  
+> 
+> 由于 映射g : Y→Z 连续 根据连续映射的定义 我们有 $\displaystyle \operatorname{g^{-1}}$(V)是Y中的开集    
+> 由于 映射f : X→Y 连续 根据连续映射的定义 我们有 $\displaystyle \operatorname{f^{-1}}$[$\displaystyle \operatorname{g^{-1}}$(V)]是X中的开集     
+>    
+> 根据复合映射的定义 我们有 $\displaystyle \operatorname{{(f \circ g)}^{-1}}$(V) = $\displaystyle \operatorname{f^{-1}}$[$\displaystyle \operatorname{g^{-1}}$(V)]     
+> 
+> 即 对任意V是Z中的开集 我们有 $\displaystyle \operatorname{{(f \circ g)}^{-1}}$(V) 是X中的开集    
+> 根据连续函数的定义 映射f ∘ g : X→Z 连续    
+>        
 
 ---    
 同胚 Homeomorphism /Topological Isomorphism /Bicontinuous function         
