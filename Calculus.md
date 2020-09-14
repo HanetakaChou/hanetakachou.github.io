@@ -256,18 +256,21 @@ $\displaystyle R^2$上的闭集
 闭集：如果点集E的边界∂E⊂E，那么称E为闭集   
 
 ---   
-稠密集 Dense Set      
-\[陈天权 2009\] / 定义 7\.1\.9  
+    
+稠密集 Dense Set       
+\[陈天权 2009\] / 定义 7\.1\.9   
 定义： X是拓扑空间 且 A ⊂ S ⊂ X ⇒ ( A在S中稠密 ⇔ S ⊂ $\displaystyle \overline{A}$ )            
-//特别地，当A在X中稠密时，$\displaystyle \overline{A}$ = X //显然，X ⊂ $\displaystyle \overline{A}$   
-
-根据“定理：闭包-聚点/孤立点”，A在S中稠密 ⇔ ∀x∈S, ∀x的领域U, U ∩ A ≠ ∅ //S中的任一点可以被A中的点很好的逼近 
+//特别地，当A在X中稠密时，$\displaystyle \overline{A}$ = X //显然，X ⊂ $\displaystyle \overline{A}$    
+    
+根据“定理：闭包-聚点/孤立点”，A在S中稠密 ⇔ ∀x∈S, ∀x的领域U, U ∩ A ≠ ∅ //S中的任一点可以被A中的点很好的逼近    
       
 ---        
+    
 有理数集Q在实数集R的通常拓扑中稠密 //涉及到实数的戴德金构造法          
 \[陈天权 2009\] / 例 7\.1\.10     
-    
----           
+     
+---            
+     
 可分空间 Separable Space      
 \[陈天权 2009\] / 定义 7\.1\.10  
 定义：X是拓扑空间 ⇒ ( X是可分空间 ⇔ ∃ A ⊂ X, A是可数的 且 A在X中稠密 )        
