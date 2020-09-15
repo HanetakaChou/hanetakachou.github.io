@@ -326,8 +326,10 @@ $\displaystyle R^2$上的闭集
 //证明  
     
 ###    
----   
-连续函数（拓扑空间） Continuous function (Topological Space)  
+    
+---       
+    
+连续函数（拓扑空间） Continuous function (Topological Space)   
 \[陈天权 2009\] / 定义 7\.2\.1      
            
 X是拓扑空间 且 Y是拓扑空间 且 x ∈ X ⇒ ( 映射f : X→Y在点x处连续 ⇔ ∀ V是Y中f(x)的领域, ∃ U是X中x的领域 且 f(U) ⊂ V ) //在点x处连续 //像f(U) //半开半闭区间不属于(R的通常拓扑上的)领域               
@@ -344,7 +346,7 @@ X是拓扑空间 且 Y是拓扑空间 且 A ⊂ X ⇒ ( 映射f : X→Y 在A上�
 X是拓扑空间 且 Y是拓扑空间 ⇒ ( 映射f : X→Y 是连续映射 ⇔ 映射f : X→Y 连续 ⇔ 映射f : X→Y 在X上连续 ) //在定义域上连续       
       
 ---    
-
+     
 \[陈天权 2009\] / 命题 7\.2\.1   
 X是拓扑空间 且 Y是拓扑空间 ⇒ ( 映射f : X→Y 连续 ⇔ ∀ V是Y中的开集, $\displaystyle \operatorname{f^{-1}}$(V)是X中的开集 )    
    
@@ -401,9 +403,17 @@ X是拓扑空间 且 Y是拓扑空间 且 Z 是拓扑空间 ⇒ ( 映射f : X→
 >        
 
 ---    
-同胚 Homeomorphism /Topological Isomorphism /Bicontinuous function         
-    
      
+同胚 Homeomorphism /Topological Isomorphism /Bicontinuous function           
+\[陈天权 2009\] / 定义 7\.2\.2       
+X是拓扑空间 且 Y是拓扑空间 ⇒ ( 映射f : X→Y 是同胚(Homeomorphism) ⇔ 映射f : X→Y 是双射(bijection)(即单射(one-to-one)且满射(onto))  且 映射f : X→Y 连续 且 逆映射$\displaystyle \operatorname{f^{-1}}$ : X→Y 连续(即f是开映射(open mapping)) )    
+     
+同胚的 Homeomorphic     
+\[陈天权 2009\] / 定义 7\.2\.2       
+X是拓扑空间 且 Y是拓扑空间 ⇒ ( X和Y是同胚的(Homeomorphic) ⇔ ∃ 映射f : X→Y 是同胚 )   
+
+显然 拓扑空间之间的同胚是等价关系    
+
      
 ---   
    
