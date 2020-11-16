@@ -1243,14 +1243,40 @@ a < ζ <= b -> ζ ∈ \[a,b\] -> f(x)在ζ上连续 //**注：如果为半开区
 可数可加集函数   
 //可数即和自然数集等势 -> 集合的势/基数     
 
-σ-代数 //σ-Algebra       
+集合环 Ring of Sets  
+\[Rudin 1976\] / 11.1 Definition       
+$\displaystyle \mathcal{R}$是集合环 ⇔ ∅∈$\displaystyle \mathcal{R}$ 且 $\displaystyle \mathcal{R}$对差集(Set Difference)封闭 且 $\displaystyle \mathcal{R}$对并集(Union)封闭    
+
+由于 A ∩ B = A - (A - B)，我们有集合环对交集(Intersection)封闭
+
+单位 Unit  
+X是$\displaystyle \mathcal{R}$的单位 ⇔ X∈$\displaystyle \mathcal{R}$ 且 ∀A∈$\displaystyle \mathcal{R}$,A⊂X   
+
+由于 ∀A∈$\displaystyle \mathcal{R}$,A⊂X ⇔ $\displaystyle \mathcal{R}$ ⊂ ℘(X)，上述命题又可写为 X是$\displaystyle \mathcal{R}$的单位 ⇔ X∈$\displaystyle \mathcal{R}$ 且 $\displaystyle \mathcal{R}$ ⊂ ℘(X)      
+
+集合代数 Algebra of Sets   
+\[Rudin 1976\] / 11.1 Definition       
+$\displaystyle \mathcal{R}$是X上的集合代数 ⇔ $\displaystyle \mathcal{R}$是集合环 且 X是$\displaystyle \mathcal{R}$的单位    
+
+由于X是$\displaystyle \mathcal{R}$的单位， 我们有X∈$\displaystyle \mathcal{R}$ 且 ∀A∈$\displaystyle \mathcal{R}$,A⊂X；又因为$\displaystyle \mathcal{R}$是集合环，我们有$\displaystyle \mathcal{R}$对差集(Set Difference)封闭；因此，$\displaystyle \mathcal{R}$对相对于X的补集(Complement)封闭   
+    
+//σ(delta)      
+   
+σ-环 // σ-Ring     
+\[Rudin 1976\] / 11.1 Definition       
+$\displaystyle \mathcal{R}$是σ-环 ⇔ $\displaystyle \mathcal{R}$是集合环 且 对可数并集(Countable Union)封闭 //关于可数的含义参见集合的基数  
+
+由于$\displaystyle \bigcup_{n \isin \N} A_n$ = $\displaystyle A_1 - \bigcap_{n \isin \N} (A_1 - A_n)$，我们有集合环对可数交集(Countable Intersection)封闭  
+
+σ-代数 //σ-Algebra   
+\[Rudin 1976\] / 11.1 Definition       
 \[陈天权 2009\] / 定义 9.1.1     
-X非空 且 $\displaystyle \mathcal{A}$ ⊂ ℘(X) ⇒ ( $\displaystyle \mathcal{A}$是（X上的）σ代数 ⇔ ∅∈$\displaystyle \mathcal{A}$ 且 ∀A∈$\displaystyle \mathcal{A}$, X−A∈$\displaystyle \mathcal{A}$ 且 ∀k∈$\displaystyle \N$,$\displaystyle A_k$∈$\displaystyle \mathcal{A}$, $\displaystyle \bigcup_{k=1}^{\infin} A_k$∈A )            
-
+$\displaystyle \mathcal{R}$是X上的σ-代数 ⇔ X是$\displaystyle \mathcal{R}$的单位 且 $\displaystyle \mathcal{R}$是σ-环 ⇔ $\displaystyle \mathcal{R}$是X上的集合代数 且 对可数并集(Countable Union)封闭   
+    
 博雷尔代数 Borel Algebra     
-
+   
 博雷尔集 Borel Set            
-
+   
 由于σ-代数对补集运算封闭 根据闭集的定义 //开集或闭集定义博雷尔代数是等价的    
 
            
