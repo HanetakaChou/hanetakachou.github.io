@@ -1230,6 +1230,9 @@ a < ζ <= b -> ζ ∈ \[a,b\] -> f(x)在ζ上连续 //**注：如果为半开区
 
 ### 测度 Measure    
      
+---  
+集函数 Set Function
+
 集合环 Ring of Sets  
 \[Rudin 1976\] / 11.1 Definition       
 $\displaystyle \mathcal{R}$是集合环 ⇔ ∅∈$\displaystyle \mathcal{R}$ 且 $\displaystyle \mathcal{R}$对差集(Set Difference)封闭 且 $\displaystyle \mathcal{R}$对并集(Union)封闭    
@@ -1264,35 +1267,39 @@ $\displaystyle \mathcal{R}$是X上的σ-代数 ⇔ X是$\displaystyle \mathcal{R
 集函数 Set Function    
 \[陈天权 2009\] / 第9章 测度 /序言
 \[Rudin 1976\] / 11.1 Definition       
-μ是$\displaystyle \mathcal{R}$上的集函数 ⇔ μ是$\displaystyle \mathcal{R}$到扩展实数系(R∪{−∞,+∞})的映射   
+μ是$\displaystyle \mathcal{R}$上的集函数 ⇔ μ是$\displaystyle \mathcal{R}$到扩展实数集(R∪{−∞,+∞})的映射   
 
-
-(有限)可加 集函数 //(Finitely) Additive  
+(有限)可加 //(Finitely) Additive  
 \[陈天权 2009\] / 定义 9.1.2     
 \[Rudin 1976\] / 11.2 Definition       
-$\displaystyle \mathcal{R}$是集合代数 且 μ是$\displaystyle \mathcal{R}$上的集函数 ⇒ ( μ是(有限)可加集函数 ⇔ ∀\[不相交(Disjoint)集合A,B∈$\displaystyle \mathcal{R}$\]，我们有\[μ(A ∪ B) = μ(A) +  μ(B)\] ) //可以用数学归纳法推广到有限次      
+$\displaystyle \mathcal{R}$是集合代数 且 μ是$\displaystyle \mathcal{R}$上的集函数 ⇒ ( μ是(有限)可加集函数 ⇔ ∀\{不相交(Disjoint)集合A,B∈$\displaystyle \mathcal{R}$\}，我们有\{μ(A ∪ B) = μ(A) +  μ(B)\} ) //可以用数学归纳法推广到有限次      
 
-可数可加 集函数/σ-可加 集函数  
+可数可加/σ-可加     
 \[陈天权 2009\] / 定义 9.2.3     
 \[Rudin 1976\] / 11.2 Definition  
-$\displaystyle \mathcal{R}$是σ-代数 且 μ是$\displaystyle \mathcal{R}$上的集函数 ⇒ ( μ是(有限)可加集函数 ⇔ ∀\[两两不相交(Pairwise Disjoint)集合$\displaystyle A_1$,$\displaystyle A_2$,...,$\displaystyle A_n$∈$\displaystyle \mathcal{R}$\]，我们有\[μ($\displaystyle \bigcup_{n \isin \N} A_n$) = $\displaystyle \sum_{n \isin \N}$μ($\displaystyle A_n$)\] )     
-
-
+$\displaystyle \mathcal{R}$是σ-代数 且 μ是$\displaystyle \mathcal{R}$上的集函数 ⇒ ( μ是可数可加集函数 ⇔ ∀\{两两不相交(Pairwise Disjoint)集合$\displaystyle A_1$,$\displaystyle A_2$,...,$\displaystyle A_n$∈$\displaystyle \mathcal{R}$\}，我们有\{μ($\displaystyle \bigcup_{n \isin \N} A_n$) = $\displaystyle \sum_{n \isin \N}$μ($\displaystyle A_n$)\} )     
 
 //图形学中的立体角可以看作集函数     
 
 //概率测度   
 //概率论中的 概率密度函数 可以看作集函数 //加法原理    
-\[陈天权 2009\] / 例 9.1.3     
-          
-
-     
+\[陈天权 2009\] / 例 9.1.3                  
 
 博雷尔代数 Borel Algebra     
    
 博雷尔集 Borel Set            
    
-由于σ-代数对补集运算封闭 根据闭集的定义 //开集或闭集定义博雷尔代数是等价的    
+---  
+测度的构造
+
+外测度 //outer/exterior measure //卡拉西奥多里(Caratheodory)  
+\[Rudin 1976\] / 11.8 Theorem  
+\[陈天权 2009\] / 定义 9.3.1    
+μ是X上的外测度 ⇔ μ是℘(X)到非负扩展实数集(\[0,+∞\])的映射 且 μ() = 0 且 ∀\{A,B∈℘(X), A ⊂ B\}，我们有\{μ(A) ≤ μ(B)\} 且 ∀\{集合$\displaystyle A_1$,$\displaystyle A_2$,...,$\displaystyle A_n$∈$\displaystyle \mathcal{R}$\}，我们有\{μ($\displaystyle \bigcup_{n \isin \N} A_n$) ≤ $\displaystyle \sum_{n \isin \N}$μ //次可加性 subadditivity   
+
+\[Rudin 1976\] / 11.7 Definition  
+
+
 
            
 ### 积分 Integral         
