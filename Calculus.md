@@ -1300,16 +1300,16 @@ $\displaystyle \mathcal{R}$是σ-代数 且 μ是$\displaystyle \mathcal{R}$上�
 外测度
 
 外测度 //outer/exterior measure   
-//次可加性(Subadditivity)    
+//次可数可加性 //Countably Subadditive //Countable Subadditivity        
 //卡拉西奥多里(Caratheodory)  
 \[Rudin 1976\] / 11.8 Theorem  
 \[陈天权 2009\] / 定义 9.3.1    
-μ是X上的外测度 ⇔ μ是℘(X)到非负扩展实数集(\[0,+∞\])的映射 且 μ(∅) = 0 且 ∀\"集合A,B ∈ ℘(X) 满足 A ⊂ B\"，有\"μ(A) ≤ μ(B)\" 且 ∀\"集合$\displaystyle A_1$,$\displaystyle A_2$,... ∈ $\displaystyle \mathcal{R}$\"，有\"μ($\displaystyle \bigcup_{n \isin \N} A_n$) ≤ $\displaystyle \sum_{n \isin \N}$μ($\displaystyle A_n$)\"    
+μ是X上的外测度 ⇔ μ是℘(X)到非负扩展实数集(\[0,+∞\])的映射 且 μ(∅) = 0 且 ∀\"集合A,B ∈ ℘(X) 满足 A ⊂ B\"，有\"μ(A) ≤ μ(B)\" 且 ∀\"集合$\displaystyle A_1$,$\displaystyle A_2$,... ∈ ℘(X)\"，有\"μ($\displaystyle \bigcup_{n \isin \N} A_n$) ≤ $\displaystyle \sum_{n \isin \N}$μ($\displaystyle A_n$)\"    
 
 //显然，∀集合X，有\"℘(X)是X上的σ-代数\" //关于定义中μ的定义域          
        
 等价定义    
-μ是X上的外测度 ⇔ μ是℘(X)到非负扩展实数集(\[0,+∞\])的映射 且 μ(∅) = 0 且 ∀\"集合A,$\displaystyle B_1$,$\displaystyle B_2$,... ∈ $\displaystyle \mathcal{R}$\ 满足 A ⊂ $\displaystyle \bigcup_{n \isin \N} B_n$\"，有\"μ(A) ≤ $\displaystyle \sum_{n \isin \N}$μ($\displaystyle B_n$)\"     
+μ是X上的外测度 ⇔ μ是℘(X)到非负扩展实数集(\[0,+∞\])的映射 且 μ(∅) = 0 且 ∀\"集合A,$\displaystyle B_1$,$\displaystyle B_2$,... ∈ ℘(X) 满足 A ⊂ $\displaystyle \bigcup_{n \isin \N} B_n$\"，有\"μ(A) ≤ $\displaystyle \sum_{n \isin \N}$μ($\displaystyle B_n$)\"     
       
 证明   
 > 2 ⇒ 1   
@@ -1327,13 +1327,37 @@ $\displaystyle \mathcal{R}$是σ-代数 且 μ是$\displaystyle \mathcal{R}$上�
 覆盖  
 //覆盖的定义并不依赖于拓扑   
 //见紧空间  
-C = {$\displaystyle U_\alpha$ | α ∈ A } ⇒ ( C是Y的覆盖 ⇔ Y ⊂ $\displaystyle \bigcup_{\alpha \isin A} U_\alpha$ ) //本质上来讲，定义中的指标集(Index Set)可以忽略， 理解为"Y 包含于 C中所有的元素的并集"即可   
+C = { $\displaystyle U_\alpha$ | α ∈ A } ⇒ ( C是Y的覆盖 ⇔ Y ⊂ $\displaystyle \bigcup_{\alpha \isin A} U_\alpha$ )    
+//本质上来讲，定义中的指标集(Index Set)可以忽略， 理解为"Y 包含于 C中所有的元素的并集"即可 //即Y ⊂ $\displaystyle \bigcup_{U \isin C}$U    
 
 构造外测度    
 \[Rudin 1976\] / 11.7 Definition    
 \[陈天权 2009\] / 引理 9.3.1    
-Y ⊂ ℘(X) 且 ∅ ∈ Y 且 p是Y到非负扩展实数集(\[0,+∞\])的映射 且 p(∅)=0 且 φ的定义域为 ℘(X) 且 φ(E) = $\displaystyle \begin{cases} \displaystyle \inf \{ \sum_{n \isin \N} \operatorname{p} ( A_n ) | C = \{ A_n | n \isin \N \} \text{且} \, C \text{是} E \text{的覆盖} \, \text{且} C \subset Y \} & \displaystyle \text{当} \, \exist \text{"}C = \{ A_n | n \isin \N \} \text{","} C \text{是} E \text{的覆盖} \, \text{且} \, C \subset Y \text{"} \, \text{时} \\ +\infty & \displaystyle \text{当} \, \nexists \text{"} C = \{ A_n | n \isin \N \} \text{","} C \text{是} E \text{的覆盖} \, \text{且} \, C \subset Y \text{"} \, \text{时} \end{cases}$ ⇒ φ是X上的外测度     
-//关于φ(E),可以理解为 所有可能的"包含于Y且覆盖E的可数集C" "C中的所有的元素在P中的像的累加"   
+Y ⊂ ℘(X) 且 ∅ ∈ Y 且 p是Y到非负扩展实数集(\[0,+∞\])的映射 且 p(∅)=0 且 φ的定义域为 ℘(X) 且 φ(E) = $\displaystyle \begin{cases} \displaystyle \inf \{ \sum_{A \isin C} \operatorname{p} ( A ) \, | \, C \text{是} \text{可数集} \, \text{且} \, C \text{是} E \text{的覆盖} \, \text{且} C \subset Y \} & \displaystyle \text{当} \, \exist \text{"} C \text{","} C \text{是} \text{可数集} \, \text{且} \, C \text{是} E \text{的覆盖} \, \text{且} \, C \subset Y \text{"} \, \text{时} \\ +\infty & \displaystyle \text{当} \, \nexists \text{"} C \text{","} C \text{是} \text{可数集} \, \text{且} \, C \text{是} E \text{的覆盖} \, \text{且} \, C \subset Y \text{"} \, \text{时} \end{cases}$ ⇒ φ是X上的外测度     
+//关于φ(E)，可以理解为 所有可能的"包含于Y且覆盖E的可数集C" "C中的所有的元素在P中的像的累加"   
+
+证明 
+> 
+> 由于 p(∅)=0 且 p非负，显然 φ(∅)=0  
+> 
+> ∀ \"集合A,B ∈ ℘(X) 满足 A ⊂ B\"，有\"显然 { $\displaystyle \sum_{D \isin C}$p(D) | C是可数集 且 C是A的覆盖 且 C ⊂ Y } ⊂ { $\displaystyle \sum_{D \isin C}$p(D) | C是可数集 且 C是B的覆盖 且 C ⊂ Y }     
+> 根据下确界的定义，显然 φ(A) ≤ φ(B)\"
+>   
+> ∀ \"集合$\displaystyle S_1$,$\displaystyle S_2$,... ∈ ℘(X)\"，有\" 如果 ∃ \' n ∈ $\displaystyle \N$ \'，满足 \' ∄ C是可数集 且 C是$\displaystyle S_n$的覆盖 且 C ⊂ Y \'，那么 ∄ C是可数集 且 C是$\displaystyle \bigcup_{i \isin \N} S_i$的覆盖 且 C ⊂ Y，从而 φ($\displaystyle S_n$)=+∞ 且 φ($\displaystyle \bigcup_{i \isin \N} S_i$)=+∞，从而 φ($\displaystyle \bigcup_{i \isin \N} S_i$) ≤ $\displaystyle \sum_{i \isin \N}$φ($\displaystyle S_i$)成立   
+>  
+> 下面讨论 ∀ \' n ∈ $\displaystyle \N$ \'，有 \' ∃ C是可数集 且 C是$\displaystyle S_n$的覆盖 且 C ⊂ Y \' 的情形   
+> ∀ \' ε > 0 \'，有\'   
+> ∀\'n ∈ $\displaystyle \N$\'，有\'将 正实数=$\displaystyle \frac{\varepsilon}{2^{1+n}}$ 应用到下确界的定理，得到 ∃\'M ∈ { $\displaystyle \sum_{A \isin C}$p(A) | C是可数集 且 C是$\displaystyle S_n$的覆盖 且 C ⊂ Y }\'满足\'M < φ($\displaystyle S_n$) + $\displaystyle \frac{\varepsilon}{2^{n+1}}$\'   
+> 不妨将M记作$\displaystyle C_n$(强调与n的关联)，即 ∃ \'$\displaystyle C_n$是可数集 且 $\displaystyle C_n$是$\displaystyle S_n$的覆盖 且 $\displaystyle C_n$ ⊂ Y 且 $\displaystyle \sum_{A \isin C_n}$p(A) < φ($\displaystyle S_n$) + $\displaystyle \frac{\varepsilon}{2^{n+1}}$\' //一说此处的证明涉及到选择公理 \'    
+> 从而，记K=$\displaystyle \bigcup_{n \isin \N} C_n$，有 K是可数集 且 K是$\displaystyle \bigcup_{n \isin \N} S_n$的覆盖 且 K ⊂ Y，从而 $\displaystyle \sum_{A \isin K}$p(A) ⊂ { $\displaystyle \sum_{A \isin C}$p(A) | C是可数集 且 C是$\displaystyle \bigcup_{n \isin \N} S_n$的覆盖 且 C ⊂ Y }   
+> 根据φ的定义和下确界的定义，有 φ($\displaystyle \bigcup_{n \isin \N} S_n$) ≤ $\displaystyle \sum_{A \isin K}$p(A)    
+> 由于 A∈K则一定有A∈某个$\displaystyle C_n$ 且 p非负，有$\displaystyle \sum_{A \isin K}$p(A) ≤ $\displaystyle \sum_{n \isin N} \sum_{A \isin C_n} \operatorname{p} (A)$   
+> 又根据上文中已证明的结论，$\displaystyle \sum_{n \isin N} \sum_{A \isin C_n} \operatorname{p} (A)$ ≤ $\displaystyle \sum_{n \isin N} \displaystyle$ ( φ($\displaystyle S_n$) + $\displaystyle \frac{\varepsilon}{2^{n+1}}$ )，根据等比数列求和 $\displaystyle \sum_{n \isin N} \displaystyle$ ( φ($\displaystyle S_n$) + $\displaystyle \frac{\varepsilon}{2^{n+1}}$ ) ≤ $\displaystyle \sum_{n \isin N} \displaystyle$ φ($\displaystyle S_n$) + ε  
+\'  
+> 即 ∀ \' ε > 0 \'，有\' φ($\displaystyle \bigcup_{n \isin \N} S_n$) ≤ $\displaystyle \sum_{n \isin N} \displaystyle$ φ($\displaystyle S_n$) + ε \'，从而 φ($\displaystyle \bigcup_{n \isin \N} S_n$) ≤ $\displaystyle \sum_{n \isin N} \displaystyle$ φ($\displaystyle S_n$) \" //注： 根据\" ∀ \'ε > 0\'，有\'a ≤ b + ε\' \" 可以得出 \" a ≤ b \" //用反证法即可证明，假设 a > b，取 ε = $\displaystyle \frac{a-b}{2}$ > 0 即可得出矛盾    
+>    
+
+
            
 ### 积分 Integral         
      
