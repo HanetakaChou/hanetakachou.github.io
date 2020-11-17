@@ -518,11 +518,16 @@ T2空间
 
 //紧 compat -> 有限 finite    
 
+---  
+覆盖 Cover 
+//覆盖的定义并不依赖于拓扑   
+//见构造外测度
+
 开覆盖 Open Cover    
 \[陈天权 2009\] / 定义 7\.6\.1       
 \[Rudin 1976\] / 2\.31 Definition      
     
-τ是X上的拓扑 且 E ⊂ X ⇒ ( $\displaystyle \bigcup_{\alpha \isin A} G_\alpha$是E的开覆盖 ⇔ E ⊂ $\displaystyle \bigcup_{\alpha \isin A} G_\alpha$ 且 ∀α ∈ A, $\displaystyle G_\alpha$是开集 )    
+X是拓扑空间 且 Y ⊂ X 且 C = {$\displaystyle U_\alpha$ | α ∈ A }  ⇒ (  C是Y的覆盖 ⇔ C是E的覆盖 且 ∀"α ∈ A","$\displaystyle U_\alpha$是X上的开集" )    
 
 子覆盖 Subcover   
 \[陈天权 2009\] / 定义 7\.6\.1       
@@ -635,7 +640,7 @@ suppose $\exists \, x \isin E, \, x > M - \epsilon$ is not true
 then $\forall \, x \isin E, \, x <= M - \epsilon$, which implies $M - \epsilon$ is an upper bound of E  
 since $\epsilon > 0$, $M - \epsilon$ is less than M, which contradicts the given statement "M is the least upper bound"  
    
-定理： 设M = supE，则 $\forall  \, \epsilon < 0, \, \exists \, x \isin E, \, x < M + \epsilon$  
+定理： 设M = infE，则 $\forall  \, \epsilon < 0, \, \exists \, x \isin E, \, x < M + \epsilon$  
 证明从略   
    
 ---   
@@ -1319,10 +1324,16 @@ $\displaystyle \mathcal{R}$是σ-代数 且 μ是$\displaystyle \mathcal{R}$上�
 > \"        
 >     
      
+覆盖  
+//覆盖的定义并不依赖于拓扑   
+//见紧空间  
+C = {$\displaystyle U_\alpha$ | α ∈ A } ⇒ ( C是Y的覆盖 ⇔ Y ⊂ $\displaystyle \bigcup_{\alpha \isin A} U_\alpha$ ) //本质上来讲，定义中的指标集(Index Set)可以忽略， 理解为"Y 包含于 C中所有的元素的并集"即可   
+
 构造外测度    
 \[Rudin 1976\] / 11.7 Definition    
 \[陈天权 2009\] / 引理 9.3.1    
-C ⊂ ℘(X) 且 ∅ ∈ C 且 p是C到非负扩展实数集(\[0,+∞\])的映射 且 p(∅)=0 且 φ的定义域为 ℘(X) 且 φ(E) = $\displaystyle \begin{cases} \displaystyle \inf \{ \sum_{n \isin \N} \operatorname{p} ( A_n ) | E \subset \bigcup_{n \isin \N} A_n \text{且} A_n \isin C \} &\text{当} \{ \sum_{n \isin \N} \operatorname{p} ( A_n ) | E \subset \bigcup_{n \isin \N} A_n \text{且} A_n \isin C \} \ne \empty \text{时} \\ \infty &\text{当} \{ \sum_{n \isin \N} \operatorname{p} ( A_n ) | E \subset \bigcup_{n \isin \N} A_n \text{且} A_n \isin C \} = \empty \text{时} \end{cases}$ ⇒ φ是X上的外测度
+Y ⊂ ℘(X) 且 ∅ ∈ Y 且 p是Y到非负扩展实数集(\[0,+∞\])的映射 且 p(∅)=0 且 φ的定义域为 ℘(X) 且 φ(E) = $\displaystyle \begin{cases} \displaystyle \inf \{ \sum_{n \isin \N} \operatorname{p} ( A_n ) | C = \{ A_n | n \isin \N \} \text{且} \, C \text{是} E \text{的覆盖} \, \text{且} C \subset Y \} & \displaystyle \text{当} \, \exist \text{"}C = \{ A_n | n \isin \N \} \text{","} C \text{是} E \text{的覆盖} \, \text{且} \, C \subset Y \text{"} \, \text{时} \\ +\infty & \displaystyle \text{当} \, \nexists \text{"} C = \{ A_n | n \isin \N \} \text{","} C \text{是} E \text{的覆盖} \, \text{且} \, C \subset Y \text{"} \, \text{时} \end{cases}$ ⇒ φ是X上的外测度     
+//关于φ(E),可以理解为 所有可能的"包含于Y且覆盖E的可数集C" "C中的所有的元素在P中的像的累加"   
            
 ### 积分 Integral         
      
