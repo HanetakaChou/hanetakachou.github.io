@@ -30,12 +30,14 @@ sufficiency 充分性
   
 //observation //也表示真命题(用于不含全称量词时)   
 
+//the trivial observation that XXX(同位语从句) //trivial(平凡的,不重要的) //XXX(小前提)成立时的结论   
+
 ... if and only if / iff ... //...当且仅当...  
 ... only if ... //“仅当”（中文一般不用） //...是...的必要条件 即 ...能推出...  
 
 ... such that ... //满足...的...
 
-there exists/is a (associated) ... //存在量词  //associated 相关联的 比如用于极限定义中   
+there exists/is a(n) (associated) ... //存在量词  //associated 相关联的 比如用于极限定义中   
 
 to each //全称量词
 
@@ -52,9 +54,16 @@ since //由于 //因为
 
 by //根据 /比如用于XXX定理    
 
+by appealing to XXX with XXX //这里的appeal可以理解成apply 可以认为将XXX(小前提，往往是特定的取值)应用到XXX(大前提，往往是定理）  
+\+ one finds that //人们发现... //因此 //所以
+
 by symmetry //由于对称性 //同理可得  
 
+from //由于
+
 we have (that) //我们有  
+one has (that) //可以用one(人们)代替we(我们)   
+
 we have observed (that) //我们已经观察到 //我们得到    
 we have shown (that) //我们已经证明 //我们得到   
 

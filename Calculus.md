@@ -577,7 +577,7 @@ X是豪斯多夫空间 且 K⊂X ⇒ ( K是紧集 ⇒ K是闭集 ) //紧集必�
 >               
 > 又因为 E ⊂ $\displaystyle \overline{E}$ //根据闭包的定义，显然      
 > 我们有 E = $\displaystyle \overline{E}$         
-> 
+>       
 > 根据定理“E是闭集 ⇔ E = $\displaystyle \overline{E}$“，E是闭集    
 >          
 >                                                                    
@@ -1247,7 +1247,7 @@ X是$\displaystyle \mathcal{R}$的单位 ⇔ X∈$\displaystyle \mathcal{R}$ 且
 集合代数 Algebra of Sets   
 \[Rudin 1976\] / 11.1 Definition       
 $\displaystyle \mathcal{R}$是X上的集合代数 ⇔ $\displaystyle \mathcal{R}$是集合环 且 X是$\displaystyle \mathcal{R}$的单位    
-
+   
 由于X是$\displaystyle \mathcal{R}$的单位， 我们有X∈$\displaystyle \mathcal{R}$ 且 ∀A∈$\displaystyle \mathcal{R}$,A⊂X；又因为$\displaystyle \mathcal{R}$是集合环，我们有$\displaystyle \mathcal{R}$对差集(Set Difference)封闭；因此，$\displaystyle \mathcal{R}$对相对于X的补集(Complement)封闭   
     
 //σ(delta)      
@@ -1264,6 +1264,8 @@ $\displaystyle \mathcal{R}$是σ-环 ⇔ $\displaystyle \mathcal{R}$是集合环
 \[陈天权 2009\] / 定义 9.1.1     
 $\displaystyle \mathcal{R}$是X上的σ-代数 ⇔ X是$\displaystyle \mathcal{R}$的单位 且 $\displaystyle \mathcal{R}$是σ-环 ⇔ $\displaystyle \mathcal{R}$是X上的集合代数 且 对可数并集(Countable Union)封闭   
     
+//显然，∀集合X，有\{℘(X)是X上的σ-代数\}    
+
 集函数 Set Function    
 \[陈天权 2009\] / 第9章 测度 /序言
 \[Rudin 1976\] / 11.1 Definition       
@@ -1277,7 +1279,7 @@ $\displaystyle \mathcal{R}$是集合代数 且 μ是$\displaystyle \mathcal{R}$�
 可数可加/σ-可加     
 \[陈天权 2009\] / 定义 9.2.3     
 \[Rudin 1976\] / 11.2 Definition  
-$\displaystyle \mathcal{R}$是σ-代数 且 μ是$\displaystyle \mathcal{R}$上的集函数 ⇒ ( μ是可数可加集函数 ⇔ ∀\{两两不相交(Pairwise Disjoint)集合$\displaystyle A_1$,$\displaystyle A_2$,...,$\displaystyle A_n$∈$\displaystyle \mathcal{R}$\}，我们有\{μ($\displaystyle \bigcup_{n \isin \N} A_n$) = $\displaystyle \sum_{n \isin \N}$μ($\displaystyle A_n$)\} )     
+$\displaystyle \mathcal{R}$是σ-代数 且 μ是$\displaystyle \mathcal{R}$上的集函数 ⇒ ( μ是可数可加集函数 ⇔ ∀\{两两不相交(Pairwise Disjoint)集合$\displaystyle A_1$,$\displaystyle A_2$,... ∈ $\displaystyle \mathcal{R}$\}，有\{μ($\displaystyle \bigcup_{n \isin \N} A_n$) = $\displaystyle \sum_{n \isin \N}$μ($\displaystyle A_n$)\} )     
 
 //图形学中的立体角可以看作集函数     
 
@@ -1290,17 +1292,37 @@ $\displaystyle \mathcal{R}$是σ-代数 且 μ是$\displaystyle \mathcal{R}$上�
 博雷尔集 Borel Set            
    
 ---  
-测度的构造
+外测度
 
-外测度 //outer/exterior measure //卡拉西奥多里(Caratheodory)  
+外测度 //outer/exterior measure   
+//次可加性(Subadditivity)    
+//卡拉西奥多里(Caratheodory)  
 \[Rudin 1976\] / 11.8 Theorem  
 \[陈天权 2009\] / 定义 9.3.1    
-μ是X上的外测度 ⇔ μ是℘(X)到非负扩展实数集(\[0,+∞\])的映射 且 μ() = 0 且 ∀\{A,B∈℘(X), A ⊂ B\}，我们有\{μ(A) ≤ μ(B)\} 且 ∀\{集合$\displaystyle A_1$,$\displaystyle A_2$,...,$\displaystyle A_n$∈$\displaystyle \mathcal{R}$\}，我们有\{μ($\displaystyle \bigcup_{n \isin \N} A_n$) ≤ $\displaystyle \sum_{n \isin \N}$μ //次可加性 subadditivity   
+μ是X上的外测度 ⇔ μ是℘(X)到非负扩展实数集(\[0,+∞\])的映射 且 μ(∅) = 0 且 ∀\"集合A,B ∈ ℘(X) 满足 A ⊂ B\"，有\"μ(A) ≤ μ(B)\" 且 ∀\"集合$\displaystyle A_1$,$\displaystyle A_2$,... ∈ $\displaystyle \mathcal{R}$\"，有\"μ($\displaystyle \bigcup_{n \isin \N} A_n$) ≤ $\displaystyle \sum_{n \isin \N}$μ($\displaystyle A_n$)\"    
 
-\[Rudin 1976\] / 11.7 Definition  
-
-
-
+//显然，∀集合X，有\"℘(X)是X上的σ-代数\" //关于定义中μ的定义域          
+       
+等价定义    
+μ是X上的外测度 ⇔ μ是℘(X)到非负扩展实数集(\[0,+∞\])的映射 且 μ(∅) = 0 且 ∀\"集合A,$\displaystyle B_1$,$\displaystyle B_2$,... ∈ $\displaystyle \mathcal{R}$\ 满足 A ⊂ $\displaystyle \bigcup_{n \isin \N} B_n$\"，有\"μ(A) ≤ $\displaystyle \sum_{n \isin \N}$μ($\displaystyle B_n$)\"     
+      
+证明   
+> 2 ⇒ 1   
+> 取 $\displaystyle B_1$=B $\displaystyle B_2$,... =∅ 即可得到 ∀\"集合A,B ∈ ℘(X) 满足 A ⊂ B\"，有\"μ(A) ≤ μ(B)\"   
+> 显然，由于$\displaystyle \bigcup_{n \isin \N} B_n$ ⊂ $\displaystyle \bigcup_{n \isin \N} B_n$，取 A=$\displaystyle \bigcup_{n \isin \N} B_n$, 有\"μ($\displaystyle \bigcup_{n \isin \N} A_n$) ≤ $\displaystyle \sum_{n \isin \N}$μ($\displaystyle A_n$)\"   
+>     
+> 1 ⇒ 2   
+>  ∀\"集合A,B ∈ ℘(X) 满足 A ⊂ $\displaystyle \bigcup_{n \isin \N} B_n$\"，有\"    
+> μ(A) ≤ μ($\displaystyle \bigcup_{n \isin \N} B_n$) //∀\"集合A,B ∈ ℘(X) 满足 A ⊂ B\"          
+> μ($\displaystyle \bigcup_{n \isin \N} B_n$) ≤ $\displaystyle \sum_{n \isin \N}$μ($\displaystyle B_n$) //∀\"集合$\displaystyle A_1$,$\displaystyle A_2$,... ∈ $\displaystyle \mathcal{R}$\"      
+> 即 μ(A) ≤ μ($\displaystyle \bigcup_{n \isin \N} B_n$) ≤ $\displaystyle \sum_{n \isin \N}$μ($\displaystyle B_n$)    
+> \"        
+>     
+     
+构造外测度    
+\[Rudin 1976\] / 11.7 Definition    
+\[陈天权 2009\] / 引理 9.3.1    
+C ⊂ ℘(X) 且 ∅ ∈ C 且 p是C到非负扩展实数集(\[0,+∞\])的映射 且 p(∅)=0 且 φ的定义域为 ℘(X) 且 φ(E) = $\displaystyle \begin{cases} \displaystyle \inf \{ \sum_{n \isin \N} \operatorname{p} ( A_n ) | E \subset \bigcup_{n \isin \N} A_n \text{且} A_n \isin C \} &\text{当} \{ \sum_{n \isin \N} \operatorname{p} ( A_n ) | E \subset \bigcup_{n \isin \N} A_n \text{且} A_n \isin C \} \ne \empty \text{时} \\ \infty &\text{当} \{ \sum_{n \isin \N} \operatorname{p} ( A_n ) | E \subset \bigcup_{n \isin \N} A_n \text{且} A_n \isin C \} = \empty \text{时} \end{cases}$ ⇒ φ是X上的外测度
            
 ### 积分 Integral         
      
