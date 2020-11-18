@@ -1,3 +1,14 @@
+## License  
+```  
+Copyright (C) YuqiaoZhang
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License along with this program.  If not, see <https://www.gnu.org/licenses/>
+```  
+   
 ### 集合    
 
 等价关系 等价类 商集 划分    
@@ -1301,7 +1312,6 @@ $\displaystyle \mathcal{R}$是σ-代数 且 μ是$\displaystyle \mathcal{R}$上�
 
 外测度 //outer/exterior measure   
 //次可数可加性 //Countably Subadditive //Countable Subadditivity        
-//卡拉西奥多里(Caratheodory)  
 \[Rudin 1976\] / 11.8 Theorem  
 \[陈天权 2009\] / 定义 9.3.1    
 μ是X上的外测度 ⇔ μ是℘(X)到非负扩展实数集(\[0,+∞\])的映射 且 μ(∅) = 0 且 ∀\"集合A,B ∈ ℘(X) 满足 A ⊂ B\"，有\"μ(A) ≤ μ(B)\" 且 ∀\"集合$\displaystyle A_1$,$\displaystyle A_2$,... ∈ ℘(X)\"，有\"μ($\displaystyle \bigcup_{n \isin \N} A_n$) ≤ $\displaystyle \sum_{n \isin \N}$μ($\displaystyle A_n$)\"    
@@ -1356,9 +1366,22 @@ Y ⊂ ℘(X) 且 ∅ ∈ Y 且 p是Y到非负扩展实数集(\[0,+∞\])的映�
 \'  
 > 即 ∀ \' ε > 0 \'，有\' φ($\displaystyle \bigcup_{n \isin \N} S_n$) ≤ $\displaystyle \sum_{n \isin N} \displaystyle$ φ($\displaystyle S_n$) + ε \'，从而 φ($\displaystyle \bigcup_{n \isin \N} S_n$) ≤ $\displaystyle \sum_{n \isin N} \displaystyle$ φ($\displaystyle S_n$) \" //注： 根据\" ∀ \'ε > 0\'，有\'a ≤ b + ε\' \" 可以得出 \" a ≤ b \" //用反证法即可证明，假设 a > b，取 ε = $\displaystyle \frac{a-b}{2}$ > 0 即可得出矛盾    
 >    
+   
+---   
+卡拉西奥多里 //Caratheodory     
 
+卡拉西奥多里准则(Caratheodory's Criterion)  
+\[陈天权 2009\] / 定义 9.4.1    
+μ是X上的外测度 且 E ⊂ X ⇒ ( E是μ-可测的(μ-measurable) ⇔ ∀\"A ⊂ X\",有\"μ(A) = μ(A ∩ E) + μ(A ∩ $\displaystyle \complement_{X}$E)" )   
 
-           
+注：由于A = (A ∩ E) ∪ (A ∩ $\displaystyle \complement_{X}$E)，根据外侧度的定义(次可数可加性)，∀\"A ⊂ X\",有\"μ(A) ≤ μ(A ∩ E) + μ(A ∩ $\displaystyle \complement_{X}$E)\" 一定成立；因此，上述定义的等价形式为∀\"A ⊂ X\",有\"μ(A) ≥ μ(A ∩ E) + μ(A ∩ $\displaystyle \complement_{X}$E)\"   
+
+卡拉西奥多里扩张定理(Caratheodory's Extension Theorem)     
+\[Rudin 1976\] / 11.10 Theorem  
+\[陈天权 2009\] / 定义 9.4.1     
+
+---   
+              
 ### 积分 Integral         
      
 定积分/黎曼积分 Riemann Integral   
