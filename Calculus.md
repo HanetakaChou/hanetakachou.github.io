@@ -1268,14 +1268,14 @@ $\displaystyle \mathcal{R}$是X上的集合代数 ⇔ $\displaystyle \mathcal{R}
     
 //σ(delta)      
    
-σ-环 // σ-Ring     
+σ-环 // σ-Ring //Sigma-Ring    
 \[Rudin 1976\] / 11.1 Definition       
 $\displaystyle \mathcal{R}$是σ-环 ⇔ $\displaystyle \mathcal{R}$是集合环 且 对可数并集(Countable Union)封闭 //可数即和自然数集等势 参见 集合的势/基数   
   
 
 由于$\displaystyle \bigcup_{n \isin \N} A_n$ = $\displaystyle A_1 - \bigcap_{n \isin \N} (A_1 - A_n)$，我们有集合环对可数交集(Countable Intersection)封闭  
 
-σ-代数 //σ-Algebra   
+σ-代数 //σ-Algebra //Sigma-Algebra  
 \[Rudin 1976\] / 11.1 Definition       
 \[陈天权 2009\] / 定义 9.1.1     
 $\displaystyle \mathcal{R}$是X上的σ-代数 ⇔ X是$\displaystyle \mathcal{R}$的单位 且 $\displaystyle \mathcal{R}$是σ-环 ⇔ $\displaystyle \mathcal{R}$是X上的集合代数 且 对可数并集(Countable Union)封闭   
@@ -1376,9 +1376,14 @@ Y ⊂ ℘(X) 且 ∅ ∈ Y 且 p是Y到非负扩展实数集(\[0,+∞\])的映�
 
 注：由于A = (A ∩ E) ∪ (A ∩ $\displaystyle \complement_{X}$E)，根据外侧度的定义(次可数可加性)，∀\"A ⊂ X\",有\"μ(A) ≤ μ(A ∩ E) + μ(A ∩ $\displaystyle \complement_{X}$E)\" 一定成立；因此，上述定义的等价形式为∀\"A ⊂ X\",有\"μ(A) ≥ μ(A ∩ E) + μ(A ∩ $\displaystyle \complement_{X}$E)\"   
 
-卡拉西奥多里扩张定理(Caratheodory's Extension Theorem)     
+可测集构成σ-代数 //Measurable Sets form Sigma-Algebra   
 \[Rudin 1976\] / 11.10 Theorem  
-\[陈天权 2009\] / 定义 9.4.1     
+\[陈天权 2009\] / 定义 9.4.1      
+μ是X上的外测度 且 M = { E | E ⊂ X 且 E是μ-可测的 } ⇒ M是σ-代数
+
+
+
+卡拉西奥多里扩张定理(Caratheodory's Extension Theorem)     
 
 ---   
               

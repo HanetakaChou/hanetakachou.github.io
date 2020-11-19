@@ -27,10 +27,12 @@ counterexample 反例
 
 necessity 必要性  
 sufficiency 充分性  
-  
+
 //observation //也表示真命题(用于不含全称量词时)   
 
 //the trivial observation that XXX(同位语从句) //trivial(平凡的,不重要的) //XXX(小前提)成立时的结论   
+
+claim //宣称 //一般用于声明分步证明的证明过程中的各个引理   
 
 ... if and only if / iff ... //...当且仅当...  
 ... only if ... //“仅当”（中文一般不用） //...是...的必要条件 即 ...能推出...  
@@ -44,7 +46,7 @@ to each //全称量词
 and / but //且   
   
 let //不妨设  
-call it a //将它称作a  
+call it a //将它称作a //记作     
 
 suppose //假设 //比如用于反证法  
 
