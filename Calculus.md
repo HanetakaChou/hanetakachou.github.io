@@ -45,7 +45,7 @@ Cantor //\[Rudin 1976\] / 2\.14 Theorem
 
 
 ### 拓扑 Topology
-//补集 Complement   
+//补集 Complement //完成 Complete       
 
 幂集 Power Set   
 $\displaystyle \wp(X)$ //X的所有子集    
@@ -1255,6 +1255,8 @@ $\displaystyle \mathcal{R}$是集合环 ⇔ ∅∈$\displaystyle \mathcal{R}$ �
 
 由于 A ∩ B = A - (A - B)，我们有集合环对交集(Intersection)封闭
 
+//可以用数学归纳法将并集推广到有限次 //Finite Union       
+
 单位 Unit  
 X是$\displaystyle \mathcal{R}$的单位 ⇔ X∈$\displaystyle \mathcal{R}$ 且 ∀A∈$\displaystyle \mathcal{R}$,A⊂X   
 
@@ -1264,9 +1266,22 @@ X是$\displaystyle \mathcal{R}$的单位 ⇔ X∈$\displaystyle \mathcal{R}$ 且
 \[Rudin 1976\] / 11.1 Definition       
 $\displaystyle \mathcal{R}$是X上的集合代数 ⇔ $\displaystyle \mathcal{R}$是集合环 且 X是$\displaystyle \mathcal{R}$的单位    
    
-由于X是$\displaystyle \mathcal{R}$的单位， 我们有X∈$\displaystyle \mathcal{R}$ 且 ∀A∈$\displaystyle \mathcal{R}$,A⊂X；又因为$\displaystyle \mathcal{R}$是集合环，我们有$\displaystyle \mathcal{R}$对差集(Set Difference)封闭；因此，$\displaystyle \mathcal{R}$对相对于X的补集(Complement)封闭   
+等价定义  
+$\displaystyle \mathcal{R}$是X上的集合代数 ⇔ X是$\displaystyle \mathcal{R}$的单位 且 $\displaystyle \mathcal{R}$对(相对于X的)补集(Complement)封闭 且 $\displaystyle \mathcal{R}$对并集封闭     
+证明   
+>   
+> 1 ⇒ 2    
+> 由于X是$\displaystyle \mathcal{R}$的单位，有X∈$\displaystyle \mathcal{R}$ 且 ∀A∈$\displaystyle \mathcal{R}$，A⊂X；又因为$\displaystyle \mathcal{R}$对差集封闭；因此，$\displaystyle \mathcal{R}$对补集封闭   
+>     
+> 2 ⇒ 1         
+> 由于 A - B = $\displaystyle \complement_{X}$($\displaystyle \complement_{X}$A ∪ B)，又因为$\displaystyle \mathcal{R}$对补集和并集封闭；因此，$\displaystyle \mathcal{R}$对差集封闭    
+>     
+>              
     
-//σ(delta)      
+   
+     
+---        
+//σ(Sigma)      
    
 σ-环 // σ-Ring //Sigma-Ring    
 \[Rudin 1976\] / 11.1 Definition       
@@ -1372,16 +1387,37 @@ Y ⊂ ℘(X) 且 ∅ ∈ Y 且 p是Y到非负扩展实数集(\[0,+∞\])的映�
 
 卡拉西奥多里准则(Caratheodory's Criterion)  
 \[陈天权 2009\] / 定义 9.4.1    
-μ是X上的外测度 且 E ⊂ X ⇒ ( E是μ-可测的(μ-measurable) ⇔ ∀\"A ⊂ X\",有\"μ(A) = μ(A ∩ E) + μ(A ∩ $\displaystyle \complement_{X}$E)" )   
+μ是X上的外测度 且 E ⊂ X ⇒ ( E是μ-可测的(μ-measurable) ⇔ ∀\"A ⊂ X\",有\"μ(A) = μ(A ∩ E) + μ(A ∩ $\displaystyle \complement_{X}$E)\" ) 
+
+//一说\"μ(A) = μ(A ∩ E) + μ(A - E)\" //可以理解为用E将A“分割”开       
 
 注：由于A = (A ∩ E) ∪ (A ∩ $\displaystyle \complement_{X}$E)，根据外侧度的定义(次可数可加性)，∀\"A ⊂ X\",有\"μ(A) ≤ μ(A ∩ E) + μ(A ∩ $\displaystyle \complement_{X}$E)\" 一定成立；因此，上述定义的等价形式为∀\"A ⊂ X\",有\"μ(A) ≥ μ(A ∩ E) + μ(A ∩ $\displaystyle \complement_{X}$E)\"   
 
 可测集构成σ-代数 //Measurable Sets form Sigma-Algebra   
 \[Rudin 1976\] / 11.10 Theorem  
 \[陈天权 2009\] / 定义 9.4.1      
-μ是X上的外测度 且 M = { E | E ⊂ X 且 E是μ-可测的 } ⇒ M是σ-代数
-
-
+μ是X上的外测度 且 M = { E | E ⊂ X 且 E是μ-可测的 } ⇒ M是σ-代数    
+      
+证明      
+>    
+> 显然 μ(A ∩ X) = μ(X) 且 μ(A ∩ $\displaystyle \complement_{X}$X) = μ(A ∩ ∅) = μ(∅) = 0，有 μ(X) = μ(A ∩ X) + μ(A ∩ $\displaystyle \complement_{X}$X)，从而 X ∈ M //X是M的单位       
+> 
+> 对任意 E ∈ M，根据 卡拉西奥多里准则 的定义，显然 有$\displaystyle \complement_{X}$E ∈ M //M对补集封闭   
+>        
+> 对任意 E ∈ M，F ∈ M，     
+> μ(A) \= μ(A ∩ E) + μ(A ∩ $\displaystyle \complement_{X}$E) //将A = A且E = E应用到定义"卡拉西奥多里准则"      
+> \= ( μ(A ∩ E ∩ F) + μ(A ∩ E ∩ $\displaystyle \complement_{X}$F) ) + μ(A ∩ $\displaystyle \complement_{X}$E) //将A = A ∩ E且E = F应用到定义"卡拉西奥多里准则"          
+> \= μ(A ∩ E ∩ F) + μ(A ∩ E ∩ $\displaystyle \complement_{X}$F) + ( μ(A ∩ $\displaystyle \complement_{X}$E ∩ F) + μ(A ∩ $\displaystyle \complement_{X}$E ∩ $\displaystyle \complement_{X}$F) ) //将A = A ∩ $\displaystyle \complement_{X}$E且E = F应用到定义"卡拉西奥多里准则"   
+> ≥ μ(A ∩ (E ∪ F)) + μ(A ∩ $\displaystyle \complement_{X}$E ∩ $\displaystyle \complement_{X}$F) //因为(E ∩ F)∪(E ∩ $\displaystyle \complement_{X}$F)∪($\displaystyle \complement_{X}$E ∩ F) = E ∪ F，又根据外侧度的定义(次可数可加性)    
+> \= μ(A ∩ (E ∪ F)) + μ(A ∩ $\displaystyle \complement_{X}$(E ∪ F))   
+> 即 E ∪ F ∈ M //根据上文，由于≤一定成立，因此≥是=的充分必要条件(等价形式) //M对并集封闭    
+>     
+> 使用数学归纳法可以将对并集封闭推广到有限次       
+>  
+> 下面证明对可数并集封闭   
+> 对任意 $\displaystyle E_1$ ∈ M，$\displaystyle E_2$ ∈ M，...，     
+>     
+>    
 
 卡拉西奥多里扩张定理(Caratheodory's Extension Theorem)     
 
