@@ -83,6 +83,8 @@ to say that ... means that ... //...意味着... //即
 
 by ... we mean ... //...即... //比如用于给出定义  
     
+it suffice(s) to prove (that) ... //证明...就足够了 //问题等价于...   
+
 **数学归纳法（proof by induction）**    
     
 **Integer Induction**  //第一数学归纳法    
