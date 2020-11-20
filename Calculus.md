@@ -1326,10 +1326,9 @@ $\displaystyle \mathcal{R}$是σ-代数 且 μ是$\displaystyle \mathcal{R}$上�
 外测度
 
 外测度 //outer/exterior measure   
-//次可数可加性 //Countably Subadditive //Countable Subadditivity        
 \[Rudin 1976\] / 11.8 Theorem  
 \[陈天权 2009\] / 定义 9.3.1    
-μ是X上的外测度 ⇔ μ是℘(X)到非负扩展实数集(\[0,+∞\])的映射 且 μ(∅) = 0 且 ∀\"集合A,B ∈ ℘(X) 满足 A ⊂ B\"，有\"μ(A) ≤ μ(B)\" 且 ∀\"集合$\displaystyle A_1$,$\displaystyle A_2$,... ∈ ℘(X)\"，有\"μ($\displaystyle \bigcup_{n \isin \N} A_n$) ≤ $\displaystyle \sum_{n \isin \N}$μ($\displaystyle A_n$)\"    
+μ是X上的外测度 ⇔ μ是℘(X)到非负扩展实数集(\[0,+∞\])的映射 且 μ(∅) = 0 且 ∀\"集合A,B ∈ ℘(X) 满足 A ⊂ B\"，有\"μ(A) ≤ μ(B)\" \/\*单调性(Monotone)\*\/ 且 ∀\"集合$\displaystyle A_1$,$\displaystyle A_2$,... ∈ ℘(X)\"，有\"μ($\displaystyle \bigcup_{n \isin \N} A_n$) ≤ $\displaystyle \sum_{n \isin \N}$μ($\displaystyle A_n$)\" \/\*次可数可加性(Countable Subadditivity)\*\/    
 
 //显然，∀集合X，有\"℘(X)是X上的σ-代数\" //关于定义中μ的定义域          
        
@@ -1385,11 +1384,11 @@ Y ⊂ ℘(X) 且 ∅ ∈ Y 且 p是Y到非负扩展实数集(\[0,+∞\])的映�
 ---   
 卡拉西奥多里 //Caratheodory     
 
-卡拉西奥多里准则(Caratheodory's Criterion)  
+卡拉西奥多里准则(Caratheodory's Criterion) //可测性(Measurability)   
 \[陈天权 2009\] / 定义 9.4.1    
 μ是X上的外测度 且 E ⊂ X ⇒ ( E是μ-可测的(μ-measurable) ⇔ ∀\"A ⊂ X\",有\"μ(A) = μ(A ∩ E) + μ(A ∩ $\displaystyle \complement_{X}$E)\" ) 
 
-//一说\"μ(A) = μ(A ∩ E) + μ(A - E)\" //可以理解为用E将A“分割”开       
+//一说\"μ(A) = μ(A ∩ E) + μ(A − E)\" //可以理解为用E将A“分割”开       
 
 注：由于A = (A ∩ E) ∪ (A ∩ $\displaystyle \complement_{X}$E)，根据外侧度的定义(次可数可加性)，∀\"A ⊂ X\",有\"μ(A) ≤ μ(A ∩ E) + μ(A ∩ $\displaystyle \complement_{X}$E)\" 一定成立；因此，上述定义的等价形式为∀\"A ⊂ X\",有\"μ(A) ≥ μ(A ∩ E) + μ(A ∩ $\displaystyle \complement_{X}$E)\"   
 
@@ -1411,13 +1410,26 @@ Y ⊂ ℘(X) 且 ∅ ∈ Y 且 p是Y到非负扩展实数集(\[0,+∞\])的映�
 > ≥ μ(A ∩ (E ∪ F)) + μ(A ∩ $\displaystyle \complement_{X}$E ∩ $\displaystyle \complement_{X}$F) //因为(E ∩ F)∪(E ∩ $\displaystyle \complement_{X}$F)∪($\displaystyle \complement_{X}$E ∩ F) = E ∪ F，又根据外侧度的定义(次可数可加性)    
 > \= μ(A ∩ (E ∪ F)) + μ(A ∩ $\displaystyle \complement_{X}$(E ∪ F))   
 > 即 E ∪ F ∈ M //根据上文，由于≤一定成立，因此≥是=的充分必要条件(等价形式) //M对并集封闭    
->     
-> 使用数学归纳法可以将对并集封闭推广到有限次       
 >  
 > 下面证明对可数并集封闭   
-> 对任意 $\displaystyle E_1$ ∈ M，$\displaystyle E_2$ ∈ M，...，     
->     
->    
+> 对任意 $\displaystyle E_1$ ∈ M，$\displaystyle E_2$ ∈ M，...， //尝试证明$\displaystyle \bigcup_{n \isin \N } E_n$ ∈ M          
+>           
+> 使用数学归纳法可以将对并集封闭推广到有限次，从而 $\displaystyle \bigcup_{i = 0}^{n} E_i$ ∈ M //数学归纳法可以推广到有限次而不能推广到可数次的原因不明，可能涉及到更高深的数学知识     
+> 对任意 n ∈ $\displaystyle \N$，有 μ(A) = μ(A ∩ $\displaystyle \bigcup_{i = 0}^{n} E_i$) + μ(A - $\displaystyle \bigcup_{i = 0}^{n} E_i$) //M的定义 //(可测性)定义"卡拉西奥多里准则"     
+> ≥ μ(A ∩ $\displaystyle \bigcup_{i = 0}^{n} E_i$) + μ(A - $\displaystyle \bigcup_{n \isin \N } E_n$) //外侧度的定义(单调性)   
+> \= μ(A ∩ $\displaystyle \bigcup_{i = 0}^{n} E_i$) - μ(A ∩ $\displaystyle \bigcup_{i = 0}^{n-1} E_i$) + μ(A ∩ $\displaystyle \bigcup_{i = 0}^{n-1} E_i$) - μ(A ∩ $\displaystyle \bigcup_{i = 0}^{n-2} E_i$) + ... + μ(A ∩ $\displaystyle \bigcup_{i = 0}^{0} E_i$) - μ(A ∩ ∅) + μ(A - $\displaystyle \bigcup_{n \isin \N } E_n$) //裂项级数(Telescoping Series)    
+> \= $\displaystyle \sum_{i=0}^{n}$(μ(A ∩ $\displaystyle \bigcup_{k = i}^{n} E_k$) - μ(A ∩ $\displaystyle \bigcup_{k = i}^{n-1} E_k$)) + μ(A - $\displaystyle \bigcup_{n \isin \N } E_n$) //裂项级数(Telescoping Series)       
+> \= $\displaystyle \sum_{i=0}^{n}$(μ(A ∩ $\displaystyle \bigcup_{k = i}^{n} E_k$) - μ(A ∩ $\displaystyle \bigcup_{k = i}^{n} E_k$ ∩ $\displaystyle \bigcup_{k = i}^{n-1} E_k$)) + μ(A - $\displaystyle \bigcup_{n \isin \N } E_n$)    
+> \= $\displaystyle \sum_{i=0}^{n}$μ((A ∩ $\displaystyle \bigcup_{k = i}^{n} E_k$) − $\displaystyle \bigcup_{k = i}^{n-1} E_k$) + μ(A - $\displaystyle \bigcup_{n \isin \N } E_n$) //将A = A ∩ $\displaystyle \bigcup_{k = i}^{n} E_k$且E = $\displaystyle \bigcup_{k = i}^{n-1} E_k$应用到定义"卡拉西奥多里准则，有μ((A ∩ $\displaystyle \bigcup_{k = i}^{n} E_k$) = μ(A ∩ $\displaystyle \bigcup_{k = i}^{n} E_k$ ∩ $\displaystyle \bigcup_{k = i}^{n-1} E_k$)) + μ((A ∩ $\displaystyle \bigcup_{k = i}^{n} E_k$) − $\displaystyle \bigcup_{k = i}^{n-1} E_k$)      
+> \= $\displaystyle \sum_{i=0}^{n}$μ(A ∩ ($\displaystyle \bigcup_{k = i}^{n} E_k$ − $\displaystyle \bigcup_{k = i}^{n-1} E_k$)) + μ(A - $\displaystyle \bigcup_{n \isin \N } E_n$)    
+>      
+> 当n趋向于$\displaystyle +\infty$时，有 //\"n趋向于$\displaystyle +\infty$\"的这波操作在定义上可能缺乏严谨性，可能涉及到更高深的数学知识                   
+> μ(A) ≥ $\displaystyle \sum_{i = 0 \land i \isin \N}^{+\infty}$μ(A ∩ ($\displaystyle \bigcup_{k = i}^{n} E_k$ − $\displaystyle \bigcup_{k = i}^{n-1} E_k$)) + μ(A - $\displaystyle \bigcup_{n \isin \N } E_n$)  
+> ≥ μ(A ∩ (($\displaystyle \bigcup_{k = i \land k \isin \N}^{+\infty} E_k$ − $\displaystyle \bigcup_{k = i \land k \isin \N}^{+\infty-1} E_k$) ∪...∪($\displaystyle \bigcup_{k = i}^{0} E_k$ − ∅))) + μ(A - $\displaystyle \bigcup_{n \isin \N } E_n$)    
+> \= μ(A ∩ $\displaystyle \bigcup_{n \isin \N} E_n$) + μ(A - $\displaystyle \bigcup_{n \isin \N } E_n$)     
+> 从而 $\displaystyle \bigcup_{n \isin \N } E_n$ ∈ M    
+>  
+
 
 卡拉西奥多里扩张定理(Caratheodory's Extension Theorem)     
 
