@@ -1354,7 +1354,7 @@ $\displaystyle \mathcal{R}$是σ-代数 且 μ是$\displaystyle \mathcal{R}$上�
 C = { $\displaystyle U_\alpha$ | α ∈ A } ⇒ ( C是Y的覆盖 ⇔ Y ⊂ $\displaystyle \bigcup_{\alpha \isin A} U_\alpha$ )    
 //本质上来讲，定义中的指标集(Index Set)可以忽略， 理解为"Y 包含于 C中所有的元素的并集"即可 //即Y ⊂ $\displaystyle \bigcup_{U \isin C}$U    
 
-构造外测度    
+构造外测度 //Construction of Outer Measure       
 \[Rudin 1976\] / 11.7 Definition    
 \[陈天权 2009\] / 引理 9.3.1    
 Y ⊂ ℘(X) 且 ∅ ∈ Y 且 p是Y到非负扩展实数集(\[0,+∞\])的映射 且 p(∅)=0 且 φ的定义域为 ℘(X) 且 φ(E) = $\displaystyle \begin{cases} \displaystyle \inf \{ \sum_{A \isin C} \operatorname{p} ( A ) \, | \, C \text{是} \text{可数集} \, \text{且} \, C \text{是} E \text{的覆盖} \, \text{且} C \subset Y \} & \displaystyle \text{当} \, \exist \text{"} C \text{","} C \text{是} \text{可数集} \, \text{且} \, C \text{是} E \text{的覆盖} \, \text{且} \, C \subset Y \text{"} \, \text{时} \\ +\infty & \displaystyle \text{当} \, \nexists \text{"} C \text{","} C \text{是} \text{可数集} \, \text{且} \, C \text{是} E \text{的覆盖} \, \text{且} \, C \subset Y \text{"} \, \text{时} \end{cases}$ ⇒ φ是X上的外测度     
@@ -1419,7 +1419,7 @@ Y ⊂ ℘(X) 且 ∅ ∈ Y 且 p是Y到非负扩展实数集(\[0,+∞\])的映�
 > ≥ μ(A ∩ $\displaystyle \bigcup_{i = 0}^{n} E_i$) + μ(A - $\displaystyle \bigcup_{n \isin \N } E_n$) //外侧度的定义(单调性)   
 > \= μ(A ∩ $\displaystyle \bigcup_{i = 0}^{n} E_i$) - μ(A ∩ $\displaystyle \bigcup_{i = 0}^{n-1} E_i$) + μ(A ∩ $\displaystyle \bigcup_{i = 0}^{n-1} E_i$) - μ(A ∩ $\displaystyle \bigcup_{i = 0}^{n-2} E_i$) + ... + μ(A ∩ $\displaystyle \bigcup_{i = 0}^{0} E_i$) - μ(A ∩ ∅) + μ(A - $\displaystyle \bigcup_{n \isin \N } E_n$) //裂项级数(Telescoping Series)    
 > \= $\displaystyle \sum_{i=0}^{n}$(μ(A ∩ $\displaystyle \bigcup_{k = i}^{n} E_k$) - μ(A ∩ $\displaystyle \bigcup_{k = i}^{n-1} E_k$)) + μ(A - $\displaystyle \bigcup_{n \isin \N } E_n$) //裂项级数(Telescoping Series)       
-> \= $\displaystyle \sum_{i=0}^{n}$(μ(A ∩ $\displaystyle \bigcup_{k = i}^{n} E_k$) - μ(A ∩ $\displaystyle \bigcup_{k = i}^{n} E_k$ ∩ $\displaystyle \bigcup_{k = i}^{n-1} E_k$)) + μ(A - $\displaystyle \bigcup_{n \isin \N } E_n$)    
+> \= $\displaystyle \sum_{i=0}^{n}$(μ(A ∩ $\displaystyle \bigcup_{k = i}^{n} E_k$) - μ(A ∩ $\displaystyle \bigcup_{k = i}^{n} E_k$ ∩ $\displaystyle \bigcup_{k = i}^{n-1} E_k$)) + μ(A - $\displaystyle \bigcup_{n \isin \N } E_n$) //因为$\displaystyle \bigcup_{k = i}^{n-1} E_k$ ⊂ $\displaystyle \bigcup_{k = i}^{n} E_k$               
 > \= $\displaystyle \sum_{i=0}^{n}$μ((A ∩ $\displaystyle \bigcup_{k = i}^{n} E_k$) − $\displaystyle \bigcup_{k = i}^{n-1} E_k$) + μ(A - $\displaystyle \bigcup_{n \isin \N } E_n$) //将A = A ∩ $\displaystyle \bigcup_{k = i}^{n} E_k$且E = $\displaystyle \bigcup_{k = i}^{n-1} E_k$应用到定义"卡拉西奥多里准则，有μ((A ∩ $\displaystyle \bigcup_{k = i}^{n} E_k$) = μ(A ∩ $\displaystyle \bigcup_{k = i}^{n} E_k$ ∩ $\displaystyle \bigcup_{k = i}^{n-1} E_k$)) + μ((A ∩ $\displaystyle \bigcup_{k = i}^{n} E_k$) − $\displaystyle \bigcup_{k = i}^{n-1} E_k$)      
 > \= $\displaystyle \sum_{i=0}^{n}$μ(A ∩ ($\displaystyle \bigcup_{k = i}^{n} E_k$ − $\displaystyle \bigcup_{k = i}^{n-1} E_k$)) + μ(A - $\displaystyle \bigcup_{n \isin \N } E_n$)    
 >      
@@ -1427,7 +1427,7 @@ Y ⊂ ℘(X) 且 ∅ ∈ Y 且 p是Y到非负扩展实数集(\[0,+∞\])的映�
 > μ(A) ≥ $\displaystyle \sum_{i = 0 \land i \isin \N}^{+\infty}$μ(A ∩ ($\displaystyle \bigcup_{k = i}^{n} E_k$ − $\displaystyle \bigcup_{k = i}^{n-1} E_k$)) + μ(A - $\displaystyle \bigcup_{n \isin \N } E_n$)  
 > ≥ μ(A ∩ (($\displaystyle \bigcup_{k = i \land k \isin \N}^{+\infty} E_k$ − $\displaystyle \bigcup_{k = i \land k \isin \N}^{+\infty-1} E_k$) ∪...∪($\displaystyle \bigcup_{k = i}^{0} E_k$ − ∅))) + μ(A - $\displaystyle \bigcup_{n \isin \N } E_n$)    
 > \= μ(A ∩ $\displaystyle \bigcup_{n \isin \N} E_n$) + μ(A - $\displaystyle \bigcup_{n \isin \N } E_n$)     
-> 从而 $\displaystyle \bigcup_{n \isin \N } E_n$ ∈ M    
+> 从而 $\displaystyle \bigcup_{n \isin \N } E_n$ ∈ M //根据上文，由于≤一定成立，因此≥是=的充分必要条件(等价形式) //M对可数并集封闭       
 >  
 
 
