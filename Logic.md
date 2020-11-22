@@ -28,6 +28,8 @@ counterexample 反例
 necessity 必要性  
 sufficiency 充分性  
 
+//lemma //引理  
+
 //observation //也表示真命题(用于不含全称量词时)   
 
 //the trivial observation that XXX(同位语从句) //trivial(平凡的,不重要的) //XXX(小前提)成立时的结论   
@@ -47,6 +49,12 @@ and / but //且
   
 let //不妨设  
 call it a //将它称作a //记作     
+  
+substitute ... into ... //将...代入...    
+
+with ... as a testing (real number/set/etc...) for ... //用于全称命题具体化    
+
+in particular, with ... we have ... //用于全称命题具体化    
 
 suppose //假设 //比如用于反证法  
 
@@ -83,7 +91,7 @@ to say that ... means that ... //...意味着... //即
 
 by ... we mean ... //...即... //比如用于给出定义  
     
-it suffice(s) to prove (that) ... //证明...就足够了 //问题等价于...   
+(to prove/show ... ), it suffice(s) to prove/show (that) ... //（要证明...，）证明...就足够了 //（...）等价于...   
 
 **数学归纳法（proof by induction）**    
     

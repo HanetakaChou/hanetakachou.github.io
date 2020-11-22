@@ -1305,12 +1305,12 @@ $\displaystyle \mathcal{R}$是X上的σ-代数 ⇔ X是$\displaystyle \mathcal{R
 (有限)可加 //(Finitely) Additive  
 \[陈天权 2009\] / 定义 9.1.2     
 \[Rudin 1976\] / 11.2 Definition       
-$\displaystyle \mathcal{R}$是集合代数 且 μ是$\displaystyle \mathcal{R}$上的集函数 ⇒ ( μ是(有限)可加集函数 ⇔ ∀\{不相交(Disjoint)集合A,B∈$\displaystyle \mathcal{R}$\}，我们有\{μ(A ∪ B) = μ(A) +  μ(B)\} ) //可以用数学归纳法推广到有限次      
+$\displaystyle \mathcal{R}$是集合代数 且 μ是$\displaystyle \mathcal{R}$上的集函数 ⇒ ( μ是(有限)可加集函数 ⇔ ∀\"不相交(Disjoint)集合A,B∈$\displaystyle \mathcal{R}$\"，有\"μ(A ∪ B) = μ(A) +  μ(B)\" ) //可以用数学归纳法推广到有限次      
 
 可数可加/σ-可加     
 \[陈天权 2009\] / 定义 9.2.3     
 \[Rudin 1976\] / 11.2 Definition  
-$\displaystyle \mathcal{R}$是σ-代数 且 μ是$\displaystyle \mathcal{R}$上的集函数 ⇒ ( μ是可数可加集函数 ⇔ ∀\{两两不相交(Pairwise Disjoint)集合$\displaystyle A_1$,$\displaystyle A_2$,... ∈ $\displaystyle \mathcal{R}$\}，有\{μ($\displaystyle \bigcup_{n \isin \N} A_n$) = $\displaystyle \sum_{n \isin \N}$μ($\displaystyle A_n$)\} )     
+$\displaystyle \mathcal{R}$是σ-代数 且 μ是$\displaystyle \mathcal{R}$上的集函数 ⇒ ( μ是可数可加集函数 ⇔ ∀\"两两不相交(Pairwise Disjoint)集合$\displaystyle A_1$,$\displaystyle A_2$,... ∈ $\displaystyle \mathcal{R}$\"，有\"μ($\displaystyle \bigcup_{n \isin \N} A_n$) = $\displaystyle \sum_{n \isin \N}$μ($\displaystyle A_n$)\" )     
 
 //图形学中的立体角可以看作集函数     
 
@@ -1391,10 +1391,14 @@ Y ⊂ ℘(X) 且 ∅ ∈ Y 且 p是Y到非负扩展实数集(\[0,+∞\])的映�
 //一说\"μ(A) = μ(A ∩ E) + μ(A − E)\" //可以理解为用E将A“分割”开       
 
 注：由于A = (A ∩ E) ∪ (A ∩ $\displaystyle \complement_{X}$E)，根据外侧度的定义(次可数可加性)，∀\"A ⊂ X\",有\"μ(A) ≤ μ(A ∩ E) + μ(A ∩ $\displaystyle \complement_{X}$E)\" 一定成立；因此，上述定义的等价形式为∀\"A ⊂ X\",有\"μ(A) ≥ μ(A ∩ E) + μ(A ∩ $\displaystyle \complement_{X}$E)\"   
+  
+注意，并集和差集并不能简单的理解成加法和减法    
+B ∪ (A − B) = A ∪ B 而非 = A //可以直接从集合的定义证明，相等于证明 ∀\"a ∈ B ∪ (A − B)\"，有\"a ∈ A ∪ B\" 且 ∀\"a ∈ A ∪ B\"，有\"a ∈ B ∪ (A − B)\"       
 
 可测集构成σ-代数 //Measurable Sets form Sigma-Algebra   
 \[Rudin 1976\] / 11.10 Theorem  
-\[陈天权 2009\] / 定义 9.4.1      
+\[陈天权 2009\] / 定理 9.4.1       
+\[Yeh 2014\] / Theorem 2.8    
 μ是X上的外测度 且 M = { E | E ⊂ X 且 E是μ-可测的 } ⇒ M是σ-代数    
       
 证明      
@@ -1423,12 +1427,35 @@ Y ⊂ ℘(X) 且 ∅ ∈ Y 且 p是Y到非负扩展实数集(\[0,+∞\])的映�
 > \= $\displaystyle \sum_{i=0}^{n}$μ((A ∩ $\displaystyle \bigcup_{k = i}^{n} E_k$) − $\displaystyle \bigcup_{k = i}^{n-1} E_k$) + μ(A - $\displaystyle \bigcup_{n \isin \N } E_n$) //将A = A ∩ $\displaystyle \bigcup_{k = i}^{n} E_k$且E = $\displaystyle \bigcup_{k = i}^{n-1} E_k$应用到定义"卡拉西奥多里准则，有μ((A ∩ $\displaystyle \bigcup_{k = i}^{n} E_k$) = μ(A ∩ $\displaystyle \bigcup_{k = i}^{n} E_k$ ∩ $\displaystyle \bigcup_{k = i}^{n-1} E_k$)) + μ((A ∩ $\displaystyle \bigcup_{k = i}^{n} E_k$) − $\displaystyle \bigcup_{k = i}^{n-1} E_k$)      
 > \= $\displaystyle \sum_{i=0}^{n}$μ(A ∩ ($\displaystyle \bigcup_{k = i}^{n} E_k$ − $\displaystyle \bigcup_{k = i}^{n-1} E_k$)) + μ(A - $\displaystyle \bigcup_{n \isin \N } E_n$)    
 >      
-> 当n趋向于$\displaystyle +\infty$时，有 //\"n趋向于$\displaystyle +\infty$\"的这波操作在定义上可能缺乏严谨性，可能涉及到更高深的数学知识                   
+> 由于对任意n ∈ $\displaystyle \N$成立，因此，在n趋向于$\displaystyle +\infty$时也成立，有 //\"n趋向于$\displaystyle +\infty$\"的这波操作在定义上可能缺乏严谨性，可能涉及到更高深的数学知识                   
 > μ(A) ≥ $\displaystyle \sum_{i = 0 \land i \isin \N}^{+\infty}$μ(A ∩ ($\displaystyle \bigcup_{k = i}^{n} E_k$ − $\displaystyle \bigcup_{k = i}^{n-1} E_k$)) + μ(A - $\displaystyle \bigcup_{n \isin \N } E_n$)  
 > ≥ μ(A ∩ (($\displaystyle \bigcup_{k = i \land k \isin \N}^{+\infty} E_k$ − $\displaystyle \bigcup_{k = i \land k \isin \N}^{+\infty-1} E_k$) ∪...∪($\displaystyle \bigcup_{k = i}^{0} E_k$ − ∅))) + μ(A - $\displaystyle \bigcup_{n \isin \N } E_n$)    
 > \= μ(A ∩ $\displaystyle \bigcup_{n \isin \N} E_n$) + μ(A - $\displaystyle \bigcup_{n \isin \N } E_n$)     
 > 从而 $\displaystyle \bigcup_{n \isin \N } E_n$ ∈ M //根据上文，由于≤一定成立，因此≥是=的充分必要条件(等价形式) //M对可数并集封闭       
 >  
+
+\[陈天权 2009\] / 定理 9.4.1       
+\[Yeh 2014\] / Theorem 2.9  
+μ是X上的外测度 且 M = { E | E ⊂ X 且 E是μ-可测的 } ⇒ u在M上可数可加    
+    
+证明      
+>     
+> 下面证明有限可加     
+> 对任意 不相交的 E ∈ M，F ∈ M， //不相交即E ∩ F = ∅   
+> 将A = E ∪ F且E = E应用到卡拉西奥多里准则，有μ(E ∪ F) = μ(E ∪ F ∩ E) + μ(E ∪ F ∩ $\displaystyle \complement_{X}$E)     
+> 显然有E ∪ F ∩ E = E 又由于E和F不相交，有E ∪ F ∩ $\displaystyle \complement_{X}$E=F   
+> 即μ(E ∪ F)= μ(E) + μ(F)     
+> 
+> 下面证明可数可加           
+> 对任意 两两不相交(Pairwise Disjoint)集合$\displaystyle E_1$,$\displaystyle E_2$,... ∈ M，     
+> 对任意 n ∈ $\displaystyle \N$，有   
+> μ($\displaystyle \bigcup_{i \isin \N } E_i$) ≥ μ($\displaystyle \bigcup_{i=0 \land i \isin \N }^{n} E_i$) //外侧度的定义(单调性)       
+> \= $\displaystyle \sum_{i=0 \land i \isin \N}^{n}$μ($\displaystyle E_i$)     
+>    
+> 由于对任意n ∈ $\displaystyle \N$成立，因此，在n趋向于$\displaystyle +\infty$时也成立，有 //\"n趋向于$\displaystyle +\infty$\"的这波操作在定义上可能缺乏严谨性，可能涉及到更高深的数学知识              
+> μ($\displaystyle \bigcup_{i \isin \N } E_i$) ≥ $\displaystyle \sum_{i \isin \N}$μ($\displaystyle E_i$)    
+> 从而μ($\displaystyle \bigcup_{i \isin \N } E_i$) = $\displaystyle \sum_{i \isin \N}$μ($\displaystyle E_i$) //根据上文，由于≤一定成立，因此≥是=的充分必要条件(等价形式)      
+>   
 
 
 卡拉西奥多里扩张定理(Caratheodory's Extension Theorem)     
@@ -1478,5 +1505,6 @@ Y ⊂ ℘(X) 且 ∅ ∈ Y 且 p是Y到非负扩展实数集(\[0,+∞\])的映�
 ### 参考文献  
 \[Bartle 2011\] Robert Bartle, Donald Sherbert. "Introduction to Real Analysis, Fourth Edition." Wiley 2011.   
 \[Rudin 1976\] Walter Rudin. "Principles of Mathematical Analysis, Third Edition." McGraw-Hill 1976.    
+\[Yeh 2014\] James Yeh. "Real Analysis: Theory of Measure and Integration, Third Edition." World Scientific 2014
 \[同济大学数学系 2014\] 同济大学数学系. "高等数学 第七版." 高等教育出版社 2014.    
 \[陈天权 2009\] 陈天权. "数学分析讲义." 北京大学出版社 2009.  
