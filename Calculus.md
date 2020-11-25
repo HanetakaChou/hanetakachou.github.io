@@ -55,6 +55,8 @@ $\displaystyle \wp(X)$ //X的所有子集
 ---
 
 //\[Rudin 1976\]并没有引入拓扑空间，而是以直接定义的方式引入度量空间  
+    
+---       
 
 拓扑 Topology / 拓扑空间 Topological Space           
 \[陈天权 2009\] / 定义 7\.1\.1       
@@ -71,15 +73,81 @@ X是拓扑空间 ⇔ ∃τ, (X,τ)是拓扑空间 ⇔ ∃τ, τ是X上的拓扑
 (X,τ)是拓扑空间 ⇒ ( U是开集 ⇔ U ∈ τ )        
 
 //用于不强调τ的情形      
-X是拓扑空间 ⇔ ( U是开集 ⇔ ∃τ, (X,τ)是拓扑空间 且 U ∈ τ )           
+X是拓扑空间 ⇔ ( U是开集 ⇔ ∃τ, (X,τ)是拓扑空间 且 U ∈ τ )    
+
+//开集对无限并封闭 开集对有限交封闭   
 
 开集/闭集三的概念源于对R上的开区间/闭区间的抽象      
 无限个开区间的交可能是闭区间 比如：$\displaystyle \bigcap_{n \isin \N} (1-\frac{1}{n}, 2+\frac{1}{n})$=\[1,2\] //根据定义即可证明 //可能用到反证法       
 
+闭集 Closed Set    
+\[陈天权 2009\] / 定义 7\.1\.4      
+X是拓扑空间 ⇒ ( U是闭集 ⇔ X − U 是开集 )                 
+     
+//闭集对有限并封闭 闭集对无限交封闭 //可以用德摩根定律(De Morgan's laws)证明   
+//(X上的离散拓扑)∅和X既是开集又是闭集 //可以用德摩根定律(De Morgan's laws)证明    
+        
+领域 Neighborhood        
+\[陈天权 2009\] / 定义 7\.1\.3   
+\[Rudin 1976\] / 2.18 Definition (a)  
+X是拓扑空间 且 p ∈ X ⇒ ( V是p的领域 ⇔ V ⊂ X 且 ∃"U","U是开集 且 p ∈ U 且 U ⊂ V" )     
+
+开领域 Open Neighbourhood    
+\[陈天权 2009\] / 定义 7\.1\.3     
+X是拓扑空间 且 p ∈ X ⇒ ( V是p的开领域 ⇔  V是x的领域 且 V是开集 )  
+
+---       
+内部 Interior      
+\[陈天权 2009\] / 定义 7\.1\.7    
+X是拓扑空间 ⇒ ( S$\displaystyle \degree$ 是 S的内部 ⇔ S$\displaystyle \degree$ = $\displaystyle \bigcup_{\text{A} \isin \mathcal{A}} \text{A}$ 且 $\displaystyle \mathcal{A}$ = \{ A \| A是开集 且 A ⊂ S \} ) //S的内部为所有包含于S的开集的并集                
+    
+等价定义    
+X是拓扑空间 ⇒ ( S$\displaystyle \degree$ 是 S的内部 ⇔ S$\displaystyle \degree$是开集 且 ∀"A是开集","A ⊂ S" ) //S的内部为包含于E的最大开集  //Set Interior is Largest Open Set   
+> 证明  
+>  
+> 根据开集的定义，开集对无限并封闭，因此 S$\displaystyle \degree$ 是开集    
+> 如果A是开集，那么一定有A ∈ $\displaystyle \mathcal{A}$，根据并集的定义，一定有A ⊂ S$\displaystyle \degree$，因此 S$\displaystyle \degree$ 最大。                
+>       
+     
+---   
+
+开集的内部 //Interior of Open Set   
+//定理  
+X是拓扑空间 且 S ⊂ X ⇒ ( S = S$\displaystyle \degree$ ⇔ S是开集 )   
+
+//根据内点（Interior Point）的定义，显然，在E的内部的点一定是E的内点。   
+
+> 证明  
+>   
+> 必要性  
+> 显然 $\displaystyle E \degree$ ⊂ E //因为E的内部是所有包含于E的开集的并集   
+> 由于E也是“包含E的开集“，因此 我们有 所有“包含于E的开集”的并集——即E的内部——包含E //即E ⊂ $\displaystyle E \degree$   
+> 综上 我们有 E = $\displaystyle E \degree$
+>
+> 充分性  
+> 根据拓扑的定义 所有“包含于E的开集”的并集——即E的内部——是开集 //即$\displaystyle  E \degree$是开集          
+> 由于E = $\displaystyle E \degree$ 即E是开集    
+>            
+    
+---   
+
+内点 Interior Point  
+\[陈天权 2009\] / 定义 7\.1\.3   
+\[Rudin 1976\] / 2.18 Definition (e)   
+X是拓扑空间 且 x ∈ X 且 E ⊂ X ⇒ ( ∃ U, U是x的领域 且 U ⊂ E ⇔ x是N的内点 )  
+
+开集-内点   
+\[陈天权 2009\] / 命题 7\.1\.1   
+\[Rudin 1976\] / 2.18 Definition (f)   
+X是拓扑空间 ⇒ ( E是开集(即 E ∈ τ) ⇔ ∀ x ∈ E, x是E的内点 ) //E是开集 当且仅当 E的任何点都是E的内点   
+
+
+---   
+
 拓扑间的包含关系     
 finer/smaller/weaker    
-coarser/larger/stronger    
-       
+coarser/larger/stronger  
+
 ---    
         
 平凡拓扑 Trivial Topology     
@@ -91,24 +159,13 @@ coarser/larger/stronger
         
 ---     
         
-领域 Neighborhood        
-\[陈天权 2009\] / 定义 7\.1\.3   
-\[Rudin 1976\] / 2.18 Definition (a)  
-X是拓扑空间 且 x ∈ X ⇒ ( V ⊂ X 且 ( ∃ U, U是开集 且  x ∈ U 且 U ⊂ V ) ⇔ V是x的领域 )  
 
-开领域 Open Neighbourhood    
-\[陈天权 2009\] / 定义 7\.1\.3     
-X是拓扑空间 且 x ∈ X ⇒ ( U是x的领域 且 U是开集 ⇔ U是x的开领域 )  
+
+
    
-内点 Interior Point  
-\[陈天权 2009\] / 定义 7\.1\.3   
-\[Rudin 1976\] / 2.18 Definition (e)   
-X是拓扑空间 且 x ∈ X 且 E ⊂ X ⇒ ( ∃ U, U是x的领域 且 U ⊂ E ⇔ x是N的内点 )   
+ 
 
-定理：开集-内点   
-\[陈天权 2009\] / 命题 7\.1\.1   
-\[Rudin 1976\] / 2.18 Definition (f)   
-定理：τ是X上的拓扑 ⇒ ( E是开集(即 E ∈ τ) ⇔ ∀ x ∈ E, x是E的内点 ) //E是开集 当且仅当 E的任何点都是E的内点   
+
       
 > 证明   
 >    
@@ -183,14 +240,6 @@ X是拓扑空间 且 E ⊂ X ⇒ E的导集E' = { x : x是E的聚点 }
       
 ---   
 
-闭集 Closed Set    
-\[陈天权 2009\] / 定义 7\.1\.4      
-X是拓扑空间 ⇒ ( X - U 是开集 ⇔ U是闭集 )                 
-     
-并且 可以用 德摩根定律(De Morgan's laws) 证明：    
-对X上的离散拓扑： ∅是闭集 X是闭集 //一个集合可能既是开集又是闭集     
-闭集的有限次并仍是闭集      
-闭集的有限或无限次交仍是闭集   
 
 
 闭包 Closure   
@@ -292,27 +341,7 @@ $\displaystyle R^2$上的闭集
 实数集R的通常拓扑是可分的 //有理数集Q是可数的 且 有理数集Q在实数集R的通常拓扑中稠密          
 \[陈天权 2009\] / 定义 7\.1\.10     
 
----       
-内部 Interior      
-\[陈天权 2009\] / 定义 7\.1\.7  
-定义： τ是X上的拓扑 且 E ⊂ X ⇒ E的内部$\displaystyle E \degree$ = $\displaystyle \bigcup_{S是开集 且 S ⊂ E} S$ //E的内部是所有包含于E的开集的并集            
 
-//根据内点（Interior Point）的定义，显然，在E的内部的点一定是E的内点。   
-     
-定理： τ是X上的拓扑 且 E ⊂ X ⇒ ( E是开集 ⇔ E = $\displaystyle E \degree$ ) //E的内部是包含于E的“最大”开集  
-
-> 证明  
->   
-> 必要性  
-> 显然 $\displaystyle E \degree$ ⊂ E //因为E的内部是所有包含于E的开集的并集   
-> 由于E也是“包含E的开集“，因此 我们有 所有“包含于E的开集”的并集——即E的内部——包含E //即E ⊂ $\displaystyle E \degree$   
-> 综上 我们有 E = $\displaystyle E \degree$
->
-> 充分性  
-> 根据拓扑的定义 所有“包含于E的开集”的并集——即E的内部——是开集 //即$\displaystyle  E \degree$是开集          
-> 由于E = $\displaystyle E \degree$ 即E是开集    
->    
-        
 ---  
     
 边界 Boundary  
