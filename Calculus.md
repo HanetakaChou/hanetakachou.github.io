@@ -1420,14 +1420,25 @@ Y ⊂ ℘(X) 且 ∅ ∈ Y 且 p是Y到非负扩展实数集(\[0,+∞\])的映�
 > ∀ \"集合$\displaystyle S_1$,$\displaystyle S_2$,... ∈ ℘(X)\"，有\" 如果 ∃ \' n ∈ $\displaystyle \N$ \'，满足 \' ∄ C是可数集 且 C是$\displaystyle S_n$的覆盖 且 C ⊂ Y \'，那么 ∄ C是可数集 且 C是$\displaystyle \bigcup_{i \isin \N} S_i$的覆盖 且 C ⊂ Y，从而 φ($\displaystyle S_n$)=+∞ 且 φ($\displaystyle \bigcup_{i \isin \N} S_i$)=+∞，从而 φ($\displaystyle \bigcup_{i \isin \N} S_i$) ≤ $\displaystyle \sum_{i \isin \N}$φ($\displaystyle S_i$)成立   
 >  
 > 下面讨论 ∀ \' n ∈ $\displaystyle \N$ \'，有 \' ∃ C是可数集 且 C是$\displaystyle S_n$的覆盖 且 C ⊂ Y \' 的情形   
-> ∀ \' ε > 0 \'，有\'   
-> ∀\'n ∈ $\displaystyle \N$\'，有\'将 正实数=$\displaystyle \frac{\varepsilon}{2^{1+n}}$ 应用到下确界的定理，得到 ∃\'M ∈ { $\displaystyle \sum_{A \isin C}$p(A) | C是可数集 且 C是$\displaystyle S_n$的覆盖 且 C ⊂ Y }\'满足\'M < φ($\displaystyle S_n$) + $\displaystyle \frac{\varepsilon}{2^{n+1}}$\'   
-> 不妨将M记作$\displaystyle C_n$(强调与n的关联)，即 ∃ \'$\displaystyle C_n$是可数集 且 $\displaystyle C_n$是$\displaystyle S_n$的覆盖 且 $\displaystyle C_n$ ⊂ Y 且 $\displaystyle \sum_{A \isin C_n}$p(A) < φ($\displaystyle S_n$) + $\displaystyle \frac{\varepsilon}{2^{n+1}}$\' //一说此处的证明涉及到选择公理 \'    
+>   
+> ∀"ε > 0","
+>    
+> ---             
+>        
+> ∀"n ∈ $\displaystyle \N$","    
+> 将 正实数=$\displaystyle \frac{\varepsilon}{2^{1+n}}$ 应用到下确界的定理，有 ∃"M","M ∈ { $\displaystyle \sum_{A \isin C}$p(A) | C是可数集 且 C是$\displaystyle S_n$的覆盖 且 C ⊂ Y } 且 M < φ($\displaystyle S_n$) + $\displaystyle \frac{\varepsilon}{2^{n+1}}$"   
+> 显然 /\* 涉及到选择公理 \*/，∃"$\displaystyle \text{C}_n$" /\* 记作$\displaystyle \text{C}_n$以强调与n的关联 \*/ ,"$\displaystyle \text{C}_n$是可数集 且 $\displaystyle \text{C}_n$是$\displaystyle\text{S}_n$的覆盖 且 $\displaystyle \text{C}_n$ ⊂ Y 且 $\displaystyle \sum_{\text{A} \isin \text{C}_n}$p(A) < φ($\displaystyle \text{S}_n$) + $\displaystyle \frac{\varepsilon}{2^{n+1}}$"           
+> "   
+>          
+> 即 ∀"n ∈ $\displaystyle \N$","∃"$\displaystyle \text{C}_n$","$\displaystyle \text{C}_n$是可数集 且 $\displaystyle \text{C}_n$是$\displaystyle\text{S}_n$的覆盖 且 $\displaystyle \text{C}_n$ ⊂ Y 且 $\displaystyle \sum_{\text{A} \isin \text{C}_n}$p(A) < φ($\displaystyle \text{S}_n$) + $\displaystyle \frac{\varepsilon}{2^{n+1}}$""           
+>    
+> ---             
+>       
 > 从而，记K=$\displaystyle \bigcup_{n \isin \N} C_n$，有 K是可数集 且 K是$\displaystyle \bigcup_{n \isin \N} S_n$的覆盖 且 K ⊂ Y，从而 $\displaystyle \sum_{A \isin K}$p(A) ⊂ { $\displaystyle \sum_{A \isin C}$p(A) | C是可数集 且 C是$\displaystyle \bigcup_{n \isin \N} S_n$的覆盖 且 C ⊂ Y }   
 > 根据φ的定义和下确界的定义，有 φ($\displaystyle \bigcup_{n \isin \N} S_n$) ≤ $\displaystyle \sum_{A \isin K}$p(A)    
 > 由于 A∈K则一定有A∈某个$\displaystyle C_n$ 且 p非负，有$\displaystyle \sum_{A \isin K}$p(A) ≤ $\displaystyle \sum_{n \isin N} \sum_{A \isin C_n} \operatorname{p} (A)$   
-> 又根据上文中已证明的结论，$\displaystyle \sum_{n \isin N} \sum_{A \isin C_n} \operatorname{p} (A)$ ≤ $\displaystyle \sum_{n \isin N} \displaystyle$ ( φ($\displaystyle S_n$) + $\displaystyle \frac{\varepsilon}{2^{n+1}}$ )，根据等比数列求和 $\displaystyle \sum_{n \isin N} \displaystyle$ ( φ($\displaystyle S_n$) + $\displaystyle \frac{\varepsilon}{2^{n+1}}$ ) ≤ $\displaystyle \sum_{n \isin N} \displaystyle$ φ($\displaystyle S_n$) + ε  
-\'  
+> 又根据上文中已证明的结论，$\displaystyle \sum_{n \isin N} \sum_{A \isin C_n} \operatorname{p} (A)$ ≤ $\displaystyle \sum_{n \isin N} \displaystyle$ ( φ($\displaystyle S_n$) + $\displaystyle \frac{\varepsilon}{2^{n+1}}$ )，根据等比数列求和 $\displaystyle \sum_{n \isin N} \displaystyle$ ( φ($\displaystyle S_n$) + $\displaystyle \frac{\varepsilon}{2^{n+1}}$ ) ≤ $\displaystyle \sum_{n \isin N} \displaystyle$ φ($\displaystyle S_n$) + ε    
+>"    
 > 即 ∀ \' ε > 0 \'，有\' φ($\displaystyle \bigcup_{n \isin \N} S_n$) ≤ $\displaystyle \sum_{n \isin N} \displaystyle$ φ($\displaystyle S_n$) + ε \'，从而 φ($\displaystyle \bigcup_{n \isin \N} S_n$) ≤ $\displaystyle \sum_{n \isin N} \displaystyle$ φ($\displaystyle S_n$) \" //注： 根据\" ∀ \'ε > 0\'，有\'a ≤ b + ε\' \" 可以得出 \" a ≤ b \" //用反证法即可证明，假设 a > b，取 ε = $\displaystyle \frac{a-b}{2}$ > 0 即可得出矛盾    
 >    
    
