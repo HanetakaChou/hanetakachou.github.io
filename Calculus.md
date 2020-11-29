@@ -135,8 +135,7 @@ X是拓扑空间 且 p ∈ X 且 S ⊂ X 且 $\displaystyle \text{S} \degree$是
 > 从而 p ∈ $\displaystyle \text{S} \degree$ 
 >    
 > 2 ⇒ 1     
-> 由于$\displaystyle \text{S} \degree$是开集 /\* 根据内部的定义 \*/，从而 ∃"$\displaystyle \text{U}_p$ = $\displaystyle \text{S} \degree$","$\displaystyle \text{U}_p$是开集 且 p ∈ $\displaystyle \text{S} \degree$ 且  $\displaystyle \text{S} \degree$ ⊂ S"，即$\displaystyle \text{U}_p$是p的开领域     
-> 又由于$\displaystyle \text{S} \degree$ ⊂ S /\* 根据内部的定义 \*/     
+> 由于$\displaystyle \text{S} \degree$是开集 且 $\displaystyle \text{S} \degree$ ⊂ S /\* 根据内部的定义 \*/，从而 ∃"$\displaystyle \text{U}_p$ = $\displaystyle \text{S} \degree$","$\displaystyle \text{U}_p$是开集 且 p ∈ $\displaystyle \text{S} \degree$ 且  $\displaystyle \text{S} \degree$ ⊂ S"，即 $\displaystyle \text{U}_p$是p的开领域 且 $\displaystyle \text{U}_p$ ⊂ S         
 > 从而 p是S的内点    
 >  
          
@@ -167,24 +166,23 @@ X是拓扑空间 且 S ⊂ X ⇒ ( $\displaystyle \text{S} \degree$是S的内部
 > 根据开集的定义，开集对无限并封闭，因此S$\displaystyle \degree$是开集    
 > 如果A是开集，那么一定有A ∈ $\displaystyle \mathcal{A}$，根据并集的定义，一定有A ⊂ S$\displaystyle \degree$，因此$\displaystyle \text{S} \degree$最大。                
 >       
-     
+      
 \[定理\] \[等价定义\] 内部(Interior) //通过 内点 Interior Point            
 X是拓扑空间 且 S ⊂ X ⇒ (  $\displaystyle \text{S} \degree$是S的内部 ⇔ $\displaystyle \text{S} \degree$ = { p | p是S的内点 } ) //S内部是由所有S的内点构成的集合     
-
+           
 //根据 "\[定理\] \[等价定义\] 内点 Interior Point //通过 内部(Interior)" 显然            
-
-
----      
-    
-    
-
+       
+---       
+      
+      
+     
 //Interior equals Complement of Closure of Complement   
 //Complement of Interior equals Closure of Complement   
-
-
-
-
-
+      
+     
+     
+      
+      
 闭集 Closed Set    
 \[陈天权 2009\] / 定义 7\.1\.4      
 X是拓扑空间 ⇒ ( U是闭集 ⇔ X − U 是开集 )                 
