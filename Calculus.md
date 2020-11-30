@@ -58,16 +58,15 @@ $\displaystyle \wp(X)$ //X的所有子集
     
 ---       
 
-拓扑 Topology / 拓扑空间 Topological Space           
+\[定义\] 拓扑 Topology / 拓扑空间 Topological Space           
 \[陈天权 2009\] / 定义 7\.1\.1       
-\[Yeh 2014\] / \[IV\] Borel σ-algebras //σ(Sigma)       
-   
+\[Yeh 2014\] / \[IV\] Borel σ-algebras //σ(Sigma)          
 (X,τ)是拓扑空间 ⇔ τ是X上的拓扑 ⇔ τ ⊂ ℘(X) 且 ∅ ∈ τ 且 X ∈ τ 且 τ对无限并封闭 且 τ对有限交封闭 //此处的无限并没有要求可数 //可数即和自然数集等势 参见 集合的势/基数           
 
 //用于不强调τ的情形     
 X是拓扑空间 ⇔ ∃τ, (X,τ)是拓扑空间 ⇔ ∃τ, τ是X上的拓扑               
 
-开集 Open Set    
+\[定义\] 开集 Open Set    
 \[陈天权 2009\] / 定义 7\.1\.1       
 \[Yeh 2014\] / \[IV\] Borel σ-algebras //σ(Sigma)                   
 (X,τ)是拓扑空间 ⇒ ( U是开集 ⇔ U ∈ τ )        
@@ -77,10 +76,10 @@ X是拓扑空间 ⇔ ( U是开集 ⇔ ∃τ, (X,τ)是拓扑空间 且 U ∈ τ 
 
 //开集对无限并封闭 开集对有限交封闭   
 
-开集/闭集三的概念源于对R上的开区间/闭区间的抽象      
+开集/闭集的概念源于对R上的开区间/闭区间的抽象      
 无限个开区间的交可能是闭区间 比如：$\displaystyle \bigcap_{n \isin \N} (1-\frac{1}{n}, 2+\frac{1}{n})$=\[1,2\] //根据定义即可证明 //可能用到反证法       
         
-\[定理\] \[等价定义\] 开集 Open Set //通过 内部(Interior)    
+\[定理\] \[等价定义\] 开集(Open Set) //通过 内部(Interior)    
 \[定理\] //开集的内部 //Interior of Open Set   
 X是拓扑空间 且 S ⊂ X　且 $\displaystyle \text{S} \degree$是S的内部 ⇒ ( S是开集 ⇔ $\displaystyle \text{S} \degree$ = S )         
 
@@ -96,36 +95,63 @@ X是拓扑空间 且 S ⊂ X　且 $\displaystyle \text{S} \degree$是S的内部
 > 由于$\displaystyle \text{S} \degree$ = S，因此S是开集    
 >         
         
-\[定理\] \[等价定义\] 开集 Open Set //通过 内点(Interior Point)    
+\[定理\] \[等价定义\] 开集(Open Set) //通过 内点(Interior Point)    
 \[陈天权 2009\] / 命题 7\.1\.1   
 \[Rudin 1976\] / 2.18 Definition (f)   
+ProofWiki / Set is Open iff Neighborhood of all its Points           
 X是拓扑空间 ⇒ ( S是开集 ⇔ ∀"p ∈ S","p是S的内点" ) //S是开集 当且仅当 任何S中的点都是S的内点    
 > 证明   
 > 
 > 根据 "\[定理\] \[等价定义\] 内点 Interior Point //通过 内部(Interior)"，有 p是S的内点 ⇔ p ∈ $\displaystyle \text{S} \degree$  
 > 根据 "\[定理\] \[等价定义\] 开集 Open Set //通过 内部(Interior)"，有 S是开集 ⇔ $\displaystyle \text{S} \degree$ = S     
 > 从而 ∀"p ∈ S","p是S的内点" ⇔ ∀"p ∈ S","p ∈ $\displaystyle \text{S} \degree$" ⇔ S = $\displaystyle \text{S} \degree$ ⇔ S是开集                     
->    
+>     
+    
+---    
+      
+\[定义\] 闭集(Closed Set)    
+\[陈天权 2009\] / 定义 7\.1\.4      
+X是拓扑空间 且 S ⊂ X ⇒ ( S是闭集 ⇔ X − S 是开集 )                 
+       
+//闭集对有限并封闭 闭集对无限交封闭 //可以用德摩根定律(De Morgan's laws)证明      
+//(X上的离散拓扑)∅和X既是开集又是闭集 //可以用德摩根定律(De Morgan's laws)证明      
+            
+\[定理\] \[等价定义\] 闭集(Closed Set) //通过 导集(Derived Set)      
+X是拓扑空间 且 S ⊂ X ⇒ ( S是闭集 ⇔ S'是S的导集 且 S' ⊂ S )                 
+Proofwiki / Equivalence of Definitions of Closed Set     
+> 证明 //参考 \[陈天权 2009\] / 命题 7\.1\.2            
+>      
+> 1 ⇒ 2     
+> ∀"p ∈ X","p $\displaystyle \notin$ S ⇔ p ∈ (X − S) ⇒ ∃"$\displaystyle \text{U}_p$=(X − S),$\displaystyle \text{U}_p$是p的开领域","S ∩ ( $\displaystyle \text{U}_p$ − {p} ) = ∅" ⇒ p不是S的极点 ⇔ p $\displaystyle \notin$ S'"       
+> 根据逆否命题等价，∀"p ∈ X","p ∈ S' ⇒ p ∈ S"，由于S' ⊂ X，从而S' ⊂ S       
+>       
+> 2 ⇒ 1          
+> 由于S' ⊂ S 且 S' ⊂ X， ∀"p ∈ X","p ∈ S' ⇒ p ∈ S"      
+> 根据逆否命题等价，∀"p ∈ X","p $\displaystyle \notin$ S ⇒ p $\displaystyle \notin$ S'"      
+> 从而 ∀"p ∈ X","p ∈ (X − S) ⇔ p $\displaystyle \notin$ S ⇒ p $\displaystyle \notin$ S' ⇔ p不是S的极点 ⇔ ∃"$\displaystyle \text{U}_p$,$\displaystyle \text{U}_p$是p的开领域","S ∩ ( $\displaystyle \text{U}_p$ − {p} ) = ∅" ⇒ ∃"$\displaystyle \text{U}_p$,$\displaystyle \text{U}_p$是p的开领域","$\displaystyle \text{U}_p$ ⊂ (X − S)" ⇒ p是(X − S)的内点"     
+> 因此(X − S)是开集 //根据 "\[定理\] \[等价定义\] 开集 Open Set //通过 内点(Interior Point)"         
+> 从而S是闭集                
+>      
 
 ---      
           
-领域 Neighborhood        
-\[陈天权 2009\] / 定义 7\.1\.3   
-\[Rudin 1976\] / 2.18 Definition (a)  
-X是拓扑空间 且 p ∈ X ⇒ ( V是p的领域 ⇔ V ⊂ X 且 ∃"U","U是开集 且 p ∈ U 且 U ⊂ V" )     
-
-开领域 Open Neighbourhood    
-\[陈天权 2009\] / 定义 7\.1\.3     
+\[定义\] 领域 Neighborhood         
+\[陈天权 2009\] / 定义 7\.1\.3    
+\[Rudin 1976\] / 2.18 Definition (a)     
+X是拓扑空间 且 p ∈ X ⇒ ( V是p的领域 ⇔ V ⊂ X 且 ∃"U","U是开集 且 p ∈ U 且 U ⊂ V" )      
+      
+\[定义\] 开领域 Open Neighbourhood      
+\[陈天权 2009\] / 定义 7\.1\.3      
 X是拓扑空间 且 p ∈ X ⇒ ( V是p的开领域 ⇔  V是x的领域 且 V是开集 ) //即 ∃"V","V是开集 且 p ∈ V"      
         
 ---                                          
           
-\[定义\] 内点 Interior Point  
-\[陈天权 2009\] / 定义 7\.1\.3   
-\[Rudin 1976\] / 2.18 Definition (e)   
+\[定义\] 内点(Interior Point)     
+\[陈天权 2009\] / 定义 7\.1\.3       
+\[Rudin 1976\] / 2.18 Definition (e)     
 X是拓扑空间 且 p ∈ X 且 S ⊂ X ⇒ ( p是S的内点 ⇔ ∃"$\displaystyle \text{U}_p$","$\displaystyle \text{U}_p$是p的开领域 且 $\displaystyle \text{U}_p$ ⊂ S" )  
 
-\[定理\] \[等价定义\] 内点 Interior Point //通过 内部(Interior)         
+\[定理\] \[等价定义\] 内点(Interior Point) //通过 内部(Interior)         
 X是拓扑空间 且 p ∈ X 且 S ⊂ X 且 $\displaystyle \text{S} \degree$是S的内部 ⇒ ( p是S的内点 ⇔ p ∈ $\displaystyle \text{S} \degree$ )   
 > 证明  //参考\[陈天权 2009\] / 命题 7\.1\.1     
 >      
@@ -144,28 +170,40 @@ X是拓扑空间 且 p ∈ X 且 S ⊂ X 且 $\displaystyle \text{S} \degree$是
 极点(Limit Point)/聚点(Cluster Point / Accumulation Point)     
 \[陈天权 2009\] / 定义 7\.1\.6   
 \[Rudin 1976\] / 2.18 Definition (b)   
-X是拓扑空间 且 S ⊂ X ⇒ ( p是S的聚点 ⇔ p ∈ S 且 ∀"$\displaystyle \text{U}_p$,$\displaystyle \text{U}_p$是p的开领域","S ∩ ( $\displaystyle \text{U}_p$ − {p} ) ≠ ∅" )      
+X是拓扑空间 且 p ∈ X 且 S ⊂ X ⇒ ( p是S的聚点 ⇔ ∀"$\displaystyle \text{U}_p$,$\displaystyle \text{U}_p$是p的开领域","S ∩ ( $\displaystyle \text{U}_p$ − {p} ) ≠ ∅" )      
       
 ---    
       
 孤立点(Isolated Point)   
 \[陈天权 2009\] / 定义 7\.1\.6   
 \[Rudin 1976\] / 2.18 Definition (c)   
-X是拓扑空间 且 S ⊂ X ⇒ ( p是S的孤立点 ⇔ p ∈ S 且 ∃"$\displaystyle \text{U}_p$","$\displaystyle \text{U}_p$是p的开领域 且 S ∩ ( $\displaystyle \text{U}_p$ − {p} ) = ∅" ) //即p ∈ S 且 p不是S的聚点           
+X是拓扑空间 且 p ∈ X 且 S ⊂ X ⇒ ( p是S的孤立点 ⇔ p ∈ S 且 ∃"$\displaystyle \text{U}_p$","$\displaystyle \text{U}_p$是p的开领域 且 S ∩ ( $\displaystyle \text{U}_p$ − {p} ) = ∅" )      
+//即p ∈ S 且 p不是S的聚点 S      
+//值得注意的是，在内点/极点/孤立点的定义中，只有孤立点要求p ∈ S，内点要求p ∈ X但要求$\displaystyle \text{U}_p$ ⊂ S，而极点只要求p ∈ X           
      
 ---      
            
-\[定义\] 内部 Interior //S的内部是所有(包含于S的)开集的并           
+\[定义\] 内部(Interior) //S的内部是所有(包含于S的)开集的并集           
 \[陈天权 2009\] / 定义 7\.1\.7    
-X是拓扑空间 且 S ⊂ X ⇒ ( $\displaystyle \text{S} \degree$是S的内部 ⇔ S$\displaystyle \degree$ = $\displaystyle \bigcup_{\text{A} \isin \mathcal{A}} \text{A}$ 且 $\displaystyle \mathcal{A}$ = \{ A \| A是开集 且 A ⊂ S \} ) 集                
+X是拓扑空间 且 S ⊂ X ⇒ ( $\displaystyle \text{S} \degree$是S的内部 ⇔ $\displaystyle \text{S} \degree$ = $\displaystyle \bigcup_{\text{A} \isin \mathcal{A}} \text{A}$ 且 $\displaystyle \mathcal{A}$ = \{ A | A是开集 且 A ⊂ S \} )                 
        
-\[定理\] \[等价定义\] 内部 Interior //S的内部是(包含于S的)最大开集 //Set Interior is Largest Open Set           
-X是拓扑空间 且 S ⊂ X ⇒ ( $\displaystyle \text{S} \degree$是S的内部 ⇔ S$\displaystyle \degree$是开集 且 ∀"A是开集","A ⊂ S" )      
+\[定理\] \[等价定义\] 内部(Interior) //S的内部是(包含于S的)最大开集        
+//ProofWiki / Set Interior is Largest Open Set //Obsolete      
+//ProofWiki / Equivalence of Definitions of Interior           
+X是拓扑空间 且 S ⊂ X ⇒ ( $\displaystyle \text{S} \degree$是S的内部 ⇔ $\displaystyle \text{S} \degree$ ⊂ S 且 $\displaystyle \text{S} \degree$是开集 且 ∀"A是开集 且 A ⊂ S","A ⊂ $\displaystyle \text{S} \degree$" )      
 > 证明  
->  
-> 根据开集的定义，开集对无限并封闭，因此S$\displaystyle \degree$是开集    
-> 如果A是开集，那么一定有A ∈ $\displaystyle \mathcal{A}$，根据并集的定义，一定有A ⊂ S$\displaystyle \degree$，因此$\displaystyle \text{S} \degree$最大。                
->       
+>     
+> 1 ⇒ 2    
+> 由于A ∈ $\displaystyle \mathcal{A}$一定有A ⊂ S，根据并集的定义，一定有$\displaystyle \text{S} \degree$ ⊂ S      
+> 根据开集的定义，开集对无限并封闭，因此$\displaystyle \text{S} \degree$是开集    
+> 如果A是开集 且 A ⊂ S，那么一定有A ∈ $\displaystyle \mathcal{A}$，根据并集的定义，一定有A ⊂ S$\displaystyle \degree$，因此$\displaystyle \text{S} \degree$最大。                
+> 
+> 2 ⇒ 1          
+> 不妨设H是S的内部，有H = $\displaystyle \bigcup_{\text{A} \isin \mathcal{A}} \text{A}$ 且 $\displaystyle \mathcal{A}$ = \{ A | A是开集 且 A ⊂ S \}   
+> 由于$\displaystyle \text{S} \degree$是开集 且 $\displaystyle \text{S} \degree$ ⊂ S，因此，S ∈ $\displaystyle \mathcal{A}$，根据并集的定义，一定有$\displaystyle \text{S} \degree$ ⊂ H    
+> 根据开集的定义，开集对无限并封闭，因此H是开集，并且由于A ∈ $\displaystyle \mathcal{A}$一定有A ⊂ S，根据并集的定义，一定有H ⊂ S，由于$\displaystyle \text{S} \degree$是(包含于S的)最大开集，因此H ⊂ $\displaystyle \text{S} \degree$      
+> 从而$\displaystyle \text{S} \degree$ = H，即$\displaystyle \text{S} \degree$是S的内部    
+>    
       
 \[定理\] \[等价定义\] 内部(Interior) //通过 内点 Interior Point            
 X是拓扑空间 且 S ⊂ X ⇒ (  $\displaystyle \text{S} \degree$是S的内部 ⇔ $\displaystyle \text{S} \degree$ = { p | p是S的内点 } ) //S内部是由所有S的内点构成的集合     
@@ -173,26 +211,41 @@ X是拓扑空间 且 S ⊂ X ⇒ (  $\displaystyle \text{S} \degree$是S的内�
 //根据 "\[定理\] \[等价定义\] 内点 Interior Point //通过 内部(Interior)" 显然            
        
 ---       
-      
-      
-     
+
+\[定义\] 导集(Derived Set)    
+\[陈天权 2009\] / 定义 7\.1\.6   
+\[Rudin 1976\] / 2.26 Definition
+X是拓扑空间 且 S ⊂ X ⇒ ( S'是S的导集 ⇔ S' = { p | p是S的聚点 }  
+
+---    
+       
+\[定义\] 闭包(Closure) //S的闭包是所有(包含S的)闭集的交集  
+\[陈天权 2009\] / 定义 7\.1\.5      
+\[Rudin 1976\] / 2\.27 Theorem         
+X是拓扑空间 且 S ⊂ X ⇒ ( $\displaystyle \overline{\text{S}}$是S的闭包 ⇔ $\displaystyle \overline{\text{S}}$ = $\displaystyle \bigcap_{\text{A} \isin \mathcal{A}} \text{A}$ 且 $\displaystyle \mathcal{A}$ = \{ A | A是闭集 且 S ⊂ A \} )         
+    
+\[定理\] \[等价定义\] 闭包(Closure) //S的闭包是(包含S的)最小闭集      
+X是拓扑空间 且 S ⊂ X ⇒ ( $\displaystyle \overline{\text{S}}$是S的闭包 ⇔ S ⊂ $\displaystyle \overline{\text{S}}$ 且 $\displaystyle \overline{\text{S}}$是闭集 且 ∀"A是闭集 且 S ⊂ A","$\displaystyle \overline{\text{S}}$ ⊂ A" )     
+//ProofWiki / Set Closure is Smallest Closed Set/Topology    
+//ProofWiki / Equivalence of Definitions of Closure of Topological Subspace   
+> 证明  
+>     
+> 1 ⇒ 2    
+> 由于A ∈ $\displaystyle \mathcal{A}$一定有S ⊂ A，根据交集的定义，一定有S ⊂ $\displaystyle \overline{\text{S}}$      
+> 根据闭集的定义，闭集对无限交封闭，因此$\displaystyle \overline{\text{S}}$是闭集    
+> 如果A是闭集 且 S ⊂ A，那么一定有A ∈ $\displaystyle \mathcal{A}$，根据交集的定义，一定有$\displaystyle \overline{\text{S}}$ ⊂ A，因此$\displaystyle \overline{\text{S}}$最小。                
+> 
+> 2 ⇒ 1          
+> 不妨设H是S的闭包，有H = $\displaystyle \bigcap_{\text{A} \isin \mathcal{A}} \text{A}$ 且 $\displaystyle \mathcal{A}$ = \{ A | A是闭集 且 S ⊂ A \}         
+> 由于$\displaystyle \overline{\text{S}}$是闭集 且  S ⊂ $\displaystyle \overline{\text{S}}$，因此 $\displaystyle \overline{\text{S}}$ ∈ $\displaystyle \mathcal{A}$，根据交集的定义，一定有H ⊂ $\displaystyle \overline{\text{S}}$    
+> 根据闭集的定义，闭集对无限交封闭，因此H是闭集，并且由于A ∈ $\displaystyle \mathcal{A}$一定有S ⊂ A，根据交集的定义，一定有S ⊂ H，由于$\displaystyle \overline{\text{S}}$是(包含S的)最小闭集，因此$\displaystyle \overline{\text{S}}$ ⊂ H      
+> 从而$\displaystyle \overline{\text{S}}$ = H，即$\displaystyle \overline{\text{S}}$是S的闭包    
+>   
+   
 //Interior equals Complement of Closure of Complement   
 //Complement of Interior equals Closure of Complement   
       
-     
-     
-      
-      
-闭集 Closed Set    
-\[陈天权 2009\] / 定义 7\.1\.4      
-X是拓扑空间 ⇒ ( U是闭集 ⇔ X − U 是开集 )                 
-     
-//闭集对有限并封闭 闭集对无限交封闭 //可以用德摩根定律(De Morgan's laws)证明   
-//(X上的离散拓扑)∅和X既是开集又是闭集 //可以用德摩根定律(De Morgan's laws)证明    
-
-//等价定义 导集包含于自身 
-
-//Proofwiki Equivalence of Definitions of Closed Set    
+    
 //Proofwiki Equivalence of Definitions of Closure of Topological Subspace
 
 ---   
@@ -264,34 +317,11 @@ $\displaystyle R^2$上的开集-内点
 
 
    
-导集(Derived Set)    
-\[陈天权 2009\] / 定义 7\.1\.6   
-\[Rudin 1976\] / 2.26 Definition
-X是拓扑空间 且 E ⊂ X ⇒ E的导集E' = { x : x是E的聚点 }  
+
       
 ---   
 
 
-
-闭包 Closure   
-\[陈天权 2009\] / 定义 7\.1\.5      
-\[Rudin 1976\] / 2\.27 Theorem         
-定义： X是拓扑空间 且 E ⊂ X ⇒ E的闭包 $\displaystyle \overline{E}$ = $\displaystyle \bigcap_{S是闭集 且 E ⊂ S} S$ //E的闭包是所有包含E的闭集的交集    
-
-定理： X是拓扑空间 且 E ⊂ X ⇒ ( E是闭集 ⇔ E = $\displaystyle \overline{E}$ ) //E的闭包是包含E的“最小”闭集   
-
-> 证明  
->   
-> 必要性  
-> 显然 E ⊂ $\displaystyle \overline{E}$ //因为E的闭包是所有包含E的闭集的交集   
-> 由于E也是“包含E的闭集“，因此 我们有 所有“包含E的闭集”的交集——即E的闭包——包含于E //即$\displaystyle \overline{E}$ ⊂ E   
-> 综上 我们有 E = $\displaystyle \overline{E}$
->
-> 充分性  
-> 根据拓扑和闭集的定义 所有“包含E的闭集”的交集——即E的闭包——是闭集 //即$\displaystyle \overline{E}$是闭集          
-> 由于E = $\displaystyle \overline{E}$ 即E是闭集    
-> 
-   
 ---   
    
 定理：闭包-聚点/孤立点      
