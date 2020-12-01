@@ -79,9 +79,9 @@ X是拓扑空间 ⇔ ( U是开集 ⇔ ∃τ, (X,τ)是拓扑空间 且 U ∈ τ 
 开集/闭集的概念源于对R上的开区间/闭区间的抽象      
 无限个开区间的交可能是闭区间 比如：$\displaystyle \bigcap_{n \isin \N} (1-\frac{1}{n}, 2+\frac{1}{n})$=\[1,2\] //根据定义即可证明 //可能用到反证法       
         
-\[定理\] \[等价定义\] 开集(Open Set) //通过 内部(Interior)    
-\[定理\] //开集的内部 //Interior of Open Set   
-X是拓扑空间 且 S ⊂ X　且 $\displaystyle \text{S} \degree$是S的内部 ⇒ ( S是开集 ⇔ $\displaystyle \text{S} \degree$ = S )         
+\[定理\] \[等价定义\] 开集(Open Set) //通过 内部(Interior) //开集的内部是开集自身   
+//ProofWiki / Interior of Open Set   
+X是拓扑空间 且 S ⊂ X 且 $\displaystyle \text{S} \degree$是S的内部 ⇒ ( S是开集 ⇔ $\displaystyle \text{S} \degree$ = S )         
 
 > 证明  
 >   
@@ -116,6 +116,28 @@ X是拓扑空间 且 S ⊂ X ⇒ ( S是闭集 ⇔ X − S 是开集 )
 //闭集对有限并封闭 闭集对无限交封闭 //可以用德摩根定律(De Morgan's laws)证明      
 //(X上的离散拓扑)∅和X既是开集又是闭集 //可以用德摩根定律(De Morgan's laws)证明      
             
+\[定理\] \[等价定义\] 闭集(Open Set) //通过 闭包(Closure) //闭集的闭包是闭集自身    
+//ProofWiki / Set is Closed iff Equals Topological Closure      
+X是拓扑空间 且 S ⊂ X 且 $\displaystyle \overline{\text{S}}$是S的闭包 ⇒ ( S是闭集 ⇔ $\displaystyle \overline{\text{S}}$ = S )         
+
+> 证明  
+>   
+> 1 ⇒ 2 / 证法1  
+> 由于S是(包含S的)闭集，而$\displaystyle \overline{\text{S}}$是所有(包含S的)闭集的交集，因此$\displaystyle \overline{\text{S}}$ ⊂ S //\[定理\] S的闭包是(包含S的)最小闭集     
+> 根据闭包的定义，由于定义中的每个A都有S ⊂ A，显然，交集$\displaystyle \bigcap \text{A}$即S的闭包$\displaystyle \overline{\text{S}}$，一定有S ⊂ $\displaystyle \overline{\text{S}}$       
+> 因此$\displaystyle \overline{\text{S}}$ = S   
+>     
+> 1 ⇒ 2 / 证法2      
+> 设S'是S的导集，有 S' ⊂ S //根据 "\[定理\] \[等价定义\] 闭集(Closed Set) //通过 导集(Derived Set)"    
+> 根据集合的定义，S' ⊂ S ⇔ S ∪ S' = S //ProofWiki / Union with Superset is Superset  
+> 又因为$\displaystyle \overline{\text{S}}$ = S ∪ S' //根据 "\[定理\] \[等价定义\] 闭包(Closure) //通过 导集(Derived Set)"      
+> 从而$\displaystyle \overline{\text{S}}$ = S       
+>
+> 2 ⇒ 1  
+> 根据闭集的定义(和德摩根定律)，闭集对无限交封闭，因此$\displaystyle \overline{\text{S}}$是闭集   
+> 由于$\displaystyle \overline{\text{S}}$ = S，因此S是闭集    
+>       
+
 \[定理\] \[等价定义\] 闭集(Closed Set) //通过 导集(Derived Set)      
 X是拓扑空间 且 S ⊂ X ⇒ ( S是闭集 ⇔ S'是S的导集 且 S' ⊂ S )                 
 Proofwiki / Equivalence of Definitions of Closed Set     
@@ -180,7 +202,15 @@ X是拓扑空间 且 p ∈ X 且 S ⊂ X ⇒ ( p是S的聚点 ⇔ ∀"$\displays
 X是拓扑空间 且 p ∈ X 且 S ⊂ X ⇒ ( p是S的孤立点 ⇔ p ∈ S 且 ∃"$\displaystyle \text{U}_p$","$\displaystyle \text{U}_p$是p的开领域 且 S ∩ ( $\displaystyle \text{U}_p$ − {p} ) = ∅" )      
 //即p ∈ S 且 p不是S的聚点 S      
 //值得注意的是，在内点/极点/孤立点的定义中，只有孤立点要求p ∈ S，内点要求p ∈ X但要求$\displaystyle \text{U}_p$ ⊂ S，而极点只要求p ∈ X           
+        
+---       
      
+附着点(Adherent Point)    
+X是拓扑空间 且 p ∈ X 且 S ⊂ X ⇒ ( p是S的附着点 ⇔ ∀"$\displaystyle \text{U}_p$,$\displaystyle \text{U}_p$是p的开领域","S ∩ $\displaystyle \text{U}_p$ ≠ ∅" )         
+//显然，附着点不是极点就是孤立点 //可以认为极点和孤立点统称为附着点             
+         
+
+
 ---      
            
 \[定义\] 内部(Interior) //S的内部是所有(包含于S的)开集的并集           
@@ -205,8 +235,8 @@ X是拓扑空间 且 S ⊂ X ⇒ ( $\displaystyle \text{S} \degree$是S的内部
 > 从而$\displaystyle \text{S} \degree$ = H，即$\displaystyle \text{S} \degree$是S的内部    
 >    
       
-\[定理\] \[等价定义\] 内部(Interior) //通过 内点 Interior Point            
-X是拓扑空间 且 S ⊂ X ⇒ (  $\displaystyle \text{S} \degree$是S的内部 ⇔ $\displaystyle \text{S} \degree$ = { p | p是S的内点 } ) //S内部是由所有S的内点构成的集合     
+\[定理\] \[等价定义\] 内部(Interior) //通过 内点(Interior Point) //S内部是由所有S的内点构成的集合            
+X是拓扑空间 且 S ⊂ X ⇒ (  $\displaystyle \text{S} \degree$是S的内部 ⇔ $\displaystyle \text{S} \degree$ = { p | p是S的内点 } )      
            
 //根据 "\[定理\] \[等价定义\] 内点 Interior Point //通过 内部(Interior)" 显然            
        
@@ -241,14 +271,23 @@ X是拓扑空间 且 S ⊂ X ⇒ ( $\displaystyle \overline{\text{S}}$是S的闭
 > 根据闭集的定义，闭集对无限交封闭，因此H是闭集，并且由于A ∈ $\displaystyle \mathcal{A}$一定有S ⊂ A，根据交集的定义，一定有S ⊂ H，由于$\displaystyle \overline{\text{S}}$是(包含S的)最小闭集，因此$\displaystyle \overline{\text{S}}$ ⊂ H      
 > 从而$\displaystyle \overline{\text{S}}$ = H，即$\displaystyle \overline{\text{S}}$是S的闭包    
 >   
+
+\[定理\] \[等价定义\] 闭包(Closure) //通过 附着点(Adherent Point) //S闭包是由所有S的附着点构成的集合       
+\[陈天权 2009\] / 命题 7\.1\.2       
+ProofWiki / Set Closure as Intersection of Closed Sets     
+ProofWiki / Equivalence of Definitions of Closure of Topological Subspace     
+X是拓扑空间 且 S ⊂ X ⇒ ( $\displaystyle \overline{\text{S}}$是S的闭包 ⇔ $\displaystyle \overline{\text{S}}$ = { p | p是S的附着点 } )      
+> 证明     
+> 根据集合的定义，相当于证明 p是S的附着点 ⇔ p ∈ $\displaystyle \overline{\text{S}}$   
+>  
+
    
 \[定理\] \[等价定义\] 闭包(Closure) //通过 导集(Derived Set)      
 \[陈天权 2009\] / 定义 7\.1\.6   
 \[Rudin 1976\] / 2\.26 Definition     
 ProofWiki / Set Closure as Intersection of Closed Sets     
 ProofWiki / Equivalence of Definitions of Closure of Topological Subspace     
-X是拓扑空间 且 S ⊂ X 且 $\displaystyle \overline{\text{S}}$是S的闭包 且 S'是S的导集 ⇒ $\displaystyle \overline{\text{S}}$ = S ∪ S'            
-    
+X是拓扑空间 且 S ⊂ X 且 $\displaystyle \overline{\text{S}}$是S的闭包 且 S'是S的导集 ⇒ $\displaystyle \overline{\text{S}}$ = S ∪ S'                
 > 证明     
 > 
 > 由于  
@@ -341,34 +380,7 @@ $\displaystyle R^2$上的开集-内点
 
 ---   
    
-定理：闭包-聚点/孤立点      
-\[陈天权 2009\] / 命题 7\.1\.2       
-X是拓扑空间 且 E ⊂ X ⇒ ( x ∈ $\displaystyle \overline{E}$ ⇔ ∀x的领域U, U∩E≠∅ ) //即$\displaystyle \overline{E}$ = { x : ∀x的领域U, U∩E≠∅ }         
-   
-> 证明    
->   
-> 下面证明 x ∉ $\displaystyle \overline{E}$ ⇒ ∃ x的领域U, U ∩ E = ∅  
-> 
-> 因为 x ∉ $\displaystyle \overline{E}$ 我们有 x ∈ X - $\displaystyle \overline{E}$  
-> 因为 $\displaystyle \overline{E}$是闭集 我们有X - $\displaystyle \overline{E}$是开集 因此X - $\displaystyle \overline{E}$是x的领域  
-> 并且 显然 ( X - $\displaystyle \overline{E}$ ) ∩ E = ∅ 命题得证   
-> 
-> 因此 逆否命题成立 ∀ x的领域U, U ∩ E ≠ ∅ ⇒ x ∈ $\displaystyle \overline{E}$  
-> 
-> 下面证明 ∃x的领域U, U∩E=∅ ⇒ x∉$\displaystyle \overline{E}$  
-> 
-> 由于 U是X的领域 因此 x∈U 即 x∉X-U   
->   
-> 由于 U是X的领域 因此 U是开集 从而 ( X-U )是闭集  
-> 并且 由于 U∩E=∅ 因此 E ⊂ ( X-U ) 从而 ( X-U )是包含E的闭集  
->   
-> 由于 x ∉ X - U 因此 x不属于 所有“包含E的闭集”的交集——即E的闭包$\displaystyle \overline{E}$ 命题得证  
->   
-> 因此 逆否命题成立 x ∈ $\displaystyle \overline{E}$ ⇒ ∀ x的领域U, U ∩ E ≠ ∅      
-> 
-> 综上 命题得证   
->  
-        
+
 
 
 ---   
@@ -1496,6 +1508,7 @@ Y ⊂ ℘(X) 且 ∅ ∈ Y 且 p是Y到非负扩展实数集(\[0,+∞\])的映�
   
 注意，并集和差集并不能简单的理解成加法和减法    
 B ∪ (A − B) = A ∪ B 而非 = A //可以直接从集合的定义证明，相等于证明 ∀\"a ∈ B ∪ (A − B)\"，有\"a ∈ A ∪ B\" 且 ∀\"a ∈ A ∪ B\"，有\"a ∈ B ∪ (A − B)\"       
+~~//ProofWiki / Union with Superset is Superset~~     
 
 可测集构成σ-代数 //Measurable Sets form Sigma-Algebra   
 \[Rudin 1976\] / 11.10 Theorem  
