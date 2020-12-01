@@ -273,27 +273,33 @@ X是拓扑空间 且 S ⊂ X ⇒ ( $\displaystyle \overline{\text{S}}$是S的闭
 >   
 
 \[定理\] \[等价定义\] 闭包(Closure) //通过 附着点(Adherent Point) //S闭包是由所有S的附着点构成的集合       
-\[陈天权 2009\] / 命题 7\.1\.2       
-ProofWiki / Set Closure as Intersection of Closed Sets     
-ProofWiki / Equivalence of Definitions of Closure of Topological Subspace     
 X是拓扑空间 且 S ⊂ X ⇒ ( $\displaystyle \overline{\text{S}}$是S的闭包 ⇔ $\displaystyle \overline{\text{S}}$ = { p | p是S的附着点 } )      
+\[陈天权 2009\] / 命题 7\.1\.2       
 > 证明     
-> 根据集合的定义，相当于证明 p是S的附着点 ⇔ p ∈ $\displaystyle \overline{\text{S}}$   
->  
-
+> 由于 S ⊂ X 且 $\displaystyle \overline{\text{S}}$ ⊂ X，根据集合的定义，相当于证明 ∀"p ∈ X","p是S的附着点 ⇔ p ∈ $\displaystyle \overline{\text{S}}$"        
+> 根据附着点的定义，相当于证明  ∀"p ∈ X","∀"$\displaystyle \text{U}_p$,$\displaystyle \text{U}_p$是p的开领域","S ∩ $\displaystyle \text{U}_p$ ≠ ∅" ⇔ p ∈ $\displaystyle \overline{\text{S}}$"      
+> 
+> 1 ⇒ 2              
+> 相当于证明逆否命题 ∀"p ∈ X","p $\displaystyle \notin$ $\displaystyle \overline{\text{S}}$ ⇒ ∃"$\displaystyle \text{U}_p$,$\displaystyle \text{U}_p$是p的开领域","S ∩ $\displaystyle \text{U}_p$ = ∅""    
+> ∀"p ∈ X","p $\displaystyle \notin$ $\displaystyle \overline{\text{S}}$ ⇒ p ∈ (X - $\displaystyle \overline{\text{S}}$) ⇒ ∃"$\displaystyle \text{U}_p$ = (X - $\displaystyle \overline{\text{S}}$),$\displaystyle \text{U}_p$是p的开领域","S ∩ $\displaystyle \text{U}_p$ = ∅""    
+>           
+> 2 ⇒ 1      
+> 相当于证明逆否命题 ∀"p ∈ X"," ∃"$\displaystyle \text{U}_p$,$\displaystyle \text{U}_p$是p的开领域","S ∩ $\displaystyle \text{U}_p$ = ∅" ⇒ p $\displaystyle \notin$ $\displaystyle \overline{\text{S}}$"                
+> 由于 ∃"$\displaystyle \text{U}_p$,$\displaystyle \text{U}_p$是p的开领域","S ∩ $\displaystyle \text{U}_p$，根据闭集的定义，(X - $\displaystyle \text{U}_p$)是闭集，因此 p $\displaystyle \notin$ (X - $\displaystyle \text{U}_p$) 且 (X - $\displaystyle \text{U}_p$)是包含S的闭集    
+> 由于 $\displaystyle \overline{\text{S}}$是所有包含S的闭集的交，根据交集的定义，从而 p $\displaystyle \notin$ $\displaystyle \overline{\text{S}}$               
+>                     
    
 \[定理\] \[等价定义\] 闭包(Closure) //通过 导集(Derived Set)      
+X是拓扑空间 且 S ⊂ X 且 $\displaystyle \overline{\text{S}}$是S的闭包 且 S'是S的导集 ⇒ $\displaystyle \overline{\text{S}}$ = S ∪ S'                
 \[陈天权 2009\] / 定义 7\.1\.6   
 \[Rudin 1976\] / 2\.26 Definition     
-ProofWiki / Set Closure as Intersection of Closed Sets     
-ProofWiki / Equivalence of Definitions of Closure of Topological Subspace     
-X是拓扑空间 且 S ⊂ X 且 $\displaystyle \overline{\text{S}}$是S的闭包 且 S'是S的导集 ⇒ $\displaystyle \overline{\text{S}}$ = S ∪ S'                
+ProofWiki / Equivalence of Definitions of Closure of Topological Subspace / 1 ⇒ 6          
 > 证明     
 > 
 > 由于  
-> $\displaystyle \overline{E}$ = { x : ∀ x的领域U, U ∩ E ≠ ∅ } //根据”定理：闭包-聚点/孤立点“    
-> E = { x : {x} ∩ E ≠ ∅ } //显然  
-> E' = { x : ∀ x的领域U, (U - {x}) ∩ E ≠ ∅ } //根据 聚点 和 导集 的定义  
+> $\displaystyle \overline{\text{S}}$ = \{ p | ∀"$\displaystyle \text{U}_p$,$\displaystyle \text{U}_p$是p的开领域","S ∩ $\displaystyle \text{U}_p$ ≠ ∅" \} //根据 "\[定理\] \[等价定义\] 闭包(Closure) //通过 附着点(Adherent Point)"    
+> S = \{ p | {p} ∩ S ≠ ∅ \} //显然  
+> S' = \{ p | ∀"$\displaystyle \text{U}_p$,$\displaystyle \text{U}_p$是p的开领域","S ∩ ( $\displaystyle \text{U}_p$ − {p} ) ≠ ∅" \} //根据 聚点 和 导集 的定义  
 >   
 > 显然 命题成立    
 >  
@@ -302,8 +308,6 @@ X是拓扑空间 且 S ⊂ X 且 $\displaystyle \overline{\text{S}}$是S的闭�
 //Complement of Interior equals Closure of Complement   
       
     
-//Proofwiki / Equivalence of Definitions of Closure of Topological Subspace
-
 ---   
 
 拓扑间的包含关系     
