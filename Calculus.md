@@ -645,9 +645,10 @@ T2空间
 >   
 >                              
 
-//紧 compat -> 有限 finite    
+//紧 Compat -> 有限 finite    
 
 ---  
+
 覆盖 Cover 
 //覆盖的定义并不依赖于拓扑   
 //见构造外测度
