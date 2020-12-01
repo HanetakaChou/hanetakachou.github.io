@@ -335,9 +335,22 @@ X是拓扑空间 且 S ⊂ X 且 $\displaystyle \partial \text{S}$是S的边界 
 X是拓扑空间 且 S ⊂ X 且 $\displaystyle \partial \text{S}$是S的边界 ⇒ $\displaystyle \partial \text{S}$ = $\displaystyle \overline{\text{S}}$ ∩ $\displaystyle \overline{\text{X} - \text{S}}$              
 //由于闭包是闭集合，又因为闭集对无限交封闭，从而边界是闭集        
 > 证明  　　　  
-> 由于 $\displaystyle \overline{\text{S}}$ ∩ $\displaystyle \overline{\text{X} - \text{S}}$ = $\displaystyle \overline{\text{S}}$ ∩ ( X − $\displaystyle \text{S} \degree$ ) //根据 "\[定理\] \[等价定义\] 内部(Interior) //通过 闭包(Closure)"         
-> 从而，$\displaystyle \partial \text{S}$ = $\displaystyle \overline{\text{S}}$ − $\displaystyle \text{S} \degree$ = $\displaystyle \overline{\text{S}}$ ∩ ( X − $\displaystyle \text{S} \degree$ ) = $\displaystyle \overline{\text{S}}$ ∩ $\displaystyle \overline{\text{X} - \text{S}}$            
+> 由于 $\displaystyle \overline{\text{X} - \text{S}}$ = X − $\displaystyle \text{S} \degree$ //根据 "\[定理\] \[等价定义\] 内部(Interior) //通过 闭包(Closure)"         
+>               
+> 从而，$\displaystyle \overline{\text{S}}$ ∩ $\displaystyle \overline{\text{X} - \text{S}}$ = $\displaystyle \overline{\text{S}}$ ∩ ( X − $\displaystyle \text{S} \degree$ ) = $\displaystyle \overline{\text{S}}$ − $\displaystyle \text{S} \degree$ = $\displaystyle \partial \text{S}$                 
 >       
+
+\[定理\] \[等价定义\] 边界(Boundary) //通过 内部(Interior)     
+X是拓扑空间 且 S ⊂ X 且 $\displaystyle \partial \text{S}$是S的边界 ⇒ $\displaystyle \partial \text{S}$ = X − ( $\displaystyle \text{S} \degree$ ∪ $\displaystyle ( \text{X} - \text{S} ) \degree$ )      
+> 证明    
+> 由于       
+> $\displaystyle \overline{\text{X} - \text{S}}$ = X − $\displaystyle \text{S} \degree$ //根据 "\[定理\] \[等价定义\] 内部(Interior) //通过 闭包(Closure)"            
+> $\displaystyle \overline{\text{X} - (\text{X} - \text{S})}$ = X − $\displaystyle ( \text{X} - \text{S} ) \degree$ //根据 "\[定理\] \[等价定义\] 内部(Interior) //通过 闭包(Closure)"              
+> $\displaystyle \partial \text{S}$ = $\displaystyle \overline{\text{S}}$ ∩ $\displaystyle \overline{\text{X} - \text{S}}$ //根据 "\[定理\] \[等价定义\] 边界(Boundary) //通过 闭包(Closure)"     
+>         
+> 从而，X − ( $\displaystyle \text{S} \degree$ ∪ $\displaystyle ( \text{X} - \text{S} ) \degree$ ) = ( X − $\displaystyle \text{S} \degree$ ) ∪ ( X − $\displaystyle ( \text{X} - \text{S} ) \degree$ ) = $\displaystyle \overline{\text{X} - \text{S}}$ ∪ $\displaystyle \overline{\text{X} - (\text{X} - \text{S})}$ = $\displaystyle \overline{\text{X} - \text{S}}$ ∪ $\displaystyle \overline{\text{S}}$ = $\displaystyle \partial \text{S}$    
+>    
+
 
 \[定理\]    
 X是拓扑空间 且 S ⊂ X ⇒ ( S是开集且S是闭集 ⇔ $\displaystyle \partial S$ = ∅ )                    
@@ -1439,12 +1452,12 @@ $\displaystyle \mathcal{R}$是σ-代数 且 μ是$\displaystyle \mathcal{R}$上�
 证明   
 > 2 ⇒ 1   
 > 取 $\displaystyle B_1$=B $\displaystyle B_2$,... =∅ 即可得到 ∀\"集合A,B ∈ ℘(X) 满足 A ⊂ B\"，有\"μ(A) ≤ μ(B)\"   
-> 显然，由于$\displaystyle \bigcup_{n \isin \N} B_n$ ⊂ $\displaystyle \bigcup_{n \isin \N} B_n$，取 A=$\displaystyle \bigcup_{n \isin \N} B_n$, 有\"μ($\displaystyle \bigcup_{n \isin \N} A_n$) ≤ $\displaystyle \sum_{n \isin \N}$μ($\displaystyle A_n$)\"   
+> 显然，由于$\displaystyle \bigcup_{n \isin \N} B_n$ ⊂ $\displaystyle \bigcup_{n \isin \N} B_n$，取 A=$\displaystyle \bigcup_{n \isin \N} B_n$, 有\"μ($\displaystyle \bigcup_{n \isin \N} B_n$) ≤ $\displaystyle \sum_{n \isin \N}$μ($\displaystyle B_n$)\"   
 >     
 > 1 ⇒ 2   
 >  ∀\"集合A,B ∈ ℘(X) 满足 A ⊂ $\displaystyle \bigcup_{n \isin \N} B_n$\"，有\"    
 > μ(A) ≤ μ($\displaystyle \bigcup_{n \isin \N} B_n$) //∀\"集合A,B ∈ ℘(X) 满足 A ⊂ B\"          
-> μ($\displaystyle \bigcup_{n \isin \N} B_n$) ≤ $\displaystyle \sum_{n \isin \N}$μ($\displaystyle B_n$) //∀\"集合$\displaystyle A_1$,$\displaystyle A_2$,... ∈ $\displaystyle \mathcal{R}$\"      
+> μ($\displaystyle \bigcup_{n \isin \N} B_n$) ≤ $\displaystyle \sum_{n \isin \N}$μ($\displaystyle B_n$) //∀\"集合$\displaystyle B_1$,$\displaystyle B_2$,... ∈ $\displaystyle \mathcal{R}$\"      
 > 即 μ(A) ≤ μ($\displaystyle \bigcup_{n \isin \N} B_n$) ≤ $\displaystyle \sum_{n \isin \N}$μ($\displaystyle B_n$)    
 > \"        
 >     
@@ -1456,10 +1469,10 @@ C = { $\displaystyle U_\alpha$ | α ∈ A } ⇒ ( C是Y的覆盖 ⇔ Y ⊂ $\dis
 //本质上来讲，定义中的指标集(Index Set)可以忽略， 理解为"Y 包含于 C中所有的元素的并集"即可 //即Y ⊂ $\displaystyle \bigcup_{U \isin C}$U    
 
 构造外测度 //Construction of Outer Measure       
+Y ⊂ ℘(X) 且 ∅ ∈ Y 且 p是Y到非负扩展实数集(\[0,+∞\])的映射 且 p(∅)=0 且 φ的定义域为 ℘(X) 且 φ(E) = $\displaystyle \begin{cases} \displaystyle \inf \{ \sum_{A \isin \text{C}} \operatorname{p} ( A ) \, | \, \text{C} \text{是} \text{可数集} \, \text{且} \, \text{C} \text{是} E \text{的覆盖} \, \text{且} \text{C} \subset Y \} & \displaystyle \text{当} \, \exist \text{"} \text{C} \text{","} \text{C} \text{是} \text{可数集} \, \text{且} \, \text{C} \text{是} E \text{的覆盖} \, \text{且} \, \text{C} \subset Y \text{"} \, \text{时} \\ +\infty & \displaystyle \text{当} \, \nexists \text{"} \text{C} \text{","} \text{C} \text{是} \text{可数集} \, \text{且} \, \text{C} \text{是} E \text{的覆盖} \, \text{且} \, \text{C} \subset Y \text{"} \, \text{时} \end{cases}$ ⇒ φ是X上的外测度     
+//关于φ(E)，可以理解为 所有可能的"包含于Y且覆盖E的可数集C" "C中的所有的元素在P中的像的累加"   
 \[Rudin 1976\] / 11.7 Definition    
 \[陈天权 2009\] / 引理 9.3.1    
-Y ⊂ ℘(X) 且 ∅ ∈ Y 且 p是Y到非负扩展实数集(\[0,+∞\])的映射 且 p(∅)=0 且 φ的定义域为 ℘(X) 且 φ(E) = $\displaystyle \begin{cases} \displaystyle \inf \{ \sum_{A \isin C} \operatorname{p} ( A ) \, | \, C \text{是} \text{可数集} \, \text{且} \, C \text{是} E \text{的覆盖} \, \text{且} C \subset Y \} & \displaystyle \text{当} \, \exist \text{"} C \text{","} C \text{是} \text{可数集} \, \text{且} \, C \text{是} E \text{的覆盖} \, \text{且} \, C \subset Y \text{"} \, \text{时} \\ +\infty & \displaystyle \text{当} \, \nexists \text{"} C \text{","} C \text{是} \text{可数集} \, \text{且} \, C \text{是} E \text{的覆盖} \, \text{且} \, C \subset Y \text{"} \, \text{时} \end{cases}$ ⇒ φ是X上的外测度     
-//关于φ(E)，可以理解为 所有可能的"包含于Y且覆盖E的可数集C" "C中的所有的元素在P中的像的累加"   
 
 证明 
 > 
@@ -1467,7 +1480,9 @@ Y ⊂ ℘(X) 且 ∅ ∈ Y 且 p是Y到非负扩展实数集(\[0,+∞\])的映�
 > 
 > ∀ \"集合A,B ∈ ℘(X) 满足 A ⊂ B\"，有\"显然 { $\displaystyle \sum_{D \isin C}$p(D) | C是可数集 且 C是A的覆盖 且 C ⊂ Y } ⊂ { $\displaystyle \sum_{D \isin C}$p(D) | C是可数集 且 C是B的覆盖 且 C ⊂ Y }     
 > 根据下确界的定义，显然 φ(A) ≤ φ(B)\"
->   
+>       
+> ---      
+>      
 > ∀ \"集合$\displaystyle S_1$,$\displaystyle S_2$,... ∈ ℘(X)\"，有\" 如果 ∃ \' n ∈ $\displaystyle \N$ \'，满足 \' ∄ C是可数集 且 C是$\displaystyle S_n$的覆盖 且 C ⊂ Y \'，那么 ∄ C是可数集 且 C是$\displaystyle \bigcup_{i \isin \N} S_i$的覆盖 且 C ⊂ Y，从而 φ($\displaystyle S_n$)=+∞ 且 φ($\displaystyle \bigcup_{i \isin \N} S_i$)=+∞，从而 φ($\displaystyle \bigcup_{i \isin \N} S_i$) ≤ $\displaystyle \sum_{i \isin \N}$φ($\displaystyle S_i$)成立   
 >  
 > 下面讨论 ∀ \' n ∈ $\displaystyle \N$ \'，有 \' ∃ C是可数集 且 C是$\displaystyle S_n$的覆盖 且 C ⊂ Y \' 的情形   
@@ -1496,9 +1511,9 @@ Y ⊂ ℘(X) 且 ∅ ∈ Y 且 p是Y到非负扩展实数集(\[0,+∞\])的映�
 ---   
 卡拉西奥多里 //Caratheodory     
 
-卡拉西奥多里准则(Caratheodory's Criterion) //可测性(Measurability)   
+卡拉西奥多里准则(Caratheodory's Criterion) //可测性(Measurability)     
+μ是X上的外测度 且 E ⊂ X ⇒ ( E是μ-可测的(μ-measurable) ⇔ ∀\"A ⊂ X\",有\"μ(A) = μ(A ∩ E) + μ(A ∩ $\displaystyle \complement_{X}$E)\" )      
 \[陈天权 2009\] / 定义 9.4.1    
-μ是X上的外测度 且 E ⊂ X ⇒ ( E是μ-可测的(μ-measurable) ⇔ ∀\"A ⊂ X\",有\"μ(A) = μ(A ∩ E) + μ(A ∩ $\displaystyle \complement_{X}$E)\" ) 
 
 //一说\"μ(A) = μ(A ∩ E) + μ(A − E)\" //可以理解为用E将A“分割”开       
 
@@ -1508,11 +1523,11 @@ Y ⊂ ℘(X) 且 ∅ ∈ Y 且 p是Y到非负扩展实数集(\[0,+∞\])的映�
 B ∪ (A − B) = A ∪ B 而非 = A //可以直接从集合的定义证明，相等于证明 ∀\"a ∈ B ∪ (A − B)\"，有\"a ∈ A ∪ B\" 且 ∀\"a ∈ A ∪ B\"，有\"a ∈ B ∪ (A − B)\"       
 ~~//ProofWiki / Union with Superset is Superset~~     
 
-可测集构成σ-代数 //Measurable Sets form Sigma-Algebra   
+可测集构成σ-代数 //Measurable Sets form Sigma-Algebra     
+μ是X上的外测度 且 M = { E | E ⊂ X 且 E是μ-可测的 } ⇒ M是σ-代数    
 \[Rudin 1976\] / 11.10 Theorem  
 \[陈天权 2009\] / 定理 9.4.1       
 \[Yeh 2014\] / Theorem 2.8    
-μ是X上的外测度 且 M = { E | E ⊂ X 且 E是μ-可测的 } ⇒ M是σ-代数    
       
 证明      
 >    
@@ -1535,14 +1550,14 @@ B ∪ (A − B) = A ∪ B 而非 = A //可以直接从集合的定义证明，�
 > 对任意 n ∈ $\displaystyle \N$，有 μ(A) = μ(A ∩ $\displaystyle \bigcup_{i = 0}^{n} E_i$) + μ(A - $\displaystyle \bigcup_{i = 0}^{n} E_i$) //M的定义 //(可测性)定义"卡拉西奥多里准则"     
 > ≥ μ(A ∩ $\displaystyle \bigcup_{i = 0}^{n} E_i$) + μ(A - $\displaystyle \bigcup_{n \isin \N } E_n$) //外侧度的定义(单调性)   
 > \= μ(A ∩ $\displaystyle \bigcup_{i = 0}^{n} E_i$) - μ(A ∩ $\displaystyle \bigcup_{i = 0}^{n-1} E_i$) + μ(A ∩ $\displaystyle \bigcup_{i = 0}^{n-1} E_i$) - μ(A ∩ $\displaystyle \bigcup_{i = 0}^{n-2} E_i$) + ... + μ(A ∩ $\displaystyle \bigcup_{i = 0}^{0} E_i$) - μ(A ∩ ∅) + μ(A - $\displaystyle \bigcup_{n \isin \N } E_n$) //裂项级数(Telescoping Series)    
-> \= $\displaystyle \sum_{i=0}^{n}$(μ(A ∩ $\displaystyle \bigcup_{k = i}^{n} E_k$) - μ(A ∩ $\displaystyle \bigcup_{k = i}^{n-1} E_k$)) + μ(A - $\displaystyle \bigcup_{n \isin \N } E_n$) //裂项级数(Telescoping Series)       
-> \= $\displaystyle \sum_{i=0}^{n}$(μ(A ∩ $\displaystyle \bigcup_{k = i}^{n} E_k$) - μ(A ∩ $\displaystyle \bigcup_{k = i}^{n} E_k$ ∩ $\displaystyle \bigcup_{k = i}^{n-1} E_k$)) + μ(A - $\displaystyle \bigcup_{n \isin \N } E_n$) //因为$\displaystyle \bigcup_{k = i}^{n-1} E_k$ ⊂ $\displaystyle \bigcup_{k = i}^{n} E_k$               
-> \= $\displaystyle \sum_{i=0}^{n}$μ((A ∩ $\displaystyle \bigcup_{k = i}^{n} E_k$) − $\displaystyle \bigcup_{k = i}^{n-1} E_k$) + μ(A - $\displaystyle \bigcup_{n \isin \N } E_n$) //将A = A ∩ $\displaystyle \bigcup_{k = i}^{n} E_k$且E = $\displaystyle \bigcup_{k = i}^{n-1} E_k$应用到定义"卡拉西奥多里准则，有μ((A ∩ $\displaystyle \bigcup_{k = i}^{n} E_k$) = μ(A ∩ $\displaystyle \bigcup_{k = i}^{n} E_k$ ∩ $\displaystyle \bigcup_{k = i}^{n-1} E_k$)) + μ((A ∩ $\displaystyle \bigcup_{k = i}^{n} E_k$) − $\displaystyle \bigcup_{k = i}^{n-1} E_k$)      
-> \= $\displaystyle \sum_{i=0}^{n}$μ(A ∩ ($\displaystyle \bigcup_{k = i}^{n} E_k$ − $\displaystyle \bigcup_{k = i}^{n-1} E_k$)) + μ(A - $\displaystyle \bigcup_{n \isin \N } E_n$)    
+> \= $\displaystyle \sum_{k=0}^{n}$(μ(A ∩ $\displaystyle \bigcup_{i = 0}^{k} E_i$) - μ(A ∩ $\displaystyle \bigcup_{i = 0}^{k-1} E_i$)) + μ(A - $\displaystyle \bigcup_{n \isin \N } E_n$) //裂项级数(Telescoping Series)       
+> \= $\displaystyle \sum_{k=0}^{n}$(μ(A ∩ $\displaystyle \bigcup_{i = 0}^{k} E_i$) - μ(A ∩ $\displaystyle \bigcup_{i = 0}^{k} E_i$ ∩ $\displaystyle \bigcup_{i = 0}^{k-1} E_i$)) + μ(A - $\displaystyle \bigcup_{n \isin \N } E_n$) //因为$\displaystyle \bigcup_{i = 0}^{n-1} E_k$ ⊂ $\displaystyle \bigcup_{i = 0}^{n} E_k$               
+> \= $\displaystyle \sum_{k=0}^{n}$μ((A ∩ $\displaystyle \bigcup_{i = 0}^{k} E_i$) − $\displaystyle \bigcup_{i = 0}^{k-1} E_i$) + μ(A - $\displaystyle \bigcup_{n \isin \N } E_n$) //将A = A ∩ $\displaystyle \bigcup_{i = 0}^{k} E_i$且E = $\displaystyle \bigcup_{i = 0}^{k-1} E_i$应用到定义"卡拉西奥多里准则，有μ((A ∩ $\displaystyle \bigcup_{i = 0}^{k} E_i$) = μ(A ∩ $\displaystyle \bigcup_{i = 0}^{k} E_i$ ∩ $\displaystyle \bigcup_{i = 0}^{k-1} E_i$)) + μ((A ∩ $\displaystyle \bigcup_{i = 0}^{k} E_i$) − $\displaystyle \bigcup_{i = 0}^{k-1} E_i$)      
+> \= $\displaystyle \sum_{k=0}^{n}$μ(A ∩ ($\displaystyle \bigcup_{i = 0}^{k} E_i$ − $\displaystyle \bigcup_{i = 0}^{k-1} E_i$)) + μ(A - $\displaystyle \bigcup_{n \isin \N } E_n$)    
 >      
 > 由于对任意n ∈ $\displaystyle \N$成立，因此，在n趋向于$\displaystyle +\infty$时也成立，有 //\"n趋向于$\displaystyle +\infty$\"的这波操作在定义上可能缺乏严谨性，可能涉及到更高深的数学知识                   
-> μ(A) ≥ $\displaystyle \sum_{i = 0 \land i \isin \N}^{+\infty}$μ(A ∩ ($\displaystyle \bigcup_{k = i}^{n} E_k$ − $\displaystyle \bigcup_{k = i}^{n-1} E_k$)) + μ(A - $\displaystyle \bigcup_{n \isin \N } E_n$)  
-> ≥ μ(A ∩ (($\displaystyle \bigcup_{k = i \land k \isin \N}^{+\infty} E_k$ − $\displaystyle \bigcup_{k = i \land k \isin \N}^{+\infty-1} E_k$) ∪...∪($\displaystyle \bigcup_{k = i}^{0} E_k$ − ∅))) + μ(A - $\displaystyle \bigcup_{n \isin \N } E_n$)    
+> μ(A) ≥ $\displaystyle \sum_{k = 0 \land k \isin \N}^{+\infty}$μ(A ∩ ($\displaystyle \bigcup_{i = 0}^{k} E_i$ − $\displaystyle \bigcup_{i = 0}^{k-1} E_i$)) + μ(A - $\displaystyle \bigcup_{n \isin \N } E_n$)  
+> ≥ μ(A ∩ (($\displaystyle \bigcup_{i = 0 \land i \isin \N}^{+\infty} E_i$ − $\displaystyle \bigcup_{i = 0 \land i \isin \N}^{+\infty-1} E_i$) ∪ ... ∪ ($\displaystyle \bigcup_{i = 0}^{0} E_i$ − ∅))) + μ(A - $\displaystyle \bigcup_{n \isin \N } E_n$)    
 > \= μ(A ∩ $\displaystyle \bigcup_{n \isin \N} E_n$) + μ(A - $\displaystyle \bigcup_{n \isin \N } E_n$)     
 > 从而 $\displaystyle \bigcup_{n \isin \N } E_n$ ∈ M //根据上文，由于≤一定成立，因此≥是=的充分必要条件(等价形式) //M对可数并集封闭       
 >  
@@ -1550,6 +1565,7 @@ B ∪ (A − B) = A ∪ B 而非 = A //可以直接从集合的定义证明，�
 \[陈天权 2009\] / 定理 9.4.1       
 \[Yeh 2014\] / Theorem 2.9  
 μ是X上的外测度 且 M = { E | E ⊂ X 且 E是μ-可测的 } ⇒ u在M上可数可加    
+//根据可数可加的定义，M是σ-代数是可数可加的前提   
     
 证明      
 >     
@@ -1569,13 +1585,13 @@ B ∪ (A − B) = A ∪ B 而非 = A //可以直接从集合的定义证明，�
 > μ($\displaystyle \bigcup_{i \isin \N } E_i$) ≥ $\displaystyle \sum_{i \isin \N}$μ($\displaystyle E_i$)    
 > 从而μ($\displaystyle \bigcup_{i \isin \N } E_i$) = $\displaystyle \sum_{i \isin \N}$μ($\displaystyle E_i$) //根据上文，由于≤一定成立，因此≥是=的充分必要条件(等价形式)      
 >   
-
-
-卡拉西奥多里扩张定理(Caratheodory's Extension Theorem)     
-
+                        
+卡拉西奥多里扩张定理(Caratheodory's Extension Theorem)       
+              
 ---   
+      
 与度量空间(Metric Space)相关联   
-
+    
 博雷尔代数 Borel Algebra     
    
 博雷尔集 Borel Set        
