@@ -197,30 +197,58 @@ X是拓扑空间 且 p ∈ X 且 S ⊂ X ⇒ ( p是S的聚点 ⇔ ∀"$\displays
 ---    
       
 孤立点(Isolated Point)   
-\[陈天权 2009\] / 定义 7\.1\.6   
-\[Rudin 1976\] / 2.18 Definition (c)   
 X是拓扑空间 且 p ∈ X 且 S ⊂ X ⇒ ( p是S的孤立点 ⇔ p ∈ S 且 ∃"$\displaystyle \text{U}_p$","$\displaystyle \text{U}_p$是p的开领域 且 S ∩ ( $\displaystyle \text{U}_p$ − {p} ) = ∅" )      
 //即p ∈ S 且 p不是S的聚点 S      
 //值得注意的是，在内点/极点/孤立点的定义中，只有孤立点要求p ∈ S，内点要求p ∈ X但要求$\displaystyle \text{U}_p$ ⊂ S，而极点只要求p ∈ X           
-        
+\[陈天权 2009\] / 定义 7\.1\.6   
+\[Rudin 1976\] / 2.18 Definition (c)   
+
 ---       
      
 附着点(Adherent Point)    
 X是拓扑空间 且 p ∈ X 且 S ⊂ X ⇒ ( p是S的附着点 ⇔ ∀"$\displaystyle \text{U}_p$,$\displaystyle \text{U}_p$是p的开领域","S ∩ $\displaystyle \text{U}_p$ ≠ ∅" )         
 //显然，附着点不是极点就是孤立点 //可以认为极点和孤立点统称为附着点             
-         
 
+\[定理\] \[等价定义\] 附着点(Adherent Point) //通过 闭包(Closure)         
+X是拓扑空间 且 p ∈ X 且 S ⊂ X 且 $\displaystyle \overline{\text{S}}$是S的闭包 ⇒ ( p是S的附着点 ⇔ p ∈ $\displaystyle \overline{\text{S}}$ )         
+\[陈天权 2009\] / 命题 7\.1\.2       
+> 证明     
+> 根据附着点的定义，相当于证明  ∀"p ∈ X","∀"$\displaystyle \text{U}_p$,$\displaystyle \text{U}_p$是p的开领域","S ∩ $\displaystyle \text{U}_p$ ≠ ∅" ⇔ p ∈ $\displaystyle \overline{\text{S}}$"      
+> 
+> 1 ⇒ 2              
+> 相当于证明逆否命题 ∀"p ∈ X","p $\displaystyle \notin$ $\displaystyle \overline{\text{S}}$ ⇒ ∃"$\displaystyle \text{U}_p$,$\displaystyle \text{U}_p$是p的开领域","S ∩ $\displaystyle \text{U}_p$ = ∅""    
+> ∀"p ∈ X","p $\displaystyle \notin$ $\displaystyle \overline{\text{S}}$ ⇒ p ∈ (X - $\displaystyle \overline{\text{S}}$) ⇒ ∃"$\displaystyle \text{U}_p$ = (X - $\displaystyle \overline{\text{S}}$),$\displaystyle \text{U}_p$是p的开领域","S ∩ $\displaystyle \text{U}_p$ = ∅""    
+>           
+> 2 ⇒ 1      
+> 相当于证明逆否命题 ∀"p ∈ X"," ∃"$\displaystyle \text{U}_p$,$\displaystyle \text{U}_p$是p的开领域","S ∩ $\displaystyle \text{U}_p$ = ∅" ⇒ p $\displaystyle \notin$ $\displaystyle \overline{\text{S}}$"                
+> 由于 ∃"$\displaystyle \text{U}_p$,$\displaystyle \text{U}_p$是p的开领域","S ∩ $\displaystyle \text{U}_p$，根据闭集的定义，(X - $\displaystyle \text{U}_p$)是闭集，因此 p $\displaystyle \notin$ (X - $\displaystyle \text{U}_p$) 且 (X - $\displaystyle \text{U}_p$)是包含S的闭集    
+> 由于 $\displaystyle \overline{\text{S}}$是所有包含S的闭集的交，根据交集的定义，从而 p $\displaystyle \notin$ $\displaystyle \overline{\text{S}}$               
+>    
+    
+---  
 
----      
-           
+边界点(Boundary Point)         
+X是拓扑空间 且 p ∈ X 且 S ⊂ X ⇒ ( p是S的边界点 ⇔ ∀"$\displaystyle \text{U}_p$,$\displaystyle \text{U}_p$是p的开领域","S ∩ $\displaystyle \text{U}_p$ ≠ ∅ 且 (X − S) ∩ $\displaystyle \text{U}_p$ ≠ ∅" )          
+     
+\[定理\] \[等价定义\] 边界点(Boundary Point) //通过 边界(Boundary)         
+X是拓扑空间 且 p ∈ X 且 S ⊂ X 且 $\displaystyle \partial \text{S}$是S的边界 ⇒ ( p是S的边界点 ⇔ p ∈ $\displaystyle \partial \text{S}$ )           
+//ProofWiki / Equivalence of Definitions of Boundary     
+> 证明       
+> ∀"$\displaystyle \text{U}_p$,$\displaystyle \text{U}_p$是p的开领域","S ∩ $\displaystyle \text{U}_p$ ≠ ∅" ⇔ p是S的附着点 ⇔ p ∈  $\displaystyle \overline{\text{S}}$ //根据 "\[定理\] \[等价定义\] 附着点(Adherent Point) //通过 闭包(Closure)"    
+> ∀"$\displaystyle \text{U}_p$,$\displaystyle \text{U}_p$是p的开领域","(X − S) ∩ $\displaystyle \text{U}_p$ ≠ ∅" ⇔ p是S的附着点 ⇔ p ∈  $\displaystyle \overline{\text{X} - \text{S}}$ //根据 "\[定理\] \[等价定义\] 附着点(Adherent Point) //通过 闭包(Closure)"           
+> 从而，p是S的附着点 ⇔ p ∈ $\displaystyle \overline{\text{S}}$ ∩ $\displaystyle \overline{\text{X} - \text{S}}$ ⇔ p ∈ $\displaystyle \partial \text{S}$ //根据 "\[定理\] \[等价定义\] 边界(Boundary) //通过 闭包(Closure)"                                   
+>                       
+          
+---            
+             
 \[定义\] 内部(Interior) //S的内部是所有(包含于S的)开集的并集           
+X是拓扑空间 且 S ⊂ X ⇒ ( $\displaystyle \text{S} \degree$是S的内部 ⇔ $\displaystyle \text{S} \degree$ = $\displaystyle \bigcup_{\text{A} \isin \mathcal{A}} \text{A}$ 且 $\displaystyle \mathcal{A}$ = \{ A | A是开集 且 A ⊂ S \} )       
 \[陈天权 2009\] / 定义 7\.1\.7    
-X是拓扑空间 且 S ⊂ X ⇒ ( $\displaystyle \text{S} \degree$是S的内部 ⇔ $\displaystyle \text{S} \degree$ = $\displaystyle \bigcup_{\text{A} \isin \mathcal{A}} \text{A}$ 且 $\displaystyle \mathcal{A}$ = \{ A | A是开集 且 A ⊂ S \} )                 
        
-\[定理\] \[等价定义\] 内部(Interior) //S的内部是(包含于S的)最大开集        
+\[定理\] \[等价定义\] 内部(Interior) //S的内部是(包含于S的)最大开集      
+X是拓扑空间 且 S ⊂ X ⇒ ( $\displaystyle \text{S} \degree$是S的内部 ⇔ $\displaystyle \text{S} \degree$ ⊂ S 且 $\displaystyle \text{S} \degree$是开集 且 ∀"A是开集 且 A ⊂ S","A ⊂ $\displaystyle \text{S} \degree$" )      
 //ProofWiki / Set Interior is Largest Open Set //Obsolete      
 //ProofWiki / Equivalence of Definitions of Interior           
-X是拓扑空间 且 S ⊂ X ⇒ ( $\displaystyle \text{S} \degree$是S的内部 ⇔ $\displaystyle \text{S} \degree$ ⊂ S 且 $\displaystyle \text{S} \degree$是开集 且 ∀"A是开集 且 A ⊂ S","A ⊂ $\displaystyle \text{S} \degree$" )      
 > 证明  
 >     
 > 1 ⇒ 2    
@@ -236,10 +264,16 @@ X是拓扑空间 且 S ⊂ X ⇒ ( $\displaystyle \text{S} \degree$是S的内部
 >    
       
 \[定理\] \[等价定义\] 内部(Interior) //通过 内点(Interior Point) //S内部是由所有S的内点构成的集合            
-X是拓扑空间 且 S ⊂ X ⇒ (  $\displaystyle \text{S} \degree$是S的内部 ⇔ $\displaystyle \text{S} \degree$ = { p | p是S的内点 } )      
-           
+X是拓扑空间 且 S ⊂ X ⇒ (  $\displaystyle \text{S} \degree$是S的内部 ⇔ $\displaystyle \text{S} \degree$ = { p | p是S的内点 } )                 
 //根据 "\[定理\] \[等价定义\] 内点 Interior Point //通过 内部(Interior)" 显然            
        
+\[定理\] \[等价定义\] 内部(Interior) //通过 闭包(Closure)         
+X是拓扑空间 且 S ⊂ X 且 $\displaystyle \text{S} \degree$是S的内部 且 $\displaystyle \overline{\text{S}}$是S的闭包 ⇒  $\displaystyle \text{S} \degree$ = $\displaystyle \text{X} - \overline{\text{X} - \text{S}}$    
+//ProofWiki / Interior equals Complement of Closure of Complement   
+//ProofWiki / Complement of Interior equals Closure of Complement   
+//根据对称性 显然     
+//可以用德摩根定律证明     
+
 ---       
 
 \[定义\] 导集(Derived Set)    
@@ -274,20 +308,7 @@ X是拓扑空间 且 S ⊂ X ⇒ ( $\displaystyle \overline{\text{S}}$是S的闭
 
 \[定理\] \[等价定义\] 闭包(Closure) //通过 附着点(Adherent Point) //S闭包是由所有S的附着点构成的集合       
 X是拓扑空间 且 S ⊂ X ⇒ ( $\displaystyle \overline{\text{S}}$是S的闭包 ⇔ $\displaystyle \overline{\text{S}}$ = { p | p是S的附着点 } )      
-\[陈天权 2009\] / 命题 7\.1\.2       
-> 证明     
-> 由于 S ⊂ X 且 $\displaystyle \overline{\text{S}}$ ⊂ X，根据集合的定义，相当于证明 ∀"p ∈ X","p是S的附着点 ⇔ p ∈ $\displaystyle \overline{\text{S}}$"        
-> 根据附着点的定义，相当于证明  ∀"p ∈ X","∀"$\displaystyle \text{U}_p$,$\displaystyle \text{U}_p$是p的开领域","S ∩ $\displaystyle \text{U}_p$ ≠ ∅" ⇔ p ∈ $\displaystyle \overline{\text{S}}$"      
-> 
-> 1 ⇒ 2              
-> 相当于证明逆否命题 ∀"p ∈ X","p $\displaystyle \notin$ $\displaystyle \overline{\text{S}}$ ⇒ ∃"$\displaystyle \text{U}_p$,$\displaystyle \text{U}_p$是p的开领域","S ∩ $\displaystyle \text{U}_p$ = ∅""    
-> ∀"p ∈ X","p $\displaystyle \notin$ $\displaystyle \overline{\text{S}}$ ⇒ p ∈ (X - $\displaystyle \overline{\text{S}}$) ⇒ ∃"$\displaystyle \text{U}_p$ = (X - $\displaystyle \overline{\text{S}}$),$\displaystyle \text{U}_p$是p的开领域","S ∩ $\displaystyle \text{U}_p$ = ∅""    
->           
-> 2 ⇒ 1      
-> 相当于证明逆否命题 ∀"p ∈ X"," ∃"$\displaystyle \text{U}_p$,$\displaystyle \text{U}_p$是p的开领域","S ∩ $\displaystyle \text{U}_p$ = ∅" ⇒ p $\displaystyle \notin$ $\displaystyle \overline{\text{S}}$"                
-> 由于 ∃"$\displaystyle \text{U}_p$,$\displaystyle \text{U}_p$是p的开领域","S ∩ $\displaystyle \text{U}_p$，根据闭集的定义，(X - $\displaystyle \text{U}_p$)是闭集，因此 p $\displaystyle \notin$ (X - $\displaystyle \text{U}_p$) 且 (X - $\displaystyle \text{U}_p$)是包含S的闭集    
-> 由于 $\displaystyle \overline{\text{S}}$是所有包含S的闭集的交，根据交集的定义，从而 p $\displaystyle \notin$ $\displaystyle \overline{\text{S}}$               
->                     
+//根据 "\[定理\] \[等价定义\] 附着点(Adherent Point) //通过 闭包(Closure)" 显然                
    
 \[定理\] \[等价定义\] 闭包(Closure) //通过 导集(Derived Set)      
 X是拓扑空间 且 S ⊂ X 且 $\displaystyle \overline{\text{S}}$是S的闭包 且 S'是S的导集 ⇒ $\displaystyle \overline{\text{S}}$ = S ∪ S'                
@@ -295,19 +316,43 @@ X是拓扑空间 且 S ⊂ X 且 $\displaystyle \overline{\text{S}}$是S的闭�
 \[Rudin 1976\] / 2\.26 Definition     
 ProofWiki / Equivalence of Definitions of Closure of Topological Subspace / 1 ⇒ 6          
 > 证明     
-> 
-> 由于  
+>            
+> 由于      
 > $\displaystyle \overline{\text{S}}$ = \{ p | ∀"$\displaystyle \text{U}_p$,$\displaystyle \text{U}_p$是p的开领域","S ∩ $\displaystyle \text{U}_p$ ≠ ∅" \} //根据 "\[定理\] \[等价定义\] 闭包(Closure) //通过 附着点(Adherent Point)"    
 > S = \{ p | {p} ∩ S ≠ ∅ \} //显然  
 > S' = \{ p | ∀"$\displaystyle \text{U}_p$,$\displaystyle \text{U}_p$是p的开领域","S ∩ ( $\displaystyle \text{U}_p$ − {p} ) ≠ ∅" \} //根据 聚点 和 导集 的定义  
 >   
 > 显然 命题成立    
->  
-
-//Interior equals Complement of Closure of Complement   
-//Complement of Interior equals Closure of Complement   
-      
+>     
+            
+---  
     
+\[定义\] 边界(Boundary)  
+X是拓扑空间 且 S ⊂ X 且 $\displaystyle \partial \text{S}$是S的边界 ⇒ $\displaystyle \partial \text{S}$ = $\displaystyle \overline{\text{S}}$ − $\displaystyle \text{S} \degree$          
+\[陈天权 2009\] / 定义 7\.1\.8       
+   
+\[定理\] \[等价定义\] 边界(Boundary) //通过 闭包(Closure)     
+X是拓扑空间 且 S ⊂ X 且 $\displaystyle \partial \text{S}$是S的边界 ⇒ $\displaystyle \partial \text{S}$ = $\displaystyle \overline{\text{S}}$ ∩ $\displaystyle \overline{\text{X} - \text{S}}$              
+//由于闭包是闭集合，又因为闭集对无限交封闭，从而边界是闭集        
+> 证明  　　　  
+> 由于 $\displaystyle \overline{\text{S}}$ ∩ $\displaystyle \overline{\text{X} - \text{S}}$ = $\displaystyle \overline{\text{S}}$ ∩ ( X − $\displaystyle \text{S} \degree$ ) //根据 "\[定理\] \[等价定义\] 内部(Interior) //通过 闭包(Closure)"         
+> 从而，$\displaystyle \partial \text{S}$ = $\displaystyle \overline{\text{S}}$ − $\displaystyle \text{S} \degree$ = $\displaystyle \overline{\text{S}}$ ∩ ( X − $\displaystyle \text{S} \degree$ ) = $\displaystyle \overline{\text{S}}$ ∩ $\displaystyle \overline{\text{X} - \text{S}}$            
+>       
+
+\[定理\]    
+X是拓扑空间 且 S ⊂ X ⇒ ( S是开集且S是闭集 ⇔ $\displaystyle \partial S$ = ∅ )                    
+> 证明     
+>        
+> 1 ⇒ 2    
+> S是开集 且 S是闭集 ⇒ S = $\displaystyle \overline{\text{S}}$ 且 S = $\displaystyle \text{S} \degree$ ⇒ $\displaystyle \partial \text{S}$ = $\displaystyle \overline{\text{S}}$ − $\displaystyle \text{S} \degree$ = ∅       
+>     
+> 2 ⇒ 1   
+> $\displaystyle \partial \text{S}$ = ∅ ⇒ $\displaystyle \overline{\text{S}}$ − $\displaystyle \text{S} \degree$ = ∅ ⇒  $\displaystyle \overline{\text{S}}$ = $\displaystyle \text{S} \degree$    
+> 又因为 $\displaystyle \text{S} \degree$ ⊂ S ⊂ $\displaystyle \overline{\text{S}}$    
+> 从而 $\displaystyle \overline{\text{S}}$ = $\displaystyle \text{S} \degree$ ⊂ S ⊂ $\displaystyle \overline{\text{S}}$ = $\displaystyle \text{S} \degree$ 有 $\displaystyle \overline{\text{S}}$ ⊂ S 且 S ⊂ $\displaystyle \text{S} \degree$ 　                   
+> 从而 S = $\displaystyle \overline{\text{S}}$ 且 S = $\displaystyle \text{S} \degree$  因此 S是开集 且 S是闭集    
+>         
+
 ---   
 
 拓扑间的包含关系     
@@ -325,17 +370,6 @@ ProofWiki / Equivalence of Definitions of Closure of Topological Subspace / 1 �
         
 ---     
         
-
-
-
-   
- 
-
-
-      
-        
-   
----
 通常拓扑 Usual Topology  
 
 R上的开集    
@@ -372,21 +406,6 @@ $\displaystyle R^2$上的开集-内点
 \[同济大学数学系 2014\] / 第九章 多元函数微分法及其应用 / 第一节 多元函数的基本概念 / 一、平面点集 *n维空间 / 1. 平面点集     
 开集：如果点集E的点都是E的内点，那么称E为开集        
        
----         
-      
-
-
-   
-
-      
----   
-
-
----   
-   
-
-
-
 ---   
    
 $\displaystyle R^2$上的聚点      
@@ -421,31 +440,6 @@ $\displaystyle R^2$上的闭集
          
 实数集R的通常拓扑是可分的 //有理数集Q是可数的 且 有理数集Q在实数集R的通常拓扑中稠密          
 \[陈天权 2009\] / 定义 7\.1\.10     
-
-
----  
-    
-边界 Boundary  
-\[陈天权 2009\] / 定义 7\.1\.8     
-定义： τ是X上的拓扑 且 E ⊂ X ⇒ E的边界$\displaystyle \partial E$ = $\displaystyle \overline{E}$ − $\displaystyle E \degree$ //    
-       
-定理： τ是X上的拓扑 且 E ⊂ X ⇒ ( E是开集且E是闭集 ⇔ $\displaystyle \partial E$ = ∅ ) //        
-    
-> 证明     
->      
-> E是开集 ⇔ E = $\displaystyle E \degree$ //根据上面已经证明的定理     
-> E是闭集 ⇔ E = $\displaystyle \overline{E}$ //根据上面已经证明的定理       
->       
-> 必要性    
-> E是开集且E是闭集 ⇒ E = $\displaystyle E \degree$ 且 E = $\displaystyle \overline{E}$ ⇒ $\displaystyle \partial E$ = $\displaystyle \overline{E}$ − $\displaystyle E \degree$ = ∅       
->     
-> 充分性   
-> $\displaystyle \partial E$ = ∅ ⇒ $\displaystyle \overline{E}$ − $\displaystyle E \degree$ = ∅ ⇒ $\displaystyle E \degree$ = $\displaystyle \overline{E}$    
->                   
->   
-     
-//边界一定是闭集   
-//证明  
     
 ###    
     
