@@ -242,11 +242,28 @@ X是拓扑空间 且 S ⊂ X ⇒ ( $\displaystyle \overline{\text{S}}$是S的闭
 > 从而$\displaystyle \overline{\text{S}}$ = H，即$\displaystyle \overline{\text{S}}$是S的闭包    
 >   
    
+\[定理\] \[等价定义\] 闭包(Closure) //通过 导集(Derived Set)      
+\[陈天权 2009\] / 定义 7\.1\.6   
+\[Rudin 1976\] / 2\.26 Definition     
+ProofWiki / Set Closure as Intersection of Closed Sets     
+ProofWiki / Equivalence of Definitions of Closure of Topological Subspace     
+X是拓扑空间 且 S ⊂ X 且 $\displaystyle \overline{\text{S}}$是S的闭包 且 S'是S的导集 ⇒ $\displaystyle \overline{\text{S}}$ = S ∪ S'            
+    
+> 证明     
+> 
+> 由于  
+> $\displaystyle \overline{E}$ = { x : ∀ x的领域U, U ∩ E ≠ ∅ } //根据”定理：闭包-聚点/孤立点“    
+> E = { x : {x} ∩ E ≠ ∅ } //显然  
+> E' = { x : ∀ x的领域U, (U - {x}) ∩ E ≠ ∅ } //根据 聚点 和 导集 的定义  
+>   
+> 显然 命题成立    
+>  
+
 //Interior equals Complement of Closure of Complement   
 //Complement of Interior equals Closure of Complement   
       
     
-//Proofwiki Equivalence of Definitions of Closure of Topological Subspace
+//Proofwiki / Equivalence of Definitions of Closure of Topological Subspace
 
 ---   
 
@@ -352,20 +369,7 @@ X是拓扑空间 且 E ⊂ X ⇒ ( x ∈ $\displaystyle \overline{E}$ ⇔ ∀x�
 > 综上 命题得证   
 >  
         
-定理：闭包-导集   
-\[陈天权 2009\] / 定义 7\.1\.6   
-\[Rudin 1976\] / 2\.26 Definition     
-X是拓扑空间 且 E ⊂ X ⇒ ( $\displaystyle \overline{E}$ = E ∪ E' )           
-    
-> 证明     
-> 
-> 由于  
-> $\displaystyle \overline{E}$ = { x : ∀ x的领域U, U ∩ E ≠ ∅ } //根据”定理：闭包-聚点/孤立点“    
-> E = { x : {x} ∩ E ≠ ∅ } //显然  
-> E' = { x : ∀ x的领域U, (U - {x}) ∩ E ≠ ∅ } //根据 聚点 和 导集 的定义  
->   
-> 显然 命题成立    
->  
+
 
 ---   
    
