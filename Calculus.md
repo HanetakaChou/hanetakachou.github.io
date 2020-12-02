@@ -365,8 +365,38 @@ X是拓扑空间 且 S ⊂ X ⇒ ( S是开集且S是闭集 ⇔ $\displaystyle \p
 > 从而 $\displaystyle \overline{\text{S}}$ = $\displaystyle \text{S} \degree$ ⊂ S ⊂ $\displaystyle \overline{\text{S}}$ = $\displaystyle \text{S} \degree$ 有 $\displaystyle \overline{\text{S}}$ ⊂ S 且 S ⊂ $\displaystyle \text{S} \degree$ 　                   
 > 从而 S = $\displaystyle \overline{\text{S}}$ 且 S = $\displaystyle \text{S} \degree$  因此 S是开集 且 S是闭集    
 >         
+               
+---     
+        
+\[定义\] 覆盖(Cover)    
+C是Y的覆盖 ⇔ Y ⊂ $\displaystyle \bigcup_{\text{A} \isin \text{C}} \text{A}$        
+//覆盖的定义并不依赖于拓扑   
+//见构造外测度
 
----   
+\[定义\] 开覆盖(Open Cover)    
+X是拓扑空间 且 Y ⊂ X ⇒ ( C是Y的(X上的)开覆盖 ⇔ C是Y的覆盖 且 ∀"A ∈ C","A是(X上的)开集" )    
+\[陈天权 2009\] / 定义 7\.6\.1       
+    
+\[定义\] 子覆盖(Subcover)    
+C是Y的覆盖 ⇒ ( D是C关于Y的子覆盖 ⇔ D是Y的覆盖 且 D ⊂ C )      
+ProofWifi / Definition:Subcover      
+\[陈天权 2009\] / 定义 7\.6\.1       
+
+\[定义\] 有限子覆盖(Finite Subcover)     
+C是Y的覆盖 ⇒ ( D是C关于Y的有限子覆盖 ⇔ D是C关于Y的子覆盖 且 D是有限集 )      
+ProofWifi / Definition:Subcover/Finite      
+\[陈天权 2009\] / 定义 7\.6\.1       
+     
+---         
+      
+紧集(Compact Set) //紧(Compact) ⇔ 有限(Finite) //从(有限或无限)开覆盖C中**选择**有限个开集(C的元素)来覆盖K             
+X是拓扑空间 且 K ⊂ X ⇒ ( K是紧集 ⇔ ∀"C,C是K的开覆盖","∃"F","F是C关于K的有限子覆盖"" )    
+ProofWiki / Definition:Compact Space/Topology/Subspace      
+\[陈天权 2009\] / 定义 7\.6\.1       
+\[Rudin 1976\] / 2\.31 Definition    
+        
+        
+---    
 
 拓扑间的包含关系     
 //finer/smaller/weaker    
@@ -645,37 +675,9 @@ T2空间
 >   
 >                              
 
-//紧 Compat -> 有限 finite    
-
 ---  
 
-覆盖 Cover 
-//覆盖的定义并不依赖于拓扑   
-//见构造外测度
 
-开覆盖 Open Cover    
-\[陈天权 2009\] / 定义 7\.6\.1       
-\[Rudin 1976\] / 2\.31 Definition      
-    
-X是拓扑空间 且 Y ⊂ X 且 C = {$\displaystyle U_\alpha$ | α ∈ A }  ⇒ (  C是Y的覆盖 ⇔ C是E的覆盖 且 ∀"α ∈ A","$\displaystyle U_\alpha$是X上的开集" )    
-
-子覆盖 Subcover   
-\[陈天权 2009\] / 定义 7\.6\.1       
-\[Rudin 1976\] / 2\.31 Definition  
-
-τ是X上的拓扑 且 E⊂X 且 $\displaystyle \bigcup_{\alpha \isin A} G_\alpha$是E的开覆盖 ⇒ ( $\displaystyle \bigcup_{\alpha \isin B} G_\alpha$是$\displaystyle \bigcup_{\alpha \isin A} G_\alpha$（关于E）的子覆盖 ⇔ B ⊂ A 且 E ⊂ $\displaystyle \bigcup_{\alpha \isin B} G_\alpha$ )   
-
-有限子覆盖 Finite Subcover     
-\[陈天权 2009\] / 定义 7\.6\.1       
-\[Rudin 1976\] / 2\.31 Definition   
-          
-τ是X上的拓扑 且 E⊂X 且 $\displaystyle \bigcup_{\alpha \isin A} G_\alpha$是E的开覆盖 ⇒ ( $\displaystyle \bigcup_{\alpha \isin B} G_\alpha$是$\displaystyle \bigcup_{\alpha \isin A} G_\alpha$（关于E）的子覆盖 ⇔ B是有限集 且 $\displaystyle \bigcup_{\alpha \isin B} G_\alpha$是$\displaystyle \bigcup_{\alpha \isin A} G_\alpha$（关于E）的子覆盖 )    
-       
-紧集 Compact Set   
-\[陈天权 2009\] / 定义 7\.6\.1       
-\[Rudin 1976\] / 2\.31 Definition    
-      
-τ是X上的拓扑 且 K⊂X ⇒ ( K是紧集 ⇔ ∀G,G是K的开覆盖 ∃H,H是G（关于K）的有限子覆盖 ) //从（有限或无限）开覆盖G中**选择**有限个开集（H的元素）来覆盖K     
          
 R上的闭区间是（关于R的通常拓扑的）紧集   
 \[陈天权 2009\] / 例 7\.6\.1       
@@ -1466,8 +1468,8 @@ $\displaystyle \mathcal{R}$是σ-代数 且 μ是$\displaystyle \mathcal{R}$上�
 覆盖  
 //覆盖的定义并不依赖于拓扑   
 //见紧空间  
-C = { $\displaystyle U_\alpha$ | α ∈ A } ⇒ ( C是Y的覆盖 ⇔ Y ⊂ $\displaystyle \bigcup_{\alpha \isin A} U_\alpha$ )    
-//本质上来讲，定义中的指标集(Index Set)可以忽略， 理解为"Y 包含于 C中所有的元素的并集"即可 //即Y ⊂ $\displaystyle \bigcup_{U \isin C}$U    
+C = { $\displaystyle \text{U}_\alpha$ | α ∈ A } ⇒ ( C是Y的覆盖 ⇔ Y ⊂ $\displaystyle \bigcup_{\alpha \isin \text{A}} \text{U}_\alpha$ )    
+//本质上来讲，定义中的指标集(Index Set)可以忽略， 理解为"Y 包含于 C中所有的元素的并集"即可 //即Y ⊂ $\displaystyle \bigcup_{\text{U} \isin \text{C}}$U    
 
 构造外测度 //Construction of Outer Measure       
 Y ⊂ ℘(X) 且 ∅ ∈ Y 且 p是Y到非负扩展实数集(\[0,+∞\])的映射 且 p(∅)=0 且 φ的定义域为 ℘(X) 且 φ(E) = $\displaystyle \begin{cases} \displaystyle \inf \{ \sum_{A \isin \text{C}} \operatorname{p} ( A ) \, | \, \text{C} \text{是} \text{可数集} \, \text{且} \, \text{C} \text{是} E \text{的覆盖} \, \text{且} \text{C} \subset Y \} & \displaystyle \text{当} \, \exist \text{"} \text{C} \text{","} \text{C} \text{是} \text{可数集} \, \text{且} \, \text{C} \text{是} E \text{的覆盖} \, \text{且} \, \text{C} \subset Y \text{"} \, \text{时} \\ +\infty & \displaystyle \text{当} \, \nexists \text{"} \text{C} \text{","} \text{C} \text{是} \text{可数集} \, \text{且} \, \text{C} \text{是} E \text{的覆盖} \, \text{且} \, \text{C} \subset Y \text{"} \, \text{时} \end{cases}$ ⇒ φ是X上的外测度     
