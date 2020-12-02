@@ -373,45 +373,73 @@ X是拓扑空间 且 S ⊂ X ⇒ ( S是开集且S是闭集 ⇔ $\displaystyle \p
 C是Y的覆盖 ⇔ Y ⊂ $\displaystyle \bigcup_{\text{A} \isin \text{C}} \text{A}$        
 //覆盖的定义并不依赖于拓扑   
 //见构造外测度
-
-\[定义\] 开覆盖(Open Cover)    
-X是拓扑空间 且 Y ⊂ X ⇒ ( C是Y的(X上的)开覆盖 ⇔ C是Y的覆盖 且 ∀"A ∈ C","A是(X上的)开集" )    
-\[陈天权 2009\] / 定义 7\.6\.1       
     
-\[定义\] 子覆盖(Subcover)    
-C是Y的覆盖 ⇒ ( D是C关于Y的子覆盖 ⇔ D是Y的覆盖 且 D ⊂ C )      
-ProofWifi / Definition:Subcover      
-\[陈天权 2009\] / 定义 7\.6\.1       
-
+\[定义\] 子覆盖(Subcover)     
+C是Y的覆盖 ⇒ ( D是C关于Y的子覆盖 ⇔ D是Y的覆盖 且 D ⊂ C )                
+//ProofWifi / Definition:Subcover       
+//\[陈天权 2009\] / 定义 7\.6\.1               
+//子覆盖的定义并不依赖于拓扑     
+            
 \[定义\] 有限子覆盖(Finite Subcover)     
 C是Y的覆盖 ⇒ ( D是C关于Y的有限子覆盖 ⇔ D是C关于Y的子覆盖 且 D是有限集 )      
-ProofWifi / Definition:Subcover/Finite      
-\[陈天权 2009\] / 定义 7\.6\.1       
-     
+//ProofWifi / Definition:Subcover/Finite      
+//\[陈天权 2009\] / 定义 7\.6\.1       
+//有限子覆盖的定义并不依赖于拓扑         
+            
+\[定义\] 开覆盖(Open Cover)    
+X是拓扑空间 且 Y ⊂ X ⇒ ( C是Y的(在X上的)开覆盖 ⇔ C是Y的覆盖 且 ∀"A ∈ C","A是(在X上的)开集" )      
+//\[陈天权 2009\] / 定义 7\.6\.1       
+              
 ---         
       
-\[定义\] 紧的(Compact) //紧(Compact) ⇔ 有限(Finite) //从(有限或无限)开覆盖C中**选择**有限个开集(C的元素)来覆盖K             
-X是拓扑空间 且 K ⊂ X ⇒ ( K是紧的 ⇔ ∀"C,C是K的开覆盖","∃"F","F是C关于K的有限子覆盖"" )    
-ProofWiki / Definition:Compact Space/Topology/Subspace      
-\[陈天权 2009\] / 定义 7\.6\.1       
-\[Rudin 1976\] / 2\.31 Definition    
-        
+\[定义\] 紧的(Compact) //紧(Compact) ⇔ 有限(Finite) //从(有限或无限)开覆盖C中**选择**有限个开集(C的元素)来覆盖Y             
+X是拓扑空间 且 Y ⊂ X ⇒ ( K(在X上)是紧的 ⇔ ∀C : C是Y的(在X上的)开覆盖 ⇒ ( ∃ F : F是C关于K的有限子覆盖 ) )         
+//ProofWiki / Definition:Compact Space/Topology/Subspace         
+//\[陈天权 2009\] / 定义 7\.6\.1        
+//\[Rudin 1976\] / 2\.31 Definition       
+              
+有限覆盖定理/海涅-博雷尔定理 Heine–Borel Theorem            
+              
 ---    
-
-\[定义\] 收敛序列(Convergent Sequence) //拓扑中的数列极限     
-//ProofWiki / Definition:Convergent Sequence/Topology       
+              
+\[定义\] 收敛序列(Convergent Sequence) //拓扑中的数列极限       
+X是拓扑空间 且 $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是X上的无限序列 ⇒ ( $\displaystyle {\lang x_n \rang}_{ n \isin \N }$(在X上)收敛于a ⇔ ( ∀$\displaystyle \text{U}_a$ : $\displaystyle \text{U}_a$是a的(在X上的)开领域 ⇒ ( ∃ N > 0 : ∀ n > N : $\displaystyle x_n$ ∈ $\displaystyle \text{U}_a$ ) ) )            
+//ProofWiki / Definition:Convergent Sequence/Topology          
 //\[陈天权 2009\] / 定义 7\.5\.1        
-
-\[定义\] (序列的)极点(Limit Point(of Sequence))     
-//\[陈天权 2009\] / 定义 7\.5\.1        
-
-
+                  
+X是拓扑空间 且 $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是X上的无限序列 ⇒ ( $\displaystyle {\lang x_n \rang}_{ n \isin \N }$(在X上)收敛于a ⇒ a是$\displaystyle {\lang x_n \rang}_{ n \isin \N }$(在X上)(当n趋于无穷时的)极点 )                 
+//(序列的)极点(Limit Point(of Sequence)) //注意与聚点的定义区分           
+        
+---      
+        
 \[定义\] 列紧的(Sequentially Compact)           
+X是拓扑空间 且 Y ⊂ X ⇒ ( Y(在X上)是列紧的 ⇔ ( ∀$\displaystyle {\lang x_n \rang}_{ n \isin \N }$是Y上的无限序列 : ∃ $\displaystyle {\lang x_{n_r} \rang}_{ r \isin \N }$是$\displaystyle {\lang x_n \rang}_{ n \isin \N }$的子列 : ∃ a ∈ Y : $\displaystyle {\lang x_{n_r} \rang}_{ r \isin \N }$(在X上)收敛于a ) )          
 //ProofWiki / Definition:Sequentially Compact Space        
-//\[陈天权 2009\] / 定义 7\.6\.5        
-
-
-
+//\[陈天权 2009\] / 定义 7\.6\.5      
+//子列(Subsequence)     
+            
+魏尔施特拉斯逼近定理 Weierstrass Approximation Theorem           
+斯通-魏尔施特拉斯定理 Stone-Weierstrass Theorem          
+       
+---     
+            
+\[定义\] 完备的(Complete)            
+         
+           
+         
+           
+---    
+         
+//分离公理 Separation Axiom   
+//分离空间 Separated Space    
+//T2空间 //T -> Tychonoff 吉洪诺夫    
+\[定义\] Hausdorff(豪斯多夫)空间            
+X是拓扑空间 ⇒ ( X是豪斯多夫空间 ⇔ ( ∀ x,y ∈ X : x≠y ⇒ ( ∃ $\displaystyle \text{U}_x$,$\displaystyle \text{V}_y$,$\displaystyle \text{U}_x$是x的(在X上的)开领域,$\displaystyle \text{V}_y$是y的(在X上的)开领域 : $\displaystyle \text{U}_x$ ∩ $\displaystyle \text{V}_y$ = ∅ ) ) )           
+//ProofWiki / Definition:Hausdorff Space          
+//\[陈天权 2009\] / 定义 7\.5\.2     
+         
+---    
+     
 ### 度量 Metric      
       
 \[定义\] 度量空间(Metric Space)     
@@ -443,7 +471,7 @@ ProofWiki / Definition:Open Set/Metric Space
 //可以从"\[定理\] \[等价定义\] 开集(Open Set) //通过 内点(Interior Point)"的角度理解    
 
 \[定义\] 度量拓扑(Metric Topology) //拓扑是度量的弱化 没有距离的概念 只有(开)领域的概念       
-(X,ρ)是度量空间 ⇒ ( τ是ρ上的度量拓扑 ⇔ τ是(X,ρ)诱导的拓扑 ⇔ τ = \{ U | U是((X,ρ)上的)开集 \} )
+(X,ρ)是度量空间 ⇒ ( τ是ρ上的度量拓扑 ⇔ τ是(X,ρ)诱导的拓扑 ⇔ τ = \{ U | U是((X,ρ)上的)开集 \} )        
 ProofWiki / Definition:Topology Induced by Metric   
 //根据拓扑的定义可以证明，(X,ρ)是度量空间 ⇒ ( τ是(X,ρ)诱导的拓扑 ⇒ τ是X上的拓扑 )     
 //\[陈天权 2009\] / 命题 7\.3\.1       
@@ -472,15 +500,37 @@ ProofWiki / Definition:Topology Induced by Metric
 (X,ρ)是度量空间 且 Y ⊂ X ⇒ ( Y是全有界的 ⇔ ∀"ϵ > 0","∃"S ⊂ X","S是Y的有限ϵ-网"" )      
 //ProofWiki / Definition:Totally Bounded Metric Space     
 //\[陈天权 2009\] / 定义 7\.6\.4       
+     
+---    
+     
+\[定理\] 度量空间 ⇒ Hausdorff(豪斯多夫)空间      
+(X,ρ)是度量空间 且 (X,τ)是(X,ρ)诱导的拓扑空间 ⇒ (X,τ)是Hausdorff(豪斯多夫)空间    
+ProofWiki / Metric Space is Hausdorff  
+> 证明     
+> 设有x,y ∈ X 且 x≠y       
+> 根据"不可分的同一性"，有d(x,y)≠0     
+> 将z=x应用到"次可加性"，有d(x,x) ≤ d(x,y) + d(y,x)，从而 0/\* 不可分的同一性 \*/ = d(x,x) ≤ d(x,y) + d(x,y)/\* 对称性 \*/ 即 0 ≤ 2 ⋅ d(x,y) 即 d(y,x) ≥ 0            
+> 从而有d(x,y)>0，取ε = $\displaystyle \frac{\operatorname{d}(x,y)}{2}$ /\*任意，比如$\displaystyle \frac{\operatorname{d}(x,y)}{3}$，$\displaystyle \frac{\operatorname{d}(x,y)}{4}$均可\*/，有B(x,ε) ∩ B(y,ε) = ∅ //可以用反证法证明，假设存在p ∈ B(x,ε) ∩ B(y,ε)，那么，根据开球的定义，有d(p,x) + d(p,y) < ε + ε = d(x,y)，与次可加性矛盾 　 　
+>                   
+     
+---     
 
-    
+\[定理\] 紧 ⇒ 列紧 //度量空间诱导的拓扑空间           
+(X,ρ)是度量空间 且 (X,τ)是(X,ρ)诱导的拓扑空间 ⇒ ( X(在X上)是紧的 ⇒  X(在X上)是列紧的 )  
+//ProofWiki / Compact Subspace of Metric Space is Sequentially Compact in Itself   
+//\[陈天权 2009\] / 定理 7\.6\.3     
+//注：该定理存在更泛化的版本 ProofWiki / Countably Compact First-Countable Space is Sequentially Compact //拓扑空间适用，不要求度量空间    
+       
+
+
+
 ---    
 
 有限覆盖定理/海涅-博雷尔定理 Heine–Borel Theorem
 
 ---     
 
-斯通-魏尔施特拉斯逼近定理  Stone-Weierstrass Theorem       
+斯通-魏尔施特拉斯定理  Stone-Weierstrass Theorem       
                                       
 ---              
 
@@ -665,26 +715,7 @@ X是拓扑空间 且 Y是拓扑空间 ⇒ ( X和Y是同胚的(Homeomorphic) ⇔ 
 显然 拓扑空间之间的同胚是等价关系    
 
      
----   
-   
-#### 完备集 Perfect Set    
-    
-分离公理 Separation Axiom   
-T -> Tychonoff 吉洪诺夫     
-
-Hausdorff 豪斯多夫   
-分离空间 Separated Space  
-T2空间   
-\[陈天权 2009\] / 定义 7\.5\.2    
-τ是X上的拓扑 ⇒ ( X是豪斯多夫空间 ⇔ ∀x,y∈X,x≠y, ∃x的领域U,y的领域V, U∩V=∅ )     
-
-
-
-\[Rudin 1976\] / 2.18 Definition (h)   
-
-         
-         
-            
+---               
        
 #### 紧集 Compact Set    
    
