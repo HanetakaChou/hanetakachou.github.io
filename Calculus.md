@@ -58,7 +58,7 @@ $\displaystyle \wp(X)$ //X的所有子集
     
 ---       
 
-\[定义\] 拓扑 Topology / 拓扑空间 Topological Space           
+\[定义\] 拓扑(Topology) / 拓扑空间(Topological Space)           
 \[陈天权 2009\] / 定义 7\.1\.1       
 \[Yeh 2014\] / \[IV\] Borel σ-algebras //σ(Sigma)          
 (X,τ)是拓扑空间 ⇔ τ是X上的拓扑 ⇔ τ ⊂ ℘(X) 且 ∅ ∈ τ 且 X ∈ τ 且 τ对无限并封闭 且 τ对有限交封闭 //此处的无限并没有要求可数 //可数即和自然数集等势 参见 集合的势/基数           
@@ -66,7 +66,7 @@ $\displaystyle \wp(X)$ //X的所有子集
 //用于不强调τ的情形     
 X是拓扑空间 ⇔ ∃τ, (X,τ)是拓扑空间 ⇔ ∃τ, τ是X上的拓扑               
 
-\[定义\] 开集 Open Set    
+\[定义\] 开集(Open Set) // 拓扑(Topology)         
 \[陈天权 2009\] / 定义 7\.1\.1       
 \[Yeh 2014\] / \[IV\] Borel σ-algebras //σ(Sigma)                   
 (X,τ)是拓扑空间 ⇒ ( U是开集 ⇔ U ∈ τ )        
@@ -189,10 +189,11 @@ X是拓扑空间 且 p ∈ X 且 S ⊂ X 且 $\displaystyle \text{S} \degree$是
          
 ---    
    
-极点(Limit Point)/聚点(Cluster Point / Accumulation Point)     
-\[陈天权 2009\] / 定义 7\.1\.6   
-\[Rudin 1976\] / 2.18 Definition (b)   
-X是拓扑空间 且 p ∈ X 且 S ⊂ X ⇒ ( p是S的聚点 ⇔ ∀"$\displaystyle \text{U}_p$,$\displaystyle \text{U}_p$是p的开领域","S ∩ ( $\displaystyle \text{U}_p$ − {p} ) ≠ ∅" )      
+(集合的)极点(Limit Point (of Set)) / 聚点(Cluster Point / Accumulation Point)    
+X是拓扑空间 且 p ∈ X 且 S ⊂ X ⇒ ( p是S的聚点 ⇔ ∀"$\displaystyle \text{U}_p$,$\displaystyle \text{U}_p$是p的开领域","S ∩ ( $\displaystyle \text{U}_p$ − {p} ) ≠ ∅" )     
+//ProofWiki / Definition:Limit Point/Topology/Set        
+//\[陈天权 2009\] / 定义 7\.1\.6   
+//\[Rudin 1976\] / 2.18 Definition (b)        
       
 ---    
       
@@ -389,13 +390,104 @@ ProofWifi / Definition:Subcover/Finite
      
 ---         
       
-紧集(Compact Set) //紧(Compact) ⇔ 有限(Finite) //从(有限或无限)开覆盖C中**选择**有限个开集(C的元素)来覆盖K             
-X是拓扑空间 且 K ⊂ X ⇒ ( K是紧集 ⇔ ∀"C,C是K的开覆盖","∃"F","F是C关于K的有限子覆盖"" )    
+\[定义\] 紧的(Compact) //紧(Compact) ⇔ 有限(Finite) //从(有限或无限)开覆盖C中**选择**有限个开集(C的元素)来覆盖K             
+X是拓扑空间 且 K ⊂ X ⇒ ( K是紧的 ⇔ ∀"C,C是K的开覆盖","∃"F","F是C关于K的有限子覆盖"" )    
 ProofWiki / Definition:Compact Space/Topology/Subspace      
 \[陈天权 2009\] / 定义 7\.6\.1       
 \[Rudin 1976\] / 2\.31 Definition    
         
+---    
+
+\[定义\] 收敛序列(Convergent Sequence)    
+//ProofWiki / Definition:Convergent Sequence/Topology       
+//\[陈天权 2009\] / 定义 7\.5\.1        
+
+
+\[定义\] (序列的)极点(Limit Point(of Sequence))     
+//\[陈天权 2009\] / 定义 7\.5\.1        
+
+
+\[定义\] 列紧的(Sequentially Compact)           
+//ProofWiki /Definition:Sequentially Compact Space        
+//\[陈天权 2009\] / 定义 7\.6\.5        
+
+
+
+### 度量 Metric      
+      
+\[定义\] 度量空间(Metric Space)     
+ProofWiki / Definition:Metric Space     
+(X,ρ)是度量空间 ⇔ X ≠ ∅ 且 ρ是X×X到R的映射 且 ρ满足度量空间公理    
+度量空间公理(Metric Space Axioms)
+
+ρ是X×X到R的映射 ⇒ ( ρ满足度量空间公理 ⇔ ρ(x,y) = 0 ⇔ x = y /\* 不可分的同一性 \*/ 且 ρ(x,y) = ρ(y,x) /\* 对称性 \*/ 且 ρ(x,z) ≤ ρ(x,y) + ρ(y,z) /\* 次可加性/三角不等式 \*/ )
+不可分的同一性(Identity of Indiscernibles)  
+对称性(Symmetric)   
+次可加性(Subadditivity)/三角不等式(Triangle Inequality)  
+//\[陈天权 2009\] / 定义 7\.3\.1       
+
+(X,ρ)是度量空间 ⇒ ρ是距离函数/度量         
+距离函数(Distance Function)       
+度量(Metric)     
+
+---           
+
+\[定义\] 开球(Open Ball)             
+(X,ρ)是度量空间 且 a ∈ X 且 ε > 0 ⇒ ( B(a,ε)是以a为球心以ε为半径的开球 ⇔ B(a,ε) = \{ x ∈ X | ρ(x,a) < ε \} )     
+ProofWiki / Definition:Open Ball      
+球心(Center)      
+半径(Radius)     
         
+\[定义\] 开集(Open Set) //度量空间(Metric Space)      
+(X,ρ)是度量空间 ⇒ ( U是((X,ρ)上的)开集 ⇔ ∀"x ∈ U","∃"ϵ > 0","B(a,ε) ⊂ U"" )    
+ProofWiki / Definition:Open Set/Metric Space        
+//可以从"\[定理\] \[等价定义\] 开集(Open Set) //通过 内点(Interior Point)"的角度理解    
+
+\[定义\] 度量拓扑(Metric Topology) //拓扑是度量的弱化 没有距离的概念 只有(开)领域的概念       
+(X,ρ)是度量空间 ⇒ ( τ是ρ上的度量拓扑 ⇔ τ是(X,ρ)诱导的拓扑 ⇔ τ = \{ U | U是((X,ρ)上的)开集 \} )
+ProofWiki / Definition:Topology Induced by Metric   
+//根据拓扑的定义可以证明，(X,ρ)是度量空间 ⇒ ( τ是(X,ρ)诱导的拓扑 ⇒ τ是X上的拓扑 )     
+//\[陈天权 2009\] / 命题 7\.3\.1       
+//\[陈天权 2009\] / 定义 7\.3\.3       
+
+---     
+
+//我们暂且不引入子度量空间的概念    
+
+\[定义\] 有界的(Bounded)   
+(X,ρ)是度量空间 且 Y ⊂ X ⇒ ( Y是有界的 ⇔ ∃"ϵ > 0","∀"x,y ∈ Y","ρ(x,y) < ϵ"" )           
+//ProofWiki / Definition:Bounded Metric Space      
+//\[陈天权 2009\] / 定义 7\.6\.3    
+       
+\[定义\] 网(Net)     
+(X,ρ)是度量空间 且 Y ⊂ X 且 S ⊂ X ⇒ ( S是Y的ϵ-网 ⇔ ϵ > 0 且 Y ⊂ $\displaystyle \bigcup_{x \isin \text{S}} \operatorname{B}( x , \varepsilon )$ )      
+//ProofWiki / Definition:Net (Metric Space)      
+//\[陈天权 2009\] / 定义 7\.6\.4       
+
+\[定义\] 有限网(Finite Net)   
+(X,ρ)是度量空间 且 Y ⊂ X ⇒ ( S是Y的有限ϵ-网 ⇔ S是Y的ϵ-网 且 S是有限集 )        
+//ProofWiki / Definition:Net (Metric Space)/Finite Net        
+//\[陈天权 2009\] / 定义 7\.6\.4       
+
+\[定义\] 全有界的(Totally Bounded)        
+(X,ρ)是度量空间 且 Y ⊂ X ⇒ ( Y是全有界的 ⇔ ∀"ϵ > 0","∃"S ⊂ X","S是Y的有限ϵ-网"" )      
+//ProofWiki / Definition:Totally Bounded Metric Space     
+//\[陈天权 2009\] / 定义 7\.6\.4       
+
+    
+---    
+
+有限覆盖定理/海涅-博雷尔定理 Heine–Borel Theorem
+
+---     
+
+斯通-魏尔施特拉斯逼近定理  Stone-Weierstrass Theorem       
+                                      
+---              
+
+欧几里得空间 Euclidean Space      
+$\displaystyle R^k$上的欧几里得空间 度量 d(x,y) = |x - y| //度量被定义为向量的模     
+            
 ---    
 
 拓扑间的包含关系     
@@ -726,32 +818,6 @@ X是豪斯多夫空间 且 K⊂X ⇒ ( K是紧集 ⇒ K是闭集 ) //紧集必�
 //\[陈天权 2009\] / 定理 7\.7\.2         
 //\[Rudin 1976\] / 7\.32 Theorem       
          
-                
-### 度量 Metric      
-      
-度量空间 Metric Space   
-                      
-距离函数 Distance Function 
-度量 Metric      
-不可分的同一性 Identity of Indiscernibles  
-对称性 Symmetric   
-次可加性 Subadditivity  
-三角不等式 Triangle Inequality  
-//\[陈天权 2009\] / 定义 7\.3\.1       
-//\[Rudin 1976\] / 2.15 Definition   
-(M,d)是度量空间 ⇔ d是M上的距离函数/度量 ⇔ d是M×M到R的映射 且 满足 不可分的同一性 d(x,y) = 0 ⇔ x = y 、 对称性 d(x,y) = d(y,x) 和 次可加性/三角不等式 d(x,z) ≤ d(x,y) + d(y,z)    
-   
-诱导 Induce   
-   
-度量空间 诱导 拓扑空间 //拓扑空间是度量空间的弱化 没有距离的概念 只有领域的概念  
-//\[陈天权 2009\] / 命题 7\.3\.1   
-//\[陈天权 2009\] / 定义 7\.3\.3   
-度量空间 可诱导得到 对应的拓扑空间   
-拓扑空间的开集 被定义为 由度量定义的开球                
-                  
-                       
-欧几里得空间 Euclidean Space     
-$\displaystyle R^k$上的欧几里得空间 度量 d(x,y) = |x - y| //度量被定义为向量的模   
          
                      
 
