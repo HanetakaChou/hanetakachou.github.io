@@ -398,17 +398,16 @@ ProofWiki / Definition:Compact Space/Topology/Subspace
         
 ---    
 
-\[定义\] 收敛序列(Convergent Sequence)    
+\[定义\] 收敛序列(Convergent Sequence) //拓扑中的数列极限     
 //ProofWiki / Definition:Convergent Sequence/Topology       
 //\[陈天权 2009\] / 定义 7\.5\.1        
-
 
 \[定义\] (序列的)极点(Limit Point(of Sequence))     
 //\[陈天权 2009\] / 定义 7\.5\.1        
 
 
 \[定义\] 列紧的(Sequentially Compact)           
-//ProofWiki /Definition:Sequentially Compact Space        
+//ProofWiki / Definition:Sequentially Compact Space        
 //\[陈天权 2009\] / 定义 7\.6\.5        
 
 
