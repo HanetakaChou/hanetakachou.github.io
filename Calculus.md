@@ -450,7 +450,7 @@ X是拓扑空间 ⇒ ( X是豪斯多夫空间 ⇔ ( ∀ x,y ∈ X : x≠y ⇒ ( 
     
 \[定理\] Hausdorff(豪斯多夫)空间的子集 ⇒ (紧集 ⇒ 闭集)            
 X是拓扑空间 且 X是Hausdorff(豪斯多夫)空间 且 Y⊂X ⇒ ( Y是紧集 ⇒ Y是闭集 )              
-//Proofwiki / Compact Subspace of Hausdorff Space is Closed
+//Proofwiki / Compact Subspace of Hausdorff Space is Closed          
 //\[陈天权 2009\] / 命题 7\.6\.4       
 
 > 证明        
