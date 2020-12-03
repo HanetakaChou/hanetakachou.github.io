@@ -366,14 +366,23 @@ X是拓扑空间 且 S ⊂ X ⇒ ( S是开集且S是闭集 ⇔ $\displaystyle \p
 > 从而 $\displaystyle \overline{\text{S}}$ = $\displaystyle \text{S} \degree$ ⊂ S ⊂ $\displaystyle \overline{\text{S}}$ = $\displaystyle \text{S} \degree$ 有 $\displaystyle \overline{\text{S}}$ ⊂ S 且 S ⊂ $\displaystyle \text{S} \degree$ 　                   
 > 从而 S = $\displaystyle \overline{\text{S}}$ 且 S = $\displaystyle \text{S} \degree$  因此 S是开集 且 S是闭集    
 >         
-               
+
+---      
+      
+\[定义\] 拓扑子空间(Topological Subspace) / 相对拓扑(Relative Topology)        
+(X,τ)是拓扑空间 且 Y ⊂ X ⇒ ( (Y,$\displaystyle \tau_Y$)是X的拓扑子空间 ⇔ $\displaystyle \tau_Y$ = { U ∩ Y | U ∈ τ } )          
+(X,τ)是拓扑空间 且 Y ⊂ X ⇒ ( $\displaystyle \tau_Y$是(τ诱导的)在Y上的相对拓扑 ⇔ $\displaystyle \tau_Y$ = { U ∩ Y | U ∈ τ } )                 
+//ProofWifi / Definition:Topological Subspace           
+//\[陈天权 2009\] / 定义 7\.4\.1    
+//显然，根据拓扑空间的定义，拓扑子空间是拓扑空间                  
+         
 ---     
         
 \[定义\] 覆盖(Cover)    
 C是Y的覆盖 ⇔ Y ⊂ $\displaystyle \bigcup_{\text{A} \isin \text{C}} \text{A}$        
-//覆盖的定义并不依赖于拓扑   
-//见构造外测度
-    
+//覆盖的定义并不依赖于拓扑         
+//见构造外测度            
+          
 \[定义\] 子覆盖(Subcover)     
 C是Y的覆盖 ⇒ ( D是C关于Y的子覆盖 ⇔ D是Y的覆盖 且 D ⊂ C )                
 //ProofWifi / Definition:Subcover       
@@ -392,12 +401,25 @@ X是拓扑空间 且 Y ⊂ X ⇒ ( C是Y的(在X上的)开覆盖 ⇔ C是Y的覆
               
 ---         
       
-\[定义\] 紧的(Compact) //紧(Compact) ⇔ 有限(Finite) //从(有限或无限)开覆盖C中**选择**有限个开集(C的元素)来覆盖Y             
+\[定义\] 紧的(Compact) //紧的(Compact) ⇔ 有限的(Finite) //从(有限或无限)开覆盖C中**选择**有限个开集(C的元素)来覆盖Y             
 X是拓扑空间 且 Y ⊂ X ⇒ ( K(在X上)是紧的 ⇔ ∀C : C是Y的(在X上的)开覆盖 ⇒ ( ∃ F : F是C关于K的有限子覆盖 ) )         
 //ProofWiki / Definition:Compact Space/Topology/Subspace         
 //\[陈天权 2009\] / 定义 7\.6\.1        
 //\[Rudin 1976\] / 2\.31 Definition       
-              
+
+\[定义\] 紧空间(Compact Space)     
+X是拓扑空间 ⇒ ( X是紧空间 ⇔ X(在X上)是紧的 )          
+//ProofWiki / Definition:Compact Space/Topology      
+//ProofWiki / Definition:Compact Space/Topology/Subspace         
+//\[陈天权 2009\] / 定义 7\.6\.2        
+
+//Finite Intersection Axiom
+
+\[定理\] 有限的 ⇒ 紧的     
+X是拓扑空间 ⇒ ( X是有限集 ⇒ X是紧空间 )     
+//ProofWiki /Finite Topological Space is Compact       
+//根据紧空间的定义，显然 //一说涉及到选择公理     
+
 有限覆盖定理/海涅-博雷尔定理 Heine–Borel Theorem            
 
 Euclidean space     
@@ -448,40 +470,24 @@ X是拓扑空间 ⇒ ( X是豪斯多夫空间 ⇔ ( ∀ x,y ∈ X : x≠y ⇒ ( 
          
 ---    
     
-\[定理\] Hausdorff(豪斯多夫)空间的子集 ⇒ (紧集 ⇒ 闭集)            
-X是拓扑空间 且 X是Hausdorff(豪斯多夫)空间 且 Y⊂X ⇒ ( Y是紧集 ⇒ Y是闭集 )              
+\[定理\] Hausdorff(豪斯多夫)空间的拓扑子空间 ⇒ (紧空间 ⇒ 闭集)            
+X是拓扑空间 且 X是Hausdorff(豪斯多夫)空间 且 Y是X上的拓扑子空间 ⇒ ( Y是紧空间 ⇒ Y是闭集 )              
 //Proofwiki / Compact Subspace of Hausdorff Space is Closed          
 //\[陈天权 2009\] / 命题 7\.6\.4       
 
-> 证明        
->                    
-> 下面证明 ∀x∉E ⇒ x∉$\displaystyle \overline{E}$    
->
-> 对任意给定的x∉E，我们有：  
->            
-> 对于任意y∈E，我们有：    
-> 因为x∉E 从而x≠y    
-> 由于X是豪斯多夫空间 存在x的领域$\displaystyle U_x$和y的领域$\displaystyle V_y$ 满足$\displaystyle U_x$∩$\displaystyle V_y$=∅       
+> 证明                      
+> 对任意p ∈ (X − Y)，我们有           
+>                  
+> 对任意q ∈ Y，由于p ∈ (X − Y) $\displaystyle \notin$ Y，显然有p≠q，又因为X是Hausdorff(豪斯多夫)空间，从而 存在p的开领域$\displaystyle \text{U}_p$和q的开领域$\displaystyle \text{V}_q$ 满足$\displaystyle \text{U}_p$ ∩ $\displaystyle \text{V}_q$ = ∅       
+> 显然，以上的开领域$\displaystyle \text{V}_q$构成的集合{ $\displaystyle \text{V}_q$ | q ∈ Y } 是Y的一个开覆盖，由于Y是紧的，因此存在关于Y的有限子覆盖，即可以从开覆盖中选择有限个开集$\displaystyle \text{V}_q$来覆盖Y                       
+> 将以上有限个开领域$\displaystyle \text{V}_q$对应的有限个开领域$\displaystyle \text{U}_p$的交记作F，即F = $\displaystyle \bigcap \text{U}_p$，根据拓扑的定义，F为开集  //根据拓扑的定义 开集只对**有限**交封闭 因此需要先证明**有限** 才能证明F为开集                                 
+> 显然，有$\displaystyle \bigcap \text{U}_p$ ∩ $\displaystyle \bigcup \text{V}_q$ = ∅，又由于将以上有限个开领域$\displaystyle \text{V}_q$是Y的覆盖，有Y ⊂ $\displaystyle \bigcup \text{V}_q$  从而有$\displaystyle \bigcap \text{U}_p$ ∩ Y = ∅，即$\displaystyle \bigcap \text{U}_p$ ⊂ (X − Y)       
+>                         
+> 从而，我们有 ∀ p ∈ (X − Y) : ∃ F = $\displaystyle \bigcap \text{U}_p$ : F是p的开领域 且 F ⊂ (X − Y)                
 >                 
-> 显然 E中的任意一点 一定属于 以上的某一个y的领域 即 E⊂$\displaystyle \bigcup_{y \isin K} V_y$        
-> 从而 $\displaystyle \bigcup_{y \isin K} V_y$是E的一个开覆盖  
-> 由于 E是紧集 存在E的有限子覆盖$\displaystyle \bigcup_{y \isin F} V_y$ //F是有限集 //即从K中选择有限个点组成的集合F       
->         
-> 从而 与以上y的领域对应的x的领域（即满足$\displaystyle U_x$∩$\displaystyle V_y$=∅的x的领域）的交集$\displaystyle \bigcap_{y \isin F} {U_x}_y$是开集 //根据拓扑的定义 **有限个**开集的交集才一定是开集 因此我们必须先证明F是有限集            
->         
-> 显然 x∈$\displaystyle \bigcap_{y \isin F} {U_x}_y$ //因为x属于任意x的领域  
->     
-> 又因为 E ∩ $\displaystyle \bigcap_{y \isin F} {U_x}_y$ ⊂ $\displaystyle \bigcup_{y \isin K} V_y$ ∩ $\displaystyle \bigcap_{y \isin F} {U_x}_y$ = $\displaystyle \bigcup_{y \isin K} (V_y \cap \bigcap_{y \isin F} {U_x}_y)$ ⊂ $\displaystyle \bigcup_{y \isin K} (V_y \cap U_x )$ = ∅     
-> 
-> 根据定理“$\displaystyle \overline{E}$ = { x : ∀x的领域U, U∩E≠∅ }”，我们有x∉$\displaystyle \overline{E}$    
->    
-> 从而 以上命题的逆否命题成立：∀x∈$\displaystyle \overline{E}$ ⇒ x∈E 即 $\displaystyle \overline{E}$ ⊂ E          
->               
-> 又因为 E ⊂ $\displaystyle \overline{E}$ //根据闭包的定义，显然      
-> 我们有 E = $\displaystyle \overline{E}$         
->       
-> 根据定理“E是闭集 ⇔ E = $\displaystyle \overline{E}$“，E是闭集    
->          
+> 即 ∀ p ∈ (X − Y) : p是(X − Y)的内点 //根据内点的定义    
+> 从而有 (X − Y)是开集 //根据"\[定理\] \[等价定义\] 开集(Open Set) //通过 内点(Interior Point)"            
+> 从而Y是闭集合 //根据闭集的定义  
 >               
        
 ---        
@@ -515,18 +521,23 @@ ProofWiki / Definition:Open Ball
 (X,ρ)是度量空间 ⇒ ( U是((X,ρ)上的)开集 ⇔ ∀"x ∈ U","∃"ϵ > 0","B(a,ε) ⊂ U"" )    
 ProofWiki / Definition:Open Set/Metric Space        
 //可以从"\[定理\] \[等价定义\] 开集(Open Set) //通过 内点(Interior Point)"的角度理解    
-
-\[定义\] 度量拓扑(Metric Topology) //拓扑是度量的弱化 没有距离的概念 只有(开)领域的概念       
+      
+\[定义\] 度量诱导的拓扑(Topology Induced by Metric) / 度量拓扑(Metric Topology) //拓扑是度量的弱化 没有距离的概念 只有(开)领域的概念       
 (X,ρ)是度量空间 ⇒ ( τ是ρ上的度量拓扑 ⇔ τ是(X,ρ)诱导的拓扑 ⇔ τ = \{ U | U是((X,ρ)上的)开集 \} )        
 ProofWiki / Definition:Topology Induced by Metric   
 //根据拓扑的定义可以证明，(X,ρ)是度量空间 ⇒ ( τ是(X,ρ)诱导的拓扑 ⇒ τ是X上的拓扑 )     
 //\[陈天权 2009\] / 命题 7\.3\.1       
 //\[陈天权 2009\] / 定义 7\.3\.3       
-
+       
+引入基(Basis)的概念          
+//\[陈天权 2009\] / 定义 7\.4\.2        
+//\[陈天权 2009\] / 例 7\.4\.2        
+           
 ---     
     
 度量子空间(Subspace)    
 //ProofWiki / Definition:Metric Subspace    
+//\[陈天权 2009\] / 定义 7\.4\.1    
 
 \[定义\] 有界的(Bounded)   
 (X,ρ)是度量空间 且 Y ⊂ X ⇒ ( Y是有界的 ⇔ ∃"ϵ > 0","∀"x,y ∈ Y","ρ(x,y) < ϵ"" )           
