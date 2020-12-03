@@ -399,7 +399,25 @@ X是拓扑空间 且 Y ⊂ X ⇒ ( K(在X上)是紧的 ⇔ ∀C : C是Y的(在X�
 //\[Rudin 1976\] / 2\.31 Definition       
               
 有限覆盖定理/海涅-博雷尔定理 Heine–Borel Theorem            
-              
+
+Euclidean space     
+Compact iff Closed and Bounded     
+
+Metric Space     
+Compact iff Complete and Totally Bounded       
+
+Proofwiki / Compact Subspace of Hausdorff Space is Closed
+
+Proofwiki / Closed Subspace of Compact Space is Compact
+
+Proofwiki / Closed Bounded Subset of Real Numbers is Compact   
+
+ProofWiki / Real Number Line is Complete Metric Space 
+
+ProofWiki / Euclidean Space is Complete Metric Space  
+
+https://en.wikipedia.org/wiki/Heine%E2%80%93Borel_theorem#Proof
+
 ---    
               
 \[定义\] 收敛序列(Convergent Sequence) //拓扑中的数列极限       
@@ -412,28 +430,18 @@ X是拓扑空间 且 $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是X上的�
         
 ---      
         
-\[定义\] 列紧的(Sequentially Compact)           
+\[定义\] 列紧的(Sequentially Compact)              
 X是拓扑空间 且 Y ⊂ X ⇒ ( Y(在X上)是列紧的 ⇔ ( ∀$\displaystyle {\lang x_n \rang}_{ n \isin \N }$是Y上的无限序列 : ∃ $\displaystyle {\lang x_{n_r} \rang}_{ r \isin \N }$是$\displaystyle {\lang x_n \rang}_{ n \isin \N }$的子列 : ∃ a ∈ Y : $\displaystyle {\lang x_{n_r} \rang}_{ r \isin \N }$(在X上)收敛于a ) )          
 //ProofWiki / Definition:Sequentially Compact Space        
 //\[陈天权 2009\] / 定义 7\.6\.5      
 //子列(Subsequence)     
             
 魏尔施特拉斯逼近定理 Weierstrass Approximation Theorem           
-斯通-魏尔施特拉斯定理 Stone-Weierstrass Theorem          
-       
----     
-            
-\[定义\] 完备的(Complete)            
-         
-           
-         
+斯通-魏尔施特拉斯定理 Stone-Weierstrass Theorem                   
            
 ---    
-         
-//分离公理 Separation Axiom   
-//分离空间 Separated Space    
-//T2空间 //T -> Tychonoff 吉洪诺夫    
-\[定义\] Hausdorff(豪斯多夫)空间            
+            
+\[定义\] Hausdorff(豪斯多夫)空间 //分离空间 Separated Space //T2空间 //T -> Tychonoff 吉洪诺夫 //分离公理 Separation Axiom                  
 X是拓扑空间 ⇒ ( X是豪斯多夫空间 ⇔ ( ∀ x,y ∈ X : x≠y ⇒ ( ∃ $\displaystyle \text{U}_x$,$\displaystyle \text{V}_y$,$\displaystyle \text{U}_x$是x的(在X上的)开领域,$\displaystyle \text{V}_y$是y的(在X上的)开领域 : $\displaystyle \text{U}_x$ ∩ $\displaystyle \text{V}_y$ = ∅ ) ) )           
 //ProofWiki / Definition:Hausdorff Space          
 //\[陈天权 2009\] / 定义 7\.5\.2     
@@ -478,8 +486,9 @@ ProofWiki / Definition:Topology Induced by Metric
 //\[陈天权 2009\] / 定义 7\.3\.3       
 
 ---     
-
-//我们暂且不引入子度量空间的概念    
+    
+度量子空间(Subspace)    
+//ProofWiki / Definition:Metric Subspace    
 
 \[定义\] 有界的(Bounded)   
 (X,ρ)是度量空间 且 Y ⊂ X ⇒ ( Y是有界的 ⇔ ∃"ϵ > 0","∀"x,y ∈ Y","ρ(x,y) < ϵ"" )           
@@ -521,8 +530,39 @@ ProofWiki / Metric Space is Hausdorff
 //\[陈天权 2009\] / 定理 7\.6\.3     
 //注：该定理存在更泛化的版本 ProofWiki / Countably Compact First-Countable Space is Sequentially Compact //拓扑空间适用，不要求度量空间    
        
+---     
 
+\[定义\] Cauchy(柯西)序列(Sequence) //度量空间中的Cauchy(柯西)序列                  
+(X,ρ)是度量空间 且 $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是X上的无限序列 ⇒ ( $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是(X上的)Cauchy(柯西)序列 ⇔ ( ∀ ε > 0 : ∃ N > 0 : ∀ m,n > N : ρ($\displaystyle x_m$, $\displaystyle x_n$) < ε ) )     
+//ProofWiki / Definition:Cauchy Sequence/Metric Space              
+//\[陈天权 2009\] / 定义 7\.6\.5      
 
+---    
+     
+\[定义\] 完备的(Complete) //度量空间(Metric Space)         
+(X,ρ)是度量空间 ⇒ ( (X,ρ)是完备的 ⇔ ( ∀ $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是X上的无限序列 : $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是(X上的)Cauchy(柯西)序列 ⇒ ∃ a : $\displaystyle {\lang x_n \rang}_{ n \isin \N }$(在X上)收敛于a ) )       
+//ProofWiki / Definition:Complete Metric Space      
+//\[陈天权 2009\] / 定义 7\.6\.5       
+           
+
+\[定理\] 度量子空间(Subspace) 完备的(Complete) //通过 闭集(Closed)      
+(X,ρ)是度量空间 且 (X,ρ)是完备的 且 (Y,ρ)是(X,ρ)的度量子空间 ⇒ ( (Y,ρ)是完备的 ⇔ (Y,ρ)是闭集 )                                   
+//Proofwiki / Subspace of Complete Metric Space is Closed iff Complete    
+//\[陈天权 2009\] / 命题 7\.5\.4       
+> 证明     
+>                   
+
+--- 
+
+ProofWiki / Convergent Sequence is Cauchy Sequence/Metric Space    
+
+ProofWiki / Real Number Line is Complete Metric Space 
+
+ProofWiki / Euclidean Space is Complete Metric Space  
+
+Proofwiki / Closed Bounded Subset of Real Numbers is Compact   
+
+从而 Cauchy's Convergence Criterion 成立    
 
 ---    
 
