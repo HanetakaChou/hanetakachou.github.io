@@ -335,7 +335,7 @@ X是拓扑空间 且 S ⊂ X 且 $\displaystyle \partial \text{S}$是S的边界 
 \[定理\] \[等价定义\] 边界(Boundary) //通过 闭包(Closure)     
 X是拓扑空间 且 S ⊂ X 且 $\displaystyle \partial \text{S}$是S的边界 ⇒ $\displaystyle \partial \text{S}$ = $\displaystyle \overline{\text{S}}$ ∩ $\displaystyle \overline{\text{X} - \text{S}}$              
 //由于闭包是闭集合，又因为闭集对无限交封闭，从而边界是闭集        
-> 证明  　　　  
+> 证明       
 > 由于 $\displaystyle \overline{\text{X} - \text{S}}$ = X − $\displaystyle \text{S} \degree$ //根据 "\[定理\] \[等价定义\] 内部(Interior) //通过 闭包(Closure)"         
 >               
 > 从而，$\displaystyle \overline{\text{S}}$ ∩ $\displaystyle \overline{\text{X} - \text{S}}$ = $\displaystyle \overline{\text{S}}$ ∩ ( X − $\displaystyle \text{S} \degree$ ) = $\displaystyle \overline{\text{S}}$ − $\displaystyle \text{S} \degree$ = $\displaystyle \partial \text{S}$                 
@@ -363,7 +363,7 @@ X是拓扑空间 且 S ⊂ X ⇒ ( S是开集且S是闭集 ⇔ $\displaystyle \p
 > 2 ⇒ 1   
 > $\displaystyle \partial \text{S}$ = ∅ ⇒ $\displaystyle \overline{\text{S}}$ − $\displaystyle \text{S} \degree$ = ∅ ⇒  $\displaystyle \overline{\text{S}}$ = $\displaystyle \text{S} \degree$    
 > 又因为 $\displaystyle \text{S} \degree$ ⊂ S ⊂ $\displaystyle \overline{\text{S}}$    
-> 从而 $\displaystyle \overline{\text{S}}$ = $\displaystyle \text{S} \degree$ ⊂ S ⊂ $\displaystyle \overline{\text{S}}$ = $\displaystyle \text{S} \degree$ 有 $\displaystyle \overline{\text{S}}$ ⊂ S 且 S ⊂ $\displaystyle \text{S} \degree$ 　                   
+> 从而 $\displaystyle \overline{\text{S}}$ = $\displaystyle \text{S} \degree$ ⊂ S ⊂ $\displaystyle \overline{\text{S}}$ = $\displaystyle \text{S} \degree$ 有 $\displaystyle \overline{\text{S}}$ ⊂ S 且 S ⊂ $\displaystyle \text{S} \degree$                     
 > 从而 S = $\displaystyle \overline{\text{S}}$ 且 S = $\displaystyle \text{S} \degree$  因此 S是开集 且 S是闭集    
 >         
 
@@ -434,25 +434,26 @@ https://en.wikipedia.org/wiki/Heine%E2%80%93Borel_theorem#Proof
 
 ---    
               
-\[定义\] 收敛序列(Convergent Sequence) //拓扑中的数列极限       
-X是拓扑空间 且 $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是Y上的无限序列 且 Y ⊂ X ⇒ ( $\displaystyle {\lang x_n \rang}_{ n \isin \N }$(在X上)收敛于a ⇔ ( a ∈ X 且 ∀$\displaystyle \text{U}_a$ : $\displaystyle \text{U}_a$是a的(在X上的)开领域 ⇒ ( ∃ N > 0 : ∀ n > N : $\displaystyle x_n$ ∈ $\displaystyle \text{U}_a$ ) ) )            
+\[定义\] 收敛序列(Convergent Sequence) //拓扑空间中的序列极限       
+X是拓扑空间 且 Y ⊂ X 且 $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是Y上的无限序列 ⇒ ( $\displaystyle {\lang x_n \rang}_{ n \isin \N }$(在X上)收敛于a ⇔ ( a ∈ X 且 ∀$\displaystyle \text{U}_a$ : $\displaystyle \text{U}_a$是a的(在X上的)开领域 ⇒ ( ∃ N > 0 : ∀ n > N : $\displaystyle x_n$ ∈ $\displaystyle \text{U}_a$ ) ) )            
 //ProofWiki / Definition:Convergent Sequence/Topology          
 //\[陈天权 2009\] / 定义 7\.5\.1        
 
 //(序列的)极(限)点(Limit Point(of Sequence)) //注意与聚点的定义区分           
-X是拓扑空间 且 $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是Y上的无限序列 且 Y ⊂ X ⇒ ( $\displaystyle {\lang x_n \rang}_{ n \isin \N }$(在X上)收敛于a ⇒ a是$\displaystyle {\lang x_n \rang}_{ n \isin \N }$(在X上)(当n趋于无穷时的)极点 )                 
-
----    
-        
-\[定理\] (序列的)极(限)点 ⇒ 附着点（即在闭包内）//个人认为可以在拓扑空间中成立，并不依赖于度量空间                        
+X是拓扑空间 且 Y ⊂ X 且 $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是Y上的无限序列 ⇒ ( $\displaystyle {\lang x_n \rang}_{ n \isin \N }$(在X上)收敛于a ⇒ a是$\displaystyle {\lang x_n \rang}_{ n \isin \N }$(在X上)(当n趋于无穷时的)极(限)点 )                 
+          
+---             
+                 
+\[定理\] (序列的)极(限)点 ⇒ 附着点（即在闭包内）//个人认为可以在拓扑空间中成立，并不依赖于度量空间         
+X是拓扑空间 且 $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是S上的无限序列 且 S ⊂ X 且 $\displaystyle {\lang x_n \rang}_{ n \isin \N }$(在X上)收敛于a ⇒ a是S的附着点 //即a在闭包内                   
 //Proofwiki / Closure of Subset of Metric Space by Convergent Sequence                  
 //\[陈天权 2009\] / 命题 7\.5\.2       
-
----      
-
-ProofWiki / Convergent Sequence in Hausdorff Space has Unique Limit    
-ProofWiki / Space in which All Convergent Sequences have Unique Limit not necessarily Hausdorff    
-
+> 证明                   
+> 根据拓扑空间中序列收敛的定义，∀$\displaystyle \text{U}_a$ : $\displaystyle \text{U}_a$是a的(在X上的)开领域 ⇒ ( ∃ N > 0 : ∀ n > N : $\displaystyle x_n$ ∈ $\displaystyle \text{U}_a$ ) ⇒ $\displaystyle \text{U}_a$ ∩ S ≠ ∅ //由于$\displaystyle {\lang x_n \rang}_{ n \isin \N }$是S上的无限序列 至少有$\displaystyle x_n$(当n > N时) ∈ $\displaystyle \text{U}_a$ ∩ S                
+> 根据附着点的定义，a是S的附着点                 
+> 根据"\[定理\] \[等价定义\] 闭包(Closure) //通过 附着点(Adherent Point)"，a ∈ $\displaystyle \overline{\text{S}}$              
+>            
+              
 ---
         
 \[定义\] 列紧的(Sequentially Compact)              
@@ -496,7 +497,6 @@ X是拓扑空间 ⇒ ( X是豪斯多夫空间 ⇔ ( ∀ x,y ∈ X : x≠y ⇒ ( 
 X是拓扑空间 且 X是Hausdorff(豪斯多夫)空间 且 Y ⊂ X ⇒ ( Y是紧的 ⇒ Y是闭集 )              
 //Proofwiki / Compact Subspace of Hausdorff Space is Closed          
 //\[陈天权 2009\] / 命题 7\.6\.4       
-
 > 证明                      
 > 对任意p ∈ (X − Y)，我们有           
 >                  
@@ -510,11 +510,26 @@ X是拓扑空间 且 X是Hausdorff(豪斯多夫)空间 且 Y ⊂ X ⇒ ( Y是紧
 > 即 ∀ p ∈ (X − Y) : p是(X − Y)的内点 //根据内点的定义    
 > 从而有 (X − Y)是开集 //根据"\[定理\] \[等价定义\] 开集(Open Set) //通过 内点(Interior Point)"            
 > 从而Y是闭集合 //根据闭集的定义  
->               
-       
----        
-         
-### 度量 Metric      
+>     
+
+---      
+
+\[定理\] Hausdorff(豪斯多夫)空间 ⇒ 极限点唯一性        
+X是拓扑空间 且 X是Hausdorff(豪斯多夫)空间 ⇒ ( $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是X上的无限序列 且 $\displaystyle {\lang x_n \rang}_{ n \isin \N }$(在X上)收敛于a 且 $\displaystyle {\lang y_n \rang}_{ n \isin \N }$是X上的无限序列 且 $\displaystyle {\lang y_n \rang}_{ n \isin \N }$(在X上)收敛于b ⇒ a = b )    
+//注意：Hausdorff(豪斯多夫)空间并不是极限点唯一性成立的必要条件       
+//注意：由于"Y ⊂ X 且 $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是Y上的无限序列 ⇒ $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是X上的无限序列"，因此X的子集上的无限序列仍适用于本定理     
+//ProofWiki / Convergent Sequence in Hausdorff Space has Unique Limit      
+//ProofWiki / Space in which All Convergent Sequences have Unique Limit not necessarily Hausdorff    
+> 证明          
+> 反证法，假设命题不成立，即有a≠b成立        
+> 因为X是Hausdorff(豪斯多夫)空间，存在x的开领域$\displaystyle \text{U}_x$和y的开领域$\displaystyle \text{V}_y$ 满足$\displaystyle \text{U}_a$ ∩ $\displaystyle \text{V}_b$ = ∅       
+> 根据拓扑空间中序列收敛的定义，∀$\displaystyle \text{U}_a$ : $\displaystyle \text{U}_a$是a的(在X上的)开领域 ⇒ ( ∃ $\displaystyle \text{N}_a$ > 0 : ∀ n > $\displaystyle \text{N}_a$ : $\displaystyle x_n$ ∈ $\displaystyle \text{U}_a$ ) 并且 ∀$\displaystyle \text{V}_b$ : $\displaystyle \text{V}_b$是b的(在X上的)开领域 ⇒ ( ∃ $\displaystyle \text{N}_b$ > 0 : ∀ n > $\displaystyle \text{N}_b$ : $\displaystyle x_n$ ∈ $\displaystyle \text{V}_b$ )         
+> 从而 ∀$\displaystyle \text{U}_a$,$\displaystyle \text{V}_b$ : $\displaystyle \text{U}_a$是a的(在X上的)开领域 且 $\displaystyle \text{V}_b$是b的(在X上的)开领域 ⇒ ( ( 取N = max\{ $\displaystyle \text{N}_a$, $\displaystyle \text{N}_b$ \} 有∀ n > N : $\displaystyle x_n$ ∈ $\displaystyle \text{U}_a$ 且 $\displaystyle x_n$ ∈ $\displaystyle \text{V}_b$ ) ⇒ ( $\displaystyle \text{U}_a$ ∩ $\displaystyle \text{V}_b$ ≠ ∅ ) ) 与 "存在x的开领域$\displaystyle \text{U}_x$和y的开领域$\displaystyle \text{V}_y$ 满足$\displaystyle \text{U}_a$ ∩ $\displaystyle \text{V}_b$ = ∅" 矛盾        
+>                     
+              
+---                
+                
+### 度量 Metric                  
       
 \[定义\] 度量空间(Metric Space)     
 ProofWiki / Definition:Metric Space     
@@ -590,7 +605,7 @@ ProofWiki / Metric Space is Hausdorff
 > 设有x,y ∈ X 且 x≠y       
 > 根据"不可分的同一性"，有d(x,y)≠0     
 > 将z=x应用到"次可加性"，有d(x,x) ≤ d(x,y) + d(y,x)，从而 0/\* 不可分的同一性 \*/ = d(x,x) ≤ d(x,y) + d(x,y)/\* 对称性 \*/ 即 0 ≤ 2 ⋅ d(x,y) 即 d(y,x) ≥ 0            
-> 从而有d(x,y)>0，取ε = $\displaystyle \frac{\operatorname{d}(x,y)}{2}$ /\*任意，比如$\displaystyle \frac{\operatorname{d}(x,y)}{3}$，$\displaystyle \frac{\operatorname{d}(x,y)}{4}$均可\*/，有B(x,ε) ∩ B(y,ε) = ∅ //可以用反证法证明，假设存在p ∈ B(x,ε) ∩ B(y,ε)，那么，根据开球的定义，有d(p,x) + d(p,y) < ε + ε = d(x,y)，与次可加性矛盾 　 　
+> 从而有d(x,y)>0，取ε = $\displaystyle \frac{\operatorname{d}(x,y)}{2}$ /\*任意，比如$\displaystyle \frac{\operatorname{d}(x,y)}{3}$，$\displaystyle \frac{\operatorname{d}(x,y)}{4}$均可\*/，有B(x,ε) ∩ B(y,ε) = ∅ //可以用反证法证明，假设存在p ∈ B(x,ε) ∩ B(y,ε)，那么，根据开球的定义，有d(p,x) + d(p,y) < ε + ε = d(x,y)，与次可加性矛盾    
 >                   
                           
 ---     
@@ -605,8 +620,8 @@ ProofWiki / Metric Space is Hausdorff
 
 \[定义\] Cauchy(柯西)序列(Sequence) //度量空间中的Cauchy(柯西)序列                  
 (X,ρ)是度量空间 且 $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是X上的无限序列 ⇒ ( $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是(X上的)Cauchy(柯西)序列 ⇔ ( ∀ ε > 0 : ∃ N > 0 : ∀ m,n > N : ρ($\displaystyle x_m$, $\displaystyle x_n$) < ε ) )     
-//ProofWiki / Definition:Cauchy Sequence/Metric Space              
-//\[陈天权 2009\] / 定义 7\.6\.5      
+//ProofWiki / Definition:Cauchy Sequence/Metric Space         
+//\[陈天权 2009\] / 定义 7\.6\.5    
 
 ---    
      
@@ -614,6 +629,8 @@ ProofWiki / Metric Space is Hausdorff
 (X,ρ)是度量空间 ⇒ ( (X,ρ)是完备的 ⇔ ( ∀ $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是X上的无限序列 : $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是(X上的)Cauchy(柯西)序列 ⇒ ∃ a : $\displaystyle {\lang x_n \rang}_{ n \isin \N }$(在X上)收敛于a ) )       
 //ProofWiki / Definition:Complete Metric Space      
 //\[陈天权 2009\] / 定义 7\.6\.5       
+注意："收敛序列 ⇒ Cauchy(柯西)序列"的逆命题是显然的，完备集也可以定义成两者等价，即"Cauchy(柯西)序列 ⇔ 收敛序列"                      
+//ProofWiki / Convergent Sequence is Cauchy Sequence/Metric Space             
              
                 
 \[定理\] 完备(Complete)度量空间的子空间(Subspace)完备(Complete) ⇔ 闭集(Closed) //完备度量空间的子空间并不一定完备 //与紧空间不同               
@@ -621,10 +638,15 @@ ProofWiki / Metric Space is Hausdorff
 //Proofwiki / Subspace of Complete Metric Space is Closed iff Complete   
 //\[陈天权 2009\] / 命题 7\.5\.4       
 > 证明     
->                   
-
---- 
-
+> 显然，根据Cauchy(柯西)序列的定义，有 ∀ $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是Y上的无限序列 : $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是(Y上的)Cauchy(柯西)序列 ⇒ $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是(X上的)Cauchy(柯西)序列                  
+> 又由于X是完备的，有 $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是(X上的)Cauchy(柯西)序列 ⇒  ∃ a : $\displaystyle {\lang x_n \rang}_{ n \isin \N }$(在X上)收敛于a           
+> 根据完备集的定义，要证明Y是完备的，相当于证明 ∀ $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是Y上的无限序列 : ∃ a : $\displaystyle {\lang x_n \rang}_{ n \isin \N }$(在X上)收敛于a ⇒ ∃ b : $\displaystyle {\lang x_n \rang}_{ n \isin \N }$(在Y上)收敛于b          
+> 相当于证明 ∀ $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是Y上的无限序列 : ∃ a : $\displaystyle {\lang x_n \rang}_{ n \isin \N }$(在X上)收敛于a ⇒ a ∈ Y //假设存在b满足序列在Y上收敛于b，那么显然有序列在X上收敛于b，又由于极限点的唯一性，一定有b=a；也就是说，可以认为在Y内满足"∀$\displaystyle \text{U}_a$ : $\displaystyle \text{U}_a$是a的(在Y上的)开领域 ⇒ ( ∃ N > 0 : ∀ n > N : $\displaystyle x_n$ ∈ $\displaystyle \text{U}_a$ )"的点只有a，然而，根据拓扑空间中序列收敛的定义，还需要满足a ∈ Y，从而命题等价于证明a ∈ Y          
+> 根据 "\[定理\] (序列的)极(限)点 ⇒ 附着点（即在闭包内）"，Y = Y的闭包，从而Y是闭集    
+>                          
+           
+---          
+             
 ProofWiki / Convergent Sequence is Cauchy Sequence/Metric Space    
 
 ProofWiki / Real Number Line is Complete Metric Space 
