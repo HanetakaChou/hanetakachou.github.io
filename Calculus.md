@@ -440,7 +440,7 @@ X是拓扑空间 且 Y ⊂ X 且 $\displaystyle {\lang x_n \rang}_{ n \isin \N }
 //\[陈天权 2009\] / 定义 7\.5\.1        
 
 //(序列的)极(限)点(Limit Point(of Sequence)) //注意与聚点的定义区分           
-X是拓扑空间 且 Y ⊂ X 且 $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是Y上的无限序列 ⇒ ( $\displaystyle {\lang x_n \rang}_{ n \isin \N }$(在X上)收敛于a ⇒ a是$\displaystyle {\lang x_n \rang}_{ n \isin \N }$(在X上)(当n趋于无穷时的)极(限)点 )                 
+X是拓扑空间 且 Y ⊂ X 且 $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是Y上的无限序列 ⇒ ( $\displaystyle {\lang x_n \rang}_{ n \isin \N }$(在X上)收敛于a ⇔ a是$\displaystyle {\lang x_n \rang}_{ n \isin \N }$(在X上)(当n趋于无穷时的)极(限)点 )                 
           
 ---             
                  
@@ -610,14 +610,6 @@ ProofWiki / Metric Space is Hausdorff
                           
 ---     
 
-\[定理\] 紧 ⇒ 列紧 //度量空间诱导的拓扑空间           
-(X,ρ)是度量空间 且 (X,τ)是(X,ρ)诱导的拓扑空间 ⇒ ( X(在X上)是紧的 ⇒  X(在X上)是列紧的 )  
-//ProofWiki / Compact Subspace of Metric Space is Sequentially Compact in Itself   
-//\[陈天权 2009\] / 定理 7\.6\.3     
-//注：该定理存在更泛化的版本 ProofWiki / Countably Compact First-Countable Space is Sequentially Compact //拓扑空间适用，不要求度量空间    
-       
----     
-
 \[定义\] Cauchy(柯西)序列(Sequence) //度量空间中的Cauchy(柯西)序列                  
 (X,ρ)是度量空间 且 $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是X上的无限序列 ⇒ ( $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是(X上的)Cauchy(柯西)序列 ⇔ ( ∀ ε > 0 : ∃ N > 0 : ∀ m,n > N : ρ($\displaystyle x_m$, $\displaystyle x_n$) < ε ) )     
 //ProofWiki / Definition:Cauchy Sequence/Metric Space         
@@ -644,11 +636,17 @@ ProofWiki / Metric Space is Hausdorff
 > 相当于证明 ∀ $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是Y上的无限序列 : ∃ a : $\displaystyle {\lang x_n \rang}_{ n \isin \N }$(在X上)收敛于a ⇒ a ∈ Y //假设存在b满足序列在Y上收敛于b，那么显然有序列在X上收敛于b，又由于极限点的唯一性，一定有b=a；也就是说，可以认为在Y内满足"∀$\displaystyle \text{U}_a$ : $\displaystyle \text{U}_a$是a的(在Y上的)开领域 ⇒ ( ∃ N > 0 : ∀ n > N : $\displaystyle x_n$ ∈ $\displaystyle \text{U}_a$ )"的点只有a，然而，根据拓扑空间中序列收敛的定义，还需要满足a ∈ Y，从而命题等价于证明a ∈ Y          
 > 根据 "\[定理\] (序列的)极(限)点 ⇒ 附着点（即在闭包内）"，Y = Y的闭包，从而Y是闭集    
 >                          
-           
+
+---     
+
+\[定理\] 紧 ⇒ 列紧 //度量空间诱导的拓扑空间           
+(X,ρ)是度量空间 且 (X,τ)是(X,ρ)诱导的拓扑空间 ⇒ ( X(在X上)是紧的 ⇒  X(在X上)是列紧的 )  
+//ProofWiki / Compact Subspace of Metric Space is Sequentially Compact in Itself   
+//\[陈天权 2009\] / 定理 7\.6\.3     
+//注：该定理存在更泛化的版本 ProofWiki / Countably Compact First-Countable Space is Sequentially Compact //拓扑空间适用，不要求度量空间                    
+
 ---          
              
-ProofWiki / Convergent Sequence is Cauchy Sequence/Metric Space    
-
 ProofWiki / Real Number Line is Complete Metric Space 
 
 ProofWiki / Euclidean Space is Complete Metric Space  
