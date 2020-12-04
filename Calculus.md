@@ -446,10 +446,16 @@ https://en.wikipedia.org/wiki/Heine%E2%80%93Borel_theorem#Proof
 X是拓扑空间 且 $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是X上的无限序列 ⇒ ( $\displaystyle {\lang x_n \rang}_{ n \isin \N }$(在X上)收敛于a ⇔ ( ∀$\displaystyle \text{U}_a$ : $\displaystyle \text{U}_a$是a的(在X上的)开领域 ⇒ ( ∃ N > 0 : ∀ n > N : $\displaystyle x_n$ ∈ $\displaystyle \text{U}_a$ ) ) )            
 //ProofWiki / Definition:Convergent Sequence/Topology          
 //\[陈天权 2009\] / 定义 7\.5\.1        
-                  
+
+//(序列的)极(限)点(Limit Point(of Sequence)) //注意与聚点的定义区分           
 X是拓扑空间 且 $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是X上的无限序列 ⇒ ( $\displaystyle {\lang x_n \rang}_{ n \isin \N }$(在X上)收敛于a ⇒ a是$\displaystyle {\lang x_n \rang}_{ n \isin \N }$(在X上)(当n趋于无穷时的)极点 )                 
-//(序列的)极点(Limit Point(of Sequence)) //注意与聚点的定义区分           
+
+---    
         
+\[定理\] (序列的)极(限)点 ⇒ 附着点（即在闭包内）//个人认为可以在拓扑空间中成立，并不依赖于度量空间                        
+//Proofwiki / Closure of Subset of Metric Space by Convergent Sequence                  
+//\[陈天权 2009\] / 命题 7\.5\.2       
+
 ---      
         
 \[定义\] 列紧的(Sequentially Compact)              
@@ -461,8 +467,27 @@ X是拓扑空间 且 Y ⊂ X ⇒ ( Y(在X上)是列紧的 ⇔ ( ∀$\displaystyl
 魏尔施特拉斯逼近定理 Weierstrass Approximation Theorem           
 斯通-魏尔施特拉斯定理 Stone-Weierstrass Theorem                   
            
----    
+---            
+    
+\[定义\] 连续映射(Continuous Mapping) //拓扑空间中的连续函数            
+//ProofWiki / Definition:Continuous Mapping (Topology)         
+//\[陈天权 2009\] / 定义 7\.2\.1        
             
+X是拓扑空间 且 Y是拓扑空间 且 x ∈ X ⇒ ( 映射f : X→Y在点x处连续 ⇔ ∀ V是Y中f(x)的领域, ∃ U是X中x的领域 且 f(U) ⊂ V ) //在点x处连续 //像f(U) //半开半闭区间不属于(R的通常拓扑上的)领域               
+      
+X是拓扑空间 且 Y是拓扑空间 且 x ∈ X ⇒ ( 映射f : X→Y在点x处连续 ⇔ ∀ V是Y中f(x)的领域,$\displaystyle \operatorname{f^{-1}}$(V)是X中x的领域 ) //等价形式 //逆像$\displaystyle \operatorname{f^{-1}}$(V)         
+       
+> 证明         
+>       
+> //包含x的领域的集合一定是x的领域 并且 $\displaystyle \operatorname{f^{-1}}$(V)是X的子集中可能满足对应的像包含于V的最大的集合      
+>      
+        
+X是拓扑空间 且 Y是拓扑空间 且 A ⊂ X ⇒ ( 映射f : X→Y 在A上连续 ⇔ ∀ x ∈ A, 映射f : X→Y 在点x处连续 ) //在集合上连续       
+      
+X是拓扑空间 且 Y是拓扑空间 ⇒ ( 映射f : X→Y 是连续映射 ⇔ 映射f : X→Y 连续 ⇔ 映射f : X→Y 在X上连续 ) //在定义域上连续             
+          
+---     
+              
 \[定义\] Hausdorff(豪斯多夫)空间 //分离空间 Separated Space //T2空间 //T -> Tychonoff 吉洪诺夫 //分离公理 Separation Axiom                  
 X是拓扑空间 ⇒ ( X是豪斯多夫空间 ⇔ ( ∀ x,y ∈ X : x≠y ⇒ ( ∃ $\displaystyle \text{U}_x$,$\displaystyle \text{V}_y$,$\displaystyle \text{U}_x$是x的(在X上的)开领域,$\displaystyle \text{V}_y$是y的(在X上的)开领域 : $\displaystyle \text{U}_x$ ∩ $\displaystyle \text{V}_y$ = ∅ ) ) )           
 //ProofWiki / Definition:Hausdorff Space          
@@ -470,8 +495,8 @@ X是拓扑空间 ⇒ ( X是豪斯多夫空间 ⇔ ( ∀ x,y ∈ X : x≠y ⇒ ( 
          
 ---    
     
-\[定理\] Hausdorff(豪斯多夫)空间的拓扑子空间 ⇒ (紧空间 ⇒ 闭集)            
-X是拓扑空间 且 X是Hausdorff(豪斯多夫)空间 且 Y是X上的拓扑子空间 ⇒ ( Y是紧空间 ⇒ Y是闭集 )              
+\[定理\] Hausdorff(豪斯多夫)空间的子集 ⇒ (紧的 ⇒ 闭集)            
+X是拓扑空间 且 X是Hausdorff(豪斯多夫)空间 且 Y ⊂ X ⇒ ( Y是紧的 ⇒ Y是闭集 )              
 //Proofwiki / Compact Subspace of Hausdorff Space is Closed          
 //\[陈天权 2009\] / 命题 7\.6\.4       
 
@@ -499,18 +524,18 @@ ProofWiki / Definition:Metric Space
 (X,ρ)是度量空间 ⇔ X ≠ ∅ 且 ρ是X×X到R的映射 且 ρ满足度量空间公理    
 度量空间公理(Metric Space Axioms)
 
-ρ是X×X到R的映射 ⇒ ( ρ满足度量空间公理 ⇔ ρ(x,y) = 0 ⇔ x = y /\* 不可分的同一性 \*/ 且 ρ(x,y) = ρ(y,x) /\* 对称性 \*/ 且 ρ(x,z) ≤ ρ(x,y) + ρ(y,z) /\* 次可加性/三角不等式 \*/ )
+ρ是X×X到R的映射 ⇒ ( ρ满足度量空间公理 ⇔ ρ(x,y) = 0 ⇔ x = y /\* 不可分的同一性 \*/ 且 ρ(x,y) = ρ(y,x) /\* 对称性 \*/ 且 ρ(x,z) ≤ ρ(x,y) + ρ(y,z) /\* 次可加性/三角不等式 \*/ )                      
 不可分的同一性(Identity of Indiscernibles)  
 对称性(Symmetric)   
-次可加性(Subadditivity)/三角不等式(Triangle Inequality)  
+次可加性(Subadditivity)/三角不等式(Triangle Inequality)     
 //\[陈天权 2009\] / 定义 7\.3\.1       
-
+              
 (X,ρ)是度量空间 ⇒ ρ是距离函数/度量         
 距离函数(Distance Function)       
 度量(Metric)     
-
+            
 ---           
-
+           
 \[定义\] 开球(Open Ball)             
 (X,ρ)是度量空间 且 a ∈ X 且 ε > 0 ⇒ ( B(a,ε)是以a为球心以ε为半径的开球 ⇔ B(a,ε) = \{ x ∈ X | ρ(x,a) < ε \} )     
 ProofWiki / Definition:Open Ball      
@@ -570,7 +595,7 @@ ProofWiki / Metric Space is Hausdorff
 > 将z=x应用到"次可加性"，有d(x,x) ≤ d(x,y) + d(y,x)，从而 0/\* 不可分的同一性 \*/ = d(x,x) ≤ d(x,y) + d(x,y)/\* 对称性 \*/ 即 0 ≤ 2 ⋅ d(x,y) 即 d(y,x) ≥ 0            
 > 从而有d(x,y)>0，取ε = $\displaystyle \frac{\operatorname{d}(x,y)}{2}$ /\*任意，比如$\displaystyle \frac{\operatorname{d}(x,y)}{3}$，$\displaystyle \frac{\operatorname{d}(x,y)}{4}$均可\*/，有B(x,ε) ∩ B(y,ε) = ∅ //可以用反证法证明，假设存在p ∈ B(x,ε) ∩ B(y,ε)，那么，根据开球的定义，有d(p,x) + d(p,y) < ε + ε = d(x,y)，与次可加性矛盾 　 　
 >                   
-     
+                          
 ---     
 
 \[定理\] 紧 ⇒ 列紧 //度量空间诱导的拓扑空间           
@@ -592,11 +617,11 @@ ProofWiki / Metric Space is Hausdorff
 (X,ρ)是度量空间 ⇒ ( (X,ρ)是完备的 ⇔ ( ∀ $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是X上的无限序列 : $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是(X上的)Cauchy(柯西)序列 ⇒ ∃ a : $\displaystyle {\lang x_n \rang}_{ n \isin \N }$(在X上)收敛于a ) )       
 //ProofWiki / Definition:Complete Metric Space      
 //\[陈天权 2009\] / 定义 7\.6\.5       
-           
-
+             
+                
 \[定理\] 度量子空间(Subspace) 完备的(Complete) //通过 闭集(Closed)      
 (X,ρ)是度量空间 且 (X,ρ)是完备的 且 (Y,ρ)是(X,ρ)的度量子空间 ⇒ ( (Y,ρ)是完备的 ⇔ (Y,ρ)是闭集 )                                   
-//Proofwiki / Subspace of Complete Metric Space is Closed iff Complete    
+//Proofwiki / Subspace of Complete Metric Space is Closed iff Complete   
 //\[陈天权 2009\] / 命题 7\.5\.4       
 > 证明     
 >                   
@@ -716,24 +741,7 @@ $\displaystyle R^2$上的闭集
     
 ###    
     
----       
-    
-连续函数（拓扑空间） Continuous function (Topological Space)   
-\[陈天权 2009\] / 定义 7\.2\.1      
-           
-X是拓扑空间 且 Y是拓扑空间 且 x ∈ X ⇒ ( 映射f : X→Y在点x处连续 ⇔ ∀ V是Y中f(x)的领域, ∃ U是X中x的领域 且 f(U) ⊂ V ) //在点x处连续 //像f(U) //半开半闭区间不属于(R的通常拓扑上的)领域               
-      
-X是拓扑空间 且 Y是拓扑空间 且 x ∈ X ⇒ ( 映射f : X→Y在点x处连续 ⇔ ∀ V是Y中f(x)的领域,$\displaystyle \operatorname{f^{-1}}$(V)是X中x的领域 ) //等价形式 //逆像$\displaystyle \operatorname{f^{-1}}$(V)         
-       
-> 证明         
->       
-> //包含x的领域的集合一定是x的领域 并且 $\displaystyle \operatorname{f^{-1}}$(V)是X的子集中可能满足对应的像包含于V的最大的集合      
->      
-        
-X是拓扑空间 且 Y是拓扑空间 且 A ⊂ X ⇒ ( 映射f : X→Y 在A上连续 ⇔ ∀ x ∈ A, 映射f : X→Y 在点x处连续 ) //在集合上连续       
-      
-X是拓扑空间 且 Y是拓扑空间 ⇒ ( 映射f : X→Y 是连续映射 ⇔ 映射f : X→Y 连续 ⇔ 映射f : X→Y 在X上连续 ) //在定义域上连续       
-      
+
 ---    
      
 \[陈天权 2009\] / 命题 7\.2\.1   
@@ -1423,8 +1431,11 @@ That for all -1 < x < 0, 1 + x < $\sqrt[n]{1 + x}$ < 1 implies $\lim\limits_{x \
 $\lim\limits_{x \rightarrow 0} \frac{\sqrt[n]{1 + x} - 1}{\frac{x}{n}}$    
 $=\lim\limits_{x \rightarrow 0} \frac{\frac{{\sqrt[n]{1 + x} )}^{n} - 1}{1 + ... + {( \sqrt[n]{1 + x} )}^{n - 2} + {( \sqrt[n]{1 + x} )}^{n - 1}}}{\frac{x}{n}}$  
 
-等价无穷小具有传递性 //等价类  
+等价无穷小具有传递性 //等价类    
 
+**~~微分 其实也可以看作是 0/0未定式 f(x)和x比较无穷小的阶~~**    
+         
+    
 ### 连续（continuous）    
 
 函数连续定义  
