@@ -406,19 +406,11 @@ X是拓扑空间 且 Y ⊂ X ⇒ ( K(在X上)是紧的 ⇔ ∀C : C是Y的(在X�
 //ProofWiki / Definition:Compact Space/Topology/Subspace         
 //\[陈天权 2009\] / 定义 7\.6\.1        
 //\[Rudin 1976\] / 2\.31 Definition       
-
-\[定义\] 紧空间(Compact Space)     
-X是拓扑空间 ⇒ ( X是紧空间 ⇔ X(在X上)是紧的 )          
-//ProofWiki / Definition:Compact Space/Topology      
-//ProofWiki / Definition:Compact Space/Topology/Subspace         
-//\[陈天权 2009\] / 定义 7\.6\.2        
-
-//Finite Intersection Axiom
-
+       
 \[定理\] 有限的 ⇒ 紧的     
-X是拓扑空间 ⇒ ( X是有限集 ⇒ X是紧空间 )     
+X是拓扑空间 且 Y ⊂ X ⇒ ( Y是有限集 ⇒ Y是紧集 )     
 //ProofWiki /Finite Topological Space is Compact       
-//根据紧空间的定义，显然 //一说涉及到选择公理     
+//根据紧集的定义，显然 //一说涉及到选择公理     
 
 有限覆盖定理/海涅-博雷尔定理 Heine–Borel Theorem            
 
@@ -443,12 +435,12 @@ https://en.wikipedia.org/wiki/Heine%E2%80%93Borel_theorem#Proof
 ---    
               
 \[定义\] 收敛序列(Convergent Sequence) //拓扑中的数列极限       
-X是拓扑空间 且 $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是X上的无限序列 ⇒ ( $\displaystyle {\lang x_n \rang}_{ n \isin \N }$(在X上)收敛于a ⇔ ( ∀$\displaystyle \text{U}_a$ : $\displaystyle \text{U}_a$是a的(在X上的)开领域 ⇒ ( ∃ N > 0 : ∀ n > N : $\displaystyle x_n$ ∈ $\displaystyle \text{U}_a$ ) ) )            
+X是拓扑空间 且 $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是Y上的无限序列 且 Y ⊂ X ⇒ ( $\displaystyle {\lang x_n \rang}_{ n \isin \N }$(在X上)收敛于a ⇔ ( a ∈ X 且 ∀$\displaystyle \text{U}_a$ : $\displaystyle \text{U}_a$是a的(在X上的)开领域 ⇒ ( ∃ N > 0 : ∀ n > N : $\displaystyle x_n$ ∈ $\displaystyle \text{U}_a$ ) ) )            
 //ProofWiki / Definition:Convergent Sequence/Topology          
 //\[陈天权 2009\] / 定义 7\.5\.1        
 
 //(序列的)极(限)点(Limit Point(of Sequence)) //注意与聚点的定义区分           
-X是拓扑空间 且 $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是X上的无限序列 ⇒ ( $\displaystyle {\lang x_n \rang}_{ n \isin \N }$(在X上)收敛于a ⇒ a是$\displaystyle {\lang x_n \rang}_{ n \isin \N }$(在X上)(当n趋于无穷时的)极点 )                 
+X是拓扑空间 且 $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是Y上的无限序列 且 Y ⊂ X ⇒ ( $\displaystyle {\lang x_n \rang}_{ n \isin \N }$(在X上)收敛于a ⇒ a是$\displaystyle {\lang x_n \rang}_{ n \isin \N }$(在X上)(当n趋于无穷时的)极点 )                 
 
 ---    
         
@@ -457,6 +449,11 @@ X是拓扑空间 且 $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是X上的�
 //\[陈天权 2009\] / 命题 7\.5\.2       
 
 ---      
+
+ProofWiki / Convergent Sequence in Hausdorff Space has Unique Limit    
+ProofWiki / Space in which All Convergent Sequences have Unique Limit not necessarily Hausdorff    
+
+---
         
 \[定义\] 列紧的(Sequentially Compact)              
 X是拓扑空间 且 Y ⊂ X ⇒ ( Y(在X上)是列紧的 ⇔ ( ∀$\displaystyle {\lang x_n \rang}_{ n \isin \N }$是Y上的无限序列 : ∃ $\displaystyle {\lang x_{n_r} \rang}_{ r \isin \N }$是$\displaystyle {\lang x_n \rang}_{ n \isin \N }$的子列 : ∃ a ∈ Y : $\displaystyle {\lang x_{n_r} \rang}_{ r \isin \N }$(在X上)收敛于a ) )          
@@ -619,7 +616,7 @@ ProofWiki / Metric Space is Hausdorff
 //\[陈天权 2009\] / 定义 7\.6\.5       
              
                 
-\[定理\] 度量子空间(Subspace) 完备的(Complete) //通过 闭集(Closed)      
+\[定理\] 完备(Complete)度量空间的子空间(Subspace)完备(Complete) ⇔ 闭集(Closed) //完备度量空间的子空间并不一定完备 //与紧空间不同               
 (X,ρ)是度量空间 且 (X,ρ)是完备的 且 (Y,ρ)是(X,ρ)的度量子空间 ⇒ ( (Y,ρ)是完备的 ⇔ (Y,ρ)是闭集 )                                   
 //Proofwiki / Subspace of Complete Metric Space is Closed iff Complete   
 //\[陈天权 2009\] / 命题 7\.5\.4       
