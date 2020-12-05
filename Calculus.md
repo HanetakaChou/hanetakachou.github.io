@@ -191,8 +191,9 @@ X是拓扑空间 且 p ∈ X 且 S ⊂ X 且 $\displaystyle \text{S} \degree$是
    
 (集合的)极点(Limit Point (of Set)) / 聚点(Cluster Point / Accumulation Point)    
 X是拓扑空间 且 p ∈ X 且 S ⊂ X ⇒ ( p是S的聚点 ⇔ ∀"$\displaystyle \text{U}_p$,$\displaystyle \text{U}_p$是p的开领域","S ∩ ( $\displaystyle \text{U}_p$ − {p} ) ≠ ∅" )     
+//其中 $\displaystyle \text{U}_p$ − {p} 具体化后即 去心领域(Deleted Neighborhood)    
 //ProofWiki / Definition:Limit Point/Topology/Set        
-//\[陈天权 2009\] / 定义 7\.1\.6   
+//\[陈天权 2009\] / 定义 7\.1\.6      
 //\[Rudin 1976\] / 2.18 Definition (b)        
       
 ---    
@@ -203,7 +204,7 @@ X是拓扑空间 且 p ∈ X 且 S ⊂ X ⇒ ( p是S的孤立点 ⇔ p ∈ S 且
 //值得注意的是，在内点/极点/孤立点的定义中，只有孤立点要求p ∈ S，内点要求p ∈ X但要求$\displaystyle \text{U}_p$ ⊂ S，而极点只要求p ∈ X           
 \[陈天权 2009\] / 定义 7\.1\.6   
 \[Rudin 1976\] / 2.18 Definition (c)   
-
+     
 ---       
      
 附着点(Adherent Point)    
@@ -457,11 +458,13 @@ X是拓扑空间 且 $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是S上的�
 ---
         
 \[定义\] 列紧的(Sequentially Compact)              
-X是拓扑空间 且 Y ⊂ X ⇒ ( Y(在X上)是列紧的 ⇔ ( ∀$\displaystyle {\lang x_n \rang}_{ n \isin \N }$是Y上的无限序列 : ∃ $\displaystyle {\lang x_{n_r} \rang}_{ r \isin \N }$是$\displaystyle {\lang x_n \rang}_{ n \isin \N }$的子列 : ∃ a ∈ Y : $\displaystyle {\lang x_{n_r} \rang}_{ r \isin \N }$(在X上)收敛于a ) )          
+X是拓扑空间 且 Y ⊂ X ⇒ ( Y(在X上)是列紧的 ⇔ ( ∀$\displaystyle {\lang x_n \rang}_{ n \isin \N }$是Y上的无限序列 : ∃ $\displaystyle {\lang x_{n_k} \rang}_{ k \isin \N }$是$\displaystyle {\lang x_n \rang}_{ n \isin \N }$的子列 : ∃ a ∈ Y : $\displaystyle {\lang x_{n_k} \rang}_{ k \isin \N }$(在X上)收敛于a ) )          
 //ProofWiki / Definition:Sequentially Compact Space        
 //\[陈天权 2009\] / 定义 7\.6\.5      
 //子列(Subsequence)     
-            
+
+波尔查诺-魏尔斯特拉斯定理 Bolzano-Weierstrass Theorem        
+
 魏尔施特拉斯逼近定理 Weierstrass Approximation Theorem           
 斯通-魏尔施特拉斯定理 Stone-Weierstrass Theorem                   
            
@@ -516,10 +519,9 @@ X是拓扑空间 且 X是Hausdorff(豪斯多夫)空间 且 Y ⊂ X ⇒ ( Y是紧
 
 \[定理\] Hausdorff(豪斯多夫)空间 ⇒ 极限点唯一性        
 X是拓扑空间 且 X是Hausdorff(豪斯多夫)空间 ⇒ ( $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是X上的无限序列 且 $\displaystyle {\lang x_n \rang}_{ n \isin \N }$(在X上)收敛于a 且 $\displaystyle {\lang y_n \rang}_{ n \isin \N }$是X上的无限序列 且 $\displaystyle {\lang y_n \rang}_{ n \isin \N }$(在X上)收敛于b ⇒ a = b )    
-//注意：Hausdorff(豪斯多夫)空间并不是极限点唯一性成立的必要条件       
-//注意：由于"Y ⊂ X 且 $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是Y上的无限序列 ⇒ $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是X上的无限序列"，因此X的子集上的无限序列仍适用于本定理     
-//ProofWiki / Convergent Sequence in Hausdorff Space has Unique Limit      
-//ProofWiki / Space in which All Convergent Sequences have Unique Limit not necessarily Hausdorff    
+//ProofWiki / Convergent Sequence in Hausdorff Space has Unique Limit    
+//注意：由于"Y ⊂ X 且 $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是Y上的无限序列 ⇒ $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是X上的无限序列"，因此X的子集上的无限序列仍适用于本定理       
+//注意：Hausdorff(豪斯多夫)空间并不是极限点唯一性成立的必要条件 //ProofWiki / Space in which All Convergent Sequences have Unique Limit not necessarily Hausdorff    
 > 证明          
 > 反证法，假设命题不成立，即有a≠b成立        
 > 因为X是Hausdorff(豪斯多夫)空间，存在x的开领域$\displaystyle \text{U}_x$和y的开领域$\displaystyle \text{V}_y$ 满足$\displaystyle \text{U}_a$ ∩ $\displaystyle \text{V}_b$ = ∅       
@@ -605,24 +607,49 @@ ProofWiki / Metric Space is Hausdorff
 > 设有x,y ∈ X 且 x≠y       
 > 根据"不可分的同一性"，有d(x,y)≠0     
 > 将z=x应用到"次可加性"，有d(x,x) ≤ d(x,y) + d(y,x)，从而 0/\* 不可分的同一性 \*/ = d(x,x) ≤ d(x,y) + d(x,y)/\* 对称性 \*/ 即 0 ≤ 2 ⋅ d(x,y) 即 d(y,x) ≥ 0            
-> 从而有d(x,y)>0，取ε = $\displaystyle \frac{\operatorname{d}(x,y)}{2}$ /\*任意，比如$\displaystyle \frac{\operatorname{d}(x,y)}{3}$，$\displaystyle \frac{\operatorname{d}(x,y)}{4}$均可\*/，有B(x,ε) ∩ B(y,ε) = ∅ //可以用反证法证明，假设存在p ∈ B(x,ε) ∩ B(y,ε)，那么，根据开球的定义，有d(p,x) + d(p,y) < ε + ε = d(x,y)，与次可加性矛盾    
+> 从而有d(x,y)>0，取ε = $\displaystyle \frac{\operatorname{d}(x,y)}{2}$ /\*证明时，可以较随意地选取该值，比如$\displaystyle \frac{\operatorname{d}(x,y)}{3}$，$\displaystyle \frac{\operatorname{d}(x,y)}{4}$均可\*/，有B(x,ε) ∩ B(y,ε) = ∅ //可以用反证法证明，假设存在p ∈ B(x,ε) ∩ B(y,ε)，那么，根据开球的定义，有d(p,x) + d(p,y) < ε + ε = d(x,y)，与次可加性矛盾    
 >                   
-                          
+
+\[定理\] \[等价定义\] 收敛序列(Convergent Sequence) //度量空间中的序列极限 //严格意义上应当由拓扑空间中的序列极限推出          
+         
+
+
 ---     
 
 \[定义\] Cauchy(柯西)序列(Sequence) //度量空间中的Cauchy(柯西)序列                  
-(X,ρ)是度量空间 且 $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是X上的无限序列 ⇒ ( $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是(X上的)Cauchy(柯西)序列 ⇔ ( ∀ ε > 0 : ∃ N > 0 : ∀ m,n > N : ρ($\displaystyle x_m$, $\displaystyle x_n$) < ε ) )     
+(X,ρ)是度量空间 且 Y ⊂ X 且 $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是Y上的无限序列 ⇒ ( $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是(X上的)Cauchy(柯西)序列 ⇔ ( ∀ ε > 0 : ∃ N > 0 : ∀ m,n > N : ρ($\displaystyle x_m$, $\displaystyle x_n$) < ε ) )     
 //ProofWiki / Definition:Cauchy Sequence/Metric Space         
-//\[陈天权 2009\] / 定义 7\.6\.5    
+//\[陈天权 2009\] / 定义 7\.5\.3    
+            
+---     
 
----    
-     
+\[定理\] 收敛序列 ⇒ Cauchy(柯西)序列           
+//ProofWiki / Convergent Sequence is Cauchy Sequence/Metric Space             
+             
+            
+---          
+
+\[定理\] Cauchy(柯西)序列 ⇒ ( 存在子列/\* 列紧 \*/收敛于a ⇒ Cauchy(柯西)序列收敛于a )            
+(X,ρ)是度量空间 ⇒ ( $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是X上的Cauchy(柯西)序列 ⇒ ( ∃ $\displaystyle {\lang x_{n_k} \rang}_{ k \isin \N }$是$\displaystyle {\lang x_n \rang}_{ n \isin \N }$的子列 : ∃ a ∈ X : $\displaystyle {\lang x_{n_k} \rang}_{ k \isin \N }$在X上收敛于a ⇒ $\displaystyle {\lang x_n \rang}_{ n \isin \N }$在X上收敛于a )             
+//ProofWiki / Convergent Subsequence of Cauchy Sequence/Metric Space       
+//注意：由于"Y ⊂ X 且 $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是Y上的无限序列 ⇒ $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是X上的无限序列"，因此X的子集上的无限序列仍适用于本定理                         
+//\[陈天权 2009\] / 引理 7\.6\.1       
+> 证明     
+> ∀ ε > 0 :      
+> 由于$\displaystyle {\lang x_n \rang}_{ n \isin \N }$是X上的Cauchy(柯西)序列，对于$\displaystyle \frac{\varepsilon}{2}$ /\*证明时，可以较随意地选取该值，比如$\displaystyle \frac{\varepsilon}{3}$，$\displaystyle \frac{\varepsilon}{4}$均可\*/ 有 ∃ N > 0 : ∀ m,n > N : ρ($\displaystyle x_m$, $\displaystyle x_n$) < $\displaystyle \frac{\varepsilon}{2}$     
+> 由于$\displaystyle {\lang x_{n_k} \rang}_{ k \isin \N }$在X上收敛于a，对于$\displaystyle \frac{\varepsilon}{2}$ 有 ∃ K > 0 : ∀ k > K : ρ($\displaystyle x_{n_k}$, a) < $\displaystyle \frac{\varepsilon}{2}$     
+> 显然，存在$\displaystyle k_1$ > K 满足$\displaystyle n_{k_1}$ > N /\* 一说基于阿基米德原理 \*/，有 ρ($\displaystyle x_{n_{k_1}}$, a) < $\displaystyle \frac{\varepsilon}{2}$ 且 ∀ n > N : ρ($\displaystyle x_{n_{k_1}}$, $\displaystyle x_n$) < $\displaystyle \frac{\varepsilon}{2}$          
+>      
+> 从而有 ∀ ε > 0 : ∃ N > 0 : ∀ n > N : $\displaystyle x_n+$ ≤ ρ($\displaystyle x_{n_{k_1}}$, a) + ρ($\displaystyle x_{n_{k_1}}$, $\displaystyle x_n$) < $\displaystyle \frac{\varepsilon}{2}$ + $\displaystyle \frac{\varepsilon}{2}$ < ε，根据收敛序列的定义，命题得证             
+>      
+       
+---          
+           
 \[定义\] 完备的(Complete) //度量空间(Metric Space)         
 (X,ρ)是度量空间 ⇒ ( (X,ρ)是完备的 ⇔ ( ∀ $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是X上的无限序列 : $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是(X上的)Cauchy(柯西)序列 ⇒ ∃ a : $\displaystyle {\lang x_n \rang}_{ n \isin \N }$(在X上)收敛于a ) )       
 //ProofWiki / Definition:Complete Metric Space      
 //\[陈天权 2009\] / 定义 7\.6\.5       
-注意："收敛序列 ⇒ Cauchy(柯西)序列"的逆命题是显然的，完备集也可以定义成两者等价，即"Cauchy(柯西)序列 ⇔ 收敛序列"                      
-//ProofWiki / Convergent Sequence is Cauchy Sequence/Metric Space             
+注意：逆命题"收敛序列 ⇒ Cauchy(柯西)序列"是一定成立的 /\* \[定理\] 收敛序列 ⇒ Cauchy(柯西)序列 \*/，完备集也相当于两者等价，即"Cauchy(柯西)序列 ⇔ 收敛序列"                      
              
                 
 \[定理\] 完备(Complete)度量空间的子空间(Subspace)完备(Complete) ⇔ 闭集(Closed) //完备度量空间的子空间并不一定完备 //与紧空间不同               
@@ -636,6 +663,10 @@ ProofWiki / Metric Space is Hausdorff
 > 相当于证明 ∀ $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是Y上的无限序列 : ∃ a : $\displaystyle {\lang x_n \rang}_{ n \isin \N }$(在X上)收敛于a ⇒ a ∈ Y //假设存在b满足序列在Y上收敛于b，那么显然有序列在X上收敛于b，又由于极限点的唯一性，一定有b=a；也就是说，可以认为在Y内满足"∀$\displaystyle \text{U}_a$ : $\displaystyle \text{U}_a$是a的(在Y上的)开领域 ⇒ ( ∃ N > 0 : ∀ n > N : $\displaystyle x_n$ ∈ $\displaystyle \text{U}_a$ )"的点只有a，然而，根据拓扑空间中序列收敛的定义，还需要满足a ∈ Y，从而命题等价于证明a ∈ Y          
 > 根据 "\[定理\] (序列的)极(限)点 ⇒ 附着点（即在闭包内）"，Y = Y的闭包，从而Y是闭集    
 >                          
+
+---   
+
+Picard 关于微分方程的定理     
 
 ---     
 
