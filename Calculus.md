@@ -413,25 +413,10 @@ X是拓扑空间 且 Y ⊂ X ⇒ ( Y是有限集 ⇒ Y是紧集 )
 //ProofWiki /Finite Topological Space is Compact       
 //根据紧集的定义，显然 //一说涉及到选择公理     
 
-有限覆盖定理/海涅-博雷尔定理 Heine–Borel Theorem            
-
-Euclidean space     
-Compact iff Closed and Bounded     
-
-Metric Space     
-Compact iff Complete and Totally Bounded       
-
-Proofwiki / Compact Subspace of Hausdorff Space is Closed
-
-Proofwiki / Closed Subspace of Compact Space is Compact
-
-Proofwiki / Closed Bounded Subset of Real Numbers is Compact   
-
-ProofWiki / Real Number Line is Complete Metric Space 
-
-ProofWiki / Euclidean Space is Complete Metric Space  
-
-https://en.wikipedia.org/wiki/Heine%E2%80%93Borel_theorem#Proof
+\[定理\] 紧(Compact)集的子集 ⇒ ( 闭集 ⇒ 紧的 )    
+//ProofWiki / Closed Subspace of Compact Space is Compact     
+//\[Browder 1996\] / 6.52 Proposition   
+//\[陈天权 2009\] / 定义 7\.6\.3              
 
 ---    
               
@@ -466,6 +451,7 @@ X是拓扑空间 且 Y ⊂ X ⇒ ( Y(在X上)是列紧的 ⇔ ( ∀$\displaystyl
 波尔查诺-魏尔斯特拉斯定理 Bolzano-Weierstrass Theorem        
 
 魏尔施特拉斯逼近定理 Weierstrass Approximation Theorem           
+
 斯通-魏尔施特拉斯定理 Stone-Weierstrass Theorem                   
            
 ---            
@@ -578,9 +564,12 @@ ProofWiki / Definition:Topology Induced by Metric
 //ProofWiki / Definition:Metric Subspace    
 //\[陈天权 2009\] / 定义 7\.4\.1    
 
+---   
+
 \[定义\] 有界的(Bounded)   
 (X,ρ)是度量空间 且 Y ⊂ X ⇒ ( Y是有界的 ⇔ ∃"ϵ > 0","∀"x,y ∈ Y","ρ(x,y) < ϵ"" )           
 //ProofWiki / Definition:Bounded Metric Space      
+//\[Browder 1996\] / 6.60 Definition                 
 //\[陈天权 2009\] / 定义 7\.6\.3    
        
 \[定义\] 网(Net)     
@@ -596,7 +585,11 @@ ProofWiki / Definition:Topology Induced by Metric
 \[定义\] 全有界的(Totally Bounded)        
 (X,ρ)是度量空间 且 Y ⊂ X ⇒ ( Y是全有界的 ⇔ ∀"ϵ > 0","∃"S ⊂ X","S是Y的有限ϵ-网"" )      
 //ProofWiki / Definition:Totally Bounded Metric Space     
+//\[Browder 1996\] / 6.61 Definition                 
 //\[陈天权 2009\] / 定义 7\.6\.4       
+
+\[定理\] 全有界的(Totally Bounded) ⇒ 有界的(Bounded)    
+//ProofWiki / Totally Bounded Metric Space is Bounded
      
 ---    
      
@@ -652,7 +645,7 @@ ProofWiki / Metric Space is Hausdorff
 注意：逆命题"收敛序列 ⇒ Cauchy(柯西)序列"是一定成立的 /\* \[定理\] 收敛序列 ⇒ Cauchy(柯西)序列 \*/，完备集也相当于两者等价，即"Cauchy(柯西)序列 ⇔ 收敛序列"                      
              
                 
-\[定理\] 完备(Complete)度量空间的子空间(Subspace)完备(Complete) ⇔ 闭集(Closed) //完备度量空间的子空间并不一定完备 //与紧空间不同               
+\[定理\] 完备(Complete)度量空间的子空间(Subspace) ⇒ ( 完备(Complete) ⇔ 闭集(Closed) ) //完备度量空间的子空间并不一定完备 //与紧空间不同               
 (X,ρ)是度量空间 且 (X,ρ)是完备的 且 (Y,ρ)是(X,ρ)的度量子空间 ⇒ ( (Y,ρ)是完备的 ⇔ (Y,ρ)是闭集 )                                   
 //Proofwiki / Subspace of Complete Metric Space is Closed iff Complete   
 //\[陈天权 2009\] / 命题 7\.5\.4       
@@ -663,8 +656,8 @@ ProofWiki / Metric Space is Hausdorff
 > 相当于证明 ∀ $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是Y上的无限序列 : ∃ a : $\displaystyle {\lang x_n \rang}_{ n \isin \N }$(在X上)收敛于a ⇒ a ∈ Y //假设存在b满足序列在Y上收敛于b，那么显然有序列在X上收敛于b，又由于极限点的唯一性，一定有b=a；也就是说，可以认为在Y内满足"∀$\displaystyle \text{U}_a$ : $\displaystyle \text{U}_a$是a的(在Y上的)开领域 ⇒ ( ∃ N > 0 : ∀ n > N : $\displaystyle x_n$ ∈ $\displaystyle \text{U}_a$ )"的点只有a，然而，根据拓扑空间中序列收敛的定义，还需要满足a ∈ Y，从而命题等价于证明a ∈ Y          
 > 根据 "\[定理\] (序列的)极(限)点 ⇒ 附着点（即在闭包内）"，Y = Y的闭包，从而Y是闭集    
 >                          
-
----   
+    
+---      
 
 Picard 关于微分方程的定理     
 
@@ -677,22 +670,52 @@ Picard 关于微分方程的定理
 //注：该定理存在更泛化的版本 ProofWiki / Countably Compact First-Countable Space is Sequentially Compact //拓扑空间适用，不要求度量空间                    
 
 ---          
-             
-ProofWiki / Real Number Line is Complete Metric Space 
 
-ProofWiki / Euclidean Space is Complete Metric Space  
-
-Proofwiki / Closed Bounded Subset of Real Numbers is Compact   
-
-从而 Cauchy's Convergence Criterion 成立    
+海涅-博雷尔定理 Heine–Borel Theorem //在度量(Metric)空间上                      
+Compact iff Complete and Totally Bounded 
+    
+---      
+    
+斯通-魏尔施特拉斯定理 Stone-Weierstrass Theorem       
 
 ---    
 
-有限覆盖定理/海涅-博雷尔定理 Heine–Borel Theorem
+### Euclidean(欧几里得)              
+     
+    
+---   
 
+\[定理\] Euclidean(欧几里得)空间的子空间 ⇒ ( 完备的(Complete) ⇔ 闭集(Closed) )              
+
+//ProofWiki / Real Number Line is Complete Metric Space    
+//ProofWiki / Euclidean Space is Complete Metric Space    
+//\[Browder 1996\] / 6.60 Definition       
+//\[Browder 1996\] / 6.61 Proposition                 
+        
 ---     
+     
+\[定理\] Euclidean(欧几里得)空间的子空间 ⇒ ( 全有界的(Totally Bounded) ⇔ 有界的(Bounded) )             
 
-斯通-魏尔施特拉斯定理  Stone-Weierstrass Theorem       
+//ProofWiki / Bounded Subspace of Euclidean Space is Totally Bounded    
+//Proofwiki / Totally Bounded Metric Space is Bounded    
+//\[Browder 1996\] / 6.62 Proposition                 
+     
+      
+     
+---    
+
+海涅-博雷尔定理 Heine–Borel Theorem //在Euclidean(欧几里得)空间上              
+//\[Browder 1996\] / 6.64 Corollary                 
+
+
+---   
+
+有限覆盖定理 //海涅-博雷尔定理 Heine–Borel Theorem //在R上             
+\[定理\] R ⇒ ( 有界闭集 ⇒ 紧的 )        
+//Proofwiki / Closed Bounded Subset of Real Numbers is Compact     
+//Proofwiki / Compact Subspace of Real Numbers is Closed and Bounded    
+//\[Browder 1996\] / 6.49 Theorem     
+//\[Browder 1996\] / 6.53 Corollary            
                                       
 ---              
 
@@ -1852,8 +1875,10 @@ B ∪ (A − B) = A ∪ B 而非 = A //可以直接从集合的定义证明，�
 
 
 ### 参考文献  
+\[Browder 1996\] Andrew Browder. "Mathmatical Analysis, An Introduction." Springer 1996.   
+\[陈天权 2009\] 陈天权. "数学分析讲义." 北京大学出版社 2009.    
+\[Yeh 2014\] James Yeh. "Real Analysis: Theory of Measure and Integration, Third Edition." World Scientific 2014
+\[同济大学数学系 2014\] 同济大学数学系. "高等数学 第七版." 高等教育出版社 2014.   
 \[Bartle 2011\] Robert Bartle, Donald Sherbert. "Introduction to Real Analysis, Fourth Edition." Wiley 2011.   
 \[Rudin 1976\] Walter Rudin. "Principles of Mathematical Analysis, Third Edition." McGraw-Hill 1976.    
-\[Yeh 2014\] James Yeh. "Real Analysis: Theory of Measure and Integration, Third Edition." World Scientific 2014
-\[同济大学数学系 2014\] 同济大学数学系. "高等数学 第七版." 高等教育出版社 2014.    
-\[陈天权 2009\] 陈天权. "数学分析讲义." 北京大学出版社 2009.  
+ 
