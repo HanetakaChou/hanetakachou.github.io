@@ -387,16 +387,42 @@ X是拓扑空间 且 S ⊂ X ⇒ ( S是开集且S是闭集 ⇔ $\displaystyle \p
 ---   
 
 \[定义\] 局部基(Local Basis)   
-
-//ProofWiki / Definition:Local Basis    
-//\[Browder 1996\] / 6.26 Definition           
+X是拓扑空间 且 p ∈ X ⇒ ( $\displaystyle \mathcal{B}_p$是在p处的局部基 ⇔ ( ∀ $\displaystyle \text{U}_p$ : $\displaystyle \text{U}_p$是p的开领域 ⇒ ( ∃ H ∈ $\displaystyle \mathcal{B}_p$ : H ⊂ $\displaystyle \text{U}_p$ ) ) )      
+//ProofWiki / Definition:Local Basis/Local Basis for Open Sets    
 //\[Tu 2011\] / A.2 Subspace Topology       
 //\[陈天权 2009\] / 定义 7\.4\.1    
          
+\[定义\] 基(Basis)  
+(X,τ)是拓扑空间 ⇒ ( $\displaystyle \mathcal{B}$是τ的基 ⇔ $\displaystyle \mathcal{B}$ ⊂ τ 且 ( ∀ U : U是开集 ⇒ U = $\displaystyle \bigcup$\{ H | H ⊂ U 且 H ∈ $\displaystyle \mathcal{B}$ \} ) )      
+//ProofWiki / Definition:Basis (Topology)/Analytic Basis     
+//\[Tu 2011\] / Proposition A.7   
+//\[Browder 1996\] / 6.27 Definition           
+//\[陈天权 2009\] / 定义 7\.4\.2    
+
+\[定理\] 局部基(Local Basis) ⇒ 基(Basis)  
+(X,τ)是拓扑空间 ⇒ ( $\displaystyle \mathcal{B}$是τ的基 ⇒ $\displaystyle \mathcal{B}$ = $\displaystyle \bigcup$\{ $\displaystyle \mathcal{B}_p$ | p ∈ X 且 $\displaystyle \mathcal{B}_p$是在p处的局部基 \} )     
+//ProofWiki / Union of Local Bases is Basis    
+//\[Tu 2011\] / Proposition A.7   
+
+
+\[定理\] 拓扑子空间(Topological Subspace)的基(Basis)     
+//ProofWiki / Basis for Topological Subspace    
+
+---      
+
+第二可数   
+//\[Browder 1996\] / 6.27 Definition           
+
+---    
+
+ProofWiKi / Metric Space is First-Countable    
+
+ProofWiki / Countable Basis of Real Number Line   
+
 ---     
         
 \[定义\] 覆盖(Cover)    
-C是Y的覆盖 ⇔ Y ⊂ $\displaystyle \bigcup_{\text{A} \isin \text{C}} \text{A}$        
+C是Y的覆盖 ⇔ Y ⊂ $\displaystyle \bigcup$\{ A | A ∈ C \}          
 //覆盖的定义并不依赖于拓扑         
 //见构造外测度            
           
