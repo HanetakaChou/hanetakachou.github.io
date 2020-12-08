@@ -371,11 +371,27 @@ X是拓扑空间 且 S ⊂ X ⇒ ( S是开集且S是闭集 ⇔ $\displaystyle \p
 ---      
       
 \[定义\] 拓扑子空间(Topological Subspace) / 相对拓扑(Relative Topology)        
-(X,τ)是拓扑空间 且 Y ⊂ X ⇒ ( (Y,$\displaystyle \tau_Y$)是X的拓扑子空间 ⇔ $\displaystyle \tau_Y$ = { U ∩ Y | U ∈ τ } )          
-(X,τ)是拓扑空间 且 Y ⊂ X ⇒ ( $\displaystyle \tau_Y$是(τ诱导的)在Y上的相对拓扑 ⇔ $\displaystyle \tau_Y$ = { U ∩ Y | U ∈ τ } )                 
-//ProofWifi / Definition:Topological Subspace           
+(X,τ)是拓扑空间 且 Y ⊂ X ⇒ ( (Y,$\displaystyle \tau_Y$)是X的拓扑子空间 ⇔ $\displaystyle \tau_Y$是(τ诱导的)(在X中)Y的相对拓扑 ⇔ $\displaystyle \tau_Y$ = { U ∩ Y | U ∈ τ } )                           
+//ProofWifi / Definition:Topological Subspace   
+//\[Browder 1996\] / 6.26 Definition           
+//\[Tu 2011\] / A.2 Subspace Topology       
 //\[陈天权 2009\] / 定义 7\.4\.1    
 //显然，根据拓扑空间的定义，拓扑子空间是拓扑空间                  
+
+
+\[定义\] 相对开的(Relatively Open in Y / Open Relative to Y)         
+(X,τ)是拓扑空间 且 Y ⊂ X 且 (Y,$\displaystyle \tau_Y$)是X的拓扑子空间 ⇒ ( U是相对于Y的开集 ⇔ U ∈ $\displaystyle \tau_Y$ )        
+//注意：Y并不一定是开集，因此，相对于Y的开集未必是X中的开集    
+//根据拓扑的定义，显然，当Y是X中的开集时， U是相对于Y的开集当且仅当U是X的开集       
+
+---   
+
+\[定义\] 局部基(Local Basis)   
+
+//ProofWiki / Definition:Local Basis    
+//\[Browder 1996\] / 6.26 Definition           
+//\[Tu 2011\] / A.2 Subspace Topology       
+//\[陈天权 2009\] / 定义 7\.4\.1    
          
 ---     
         
@@ -422,7 +438,8 @@ X是拓扑空间 且 Y ⊂ X ⇒ ( Y是有限集 ⇒ Y是紧集 )
               
 \[定义\] 收敛序列(Convergent Sequence) //拓扑空间中的序列极限       
 X是拓扑空间 且 Y ⊂ X 且 $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是Y上的无限序列 ⇒ ( $\displaystyle {\lang x_n \rang}_{ n \isin \N }$(在X上)收敛于a ⇔ ( a ∈ X 且 ∀$\displaystyle \text{U}_a$ : $\displaystyle \text{U}_a$是a的(在X上的)开领域 ⇒ ( ∃ N > 0 : ∀ n > N : $\displaystyle x_n$ ∈ $\displaystyle \text{U}_a$ ) ) )            
-//ProofWiki / Definition:Convergent Sequence/Topology          
+//ProofWiki / Definition:Convergent Sequence/Topology         
+//\[Tu 2011\] / Definition A.54   
 //\[陈天权 2009\] / 定义 7\.5\.1        
 
 //(序列的)极(限)点(Limit Point(of Sequence)) //注意与聚点的定义区分           
@@ -430,9 +447,10 @@ X是拓扑空间 且 Y ⊂ X 且 $\displaystyle {\lang x_n \rang}_{ n \isin \N }
           
 ---             
                  
-\[定理\] (序列的)极(限)点 ⇒ 附着点（即在闭包内）//个人认为可以在拓扑空间中成立，并不依赖于度量空间         
+\[定理\] 序列引理(The sequence lemma) //(序列的)极(限)点 ⇒ 附着点（即在闭包内）//个人认为可以在拓扑空间中成立，并不依赖于度量空间         
 X是拓扑空间 且 $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是S上的无限序列 且 S ⊂ X 且 $\displaystyle {\lang x_n \rang}_{ n \isin \N }$(在X上)收敛于a ⇒ a是S的附着点 //即a在闭包内                   
-//Proofwiki / Closure of Subset of Metric Space by Convergent Sequence                  
+//Proofwiki / Closure of Subset of Metric Space by Convergent Sequence       
+//\[Tu 2011\] / Definition A.56   
 //\[陈天权 2009\] / 命题 7\.5\.2       
 > 证明                   
 > 根据拓扑空间中序列收敛的定义，∀$\displaystyle \text{U}_a$ : $\displaystyle \text{U}_a$是a的(在X上的)开领域 ⇒ ( ∃ N > 0 : ∀ n > N : $\displaystyle x_n$ ∈ $\displaystyle \text{U}_a$ ) ⇒ $\displaystyle \text{U}_a$ ∩ S ≠ ∅ //由于$\displaystyle {\lang x_n \rang}_{ n \isin \N }$是S上的无限序列 至少有$\displaystyle x_n$(当n > N时) ∈ $\displaystyle \text{U}_a$ ∩ S                
@@ -503,9 +521,10 @@ X是拓扑空间 且 X是Hausdorff(豪斯多夫)空间 且 Y ⊂ X ⇒ ( Y是紧
 
 ---      
 
-\[定理\] Hausdorff(豪斯多夫)空间 ⇒ 极限点唯一性        
+\[定理\] Hausdorff(豪斯多夫)空间 ⇒ 极限的唯一性 //Uniqueness of the limit           
 X是拓扑空间 且 X是Hausdorff(豪斯多夫)空间 ⇒ ( $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是X上的无限序列 且 $\displaystyle {\lang x_n \rang}_{ n \isin \N }$(在X上)收敛于a 且 $\displaystyle {\lang y_n \rang}_{ n \isin \N }$是X上的无限序列 且 $\displaystyle {\lang y_n \rang}_{ n \isin \N }$(在X上)收敛于b ⇒ a = b )    
 //ProofWiki / Convergent Sequence in Hausdorff Space has Unique Limit    
+//\[Tu 2011\] / Definition A.55   
 //注意：由于"Y ⊂ X 且 $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是Y上的无限序列 ⇒ $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是X上的无限序列"，因此X的子集上的无限序列仍适用于本定理       
 //注意：Hausdorff(豪斯多夫)空间并不是极限点唯一性成立的必要条件 //ProofWiki / Space in which All Convergent Sequences have Unique Limit not necessarily Hausdorff    
 > 证明          
@@ -1839,6 +1858,17 @@ B ∪ (A − B) = A ∪ B 而非 = A //可以直接从集合的定义证明，�
 定积分/黎曼积分 Riemann Integral   
 反常积分/广义积分  Henstock–Kurzweil Integral/Generalized Riemann Integral    
      
+格林公式(Green’s Theorem)
+\[Tu 2011\] / 23.6 Line Integrals and Green’s Theorem   
+\[同济大学数学系 2014\] / 第十一章 曲线积分与曲面积分 / 第三节 格林公式及其应用     
+     
+
+     
+斯托克斯公式(Stokes's Theorem)   
+\[Tu 2011\] / 23.6 Line Integrals and Green’s Theorem   
+\[同济大学数学系 2014\] / 第十一章 曲线积分与曲面积分 / 第七节 斯托克斯公式 环流量与旋度     
+
+
 #### 换元积分法 Integration by Substitution    
      
 ##### 第一类换元法 //凑微分法       
@@ -1876,6 +1906,7 @@ B ∪ (A − B) = A ∪ B 而非 = A //可以直接从集合的定义证明，�
 
 ### 参考文献  
 \[Browder 1996\] Andrew Browder. "Mathmatical Analysis, An Introduction." Springer 1996.   
+\[Tu 2011\] Loring Tu. "An Introduction to Manifolds, Second Edition." Springer 2011.   
 \[陈天权 2009\] 陈天权. "数学分析讲义." 北京大学出版社 2009.    
 \[Yeh 2014\] James Yeh. "Real Analysis: Theory of Measure and Integration, Third Edition." World Scientific 2014
 \[同济大学数学系 2014\] 同济大学数学系. "高等数学 第七版." 高等教育出版社 2014.   
