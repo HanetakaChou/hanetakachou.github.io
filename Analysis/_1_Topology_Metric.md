@@ -766,6 +766,10 @@ Compact iff Complete and Totally Bounded
 欧几里得空间 Euclidean Space      
 $\displaystyle R^k$上的欧几里得空间 度量 d(x,y) = |x - y| //度量被定义为向量的模     
             
+---       
+
+Proofwiki/Equivalence of Definitions of Continuous Mapping between Topological Spaces    
+
 ---    
 
 拓扑间的包含关系     
@@ -1026,3 +1030,12 @@ R上的闭区间是（关于R的通常拓扑的）紧集
 斯通-魏尔施特拉斯逼近定理 / Stone-Weierstrass Theorem      
 //\[陈天权 2009\] / 定理 7\.7\.2         
 //\[Rudin 1976\] / 7\.32 Theorem       
+
+
+### 参考文献  
+\[Tu 2011\] Loring Tu. "An Introduction to Manifolds, Second Edition." Springer 2011.  
+\[陈天权 2009\] 陈天权. "数学分析讲义." 北京大学出版社 2009.    
+\[同济大学数学系 2014\] 同济大学数学系. "高等数学 第七版." 高等教育出版社 2014.   
+\[Browder 1996\] Andrew Browder. "Mathmatical Analysis, An Introduction." Springer 1996.   
+\[Yeh 2014\] James Yeh. "Real Analysis: Theory of Measure and Integration, Third Edition." World Scientific 2014
+ 
