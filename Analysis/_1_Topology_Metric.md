@@ -541,33 +541,50 @@ X是拓扑空间 且 X是Hausdorff(豪斯多夫)空间 ⇒ ( $\displaystyle {\la
 >              
 
           
-### 连续性 Continuity   
+### Continuity //连续性  
 \- \[Tu 2011\] / A.7 Continuity      
 
-#### 连续映射(拓扑) Continuous Mapping (Topology)     
+#### Continuous Mapping (Topology) //连续映射(拓扑)  
 \- Proofwiki / Definition:Continuous Mapping (Topology)     
-\- Proofwiki / Equivalence of Definitions of Continuous Mapping between Topological Spaces                          
-
-#### 在点处连续 Continuous at a Point 
+                    
+#### Continuous at a Point //在点处连续  
+\- Proofwiki / Definition:Continuous Mapping (Topology)/Point  
+\- Proofwiki / Equivalence of Definitions of Continuous Mapping between Topological Spaces     
 
 \[Definition\] Definition using Neighborhoods   
 \- \[Tu 2011\] / A.7 Continuity      
-
+\- \[陈天权 2009\] / 定义 7\.2\.1  
 X is topological space ∧ Y is topological space ⇒ mapping f: X → Y is **continuous at a point** p ⇔ ∀ V such that V is a neighborhood of f(p) in Y : ∃ U such that U is a neighborhood of p in X ∧ f(U) ⊂ V  
 
 //对R的通常拓扑，间断点处只能找到半开半闭区间，不属于领域　　   
 
-\[Equivalent definition\] Definition using Open Sets   
-\- \[Tu 2011\] / Proposition A.23  
-\- \[陈天权 2009\] / 定义 7\.2\.1     
+#### Continuous on a Set //在集合上连续    
+\- Proofwiki / Definition:Continuous Mapping (Topology)/Set
 
-X is topological space ∧ Y is topological space ⇒ mapping f: X → Y is **continuous at a point** p ⇔ ∀ V such that V is open in Y ∧ f(p) ∈ V : inverse image U = $\displaystyle \operatorname{f^{-1}}$(V) is open in X and x  such that U is open in X ∧ x ∈ U  
+\[Definition\]   
+\- \[Tu 2011\] / A.7 Continuity      
+\- \[陈天权 2009\] / 定义 7\.2\.1  
 
-#### 
+\[Theorem\] Continuous iff inverse image of any open set is open //连续 等价于 开集的逆像是开集  
+\- ProofWiki / Continuous iff inverse image of any open set is open  
+\- Proofwiki / Image of Interval by Continuous Function is Interval  
+\- \[Tu 2011\] / Proposition A.23 (Continuity in terms of open sets)  
+\- [陈天权 2009\] / 命题 7\.2\.1   
+X is topological space ∧ Y is topological space ⇒ mapping f: X → Y is continuous on X ⇔ ∀ V such that V is an open set in Y : inverse image $\displaystyle \operatorname{f^{-1}}$(V) is an open set in X   
 
-X是拓扑空间 且 Y是拓扑空间 且 x ∈ X ⇒ ( 映射f : X→Y在点x处连续 ⇔ ∀ V是Y中f(x)的领域, ∃ U是X中x的领域 且 f(U) ⊂ V ) //在点x处连续 //像f(U) //半开半闭区间不属于(R的通常拓扑上的)领域               
-      
-X是拓扑空间 且 Y是拓扑空间 且 x ∈ X ⇒ ( 映射f : X→Y在点x处连续 ⇔ ∀ V是Y中f(x)的领域,$\displaystyle \operatorname{f^{-1}}$(V)是X中x的领域 ) //等价形式 //逆像$\displaystyle \operatorname{f^{-1}}$(V)         
+> proof  
+>  
+> necessity  
+by "Definition:Continuous Mapping (Topology)/Point", we have that "p ∈ $\displaystyle \operatorname{f^{-1}}$(V) ⇒ f(p) ∈ V ⇒ ∃ U such that U is a neighborhood of p in X ∧ f(U) ⊂ V".  
+by "inverse image", we have that "f(U) ⊂ V ⇒ U ⊂ $\displaystyle \operatorname{f^{-1}}$(V)" and thus "p ∈ U ⊂ $\displaystyle \operatorname{f^{-1}}$(V)" which means that "p is a interior point of $\displaystyle \operatorname{f^{-1}}$(V)".  
+since "**every point of $\displaystyle \operatorname{f^{-1}}$(V) is an interior point**", we have that "$\displaystyle \operatorname{f^{-1}}$(V) is an open set".  
+> 
+> sufficiency  
+
+
+
+
+####  
        
 > 证明         
 >       
@@ -579,7 +596,6 @@ X是拓扑空间 且 Y是拓扑空间 且 A ⊂ X ⇒ ( 映射f : X→Y 在A上�
 X是拓扑空间 且 Y是拓扑空间 ⇒ ( 映射f : X→Y 是连续映射 ⇔ 映射f : X→Y 连续 ⇔ 映射f : X→Y 在X上连续 ) //在定义域上连续              
 
 
-\[陈天权 2009\] / 命题 7\.2\.1   
 X是拓扑空间 且 Y是拓扑空间 ⇒ ( 映射f : X→Y 连续 ⇔ ∀ V是Y中的开集, $\displaystyle \operatorname{f^{-1}}$(V)是X中的开集 )    
    
 > 证明        
