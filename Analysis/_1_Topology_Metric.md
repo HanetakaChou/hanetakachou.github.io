@@ -554,7 +554,7 @@ X是拓扑空间 且 X是Hausdorff(豪斯多夫)空间 ⇒ ( $\displaystyle {\la
 \[Definition\] Definition using Neighborhoods   
 \- \[Tu 2011\] / A.7 Continuity      
 \- \[陈天权 2009\] / 定义 7\.2\.1  
-X is topological space ∧ Y is topological space ⇒ mapping f: X → Y is **continuous at a point** p ⇔ ∀ V such that V is a neighborhood of f(p) in Y : ∃ U such that U is a neighborhood of p in X ∧ f(U) ⊂ V  
+X is topological space ∧ Y is topological space ⇒ ( mapping f: X → Y is continuous at a point p ⇔ ∀ V such that V is a neighborhood of f(p) in Y : ∃ U such that U is a neighborhood of p in X ∧ f(U) ⊂ V )  
 
 //对R的通常拓扑，间断点处只能找到半开半闭区间，不属于领域　　   
 
@@ -570,13 +570,13 @@ X is topological space ∧ Y is topological space ⇒ mapping f: X → Y is **co
 \- Proofwiki / Image of Interval by Continuous Function is Interval  
 \- \[Tu 2011\] / Proposition A.23 (Continuity in terms of open sets)  
 \- [陈天权 2009\] / 命题 7\.2\.1   
-X is topological space ∧ Y is topological space ⇒ mapping f: X → Y is continuous on X ⇔ ∀ V such that V is an open set in Y : inverse image $\displaystyle \operatorname{f^{-1}}$(V) is an open set in X   
+X is topological space ∧ Y is topological space ⇒ ( mapping f: X → Y is continuous on X ⇔ ∀ V such that V is an open set in Y : inverse image $\displaystyle \operatorname{f^{-1}}$(V) is an open set in X )  
 
 > proof  
 >  
 > necessity  
 by "Definition:Continuous Mapping (Topology)/Point", we have that "p ∈ $\displaystyle \operatorname{f^{-1}}$(V) ⇒ f(p) ∈ V ⇒ ∃ U such that U is a neighborhood of p in X ∧ f(U) ⊂ V".  
-by "inverse image", we have that "f(U) ⊂ V ⇒ U ⊂ $\displaystyle \operatorname{f^{-1}}$(V)" and thus "p ∈ U ⊂ $\displaystyle \operatorname{f^{-1}}$(V)" which means that "p is a interior point of $\displaystyle \operatorname{f^{-1}}$(V)".  
+by "inverse image", we have that "f(U) ⊂ V ⇒ U ⊂ $\displaystyle \operatorname{f^{-1}}$(V)" and thus "p ∈ U ⊂ $\displaystyle \operatorname{f^{-1}}$(V)" which means that "p is a interior point of $\displaystyle \operatorname{f^{-1}}$(V)". // $\displaystyle \operatorname{f^{-1}}$(V)是X的子集U中可能满足对应的像f(U)包含于V的最大的集合   
 since "**every point of $\displaystyle \operatorname{f^{-1}}$(V) is an interior point**", we have that "$\displaystyle \operatorname{f^{-1}}$(V) is an open set".  
 > 
 > sufficiency  
@@ -584,19 +584,6 @@ since "**every point of $\displaystyle \operatorname{f^{-1}}$(V) is an interior 
 
 
 
-####  
-       
-> 证明         
->       
-> //包含x的领域的集合一定是x的领域 并且 $\displaystyle \operatorname{f^{-1}}$(V)是X的子集中可能满足对应的像包含于V的最大的集合      
->      
-        
-X是拓扑空间 且 Y是拓扑空间 且 A ⊂ X ⇒ ( 映射f : X→Y 在A上连续 ⇔ ∀ x ∈ A, 映射f : X→Y 在点x处连续 ) //在集合上连续       
-      
-X是拓扑空间 且 Y是拓扑空间 ⇒ ( 映射f : X→Y 是连续映射 ⇔ 映射f : X→Y 连续 ⇔ 映射f : X→Y 在X上连续 ) //在定义域上连续              
-
-
-X是拓扑空间 且 Y是拓扑空间 ⇒ ( 映射f : X→Y 连续 ⇔ ∀ V是Y中的开集, $\displaystyle \operatorname{f^{-1}}$(V)是X中的开集 )    
    
 > 证明        
 >    
