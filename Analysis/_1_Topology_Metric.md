@@ -495,28 +495,9 @@ X是拓扑空间 且 Y ⊂ X ⇒ ( Y(在X上)是列紧的 ⇔ ( ∀$\displaystyl
 
 魏尔施特拉斯逼近定理 Weierstrass Approximation Theorem           
 
-斯通-魏尔施特拉斯定理 Stone-Weierstrass Theorem                   
-           
----            
-    
-\[定义\] 连续映射(Continuous Mapping) //拓扑空间中的连续函数            
-//ProofWiki / Definition:Continuous Mapping (Topology)         
-//\[陈天权 2009\] / 定义 7\.2\.1        
-            
-X是拓扑空间 且 Y是拓扑空间 且 x ∈ X ⇒ ( 映射f : X→Y在点x处连续 ⇔ ∀ V是Y中f(x)的领域, ∃ U是X中x的领域 且 f(U) ⊂ V ) //在点x处连续 //像f(U) //半开半闭区间不属于(R的通常拓扑上的)领域               
-      
-X是拓扑空间 且 Y是拓扑空间 且 x ∈ X ⇒ ( 映射f : X→Y在点x处连续 ⇔ ∀ V是Y中f(x)的领域,$\displaystyle \operatorname{f^{-1}}$(V)是X中x的领域 ) //等价形式 //逆像$\displaystyle \operatorname{f^{-1}}$(V)         
-       
-> 证明         
->       
-> //包含x的领域的集合一定是x的领域 并且 $\displaystyle \operatorname{f^{-1}}$(V)是X的子集中可能满足对应的像包含于V的最大的集合      
->      
-        
-X是拓扑空间 且 Y是拓扑空间 且 A ⊂ X ⇒ ( 映射f : X→Y 在A上连续 ⇔ ∀ x ∈ A, 映射f : X→Y 在点x处连续 ) //在集合上连续       
-      
-X是拓扑空间 且 Y是拓扑空间 ⇒ ( 映射f : X→Y 是连续映射 ⇔ 映射f : X→Y 连续 ⇔ 映射f : X→Y 在X上连续 ) //在定义域上连续             
-          
----     
+斯通-魏尔施特拉斯定理 Stone-Weierstrass Theorem                              
+
+### 分离公理 Separation Axiom          
               
 \[定义\] Hausdorff(豪斯多夫)空间 //分离空间 Separated Space //T2空间 //T -> Tychonoff 吉洪诺夫 //分离公理 Separation Axiom                  
 X是拓扑空间 ⇒ ( X是豪斯多夫空间 ⇔ ( ∀ x,y ∈ X : x≠y ⇒ ( ∃ $\displaystyle \text{U}_x$,$\displaystyle \text{V}_y$,$\displaystyle \text{U}_x$是x的(在X上的)开领域,$\displaystyle \text{V}_y$是y的(在X上的)开领域 : $\displaystyle \text{U}_x$ ∩ $\displaystyle \text{V}_y$ = ∅ ) ) )           
@@ -557,7 +538,77 @@ X是拓扑空间 且 X是Hausdorff(豪斯多夫)空间 ⇒ ( $\displaystyle {\la
 > 因为X是Hausdorff(豪斯多夫)空间，存在x的开领域$\displaystyle \text{U}_x$和y的开领域$\displaystyle \text{V}_y$ 满足$\displaystyle \text{U}_a$ ∩ $\displaystyle \text{V}_b$ = ∅       
 > 根据拓扑空间中序列收敛的定义，∀$\displaystyle \text{U}_a$ : $\displaystyle \text{U}_a$是a的(在X上的)开领域 ⇒ ( ∃ $\displaystyle \text{N}_a$ > 0 : ∀ n > $\displaystyle \text{N}_a$ : $\displaystyle x_n$ ∈ $\displaystyle \text{U}_a$ ) 并且 ∀$\displaystyle \text{V}_b$ : $\displaystyle \text{V}_b$是b的(在X上的)开领域 ⇒ ( ∃ $\displaystyle \text{N}_b$ > 0 : ∀ n > $\displaystyle \text{N}_b$ : $\displaystyle x_n$ ∈ $\displaystyle \text{V}_b$ )         
 > 从而 ∀$\displaystyle \text{U}_a$,$\displaystyle \text{V}_b$ : $\displaystyle \text{U}_a$是a的(在X上的)开领域 且 $\displaystyle \text{V}_b$是b的(在X上的)开领域 ⇒ ( ( 取N = max\{ $\displaystyle \text{N}_a$, $\displaystyle \text{N}_b$ \} 有∀ n > N : $\displaystyle x_n$ ∈ $\displaystyle \text{U}_a$ 且 $\displaystyle x_n$ ∈ $\displaystyle \text{V}_b$ ) ⇒ ( $\displaystyle \text{U}_a$ ∩ $\displaystyle \text{V}_b$ ≠ ∅ ) ) 与 "存在x的开领域$\displaystyle \text{U}_x$和y的开领域$\displaystyle \text{V}_y$ 满足$\displaystyle \text{U}_a$ ∩ $\displaystyle \text{V}_b$ = ∅" 矛盾        
->                     
+>              
+
+          
+### 连续性 Continuity   
+\- \[Tu 2011\] / A.7 Continuity      
+
+#### 连续映射(拓扑) Continuous Mapping (Topology)     
+\- Proofwiki / Definition:Continuous Mapping (Topology)     
+\- Proofwiki / Equivalence of Definitions of Continuous Mapping between Topological Spaces                          
+
+#### 在点处连续 Continuous at a Point 
+
+\[Definition\] Definition using Neighborhoods   
+\- \[Tu 2011\] / A.7 Continuity      
+
+X is topological space ∧ Y is topological space ⇒ mapping f: X → Y is **continuous at a point** p ⇔ ∀ V such that V is a neighborhood of f(p) in Y : ∃ U such that U is a neighborhood of p in X ∧ f(U) ⊂ V  
+
+//对R的通常拓扑，间断点处只能找到半开半闭区间，不属于领域　　   
+
+\[Equivalent definition\] Definition using Open Sets   
+\- \[Tu 2011\] / Proposition A.23  
+\- \[陈天权 2009\] / 定义 7\.2\.1     
+
+X is topological space ∧ Y is topological space ⇒ mapping f: X → Y is **continuous at a point** p ⇔ ∀ V such that V is open in Y ∧ f(p) ∈ V : inverse image U = $\displaystyle \operatorname{f^{-1}}$(V) is open in X and x  such that U is open in X ∧ x ∈ U  
+
+#### 
+
+X是拓扑空间 且 Y是拓扑空间 且 x ∈ X ⇒ ( 映射f : X→Y在点x处连续 ⇔ ∀ V是Y中f(x)的领域, ∃ U是X中x的领域 且 f(U) ⊂ V ) //在点x处连续 //像f(U) //半开半闭区间不属于(R的通常拓扑上的)领域               
+      
+X是拓扑空间 且 Y是拓扑空间 且 x ∈ X ⇒ ( 映射f : X→Y在点x处连续 ⇔ ∀ V是Y中f(x)的领域,$\displaystyle \operatorname{f^{-1}}$(V)是X中x的领域 ) //等价形式 //逆像$\displaystyle \operatorname{f^{-1}}$(V)         
+       
+> 证明         
+>       
+> //包含x的领域的集合一定是x的领域 并且 $\displaystyle \operatorname{f^{-1}}$(V)是X的子集中可能满足对应的像包含于V的最大的集合      
+>      
+        
+X是拓扑空间 且 Y是拓扑空间 且 A ⊂ X ⇒ ( 映射f : X→Y 在A上连续 ⇔ ∀ x ∈ A, 映射f : X→Y 在点x处连续 ) //在集合上连续       
+      
+X是拓扑空间 且 Y是拓扑空间 ⇒ ( 映射f : X→Y 是连续映射 ⇔ 映射f : X→Y 连续 ⇔ 映射f : X→Y 在X上连续 ) //在定义域上连续              
+
+
+\[陈天权 2009\] / 命题 7\.2\.1   
+X是拓扑空间 且 Y是拓扑空间 ⇒ ( 映射f : X→Y 连续 ⇔ ∀ V是Y中的开集, $\displaystyle \operatorname{f^{-1}}$(V)是X中的开集 )    
+   
+> 证明        
+>    
+> 必要性   
+>     
+> 对任意V是Y中的开集 我们有   
+>   
+> 对任意x ∈ $\displaystyle \operatorname{f^{-1}}$(V)           
+> 根据逆像的定义 我们有f(x) ⊂ V     
+> 由于 V是开集 根据连续函数的定义 我们有 $\displaystyle \operatorname{f^{-1}}$(V)是X中x的领域        
+>    
+> 即 对任意x ∈ $\displaystyle \operatorname{f^{-1}}$(V) 存在U=$\displaystyle \operatorname{f^{-1}}$(V) U是X中x的领域 且 U ⊂ $\displaystyle \operatorname{f^{-1}}$(V)    
+> 根据 开集-内点定理 $\displaystyle \operatorname{f^{-1}}$(V)是X中的开集    
+>       
+> 充分性          
+>            
+> 对任意x ∈ X  我们有 
+>    
+> 对任意N ⊂ Y  N是X中f(x)的领域 我们有         
+> 根据领域的定义 我们有 存在G是X中的开集 满足 f(x) ⊂ G ⊂ N  
+> 
+> 根据命题中的条件 我们有 $\displaystyle \operatorname{f^{-1}}$(G)是X中的开集              
+> 由于 f(x) ⊂ G 因此 x ∈ $\displaystyle \operatorname{f^{-1}}$(G) 即 $\displaystyle \operatorname{f^{-1}}$(G)是X中x的领域    
+> 由于 G ⊂ N 因此 $\displaystyle \operatorname{f^{-1}}$(G) ⊂ $\displaystyle \operatorname{f^{-1}}$(N) 根据领域的定义 我们有 $\displaystyle \operatorname{f^{-1}}$(N)是X中x的领域    
+> 
+> 即 对任意N ⊂ Y  N是f(x)的领域 我们有 $\displaystyle \operatorname{f^{-1}}$(N)是X中x的领域                    
+> 根据连续映射的定义 映射f :X→Y连续       
+>       
               
 ---                
                 
@@ -765,10 +816,6 @@ Compact iff Complete and Totally Bounded
 
 欧几里得空间 Euclidean Space      
 $\displaystyle R^k$上的欧几里得空间 度量 d(x,y) = |x - y| //度量被定义为向量的模     
-            
----       
-
-Proofwiki/Equivalence of Definitions of Continuous Mapping between Topological Spaces    
 
 ---    
 
@@ -863,36 +910,7 @@ $\displaystyle R^2$上的闭集
 
 ---    
      
-\[陈天权 2009\] / 命题 7\.2\.1   
-X是拓扑空间 且 Y是拓扑空间 ⇒ ( 映射f : X→Y 连续 ⇔ ∀ V是Y中的开集, $\displaystyle \operatorname{f^{-1}}$(V)是X中的开集 )    
-   
-> 证明        
->    
-> 必要性   
->     
-> 对任意V是Y中的开集 我们有   
->   
-> 对任意x ∈ $\displaystyle \operatorname{f^{-1}}$(V)           
-> 根据逆像的定义 我们有f(x) ⊂ V     
-> 由于 V是开集 根据连续函数的定义 我们有 $\displaystyle \operatorname{f^{-1}}$(V)是X中x的领域        
->    
-> 即 对任意x ∈ $\displaystyle \operatorname{f^{-1}}$(V) 存在U=$\displaystyle \operatorname{f^{-1}}$(V) U是X中x的领域 且 U ⊂ $\displaystyle \operatorname{f^{-1}}$(V)    
-> 根据 开集-内点定理 $\displaystyle \operatorname{f^{-1}}$(V)是X中的开集    
->       
-> 充分性          
->            
-> 对任意x ∈ X  我们有 
->    
-> 对任意N ⊂ Y  N是X中f(x)的领域 我们有         
-> 根据领域的定义 我们有 存在G是X中的开集 满足 f(x) ⊂ G ⊂ N  
-> 
-> 根据命题中的条件 我们有 $\displaystyle \operatorname{f^{-1}}$(G)是X中的开集              
-> 由于 f(x) ⊂ G 因此 x ∈ $\displaystyle \operatorname{f^{-1}}$(G) 即 $\displaystyle \operatorname{f^{-1}}$(G)是X中x的领域    
-> 由于 G ⊂ N 因此 $\displaystyle \operatorname{f^{-1}}$(G) ⊂ $\displaystyle \operatorname{f^{-1}}$(N) 根据领域的定义 我们有 $\displaystyle \operatorname{f^{-1}}$(N)是X中x的领域    
-> 
-> 即 对任意N ⊂ Y  N是f(x)的领域 我们有 $\displaystyle \operatorname{f^{-1}}$(N)是X中x的领域                    
-> 根据连续映射的定义 映射f :X→Y连续       
->       
+
 
 \[陈天权 2009\] / 命题 7\.2\.2   
 X是拓扑空间 且 Y是拓扑空间 ⇒ ( 映射f : X→Y 连续 ⇔ ∀ V是Y中的闭集, $\displaystyle \operatorname{f^{-1}}$(V)是X中的开集 )    
