@@ -576,11 +576,11 @@ X is topological space ∧ Y is topological space ⇒ ( mapping f: X → Y is co
 >  
 > necessity  
 by "Definition:Continuous Mapping (Topology)/Point", we have that "p ∈ $\displaystyle \operatorname{f^{-1}}$(V) ⇒ f(p) ∈ V ⇒ ∃ U such that U is a neighborhood of p in X ∧ f(U) ⊂ V".  
-by "inverse image", we have that "f(U) ⊂ V ⇒ U ⊂ $\displaystyle \operatorname{f^{-1}}$(V)" and thus "p ∈ U ⊂ $\displaystyle \operatorname{f^{-1}}$(V)" which means that "p is a interior point of $\displaystyle \operatorname{f^{-1}}$(V)". // $\displaystyle \operatorname{f^{-1}}$(V)是X的子集U中可能满足对应的像f(U)包含于V的最大的集合   
+by "Definition of Inverse Image", we have that "f(U) ⊂ V ⇒ U ⊂ $\displaystyle \operatorname{f^{-1}}$(V)" and thus "p ∈ U ⊂ $\displaystyle \operatorname{f^{-1}}$(V)" which means that "p is a interior point of $\displaystyle \operatorname{f^{-1}}$(V)". // $\displaystyle \operatorname{f^{-1}}$(V)是X的子集U中可能满足对应的像f(U)包含于V的最大的集合   
 since "**every point of $\displaystyle \operatorname{f^{-1}}$(V) is an interior point**", we have that "$\displaystyle \operatorname{f^{-1}}$(V) is an open set".  
 > 
 > sufficiency  
-
+> 
 
 
 
