@@ -139,7 +139,7 @@ X是拓扑空间 且 S ⊂ X 且 $\displaystyle \overline{\text{S}}$是S的闭�
 
 \[定理\] \[等价定义\] 闭集(Closed Set) //通过 导集(Derived Set)      
 X是拓扑空间 且 S ⊂ X ⇒ ( S是闭集 ⇔ S'是S的导集 且 S' ⊂ S )                 
-Proofwiki / Equivalence of Definitions of Closed Set     
+ProofWiki / Equivalence of Definitions of Closed Set     
 > 证明 //参考 \[陈天权 2009\] / 命题 7\.1\.2            
 >      
 > 1 ⇒ 2     
@@ -161,7 +161,9 @@ Proofwiki / Equivalence of Definitions of Closed Set
 \[Rudin 1976\] / 2.18 Definition (a)     
 X是拓扑空间 且 p ∈ X ⇒ ( V是p的领域 ⇔ V ⊂ X 且 ∃"U","U是开集 且 p ∈ U 且 U ⊂ V" )      
       
-\[定义\] 开领域 Open Neighbourhood      
+\[定义\] 开领域 Open Neighbourhood    
+\- \[Tu 2011\] / Definition A.1 //   
+\- ProofWiki / Definition:Neighborhood (Topology)/Neighborhood defined as Open
 \[陈天权 2009\] / 定义 7\.1\.3      
 X是拓扑空间 且 p ∈ X ⇒ ( V是p的开领域 ⇔  V是x的领域 且 V是开集 ) //即 ∃"V","V是开集 且 p ∈ V"      
         
@@ -474,7 +476,7 @@ X是拓扑空间 且 Y ⊂ X 且 $\displaystyle {\lang x_n \rang}_{ n \isin \N }
                  
 \[定理\] 序列引理(The sequence lemma) //(序列的)极(限)点 ⇒ 附着点（即在闭包内）//个人认为可以在拓扑空间中成立，并不依赖于度量空间         
 X是拓扑空间 且 $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是S上的无限序列 且 S ⊂ X 且 $\displaystyle {\lang x_n \rang}_{ n \isin \N }$(在X上)收敛于a ⇒ a是S的附着点 //即a在闭包内                   
-//Proofwiki / Closure of Subset of Metric Space by Convergent Sequence       
+//ProofWiki / Closure of Subset of Metric Space by Convergent Sequence       
 //\[Tu 2011\] / Definition A.56   
 //\[陈天权 2009\] / 命题 7\.5\.2       
 > 证明                   
@@ -508,7 +510,7 @@ X是拓扑空间 ⇒ ( X是豪斯多夫空间 ⇔ ( ∀ x,y ∈ X : x≠y ⇒ ( 
     
 \[定理\] Hausdorff(豪斯多夫)空间的子集 ⇒ (紧的 ⇒ 闭集)            
 X是拓扑空间 且 X是Hausdorff(豪斯多夫)空间 且 Y ⊂ X ⇒ ( Y是紧的 ⇒ Y是闭集 )              
-//Proofwiki / Compact Subspace of Hausdorff Space is Closed          
+//ProofWiki / Compact Subspace of Hausdorff Space is Closed          
 //\[陈天权 2009\] / 命题 7\.6\.4       
 > 证明                      
 > 对任意p ∈ (X − Y)，我们有           
@@ -545,75 +547,43 @@ X是拓扑空间 且 X是Hausdorff(豪斯多夫)空间 ⇒ ( $\displaystyle {\la
 \- \[Tu 2011\] / A.7 Continuity      
 
 #### Continuous Mapping (Topology) //连续映射(拓扑)  
-\- Proofwiki / Definition:Continuous Mapping (Topology)     
+\- ProofWiki / Definition:Continuous Mapping (Topology)     
                     
 #### Continuous at a Point //在点处连续  
-\- Proofwiki / Definition:Continuous Mapping (Topology)/Point  
-\- Proofwiki / Equivalence of Definitions of Continuous Mapping between Topological Spaces     
+\- ProofWiki / Definition:Continuous Mapping (Topology)/Point  
+\- ProofWiki / Equivalence of Definitions of Continuous Mapping between Topological Spaces     
 
-\[Definition\] Definition using Neighborhoods   
+\[Definition\] Definition:Continuous Mapping (Topology)/Point / Definition using Neighborhoods   
 \- \[Tu 2011\] / A.7 Continuity      
 \- \[陈天权 2009\] / 定义 7\.2\.1  
-X is topological space ∧ Y is topological space ⇒ ( mapping f: X → Y is continuous at a point p ⇔ ∀ V such that V is a neighborhood of f(p) in Y : ∃ U such that U is a neighborhood of p in X ∧ f(U) ⊂ V )  
+X is topological space ∧ Y is topological space ⇒ ( mapping f: X → Y is continuous at p ⇔ ∀ neighborhood V of f(p) in Y : ∃ neighborhood U of p in X such that f(U) ⊂ V )  
 
 //对R的通常拓扑，间断点处只能找到半开半闭区间，不属于领域　　   
 
 #### Continuous on a Set //在集合上连续    
-\- Proofwiki / Definition:Continuous Mapping (Topology)/Set
+\- ProofWiki / Definition:Continuous Mapping (Topology)/Set
 
-\[Definition\]   
+\[Definition\] Definition:Continuous Mapping (Topology)/Set   
 \- \[Tu 2011\] / A.7 Continuity      
 \- \[陈天权 2009\] / 定义 7\.2\.1  
+X is topological space ∧ Y is topological space ∧ A ⊂ X ⇒ ( mapping f: X → Y is continuous on A ⇔ ∀ p ∈ A : f is continuous at p )  
 
 \[Theorem\] Continuous iff inverse image of any open set is open //连续 等价于 开集的逆像是开集  
 \- ProofWiki / Continuous iff inverse image of any open set is open  
-\- Proofwiki / Image of Interval by Continuous Function is Interval  
+\- ProofWiki / Image of Interval by Continuous Function is Interval  
 \- \[Tu 2011\] / Proposition A.23 (Continuity in terms of open sets)  
 \- [陈天权 2009\] / 命题 7\.2\.1   
-X is topological space ∧ Y is topological space ⇒ ( mapping f: X → Y is continuous on X ⇔ ∀ V such that V is an open set in Y : inverse image $\displaystyle \operatorname{f^{-1}}$(V) is an open set in X )  
+X is topological space ∧ Y is topological space ⇒ ( mapping f: X → Y is continuous on X ⇔ ∀ open set V in Y : inverse image $\displaystyle \operatorname{f^{-1}}$(V) is an open set in X )  
 
 > proof  
 >  
 > necessity  
-by "Definition:Continuous Mapping (Topology)/Point", we have that "p ∈ $\displaystyle \operatorname{f^{-1}}$(V) ⇒ f(p) ∈ V ⇒ ∃ U such that U is a neighborhood of p in X ∧ f(U) ⊂ V".  
-by "Definition of Inverse Image", we have that "f(U) ⊂ V ⇒ U ⊂ $\displaystyle \operatorname{f^{-1}}$(V)" and thus "p ∈ U ⊂ $\displaystyle \operatorname{f^{-1}}$(V)" which means that "p is a interior point of $\displaystyle \operatorname{f^{-1}}$(V)". // $\displaystyle \operatorname{f^{-1}}$(V)是X的子集U中可能满足对应的像f(U)包含于V的最大的集合   
+by "Definition of Continuous Mapping", we have that "p ∈ $\displaystyle \operatorname{f^{-1}}$(V) ⇒ f(p) ∈ V ⇒ ∃ neighborhood U of p in X such that f(U) ⊂ V ⇒ p is a interior point of $\displaystyle \operatorname{f^{-1}}$(V)". // f(U) ⊂ V implies U ⊂ $\displaystyle \operatorname{f^{-1}}$(V) // $\displaystyle \operatorname{f^{-1}}$(V)是X的子集中可能满足对应的像包含于V的最大的集合   
 since "**every point of $\displaystyle \operatorname{f^{-1}}$(V) is an interior point**", we have that "$\displaystyle \operatorname{f^{-1}}$(V) is an open set".  
 > 
 > sufficiency  
-> 
-
-
-
-   
-> 证明        
->    
-> 必要性   
->     
-> 对任意V是Y中的开集 我们有   
->   
-> 对任意x ∈ $\displaystyle \operatorname{f^{-1}}$(V)           
-> 根据逆像的定义 我们有f(x) ⊂ V     
-> 由于 V是开集 根据连续函数的定义 我们有 $\displaystyle \operatorname{f^{-1}}$(V)是X中x的领域        
->    
-> 即 对任意x ∈ $\displaystyle \operatorname{f^{-1}}$(V) 存在U=$\displaystyle \operatorname{f^{-1}}$(V) U是X中x的领域 且 U ⊂ $\displaystyle \operatorname{f^{-1}}$(V)    
-> 根据 开集-内点定理 $\displaystyle \operatorname{f^{-1}}$(V)是X中的开集    
->       
-> 充分性          
->            
-> 对任意x ∈ X  我们有 
->    
-> 对任意N ⊂ Y  N是X中f(x)的领域 我们有         
-> 根据领域的定义 我们有 存在G是X中的开集 满足 f(x) ⊂ G ⊂ N  
-> 
-> 根据命题中的条件 我们有 $\displaystyle \operatorname{f^{-1}}$(G)是X中的开集              
-> 由于 f(x) ⊂ G 因此 x ∈ $\displaystyle \operatorname{f^{-1}}$(G) 即 $\displaystyle \operatorname{f^{-1}}$(G)是X中x的领域    
-> 由于 G ⊂ N 因此 $\displaystyle \operatorname{f^{-1}}$(G) ⊂ $\displaystyle \operatorname{f^{-1}}$(N) 根据领域的定义 我们有 $\displaystyle \operatorname{f^{-1}}$(N)是X中x的领域    
-> 
-> 即 对任意N ⊂ Y  N是f(x)的领域 我们有 $\displaystyle \operatorname{f^{-1}}$(N)是X中x的领域                    
-> 根据连续映射的定义 映射f :X→Y连续       
->       
-              
----                
+to prove "f is continuous on X", it suffices to prove "∀ p ∈ X : f is continuous at p"  
+neighborhood V of f(p) in Y ⇒ ∃ open set $\displaystyle \text{V}_1$ such that f(p) ⊂ $\displaystyle \text{V}_1$ ⊂ V ⇒ $\displaystyle \operatorname{f^{-1}} ( \text{V}_1 )$ is an open set in X ⇒ ∃ neighborhood $\displaystyle \operatorname{f^{-1}} ( \text{V}_1 )$ of p in X such that f($\displaystyle \operatorname{f^{-1}} ( \text{V}_1 )$) ⊂ V // f(p) ⊂ $\displaystyle \text{V}_1$ implies that p ∈ $\displaystyle \operatorname{f^{-1}} ( \text{V}_1 )$ // $\displaystyle \text{V}_1$ ⊂ V implies that f($\displaystyle \operatorname{f^{-1}} ( \text{V}_1 )$) = $\displaystyle \text{V}_1$ ⊂ V   
                 
 ### 度量 Metric                  
       
@@ -745,7 +715,7 @@ ProofWiki / Metric Space is Hausdorff
                 
 \[定理\] 完备(Complete)度量空间的子空间(Subspace) ⇒ ( 完备(Complete) ⇔ 闭集(Closed) ) //完备度量空间的子空间并不一定完备 //与紧空间不同               
 (X,ρ)是度量空间 且 (X,ρ)是完备的 且 (Y,ρ)是(X,ρ)的度量子空间 ⇒ ( (Y,ρ)是完备的 ⇔ (Y,ρ)是闭集 )                                   
-//Proofwiki / Subspace of Complete Metric Space is Closed iff Complete   
+//ProofWiki / Subspace of Complete Metric Space is Closed iff Complete   
 //\[陈天权 2009\] / 命题 7\.5\.4       
 > 证明     
 > 显然，根据Cauchy(柯西)序列的定义，有 ∀ $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是Y上的无限序列 : $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是(Y上的)Cauchy(柯西)序列 ⇒ $\displaystyle {\lang x_n \rang}_{ n \isin \N }$是(X上的)Cauchy(柯西)序列                  
@@ -795,7 +765,7 @@ Compact iff Complete and Totally Bounded
 \[定理\] Euclidean(欧几里得)空间的子空间 ⇒ ( 全有界的(Totally Bounded) ⇔ 有界的(Bounded) )             
 
 //ProofWiki / Bounded Subspace of Euclidean Space is Totally Bounded    
-//Proofwiki / Totally Bounded Metric Space is Bounded    
+//ProofWiki / Totally Bounded Metric Space is Bounded    
 //\[Browder 1996\] / 6.62 Proposition                 
      
       
@@ -810,8 +780,8 @@ Compact iff Complete and Totally Bounded
 
 有限覆盖定理 //海涅-博雷尔定理 Heine–Borel Theorem //在R上             
 \[定理\] R ⇒ ( 有界闭集 ⇒ 紧的 )        
-//Proofwiki / Closed Bounded Subset of Real Numbers is Compact     
-//Proofwiki / Compact Subspace of Real Numbers is Closed and Bounded    
+//ProofWiki / Closed Bounded Subset of Real Numbers is Compact     
+//ProofWiki / Compact Subspace of Real Numbers is Closed and Bounded    
 //\[Browder 1996\] / 6.49 Theorem     
 //\[Browder 1996\] / 6.53 Corollary            
                                       
