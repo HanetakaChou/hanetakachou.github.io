@@ -369,21 +369,21 @@ X是拓扑空间 且 S ⊂ X ⇒ ( S是开集且S是闭集 ⇔ $\displaystyle \p
 > 从而 S = $\displaystyle \overline{\text{S}}$ 且 S = $\displaystyle \text{S} \degree$  因此 S是开集 且 S是闭集    
 >         
 
----      
-      
-\[定义\] 拓扑子空间(Topological Subspace) / 相对拓扑(Relative Topology)        
-(X,τ)是拓扑空间 且 Y ⊂ X ⇒ ( (Y,$\displaystyle \tau_Y$)是X的拓扑子空间 ⇔ $\displaystyle \tau_Y$是(τ诱导的)(在X中)Y的相对拓扑 ⇔ $\displaystyle \tau_Y$ = { U ∩ Y | U ∈ τ } )                           
-//ProofWifi / Definition:Topological Subspace   
-//\[Browder 1996\] / 6.26 Definition           
-//\[Tu 2011\] / A.2 Subspace Topology       
-//\[陈天权 2009\] / 定义 7\.4\.1    
-//显然，根据拓扑空间的定义，拓扑子空间是拓扑空间                  
+### Subspace Topology 子空间拓扑 / Relative Topology 相对拓扑
 
+\[Definition\] Definition:Topological Subspace                      
+\- \[Tu 2011\] / A.2 Subspace Topology     
+\- ProofWifi / Definition:Topological Subspace   
+\- \[陈天权 2009\] / 定义 7\.4\.1   
+\- \[Browder 1996\] / 6.26 Definition           
+(X, τ) is topological space ∧ A ⊂ X ⇒ ( (A, $\displaystyle \text{τ}_A$) is a topological subspace of(X,τ) ⇔ $\displaystyle \text{τ}_A$ is a subspace topology on A ( induced by τ ) ⇔ $\displaystyle \text{τ}_A$ = { U ∩ A | U ∈ τ } ) // induce 诱导   
 
-\[定义\] 相对开的(Relatively Open in Y / Open Relative to Y)         
-(X,τ)是拓扑空间 且 Y ⊂ X 且 (Y,$\displaystyle \tau_Y$)是X的拓扑子空间 ⇒ ( U是相对于Y的开集 ⇔ U ∈ $\displaystyle \tau_Y$ )        
-//注意：Y并不一定是开集，因此，相对于Y的开集未必是X中的开集    
-//根据拓扑的定义，显然，当Y是X中的开集时， U是相对于Y的开集当且仅当U是X的开集       
+//显然，根据拓扑空间的定义可以证明，拓扑子空间是拓扑空间                  
+
+### Relatively Open 相对开集
+\- \[Tu 2011\] / A.2 Subspace Topology       
+\- ProofWifi / Definition:Relatively Closed Set   
+(X, τ) is topological space ∧ (A, $\displaystyle \text{τ}_A$) is a topological subspace of(X,τ) ⇒ ( U is relatively open in A ⇔ U is open in X ) //用于强调在拓扑子空间中的开集在原拓扑空间中并不一定是的开集 //相对开集表明在原拓扑空间中也是开集 //可以认为 相对开集 是 拓扑子空间中的开集 的充分不必要条件    
 
 ---   
 
