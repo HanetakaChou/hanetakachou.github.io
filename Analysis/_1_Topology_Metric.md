@@ -369,57 +369,6 @@ X是拓扑空间 且 S ⊂ X ⇒ ( S是开集且S是闭集 ⇔ $\displaystyle \p
 > 从而 S = $\displaystyle \overline{\text{S}}$ 且 S = $\displaystyle \text{S} \degree$  因此 S是开集 且 S是闭集    
 >         
 
-### Subspace Topology 子空间拓扑 / Relative Topology 相对拓扑
-
-\[Definition\] Definition:Topological Subspace                      
-\- \[Tu 2011\] / A.2 Subspace Topology     
-\- ProofWifi / Definition:Topological Subspace   
-\- \[陈天权 2009\] / 定义 7\.4\.1   
-\- \[Browder 1996\] / 6.26 Definition           
-(X, τ) is topological space ∧ A ⊂ X ⇒ ( (A, $\displaystyle \text{τ}_A$) is a topological subspace of(X,τ) ⇔ $\displaystyle \text{τ}_A$ is a subspace topology on A ( induced by τ ) ⇔ $\displaystyle \text{τ}_A$ = { U ∩ A | U ∈ τ } ) // induce 诱导   
-
-//显然，根据拓扑空间的定义可以证明，拓扑子空间是拓扑空间                  
-
-### Relatively Open 相对开集
-\- \[Tu 2011\] / A.2 Subspace Topology       
-\- ProofWifi / Definition:Relatively Closed Set   
-(X, τ) is topological space ∧ (A, $\displaystyle \text{τ}_A$) is a topological subspace of(X,τ) ⇒ ( U is relatively open in A ⇔ U is open in X ) //用于强调在拓扑子空间中的开集在原拓扑空间中并不一定是的开集 //相对开集表明在原拓扑空间中也是开集 //可以认为 相对开集 是 拓扑子空间中的开集 的充分不必要条件    
-
----   
-
-\[定义\] 局部基(Local Basis)   
-X是拓扑空间 且 p ∈ X ⇒ ( $\displaystyle \mathcal{B}_p$是在p处的局部基 ⇔ ( ∀ $\displaystyle \text{U}_p$ : $\displaystyle \text{U}_p$是p的开领域 ⇒ ( ∃ H ∈ $\displaystyle \mathcal{B}_p$ : H ⊂ $\displaystyle \text{U}_p$ ) ) )      
-//ProofWiki / Definition:Local Basis/Local Basis for Open Sets    
-//\[Tu 2011\] / A.2 Subspace Topology       
-//\[陈天权 2009\] / 定义 7\.4\.1    
-         
-\[定义\] 基(Basis)  
-(X,τ)是拓扑空间 ⇒ ( $\displaystyle \mathcal{B}$是τ的基 ⇔ $\displaystyle \mathcal{B}$ ⊂ τ 且 ( ∀ U : U是开集 ⇒ U = $\displaystyle \bigcup$\{ H | H ⊂ U 且 H ∈ $\displaystyle \mathcal{B}$ \} ) )      
-//ProofWiki / Definition:Basis (Topology)/Analytic Basis     
-//\[Tu 2011\] / Proposition A.7   
-//\[Browder 1996\] / 6.27 Definition           
-//\[陈天权 2009\] / 定义 7\.4\.2    
-
-\[定理\] 局部基(Local Basis) ⇒ 基(Basis)  
-(X,τ)是拓扑空间 ⇒ ( $\displaystyle \mathcal{B}$是τ的基 ⇒ $\displaystyle \mathcal{B}$ = $\displaystyle \bigcup$\{ $\displaystyle \mathcal{B}_p$ | p ∈ X 且 $\displaystyle \mathcal{B}_p$是在p处的局部基 \} )     
-//ProofWiki / Union of Local Bases is Basis    
-//\[Tu 2011\] / Proposition A.7   
-
-
-\[定理\] 拓扑子空间(Topological Subspace)的基(Basis)     
-//ProofWiki / Basis for Topological Subspace    
-
----      
-
-第二可数   
-//\[Browder 1996\] / 6.27 Definition           
-
----    
-
-ProofWiKi / Metric Space is First-Countable    
-
-ProofWiki / Countable Basis of Real Number Line   
-
 ---     
         
 \[定义\] 覆盖(Cover)    
@@ -499,6 +448,60 @@ X是拓扑空间 且 Y ⊂ X ⇒ ( Y(在X上)是列紧的 ⇔ ( ∀$\displaystyl
 
 斯通-魏尔施特拉斯定理 Stone-Weierstrass Theorem                              
 
+### Subspace Topology 子空间拓扑 / Relative Topology 相对拓扑
+
+\[Definition\] Definition:Topological Subspace                      
+\- \[Tu 2011\] / A.2 Subspace Topology     
+\- ProofWifi / Definition:Topological Subspace   
+\- \[陈天权 2009\] / 定义 7\.4\.1   
+\- \[Browder 1996\] / 6.26 Definition           
+(X, τ) is topological space ∧ A ⊂ X ⇒ ( (A, $\displaystyle \text{τ}_A$) is a topological subspace of(X,τ) ⇔ $\displaystyle \text{τ}_A$ is a subspace topology on A ( induced by τ ) ⇔ $\displaystyle \text{τ}_A$ = { U ∩ A | U ∈ τ } ) // induce 诱导   
+
+//显然，根据拓扑空间的定义可以证明，拓扑子空间是拓扑空间                  
+
+### Relatively Open 相对开集
+\- \[Tu 2011\] / A.2 Subspace Topology       
+\- ProofWifi / Definition:Relatively Closed Set   
+\- Encyclopedia of Mathematics / Relatively-open (-closed) set
+(X, τ) is topological space ∧ (A, $\displaystyle \text{τ}_A$) is a topological subspace of(X,τ) ⇒ ( U is relatively open to/in A ⇔ ∃ open set V in X such that V ∩ A = U )  
+// 拓扑子空间中的开集并不一定是拓扑空间中的开集 //比如 \[0,1/2) = (-1/2, 1/2) ∩ \[0, 1\] 是 \[0, 1\]中的相对开集 但 并不是 R中的开集      
+  
+  
+### Bases 基  
+  
+\[定义\] 局部基(Local Basis)  
+X是拓扑空间 且 p ∈ X ⇒ ( $\displaystyle \mathcal{B}_p$是在p处的局部基 ⇔ ( ∀ $\displaystyle \text{U}_p$ : $\displaystyle \text{U}_p$是p的开领域 ⇒ ( ∃ H ∈ $\displaystyle \mathcal{B}_p$ : H ⊂ $\displaystyle \text{U}_p$ ) ) )      
+//ProofWiki / Definition:Local Basis/Local Basis for Open Sets    
+//\[Tu 2011\] / A.2 Subspace Topology       
+//\[陈天权 2009\] / 定义 7\.4\.1    
+         
+\[定义\] 基(Basis)  
+(X,τ)是拓扑空间 ⇒ ( $\displaystyle \mathcal{B}$是τ的基 ⇔ $\displaystyle \mathcal{B}$ ⊂ τ 且 ( ∀ U : U是开集 ⇒ U = $\displaystyle \bigcup$\{ H | H ⊂ U 且 H ∈ $\displaystyle \mathcal{B}$ \} ) )      
+//ProofWiki / Definition:Basis (Topology)/Analytic Basis     
+//\[Tu 2011\] / Proposition A.7   
+//\[Browder 1996\] / 6.27 Definition           
+//\[陈天权 2009\] / 定义 7\.4\.2    
+
+\[定理\] 局部基(Local Basis) ⇒ 基(Basis)  
+(X,τ)是拓扑空间 ⇒ ( $\displaystyle \mathcal{B}$是τ的基 ⇒ $\displaystyle \mathcal{B}$ = $\displaystyle \bigcup$\{ $\displaystyle \mathcal{B}_p$ | p ∈ X 且 $\displaystyle \mathcal{B}_p$是在p处的局部基 \} )     
+//ProofWiki / Union of Local Bases is Basis    
+//\[Tu 2011\] / Proposition A.7   
+
+
+\[定理\] 拓扑子空间(Topological Subspace)的基(Basis)     
+//ProofWiki / Basis for Topological Subspace    
+
+---      
+
+第二可数   
+//\[Browder 1996\] / 6.27 Definition           
+
+---    
+
+ProofWiKi / Metric Space is First-Countable    
+
+ProofWiki / Countable Basis of Real Number Line   
+
 ### 分离公理 Separation Axiom          
               
 \[定义\] Hausdorff(豪斯多夫)空间 //分离空间 Separated Space //T2空间 //T -> Tychonoff 吉洪诺夫 //分离公理 Separation Axiom                  
@@ -542,7 +545,12 @@ X是拓扑空间 且 X是Hausdorff(豪斯多夫)空间 ⇒ ( $\displaystyle {\la
 > 从而 ∀$\displaystyle \text{U}_a$,$\displaystyle \text{V}_b$ : $\displaystyle \text{U}_a$是a的(在X上的)开领域 且 $\displaystyle \text{V}_b$是b的(在X上的)开领域 ⇒ ( ( 取N = max\{ $\displaystyle \text{N}_a$, $\displaystyle \text{N}_b$ \} 有∀ n > N : $\displaystyle x_n$ ∈ $\displaystyle \text{U}_a$ 且 $\displaystyle x_n$ ∈ $\displaystyle \text{V}_b$ ) ⇒ ( $\displaystyle \text{U}_a$ ∩ $\displaystyle \text{V}_b$ ≠ ∅ ) ) 与 "存在x的开领域$\displaystyle \text{U}_x$和y的开领域$\displaystyle \text{V}_y$ 满足$\displaystyle \text{U}_a$ ∩ $\displaystyle \text{V}_b$ = ∅" 矛盾        
 >              
 
-          
+### 积空间 Product Topology
+\- ProofWiki / Definition:Product Space (Topology)  
+\- ProofWiki / Definition:Product Topology          
+\- \[Tu 2011\] / A.6 Product Topology  
+
+
 ### Continuity //连续性  
 \- \[Tu 2011\] / A.7 Continuity      
 
