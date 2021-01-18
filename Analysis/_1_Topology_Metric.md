@@ -466,28 +466,37 @@ X是拓扑空间 且 Y ⊂ X ⇒ ( Y(在X上)是列紧的 ⇔ ( ∀$\displaystyl
 \- ProofWifi / Definition:Relatively Closed Set   
 \- Encyclopedia of Mathematics / Relatively-open (-closed) set  
 (X, τ) is topological space ∧ (A, $\displaystyle \text{τ}_A$) is a topological subspace of(X,τ) ⇒ ( U is relatively open to/in A ⇔ ∃ open set V in X such that V ∩ A = U )  
+// 根据定义，A中的相对开集与A中的开集并没有差别，但A中的相对开集往往暗示着不是X中的开集  
 // 拓扑子空间中的开集并不一定是拓扑空间中的开集 //比如 \[0,1/2) = (-1/2, 1/2) ∩ \[0, 1\] 是 \[0, 1\]中的相对开集 但 并不是 R中的开集      
   
   
 ### Bases 基  
 \- \[Tu 2011\] / A.3 Bases       
 
-\[定义\] 局部基(Local Basis)  
-X是拓扑空间 且 p ∈ X ⇒ ( $\displaystyle \mathcal{B}_p$是在p处的局部基 ⇔ ( ∀ $\displaystyle \text{U}_p$ : $\displaystyle \text{U}_p$是p的开领域 ⇒ ( ∃ H ∈ $\displaystyle \mathcal{B}_p$ : H ⊂ $\displaystyle \text{U}_p$ ) ) )      
-\- ProofWiki / Definition:Local Basis/Local Basis for Open Sets    
-\- \[陈天权 2009\] / 定义 7\.4\.1    
-         
-\[定义\] 基(Basis)  
-(X,τ)是拓扑空间 ⇒ ( $\displaystyle \mathcal{B}$是τ的基 ⇔ $\displaystyle \mathcal{B}$ ⊂ τ 且 ( ∀ U : U是开集 ⇒ U = $\displaystyle \bigcup$\{ H | H ⊂ U 且 H ∈ $\displaystyle \mathcal{B}$ \} ) )      
-//ProofWiki / Definition:Basis (Topology)/Analytic Basis     
-//\[Tu 2011\] / Proposition A.7   
-//\[Browder 1996\] / 6.27 Definition           
-//\[陈天权 2009\] / 定义 7\.4\.2    
+\[Definition\] Definition:Local Basis 局部基  
+\- \[Tu 2011\] / Definition A.6  
+\- ProofWiki / Definition:Local Basis/Local Basis for Open Sets  
+S is topological space ⇒ ( $\displaystyle \mathcal{B}$ is a local basis at p ⇔ ∀ open neighborhood U of p : ∃ B ∈ $\displaystyle \mathcal{B}$ such that B ⊂ U )  
+// every open neighborhood of p contains some set in $\displaystyle \mathcal{B}$  
 
-\[定理\] 局部基(Local Basis) ⇒ 基(Basis)  
-(X,τ)是拓扑空间 ⇒ ( $\displaystyle \mathcal{B}$是τ的基 ⇒ $\displaystyle \mathcal{B}$ = $\displaystyle \bigcup$\{ $\displaystyle \mathcal{B}_p$ | p ∈ X 且 $\displaystyle \mathcal{B}_p$是在p处的局部基 \} )     
-//ProofWiki / Union of Local Bases is Basis    
-//\[Tu 2011\] / Proposition A.7   
+\[Definition\] Definition:Basis (Topology) 基  
+\- ProofWiki / Definition:Basis (Topology)/Analytic Basis  
+S is topological space ⇒ ( $\displaystyle \mathcal{B}$ is a basis for S ⇔ ∀ open set U in S : ∃ $\displaystyle \mathcal{A}$ ⊂ $\displaystyle \mathcal{B}$ such that U = { p | ∃ A ∈ $\displaystyle \mathcal{A}$ such that p ∈ A } )  
+// every open set in S is a union of sets from $\displaystyle \mathcal{B}$  
+
+\[Theorem\] Union of Local Bases is Basis  
+\- \[Tu 2011\] / Proposition A.7  
+\- ProofWiki / Union of Local Bases is Basis  
+
+> proof  
+>  
+> necessity   
+> 
+> sufficiency  
+ 
+
+
+    
 
 
 \[定理\] 拓扑子空间(Topological Subspace)的基(Basis)     
@@ -506,7 +515,7 @@ ProofWiki / Countable Basis of Real Number Line
 
 ### 分离公理 Separation Axiom          
               
-\[定义\] Hausdorff(豪斯多夫)空间 //分离空间 Separated Space //T2空间 //T -> Tychonoff 吉洪诺夫 //分离公理 Separation Axiom                  
+\[定义\]Hausdorff(豪斯多夫)空间 //分离空间 Separated Space //T2空间 //T -> Tychonoff 吉洪诺夫 //分离公理 Separation Axiom                  
 X是拓扑空间 ⇒ ( X是豪斯多夫空间 ⇔ ( ∀ x,y ∈ X : x≠y ⇒ ( ∃ $\displaystyle \text{U}_x$,$\displaystyle \text{V}_y$,$\displaystyle \text{U}_x$是x的(在X上的)开领域,$\displaystyle \text{V}_y$是y的(在X上的)开领域 : $\displaystyle \text{U}_x$ ∩ $\displaystyle \text{V}_y$ = ∅ ) ) )           
 //ProofWiki / Definition:Hausdorff Space          
 //\[陈天权 2009\] / 定义 7\.5\.2     
