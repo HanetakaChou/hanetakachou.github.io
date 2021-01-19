@@ -369,13 +369,15 @@ X是拓扑空间 且 S ⊂ X ⇒ ( S是开集且S是闭集 ⇔ $\displaystyle \p
 > 从而 S = $\displaystyle \overline{\text{S}}$ 且 S = $\displaystyle \text{S} \degree$  因此 S是开集 且 S是闭集    
 >         
 
----     
-        
-\[定义\] 覆盖(Cover)    
-C是Y的覆盖 ⇔ Y ⊂ $\displaystyle \bigcup$\{ A | A ∈ C \}          
-//覆盖的定义并不依赖于拓扑         
-//见构造外测度            
-          
+### Compactness 紧性     
+
+\[Definition\] Cover of Set 覆盖  
+\- \[Tu 2011\] / A.8 Compactness  
+\- ProofWiki / Definition:Cover of Set  
+\- ProofWiki / Definition:Set Union/Set of Sets  
+$\displaystyle \mathcal{C}$ is a cover of S ⇔ S ⊂ $\displaystyle \bigcup_{\displaystyle U \isin \mathcal{C}} \text{U}$  
+//覆盖的定义并不依赖于拓扑  
+
 \[定义\] 子覆盖(Subcover)     
 C是Y的覆盖 ⇒ ( D是C关于Y的子覆盖 ⇔ D是Y的覆盖 且 D ⊂ C )                
 //ProofWifi / Definition:Subcover       
@@ -450,12 +452,12 @@ X是拓扑空间 且 Y ⊂ X ⇒ ( Y(在X上)是列紧的 ⇔ ( ∀$\displaystyl
 
 ### Subspace Topology 子空间拓扑 / Relative Topology 相对拓扑
 
-\[Definition\] Definition:Topological Subspace                      
+\[Definition\] Definition:Topological Subspace 拓扑子空间                      
 \- \[Tu 2011\] / A.2 Subspace Topology     
 \- ProofWifi / Definition:Topological Subspace   
 \- \[陈天权 2009\] / 定义 7\.4\.1   
 \- \[Browder 1996\] / 6.26 Definition           
-(X, τ) is topological space ∧ A ⊂ X ⇒ ( (A, $\displaystyle \text{τ}_A$) is a topological subspace of(X,τ) ⇔ $\displaystyle \text{τ}_A$ is a subspace topology on A ( induced by τ ) ⇔ $\displaystyle \text{τ}_A$ = { U ∩ A | U ∈ τ } ) // induce 诱导   
+(X, τ) is topological space ∧ A ⊂ X ⇒ ( (A, $\displaystyle \text{τ}_A$) is a topological subspace of(X,τ) ⇔ $\displaystyle \text{τ}_A$ is a subspace topology on A ( induced by τ ) ⇔ $\displaystyle \text{τ}_A$ = { U ∩ A : U ∈ τ } ) // induce 诱导   
 //显然，根据拓扑空间的定义可以证明，拓扑子空间是拓扑空间                  
 
 \[Definition\] Definition:Relatively Open Set 相对开集  
@@ -476,33 +478,44 @@ X是拓扑空间 且 Y ⊂ X ⇒ ( Y(在X上)是列紧的 ⇔ ( ∀$\displaystyl
 S is topological space ⇒ ( $\displaystyle \mathcal{B}_p$ is a local basis at p (in S) ⇔ ∀ $\displaystyle \text{B}_p$ ∈ $\displaystyle \mathcal{B}_p$ : $\displaystyle \text{B}_p$ is an open neighborhood of p (in S) ∧ ∀ open neighborhood U of p (in S) : ∃ $\displaystyle \text{B}_p$ ∈ $\displaystyle \mathcal{B}_p$ such that $\displaystyle \text{B}_p$ ⊂ U )  
 // a set of open neighborhood of p (in S) such that every open neighborhood of p (in S) contains some set in $\displaystyle \mathcal{B}_p$  
 
-\[Definition\] Definition:Basis (Topology) 基  
+\[Definition\] Definition:Basis (Topology)/Analytic Basis 基  
 \- ProofWiki / Definition:Basis (Topology)/Analytic Basis  
-S is topological space ⇒ ( $\displaystyle \mathcal{B}$ is a basis for S ⇔ ∀ B ∈ $\displaystyle \mathcal{B}_p$ : B is an open neighborhood of p (in S) ∧ ∀ open set U (in S) : ∃ $\displaystyle \text{B}_1$ $\displaystyle \text{B}_2$ ... ⊂ $\displaystyle \mathcal{B}$ such that U = $\displaystyle \bigcup_{\displaystyle n \isin \N} \text{B}_n$ )  
+S is topological space ⇒ ( $\displaystyle \mathcal{B}$ is a basis for S ⇔ ∀ B ∈ $\displaystyle \mathcal{B}_p$ : B is an open neighborhood of p (in S) ∧ ∀ open set U (in S) : ∃ $\displaystyle \text{B}_i$ ... ⊂ $\displaystyle \mathcal{B}$ such that U = $\displaystyle \bigcup_{\displaystyle i \isin \text{I}} \text{B}_i$ )  
 // every open set (in S) is a union of sets from $\displaystyle \mathcal{B}$  
 
-\[Theorem\] Union of Local Bases is Basis  
+\[Theorem\] Union of Local Bases is Basis 局部基的并集是基  
 \- \[Tu 2011\] / Proposition A.7  
 \- ProofWiki / Union of Local Bases is Basis  
 S is topological space ⇒ ( $\displaystyle \mathcal{B}_p$ is a local basis at p (in S) ∧ $\displaystyle \mathcal{B}$ = $\displaystyle \bigcup_{\displaystyle p \isin \text{S}} \mathcal{B}_p$ ⇒ $\displaystyle \mathcal{B}$ is a basis for S )  
 
 > proof  
-to prove "$\displaystyle \mathcal{B}$ is a basis for S", it suffices to prove "∀ open set U in S : ∃ $\displaystyle \text{B}_1$ $\displaystyle \text{B}_2$ ... ∈ $\displaystyle \mathcal{B}$ such that U = $\displaystyle \bigcup_{\displaystyle n \isin \N} \text{B}_n$"  
+to prove "$\displaystyle \mathcal{B}$ is a basis for S", it suffices to prove "∀ open set U in S : ∃ $\displaystyle \text{B}_i$ ... ∈ $\displaystyle \mathcal{B}$ such that U = $\displaystyle \bigcup_{\displaystyle i \isin \text{I}} \text{B}_i$"  
 by "Definition of Local Basis", p ∈ U ⇒ (let $\displaystyle \mathcal{B}_p$ be the local basis at p) ∃ $\displaystyle \text{B}_p$ ∈ $\displaystyle \mathcal{B}_p$ ⊂ $\displaystyle \mathcal{B}$ such that p ∈ $\displaystyle \text{B}_p$ ⊂ U ⇒ U = $\displaystyle \bigcup_{\displaystyle p \isin \text{U}} \text{B}_p$  
   
-\[Theorem\] Basis induces Local Basis  
+\[Theorem\] Basis induces Local Basis 基诱导局部基  
 \- \[Tu 2011\] / Proposition A.7  
 \- ProofWiki / Basis induces Local Basis  
 S is topological space ⇒ ( $\displaystyle \mathcal{B}$ is a basis for S ∧ $\displaystyle \mathcal{B}_p$ = { $\displaystyle \text{B}_p$ : p ∈ $\displaystyle \text{B}_p$ ∧ $\displaystyle \text{B}_p$ ∈ $\displaystyle \mathcal{B}$ } ⇒ $\displaystyle \mathcal{B}_p$ is a local basis at p (in S) )  
 
 > proof  
 to prove "$\displaystyle \mathcal{B}_p$ is a local basis at p (in S)", it suffices to prove "∀ open neighborhood U of p (in S) : ∃ $\displaystyle \text{B}_p$ ∈ $\displaystyle \mathcal{B}_p$ such that $\displaystyle \text{B}_p$ ⊂ U"  
-by "Definition of Basis", open neighborhood U of p (in S) ⇒ ∃ $\displaystyle \text{B}_1$ $\displaystyle \text{B}_2$ ... ∈ $\displaystyle \mathcal{B}$ such that U = $\displaystyle \bigcup_{\displaystyle n \isin \N} \text{B}_n$ ⇒ (since p ∈ U) ∃ n such that p ∈ $\displaystyle \text{B}_n$ ⇒ (since p ∈ $\displaystyle \text{B}_n$ ∧ $\displaystyle \text{B}_n$ ∈ $\displaystyle \mathcal{B}$) $\displaystyle \text{B}_n$ ∈ $\displaystyle \mathcal{B}_p$ ⇒ ∃ $\displaystyle \text{B}_n$ ∈ $\displaystyle \mathcal{B}_p$ such that $\displaystyle \text{B}_n$ ⊂ U 
+by "Definition of Basis", open neighborhood U of p (in S) ⇒ ∃ $\displaystyle \text{B}_i$ ... ∈ $\displaystyle \mathcal{B}$ such that U = $\displaystyle \bigcup_{\displaystyle i \isin \text{I}} \text{B}_i$ ⇒ (since p ∈ U) ∃ i ∈ I such that p ∈ $\displaystyle \text{B}_i$ ⇒ (since p ∈ $\displaystyle \text{B}_i$ ∧ $\displaystyle \text{B}_i$ ∈ $\displaystyle \mathcal{B}$) $\displaystyle \text{B}_i$ ∈ $\displaystyle \mathcal{B}_p$ ⇒ ∃ $\displaystyle \text{B}_i$ ∈ $\displaystyle \mathcal{B}_p$ such that $\displaystyle \text{B}_i$ ⊂ U 
 
-\[Theorem\] Basis for Topological Subspace  
+\[Theorem\] Synthetic Basis and Analytic Basis are Compatible 综合基和分析基兼容  
 \- \[Tu 2011\] / Proposition A.8  
-\- ProofWiki / Basis for Topological Subspace  
+\- ProofWiki / Definition:Basis (Topology)/Synthetic Basis  
+\- ProofWiki / Synthetic Basis and Analytic Basis are Compatible  
+S is topological space ⇒ ( $\displaystyle \mathcal{B}$ is a basis for S ⇔ $\displaystyle \mathcal{B}$ ⊂ $\displaystyle \wp ( \text{S} )$ ∧ ∃ $\displaystyle \text{B}_i$ ... ∈ $\displaystyle \mathcal{B}$ such that S = $\displaystyle \bigcup_{\displaystyle i \isin \text{I}} \text{B}_i$ ∧ ∀ U V ∈ $\displaystyle \mathcal{B}$ : ∃ $\displaystyle \text{B}_i$ ... ∈ $\displaystyle \mathcal{B}$ such that U ∩ V = $\displaystyle \bigcup_{\displaystyle i \isin \text{I}} \text{B}_i$ )  
+> proof  
+TODO  
 
+\[Theorem\] Basis for Topological Subspace 拓扑子空间的基  
+\- \[Tu 2011\] / Proposition A.9  
+\- ProofWiki / Basis for Topological Subspace  
+S is topological space ∧ A is a topological subspace of S ⇒ ( $\displaystyle \mathcal{B}$ is a basis for S ∧ $\displaystyle \mathcal{B}_A$ = { B ∩ A : B ∈ $\displaystyle \mathcal{B}$ } ⇒ $\displaystyle \mathcal{B}_A$ is a basis for A )  
+   
+> proof  
+open neighborhood $\displaystyle \text{U}_A$ of p in A ⇒ ∃ open neighborhood U of p in S such that $\displaystyle \text{U}_A$ = U ∩ A  ⇒ (since p ∈ U ∩ A  ⊂ U) p ∈ U ⇒ ∃ $\displaystyle \text{B}_p$ ∈ $\displaystyle \mathcal{B}_p$ ⊂ $\displaystyle \mathcal{B}$ such that p ∈ $\displaystyle \text{B}_p$ ⊂ U ⇒ p ∈ $\displaystyle \text{B}_p$ ∩ A ⊂ U ∩ A = $\displaystyle \text{U}_A$ ⇒ ∃ $\displaystyle {\text{B}_A}_p$ = $\displaystyle \text{B}_p$ ∩ A such that p ∈ $\displaystyle {\text{B}_A}_p$ ⊂ $\displaystyle \mathcal{B}_A$  
 
 ---      
 
