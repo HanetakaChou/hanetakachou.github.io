@@ -456,12 +456,9 @@ X是拓扑空间 且 Y ⊂ X ⇒ ( Y(在X上)是列紧的 ⇔ ( ∀$\displaystyl
 \- \[陈天权 2009\] / 定义 7\.4\.1   
 \- \[Browder 1996\] / 6.26 Definition           
 (X, τ) is topological space ∧ A ⊂ X ⇒ ( (A, $\displaystyle \text{τ}_A$) is a topological subspace of(X,τ) ⇔ $\displaystyle \text{τ}_A$ is a subspace topology on A ( induced by τ ) ⇔ $\displaystyle \text{τ}_A$ = { U ∩ A | U ∈ τ } ) // induce 诱导   
-
 //显然，根据拓扑空间的定义可以证明，拓扑子空间是拓扑空间                  
 
-### Relatively Open 相对开集
-
-\[Definition\] Definition:Relatively Open Set  
+\[Definition\] Definition:Relatively Open Set 相对开集  
 \- \[Tu 2011\] / A.2 Subspace Topology       
 \- ProofWifi / Definition:Relatively Closed Set   
 \- Encyclopedia of Mathematics / Relatively-open (-closed) set  
@@ -502,15 +499,10 @@ S is topological space ⇒ ( $\displaystyle \mathcal{B}$ is a basis for S ∧ $\
 to prove "$\displaystyle \mathcal{B}_p$ is a local basis at p (in S)", it suffices to prove "∀ open neighborhood U of p (in S) : ∃ $\displaystyle \text{B}_p$ ∈ $\displaystyle \mathcal{B}_p$ such that $\displaystyle \text{B}_p$ ⊂ U"  
 by "Definition of Basis", open neighborhood U of p (in S) ⇒ ∃ $\displaystyle \text{B}_1$ $\displaystyle \text{B}_2$ ... ∈ $\displaystyle \mathcal{B}$ such that U = $\displaystyle \bigcup_{\displaystyle n \isin \N} \text{B}_n$ ⇒ (since p ∈ U) ∃ n such that p ∈ $\displaystyle \text{B}_n$ ⇒ (since p ∈ $\displaystyle \text{B}_n$ ∧ $\displaystyle \text{B}_n$ ∈ $\displaystyle \mathcal{B}$) $\displaystyle \text{B}_n$ ∈ $\displaystyle \mathcal{B}_p$ ⇒ ∃ $\displaystyle \text{B}_n$ ∈ $\displaystyle \mathcal{B}_p$ such that $\displaystyle \text{B}_n$ ⊂ U 
 
+\[Theorem\] Basis for Topological Subspace  
+\- \[Tu 2011\] / Proposition A.8  
+\- ProofWiki / Basis for Topological Subspace  
 
-
-
-
-    
-
-
-\[定理\] 拓扑子空间(Topological Subspace)的基(Basis)     
-//ProofWiki / Basis for Topological Subspace    
 
 ---      
 
