@@ -476,24 +476,34 @@ X是拓扑空间 且 Y ⊂ X ⇒ ( Y(在X上)是列紧的 ⇔ ( ∀$\displaystyl
 \[Definition\] Definition:Local Basis 局部基  
 \- \[Tu 2011\] / Definition A.6  
 \- ProofWiki / Definition:Local Basis/Local Basis for Open Sets  
-S is topological space ⇒ ( $\displaystyle \mathcal{B}$ is a local basis at p ⇔ ∀ open neighborhood U of p : ∃ B ∈ $\displaystyle \mathcal{B}$ such that B ⊂ U )  
-// every open neighborhood of p contains some set in $\displaystyle \mathcal{B}$  
+S is topological space ⇒ ( $\displaystyle \mathcal{B}_p$ is a local basis at p (in S) ⇔ ∀ $\displaystyle \text{B}_p$ ∈ $\displaystyle \mathcal{B}_p$ : $\displaystyle \text{B}_p$ is an open neighborhood of p (in S) ∧ ∀ open neighborhood U of p (in S) : ∃ $\displaystyle \text{B}_p$ ∈ $\displaystyle \mathcal{B}_p$ such that $\displaystyle \text{B}_p$ ⊂ U )  
+// a set of open neighborhood of p (in S) such that every open neighborhood of p (in S) contains some set in $\displaystyle \mathcal{B}_p$  
 
 \[Definition\] Definition:Basis (Topology) 基  
 \- ProofWiki / Definition:Basis (Topology)/Analytic Basis  
-S is topological space ⇒ ( $\displaystyle \mathcal{B}$ is a basis for S ⇔ ∀ open set U in S : ∃ $\displaystyle \mathcal{A}$ ⊂ $\displaystyle \mathcal{B}$ such that U = { p | ∃ A ∈ $\displaystyle \mathcal{A}$ such that p ∈ A } )  
-// every open set in S is a union of sets from $\displaystyle \mathcal{B}$  
+S is topological space ⇒ ( $\displaystyle \mathcal{B}$ is a basis for S ⇔ ∀ B ∈ $\displaystyle \mathcal{B}_p$ : B is an open neighborhood of p (in S) ∧ ∀ open set U (in S) : ∃ $\displaystyle \text{B}_1$ $\displaystyle \text{B}_2$ ... ⊂ $\displaystyle \mathcal{B}$ such that U = $\displaystyle \bigcup_{\displaystyle n \isin \N} \text{B}_n$ )  
+// every open set (in S) is a union of sets from $\displaystyle \mathcal{B}$  
 
 \[Theorem\] Union of Local Bases is Basis  
 \- \[Tu 2011\] / Proposition A.7  
 \- ProofWiki / Union of Local Bases is Basis  
+S is topological space ⇒ ( $\displaystyle \mathcal{B}_p$ is a local basis at p (in S) ∧ $\displaystyle \mathcal{B}$ = $\displaystyle \bigcup_{\displaystyle p \isin \text{S}} \mathcal{B}_p$ ⇒ $\displaystyle \mathcal{B}$ is a basis for S )  
 
 > proof  
->  
-> necessity   
-> 
-> sufficiency  
- 
+to prove "$\displaystyle \mathcal{B}$ is a basis for S", it suffices to prove "∀ open set U in S : ∃ $\displaystyle \text{B}_1$ $\displaystyle \text{B}_2$ ... ∈ $\displaystyle \mathcal{B}$ such that U = $\displaystyle \bigcup_{\displaystyle n \isin \N} \text{B}_n$"  
+by "Definition of Local Basis", p ∈ U ⇒ (let $\displaystyle \mathcal{B}_p$ be the local basis at p) ∃ $\displaystyle \text{B}_p$ ∈ $\displaystyle \mathcal{B}_p$ ⊂ $\displaystyle \mathcal{B}$ such that p ∈ $\displaystyle \text{B}_p$ ⊂ U ⇒ U = $\displaystyle \bigcup_{\displaystyle p \isin \text{U}} \text{B}_p$  
+  
+\[Theorem\] Basis induces Local Basis  
+\- \[Tu 2011\] / Proposition A.7  
+\- ProofWiki / Basis induces Local Basis  
+S is topological space ⇒ ( $\displaystyle \mathcal{B}$ is a basis for S ∧ $\displaystyle \mathcal{B}_p$ = { $\displaystyle \text{B}_p$ : p ∈ $\displaystyle \text{B}_p$ ∧ $\displaystyle \text{B}_p$ ∈ $\displaystyle \mathcal{B}$ } ⇒ $\displaystyle \mathcal{B}_p$ is a local basis at p (in S) )  
+
+> proof  
+to prove "$\displaystyle \mathcal{B}_p$ is a local basis at p (in S)", it suffices to prove "∀ open neighborhood U of p (in S) : ∃ $\displaystyle \text{B}_p$ ∈ $\displaystyle \mathcal{B}_p$ such that $\displaystyle \text{B}_p$ ⊂ U"  
+by "Definition of Basis", open neighborhood U of p (in S) ⇒ ∃ $\displaystyle \text{B}_1$ $\displaystyle \text{B}_2$ ... ∈ $\displaystyle \mathcal{B}$ such that U = $\displaystyle \bigcup_{\displaystyle n \isin \N} \text{B}_n$ ⇒ (since p ∈ U) ∃ n such that p ∈ $\displaystyle \text{B}_n$ ⇒ (since p ∈ $\displaystyle \text{B}_n$ ∧ $\displaystyle \text{B}_n$ ∈ $\displaystyle \mathcal{B}$) $\displaystyle \text{B}_n$ ∈ $\displaystyle \mathcal{B}_p$ ⇒ ∃ $\displaystyle \text{B}_n$ ∈ $\displaystyle \mathcal{B}_p$ such that $\displaystyle \text{B}_n$ ⊂ U 
+
+
+
 
 
     
