@@ -472,40 +472,50 @@ X是拓扑空间 且 Y ⊂ X ⇒ ( Y(在X上)是列紧的 ⇔ ( ∀$\displaystyl
 ### Bases 基  
 \- \[Tu 2011\] / A.3 Bases       
 
-\[Definition\] Definition:Local Basis 局部基  
-\- \[Tu 2011\] / Definition A.6  
+\[Definition\] Local Basis 局部基  
+\- \[Tu 2011\] / Definition A.15  
 \- ProofWiki / Definition:Local Basis/Local Basis for Open Sets  
 S is topological space ⇒ ( $\displaystyle \mathcal{B}_p$ is a local basis at p (in S) ⇔ ∀ $\displaystyle \text{B}_p$ ∈ $\displaystyle \mathcal{B}_p$ : $\displaystyle \text{B}_p$ is an open neighborhood of p (in S) ∧ ∀ open neighborhood U of p (in S) : ∃ $\displaystyle \text{B}_p$ ∈ $\displaystyle \mathcal{B}_p$ such that $\displaystyle \text{B}_p$ ⊂ U )  
-// a set of open neighborhood of p (in S) such that every open neighborhood of p (in S) contains some set in $\displaystyle \mathcal{B}_p$  
+// $\displaystyle \mathcal{B}_p$ is a set of open neighborhood of p (in S) such that every open neighborhood of p (in S) contains some set in $\displaystyle \mathcal{B}_p$  
 
-\[Definition\] Definition:Basis (Topology)/Analytic Basis 基  
-\- ProofWiki / Definition:Basis (Topology)/Analytic Basis  
-S is topological space ⇒ ( $\displaystyle \mathcal{B}$ is a basis for S ⇔ ∀ B ∈ $\displaystyle \mathcal{B}_p$ : B is an open neighborhood of p (in S) ∧ ∀ open set U (in S) : ∃ $\displaystyle \text{B}_i$ ... ⊂ $\displaystyle \mathcal{B}$ such that U = $\displaystyle \bigcup_{\displaystyle i \isin \text{I}} \text{B}_i$ )  
-// every open set (in S) is a union of sets from $\displaystyle \mathcal{B}$  
+\[Definition\] Basis 基  
+\- \[Tu 2011\] / Definition A.6  
+S is topological space ⇒ ( $\displaystyle \mathcal{B}$ is a basis for S ⇔ ∀ $\displaystyle \text{B}$ ∈ $\displaystyle \mathcal{B}$ : $\displaystyle \text{B}$ is an open set (in S) ∧ ∀ U p such that U is an open neighborhood of p (in S) : ∃ $\displaystyle \text{B}$ ∈ $\displaystyle \mathcal{B}$ such that p ∈ $\displaystyle \text{B}$ ⊂ U )  
+// $\displaystyle \mathcal{B}$ is a set of open set (in S) such that every open neighborhood of every point (in S) contains some set in $\displaystyle \mathcal{B}$ which is the neighborhood of that point  
 
 \[Theorem\] Union of Local Bases is Basis 局部基的并集是基  
-\- \[Tu 2011\] / Proposition A.7  
 \- ProofWiki / Union of Local Bases is Basis  
 S is topological space ⇒ ( $\displaystyle \mathcal{B}_p$ is a local basis at p (in S) ∧ $\displaystyle \mathcal{B}$ = $\displaystyle \bigcup_{\displaystyle p \isin \text{S}} \mathcal{B}_p$ ⇒ $\displaystyle \mathcal{B}$ is a basis for S )  
 
 > proof  
-to prove "$\displaystyle \mathcal{B}$ is a basis for S", it suffices to prove "∀ open set U in S : ∃ $\displaystyle \text{B}_i$ ... ∈ $\displaystyle \mathcal{B}$ such that U = $\displaystyle \bigcup_{\displaystyle i \isin \text{I}} \text{B}_i$"  
-by "Definition of Local Basis", p ∈ U ⇒ (let $\displaystyle \mathcal{B}_p$ be the local basis at p) ∃ $\displaystyle \text{B}_p$ ∈ $\displaystyle \mathcal{B}_p$ ⊂ $\displaystyle \mathcal{B}$ such that p ∈ $\displaystyle \text{B}_p$ ⊂ U ⇒ U = $\displaystyle \bigcup_{\displaystyle p \isin \text{U}} \text{B}_p$  
+TODO  
+~~to prove "$\displaystyle \mathcal{B}$ is a basis for S", it suffices to prove "∀ open set U in S : ∃ $\displaystyle \text{B}_i$ ... ∈ $\displaystyle \mathcal{B}$ such that U = $\displaystyle \bigcup_{\displaystyle i \isin \text{I}} \text{B}_i$"  
+by "Definition of Local Basis", p ∈ U ⇒ (let $\displaystyle \mathcal{B}_p$ be the local basis at p) ∃ $\displaystyle \text{B}_p$ ∈ $\displaystyle \mathcal{B}_p$ ⊂ $\displaystyle \mathcal{B}$ such that p ∈ $\displaystyle \text{B}_p$ ⊂ U ⇒ U = $\displaystyle \bigcup_{\displaystyle p \isin \text{U}} \text{B}_p$~~  
   
 \[Theorem\] Basis induces Local Basis 基诱导局部基  
-\- \[Tu 2011\] / Proposition A.7  
 \- ProofWiki / Basis induces Local Basis  
 S is topological space ⇒ ( $\displaystyle \mathcal{B}$ is a basis for S ∧ $\displaystyle \mathcal{B}_p$ = { $\displaystyle \text{B}_p$ : p ∈ $\displaystyle \text{B}_p$ ∧ $\displaystyle \text{B}_p$ ∈ $\displaystyle \mathcal{B}$ } ⇒ $\displaystyle \mathcal{B}_p$ is a local basis at p (in S) )  
 
 > proof  
-to prove "$\displaystyle \mathcal{B}_p$ is a local basis at p (in S)", it suffices to prove "∀ open neighborhood U of p (in S) : ∃ $\displaystyle \text{B}_p$ ∈ $\displaystyle \mathcal{B}_p$ such that $\displaystyle \text{B}_p$ ⊂ U"  
-by "Definition of Basis", open neighborhood U of p (in S) ⇒ ∃ $\displaystyle \text{B}_i$ ... ∈ $\displaystyle \mathcal{B}$ such that U = $\displaystyle \bigcup_{\displaystyle i \isin \text{I}} \text{B}_i$ ⇒ (since p ∈ U) ∃ i ∈ I such that p ∈ $\displaystyle \text{B}_i$ ⇒ (since p ∈ $\displaystyle \text{B}_i$ ∧ $\displaystyle \text{B}_i$ ∈ $\displaystyle \mathcal{B}$) $\displaystyle \text{B}_i$ ∈ $\displaystyle \mathcal{B}_p$ ⇒ ∃ $\displaystyle \text{B}_i$ ∈ $\displaystyle \mathcal{B}_p$ such that $\displaystyle \text{B}_i$ ⊂ U 
+TODO  
+~~to prove "$\displaystyle \mathcal{B}_p$ is a local basis at p (in S)", it suffices to prove "∀ open neighborhood U of p (in S) : ∃ $\displaystyle \text{B}_p$ ∈ $\displaystyle \mathcal{B}_p$ such that $\displaystyle \text{B}_p$ ⊂ U"  
+by "Definition of Basis", open neighborhood U of p (in S) ⇒ ∃ $\displaystyle \text{B}_i$ ... ∈ $\displaystyle \mathcal{B}$ such that U = $\displaystyle \bigcup_{\displaystyle i \isin \text{I}} \text{B}_i$ ⇒ (since p ∈ U) ∃ i ∈ I such that p ∈ $\displaystyle \text{B}_i$ ⇒ (since p ∈ $\displaystyle \text{B}_i$ ∧ $\displaystyle \text{B}_i$ ∈ $\displaystyle \mathcal{B}$) $\displaystyle \text{B}_i$ ∈ $\displaystyle \mathcal{B}_p$ ⇒ ∃ $\displaystyle \text{B}_i$ ∈ $\displaystyle \mathcal{B}_p$ such that $\displaystyle \text{B}_i$ ⊂ U~~ 
 
-\[Theorem\] Synthetic Basis and Analytic Basis are Compatible 综合基和分析基兼容  
+\[Theorem\] Analytic Basis 分析基  
+\- \[Tu 2011\] / Proposition A.7  
+\- ProofWiki / Definition:Basis (Topology)/Analytic Basis  
+\- ProofWiki / Union of Local Bases is Basis  
+\- ProofWiki / Basis induces Local Basis  
+S is topological space ⇒ ( $\displaystyle \mathcal{B}$ is a basis for S ⇔ ∀ B ∈ $\displaystyle \mathcal{B}$ : B is an open set (in S) ∧ ∀ open set U (in S) : ∃ $\displaystyle \text{B}_i$ ... ⊂ $\displaystyle \mathcal{B}$ such that U = $\displaystyle \bigcup_{\displaystyle i \isin \text{I}} \text{B}_i$ )  
+// every open set (in S) is a union of sets from $\displaystyle \mathcal{B}$  
+> proof  
+TODO  
+
+\[Theorem\] Synthetic Basis 合成基  
 \- \[Tu 2011\] / Proposition A.8  
 \- ProofWiki / Definition:Basis (Topology)/Synthetic Basis  
 \- ProofWiki / Synthetic Basis and Analytic Basis are Compatible  
-S is topological space ⇒ ( $\displaystyle \mathcal{B}$ is a basis for S ⇔ $\displaystyle \mathcal{B}$ ⊂ $\displaystyle \wp ( \text{S} )$ ∧ ∃ $\displaystyle \text{B}_i$ ... ∈ $\displaystyle \mathcal{B}$ such that S = $\displaystyle \bigcup_{\displaystyle i \isin \text{I}} \text{B}_i$ ∧ ∀ U V ∈ $\displaystyle \mathcal{B}$ : ∃ $\displaystyle \text{B}_i$ ... ∈ $\displaystyle \mathcal{B}$ such that U ∩ V = $\displaystyle \bigcup_{\displaystyle i \isin \text{I}} \text{B}_i$ )  
+S is topological space ⇒ ( $\displaystyle \mathcal{B}$ is a basis for S ⇒ $\displaystyle \mathcal{B}$ ⊂ $\displaystyle \wp ( \text{S} )$ ∧ ∃ $\displaystyle \text{B}_i$ ... ∈ $\displaystyle \mathcal{B}$ such that S = $\displaystyle \bigcup_{\displaystyle i \isin \text{I}} \text{B}_i$ ∧ ∀ U V ∈ $\displaystyle \mathcal{B}$ : ∃ $\displaystyle \text{B}_i$ ... ∈ $\displaystyle \mathcal{B}$ such that U ∩ V = $\displaystyle \bigcup_{\displaystyle i \isin \text{I}} \text{B}_i$ )  
 > proof  
 TODO  
 
@@ -517,19 +527,28 @@ S is topological space ∧ A is a topological subspace of S ⇒ ( $\displaystyle
 > proof  
 open neighborhood $\displaystyle \text{U}_A$ of p in A ⇒ ∃ open neighborhood U of p in S such that $\displaystyle \text{U}_A$ = U ∩ A  ⇒ (since p ∈ U ∩ A  ⊂ U) p ∈ U ⇒ ∃ $\displaystyle \text{B}_p$ ∈ $\displaystyle \mathcal{B}_p$ ⊂ $\displaystyle \mathcal{B}$ such that p ∈ $\displaystyle \text{B}_p$ ⊂ U ⇒ p ∈ $\displaystyle \text{B}_p$ ∩ A ⊂ U ∩ A = $\displaystyle \text{U}_A$ ⇒ ∃ $\displaystyle {\text{B}_A}_p$ = $\displaystyle \text{B}_p$ ∩ A such that p ∈ $\displaystyle {\text{B}_A}_p$ ⊂ $\displaystyle \mathcal{B}_A$  
 
----      
+### First and Second Countability 第一/第二可数  
 
-第二可数   
-//\[Browder 1996\] / 6.27 Definition           
+\[Definition\] Second Countable 第二可数   
+\- \[Tu 2011\] / Definition A.12  
+\- ProofWiki / Definition:Second-Countable Space
 
----    
+\[Theorem\] Euclidean topology is second countable  
+\- \[Tu 2011\] / Example A.13  
+\- ProofWiki / Definition:Euclidean_Space/Euclidean_Topology  
+\- ProofWiki / Real Number Line is Second-Countable  
+\- ProofWiki / Countable Basis of Real Number Line  
 
-ProofWiKi / Metric Space is First-Countable    
+\[Theorem\] subspace  
+\- \[Tu 2011\] / Proposition A.14  
 
-ProofWiki / Countable Basis of Real Number Line   
+\[Definition\] First Countable 第一可数   
+\- \[Tu 2011\] / Definition A.15  
+\- ProofWiki / Definition:First-Countable Space  
+\- ProofWiki / Second-Countable Space is First-Countable
 
-### 分离公理 Separation Axiom          
-              
+### Separation Axiom 分离公理  
+
 \[定义\]Hausdorff(豪斯多夫)空间 //分离空间 Separated Space //T2空间 //T -> Tychonoff 吉洪诺夫 //分离公理 Separation Axiom                  
 X是拓扑空间 ⇒ ( X是豪斯多夫空间 ⇔ ( ∀ x,y ∈ X : x≠y ⇒ ( ∃ $\displaystyle \text{U}_x$,$\displaystyle \text{V}_y$,$\displaystyle \text{U}_x$是x的(在X上的)开领域,$\displaystyle \text{V}_y$是y的(在X上的)开领域 : $\displaystyle \text{U}_x$ ∩ $\displaystyle \text{V}_y$ = ∅ ) ) )           
 //ProofWiki / Definition:Hausdorff Space          
