@@ -55,17 +55,19 @@ $\displaystyle \wp(X)$ //X的所有子集
 
 //\[Rudin 1976\]并没有引入拓扑空间，而是以直接定义的方式引入度量空间  
     
----       
+### Topological Space 拓扑空间  
 
-\[定义\] 拓扑(Topology) / 拓扑空间(Topological Space)           
-\[陈天权 2009\] / 定义 7\.1\.1       
+\[Definition \] Topological Space 拓扑空间  
+\- \[Tu 2011\] \ Definition A.1  
+\- ProofWiki \ Definition:Topological Space  
 \[Yeh 2014\] / \[IV\] Borel σ-algebras //σ(Sigma)          
-(X,τ)是拓扑空间 ⇔ τ是X上的拓扑 ⇔ τ ⊂ ℘(X) 且 ∅ ∈ τ 且 X ∈ τ 且 τ对无限并封闭 且 τ对有限交封闭 //此处的无限并没有要求可数 //可数即和自然数集等势 参见 集合的势/基数           
+(S,τ) is a topological space ⇔ τ is a topology on S ⇔ τ ⊂ $\displaystyle \wp ( \text{S} )$ ∧ ∅ and S ∈ τ ∧ τ is closed under countable union ∧ τ is closed under finate intersection // closed 封闭  
 
 //用于不强调τ的情形     
 X是拓扑空间 ⇔ ∃τ, (X,τ)是拓扑空间 ⇔ ∃τ, τ是X上的拓扑               
 
 \[定义\] 开集(Open Set) // 拓扑(Topology)         
+\- \[Tu 2011\] \ Definition A.1  
 \[陈天权 2009\] / 定义 7\.1\.1       
 \[Yeh 2014\] / \[IV\] Borel σ-algebras //σ(Sigma)                   
 (X,τ)是拓扑空间 ⇒ ( U是开集 ⇔ U ∈ τ )        
@@ -94,7 +96,7 @@ X是拓扑空间 且 S ⊂ X 且 $\displaystyle \text{S} \degree$是S的内部 �
 > 由于$\displaystyle \text{S} \degree$ = S，因此S是开集    
 >         
         
-\[定理\] \[等价定义\] 开集(Open Set) //通过 内点(Interior Point)    
+\[Theorem\] Local criterion for openness 开集的局部准则 开集(Open Set) //通过 内点(Interior Point)    
 \[陈天权 2009\] / 命题 7\.1\.1   
 \[Rudin 1976\] / 2.18 Definition (f)   
 ProofWiki / Set is Open iff Neighborhood of all its Points           
@@ -475,17 +477,17 @@ X是拓扑空间 且 Y ⊂ X ⇒ ( Y(在X上)是列紧的 ⇔ ( ∀$\displaystyl
 \[Definition\] Local Basis 局部基  
 \- \[Tu 2011\] / Definition A.15  
 \- ProofWiki / Definition:Local Basis/Local Basis for Open Sets  
-S is topological space ⇒ ( $\displaystyle \mathcal{B}_p$ is a local basis at p (in S) ⇔ ∀ $\displaystyle \text{B}_p$ ∈ $\displaystyle \mathcal{B}_p$ : $\displaystyle \text{B}_p$ is an open neighborhood of p (in S) ∧ ∀ open neighborhood U of p (in S) : ∃ $\displaystyle \text{B}_p$ ∈ $\displaystyle \mathcal{B}_p$ such that $\displaystyle \text{B}_p$ ⊂ U )  
+S is a topological space ⇒ ( $\displaystyle \mathcal{B}_p$ is a local basis at p (in S) ⇔ ∀ $\displaystyle \text{B}_p$ ∈ $\displaystyle \mathcal{B}_p$ : $\displaystyle \text{B}_p$ is an open neighborhood of p (in S) ∧ ∀ open neighborhood U of p (in S) : ∃ $\displaystyle \text{B}_p$ ∈ $\displaystyle \mathcal{B}_p$ such that $\displaystyle \text{B}_p$ ⊂ U )  
 // $\displaystyle \mathcal{B}_p$ is a set of open neighborhood of p (in S) such that every open neighborhood of p (in S) contains some set in $\displaystyle \mathcal{B}_p$  
 
 \[Definition\] Basis 基  
 \- \[Tu 2011\] / Definition A.6  
-S is topological space ⇒ ( $\displaystyle \mathcal{B}$ is a basis for S ⇔ ∀ $\displaystyle \text{B}$ ∈ $\displaystyle \mathcal{B}$ : $\displaystyle \text{B}$ is an open set (in S) ∧ ∀ U p such that U is an open neighborhood of p (in S) : ∃ $\displaystyle \text{B}$ ∈ $\displaystyle \mathcal{B}$ such that p ∈ $\displaystyle \text{B}$ ⊂ U )  
+S is a topological space ⇒ ( $\displaystyle \mathcal{B}$ is a basis for S ⇔ ∀ $\displaystyle \text{B}$ ∈ $\displaystyle \mathcal{B}$ : $\displaystyle \text{B}$ is an open set (in S) ∧ ∀ U p such that U is an open neighborhood of p (in S) : ∃ $\displaystyle \text{B}$ ∈ $\displaystyle \mathcal{B}$ such that p ∈ $\displaystyle \text{B}$ ⊂ U )  
 // $\displaystyle \mathcal{B}$ is a set of open set (in S) such that every open neighborhood of every point (in S) contains some set in $\displaystyle \mathcal{B}$ which is the neighborhood of that point  
 
 \[Theorem\] Union of Local Bases is Basis 局部基的并集是基  
 \- ProofWiki / Union of Local Bases is Basis  
-S is topological space ⇒ ( $\displaystyle \mathcal{B}_p$ is a local basis at p (in S) ∧ $\displaystyle \mathcal{B}$ = $\displaystyle \bigcup_{\displaystyle p \isin \text{S}} \mathcal{B}_p$ ⇒ $\displaystyle \mathcal{B}$ is a basis for S )  
+S is a topological space ⇒ ( $\displaystyle \mathcal{B}_p$ is a local basis at p (in S) ∧ $\displaystyle \mathcal{B}$ = $\displaystyle \bigcup_{\displaystyle p \isin \text{S}} \mathcal{B}_p$ ⇒ $\displaystyle \mathcal{B}$ is a basis for S )  
 
 > proof  
 TODO  
@@ -494,7 +496,7 @@ by "Definition of Local Basis", p ∈ U ⇒ (let $\displaystyle \mathcal{B}_p$ b
   
 \[Theorem\] Basis induces Local Basis 基诱导局部基  
 \- ProofWiki / Basis induces Local Basis  
-S is topological space ⇒ ( $\displaystyle \mathcal{B}$ is a basis for S ∧ $\displaystyle \mathcal{B}_p$ = { $\displaystyle \text{B}_p$ : p ∈ $\displaystyle \text{B}_p$ ∧ $\displaystyle \text{B}_p$ ∈ $\displaystyle \mathcal{B}$ } ⇒ $\displaystyle \mathcal{B}_p$ is a local basis at p (in S) )  
+S is a topological space ⇒ ( $\displaystyle \mathcal{B}$ is a basis for S ∧ $\displaystyle \mathcal{B}_p$ = { $\displaystyle \text{B}_p$ : p ∈ $\displaystyle \text{B}_p$ ∧ $\displaystyle \text{B}_p$ ∈ $\displaystyle \mathcal{B}$ } ⇒ $\displaystyle \mathcal{B}_p$ is a local basis at p (in S) )  
 
 > proof  
 TODO  
@@ -506,7 +508,7 @@ by "Definition of Basis", open neighborhood U of p (in S) ⇒ ∃ $\displaystyle
 \- ProofWiki / Definition:Basis (Topology)/Analytic Basis  
 \- ProofWiki / Union of Local Bases is Basis  
 \- ProofWiki / Basis induces Local Basis  
-S is topological space ⇒ ( $\displaystyle \mathcal{B}$ is a basis for S ⇔ ∀ B ∈ $\displaystyle \mathcal{B}$ : B is an open set (in S) ∧ ∀ open set U (in S) : ∃ $\displaystyle \text{B}_i$ ... ⊂ $\displaystyle \mathcal{B}$ such that U = $\displaystyle \bigcup_{\displaystyle i \isin \text{I}} \text{B}_i$ )  
+S is a topological space ⇒ ( $\displaystyle \mathcal{B}$ is a basis for S ⇔ ∀ B ∈ $\displaystyle \mathcal{B}$ : B is an open set (in S) ∧ ∀ open set U (in S) : ∃ $\displaystyle \text{B}_i$ ... ⊂ $\displaystyle \mathcal{B}$ such that U = $\displaystyle \bigcup_{\displaystyle i \isin \text{I}} \text{B}_i$ )  
 // every open set (in S) is a union of sets from $\displaystyle \mathcal{B}$  
 > proof  
 TODO  
@@ -515,14 +517,14 @@ TODO
 \- \[Tu 2011\] / Proposition A.8  
 \- ProofWiki / Definition:Basis (Topology)/Synthetic Basis  
 \- ProofWiki / Synthetic Basis and Analytic Basis are Compatible  
-S is topological space ⇒ ( $\displaystyle \mathcal{B}$ is a basis for S ⇒ $\displaystyle \mathcal{B}$ ⊂ $\displaystyle \wp ( \text{S} )$ ∧ ∃ $\displaystyle \text{B}_i$ ... ∈ $\displaystyle \mathcal{B}$ such that S = $\displaystyle \bigcup_{\displaystyle i \isin \text{I}} \text{B}_i$ ∧ ∀ U V ∈ $\displaystyle \mathcal{B}$ : ∃ $\displaystyle \text{B}_i$ ... ∈ $\displaystyle \mathcal{B}$ such that U ∩ V = $\displaystyle \bigcup_{\displaystyle i \isin \text{I}} \text{B}_i$ )  
+S is a topological space ⇒ ( $\displaystyle \mathcal{B}$ is a basis for S ⇒ $\displaystyle \mathcal{B}$ ⊂ $\displaystyle \wp ( \text{S} )$ ∧ ∃ $\displaystyle \text{B}_i$ ... ∈ $\displaystyle \mathcal{B}$ such that S = $\displaystyle \bigcup_{\displaystyle i \isin \text{I}} \text{B}_i$ ∧ ∀ U V ∈ $\displaystyle \mathcal{B}$ : ∃ $\displaystyle \text{B}_i$ ... ∈ $\displaystyle \mathcal{B}$ such that U ∩ V = $\displaystyle \bigcup_{\displaystyle i \isin \text{I}} \text{B}_i$ )  
 > proof  
 TODO  
 
 \[Theorem\] Basis for Topological Subspace 拓扑子空间的基  
 \- \[Tu 2011\] / Proposition A.9  
 \- ProofWiki / Basis for Topological Subspace  
-S is topological space ∧ A is a topological subspace of S ⇒ ( $\displaystyle \mathcal{B}$ is a basis for S ∧ $\displaystyle \mathcal{B}_A$ = { B ∩ A : B ∈ $\displaystyle \mathcal{B}$ } ⇒ $\displaystyle \mathcal{B}_A$ is a basis for A )  
+S is a topological space ∧ A is a topological subspace of S ⇒ ( $\displaystyle \mathcal{B}$ is a basis for S ∧ $\displaystyle \mathcal{B}_A$ = { B ∩ A : B ∈ $\displaystyle \mathcal{B}$ } ⇒ $\displaystyle \mathcal{B}_A$ is a basis for A )  
    
 > proof  
 open neighborhood $\displaystyle \text{U}_A$ of p in A ⇒ ∃ open neighborhood U of p in S such that $\displaystyle \text{U}_A$ = U ∩ A  ⇒ (since p ∈ U ∩ A  ⊂ U) p ∈ U ⇒ ∃ $\displaystyle \text{B}_p$ ∈ $\displaystyle \mathcal{B}_p$ ⊂ $\displaystyle \mathcal{B}$ such that p ∈ $\displaystyle \text{B}_p$ ⊂ U ⇒ p ∈ $\displaystyle \text{B}_p$ ∩ A ⊂ U ∩ A = $\displaystyle \text{U}_A$ ⇒ ∃ $\displaystyle {\text{B}_A}_p$ = $\displaystyle \text{B}_p$ ∩ A such that p ∈ $\displaystyle {\text{B}_A}_p$ ⊂ $\displaystyle \mathcal{B}_A$  
