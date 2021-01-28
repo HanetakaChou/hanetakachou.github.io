@@ -64,6 +64,8 @@ since //由于 //因为
 
 by //根据 /比如用于XXX定理    
 
+see also //另见  
+
 by appealing to XXX with XXX //这里的appeal可以理解成apply 可以认为将XXX(小前提，往往是特定的取值)应用到XXX(大前提，往往是定理）  
 \+ one finds that //人们发现... //因此 //所以
 
