@@ -41,7 +41,7 @@ passwd openvpn
 systemctl stop firewalld
 ```
 
-#### client  
+#### Client  
 ```shell
 # https://x.x.x.x:943
 # https://x.x.x.x:943/admin
@@ -50,7 +50,7 @@ systemctl stop firewalld
 # import profile from URL https://x.x.x.x:943
 ```
 
-#### server  
+#### Server  
 ```shell
 # ssh root@x.x.x.x
 
@@ -63,8 +63,15 @@ firewall-cmd --runtime-to-permanent
 firewall-cmd --reload
 ```
 
-#### client  
+#### Client  
 ```shell
 # openvpn client
 # connect to profile
+```
+
+#### Linux Client
+```shell
+nmcli connection import type openvpn file x.ovpn
+# fill the "username" with openvpn-user-name by the plasma-nm UI
+# connect by the plasma-nm UI
 ```
