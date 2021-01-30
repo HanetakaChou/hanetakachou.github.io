@@ -44,20 +44,20 @@ systemctl stop firewalld ## stop firewalld to allow the https access to import t
 
 #### Client-Side  
 ```shell
-# access the https://x.x.x.x:943/admin by the web browser and accept the Agreement to start the OpenVPN Access Server ## login with the user "openvpn" ## the web browser may warn the website is unsafe and we may ignore the warning
+# access the https://x.x.x.x:943/admin (with the "/admin") by the web browser and accept the Agreement to start the OpenVPN Access Server ## login with the user "openvpn" ## the web browser may warn the website is unsafe and we may ignore the warning
 ```
 
-##### Windows/ Mac / Android / IOS Client
+##### Windows/Mac/Android/IOS Client
 ```shell
-# download the client from the URL https://x.x.x.x:943 by the web browser ## login with the user "openvpn" ## the web browser may warn the website is unsafe and we may ignore the warning
-# install the client and import the profile from the URL https://x.x.x.x:943 by the client UI
+# download the client from the URL https://x.x.x.x:943 (without the "/admin") by the web browser ## login with the user "openvpn" ## the web browser may warn the website is unsafe and we may ignore the warning
+# install the client and import the profile from the URL https://x.x.x.x:943 (without the "/admin") by the client UI
 ```
 
 ##### Linux Client  
 ```shell
 # we don't need to download the client and we may use the "plasma-nm-openvpn"
 
-# download the profile file "client.ovpn" from the URL https://x.x.x.x:943
+# download the profile file "client.ovpn" from the URL https://x.x.x.x:943 (without the "/admin")
 nmcli connection import type openvpn file path-to-client.ovpn ## import the profile
 
 # "configure" the "Connections" and fill the "username" with "openvpn" by the plasma-nm UI
@@ -88,7 +88,7 @@ systemctl restart openvpnas ## to start/stop the firewalld may result in that th
 # connect to the imported profile
 ```
 
-##### Windows/ Mac / Android / IOS Client  
+##### Windows/Mac/Android/IOS Client  
 ```shell
 # connect to the imported profile by the client UI
 ```
