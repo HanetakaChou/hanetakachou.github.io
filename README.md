@@ -27,7 +27,7 @@ You should have received a copy of the GNU Lesser General Public License along w
 
 ### VPS
 
-You may deloy the CentOS8 server from the Vultr.
+You may rent the CentOS 8 server by the Vultr and deploy your own VPS by the following tutorial.
 
 #### Server-Side  
 ```shell  
@@ -36,34 +36,38 @@ You may deloy the CentOS8 server from the Vultr.
 yum install https://as-repository.openvpn.net/as-repo-centos8.rpm
 yum install openvpn-as
 
-# /usr/local/openvpn_as/bin/ovpn-init
-# systemctl status openvpnas
+# /usr/local/openvpn_as/bin/ovpn-init ## we may generate another new profile and leave the old one invalid from time to time for security
+passwd openvpn ## set the password of the user "openvpn"
 
-passwd openvpn
 systemctl stop firewalld ## stop firewalld to allow the https access to import the profile
 ```
 
 #### Client-Side  
 ```shell
-# https://x.x.x.x:943
-# https://x.x.x.x:943/admin
+# access the https://x.x.x.x:943/admin by the web browser and accept the Agreement to start the OpenVPN Access Server ## login with the user "openvpn" ## the web browser may warn the website is unsafe and we may ignore the warning
+```
 
-# openvpn client
-# import the profile from the URL https://x.x.x.x:943
-```  
+##### Windows/ Mac / Android / IOS Client
+```shell
+# download the client from the URL https://x.x.x.x:943 by the web browser ## login with the user "openvpn" ## the web browser may warn the website is unsafe and we may ignore the warning
+# install the client and import the profile from the URL https://x.x.x.x:943 by the client UI
+```
 
 ##### Linux Client  
 ```shell
+# we don't need to download the client and we may use the "plasma-nm-openvpn"
+
 # download the profile file "client.ovpn" from the URL https://x.x.x.x:943
-nmcli connection import type openvpn file path-to-client.ovpn
-# fill the "username" with "openvpn" by the plasma-nm UI
+nmcli connection import type openvpn file path-to-client.ovpn ## import the profile
+
+# "configure" the "Connections" and fill the "username" with "openvpn" by the plasma-nm UI
 ```  
 
 #### Server-Side  
 ```shell
 # ssh root@x.x.x.x
 
-systemctl start firewalld ## start firewalld for security
+systemctl start firewalld ## start firewalld for security and we can't access the "unsafe" URL https://x.x.x.x:943 now
 
 firewall-cmd --add-service openvpn ## --zone=public
 # firewall-cmd --list-services ## --zone=public
@@ -73,8 +77,9 @@ firewall-cmd --runtime-to-permanent
 firewall-cmd --reload
 
 systemctl restart openvpnas ## to start/stop the firewalld may result in that the VPS doesn't work
+# systemctl status openvpnas
 
-# systemctl stop sshd ## stop sshd for security ## we leave the sshd enabled and we may restart the machine to start the sshd automatically
+# systemctl stop sshd ## stop sshd for security ## we leave the sshd enabled and we may restart the machine by the Vultr to start the sshd automatically
 ```
 
 #### Client-Side  
@@ -83,7 +88,12 @@ systemctl restart openvpnas ## to start/stop the firewalld may result in that th
 # connect to the imported profile
 ```
 
+##### Windows/ Mac / Android / IOS Client  
+```shell
+# connect to the imported profile by the client UI
+```
+
 ##### Linux Client  
 ```shell
-# connect by the plasma-nm UI ## leave the key passwd empty
+# connect by the plasma-nm UI ##  leave the "key Password" empty
 ```
