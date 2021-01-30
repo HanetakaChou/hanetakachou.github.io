@@ -25,7 +25,9 @@ You should have received a copy of the GNU Lesser General Public License along w
 
 [Compiler.md](Compiler.md)  
 
-### VPS(VPN Server)  
+### VPS(VPN Server)
+
+You may deloy the CentOS8 server from the Vultr.
 
 #### Server-Side  
 ```shell  
