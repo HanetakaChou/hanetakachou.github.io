@@ -30,7 +30,7 @@ You should have received a copy of the GNU Lesser General Public License along w
 
 You may rent the CentOS 8 server by the Vultr and deploy your own VPS by the following tutorial.
 
-#### Install VPS
+#### 1\.Install VPS
 
 ##### Server-Side  
 ```shell  
@@ -43,7 +43,7 @@ yum install openvpn-as
 passwd openvpn ## set the password of the user "openvpn"
 ```
 
-#### Import Profile
+#### 2\.Import Profile
 
 ##### Server-Side  
 ```shell  
@@ -90,10 +90,12 @@ firewall-cmd --runtime-to-permanent
 firewall-cmd --reload
 ```
 
-#### Connect
+#### 3\.Connect
 
 ##### Server-Side  
-```shell
+```shell  
+# ssh root@x.x.x.x
+
 firewall-cmd --add-service openvpn ## --zone=public
 # firewall-cmd --list-services ## --zone=public
 firewall-cmd --add-masquerade ## --zone=public
