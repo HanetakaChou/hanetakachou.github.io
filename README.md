@@ -124,3 +124,122 @@ systemctl restart openvpnas ## to start/stop the firewalld may result in that th
 ```shell
 # connect by the plasma-nm UI ##  leave the "key Password" empty
 ```
+
+### Tor
+
+You may rent the CentOS 8 server by the Vultr and deploy your own Tor (Bridge)Relay by the following tutorial.
+
+#### Server-Side  
+
+install Tor package
+```shell
+# no obfs4 repo available
+yum install https://kojipkgs.fedoraproject.org/packages/obfs4/0.0.11/2.fc32/x86_64/obfs4-0.0.11-2.fc32.x86_64.rpm #yum install obfs4 #used by BridgeRelay
+
+echo '[tor]
+name=Tor for Enterprise Linux $releasever - $basearch
+baseurl=https://rpm.torproject.org/centos/$releasever/$basearch
+enabled=1
+gpgcheck=1
+gpgkey=https://rpm.torproject.org/centos/public_gpg.key
+cost=100' > /etc/yum.repos.d/tor.repo
+
+yum install tor
+```
+
+edit Tor config
+```shell
+vi /etc/tor/torrc
+
+- #SOCKSPort 9050 # Default: Bind to localhost:9050 for local connections.
++ SOCKSPort 0 # Set "SOCKSPort 0" if you plan to run Tor only as a relay, and not make any local application connections yourself.
+
+- #RunAsDaemon 1
++ RunAsDaemon 1
+
+- #ORPort 9001
++ ORPort 9001
+
+- #Nickname ididnteditheconfig
++ Nickname yourcoolnickname
+
+- #ExitRelay 1
++ ExitRelay 0
+
+- #BridgeRelay 1
++ BridgeRelay 1
+
+```
+
+start Tor service
+```shell
+firewall-cmd --add-port 9001/tcp ## --zone=public ## configure firewalld to allow the "ORPort"
+# firewall-cmd --list-ports ## --zone=public
+firewall-cmd --add-masquerade ## --zone=public
+# firewall-cmd --query-masquerade ## --zone=public
+firewall-cmd --runtime-to-permanent
+firewall-cmd --reload
+
+systemctl enable tor
+systemctl restart tor
+#systemctl status tor
+```
+
+#### Client-Side  
+
+##### Linux Client
+
+install Tor packages
+```shell
+echo '[tor]
+name=Tor for Enterprise Linux $releasever - $basearch
+baseurl=https://rpm.torproject.org/centos/$releasever/$basearch
+enabled=1
+gpgcheck=1
+gpgkey=https://rpm.torproject.org/centos/public_gpg.key
+cost=100' > /etc/yum.repos.d/tor.repo
+
+yum install tor
+```
+
+edit Tor config
+```
+vi /etc/tor/torrc
+
++ UseBridges 1
+
++ Bridge x.x.x.x:9001
+
+- SOCKSPort 9050 # Default: Bind to localhost:9050 for local connections.
++ SOCKSPort 9050 # Default: Bind to localhost:9050 for local connections.
+
+- #RunAsDaemon 1
++ RunAsDaemon 1
+```
+
+start Tor service
+```shell
+systemctl enable tor
+systemctl restart tor
+#systemctl status tor
+```
+
+launch app with socks5 proxy(suggested)
+```shell
+google-chrome --proxy-server="socks5://127.0.0.1:9050" &
+```
+
+set the socks5 proxy in system settings
+```shell
+KDE5/System Settings/Network/Settings/Proxy/Use system proxy configuration:/SOCKS Proxy:socks5://127.0.0.1:9050
+#https://wiki.archlinux.org/index.php/Proxy_server#Proxy_settings_on_GNOME3
+```
+
+torsocks works only for limited client
+```shell
+torsocks curl https://api.ipify.org?format=json
+#torsocks google-chrome #unsupported
+```
+
+##### Android Client
+https://github.com/guardianproject/orbot/releases
