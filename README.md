@@ -187,7 +187,31 @@ systemctl restart tor
 
 #### Client-Side  
 
-##### Linux Client
+##### Windows/MacOS/Linux Client
+
+download the "Tor Browser" from https://www.torproject.org/download/
+
+open the "Tor Browser" and config the bridge "x.x.x.x:9001" by the UI  
+the "Tor Browser" will launch the "Tor" and listen on localhost:9150 #you can use "ps" to find the related command args of "Tor"  
+
+launch app with socks5 proxy (suggested)
+```shell
+#close all opened "chrome"s 
+
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --proxy-server="socks5://localhost:9150" #Windows
+
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --proxy-server="socks5://localhost:9150" & #MacOS
+
+google-chrome --proxy-server="socks5://localhost:9150" & #Linux
+```
+
+other usage (not suggested) / set the socks5 proxy in system settings
+```shell
+KDE5/System Settings/Network/Settings/Proxy/Use system proxy configuration:/SOCKS Proxy:socks5://localhost:9050
+#https://wiki.archlinux.org/index.php/Proxy_server#Proxy_settings_on_GNOME3
+```
+
+##### Linux Client (Tor without the Tor Browser)
 
 install Tor packages
 ```shell
@@ -235,37 +259,6 @@ other usage (not suggested) / set the socks5 proxy in system settings
 ```shell
 KDE5/System Settings/Network/Settings/Proxy/Use system proxy configuration:/SOCKS Proxy:socks5://localhost:9050
 #https://wiki.archlinux.org/index.php/Proxy_server#Proxy_settings_on_GNOME3
-```
-
-other usage (not suggested) / torsocks works only for limited client
-```shell
-torsocks curl https://api.ipify.org?format=json
-#torsocks google-chrome #unsupported
-```
-
-##### Windows Client
-
-install Tor packages
-download the "Windows Expert Bundle" from https://www.torproject.org/download/tor/
-
-edit Tor config
-```
-notepad.exe C:\Users\<your_username>\AppData\Roaming\tor\torrc
-
-+ UseBridges 1
-
-+ Bridge x.x.x.x:9001
-
-+ SOCKSPort 9050 # Default: Bind to localhost:9050 for local connections.
-```
-
-start Tor service
-run the "tor.exe" from the downloaded "Windows Expert Bundle"  
-
-launch app with socks5 proxy (suggested)
-```shell
-#close all opened "chrome"s 
-"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --proxy-server="socks5://localhost:9050" #--host-resolver-rules="MAP * 0.0.0.0 , EXCLUDE localhost"
 ```
 
 ##### Android Client
