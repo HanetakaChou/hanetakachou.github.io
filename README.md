@@ -224,19 +224,19 @@ systemctl restart tor
 #systemctl status tor
 ```
 
-launch app with socks5 proxy(suggested)
+launch app with socks5 proxy (suggested)
 ```shell
 google-chrome --proxy-server="socks5://127.0.0.1:9050" &
 #systemctl restart tor #we may restart tor from time to time if the network is too slow
 ```
 
-set the socks5 proxy in system settings
+other usage (not suggested) / set the socks5 proxy in system settings
 ```shell
 KDE5/System Settings/Network/Settings/Proxy/Use system proxy configuration:/SOCKS Proxy:socks5://127.0.0.1:9050
 #https://wiki.archlinux.org/index.php/Proxy_server#Proxy_settings_on_GNOME3
 ```
 
-torsocks works only for limited client
+other usage (not suggested) / torsocks works only for limited client
 ```shell
 torsocks curl https://api.ipify.org?format=json
 #torsocks google-chrome #unsupported
