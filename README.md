@@ -226,6 +226,7 @@ systemctl restart tor
 
 launch app with socks5 proxy (suggested)
 ```shell
+#close all opened "google-chrome"s 
 google-chrome --proxy-server="socks5://127.0.0.1:9050" &
 #systemctl restart tor #we may restart tor from time to time if the network is too slow
 ```
