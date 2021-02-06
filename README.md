@@ -164,7 +164,7 @@ vi /etc/tor/torrc
 + Nickname yourcoolnickname
 
 - #ExitRelay 1
-+ ExitRelay 0
++ ExitRelay 1
 
 - #BridgeRelay 1
 + BridgeRelay 1
@@ -227,6 +227,7 @@ systemctl restart tor
 launch app with socks5 proxy(suggested)
 ```shell
 google-chrome --proxy-server="socks5://127.0.0.1:9050" &
+#systemctl restart tor #we may restart tor from time to time if the network is too slow
 ```
 
 set the socks5 proxy in system settings
@@ -240,6 +241,9 @@ torsocks works only for limited client
 torsocks curl https://api.ipify.org?format=json
 #torsocks google-chrome #unsupported
 ```
+
+##### Windows Client
+you can use the Tor by Cygwin
 
 ##### Android Client
 https://github.com/guardianproject/orbot/releases
