@@ -227,13 +227,13 @@ systemctl restart tor
 launch app with socks5 proxy (suggested)
 ```shell
 #close all opened "google-chrome"s 
-google-chrome --proxy-server="socks5://127.0.0.1:9050" &
+google-chrome --proxy-server="socks5://localhost:9050" &
 #systemctl restart tor #we may restart tor from time to time if the network is too slow
 ```
 
 other usage (not suggested) / set the socks5 proxy in system settings
 ```shell
-KDE5/System Settings/Network/Settings/Proxy/Use system proxy configuration:/SOCKS Proxy:socks5://127.0.0.1:9050
+KDE5/System Settings/Network/Settings/Proxy/Use system proxy configuration:/SOCKS Proxy:socks5://localhost:9050
 #https://wiki.archlinux.org/index.php/Proxy_server#Proxy_settings_on_GNOME3
 ```
 
@@ -244,7 +244,29 @@ torsocks curl https://api.ipify.org?format=json
 ```
 
 ##### Windows Client
-you can use the Tor by Cygwin
+
+install Tor packages
+download the "Windows Expert Bundle" from https://www.torproject.org/download/tor/
+
+edit Tor config
+```
+notepad.exe C:\Users\<your_username>\AppData\Roaming\tor\torrc
+
++ UseBridges 1
+
++ Bridge x.x.x.x:9001
+
++ SOCKSPort 9050 # Default: Bind to localhost:9050 for local connections.
+```
+
+start Tor service
+run the "tor.exe" from the downloaded "Windows Expert Bundle"  
+
+launch app with socks5 proxy (suggested)
+```shell
+#close all opened "chrome"s 
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --proxy-server="socks5://localhost:9050" #--host-resolver-rules="MAP * 0.0.0.0 , EXCLUDE localhost"
+```
 
 ##### Android Client
 https://github.com/guardianproject/orbot/releases
