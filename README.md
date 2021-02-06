@@ -164,7 +164,7 @@ vi /etc/tor/torrc
 + Nickname yourcoolnickname
 
 - #ExitRelay 1
-+ ExitRelay 1
++ ExitRelay 0
 
 - #BridgeRelay 1
 + BridgeRelay 1
