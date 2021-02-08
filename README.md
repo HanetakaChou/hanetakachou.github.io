@@ -68,7 +68,8 @@ use ssh forward to encrypt the privoxy
 #/etc/privoxy/config 
 #listen-address 127.0.0.1:8118
 
-ssh -L8118:localhost:8118 HanetakaYuminaga@x.x.x.x
+ssh -T -L8118:localhost:8118 HanetakaYuminaga@x.x.x.x #add "-T" to disable pseudo-tty allocation for better performance
+#for vscode, add the "LocalForward 127.0.0.1:8118 127.0.0.1:8118" in ssh config file #https://code.visualstudio.com/docs/remote/ssh#_always-forwarding-a-port
 ```
 
 launch app with http proxy  
