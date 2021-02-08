@@ -12,7 +12,7 @@ You should have received a copy of the GNU Lesser General Public License along w
    
 [Logic.md](Logic.md)  
 
-### Analysis  
+## Analysis  
    
 > [Analysis/_1_Topology_Metric.md](Analysis/_1_Topology_Metric.md)   
 > [Analysis/_2_Measure.md](Analysis/_2_Measure.md)    
@@ -25,6 +25,64 @@ You should have received a copy of the GNU Lesser General Public License along w
 [LinearAlgebra.md](LinearAlgebra.md)   
 
 [Compiler.md](Compiler.md)  
+
+## Scientific Web Browsing
+
+### Proxy
+
+#### Server-Side  
+
+install Privoxy
+```shell
+yum install privoxy
+
+# firewall-cmd --add-service privoxy ## --zone=public #**NOT DO THIS**, which may allow anyone to connect to the privoxy
+# firewall-cmd --list-services ## --zone=public
+firewall-cmd --add-masquerade ## --zone=public
+# firewall-cmd --query-masquerade ## --zone=public
+firewall-cmd --runtime-to-permanent
+firewall-cmd --reload
+```
+
+create non-privileged user
+```shell
+adduser -m HanetakaYuminaga
+passwd HanetakaYuminaga
+```
+
+disable root login from ssh for security
+```shell
+vi /etc/ssh/sshd_config  
+- PermitRootLogin yes
++ PermitRootLogin no
+
+mv /usr/bin/su /usr/bin/su_bak 
+#rm /usr/bin/su #learn from Android
+```
+
+#### Client-Side
+
+use ssh forward to encrypt the privoxy   
+```shell
+#the default listen address of Privoxy is "127.0.0.1:8118" 
+#/etc/privoxy/config 
+#listen-address 127.0.0.1:8118
+
+ssh -L8118:localhost:8118 HanetakaYuminaga@x.x.x.x
+```
+
+launch app with http proxy  
+```shell
+#launch from the local terminal not the ssh terminal
+
+#close all opened "chrome"s 
+
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --proxy-server="localhost:8118" #Windows
+
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --proxy-server="localhost:8118" & #MacOS
+
+google-chrome --proxy-server="localhost:8118" & #Linux
+```
 
 ### VPS
 
@@ -161,7 +219,7 @@ vi /etc/tor/torrc
 + ORPort 9001
 
 - #Nickname ididnteditheconfig
-+ Nickname yourcoolnickname
++ Nickname TorofHanetakaYuminaga #your cool nickname
 
 - #ExitRelay 1
 + ExitRelay 0
