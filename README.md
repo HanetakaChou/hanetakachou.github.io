@@ -28,9 +28,11 @@ You should have received a copy of the GNU Lesser General Public License along w
 
 ## Scientific Web Browsing
 
-### Proxy
+### I\.Proxy
 
-#### Server-Side  
+You may rent the CentOS 8 machine by the Vultr and deploy your own (http) proxy server by the following tutorial.
+
+#### 1\.server side  
 
 install Privoxy
 ```shell
@@ -60,7 +62,7 @@ mv /usr/bin/su /usr/bin/su_bak
 #rm /usr/bin/su #learn from Android
 ```
 
-#### Client-Side
+#### 2\.client side
 
 use ssh forward to encrypt the privoxy   
 ```shell
@@ -85,16 +87,14 @@ launch app with http proxy
 google-chrome --proxy-server="localhost:8118" & #Linux
 ```
 
-### VPS
+### II\.VPN
 
-You may rent the CentOS 8 server by the Vultr and deploy your own VPS by the following tutorial.
+You may rent the CentOS 8 machine by the Vultr and deploy your own VPN server by the following tutorial.
 
-#### 1\.Install VPS
+#### 1\.install OpenVPN Access Server
 
-##### Server-Side  
+##### server side  
 ```shell  
-# ssh root@x.x.x.x
-
 yum install https://as-repository.openvpn.net/as-repo-centos8.rpm
 yum install openvpn-as
 
@@ -102,12 +102,10 @@ yum install openvpn-as
 passwd openvpn ## set the password of the user "openvpn"
 ```
 
-#### 2\.Import Profile
+#### 2\.import OpenVPN profile
 
-##### Server-Side  
+##### server side  
 ```shell  
-# ssh root@x.x.x.x
-
 firewall-cmd --add-port 943/tcp ## --zone=public ## configure firewalld to allow the https access to import the profile
 # firewall-cmd --list-ports ## --zone=public
 firewall-cmd --add-masquerade ## --zone=public
@@ -116,21 +114,21 @@ firewall-cmd --runtime-to-permanent
 firewall-cmd --reload
 ```
 
-##### Client-Side  
+##### client side  
 
-###### Common
+###### common
 ```shell
 # access the https://x.x.x.x:943/admin (with the "/admin") by the web browser and accept the Agreement to start the OpenVPN Access Server ## login with the user "openvpn" 
 # the web browser may warn the website is unsafe and we may ignore the warning
 ```
 
-###### Windows/Mac/Android/IOS Client
+###### Windows/Mac/Android/IOS client
 ```shell
 # download the client from the URL https://x.x.x.x:943 (without the "/admin") by the web browser ## login with the user "openvpn" ## the web browser may warn the website is unsafe and we may ignore the warning
 # install the client and import the profile from the URL https://x.x.x.x:943 (without the "/admin") by the client UI
 ```
 
-###### Linux Client  
+###### Linux client  
 ```shell
 # we don't need to download the client and we may use the "plasma-nm-openvpn"
 
@@ -140,7 +138,7 @@ nmcli connection import type openvpn file path-to-client.ovpn ## import the prof
 # "configure" the "Connections" and fill the "username" with "openvpn" by the plasma-nm UI
 ```  
 
-##### Server-Side  
+##### server side  
 ```shell  
 # ssh root@x.x.x.x
 
@@ -149,9 +147,9 @@ firewall-cmd --runtime-to-permanent
 firewall-cmd --reload
 ```
 
-#### 3\.Connect
+#### 3\.connect OpenVPN server
 
-##### Server-Side  
+##### server side  
 ```shell  
 # ssh root@x.x.x.x
 
@@ -168,29 +166,29 @@ systemctl restart openvpnas ## to start/stop the firewalld may result in that th
 # systemctl stop sshd ## stop sshd for security ## we leave the sshd enabled and we may restart the machine by the Vultr to start the sshd automatically
 ```
 
-##### Client-Side  
+##### client side  
 ```shell
 # openvpn client
 # connect to the imported profile
 ```
 
-###### Windows/Mac/Android/IOS Client  
+###### Windows/Mac/Android/IOS client  
 ```shell
 # connect to the imported profile by the client UI
 ```
 
-###### Linux Client  
+###### Linux client  
 ```shell
 # connect by the plasma-nm UI ##  leave the "key Password" empty
 ```
 
-### Tor
+### III\.Tor
 
-You may rent the CentOS 8 server by the Vultr and deploy your own Tor (Bridge)Relay by the following tutorial.
+You may rent the CentOS 8 machine by the Vultr and deploy your own Tor server by the following tutorial.
 
-#### Server-Side  
+#### 1\.server side  
 
-install Tor package
+install Tor  
 ```shell
 # no obfs4 repo available
 yum install https://kojipkgs.fedoraproject.org/packages/obfs4/0.0.11/2.fc32/x86_64/obfs4-0.0.11-2.fc32.x86_64.rpm #yum install obfs4 #used by BridgeRelay
@@ -244,9 +242,9 @@ systemctl restart tor
 #systemctl status tor
 ```
 
-#### Client-Side  
+#### 2\.client side  
 
-##### Windows/MacOS/Linux Client
+##### Windows/MacOS/Linux client
 
 download the "Tor Browser" from https://www.torproject.org/download/
 
@@ -270,7 +268,7 @@ KDE5/System Settings/Network/Settings/Proxy/Use system proxy configuration:/SOCK
 #https://wiki.archlinux.org/index.php/Proxy_server#Proxy_settings_on_GNOME3
 ```
 
-##### Linux Client (Tor without the Tor Browser)
+##### Linux client (Tor without the Tor Browser)
 
 install Tor packages
 ```shell
@@ -320,5 +318,5 @@ KDE5/System Settings/Network/Settings/Proxy/Use system proxy configuration:/SOCK
 #https://wiki.archlinux.org/index.php/Proxy_server#Proxy_settings_on_GNOME3
 ```
 
-##### Android Client
+##### Android dlient
 https://github.com/guardianproject/orbot/releases
