@@ -28,7 +28,58 @@ You should have received a copy of the GNU Lesser General Public License along w
 
 ## Scientific Web Browsing
 
-### I\.Proxy
+### I\. SSH
+You may rent the CentOS 8 machine by the Vultr and use ssh as a socks5 proxy server.
+
+#### 1\.server side  
+
+set firewall rules
+```shell
+# systemctl start sshd # by default
+
+# firewall-cmd --add-service ssh ## by default
+# firewall-cmd --list-services ## --zone=public
+firewall-cmd --add-masquerade ## --zone=public
+# firewall-cmd --query-masquerade ## --zone=public
+firewall-cmd --runtime-to-permanent
+firewall-cmd --reload
+```
+create non-privileged user
+```shell
+adduser -m HanetakaYuminaga
+passwd HanetakaYuminaga
+```
+
+disable root login from ssh for security
+```shell
+vi /etc/ssh/sshd_config  
+- PermitRootLogin yes
++ PermitRootLogin no
+
+rm /usr/bin/su #learn from Android
+```
+
+#### 2\.client side
+
+use ssh as a socks5 proxy server
+```shell
+ssh -T -D 8080 HanetakaYuminaga@x.x.x.x #add "-T" to disable pseudo-tty allocation for better performance
+```
+
+launch app with http proxy  
+```shell
+#launch from the local terminal not the ssh terminal
+
+#close all opened "chrome"s 
+
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --proxy-server="socks5://localhost:8080" #Windows
+
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --proxy-server="socks5://localhost:8080" & #MacOS
+
+google-chrome --proxy-server="socks5://localhost:8080" & #Linux
+```
+
+### II\. Privoxy
 
 You may rent the CentOS 8 machine by the Vultr and deploy your own (http) proxy server by the following tutorial.
 
@@ -58,8 +109,7 @@ vi /etc/ssh/sshd_config
 - PermitRootLogin yes
 + PermitRootLogin no
 
-mv /usr/bin/su /usr/bin/su_bak 
-#rm /usr/bin/su #learn from Android
+rm /usr/bin/su #learn from Android
 ```
 
 #### 2\.client side
@@ -87,7 +137,7 @@ launch app with http proxy
 google-chrome --proxy-server="localhost:8118" & #Linux
 ```
 
-### II\.VPN
+### III\.OpenVPN Access Server
 
 You may rent the CentOS 8 machine by the Vultr and deploy your own VPN server by the following tutorial.
 
@@ -147,7 +197,7 @@ firewall-cmd --runtime-to-permanent
 firewall-cmd --reload
 ```
 
-#### 3\.connect OpenVPN server
+#### 3\.connect OpenVPN
 
 ##### server side  
 ```shell  
