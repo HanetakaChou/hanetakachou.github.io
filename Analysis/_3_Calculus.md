@@ -26,12 +26,12 @@ Extreme Value Theorem 极值定理 \\ Maximum-Minimum Theorem 最大值最小值
 \[Pugh 2015\] / 23 Theorem  
 
 
+Intermediate Value Theorem 介值定理  
 
 
-
-
-
-
+Homeomorphism 同胚  
+\[Pugh 2015\] / Figure 31  
+The inverse of continuous bijection may not be continuous.  
 
 
 
