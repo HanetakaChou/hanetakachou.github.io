@@ -14,9 +14,7 @@ You should have received a copy of the GNU Lesser General Public License along w
 
 ## Analysis  
    
-> [Analysis/_1_Topology_Metric.md](Analysis/_1_Topology_Metric.md)   
-> [Analysis/_2_Measure.md](Analysis/_2_Measure.md)    
-> [Analysis/_3_Calculus.md](Analysis/_3_Calculus.md)    
+> [Analysis/1_Real_Analysis.md](Analysis/1_Real_Analysis.md)    
 
 [Calculus.md](Calculus.md)    
 
