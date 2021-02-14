@@ -31,9 +31,11 @@ Intermediate Value Theorem 介值定理
 
 Continuous Mapping (Topology) 连续映射(拓扑)  
 \[Pugh 2015\] / 2 A Taste of Topology / 2 Continuity / Definition  //preserve sequential convergence  
+
 \[Pugh 2015\] / 2 A Taste of Topology / 2 Continuity / The (ϵ, δ)-Condition / 4 Theorem  //The (ϵ, δ)-Condition  
 ProofWiki / Sequential Continuity is Equivalent to Continuity in the Reals  
 ProofWiki / Continuous Mapping is Sequentially Continuous  
+
 \[Pugh 2015\] / 2 A Taste of Topology / Exercises / 13  //
 
 Homeomorphism 同胚 / homeomorphic 同胚的  
@@ -44,22 +46,16 @@ The inverse of continuous bijection may not be continuous.
 Trefoil Knot 三叶结  
 Torus 环面  
 
-Circle - Trefoil Knot - Square //Square diff Sphere  
+Circle - Trefoil Knot - Square //**Attention:** Square vs Sphere  
 Donut(2-Torus) - Coffee Cup  
 //Unit Interval - Closed Unit Disk //Pending?  
 
 ProofWiki / Trefoil Knot is Homeomorphic to Circle  
 ProofWiki / Jokes / Coffee and Doughnuts  
 
-
-
-
-
-
-
-
-
-
+Limit Point 极点 / Cluster Point 聚点 / Accumulation Point //**Attention:** Limit Point vs Limit of Sequence  
+Isolated Point 孤立点  
+Adherent Point 附着点  
 
 ## Reference  
 \[Pugh 2015\] Charles Pugh. "Real Mathematical Analysis Second Edition." Springer 2015.  
