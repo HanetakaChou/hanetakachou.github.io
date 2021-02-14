@@ -14,7 +14,7 @@ Boundedness Theorem 有界性定理
   
 > Proof - Sketch  
 > 1 we claim c = the Least Upper Bound of the set { x ∈ \[a,b\] : f(x) is bounded on \[a,x\] }  
-> 2 we claim f(x) is bounded on \[a,c\] **NOTE since c can equal b, if the interval \[a,b\] were half-open \[a,b), we would have f(x) may not continuous at c by applying b to c**  
+> 2 we claim f(x) is bounded on \[a,c\] **NOTE since c can equal b, if the interval \[a,b\] were half-open \[a,b), we would have f(x) may not be continuous at c by applying b to c**  
 > 3 we claim c = b  
 >  
 > Dependency  
@@ -29,9 +29,23 @@ Extreme Value Theorem 极值定理 \\ Maximum-Minimum Theorem 最大值最小值
 Intermediate Value Theorem 介值定理  
 
 
-Homeomorphism 同胚  
+Homeomorphism 同胚 / homeomorphic 同胚的  
 \[Pugh 2015\] / Figure 31  
 The inverse of continuous bijection may not be continuous.  
+  
+\[Pugh 2015\] / Figure 32  
+
+Trefoil Knot 三叶结  
+Torus 环面  
+
+Circle - Trefoil Knot - Square //Square diff Sphere  
+Donut(2-Torus) - Coffee Cup  
+Unit Interval - Closed Unit Disk //Pending?  
+
+ProofWiki / Trefoil Knot is Homeomorphic to Circle  
+ProofWiki / Jokes / Coffee and Doughnuts  
+
+
 
 
 
