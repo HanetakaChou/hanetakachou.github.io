@@ -29,12 +29,15 @@ Extreme Value Theorem 极值定理 \\ Maximum-Minimum Theorem 最大值最小值
 Intermediate Value Theorem 介值定理  
 
 
+Continuous Mapping (Topology) 连续映射(拓扑)  
+\[Pugh 2015\] / 2 A Taste of Topology / 2 Continuity / Definition  //preserve sequential convergence  
+\[Pugh 2015\] / 2 A Taste of Topology / 2 Continuity / The (ϵ, δ)-Condition / 4 Theorem  //The (ϵ, δ)-Condition  
+
 Homeomorphism 同胚 / homeomorphic 同胚的  
 \[Pugh 2015\] / Figure 31  
 The inverse of continuous bijection may not be continuous.  
   
 \[Pugh 2015\] / Figure 32  
-
 Trefoil Knot 三叶结  
 Torus 环面  
 
