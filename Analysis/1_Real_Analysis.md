@@ -32,6 +32,9 @@ Intermediate Value Theorem 介值定理
 Continuous Mapping (Topology) 连续映射(拓扑)  
 \[Pugh 2015\] / 2 A Taste of Topology / 2 Continuity / Definition  //preserve sequential convergence  
 \[Pugh 2015\] / 2 A Taste of Topology / 2 Continuity / The (ϵ, δ)-Condition / 4 Theorem  //The (ϵ, δ)-Condition  
+ProofWiki / Sequential Continuity is Equivalent to Continuity in the Reals  
+ProofWiki / Continuous Mapping is Sequentially Continuous  
+\[Pugh 2015\] / 2 A Taste of Topology / Exercises / 13  //
 
 Homeomorphism 同胚 / homeomorphic 同胚的  
 \[Pugh 2015\] / Figure 31  
@@ -43,7 +46,7 @@ Torus 环面
 
 Circle - Trefoil Knot - Square //Square diff Sphere  
 Donut(2-Torus) - Coffee Cup  
-Unit Interval - Closed Unit Disk //Pending?  
+//Unit Interval - Closed Unit Disk //Pending?  
 
 ProofWiki / Trefoil Knot is Homeomorphic to Circle  
 ProofWiki / Jokes / Coffee and Doughnuts  
