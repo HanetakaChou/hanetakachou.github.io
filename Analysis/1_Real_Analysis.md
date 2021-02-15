@@ -67,7 +67,7 @@ ProofWiki / Set is Open iff Neighborhood of all its Points
 
 ### Topology
 \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / 6 Theorem  
-
+Finite Intersection may relate to Axiom of Choice  
 
 ## Reference  
 \[Pugh 2015\] Charles Pugh. "Real Mathematical Analysis Second Edition." Springer 2015.  
