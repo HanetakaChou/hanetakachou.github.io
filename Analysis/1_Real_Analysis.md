@@ -53,12 +53,21 @@ Donut(2-Torus) - Coffee Cup
 ProofWiki / Trefoil Knot is Homeomorphic to Circle  
 ProofWiki / Jokes / Coffee and Doughnuts  
 
-### Limit
+### Limit  
 Limit Point 极点 / Cluster Point 聚点 / Accumulation Point //**Attention:** Limit Point vs Limit of Sequence  
 Isolated Point 孤立点  
 Adherent Point 附着点 //Adherent Point ⇔ Limit of Sequence \[Pugh 2015\]  
+\[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / 5 Theorem  
 (pn) converges to p ⇒ p is the adherent point  
 ProofWiki / Closure of Subset of Metric Space by Convergent Sequence  
+
+### Closed Set / Open Set 
+\[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Definition //Open Set  
+ProofWiki / Set is Open iff Neighborhood of all its Points  
+
+### Topology
+\[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / 6 Theorem  
+
 
 ## Reference  
 \[Pugh 2015\] Charles Pugh. "Real Mathematical Analysis Second Edition." Springer 2015.  
