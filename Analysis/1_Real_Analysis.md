@@ -69,16 +69,30 @@ ProofWiki / Closure of Subset of Metric Space by Convergent Sequence
 \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Definition //Open Set  
 ProofWiki / Set is Open iff Neighborhood of all its Points  
 
+Complement //$[a, b]$ is closed since $[a, b]$ is the complement of the open set $(-\infin, b) \cup (a, +\infin)$
+
 ### Topology
 \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / 6 Theorem  
+
+Allow **Infinite** union //$(a, +\infin)$ is open since $(a, +\infin) = \displaystyle \bigcup_{n \isin \N} (a+\frac{1}{n}, n)$  
+
 **Finite** Intersection //$\displaystyle \bigcap_{n \isin \N} (1-\frac{1}{n}, 2+\frac{1}{n})$=\[1,2\]  
+//**Minimum of Infinite set may be undefined**   
+ProofWiki / Definition:Min Operation  
+ProofWiki / Definition:Operation/N-Ary Operation  
 //**Minimum of Infinite set may not exist**  
 //r = min{1, $\displaystyle \frac{1}{2}$, $\displaystyle \frac{1}{3}$, ... , $\displaystyle \frac{1}{n}$} n ∈ N ⇒ there doesn't exist such r  
 //proof by contradiction  
 //by archimedean property, we would find a number less than r if r were greater than 0  
 //and thus we would have r is not the minimum  
   
+The limits of limits are limits  
+\[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / 8 Theorem  
+> choose qn from S (not from limS)
+
 Closure ⇔ Limit Set \[Pugh 2015\]  
+\[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / 10 Corollary
+> S ⊂ K ⇒ Limit(Adherent Point) of S ⊂ Limit(Adherent Point) of K  
 
 ## Reference  
 \[Pugh 2015\] Charles Pugh. "Real Mathematical Analysis Second Edition." Springer 2015.  
