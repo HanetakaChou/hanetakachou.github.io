@@ -36,7 +36,7 @@ You should have received a copy of the GNU Lesser General Public License along w
 ProofWiki / Sequential Continuity is Equivalent to Continuity in the Reals  
 ProofWiki / Continuous Mapping is Sequentially Continuous  
 
-\[Pugh 2015\] / 2 A Taste of Topology / Exercises / 13  //
+\[Pugh 2015\] / 2 A Taste of Topology / Exercises / 13  //Preservation of convergence of sequence implies continuous  
 
 ### Homeomorphism 同胚 / homeomorphic 同胚的  
 \[Pugh 2015\] / Figure 31  
@@ -56,7 +56,7 @@ ProofWiki / Jokes / Coffee and Doughnuts
 ### Limit  
 Limit Point 极点 / Cluster Point 聚点 / Accumulation Point //**Attention:** Limit Point vs Limit of Sequence  
 Isolated Point 孤立点  
-Adherent Point 附着点 //Adherent Point ⇔ Limit of Sequence \[Pugh 2015\]  
+Adherent Point 附着点 //Adherent Point ⇔ Limit (of Sequence) \[Pugh 2015\]  
 \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / 5 Theorem  
 (pn) converges to p ⇒ p is the adherent point  
 ProofWiki / Closure of Subset of Metric Space by Convergent Sequence  
@@ -67,7 +67,14 @@ ProofWiki / Set is Open iff Neighborhood of all its Points
 
 ### Topology
 \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / 6 Theorem  
-Finite Intersection may relate to Axiom of Choice  
+**Finite** Intersection //$\displaystyle \bigcap_{n \isin \N} (1-\frac{1}{n}, 2+\frac{1}{n})$=\[1,2\]  
+//**Minimum of Infinite set may not exist**  
+//r = min{1, $\displaystyle \frac{1}{2}$, $\displaystyle \frac{1}{3}$, ... , $\displaystyle \frac{1}{n}$} n ∈ N ⇒ there doesn't exist such r  
+//proof by contradiction  
+//by archimedean property, we would find a number less than r if r were greater than 0  
+//and thus we would have r is not the minimum  
+  
+Closure ⇔ Limit Set \[Pugh 2015\]  
 
 ## Reference  
 \[Pugh 2015\] Charles Pugh. "Real Mathematical Analysis Second Edition." Springer 2015.  
