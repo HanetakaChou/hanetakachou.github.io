@@ -40,6 +40,7 @@ ProofWiki / Continuous Mapping is Sequentially Continuous
 > Proof - Sketch  
 > we construct (pn) such that pn = q + 1/n as "4 Theorem //The (ϵ, δ)-Condition"  
 > we construct (qn) such that q2n = p and q2n-1 = pn which impies (qn) doesn't converge  
+>  
 
 ### Homeomorphism 同胚 / homeomorphic 同胚的  
 \[Pugh 2015\] / Figure 31  
