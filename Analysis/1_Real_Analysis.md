@@ -22,7 +22,7 @@ You should have received a copy of the GNU Lesser General Public License along w
 > 函数极限的局部有界性 \# \[同济大学数学系 2014\] / 第一章 函数与极限 / 二、函数极限的性质/定律2（函数极限的局部有界性）  
 >  
 
-### Extreme Value Theorem 极值定理 \\ Maximum-Minimum Theorem 最大值最小值定理  
+### Extreme Value Theorem 极值定理 // Maximum-Minimum Theorem 最大值最小值定理  
 \[Pugh 2015\] / 23 Theorem  
 
 
@@ -30,13 +30,16 @@ You should have received a copy of the GNU Lesser General Public License along w
 
 
 ### Continuous Mapping (Topology) 连续映射(拓扑)  
-\[Pugh 2015\] / 2 A Taste of Topology / 2 Continuity / Definition  //preserve sequential convergence  
+The sequential convergence preservation condition  
+\[Pugh 2015\] / 2 A Taste of Topology / 2 Continuity / Definition  
 
-\[Pugh 2015\] / 2 A Taste of Topology / 2 Continuity / The (ϵ, δ)-Condition / 4 Theorem  //The (ϵ, δ)-Condition  
+The (ϵ, δ)-Condition  
+\[Pugh 2015\] / 2 A Taste of Topology / 2 Continuity / The (ϵ, δ)-Condition / 4 Theorem  
 ProofWiki / Sequential Continuity is Equivalent to Continuity in the Reals  
 ProofWiki / Continuous Mapping is Sequentially Continuous  
 
-\[Pugh 2015\] / 2 A Taste of Topology / Exercises / 13  //Preservation of convergence of sequence implies continuous  
+The sequential convergence preservation condition (Improved)
+\[Pugh 2015\] / 2 A Taste of Topology / Exercises / 13  
 > Proof - Sketch  
 > we construct (pn) such that pn = q + 1/n as "4 Theorem //The (ϵ, δ)-Condition"  
 > we construct (qn) such that q2n = p and q2n-1 = pn which impies (qn) doesn't converge  
@@ -58,20 +61,24 @@ ProofWiki / Trefoil Knot is Homeomorphic to Circle
 ProofWiki / Jokes / Coffee and Doughnuts  
 
 ### Limit  
+\[Pugh 2015\] / 2 A Taste of Topology / Convergent Sequences and Subsequences  
+
 Limit Point 极点 / Cluster Point 聚点 / Accumulation Point //**Attention:** Limit Point vs Limit of Sequence  
 Isolated Point 孤立点  
 Adherent Point 附着点 //Adherent Point ⇔ Limit (of Sequence) \[Pugh 2015\]  
 \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / 5 Theorem  
-(pn) converges to p ⇒ p is the adherent point  
+($\displaystyle p_n$) converges to p ⇒ p is the adherent point  
 ProofWiki / Closure of Subset of Metric Space by Convergent Sequence  
 
 ### Closed Set / Open Set 
 \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Definition //Open Set  
 ProofWiki / Set is Open iff Neighborhood of all its Points  
 
-Complement //$[a, b]$ is closed since $[a, b]$ is the complement of the open set $(-\infin, b) \cup (a, +\infin)$
+Complement //[a, b] is closed since [a, b] is the complement of the open set ($\displaystyle -\infin$, b) $\displaystyle \cup$ (a, $\displaystyle +\infin$)  
+//{0} $\displaystyle \cup$ {$\displaystyle \frac{1}{n}$ : n ∈ N} is closed since {0} $\displaystyle \cup$ {$\displaystyle \frac{1}{n}$ : n ∈ N} is the complement of the open set ($\displaystyle -\infin$, 0) $\displaystyle \cup$ (0, $\displaystyle \frac{1}{n}$) $\displaystyle \cup$ ($\displaystyle \frac{1}{n}$, $\displaystyle \frac{1}{n-1}$) $\displaystyle \cup$ ... $\displaystyle \cup$ ($\displaystyle \frac{1}{2}$, 1) //**NOTE** although {$\displaystyle \frac{1}{n}$} n ∈ N is closed, we can't infer the result by union since the closed set demands **Finite** union  
 
 ### Topology
+union / **Finite** Intersection -produces-> Open Set  
 \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / 6 Theorem  
 
 Allow **Infinite** union //$(a, +\infin)$ is open since $(a, +\infin) = \displaystyle \bigcup_{n \isin \N} (a+\frac{1}{n}, n)$  
@@ -86,13 +93,26 @@ ProofWiki / Definition:Operation/N-Ary Operation
 //by archimedean property, we would find a number less than r if r were greater than 0  
 //and thus we would have r is not the minimum  
   
+Intersection / **Finite** union -produces-> Open Set  
+
 The limits of limits are limits  
 \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / 8 Theorem  
-> choose qn from S (not from limS)
+> choose qn from S (not from limS)  
 
 Closure ⇔ Limit Set \[Pugh 2015\]  
+Idempotent //lim(limS) = limS  
 \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / 10 Corollary
-> S ⊂ K ⇒ Limit(Adherent Point) of S ⊂ Limit(Adherent Point) of K  
+> S ⊂ K ⇒ Limit(Adherent Point) of S ⊂ Limit(Adherent Point) of K    
+
+### Continuous Mapping (Topology) 连续映射(拓扑)  
+//**TODO** above "Continuous Mapping (Topology) 连续映射(拓扑)" move here  
+
+PreImage 原像 //Inverse Image 逆像 //inverse map f-1 may not exist  
+Annulus 环形  
+
+The closed set condition  
+The open set condition  
+\[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Topological Description of Continuity / 11 Theorem  
 
 ## Reference  
 \[Pugh 2015\] Charles Pugh. "Real Mathematical Analysis Second Edition." Springer 2015.  
