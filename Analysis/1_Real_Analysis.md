@@ -28,6 +28,10 @@ You should have received a copy of the GNU Lesser General Public License along w
 
 ### Intermediate Value Theorem 介值定理  
 
+### Mapping (Topology)  
+Inject 单射 / one-to-one 一一映射  
+Surject 满射 / onto  
+Biject 双射
 
 ### Continuous Mapping (Topology) 连续映射(拓扑)  
 The sequential convergence preservation condition  
@@ -72,12 +76,14 @@ ProofWiki / Closure of Subset of Metric Space by Convergent Sequence
 
 ### Closed Set / Open Set 
 \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Definition //Open Set  
+\[Tu 2011\] / Local criterion for openness  
 ProofWiki / Set is Open iff Neighborhood of all its Points  
+ProofWiki / Interior of Open Set  
 
 Complement //[a, b] is closed since [a, b] is the complement of the open set ($\displaystyle -\infin$, b) $\displaystyle \cup$ (a, $\displaystyle +\infin$)  
 //{0} $\displaystyle \cup$ {$\displaystyle \frac{1}{n}$ : n ∈ N} is closed since {0} $\displaystyle \cup$ {$\displaystyle \frac{1}{n}$ : n ∈ N} is the complement of the open set ($\displaystyle -\infin$, 0) $\displaystyle \cup$ (0, $\displaystyle \frac{1}{n}$) $\displaystyle \cup$ ($\displaystyle \frac{1}{n}$, $\displaystyle \frac{1}{n-1}$) $\displaystyle \cup$ ... $\displaystyle \cup$ ($\displaystyle \frac{1}{2}$, 1) //**NOTE** although {$\displaystyle \frac{1}{n}$} n ∈ N is closed, we can't infer the result by union since the closed set demands **Finite** union  
 
-### Topology
+### Topology //induced by Metric  
 union / **Finite** Intersection -produces-> Open Set  
 \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / 6 Theorem  
 
@@ -97,7 +103,7 @@ Intersection / **Finite** union -produces-> Open Set
 
 The limits of limits are limits  
 \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / 8 Theorem  
-> choose qn from S (not from limS)  
+> choose $\displaystyle q_n$ from S (not from limS)  
 
 Closure ⇔ Limit Set \[Pugh 2015\]  
 Idempotent //lim(limS) = limS  
@@ -110,10 +116,29 @@ Idempotent //lim(limS) = limS
 PreImage 原像 //Inverse Image 逆像 //inverse map f-1 may not exist  
 Annulus 环形  
 
-The closed set condition  
-The open set condition  
 \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Topological Description of Continuity / 11 Theorem  
 
+The closed set condition  
+> Proof - Sketch  
+> K is closed in N. To prove $\displaystyle \operatorname{{f}^{pre}}$(K) is closed in M,  we assume ($\displaystyle p_n$) /\* $\displaystyle p_n$ $\displaystyle \isin$ $\displaystyle \operatorname{{f}^{pre}}$(K) \*/ converges to p and it suffices to prove p $\displaystyle \isin$ $\displaystyle \operatorname{{f}^{pre}}$(K).  
+> f(p) $\displaystyle \isin$ K /\* which implies p $\displaystyle \isin$ $\displaystyle \operatorname{{f}^{pre}}$(K) \*/ since (f($\displaystyle p_n$)) converges to f(p) in N and K is closed.  
+
+The open set condition //As the defination in general topology  
+> Proof - Sketch  
+> construct $\displaystyle N_\epsilon$f(p) /\* ϵ-neighbourhood of f(p) in N \*/ which is open in N  
+> $\displaystyle \operatorname{{f}^{pre}}$($\displaystyle N_\epsilon$f(p)) is open in M and p $\displaystyle \isin$ $\displaystyle \operatorname{{f}^{pre}}$($\displaystyle N_\epsilon$f(p))  
+> exists δ such that δ-neighbourhood of p $\displaystyle \subset$ $\displaystyle \operatorname{{f}^{pre}}$($\displaystyle N_\epsilon$f(p))  
+
+\[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Topological Description of Continuity / 12 Corollary  
+Homeomorphism $\displaystyle \Leftrightarrow$ Topological Equivalence  
+
+\[Pugh 2015\] / 2 A Taste of Topology / Exercise / 28  
+Open Mapping 开映射  
+
+continous mapping may not send open sets to open sets  
+$\displaystyle \operatorname{f^{-1}}$ is continous $\displaystyle \Rightarrow$ f is open //open mapping  
+
 ## Reference  
-\[Pugh 2015\] Charles Pugh. "Real Mathematical Analysis Second Edition." Springer 2015.  
+\[Pugh 2015\] Charles Pugh. "Real Mathematical Analysis, Second Edition." Springer 2015.  
+\[Tu 2011\] Loring Tu. "An Introduction to Manifolds, Second Edition." Springer 2011.  
 \[同济大学数学系 2014\] 同济大学数学系. "高等数学 第七版." 高等教育出版社 2014.   
