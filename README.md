@@ -16,11 +16,11 @@ You should have received a copy of the GNU Lesser General Public License along w
    
 > [Analysis/1_Real_Analysis.md](Analysis/1_Real_Analysis.md)    
 
-[Calculus.md](Calculus.md)    
+## Algebra  
 
-[Complex.md](Complex.md)  
+> [Algebra/1_Linear_Algebra.md](Algebra/1_Linear_Algebra.md)   
 
-[LinearAlgebra.md](LinearAlgebra.md)   
+## Computer  
 
 [Compiler.md](Compiler.md)  
 
