@@ -9,18 +9,25 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 You should have received a copy of the GNU Lesser General Public License along with this program.  If not, see <https://www.gnu.org/licenses/>
 ```  
    
-   
+
+## Scientific Textbooks
+
 [Logic.md](Logic.md)  
 
-## Analysis  
+### Analysis  
    
 > [Analysis/1_Real_Analysis.md](Analysis/1_Real_Analysis.md)    
 
-## Algebra  
+\[Pugh 2015\] Charles Pugh. "Real Mathematical Analysis, Second Edition." Springer 2015.  
+\[Tu 2011\] Loring Tu. "An Introduction to Manifolds, Second Edition." Springer 2011.  
+
+### Algebra  
 
 > [Algebra/1_Linear_Algebra.md](Algebra/1_Linear_Algebra.md)   
 
-## Computer  
+\[Axler 2015\] Sheldon Axler. "Linear Algebra Done Right, Third edition." Springer 2015  
+
+### Computer  
 
 [Compiler.md](Compiler.md)  
 
