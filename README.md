@@ -59,7 +59,7 @@ passwd openvpn ## set the password of the user "openvpn"
 systemctl restart openvpnas
 
 # accept the Agreement
-ssh -L8080:localhost:943 root@45.32.14.115 ## use ssh forwarding to tunnel through the firewall
+ssh -L8080:localhost:943 root@x.x.x.x ## use ssh forwarding to tunnel through the firewall
 # access the https://localhost:8080/admin (with the "/admin") by the web browser  
 # the web browser may warn the website is unsafe and we may ignore the warning
 # login with the admin user "openvpn"
@@ -81,7 +81,7 @@ firewall-cmd --reload
 
 ###### common
 ```shell
-ssh -L8080:localhost:943 root@45.32.14.115 ## use ssh forwarding to tunnel through the firewall
+ssh -L8080:localhost:943 root@x.x.x.x ## use ssh forwarding to tunnel through the firewall
 # access the https://localhost:8080 (without the "/admin") by the web browser
 # the web browser may warn the website is unsafe and we may ignore the warning
 # login with the non-privileged user "HanetakaYuminaga"

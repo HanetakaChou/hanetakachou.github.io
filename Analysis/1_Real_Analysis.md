@@ -138,6 +138,8 @@ Open Mapping 开映射
 continous mapping may not send open sets to open sets  
 $\displaystyle \operatorname{f^{-1}}$ is continous $\displaystyle \Rightarrow$ f is open //open mapping  
 
+### Inheritance 继承 / Subspace 子空间  
+
 ## Reference  
 \[Pugh 2015\] Charles Pugh. "Real Mathematical Analysis, Second Edition." Springer 2015.  
 \[Tu 2011\] Loring Tu. "An Introduction to Manifolds, Second Edition." Springer 2011.  
