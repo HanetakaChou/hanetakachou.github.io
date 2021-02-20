@@ -28,6 +28,74 @@ You should have received a copy of the GNU Lesser General Public License along w
 
 ### Intermediate Value Theorem 介值定理  
 
+## Topology  
+
+```graphviz
+graph topology{
+    //rankdir=LR 
+    node[shape=box]
+    
+    Interior_Point[label="Interior Point"]
+    Adherent_Point[label="Adherent Point / Closure Point / Contact Point"] //附着点/闭包点/(接)触点
+    Cluster_Point[label="Cluster Point / Limit point / Accumulation Point"] //聚(集)点/极(限)点/(会)聚点
+    Isolated_Point[label="Isolated Point"] //孤(立)点
+    
+    Adherent_Point -- Cluster_Point
+    Adherent_Point -- Isolated_Point
+
+    Interior //内部
+    Closure //闭包
+    Derived_Set[label="Derived Set"] //导集
+
+    Interior--Interior_Point
+    Closure -- Adherent_Point
+    Derived_Set -- Cluster_Point
+    {
+        rank=same
+        Interior--Derived_Set--Closure[style=invis]
+        //Interior_Point--Cluster_Point--Isolated_Point[style=invis]
+        rankdir=LR
+    }
+
+    Open_Set[label="Open Set"] //开集
+    Closed_Set[label="Closed Set"] //闭集
+    {
+        rank=same
+        Open_Set--Closed_Set[label="Complement"] //补集
+        rankdir=LR
+    }
+
+    Open_Set--Interior
+    Closed_Set--Closure
+
+    Limit[label="Limit (of Sequence)"]
+    {
+        rank=same
+        Adherent_Point -- Limit
+        rankdir=LR
+    }
+
+    Limit_Set[label="Limit Set"]
+    {
+        rank=same
+        Closure -- Limit_Set
+        rankdir=LR
+    }
+
+    Limit_Set--Limit[label="The limits of limits are limits"]
+
+    Neighbourhood //领域
+    {
+        rank=same
+        //Neighbourhood--Interior[style=invis]
+        Neighbourhood--Interior_Point[label="Local criterion for openness"]
+        rankdir=LR
+    }
+    Neighbourhood_Invis[style=invis]
+    Interior--Neighbourhood_Invis--Neighbourhood[style=invis]
+}
+```
+
 ### Mapping (Topology)  
 Inject 单射 / one-to-one 一一映射  
 Surject 满射 / onto  
@@ -74,11 +142,15 @@ Adherent Point 附着点 //Adherent Point ⇔ Limit (of Sequence) \[Pugh 2015\]
 ($\displaystyle p_n$) converges to p ⇒ p is the adherent point  
 ProofWiki / Closure of Subset of Metric Space by Convergent Sequence  
 
-### Closed Set / Open Set 
+### Closed Set / Open Set  
+
 \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Definition //Open Set  
+
+Open sets are unions of its r-neighborhoods  
 \[Tu 2011\] / Local criterion for openness  
-ProofWiki / Set is Open iff Neighborhood of all its Points  
 ProofWiki / Interior of Open Set  
+ProofWiki / Equivalence of Definitions of Interior  
+~~ProofWiki / Set is Open iff Neighborhood of all its Points~~  
 
 Complement //[a, b] is closed since [a, b] is the complement of the open set ($\displaystyle -\infin$, b) $\displaystyle \cup$ (a, $\displaystyle +\infin$)  
 //{0} $\displaystyle \cup$ {$\displaystyle \frac{1}{n}$ : n ∈ N} is closed since {0} $\displaystyle \cup$ {$\displaystyle \frac{1}{n}$ : n ∈ N} is the complement of the open set ($\displaystyle -\infin$, 0) $\displaystyle \cup$ (0, $\displaystyle \frac{1}{n}$) $\displaystyle \cup$ ($\displaystyle \frac{1}{n}$, $\displaystyle \frac{1}{n-1}$) $\displaystyle \cup$ ... $\displaystyle \cup$ ($\displaystyle \frac{1}{2}$, 1) //**NOTE** although {$\displaystyle \frac{1}{n}$} n ∈ N is closed, we can't infer the result by union since the closed set demands **Finite** union  
@@ -138,7 +210,16 @@ Open Mapping 开映射
 continous mapping may not send open sets to open sets  
 $\displaystyle \operatorname{f^{-1}}$ is continous $\displaystyle \Rightarrow$ f is open //open mapping  
 
-### Inheritance 继承 / Subspace 子空间  
+### Inheritance 继承 
+Subspace 子空间  
+Relatively Open/Closed Set 相对开/闭集  
+\[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Inheritance / 13 Inheritance Principle  
+\[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Inheritance / 14 Corollary  
+//induce subspace?  
+
+\[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Inheritance / 15 Corollary  
+Assume N is a subspace of M, we have that sets open relative to N may not be open relative to M.  
+However, **if N is open**, sets open relative to N and sets open relative to M can be deduced by each other.
 
 ## Reference  
 \[Pugh 2015\] Charles Pugh. "Real Mathematical Analysis, Second Edition." Springer 2015.  
