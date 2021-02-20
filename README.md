@@ -33,116 +33,7 @@ You should have received a copy of the GNU Lesser General Public License along w
 
 ## Scientific Web Browsing
 
-### I\. SSH
-You may rent the CentOS 8 machine by the Vultr and use ssh as a socks5 proxy server.
-
-#### 1\.server side  
-
-set firewall rules
-```shell
-# systemctl start sshd # by default
-
-# firewall-cmd --add-service ssh ## by default
-# firewall-cmd --list-services ## --zone=public
-firewall-cmd --add-masquerade ## --zone=public
-# firewall-cmd --query-masquerade ## --zone=public
-firewall-cmd --runtime-to-permanent
-firewall-cmd --reload
-```
-create non-privileged user
-```shell
-adduser -m HanetakaYuminaga
-passwd HanetakaYuminaga
-```
-
-disable root login from ssh for security
-```shell
-vi /etc/ssh/sshd_config  
-- PermitRootLogin yes
-+ PermitRootLogin no
-
-rm /usr/bin/su #learn from Android
-```
-
-#### 2\.client side
-
-use ssh as a socks5 proxy server
-```shell
-ssh -T -D 8080 HanetakaYuminaga@x.x.x.x #add "-T" to disable pseudo-tty allocation for better performance
-```
-
-launch app with http proxy  
-```shell
-#launch from the local terminal not the ssh terminal
-
-#close all opened "chrome"s 
-
-"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --proxy-server="socks5://localhost:8080" #Windows
-
-"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --proxy-server="socks5://localhost:8080" & #MacOS
-
-google-chrome --proxy-server="socks5://localhost:8080" & #Linux
-```
-
-### II\. Privoxy
-
-You may rent the CentOS 8 machine by the Vultr and deploy your own (http) proxy server by the following tutorial.
-
-#### 1\.server side  
-
-install Privoxy
-```shell
-yum install privoxy
-
-# firewall-cmd --add-service privoxy ## --zone=public #**NOT DO THIS**, which may allow anyone to connect to the privoxy
-# firewall-cmd --list-services ## --zone=public
-firewall-cmd --add-masquerade ## --zone=public
-# firewall-cmd --query-masquerade ## --zone=public
-firewall-cmd --runtime-to-permanent
-firewall-cmd --reload
-```
-
-create non-privileged user
-```shell
-adduser -m HanetakaYuminaga
-passwd HanetakaYuminaga
-```
-
-disable root login from ssh for security
-```shell
-vi /etc/ssh/sshd_config  
-- PermitRootLogin yes
-+ PermitRootLogin no
-
-rm /usr/bin/su #learn from Android
-```
-
-#### 2\.client side
-
-use ssh forward to encrypt the privoxy   
-```shell
-#the default listen address of Privoxy is "127.0.0.1:8118" 
-#/etc/privoxy/config 
-#listen-address 127.0.0.1:8118
-
-ssh -T -L8118:localhost:8118 HanetakaYuminaga@x.x.x.x #add "-T" to disable pseudo-tty allocation for better performance
-#for vscode, add the "LocalForward 127.0.0.1:8118 127.0.0.1:8118" in ssh config file #https://code.visualstudio.com/docs/remote/ssh#_always-forwarding-a-port
-```
-
-launch app with http proxy  
-```shell
-#launch from the local terminal not the ssh terminal
-
-#close all opened "chrome"s 
-
-"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --proxy-server="localhost:8118" #Windows
-
-"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --proxy-server="localhost:8118" & #MacOS
-
-google-chrome --proxy-server="localhost:8118" & #Linux
-```
-
-### III\.OpenVPN Access Server
+### I\.OpenVPN Access Server
 
 You may rent the CentOS 8 machine by the Vultr and deploy your own VPN server by the following tutorial.
 
@@ -161,8 +52,25 @@ passwd openvpn ## set the password of the user "openvpn"
 
 ##### server side  
 ```shell  
-firewall-cmd --add-port 943/tcp ## --zone=public ## configure firewalld to allow the https access to import the profile
-# firewall-cmd --list-ports ## --zone=public
+# config the web server to only listen on localhost for security
+/usr/local/openvpn_as/scripts/sacli --key "cs.https.ip_address" --value "127.0.0.1" ConfigPut
+/usr/local/openvpn_as/scripts/sacli --key "admin_ui.https.ip_address" --value "127.0.0.1" ConfigPut
+/usr/local/openvpn_as/scripts/sacli start
+systemctl restart openvpnas
+
+# accept the Agreement
+ssh -L8080:localhost:943 root@45.32.14.115 ## use ssh forwarding to tunnel through the firewall
+# access the https://localhost:8080/admin (with the "/admin") by the web browser  
+# the web browser may warn the website is unsafe and we may ignore the warning
+# login with the admin user "openvpn"
+# accept the Agreement to start the OpenVPN Access Server 
+
+# add non-privileged user 
+# add the user "HanetakaYuminaga" from the https://localhost:8080/admin "USER MANAGEMENT"
+/usr/local/openvpn_as/scripts/sacli --user HanetakaYuminaga --new_pass 'your-cool-password' SetLocalPassword ## set the password by the commandline
+/usr/local/openvpn_as/scripts/sacli start
+systemctl restart openvpnas
+
 firewall-cmd --add-masquerade ## --zone=public
 # firewall-cmd --query-masquerade ## --zone=public
 firewall-cmd --runtime-to-permanent
@@ -173,34 +81,28 @@ firewall-cmd --reload
 
 ###### common
 ```shell
-# access the https://x.x.x.x:943/admin (with the "/admin") by the web browser and accept the Agreement to start the OpenVPN Access Server ## login with the user "openvpn" 
+ssh -L8080:localhost:943 root@45.32.14.115 ## use ssh forwarding to tunnel through the firewall
+# access the https://localhost:8080 (without the "/admin") by the web browser
 # the web browser may warn the website is unsafe and we may ignore the warning
+# login with the non-privileged user "HanetakaYuminaga"
+# download the profile file "client.ovpn" from the link "Yourself (user-locked profile)"
 ```
 
 ###### Windows/Mac/Android/IOS client
 ```shell
-# download the client from the URL https://x.x.x.x:943 (without the "/admin") by the web browser ## login with the user "openvpn" ## the web browser may warn the website is unsafe and we may ignore the warning
-# install the client and import the profile from the URL https://x.x.x.x:943 (without the "/admin") by the client UI
+# download the client from the https://localhost:8080 (without the "/admin") by the web browser 
+
+# install the client and import the profile from the file "client.ovpn" by the client UI
 ```
 
 ###### Linux client  
 ```shell
 # we don't need to download the client and we may use the "plasma-nm-openvpn"
 
-# download the profile file "client.ovpn" from the URL https://x.x.x.x:943 (without the "/admin")
-nmcli connection import type openvpn file path-to-client.ovpn ## import the profile
+nmcli connection import type openvpn file "path-to-the-client.ovpn" ## import the profile
 
-# "configure" the "Connections" and fill the "username" with "openvpn" by the plasma-nm UI
+# "configure" the "Connections" and fill the "username" with "openvpn" by the plasma-nm UI ## leave the "Private Key Password" blank
 ```  
-
-##### server side  
-```shell  
-# ssh root@x.x.x.x
-
-firewall-cmd --remove-port 943/tcp ## start firewalld for security and we can't access the "unsafe" URL https://x.x.x.x:943 now
-firewall-cmd --runtime-to-permanent
-firewall-cmd --reload
-```
 
 #### 3\.connect OpenVPN
 
@@ -222,10 +124,6 @@ systemctl restart openvpnas ## to start/stop the firewalld may result in that th
 ```
 
 ##### client side  
-```shell
-# openvpn client
-# connect to the imported profile
-```
 
 ###### Windows/Mac/Android/IOS client  
 ```shell
@@ -234,10 +132,10 @@ systemctl restart openvpnas ## to start/stop the firewalld may result in that th
 
 ###### Linux client  
 ```shell
-# connect by the plasma-nm UI ##  leave the "key Password" empty
+# connect by the plasma-nm UI ##  leave the "(Private) key Password" blank
 ```
 
-### III\.Tor
+### II\.Tor
 
 You may rent the CentOS 8 machine by the Vultr and deploy your own Tor server by the following tutorial.
 
