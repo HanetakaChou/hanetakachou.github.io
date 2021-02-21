@@ -32,28 +32,39 @@ You should have received a copy of the GNU Lesser General Public License along w
 
 ```graphviz
 graph topology{
-    //rankdir=LR 
+    rankdir=TB 
     node[shape=box]
     
     Interior_Point[label="Interior Point"]
+    
     Adherent_Point[label="Adherent Point / Closure Point / Contact Point"] //附着点/闭包点/(接)触点
     Cluster_Point[label="Cluster Point / Limit point / Accumulation Point"] //聚(集)点/极(限)点/(会)聚点
     Isolated_Point[label="Isolated Point"] //孤(立)点
-    
-    Adherent_Point -- Cluster_Point
-    Adherent_Point -- Isolated_Point
+
+    Boundary_Point[label="Boundary Point"] //边界点
+
+    Adherent_Point--Cluster_Point
+    Adherent_Point--Isolated_Point
+    Boundary_Point--Interior_Point
+    Boundary_Point--Adherent_Point
 
     Interior //内部
     Closure //闭包
     Derived_Set[label="Derived Set"] //导集
+    Boundary //边界
 
     Interior--Interior_Point
-    Closure -- Adherent_Point
-    Derived_Set -- Cluster_Point
+    Closure--Adherent_Point
+    Derived_Set--Cluster_Point
+    Boundary--Boundary_Point
     {
         rank=same
-        Interior--Derived_Set--Closure[style=invis]
-        //Interior_Point--Cluster_Point--Isolated_Point[style=invis]
+        Interior--Boundary--Derived_Set--Closure[style=invis]
+        rankdir=LR
+    }
+    {
+        rank=same
+        Interior_Point--Cluster_Point--Isolated_Point[style=invis]
         rankdir=LR
     }
 
@@ -64,11 +75,10 @@ graph topology{
         Open_Set--Closed_Set[label="Complement"] //补集
         rankdir=LR
     }
-
     Open_Set--Interior
     Closed_Set--Closure
 
-    Limit[label="Limit (of Sequence)"]
+    Limit[label="Limit (of Converge Sequence)"]
     {
         rank=same
         Adherent_Point -- Limit
@@ -78,7 +88,7 @@ graph topology{
     Limit_Set[label="Limit Set"]
     {
         rank=same
-        Closure -- Limit_Set
+        Closure--Limit_Set
         rankdir=LR
     }
 
@@ -87,12 +97,9 @@ graph topology{
     Neighbourhood //领域
     {
         rank=same
-        //Neighbourhood--Interior[style=invis]
         Neighbourhood--Interior_Point[label="Local criterion for openness"]
         rankdir=LR
     }
-    Neighbourhood_Invis[style=invis]
-    Interior--Neighbourhood_Invis--Neighbourhood[style=invis]
 }
 ```
 
@@ -224,4 +231,4 @@ However, **if N is open**, sets open relative to N and sets open relative to M c
 ## Reference  
 \[Pugh 2015\] Charles Pugh. "Real Mathematical Analysis, Second Edition." Springer 2015.  
 \[Tu 2011\] Loring Tu. "An Introduction to Manifolds, Second Edition." Springer 2011.  
-\[同济大学数学系 2014\] 同济大学数学系. "高等数学 第七版." 高等教育出版社 2014.   
+~~\[同济大学数学系 2014\] 同济大学数学系. "高等数学 第七版." 高等教育出版社 2014.~~   
