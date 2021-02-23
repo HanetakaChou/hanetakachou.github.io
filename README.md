@@ -33,25 +33,134 @@ You should have received a copy of the GNU Lesser General Public License along w
 
 ## Scientific Web Browsing
 
-### I\.OpenVPN Access Server
+### I\.Pritunl
 
 You may rent the CentOS 8 machine by the Vultr and deploy your own VPN server by the following tutorial.
 
-#### 1\.install OpenVPN Access Server
+#### 1\.install Pritunl
 
 ##### server side  
+```shell  
+yum install epel-release
+yum update
+
+# https://docs.mongodb.com/manual/tutorial/install-mongodb-on-red-hat/
+echo '[mongodb-org-4.4]
+name=MongoDB Repository
+baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.4/x86_64/
+gpgcheck=1
+enabled=1
+gpgkey=https://www.mongodb.org/static/pgp/server-4.4.asc' > /etc/yum.repos.d/mongodb-org-4.4.repo
+
+yum install mongodb-org
+systemctl enable mongod
+systemctl restart mongod
+# systemctl status mongod
+
+# config the mongodb to only listen on localhost for security
+# /etc/mongod.conf # bindIP 127.0.0.1
+
+# https://docs.pritunl.com/docs/repo
+echo '[pritunl]
+name=Pritunl Repository
+baseurl=https://repo.pritunl.com/stable/yum/centos/8/
+gpgcheck=1
+enabled=1' > /etc/yum.repos.d/pritunl.repo
+gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 7568D9BB55FF9E5287D586017AE645C0CF8E292A
+gpg --armor --export 7568D9BB55FF9E5287D586017AE645C0CF8E292A > key.tmp; rpm --import key.tmp; rm -f key.tmp
+
+# https://docs.pritunl.com/docs/installation
+yum install pritunl
+systemctl enable pritunl
+systemctl restart pritunl
+# systemctl status pritunl
+
+# https://docs.pritunl.com/docs/configuration-5  
+ssh -L8080:localhost:443 root@x.x.x.x ## use ssh forwarding to tunnel through the firewall
+# access the https://localhost:8080 by your web browser  
+# fill the setup key with the output by the command "pritunl setup-key" and leave the MongoDB URI by default "mongodb"//localhost:27017/pritunl"
+
+# yum install policycoreutils-gui ## sepolicy
+# yum install policycoreutils-python-utils ## semanege
+# ps -AZ | grep pritunl
+# semanege fcontext -l | grep pritunl
+# sepolicy network -a /usr/lib/pritunl/bin/pritunl
+# pritunl is only allowed to bind on "unreserved" port 
+# semanage port -l | grep 1194
+# however the 1194/udp is "reserved" by openvpn_port_t
+# semanage module -l | grep pritunl
+# semanage module -l | grep openvpn
+
+ssh -L8080:localhost:443 root@x.x.x.x ## use ssh forwarding to tunnel through the firewall
+# access the https://localhost:8080 by your web browser
+# fill the username with "pritunl" and password with the output by the command "pritunl default-password"
+# add a server with "4911/udp" since the port "1194/udp" (compatible with the firewalld) is denied by the SELinux  ## firewall-cmd --info-service=openvpn ## semanage port -l | grep 4911
+# add an organization and a user  
+# attach the server to the organization and start the server
+
+# config firewall
+firewall-cmd --permanent --new-service=pritunl
+firewall-cmd --permanent --service=pritunl --add-port=4911/udp
+firewall-cmd --reload
+# firewall-cmd --info-service=pritunl
+firewall-cmd --add-service pritunl ## --zone=public
+# firewall-cmd --list-services ## --zone=public
+firewall-cmd --add-masquerade ## --zone=public
+# firewall-cmd --query-masquerade ## --zone=public
+firewall-cmd --runtime-to-permanent
+firewall-cmd --reload
+```
+
+#### 2\.import OpenVPN profile
+
+##### common
+```shell
+ssh -L8080:localhost:443 root@x.x.x.x ## use ssh forwarding to tunnel through the firewall
+# access the https://localhost:8080 by your web browser
+# fill the username with "pritunl" and password with the output by the command "pritunl default-password"
+# download the user profile from the "Users" section (https://localhost:8080/#/users) 
+# extract the "xxx.ovpn" from the downloaded tar file
+
+# the following is the same as the OpenVPN Access Server
+```
+
+##### Windows/Mac/Android/IOS client
+```shell
+# download the openvpn client from the https://openvpn.net/download-open-vpn/ by your web browser 
+```
+
+##### Linux client  
+```shell
+# we don't need to download the client and we may use the "plasma-nm-openvpn"
+nmcli connection import type openvpn file "path-to-the-client.ovpn" ## import the profile
+```  
+
+#### 3\.connect OpenVPN
+
+##### Windows/Mac/Android/IOS client  
+```shell
+# connect to the imported profile by the client UI
+```
+
+##### Linux client  
+```shell
+# connect by the plasma-nm UI ##  leave the "(Private) key Password" blank
+```
+
+### II\.OpenVPN Access Server
+
+You may rent the CentOS 8 machine by the Vultr and deploy your own VPN server by the following tutorial.  
+The OpenVPN Access Server is free for a **maximum** of **two** simultaneous VPN connections and we recommend you deploy the Pritunl instead.
+
+#### 1\.install OpenVPN Access Server
+
 ```shell  
 yum install https://as-repository.openvpn.net/as-repo-centos8.rpm
 yum install openvpn-as
 
 # /usr/local/openvpn_as/bin/ovpn-init ## we may generate another new profile and leave the old one invalid from time to time for security
 passwd openvpn ## set the password of the user "openvpn"
-```
 
-#### 2\.import OpenVPN profile
-
-##### server side  
-```shell  
 # config the web server to only listen on localhost for security
 /usr/local/openvpn_as/scripts/sacli --key "cs.https.ip_address" --value "127.0.0.1" ConfigPut
 /usr/local/openvpn_as/scripts/sacli --key "admin_ui.https.ip_address" --value "127.0.0.1" ConfigPut
@@ -60,8 +169,8 @@ systemctl restart openvpnas
 
 # accept the Agreement
 ssh -L8080:localhost:943 root@x.x.x.x ## use ssh forwarding to tunnel through the firewall
-# access the https://localhost:8080/admin (with the "/admin") by the web browser  
-# the web browser may warn the website is unsafe and we may ignore the warning
+# access the https://localhost:8080/admin (with the "/admin") by your web browser  
+# your web browser may warn the website is unsafe and we may ignore the warning
 # login with the admin user "openvpn"
 # accept the Agreement to start the OpenVPN Access Server 
 
@@ -71,71 +180,56 @@ ssh -L8080:localhost:943 root@x.x.x.x ## use ssh forwarding to tunnel through th
 /usr/local/openvpn_as/scripts/sacli start
 systemctl restart openvpnas
 
-firewall-cmd --add-masquerade ## --zone=public
-# firewall-cmd --query-masquerade ## --zone=public
-firewall-cmd --runtime-to-permanent
-firewall-cmd --reload
-```
-
-##### client side  
-
-###### common
-```shell
-ssh -L8080:localhost:943 root@x.x.x.x ## use ssh forwarding to tunnel through the firewall
-# access the https://localhost:8080 (without the "/admin") by the web browser
-# the web browser may warn the website is unsafe and we may ignore the warning
-# login with the non-privileged user "HanetakaYuminaga"
-# download the profile file "client.ovpn" from the link "Yourself (user-locked profile)"
-```
-
-###### Windows/Mac/Android/IOS client
-```shell
-# download the client from the https://localhost:8080 (without the "/admin") by the web browser 
-
-# install the client and import the profile from the file "client.ovpn" by the client UI
-```
-
-###### Linux client  
-```shell
-# we don't need to download the client and we may use the "plasma-nm-openvpn"
-
-nmcli connection import type openvpn file "path-to-the-client.ovpn" ## import the profile
-
-# "configure" the "Connections" and fill the "username" with "openvpn" by the plasma-nm UI ## leave the "Private Key Password" blank
-```  
-
-#### 3\.connect OpenVPN
-
-##### server side  
-```shell  
-# ssh root@x.x.x.x
-
+# config firewall
 firewall-cmd --add-service openvpn ## --zone=public
+# firewall-cmd --info-service=openvpn ## --zone=public
 # firewall-cmd --list-services ## --zone=public
 firewall-cmd --add-masquerade ## --zone=public
 # firewall-cmd --query-masquerade ## --zone=public
 firewall-cmd --runtime-to-permanent
 firewall-cmd --reload
 
-systemctl restart openvpnas ## to start/stop the firewalld may result in that the VPS doesn't work
-# systemctl status openvpnas
-
 # systemctl stop sshd ## stop sshd for security ## we leave the sshd enabled and we may restart the machine by the Vultr to start the sshd automatically
 ```
 
-##### client side  
+#### 2\.import OpenVPN profile
 
-###### Windows/Mac/Android/IOS client  
+##### common
+```shell
+ssh -L8080:localhost:943 root@x.x.x.x ## use ssh forwarding to tunnel through the firewall
+# access the https://localhost:8080 (without the "/admin") by your web browser
+# your web browser may warn the website is unsafe and we may ignore the warning
+# login with the non-privileged user "HanetakaYuminaga"
+# download the profile file "client.ovpn" from the link "Yourself (user-locked profile)"
+```
+
+##### Windows/Mac/Android/IOS client
+```shell
+# download the client from the https://localhost:8080 (without the "/admin") by your web browser 
+
+# install the client and import the profile from the file "client.ovpn" by the client UI
+```
+
+##### Linux client  
+```shell
+# we don't need to download the client and we may use the "plasma-nm-openvpn"
+nmcli connection import type openvpn file "path-to-the-client.ovpn" ## import the profile
+# "configure" the "Connections" and fill the "username" with "openvpn" by the plasma-nm UI ## leave the "Private Key Password" blank
+```  
+
+#### 3\.connect OpenVPN
+
+##### Windows/Mac/Android/IOS client  
 ```shell
 # connect to the imported profile by the client UI
 ```
 
-###### Linux client  
+##### Linux client  
 ```shell
 # connect by the plasma-nm UI ##  leave the "(Private) key Password" blank
 ```
 
-### II\.Tor
+### III\.Tor
 
 You may rent the CentOS 8 machine by the Vultr and deploy your own Tor server by the following tutorial.
 
