@@ -58,7 +58,7 @@ systemctl restart mongod
 # systemctl status mongod
 
 # config the mongodb to only listen on localhost for security
-# /etc/mongod.conf # bindIP 127.0.0.1
+# /etc/mongod.conf # bindIp 127.0.0.1
 
 # https://docs.pritunl.com/docs/repo
 echo '[pritunl]
