@@ -146,7 +146,7 @@ nmcli connection import type openvpn file "path-to-the-client.ovpn" ## import th
 
 # mirror 
 # https://github.com/YuqiaoZhang/ComputerScience/releases
-# https://github.com/YuqiaoZhang/ComputerScience/releases/download/1.0/openvpn-connect-windows-3.2.2.1455.msi
+# https://github.com/YuqiaoZhang/ComputerScience/releases/download/openvpn-client-mirror-1.0/openvpn-connect-windows-3.2.2.1455.msi
 ```
 
 ##### Mac Client
@@ -156,7 +156,7 @@ nmcli connection import type openvpn file "path-to-the-client.ovpn" ## import th
 
 # mirror 
 # https://github.com/YuqiaoZhang/ComputerScience/releases
-# https://github.com/YuqiaoZhang/ComputerScience/releases/download/1.0/openvpn-connect-mac-3.2.5.2468.dmg
+# https://github.com/YuqiaoZhang/ComputerScience/releases/download/openvpn-client-mirror-1.0/openvpn-connect-mac-3.2.5.2468.dmg
 ```
 
 ##### Android Client
@@ -166,7 +166,7 @@ nmcli connection import type openvpn file "path-to-the-client.ovpn" ## import th
 
 # mirror 
 # https://github.com/YuqiaoZhang/ComputerScience/releases
-# https://github.com/YuqiaoZhang/ComputerScience/releases/download/1.0/ics-openvpn-android-175.apk
+# https://github.com/YuqiaoZhang/ComputerScience/releases/download/openvpn-client-mirror-1.0/ics-openvpn-android-175.apk
 ```  
 
 ##### IOS client
