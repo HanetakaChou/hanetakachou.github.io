@@ -70,9 +70,30 @@ gpg --armor --export 7568D9BB55FF9E5287D586017AE645C0CF8E292A > key.tmp; rpm --i
 
 # https://docs.pritunl.com/docs/installation
 yum install pritunl
+
+# config the "hand-window" ## the network of China mainland is horrible
+# https://openvpn.net/community-resources/reference-manual-for-openvpn-2-0/
+vi /usr/lib/pritunl/lib/python2.7/site-packages/pritunl/constants.py
+++ hand-window 3600 ## OVPN_INLINE_SERVER_CONF_OLD
+++ hand-window 3600 ## OVPN_INLINE_SERVER_CONF_OLD
+-- hand-window 70 ## OVPN_INLINE_CLIENT_CONF
+++ hand-window 3600
+-- hand-window 70 ## OVPN_INLINE_LINK_CONF
+++ hand-window 3600
+rm /usr/lib/pritunl/lib/python2.7/site-packages/pritunl/constants.pyc
+# NOTE you should modify this file every time when you update the pritunl package by yum
+# yum remove dnf-automatic
+# systemctl disable dnf-automatic-install
+# systemctl stop dnf-automatic-install
+
 systemctl enable pritunl
 systemctl restart pritunl
 # systemctl status pritunl
+
+# mongo --host localhost:27017
+# use pritunl
+# db.getCollection('settings').find({})
+# SettingsVpn ## /usr/lib/pritunl/lib/python2.7/site-packages/pritunl/settings/vpn.py
 
 # yum install policycoreutils-gui ## sepolicy
 # yum install policycoreutils-python-utils ## semanege
@@ -92,7 +113,7 @@ systemctl restart pritunl
 # https://docs.pritunl.com/docs/configuration-5  
 ssh -L8080:localhost:443 root@x.x.x.x ## use ssh forwarding to tunnel through the firewall
 # access the https://localhost:8080 by your web browser  
-# fill the setup key with the output by the command "pritunl setup-key/*server side shell*/" and leave the MongoDB URI by default "mongodb"//localhost:27017/pritunl"
+# fill the setup key with the output by the command "pritunl setup-key/*server side shell*/" and leave the MongoDB URI by default "mongodb//localhost:27017/pritunl"
 
 ssh -L8080:localhost:443 root@x.x.x.x ## use ssh forwarding to tunnel through the firewall
 # access the https://localhost:8080 by your web browser
