@@ -153,7 +153,7 @@ nmcli connection import type openvpn file "path-to-the-client.ovpn" ## import th
 
 ##### Android Client
 ```shell
-# download the openvpn client from F-Droid(https://f-droid.org/en/packages/de.blinkt.openvpn/) by your web browser 
+# download the openvpn client from F-Droid(https://github.com/schwabe/ics-openvpn) by your web browser 
 # https://f-droid.org/repo/de.blinkt.openvpn_175.apk
 ```  
 
