@@ -143,18 +143,30 @@ nmcli connection import type openvpn file "path-to-the-client.ovpn" ## import th
 ```shell
 # download the openvpn client from the https://openvpn.net/download-open-vpn/ by your web browser 
 # https://openvpn.net/downloads/openvpn-connect-v3-windows.msi
+
+# mirror 
+# https://github.com/YuqiaoZhang/ComputerScience/releases
+# https://github.com/YuqiaoZhang/ComputerScience/releases/download/1.0/openvpn-connect-windows-3.2.2.1455.msi
 ```
 
 ##### Mac Client
 ```shell
 # download the openvpn client from OpenVPN.Net(https://openvpn.net/download-open-vpn/)  by your web browser 
 # https://openvpn.net/downloads/openvpn-connect-v3-macos.dmg
+
+# mirror 
+# https://github.com/YuqiaoZhang/ComputerScience/releases
+# https://github.com/YuqiaoZhang/ComputerScience/releases/download/1.0/openvpn-connect-mac-3.2.5.2468.dmg
 ```
 
 ##### Android Client
 ```shell
 # download the openvpn client from F-Droid(https://github.com/schwabe/ics-openvpn) by your web browser 
 # https://f-droid.org/repo/de.blinkt.openvpn_175.apk
+
+# mirror 
+# https://github.com/YuqiaoZhang/ComputerScience/releases
+# https://github.com/YuqiaoZhang/ComputerScience/releases/download/1.0/ics-openvpn-android-175.apk
 ```  
 
 ##### IOS client
