@@ -83,8 +83,8 @@ vi /usr/lib/pritunl/lib/python2.7/site-packages/pritunl/constants.py
 rm /usr/lib/pritunl/lib/python2.7/site-packages/pritunl/constants.pyc
 # NOTE you should modify this file every time when you update the pritunl package by yum
 # yum remove dnf-automatic
-# systemctl disable dnf-automatic-install
-# systemctl stop dnf-automatic-install
+# systemctl disable dnf-automatic-install.timer
+# systemctl stop dnf-automatic-install.timer
 
 systemctl enable pritunl
 systemctl restart pritunl
@@ -157,7 +157,7 @@ ssh -L8080:localhost:443 root@x.x.x.x ## use ssh forwarding to tunnel through th
 ##### Linux client  
 ```shell
 # we don't need to download the openvpn client and we may use the built-in "plasma-nm-openvpn"
-nmcli connection import type openvpn file "path-to-the-client.ovpn" ## import the profile by the command line
+nmcli connection import type openvpn file "path-to-the-xxx-openvpn-xxx.ovpn" ## import the profile by the command line
 ```  
 
 ##### Windows Client
