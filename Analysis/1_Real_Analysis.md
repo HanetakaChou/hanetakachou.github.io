@@ -32,74 +32,95 @@ You should have received a copy of the GNU Lesser General Public License along w
 
 ```graphviz
 graph topology{
-    rankdir=TB 
+    rankdir=TB
+    //splines=false
     node[shape=box]
+    //edge[decorate=true]
     
-    Interior_Point[label="Interior Point"]
-    
-    Adherent_Point[label="Adherent Point / Closure Point / Contact Point"] //附着点/闭包点/(接)触点
-    Cluster_Point[label="Cluster Point / Limit point / Accumulation Point"] //聚(集)点/极(限)点/(会)聚点
-    Isolated_Point[label="Isolated Point"] //孤(立)点
-
-    Boundary_Point[label="Boundary Point"] //边界点
-
-    Adherent_Point--Cluster_Point
-    Adherent_Point--Isolated_Point
-    Boundary_Point--Interior_Point
-    Boundary_Point--Adherent_Point
-
-    Interior //内部
-    Closure //闭包
-    Derived_Set[label="Derived Set"] //导集
-    Boundary //边界
-
-    Interior--Interior_Point
-    Closure--Adherent_Point
-    Derived_Set--Cluster_Point
-    Boundary--Boundary_Point
     {
+        Cluster_Point[label="Cluster Point / Limit point / Accumulation Point"] //聚(集)点/极(限)点/(会)聚点
+        Isolated_Point[label="Isolated Point"] //孤(立)点
+
         rank=same
+        rankdir=LR
+        Cluster_Point--Isolated_Point[style=invis]
+    }
+
+    {
+        Neighbourhood //领域
+    }
+
+    {
+        Interior_Point[label="Interior Point"] //内点
+        Adherent_Point[label="Adherent Point / Closure Point / Contact Point"] //附着点/闭包点/(接)触点
+        Boundary_Point[label="Boundary Point"] //边界点
+
+        rank=same
+        rankdir=LR
+        Interior_Point--Boundary_Point--Adherent_Point//[style=invis]
+    }
+
+    Adherent_Point--Cluster_Point[weight=100]
+    Adherent_Point--Isolated_Point[weight=100]
+    //Boundary_Point--Interior_Point[constraint=false]
+    //Boundary_Point--Adherent_Point[constraint=false]
+
+    {
+        Interior //内部
+        Closure //闭包
+        Derived_Set[label="Derived Set"] //导集
+        Boundary //边界
+
+        rank=same
+        rankdir=LR
         Interior--Boundary--Derived_Set--Closure[style=invis]
-        rankdir=LR
-    }
-    {
-        rank=same
-        Interior_Point--Cluster_Point--Isolated_Point[style=invis]
-        rankdir=LR
     }
 
-    Open_Set[label="Open Set"] //开集
-    Closed_Set[label="Closed Set"] //闭集
+    Interior--Interior_Point[weight=100]
+    Closure--Adherent_Point[weight=100]
+    Derived_Set--Cluster_Point[weight=100]
+    Boundary--Boundary_Point[weight=100]
+
     {
+        Open_Set[label="Open Set"] //开集
+        Closed_Set[label="Closed Set"] //闭集
+
         rank=same
-        Open_Set--Closed_Set[label="Complement"] //补集
         rankdir=LR
+        Open_Set--Closed_Set[label="Complement"] //补集
     }
-    Open_Set--Interior
-    Closed_Set--Closure
+
+    Open_Set--Interior[weight=100]
+    Closed_Set--Closure[weight=100]
+    Open_Set--Interior_Point[label="Local criterion for openness",decorate=true]
 
     Limit[label="Limit (of Converge Sequence)"]
     {
         rank=same
-        Adherent_Point -- Limit
         rankdir=LR
+        Adherent_Point--Limit
     }
 
     Limit_Set[label="Limit Set"]
     {
         rank=same
-        Closure--Limit_Set
         rankdir=LR
+        Closure--Limit_Set
     }
 
     Limit_Set--Limit[label="The limits of limits are limits"]
 
-    Neighbourhood //领域
-    {
-        rank=same
-        Neighbourhood--Interior_Point[label="Local criterion for openness"]
-        rankdir=LR
-    }
+    Topology //拓扑
+
+    Topology--Open_Set[weight=100]
+
+    Open_Set--Neighbourhood
+
+    Interior_Point--Neighbourhood[weight=100]
+    Cluster_Point--Neighbourhood
+    Isolated_Point--Neighbourhood
+    Adherent_Point--Neighbourhood
+    Boundary_Point--Neighbourhood
 }
 ```
 
