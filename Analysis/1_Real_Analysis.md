@@ -53,11 +53,11 @@ graph topology{
     Closed_Set--Closure[weight=100]
 
     Neighbourhood //领域
-    Interior_Point--Neighbourhood[weight=100]
-    Cluster_Point--Neighbourhood
-    Isolated_Point--Neighbourhood
-    Adherent_Point--Neighbourhood
-    Boundary_Point--Neighbourhood
+    Interior_Point--Neighbourhood[weight=100 dir=back]
+    Cluster_Point--Neighbourhood[dir=back]
+    Isolated_Point--Neighbourhood[dir=back]
+    Adherent_Point--Neighbourhood[dir=back]
+    Boundary_Point--Neighbourhood[dir=back]
 
     {
         rank=same
