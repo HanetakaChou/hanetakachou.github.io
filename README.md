@@ -11,23 +11,23 @@ You should have received a copy of the GNU Lesser General Public License along w
    
 # Mathematics  
 
-[Mathematics/Logic.md](Mathematics/Logic.md)  
+[src/Mathematics/Logic.md](src/Mathematics/Logic.md)  
 
-[Mathematics/Analysis/1_Real_Analysis.md](Mathematics/Analysis/1_Real_Analysis.md)    
+[src/Mathematics/Analysis/1_Real_Analysis.md](src/Mathematics/Analysis/1_Real_Analysis.md)    
 \[Pugh 2015\] Charles Pugh. "Real Mathematical Analysis, Second Edition." Springer 2015.  
 \[Tu 2011\] Loring Tu. "An Introduction to Manifolds, Second Edition." Springer 2011.  
 
-[Mathematics/Algebra/1_Linear_Algebra.md](Mathematics/Algebra/1_Linear_Algebra.md)   
+[src/Mathematics/Algebra/1_Linear_Algebra.md](src/Mathematics/Algebra/1_Linear_Algebra.md)   
 \[Axler 2015\] Sheldon Axler. "Linear Algebra Done Right, Third edition." Springer 2015  
 
 # Computer Science 
 
-[Computer-Science/Compiler.md](Computer-Science/Compiler.md)  
+[src/Computer-Science/Compiler.md](src/Computer-Science/Compiler.md)  
 
 # Scientific Web Browsing (by OpenVPN)
 
-[OpenVPN/Pritunl.md](OpenVPN/Pritunl.md)
+[src/OpenVPN/Pritunl.md](src/OpenVPN/Pritunl.md)
 
 # Miscellaneous  
 
-[Miscellaneous/Linux-Bluetooth.md](Miscellaneous/Linux-Bluetooth.md)
+[src/Miscellaneous/Linux-Bluetooth.md](src/Miscellaneous/Linux-Bluetooth.md)
