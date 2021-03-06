@@ -1,16 +1,15 @@
+# Mathematics  
 
+## Analysis  
+[Mathematics/Analysis/1_Real_Analysis.html](Mathematics/Analysis/1_Real_Analysis.html)  
+[Mathematics/Analysis/_1_Topology_Metric.md](Mathematics/Analysis/_1_Topology_Metric.html)
 
+# Scientific Web Browsing (by OpenVPN)
 
-# miscellaneous  
+## Pritunl
+[OpenVPN/Pritunl.html](OpenVPN/Pritunl.html)   
+
+# Miscellaneous   
 
 ## Linux Bluetooth  
-
-### ORICO BTA-508  
-
-dmesg output  
-```  
-Bluetooth: hci0: RTL: firmware file rtl_bt/rtl8761b_fw.bin not found  
-```
-
-download the rtl8761b_fw from https://github.com/Realtek-OpenSource/android_hardware_realtek/blob/rtk1395/bt/rtkbt/Firmware/BT/rtl8761b_fw   
-move the downloaded rtl8761b_fw to /usr/lib/firmware/rtl_bt/rtl8761b_fw.bin  
+[Miscellaneous/Linux-Bluetooth.html](Miscellaneous/Linux-Bluetooth.html)  
