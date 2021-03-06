@@ -30,92 +30,7 @@ You should have received a copy of the GNU Lesser General Public License along w
 
 ## Topology  
 
-```graphviz
-graph topology{
-    rankdir=TB
-    //splines=false
-    node[shape=box]
-    //edge[decorate=true]
-    
-    Topology //拓扑
-    Topology--Open_Set[weight=100]
-
-    {
-        rank=same
-        rankdir=LR
-        Open_Set[label="Open Set"] //开集
-        Closed_Set[label="Closed Set"] //闭集
-        Open_Set--Closed_Set[label="Complement"] //补集
-    }
-    Open_Set--Neighbourhood
-    Open_Set--Interior[weight=100]
-    Open_Set--Interior_Point[label="Local criterion for openness",decorate=true]
-    Closed_Set--Closure[weight=100]
-
-    Neighbourhood //领域
-    Interior_Point--Neighbourhood[weight=100 dir=back]
-    Cluster_Point--Neighbourhood[dir=back]
-    Isolated_Point--Neighbourhood[dir=back]
-    Adherent_Point--Neighbourhood[dir=back]
-    Boundary_Point--Neighbourhood[dir=back]
-
-    {
-        rank=same
-        rankdir=LR
-
-        Cluster_Point[label="Cluster Point / Limit point / Accumulation Point"] //聚(集)点/极(限)点/(会)聚点
-        Isolated_Point[label="Isolated Point"] //孤(立)点
-
-        Cluster_Point--Isolated_Point[style=invis]
-    }
-    Adherent_Point--Cluster_Point[weight=100]
-    Adherent_Point--Isolated_Point[weight=100]
-
-    {
-        rank=same
-        rankdir=LR
-
-        Interior_Point[label="Interior Point"] //内点
-        Adherent_Point[label="Adherent Point / Closure Point / Contact Point"] //附着点/闭包点/(接)触点
-        Boundary_Point[label="Boundary Point"] //边界点
-
-        Interior_Point--Boundary_Point--Adherent_Point//[style=invis]
-    }
-    //Boundary_Point--Interior_Point[constraint=false]
-    //Boundary_Point--Adherent_Point[constraint=false]
-
-    {
-        rank=same
-        rankdir=LR
-
-        Interior //内部
-        Closure //闭包
-        Derived_Set[label="Derived Set"] //导集
-        Boundary //边界
-
-        Interior--Boundary--Derived_Set--Closure[style=invis]
-    }
-    Interior--Interior_Point[weight=100]
-    Closure--Adherent_Point[weight=100]
-    Derived_Set--Cluster_Point[weight=100]
-    Boundary--Boundary_Point[weight=100]
-
-    Limit[label="Limit (of Converge Sequence)"]
-    {
-        rank=same
-        rankdir=LR
-        Adherent_Point--Limit
-    }
-
-    Limit_Set[label="Limit Set"]
-    {
-        rank=same
-        rankdir=LR
-        Closure--Limit_Set
-    }
-    Limit_Set--Limit[label="The limits of limits are limits"]
-}
-```
+![](Topology.svg)
 
 ### Mapping (Topology)  
 Inject 单射 / one-to-one 一一映射  
@@ -241,6 +156,13 @@ Relatively Open/Closed Set 相对开/闭集
 \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Inheritance / 15 Corollary  
 Assume N is a subspace of M, we have that sets open relative to N may not be open relative to M.  
 However, **if N is open**, sets open relative to N and sets open relative to M can be deduced by each other.
+
+### Product 积
+Product Topology 积拓扑  
+
+define the basis
+\[Tu 2011\] / Appendices / A Point-Set Topology / A.6 Product Topology  
+
 
 ## Reference  
 \[Pugh 2015\] Charles Pugh. "Real Mathematical Analysis, Second Edition." Springer 2015.  
