@@ -38,32 +38,17 @@ gpg --armor --export 7568D9BB55FF9E5287D586017AE645C0CF8E292A > key.tmp; rpm --i
 # https://docs.pritunl.com/docs/installation
 yum install pritunl
 
-# config the "hand-window" ## the network of China mainland is horrible
-# https://openvpn.net/community-resources/reference-manual-for-openvpn-2-0/
-vi /usr/lib/pritunl/lib/python2.7/site-packages/pritunl/constants.py
-++ hand-window 3600 ## OVPN_INLINE_SERVER_CONF_OLD
-++ hand-window 3600 ## OVPN_INLINE_SERVER_CONF_OLD
--- hand-window 70 ## OVPN_INLINE_CLIENT_CONF
-++ hand-window 3600
--- hand-window 70 ## OVPN_INLINE_LINK_CONF
-++ hand-window 3600
-rm /usr/lib/pritunl/lib/python2.7/site-packages/pritunl/constants.pyc
-# NOTE you should modify this file every time when you update the pritunl package by yum
-# yum remove dnf-automatic
-# systemctl disable dnf-automatic-install.timer
-# systemctl stop dnf-automatic-install.timer
-
 systemctl enable pritunl
 systemctl restart pritunl
 # systemctl status pritunl
 
-# mongo --host localhost:27017
-# use pritunl
-# db.getCollection('settings').find({})
-# SettingsVpn ## /usr/lib/pritunl/lib/python2.7/site-packages/pritunl/settings/vpn.py
+# enable automatic update 
+yum install dnf-automatic
+systemctl enable dnf-automatic-install.timer
+systemctl restart dnf-automatic-install.timer
+# systemctl status dnf-automatic-install.timer
 
 # config selinux
-
 vi /etc/selinux/config
 -- SELINUX=enforcing
 ++ SELINUX=permissive
@@ -92,6 +77,11 @@ ssh -L8080:localhost:443 root@x.x.x.x ## use ssh forwarding to tunnel through th
 # access the https://localhost:8080 by your web browser  
 # fill the setup key with the output by the command "pritunl setup-key/*server side shell*/" and leave the MongoDB URI by default "mongodb//localhost:27017/pritunl"
 
+# mongo --host localhost:27017
+# use pritunl
+# db.getCollection('settings').find({})
+# SettingsVpn ## /usr/lib/pritunl/lib/python2.7/site-packages/pritunl/settings/vpn.py
+
 ssh -L8080:localhost:443 root@x.x.x.x ## refresh your web browser
 # access the https://localhost:8080 by your web browser
 # fill the username with "pritunl" and password with the output by the command "pritunl default-password/*server side shell*/"
@@ -100,7 +90,7 @@ ssh -L8080:localhost:443 root@x.x.x.x ## refresh your web browser
 ssh -L8080:localhost:4849 root@x.x.x.x ## restart your web browser since we change the port
 
 # add a server "openvpn-tcp" with "443/tcp"
-# add a server "openvpn-udp" with "8080/udp" 
+# add a server "openvpn-udp" with "80/udp" 
 # add an organization and add a user  
 # attach the server "openvpn-udp" and "openvpn-tcp" to the organization and start the both servers
 ```
@@ -113,20 +103,20 @@ systemctl enable firewalld
 systemctl start firewalld
 # systemctl status firewalld
 firewall-cmd --permanent --new-service=pritunl
-firewall-cmd --permanent --service=pritunl --add-port=8080/udp
+firewall-cmd --permanent --service=pritunl --add-port=80/udp
 firewall-cmd --permanent --service=pritunl --add-port=443/tcp
 firewall-cmd --reload
 # firewall-cmd --info-service=pritunl
 firewall-cmd --add-service pritunl ## --zone=public
 # firewall-cmd --list-services ## --zone=public
 firewall-cmd --add-masquerade ## --zone=public
-# firewall-cmd --query-masquerade ## --zone=public
+#  ## --zone=public
 firewall-cmd --runtime-to-permanent
 firewall-cmd --reload
 
 # Alibaba Cloud / Security Group Rules
 ECS / Instance / Instance Details / Security Groups  
-Add Rule "all/tcp", "all/udp" and "all/gre" in Security Groups Rules  
+Add Rule "100/tcp/all", "100/udp/all" and "100/all-gre" in Security Groups Rules  
 
 ```
 
