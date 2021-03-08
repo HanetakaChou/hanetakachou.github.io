@@ -1,6 +1,6 @@
 ## Pritunl
 
-You may rent the CentOS 8 machine by the Vultr and deploy Pritunl (which is an free open source OpenVPN server) by the following tutorial.
+You may rent the CentOS 8 machine by the Vultr / Alibaba Cloud and deploy Pritunl (which is an free open source OpenVPN server) by the following tutorial.
 
 ### 1\.install Pritunl (the OpenVPN server)
 
@@ -62,6 +62,16 @@ systemctl restart pritunl
 # db.getCollection('settings').find({})
 # SettingsVpn ## /usr/lib/pritunl/lib/python2.7/site-packages/pritunl/settings/vpn.py
 
+# config selinux
+
+vi /etc/selinux/config
+-- SELINUX=enforcing
+++ SELINUX=permissive
+# aureport -a ## view AVC report
+
+# the standard openvpn port "1194/udp" is denied by the SELinux
+# and thus we should change the config from "enforcing" to "permissive"
+
 # yum install policycoreutils-gui ## sepolicy
 # yum install policycoreutils-python-utils ## semanege
 # ps -AZ | grep pritunl
@@ -82,11 +92,15 @@ ssh -L8080:localhost:443 root@x.x.x.x ## use ssh forwarding to tunnel through th
 # access the https://localhost:8080 by your web browser  
 # fill the setup key with the output by the command "pritunl setup-key/*server side shell*/" and leave the MongoDB URI by default "mongodb//localhost:27017/pritunl"
 
-ssh -L8080:localhost:443 root@x.x.x.x ## use ssh forwarding to tunnel through the firewall
+ssh -L8080:localhost:443 root@x.x.x.x ## refresh your web browser
 # access the https://localhost:8080 by your web browser
 # fill the username with "pritunl" and password with the output by the command "pritunl default-password/*server side shell*/"
-# add a server "openvpn-udp" with "4911/udp" since the port "1194/udp" (compatible with the firewalld) is denied by the SELinux  ## firewall-cmd --info-service=openvpn ## semanage port -l | grep 4911
-# add a server "openvpn-tcp" with "4911/tcp" since the port "1194/tcp" is denied by the SELinux
+# change the "Web Console Port" to "4849" ## we would use the port "443/tcp" for openvpn to cheat the China mainland firewall
+
+ssh -L8080:localhost:4849 root@x.x.x.x ## restart your web browser since we change the port
+
+# add a server "openvpn-tcp" with "443/tcp"
+# add a server "openvpn-udp" with "8080/udp" 
 # add an organization and add a user  
 # attach the server "openvpn-udp" and "openvpn-tcp" to the organization and start the both servers
 ```
@@ -95,9 +109,12 @@ ssh -L8080:localhost:443 root@x.x.x.x ## use ssh forwarding to tunnel through th
 # -- server side shell -- 
 
 # config firewall
+systemctl enable firewalld
+systemctl start firewalld
+# systemctl status firewalld
 firewall-cmd --permanent --new-service=pritunl
-firewall-cmd --permanent --service=pritunl --add-port=4911/udp
-firewall-cmd --permanent --service=pritunl --add-port=4911/tcp
+firewall-cmd --permanent --service=pritunl --add-port=8080/udp
+firewall-cmd --permanent --service=pritunl --add-port=443/tcp
 firewall-cmd --reload
 # firewall-cmd --info-service=pritunl
 firewall-cmd --add-service pritunl ## --zone=public
@@ -106,6 +123,11 @@ firewall-cmd --add-masquerade ## --zone=public
 # firewall-cmd --query-masquerade ## --zone=public
 firewall-cmd --runtime-to-permanent
 firewall-cmd --reload
+
+# Alibaba Cloud / Security Group Rules
+ECS / Instance / Instance Details / Security Groups  
+Add Rule "all/tcp", "all/udp" and "all/gre" in Security Groups Rules  
+
 ```
 
 #### 2\.import OpenVPN profile
