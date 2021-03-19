@@ -163,6 +163,15 @@ Product Topology 积拓扑
 define the basis
 \[Tu 2011\] / Appendices / A Point-Set Topology / A.6 Product Topology  
 
+dsum //Taxicab Metric //p=1  
+dE //Euclidean Metric //p=2  
+dmax //Chebyshev Distance //p=$\displaystyle \infty$  
+ProofWiki / Definition:P-Product Metric  
+ProofWiki / Chebyshev Distance is Limit of P-Product Metric  
+
+\[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Product Metrics / 16 Proposition  
+ProofWiki / Distance Function of Metric Space is Continuous  
+
 
 ## Reference  
 \[Pugh 2015\] Charles Pugh. "Real Mathematical Analysis, Second Edition." Springer 2015.  
