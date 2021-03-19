@@ -9,6 +9,8 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 You should have received a copy of the GNU Lesser General Public License along with this program.  If not, see <https://www.gnu.org/licenses/>
 ```  
 
+Squeeze Theorem 夹逼准则  
+
 ### Boundedness Theorem 有界性定理  
 \[Pugh 2015\] / 22 Theorem  
   
