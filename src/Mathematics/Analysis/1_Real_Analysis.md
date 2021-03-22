@@ -52,7 +52,7 @@ The sequential convergence preservation condition (Improved)
 \[Pugh 2015\] / 2 A Taste of Topology / Exercises / 13  
 > Proof - Sketch  
 > we construct (pn) such that pn = q + 1/n as "4 Theorem //The (ϵ, δ)-Condition"  
-> we construct (qn) such that q2n = p and q2n-1 = pn which impies (qn) doesn't converge  
+> suppose (f(pn)) doesn't converge to f(p), we construct (qn) such that q2n = q and q2n-1 = pn which impies (qn) converges to q while (f(qn)) doesn't converge //Contradiction! 
 >  
 
 ### Homeomorphism 同胚 / homeomorphic 同胚的  
@@ -162,17 +162,24 @@ However, **if N is open**, sets open relative to N and sets open relative to M c
 ### Product 积
 Product Topology 积拓扑  
 
-define the basis
+define the basis  
 \[Tu 2011\] / Appendices / A Point-Set Topology / A.6 Product Topology  
 
 dsum //Taxicab Metric //p=1  
 dE //Euclidean Metric //p=2  
 dmax //Chebyshev Distance //p=$\displaystyle \infty$  
 ProofWiki / Definition:P-Product Metric  
-ProofWiki / Chebyshev Distance is Limit of P-Product Metric  
+ProofWiki / Chebyshev Distance is Limit of P-Product Metric //Squeeze Theorem  
+
+\[Tu 2011\] / Appendices / A Point-Set Topology / A.6 Product Topology / 16 Proposition  
+> Proof - Sketch  
+> We have that "$\displaystyle \sqrt{ {d_{M1}(p_{1n},p_1)}^2 + {d_{M2}(p_{2n},p_2)}^2 } < \varepsilon$" $\displaystyle \Rightarrow$ "$\displaystyle d_{M1}(p_{1n},p_1)<\varepsilon$" $\displaystyle \land$ "$\displaystyle d_{M2}(p_{2n},p_2)<\varepsilon$" since "$\displaystyle {d_{M1}(p_{1n},p_1)}^2 > 0$" $\displaystyle \land$ "$\displaystyle {d_{M2}(p_{2n},p_2)}^2 > 0$"//$\displaystyle \forall x \isin \R, x^2 > 0$
+
 
 \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Product Metrics / 16 Proposition  
-ProofWiki / Distance Function of Metric Space is Continuous  
+ProofWiki / Distance Function of Metric Space is Continuous   
+
+unit disc dmax-square dsum-rhombus
 
 
 ## Reference  
