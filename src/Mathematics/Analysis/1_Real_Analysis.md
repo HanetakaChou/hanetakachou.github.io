@@ -176,8 +176,10 @@ ProofWiki / Chebyshev Distance is Limit of P-Product Metric //Squeeze Theorem
 > We have that "$\displaystyle \sqrt{ {d_{M1}(p_{1n},p_1)}^2 + {d_{M2}(p_{2n},p_2)}^2 } < \varepsilon$" $\displaystyle \Rightarrow$ "$\displaystyle d_{M1}(p_{1n},p_1)<\varepsilon$" $\displaystyle \land$ "$\displaystyle d_{M2}(p_{2n},p_2)<\varepsilon$" since "$\displaystyle {d_{M1}(p_{1n},p_1)}^2 > 0$" $\displaystyle \land$ "$\displaystyle {d_{M2}(p_{2n},p_2)}^2 > 0$"//$\displaystyle \forall x \isin \R, x^2 > 0$
 
 
-\[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Product Metrics / 16 Proposition  
-ProofWiki / Distance Function of Metric Space is Continuous   
+\[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Product Metrics / 20 Theorem  
+~~ProofWiki / Distance Function of Metric Space is Continuous~~  
+> Since the d is a metric (proof is omitted by [\[Pugh 2015\]]), the triangle inequality follows.  
+
 
 unit disc dmax-square dsum-rhombus
 
