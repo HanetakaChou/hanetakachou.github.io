@@ -16,8 +16,9 @@ grub2-mkconfig -o /boot/efi/EFI/centos/grub.cfg
 [Device Node Verification](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#runfile-verifications)  
 ```
 yum install nvidia-driver
-#cd /usr/src/460.32.03
-dkms install nvidia/460.32.03
+# cd /usr/src/460.32.03
+# dkms install nvidia/460.32.03
+rm /etc/X11/xorg.conf.d/10-nvidia.conf # We should delete this file otherwise the X server can't start up
 
 yum install nvidia-modprobe
 modprobe nvidia
