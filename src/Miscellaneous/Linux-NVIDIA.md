@@ -30,7 +30,7 @@ nvidia-modprobe
 [nvidia-prime](https://github.com/archlinux/svntogit-packages/tree/packages/nvidia-prime/trunk)  
 [nvidia-utils](https://github.com/archlinux/svntogit-packages/tree/packages/nvidia-utils/trunk)  
 ```
-rm /etc/X11/xorg.conf.d/10-nvidia.conf #We should delete this file otherwise the X server can't start up
+rm /etc/X11/xorg.conf.d/10-nvidia.conf # We should delete this file otherwise the X server can't start up
 
 echo 'Section "OutputClass"
     Identifier "nvidia"
@@ -38,6 +38,9 @@ echo 'Section "OutputClass"
     Driver "nvidia"
     Option "AllowEmptyInitialConfiguration"
 EndSection' > /etc/X11/xorg.conf.d/10-nvidia.conf  
+
+# restart X server
+# xrandr --listproviders # "NVIDIA-G0" should be listed
 
 export __NV_PRIME_RENDER_OFFLOAD=1
 export __GLX_VENDOR_LIBRARY_NAME=nvidia
