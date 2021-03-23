@@ -16,22 +16,39 @@
 <pre><code data-line="6" class="code-line"><code><div>echo 'blacklist nouveau
 options nouveau modeset=0' &gt; /etc/modprobe.d/blacklist-nouveau.conf  
 dracut --force
-grub2-mkconfig -o /boot/efi/EFI/centos/grub.cfg
 #lsmod | grep nouveau
+
+grub2-mkconfig -o /boot/efi/EFI/centos/grub.cfg
 </div></code></code></pre>
-<p data-line="14" class="code-line"><a href="https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#runfile-verifications" data-href="https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#runfile-verifications">Device Node Verification</a></p>
-<pre><code data-line="15" class="code-line"><code><div>yum install nvidia-driver
+<p data-line="15" class="code-line"><a href="https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#runfile-verifications" data-href="https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#runfile-verifications">Device Node Verification</a></p>
+<pre><code data-line="16" class="code-line"><code><div>yum install nvidia-driver
 #cd /usr/src/460.32.03
 dkms install nvidia/460.32.03
+
+yum install nvidia-modprobe
 modprobe nvidia
 modprobe nvidia-uvm
+nvidia-modprobe
 </div></code></code></pre>
-<p data-line="23" class="code-line"><a href="http://download.nvidia.com/XFree86/Linux-x86_64/460.32.03/README/primerenderoffload.html" data-href="http://download.nvidia.com/XFree86/Linux-x86_64/460.32.03/README/primerenderoffload.html">PRIME Render Offload</a></p>
-<pre><code data-line="25" class="code-line"><code><div>export __NV_PRIME_RENDER_OFFLOAD=1
+<p data-line="27" class="code-line"><a href="http://download.nvidia.com/XFree86/Linux-x86_64/460.32.03/README/primerenderoffload.html" data-href="http://download.nvidia.com/XFree86/Linux-x86_64/460.32.03/README/primerenderoffload.html">PRIME Render Offload</a><br>
+<a href="https://wiki.archlinux.org/index.php/NVIDIA_Optimus#Using_PRIME_render_offload" data-href="https://wiki.archlinux.org/index.php/NVIDIA_Optimus#Using_PRIME_render_offload">Using PRIME render offload</a><br>
+<a href="https://github.com/archlinux/svntogit-packages/tree/packages/nvidia-prime/trunk" data-href="https://github.com/archlinux/svntogit-packages/tree/packages/nvidia-prime/trunk">nvidia-prime</a><br>
+<a href="https://github.com/archlinux/svntogit-packages/tree/packages/nvidia-utils/trunk" data-href="https://github.com/archlinux/svntogit-packages/tree/packages/nvidia-utils/trunk">nvidia-utils</a></p>
+<pre><code data-line="31" class="code-line"><code><div>rm /etc/X11/xorg.conf.d/10-nvidia.conf #We should delete this file otherwise the X server can't start up
+
+echo 'Section &quot;OutputClass&quot;
+    Identifier &quot;nvidia&quot;
+    MatchDriver &quot;nvidia-drm&quot;
+    Driver &quot;nvidia&quot;
+    Option &quot;AllowEmptyInitialConfiguration&quot;
+EndSection' &gt; /etc/X11/xorg.conf.d/10-nvidia.conf  
+
+export __NV_PRIME_RENDER_OFFLOAD=1
 export __GLX_VENDOR_LIBRARY_NAME=nvidia
-glxinfo
+glxinfo | grep NVIDIA
+steam.sh
 </div></code></code></pre>
-<p data-line="31" class="code-line"><a href="https://docs.nvidia.com/cuda/nsightee-plugins-install-guide/index.html#install-steps" data-href="https://docs.nvidia.com/cuda/nsightee-plugins-install-guide/index.html#install-steps">Install plugins using Eclipse IDE</a><br>
+<p data-line="47" class="code-line"><a href="https://docs.nvidia.com/cuda/nsightee-plugins-install-guide/index.html#install-steps" data-href="https://docs.nvidia.com/cuda/nsightee-plugins-install-guide/index.html#install-steps">Install plugins using Eclipse IDE</a><br>
 <a href="https://docs.nvidia.com/cuda/nsight-eclipse-plugins-guide/index.html#import-sample" data-href="https://docs.nvidia.com/cuda/nsight-eclipse-plugins-guide/index.html#import-sample">Importing CUDA Samples</a></p>
 
 </body></html>
