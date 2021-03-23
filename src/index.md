@@ -16,3 +16,6 @@
 
 ## Linux Bluetooth  
 [Miscellaneous/Linux-Bluetooth.html](Miscellaneous/Linux-Bluetooth.html)  
+
+## Linux NVIDIA
+[Miscellaneous/Linux-NVIDIA.html](Miscellaneous/Linux-NVIDIA.html)  

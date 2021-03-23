@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.18.1/lib/index.min.js">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markdown-it-texmath@0.6.5/css/texmath.css">
+<link rel="stylesheet" href="https://gitcdn.xyz/repo/goessner/mdmath/master/css/vscode-texmath.css">
+
+</head>
+<body class="markdown-body">
+<pre><code data-line="1" class="code-line"><code><div>curl -L -o /etc/yum.repos.d/cuda-rhel8.repo 'http://developer.download.nvidia.com/compute/cuda/repos/rhel8/x86_64/cuda-rhel8.repo'  
+</div></code></code></pre>
+<p data-line="5" class="code-line"><a href="https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#runfile-nouveau" data-href="https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#runfile-nouveau">Disabling Nouveau</a></p>
+<pre><code data-line="6" class="code-line"><code><div>echo 'blacklist nouveau
+options nouveau modeset=0' &gt; /etc/modprobe.d/blacklist-nouveau.conf  
+dracut --force
+grub2-mkconfig -o /boot/efi/EFI/centos/grub.cfg
+#lsmod | grep nouveau
+</div></code></code></pre>
+<p data-line="14" class="code-line"><a href="https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#runfile-verifications" data-href="https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#runfile-verifications">Device Node Verification</a></p>
+<pre><code data-line="15" class="code-line"><code><div>yum install nvidia-driver
+#cd /usr/src/460.32.03
+dkms install nvidia/460.32.03
+</div></code></code></pre>
+<p data-line="21" class="code-line"><a href="http://download.nvidia.com/XFree86/Linux-x86_64/460.32.03/README/primerenderoffload.html" data-href="http://download.nvidia.com/XFree86/Linux-x86_64/460.32.03/README/primerenderoffload.html">PRIME Render Offload</a></p>
+<pre><code data-line="23" class="code-line"><code><div>export __NV_PRIME_RENDER_OFFLOAD=1
+export __GLX_VENDOR_LIBRARY_NAME=nvidia
+glxinfo
+</div></code></code></pre>
+
+</body></html>
