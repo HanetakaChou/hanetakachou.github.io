@@ -10,7 +10,7 @@
 
 </head>
 <body class="markdown-body">
-<pre><code data-line="1" class="code-line"><code><div>curl -L -o /etc/yum.repos.d/cuda-rhel8.repo 'http://developer.download.nvidia.com/compute/cuda/repos/rhel8/x86_64/cuda-rhel8.repo'  
+<pre><code data-line="1" class="code-line"><code><div>yum install http://developer.download.nvidia.com/compute/cuda/repos/rhel8/x86_64/cuda-repo-rhel8-10.2.89-1.x86_64.rpm 
 </div></code></code></pre>
 <p data-line="5" class="code-line"><a href="https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#runfile-nouveau" data-href="https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#runfile-nouveau">Disabling Nouveau</a></p>
 <pre><code data-line="6" class="code-line"><code><div>echo 'blacklist nouveau
@@ -23,11 +23,15 @@ grub2-mkconfig -o /boot/efi/EFI/centos/grub.cfg
 <pre><code data-line="15" class="code-line"><code><div>yum install nvidia-driver
 #cd /usr/src/460.32.03
 dkms install nvidia/460.32.03
+modprobe nvidia
+modprobe nvidia-uvm
 </div></code></code></pre>
-<p data-line="21" class="code-line"><a href="http://download.nvidia.com/XFree86/Linux-x86_64/460.32.03/README/primerenderoffload.html" data-href="http://download.nvidia.com/XFree86/Linux-x86_64/460.32.03/README/primerenderoffload.html">PRIME Render Offload</a></p>
-<pre><code data-line="23" class="code-line"><code><div>export __NV_PRIME_RENDER_OFFLOAD=1
+<p data-line="23" class="code-line"><a href="http://download.nvidia.com/XFree86/Linux-x86_64/460.32.03/README/primerenderoffload.html" data-href="http://download.nvidia.com/XFree86/Linux-x86_64/460.32.03/README/primerenderoffload.html">PRIME Render Offload</a></p>
+<pre><code data-line="25" class="code-line"><code><div>export __NV_PRIME_RENDER_OFFLOAD=1
 export __GLX_VENDOR_LIBRARY_NAME=nvidia
 glxinfo
 </div></code></code></pre>
+<p data-line="31" class="code-line"><a href="https://docs.nvidia.com/cuda/nsightee-plugins-install-guide/index.html#install-steps" data-href="https://docs.nvidia.com/cuda/nsightee-plugins-install-guide/index.html#install-steps">Install plugins using Eclipse IDE</a><br>
+<a href="https://docs.nvidia.com/cuda/nsight-eclipse-plugins-guide/index.html#import-sample" data-href="https://docs.nvidia.com/cuda/nsight-eclipse-plugins-guide/index.html#import-sample">Importing CUDA Samples</a></p>
 
 </body></html>
