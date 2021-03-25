@@ -165,7 +165,7 @@ Product Topology 积拓扑
 define the basis  
 \[Tu 2011\] / Appendices / A Point-Set Topology / A.6 Product Topology  
 
-dsum //Taxicab Metric //p=1  
+dsum //Taxicab Metric //Manhattan Metric //p=1  
 dE //Euclidean Metric //p=2  
 dmax //Chebyshev Distance //p=$\displaystyle \infty$  
 ProofWiki / Definition:P-Product Metric  
