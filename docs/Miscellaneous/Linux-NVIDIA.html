@@ -30,12 +30,15 @@ yum install nvidia-modprobe
 modprobe nvidia
 modprobe nvidia-uvm
 nvidia-modprobe
+
+yum install nvidia-driver-cuda
+# nvidia-smi
 </div></code></code></pre>
-<p data-line="28" class="code-line"><a href="http://download.nvidia.com/XFree86/Linux-x86_64/460.32.03/README/primerenderoffload.html" data-href="http://download.nvidia.com/XFree86/Linux-x86_64/460.32.03/README/primerenderoffload.html">PRIME Render Offload</a><br>
+<p data-line="31" class="code-line"><a href="http://download.nvidia.com/XFree86/Linux-x86_64/460.32.03/README/primerenderoffload.html" data-href="http://download.nvidia.com/XFree86/Linux-x86_64/460.32.03/README/primerenderoffload.html">PRIME Render Offload</a><br>
 <a href="https://wiki.archlinux.org/index.php/NVIDIA_Optimus#Using_PRIME_render_offload" data-href="https://wiki.archlinux.org/index.php/NVIDIA_Optimus#Using_PRIME_render_offload">Using PRIME render offload</a><br>
 <a href="https://github.com/archlinux/svntogit-packages/tree/packages/nvidia-prime/trunk" data-href="https://github.com/archlinux/svntogit-packages/tree/packages/nvidia-prime/trunk">nvidia-prime</a><br>
 <a href="https://github.com/archlinux/svntogit-packages/tree/packages/nvidia-utils/trunk" data-href="https://github.com/archlinux/svntogit-packages/tree/packages/nvidia-utils/trunk">nvidia-utils</a></p>
-<pre><code data-line="32" class="code-line"><code><div>rm /etc/X11/xorg.conf.d/10-nvidia.conf # We should delete this file otherwise the X server can't start up
+<pre><code data-line="35" class="code-line"><code><div>rm /etc/X11/xorg.conf.d/10-nvidia.conf # We should delete this file otherwise the X server can't start up
 
 echo 'Section &quot;OutputClass&quot;
     Identifier &quot;nvidia&quot;
@@ -48,11 +51,16 @@ EndSection' &gt; /etc/X11/xorg.conf.d/10-nvidia.conf
 # xrandr --listproviders # &quot;NVIDIA-G0&quot; should be listed
 
 export __NV_PRIME_RENDER_OFFLOAD=1
+export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
 export __GLX_VENDOR_LIBRARY_NAME=nvidia
+export __VK_LAYER_NV_optimus=NVIDIA_only
 glxinfo | grep NVIDIA
+glxgears
+vkcube
+nvidia-smi
 steam.sh
 </div></code></code></pre>
-<p data-line="51" class="code-line"><a href="https://docs.nvidia.com/cuda/nsightee-plugins-install-guide/index.html#install-steps" data-href="https://docs.nvidia.com/cuda/nsightee-plugins-install-guide/index.html#install-steps">Install plugins using Eclipse IDE</a><br>
+<p data-line="59" class="code-line"><a href="https://docs.nvidia.com/cuda/nsightee-plugins-install-guide/index.html#install-steps" data-href="https://docs.nvidia.com/cuda/nsightee-plugins-install-guide/index.html#install-steps">Install plugins using Eclipse IDE</a><br>
 <a href="https://docs.nvidia.com/cuda/nsight-eclipse-plugins-guide/index.html#import-sample" data-href="https://docs.nvidia.com/cuda/nsight-eclipse-plugins-guide/index.html#import-sample">Importing CUDA Samples</a></p>
 
 </body></html>
