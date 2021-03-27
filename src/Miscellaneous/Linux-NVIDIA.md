@@ -24,9 +24,6 @@ yum install nvidia-modprobe
 modprobe nvidia
 modprobe nvidia-uvm
 nvidia-modprobe
-
-yum install nvidia-driver-cuda
-# nvidia-smi
 ```
 
 [PRIME Render Offload](http://download.nvidia.com/XFree86/Linux-x86_64/460.32.03/README/primerenderoffload.html)  
@@ -47,14 +44,16 @@ EndSection' > /etc/X11/xorg.conf.d/10-nvidia.conf
 # xrandr --listproviders # "NVIDIA-G0" should be listed
 
 export __NV_PRIME_RENDER_OFFLOAD=1
-export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
+# export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
 export __GLX_VENDOR_LIBRARY_NAME=nvidia
-export __VK_LAYER_NV_optimus=NVIDIA_only
+# export __VK_LAYER_NV_optimus=NVIDIA_only
 glxinfo | grep NVIDIA
 glxgears
 vkcube
-nvidia-smi
 steam.sh
+
+# yum install nvidia-driver-cuda
+# nvidia-smi
 ```
 
 [Install plugins using Eclipse IDE](https://docs.nvidia.com/cuda/nsightee-plugins-install-guide/index.html#install-steps)  
