@@ -9,6 +9,9 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 You should have received a copy of the GNU Lesser General Public License along with this program.  If not, see <https://www.gnu.org/licenses/>
 ```  
    
+# Image Synthesis  
+[Image-Synthesis/OIT.html](https://github.com/YuqiaoZhang/PatriotEngine/blob/master/docs/OIT.md)
+
 # Mathematics  
 
 [src/Mathematics/Logic.md](src/Mathematics/Logic.md)  
