@@ -183,6 +183,20 @@ ProofWiki / Chebyshev Distance is Limit of P-Product Metric //Squeeze Theorem
 
 unit disc dmax-square dsum-rhombus
 
+### Completeness 完备性  
+
+Cauchy's Convergence Test 柯西收敛准则 / Cauchy Completeness 柯西完备性  
+\[Pugh 2015\] / 1 Real Numbers / 2 Cuts / Cauchy sequences / 5 Theorem  
+> Proof - Sketch  
+> let b = LUB and we have there exist infinitely many $\displaystyle a_n$ such that |$\displaystyle a_n$ - b| < $\displaystyle \frac{\varepsilon}{2}$  
+> since there are infinitely many of these $\displaystyle a_n$, for each N, we pick one $\displaystyle a_{n0}$ from these $\displaystyle a_n$ and then we have that there exists $\displaystyle a_{n0}$ such that |$\displaystyle a_{n0}$ - b| < $\displaystyle \frac{\varepsilon}{2}$  
+> then |$\displaystyle a_n$ - b| $\displaystyle \le$ |$\displaystyle a_n$ - $\displaystyle a_{n0}$| + |$\displaystyle a_{n0}$ - b| = $\displaystyle \frac{\varepsilon}{2}$ + $\displaystyle \frac{\varepsilon}{2}$ = $\displaystyle \varepsilon$
+
+
+evidently, by triangle inequality, convergence $\displaystyle \Rightarrow$ cauchy sequence  
+\[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Completeness / 24 Theorem  
+
+
 
 ## Reference  
 \[Pugh 2015\] Charles Pugh. "Real Mathematical Analysis, Second Edition." Springer 2015.  
