@@ -120,6 +120,9 @@ Idempotent //lim(limS) = limS
 \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / 10 Corollary
 > S ⊂ K ⇒ Limit(Adherent Point) of S ⊂ Limit(Adherent Point) of K    
 
+\[Tu 2011\] / Appendices / A Point-Set Topology / Definition A.56 The sequence lemma  
+
+
 ### Continuous Mapping (Topology) 连续映射(拓扑)  
 //**TODO** above "Continuous Mapping (Topology) 连续映射(拓扑)" move here  
 
@@ -193,10 +196,21 @@ Cauchy's Convergence Test 柯西收敛准则 / Cauchy Completeness 柯西完备�
 > then |$\displaystyle a_n$ - b| $\displaystyle \le$ |$\displaystyle a_n$ - $\displaystyle a_{n0}$| + |$\displaystyle a_{n0}$ - b| = $\displaystyle \frac{\varepsilon}{2}$ + $\displaystyle \frac{\varepsilon}{2}$ = $\displaystyle \varepsilon$
 
 
-evidently, by triangle inequality, convergence $\displaystyle \Rightarrow$ cauchy sequence  
+Evidently, by triangle inequality, convergence $\displaystyle \Rightarrow$ cauchy sequence  
+Completeness $\displaystyle \Rightarrow$ ( cauchy sequence $\displaystyle \Rightarrow$ convergence )  
+\[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Completeness   
+
+By the Cauchy's Convergence Test, R is complete, then we have that $\displaystyle R^m$ is complete  
+\[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Completeness / 23 Theorem  
+ProofWiki / Euclidean Space is Complete Metric Space  
+
+
+**close** subspace of complete metric space $\displaystyle \Rightarrow$ complete  
+by the relationship between limit and closure  
 \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Completeness / 24 Theorem  
 
-
+The completeness involves metric and is undefined in the topology space  
+Since homeomorphic is defined in the topology space, we can't infer the completeness by the homeomorphic  
 
 ## Reference  
 \[Pugh 2015\] Charles Pugh. "Real Mathematical Analysis, Second Edition." Springer 2015.  
