@@ -212,7 +212,7 @@ by the relationship between limit and closure
 The completeness involves metric and is undefined in the topology space  
 Since homeomorphic is defined in the topology space, we can't infer the completeness by the homeomorphic  
 
-### Compactness 紧性  
+### Compactness 紧性 and Sequentially Compactness 列紧性    
 
 To reduce the infinite to the finite  
 
@@ -221,17 +221,31 @@ Defined in Metric space: Sequentially Compact 列紧的    //(infinite) sequence
 
 Evidently, empty set and finite sets are trivial sequentially compact  
 
+For metric space, compact $\displaystyle \Leftrightarrow$ sequentially compact  
+ProofWiki / Sequentially Compact Metric Space is Compact  
 ProofWiki / Compact Subspace of Metric Space is Sequentially Compact in Itself  
-ProofWiki / Sequentially Compact Metric Space is Compact
-
-
-ProofWiki / Metric Space is Hausdorff  
-ProofWiki / Compact Subspace of Hausdorff Space is Closed  
-ProofWiki / Compact Subspace of Metric Space is Bounded  
+ProofWiki / Compact Space is Countably Compact  
+ProofWiki / Countably Compact Metric Space is Sequentially Compact  
 
 Heine-Borel Theorem 海涅-博雷尔定理/有限覆盖定理  
 For metric space, compact $\displaystyle \Leftrightarrow$ complete $\displaystyle \land$ totally bounded  
 ProofWiki / Heine-Borel Theorem/Metric Space  
+ProofWiki / Compact Metric Space is Complete  
+ProofWiki / Compact Metric Space is Totally Bounded  
+
+For metric space, compact $\displaystyle \Rightarrow$ closed  
+ProofWiki / Metric Space is Hausdorff  
+ProofWiki / Compact Subspace of Hausdorff Space is Closed  
+
+For metric space, compact $\displaystyle \Rightarrow$ bounded  
+ProofWiki / Totally Bounded Metric Space is Bounded  
+
+Since  
+ProofWiki / Euclidean Space is Complete Metric Space  
+ProofWiki / Subspace of Complete Metric Space is Closed iff Complete  
+We have  
+ProofWiki / Heine-Borel Theorem/Euclidean Space  
+For euclidean space, compact $\displaystyle \Leftrightarrow$ closed $\displaystyle \land$ totally bounded  
 
 ## Reference  
 \[Pugh 2015\] Charles Pugh. "Real Mathematical Analysis, Second Edition." Springer 2015.  
