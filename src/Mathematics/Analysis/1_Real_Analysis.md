@@ -221,7 +221,7 @@ Defined in Metric space: Sequentially Compact 列紧的    //(infinite) sequence
 
 Evidently, empty set and finite sets are trivial sequentially compact  
 
-For metric space, compact $\displaystyle \Leftrightarrow$ sequentially compact //since for metric space, compact and sequentially compact coincide, \[Pugh 2015\] don't distinguish them  
+For metric space, compact $\displaystyle \Leftrightarrow$ sequentially compact //since for metric space, compact and sequentially compact coincide, \[Pugh 2015\] doesn't distinguish them  
    ProofWiki / Sequentially Compact Metric Space is Compact  
 ProofWiki / Compact Subspace of Metric Space is Sequentially Compact in Itself  
 ProofWiki / Compact Space is Countably Compact  
