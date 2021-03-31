@@ -212,6 +212,27 @@ by the relationship between limit and closure
 The completeness involves metric and is undefined in the topology space  
 Since homeomorphic is defined in the topology space, we can't infer the completeness by the homeomorphic  
 
+### Compactness 紧性  
+
+To reduce the infinite to the finite  
+
+Defined in Topology space: Compact 紧的                 //(finite or infinite)open cover has finite subcover  
+Defined in Metric space: Sequentially Compact 列紧的    //(infinite) sequence has convergent subsequence  
+
+Evidently, empty set and finite sets are trivial sequentially compact  
+
+ProofWiki / Compact Subspace of Metric Space is Sequentially Compact in Itself  
+ProofWiki / Sequentially Compact Metric Space is Compact
+
+
+ProofWiki / Metric Space is Hausdorff  
+ProofWiki / Compact Subspace of Hausdorff Space is Closed  
+ProofWiki / Compact Subspace of Metric Space is Bounded  
+
+Heine-Borel Theorem 海涅-博雷尔定理/有限覆盖定理  
+For metric space, compact $\displaystyle \Leftrightarrow$ complete $\displaystyle \land$ totally bounded  
+ProofWiki / Heine-Borel Theorem/Metric Space  
+
 ## Reference  
 \[Pugh 2015\] Charles Pugh. "Real Mathematical Analysis, Second Edition." Springer 2015.  
 \[Tu 2011\] Loring Tu. "An Introduction to Manifolds, Second Edition." Springer 2011.  
