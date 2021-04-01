@@ -212,40 +212,55 @@ by the relationship between limit and closure
 The completeness involves metric and is undefined in the topology space  
 Since homeomorphic is defined in the topology space, we can't infer the completeness by the homeomorphic  
 
-### Compactness 紧性 and Sequentially Compactness 列紧性    
+### Compactness 紧性 / Sequentially Compactness 列紧性    
 
-To reduce the infinite to the finite  
+To reduce the infinite to the finite //closed and bounded ???  
 
-Defined in Topology space: Compact 紧的                 //(finite or infinite)open cover has finite subcover  
-Defined in Metric space: Sequentially Compact 列紧的    //(infinite) sequence has convergent subsequence  
+Defined in Topology space: Compact 紧的 //(finite or infinite)open cover has finite subcover  
+Defined in Metric space: Sequentially Compact 列紧的 //(infinite) sequence has convergent subsequence  
 
-Evidently, empty set and finite sets are trivial sequentially compact  
+Evidently, empty set and finite sets are trivial (sequentially) compact  
 
-For metric space, compact $\displaystyle \Leftrightarrow$ sequentially compact //since for metric space, compact and sequentially compact coincide, \[Pugh 2015\] doesn't distinguish them  
-   ProofWiki / Sequentially Compact Metric Space is Compact  
+Since for metric space, compact $\displaystyle \Leftrightarrow$ sequentially compact, \[Pugh 2015\] doesn't distinguish them  
+ProofWiki / Sequentially Compact Metric Space is Compact  
 ProofWiki / Compact Subspace of Metric Space is Sequentially Compact in Itself  
 ProofWiki / Compact Space is Countably Compact  
 ProofWiki / Countably Compact Metric Space is Sequentially Compact  
 
-Heine-Borel Theorem 海涅-博雷尔定理/有限覆盖定理  
+Heine-Borel Theorem/Metric Space 海涅-博雷尔定理/度量空间  
 For metric space, compact $\displaystyle \Leftrightarrow$ complete $\displaystyle \land$ totally bounded  
 ProofWiki / Heine-Borel Theorem/Metric Space  
-ProofWiki / Compact Metric Space is Complete  
-ProofWiki / Compact Metric Space is Totally Bounded  
 
-For metric space, compact $\displaystyle \Rightarrow$ closed  
-ProofWiki / Metric Space is Hausdorff  
-ProofWiki / Compact Subspace of Hausdorff Space is Closed  
-
-For metric space, compact $\displaystyle \Rightarrow$ bounded  
-ProofWiki / Totally Bounded Metric Space is Bounded  
-
-Since  
-ProofWiki / Euclidean Space is Complete Metric Space  
-ProofWiki / Subspace of Complete Metric Space is Closed iff Complete  
-We have  
-ProofWiki / Heine-Borel Theorem/Euclidean Space  
+Heine-Borel Theorem/Euclidean Space 海涅-博雷尔定理/欧几里得空间  
 For euclidean space, compact $\displaystyle \Leftrightarrow$ closed $\displaystyle \land$ totally bounded  
+> Proof - Sketch - \[Pugh 2015\]  
+>  
+> Sufficient Condition  
+> We claim that the closed interval [a, b] ⊂ R is compact. // \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Compactness / 27 Theorem  
+> We claim that every box [a1 , b1 ] × · · · × [am , bm ] in Rm is compact. // \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Compactness / 30 Corollary  
+> We claim that every closed subset of a compact is compact. // \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Compactness / 32 Theorem  
+> Since A is bound, there exists a box in Rm and A is a subset of Rm.  
+> Since A is close, by 32 Theorem, we have that every closed and bounded subset of Rm is compact // \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Compactness / 33 Theorem 
+>  
+> Necessary Condition  
+> We claim that every compact set is closed and bounded. / \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Compactness / 26 Theorem  
+> ProofWiki / Metric Space is Hausdorff  
+> ProofWiki / Compact Subspace of Hausdorff Space is Closed  
+> ProofWiki / Compact Metric Space is Totally Bounded  
+> ProofWiki / Totally Bounded Metric Space is Bounded  
+
+> Proof - Sketch - ProofWiki  
+> Since  
+> ProofWiki / Euclidean Space is Complete Metric Space  
+> ProofWiki / Subspace of Complete Metric Space is Closed iff Complete
+> ProofWiki / Totally Bounded Metric Space is Bounded  
+> ProofWiki / Bounded Subspace of Euclidean Space is Totally Bounded
+> ProofWiki / Heine-Borel Theorem/Metric Space  
+> We have that  
+> ProofWiki / Heine-Borel Theorem/Euclidean Space  
+
+Note that the closed and bounded subset of a general metric space may fail to be compact.  
+The two counterexamples by\[Pugh 2015\] can't be comprehended？？？  
 
 ## Reference  
 \[Pugh 2015\] Charles Pugh. "Real Mathematical Analysis, Second Edition." Springer 2015.  
