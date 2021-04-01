@@ -236,31 +236,43 @@ For euclidean space, compact $\displaystyle \Leftrightarrow$ closed $\displaysty
 > Proof - Sketch - \[Pugh 2015\]  
 >  
 > Sufficient Condition  
-> We claim that the closed interval [a, b] ⊂ R is compact. // \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Compactness / 27 Theorem  
-> We claim that every box [a1 , b1 ] × · · · × [am , bm ] in Rm is compact. // \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Compactness / 30 Corollary  
-> We claim that every closed subset of a compact is compact. // \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Compactness / 32 Theorem  
-> Since A is bound, there exists a box in Rm and A is a subset of Rm.  
-> Since A is close, by 32 Theorem, we have that every closed and bounded subset of Rm is compact // \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Compactness / 33 Theorem 
+We claim that the closed interval [a, b] ⊂ R is compact. // \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Compactness / 27 Theorem  
+We claim that every box [a1 , b1 ] × · · · × [am , bm ] in Rm is compact. // \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Compactness / 30 Corollary  
+We claim that every closed subset of a compact is compact. // \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Compactness / 32 Theorem  
+Since A is bound, there exists a box in Rm and A is a subset of Rm.  
+Since A is close, by 32 Theorem, we have that every closed and bounded subset of Rm is compact // \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Compactness / 33 Theorem 
 >  
 > Necessary Condition  
-> We claim that every compact set is closed and bounded. / \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Compactness / 26 Theorem  
-> ProofWiki / Metric Space is Hausdorff  
-> ProofWiki / Compact Subspace of Hausdorff Space is Closed  
-> ProofWiki / Compact Metric Space is Totally Bounded  
-> ProofWiki / Totally Bounded Metric Space is Bounded  
+We claim that every compact set is closed and bounded. / \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Compactness / 26 Theorem  
+ProofWiki / Metric Space is Hausdorff  
+ProofWiki / Compact Subspace of Hausdorff Space is Closed  
+ProofWiki / Compact Metric Space is Totally Bounded  
+ProofWiki / Totally Bounded Metric Space is Bounded  
 
 > Proof - Sketch - ProofWiki  
-> Since  
-> ProofWiki / Euclidean Space is Complete Metric Space  
-> ProofWiki / Subspace of Complete Metric Space is Closed iff Complete
-> ProofWiki / Totally Bounded Metric Space is Bounded  
-> ProofWiki / Bounded Subspace of Euclidean Space is Totally Bounded
-> ProofWiki / Heine-Borel Theorem/Metric Space  
-> We have that  
-> ProofWiki / Heine-Borel Theorem/Euclidean Space  
+Since  
+ProofWiki / Euclidean Space is Complete Metric Space  
+ProofWiki / Subspace of Complete Metric Space is Closed iff Complete
+ProofWiki / Totally Bounded Metric Space is Bounded  
+ProofWiki / Bounded Subspace of Euclidean Space is Totally Bounded
+ProofWiki / Heine-Borel Theorem/Metric Space  
+We have that  
+ProofWiki / Heine-Borel Theorem/Euclidean Space  
 
 Note that the closed and bounded subset of a general metric space may fail to be compact.  
 The two counterexamples by\[Pugh 2015\] can't be comprehended？？？  
+
+Bolzano-Weierstrass Theorem 波尔查诺-维尔斯特拉斯定理   
+\[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Compactness / 31 Theorem  
+This theorem is merely a simple fact about compacts(the box in Rm)
+> Proof - Sketch  
+Since the sequence is bounded, there exists a box in Rm and the sequence is in the box.  
+By 30 Corollary, the box in Rm is sequentially compact.  
+By the definition of sequentially compactness, we have the proof.  
+  
+
+
+
 
 ## Reference  
 \[Pugh 2015\] Charles Pugh. "Real Mathematical Analysis, Second Edition." Springer 2015.  
