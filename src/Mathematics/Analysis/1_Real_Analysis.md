@@ -249,6 +249,8 @@ ProofWiki / Compact Subspace of Hausdorff Space is Closed
 ProofWiki / Compact Metric Space is Totally Bounded  
 ProofWiki / Totally Bounded Metric Space is Bounded  
 
+ProofWiki / Limit of Subsequence equals Limit of Sequence/Metric Space  
+
 > Proof - Sketch - ProofWiki  
 Since  
 ProofWiki / Euclidean Space is Complete Metric Space  
