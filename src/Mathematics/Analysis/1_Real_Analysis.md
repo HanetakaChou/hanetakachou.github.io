@@ -262,7 +262,12 @@ We have that
 ProofWiki / Heine-Borel Theorem/Euclidean Space  
 
 Note that the closed and bounded subset of a general metric space may fail to be compact.  
-The two counterexamples by\[Pugh 2015\] can't be comprehended？？？  
+missing 1\.complete 2\.totally bounded  
+
+discrete metric  
+a discrete metric with 4 elements can be comprehended as a regular tetrahedron  
+since d(x,y) = 1 (x $\displaystyle \ne$ y), **infinite discrete metric is bounded** //not totally bounded  
+however, no subsequence of 1,2,3,4,... convergences  
 
 Bolzano-Weierstrass Theorem 波尔查诺-维尔斯特拉斯定理   
 \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Compactness / 31 Theorem  
