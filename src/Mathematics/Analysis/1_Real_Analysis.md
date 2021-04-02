@@ -237,8 +237,8 @@ For euclidean space, compact $\displaystyle \Leftrightarrow$ closed $\displaysty
 >  
 > Sufficient Condition  
 We claim that the closed interval [a, b] ⊂ R is compact. // \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Compactness / 27 Theorem  
-We claim that every box [a1 , b1 ] × · · · × [am , bm ] in Rm is compact. // \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Compactness / 30 Corollary  
-We claim that every closed subset of a compact is compact. // \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Compactness / 32 Theorem  
+We claim that every box [a1 , b1 ] × · · · × [am , bm ] in Rm is compact. // \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Compactness / 30 Corollary // ProofWiki / Tychonoff's Theorem  
+  We claim that every closed subset of a compact is compact. // \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Compactness / 32 Theorem  
 Since A is bound, there exists a box in Rm and A is a subset of Rm.  
 Since A is close, by 32 Theorem, we have that every closed and bounded subset of Rm is compact // \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Compactness / 33 Theorem 
 >  
@@ -277,6 +277,9 @@ Since the sequence is bounded, there exists a box in Rm and the sequence is in t
 By 30 Corollary, the box in Rm is sequentially compact.  
 By the definition of sequentially compactness, we have the proof.  
   
+
+// ProofWiki / Compact Space satisfies Finite Intersection Axiom  
+// ProofWiki / Intersection of Closed Set with Compact Subspace is Compact
 
 
 
