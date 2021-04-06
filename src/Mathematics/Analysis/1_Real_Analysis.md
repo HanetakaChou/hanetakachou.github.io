@@ -209,8 +209,9 @@ ProofWiki / Euclidean Space is Complete Metric Space
 by the relationship between limit and closure  
 \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Completeness / 24 Theorem  
 
-The completeness involves metric and is undefined in the topology space  
-Since homeomorphic is defined in the topology space, we can't infer the completeness by the homeomorphic  
+The completeness involves **metric** and is undefined in the topology space  
+The completeness is not a topological property // can't be propagated by the homeomorphic  
+ProofWiki / Definition:Topological Property   
 
 ### Compactness 紧性 / Sequentially Compactness 列紧性    
 
@@ -269,6 +270,7 @@ a discrete metric with 4 elements can be comprehended as a regular tetrahedron
 since d(x,y) = 1 (x $\displaystyle \ne$ y), **infinite discrete metric is bounded** //not totally bounded  
 however, no subsequence of 1,2,3,4,... convergences  
 
+
 Bolzano-Weierstrass Theorem 波尔查诺-维尔斯特拉斯定理   
 \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Compactness / 31 Theorem  
 This theorem is merely a simple fact about compacts(the box in Rm)
@@ -277,13 +279,15 @@ Since the sequence is bounded, there exists a box in Rm and the sequence is in t
 By 30 Corollary, the box in Rm is sequentially compact.  
 By the definition of sequentially compactness, we have the proof.  
   
-
 // ProofWiki / Compact Space satisfies Finite Intersection Axiom  
-// ProofWiki / Intersection of Closed Set with Compact Subspace is Compact
+// ProofWiki / Intersection of Closed Set with Compact Subspace is Compact  
 
+Topological Property  
+\[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Continuity and Compactness / 36 Theorem  
+ProofWiki / Continuous Image of Compact Space is Compact  
+  
 
-
-
+  
 ## Reference  
 \[Pugh 2015\] Charles Pugh. "Real Mathematical Analysis, Second Edition." Springer 2015.  
 \[Tu 2011\] Loring Tu. "An Introduction to Manifolds, Second Edition." Springer 2011.  
