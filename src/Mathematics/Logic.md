@@ -93,7 +93,12 @@ to say that ... means that ... //...意味着... //即
 
 by ... we mean ... //...即... //比如用于给出定义  
     
+namely //即  
+
+... which is what it(形式主语) means that ... //即  
+
 (to prove/show ... ), it suffice(s) to prove/show (that) ... //（要证明...，）证明...就足够了 //（...）等价于...   
+
 
 **数学归纳法（proof by induction）**    
     

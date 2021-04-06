@@ -270,7 +270,6 @@ a discrete metric with 4 elements can be comprehended as a regular tetrahedron
 since d(x,y) = 1 (x $\displaystyle \ne$ y), **infinite discrete metric is bounded** //not totally bounded  
 however, no subsequence of 1,2,3,4,... convergences  
 
-
 Bolzano-Weierstrass Theorem 波尔查诺-维尔斯特拉斯定理   
 \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Compactness / 31 Theorem  
 This theorem is merely a simple fact about compacts(the box in Rm)
@@ -282,12 +281,25 @@ By the definition of sequentially compactness, we have the proof.
 // ProofWiki / Compact Space satisfies Finite Intersection Axiom  
 // ProofWiki / Intersection of Closed Set with Compact Subspace is Compact  
 
-Topological Property  
 \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Continuity and Compactness / 36 Theorem  
 ProofWiki / Continuous Image of Compact Space is Compact  
   
+This theorem generalizes the "Extreme Value Theorem"/"Maximum-Minimum Theorem"  
+since the closed interval [a, b] is compact  
+f([a, b]) is compact and then is bounded  
+\[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Continuity and Compactness / 37 Corollary  
 
-  
+Topological Property //Bicompactness(originally called)  
+ProofWiki / Definition:Topological Property   
+\[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Continuity and Compactness / 38 Theorem  
+
+The closed interval \[a, b\] is equinumerous to R while \[a, b\] and R are not homeomorphic.  
+\[Pugh 2015\] / 1 RealNumbers / 4 Cardinality / 11 Corollary  
+\[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Continuity and Compactness / 39 Corollary  
+//not continous  
+the open interval is homeomorphic to R  
+
+
 ## Reference  
 \[Pugh 2015\] Charles Pugh. "Real Mathematical Analysis, Second Edition." Springer 2015.  
 \[Tu 2011\] Loring Tu. "An Introduction to Manifolds, Second Edition." Springer 2011.  
