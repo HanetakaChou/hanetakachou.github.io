@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.18.1/lib/index.min.js">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markdown-it-texmath@0.6.5/css/texmath.css">
+<link rel="stylesheet" href="https://gitcdn.xyz/repo/goessner/mdmath/master/css/vscode-texmath.css">
+
+</head>
+<body class="markdown-body">
+<h2 id="socks5-proxy-1" data-line="0" class="code-line">Socks5 Proxy</h2>
+<p data-line="2" class="code-line">You may rent the CentOS 8 machine by the Vultr / Alibaba Cloud and use the sock5 proxy by the following tutorial.</p>
+<h3 id="1dynamic-port-forwarding-1" data-line="4" class="code-line">1.dynamic port forwarding</h3>
+<pre><code data-line="5" class="code-line"><code><div>ssh -D 8080 root@x.x.x.x ## start the sock5 proxy to listen on the port 8080
+</div></code></code></pre>
+<h3 id="2socks5-proxy-1" data-line="9" class="code-line">2.socks5 proxy</h3>
+<pre><code data-line="10" class="code-line"><code><div>google-chrome --proxy-server=&quot;socks5://localhost:8080&quot; &amp; disown ## configuring a socks5 proxy server in chrome
+</div></code></code></pre>
+
+</body></html>

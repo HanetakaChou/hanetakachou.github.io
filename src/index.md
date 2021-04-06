@@ -1,10 +1,13 @@
 # Image Synthesis  
 [Image-Synthesis/OIT.html](Image-Synthesis/OIT.html)
 
-# Scientific Web Browsing (by OpenVPN)
+# Scientific Web Browsing
 
 ## Pritunl
 [OpenVPN/Pritunl.html](OpenVPN/Pritunl.html)   
+
+## SSH
+[SSH/Socks5-Proxy.html](SSH/Socks5-Proxy.html)   
 
 # Miscellaneous   
 
