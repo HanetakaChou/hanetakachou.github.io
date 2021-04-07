@@ -272,7 +272,7 @@ however, no subsequence of 1,2,3,4,... convergences
 
 Bolzano-Weierstrass Theorem 波尔查诺-维尔斯特拉斯定理   
 \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Compactness / 31 Theorem  
-This theorem is merely a simple fact about compacts(the box in Rm)
+This theorem is merely a simple fact about compacts(the box in Rm)  
 > Proof - Sketch  
 Since the sequence is bounded, there exists a box in Rm and the sequence is in the box.  
 By 30 Corollary, the box in Rm is sequentially compact.  
@@ -299,6 +299,8 @@ The closed interval \[a, b\] is equinumerous to R while \[a, b\] and R are not h
 //not continous  
 the open interval is homeomorphic to R  
 
+compact $\displaystyle \Rightarrow$ ( continous bijection $\displaystyle \Rightarrow$ homeomorphism )  
+//note that the compact is necessary  
 
 ## Reference  
 \[Pugh 2015\] Charles Pugh. "Real Mathematical Analysis, Second Edition." Springer 2015.  
