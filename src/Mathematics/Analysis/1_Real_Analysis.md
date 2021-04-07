@@ -302,6 +302,14 @@ the open interval is homeomorphic to R
 compact $\displaystyle \Rightarrow$ ( continous bijection $\displaystyle \Rightarrow$ homeomorphism )  
 //note that the compact is necessary  
 
+
+ProofWiki / Definition:Embedding (Topology)  
+ProofWiki / Continuous Bijection from Compact to Hausdorff is Homeomorphism/Corollary  
+
+uniformly continuous  
+\[Pugh 2015\] / 1 Real Numbers / 42  
+
+
 ## Reference  
 \[Pugh 2015\] Charles Pugh. "Real Mathematical Analysis, Second Edition." Springer 2015.  
 \[Tu 2011\] Loring Tu. "An Introduction to Manifolds, Second Edition." Springer 2011.  
