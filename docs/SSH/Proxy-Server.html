@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.18.1/lib/index.min.js">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markdown-it-texmath@0.6.5/css/texmath.css">
+<link rel="stylesheet" href="https://gitcdn.xyz/repo/goessner/mdmath/master/css/vscode-texmath.css">
+
+</head>
+<body class="markdown-body">
+<h2 id="socks5-proxy-2" data-line="0" class="code-line">Socks5 Proxy</h2>
+<p data-line="2" class="code-line">You may rent the CentOS 8 machine by the Vultr / Alibaba Cloud and use the sock5 proxy by the following tutorial.</p>
+<h3 id="1setup-socks5-proxy-2" data-line="4" class="code-line">1.setup socks5 proxy</h3>
+<pre><code data-line="5" class="code-line"><code><div>ssh -D 9050 root@x.x.x.x ## dynamic port forwarding
+</div></code></code></pre>
+<h3 id="2use-socks5-proxy-2" data-line="9" class="code-line">2.use socks5 proxy</h3>
+<pre><code data-line="10" class="code-line"><code><div>google-chrome --proxy-server=&quot;socks5://localhost:9050&quot; &amp; disown
+</div></code></code></pre>
+<h3 id="3setup-http-proxy-optional-2" data-line="14" class="code-line">3.setup http proxy (optional)</h3>
+<pre><code data-line="15" class="code-line"><code><div>yum install privoxy
+
+vi /etc/privoxy/config
+-- listen-address  127.0.0.1:8118
+++ listen-address  127.0.0.1:8118
+++ forward-socks5 / localhost:9050 .
+
+systemctl restart privoxy
+</div></code></code></pre>
+<h3 id="4use-http-proxy-optional-2" data-line="26" class="code-line">4.use http proxy (optional)</h3>
+<pre><code data-line="27" class="code-line"><code><div>google-chrome --proxy-server=&quot;http://localhost:8118&quot; &amp; disown
+</div></code></code></pre>
+
+</body></html>

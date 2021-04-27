@@ -4,7 +4,7 @@
 # Scientific Web Browsing
 
 ## SSH
-[SSH/Socks5-Proxy.html](SSH/Socks5-Proxy.html)   
+[SSH/Proxy-Server.html](SSH/Proxy-Server.html)   
 
 ## Pritunl
 [OpenVPN/Pritunl.html](OpenVPN/Pritunl.html)   
