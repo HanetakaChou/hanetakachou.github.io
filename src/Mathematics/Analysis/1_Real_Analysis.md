@@ -30,6 +30,15 @@ Squeeze Theorem 夹逼准则
 
 ### Intermediate Value Theorem 介值定理  
 
+### Uniformly Continuous 一致连续性  
+\[Pugh 2015\] / 1 RealNumbers / Exercises / 42  
+
+$\displaystyle \sin (\frac{1}{x})$ is continuous on (0, 1) but not uniformly continuous 
+
+for example $\displaystyle \varepsilon$=1.5 $\displaystyle \delta$=0.001 
+let x=$\displaystyle \frac{\displaystyle 1}{\displaystyle 2000\pi+\frac{\displaystyle \pi}{\displaystyle 2}}$ y= $\displaystyle \frac{\displaystyle 1}{\displaystyle 2000\pi-\frac{\displaystyle \pi}{\displaystyle 2}}$ evidently \|x - y\|<0.001 and \|f(x) - f(y)\|=2>$\displaystyle \varepsilon$
+
+
 ## Topology  
 
 ![](Topology.svg)
@@ -69,6 +78,8 @@ Donut(2-Torus) - Coffee Cup
 
 ProofWiki / Trefoil Knot is Homeomorphic to Circle  
 ProofWiki / Jokes / Coffee and Doughnuts  
+
+The "homeomorphic" means not only "equinumerous" but also "continuous"  
 
 ### Limit  
 \[Pugh 2015\] / 2 A Taste of Topology / Convergent Sequences and Subsequences  
@@ -308,6 +319,9 @@ ProofWiki / Continuous Bijection from Compact to Hausdorff is Homeomorphism/Coro
 
 uniformly continuous  
 \[Pugh 2015\] / 1 Real Numbers / 42  
+ProofWiki / Continuous Function on Compact Space is Uniformly Continuous  
+
+### Connectedness  
 
 
 ## Reference  
