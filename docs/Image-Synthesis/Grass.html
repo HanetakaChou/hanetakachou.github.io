@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.18.1/lib/index.min.js">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markdown-it-texmath@0.6.5/css/texmath.css">
+<link rel="stylesheet" href="https://gitcdn.xyz/repo/goessner/mdmath/master/css/vscode-texmath.css">
+
+</head>
+<body class="markdown-body">
+<h2 id="nvidia-turf-effects-2" data-line="0" class="code-line">NVIDIA Turf Effects</h2>
+<p data-line="1" class="code-line">The solutions provided by Makarov(1.[Makarov 2015]) and Jahrmann(2.[Jahrmann 2017]) all suggest using the tessellation shader to generate the vertices by the bezier control points.<br>
+However, the tessellation shader is inefficient on the mobile GPU since the output vertices data must be written back into the main memory while the output framebuffer data may be kept in tile memory and discarded when renderpass ends(3.[Harris 2019]).<br>
+In fact, the tessellation shader is not supported by the hardware and is simulated by the computer shader on the Mali GPU.<br>
+Evidently, it's senseless to use the tessellation shader on mobile GPU and thus we intend to use the computer shader mannually and optimize the usage of the computer shader finely.<br>
+As suggested by &quot;Best Practices&quot;(3.[Harris 2019]), we intend to generate two seperated vertex buffers: positions and varyings.</p>
+<h2 id="tressfx-2" data-line="7" class="code-line">TressFX</h2>
+<p data-line="8" class="code-line">4.[Han 2015]</p>
+<h2 id="reference-2" data-line="10" class="code-line">Reference</h2>
+<p data-line="11" class="code-line">1.[Makarov 2015] <a href="http://on-demand.gputechconf.com/gtc/2015/presentation/S5748-Evgeny-Makarov.pdf" data-href="http://on-demand.gputechconf.com/gtc/2015/presentation/S5748-Evgeny-Makarov.pdf">Evgeny Makarov. &quot;NVIDIA Turf Effects: Massive Grass Rendering With Dynamic Simulation.&quot; GTC 2015.</a><br>
+Appendix: <a href="https://developer.nvidia.com/turfeffects" data-href="https://developer.nvidia.com/turfeffects">GameWorks VisualFX</a><br>
+2.[Jahrmann 2017] <a href="https://www.cg.tuwien.ac.at/research/publications/2017/JAHRMANN-2017-RRTG/JAHRMANN-2017-RRTG-draft.pdf" data-href="https://www.cg.tuwien.ac.at/research/publications/2017/JAHRMANN-2017-RRTG/JAHRMANN-2017-RRTG-draft.pdf">Klemens Jahrmann, Michael Wimmer. &quot;Responsive Real-Time Grass Rendering for General 3D Scenes.&quot; I3D 2017.</a><br>
+Appendix: <a href="https://github.com/klejah/ResponsiveGrassDemo" data-href="https://github.com/klejah/ResponsiveGrassDemo">GitHub-Klejah</a> <a href="https://github.com/YuqiaoZhang/ResponsiveGrassDemo" data-href="https://github.com/YuqiaoZhang/ResponsiveGrassDemo">GitHub-YuqiaoZhang</a><br>
+3.[Harris 2019] <a href="https://developer.arm.com/solutions/graphics/developer-guides/mali-gpu-best-practices" data-href="https://developer.arm.com/solutions/graphics/developer-guides/mali-gpu-best-practices">Pete Harris. &quot;Arm Mali GPUs Best Practices Developer Guide.&quot; ARM Developer 2019.</a><br>
+4.[Han 2015] Dongsoo Han, Hongwei Li. &quot;Grass Rendering and Simulation with LOD.&quot; GPU Pro 6 Chapter II-2 2015.</p>
+
+</body></html>
