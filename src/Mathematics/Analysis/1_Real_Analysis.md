@@ -292,21 +292,21 @@ By the definition of sequentially compactness, we have the proof.
 // ProofWiki / Compact Space satisfies Finite Intersection Axiom  
 // ProofWiki / Intersection of Closed Set with Compact Subspace is Compact  
 
-\[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Continuity and Compactness / 36 Theorem  
+\[Pugh 2015\] / 2 A Taste of Topology / 4 Compactness / Continuity and Compactness / 36 Theorem  
 ProofWiki / Continuous Image of Compact Space is Compact  
   
-This theorem generalizes the "Extreme Value Theorem"/"Maximum-Minimum Theorem"  
+This theorem generalizes the **"Extreme Value Theorem"/"Maximum-Minimum Theorem"**  
 since the closed interval [a, b] is compact  
 f([a, b]) is compact and then is bounded  
-\[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Continuity and Compactness / 37 Corollary  
+\[Pugh 2015\] / 2 A Taste of Topology / 4 Compactness / Continuity and Compactness / 37 Corollary  
 
 Topological Property //Bicompactness(originally called)  
 ProofWiki / Definition:Topological Property   
-\[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Continuity and Compactness / 38 Theorem  
+\[Pugh 2015\] / 2 A Taste of Topology / 4 Compactness / Continuity and Compactness / 38 Theorem  
 
 The closed interval \[a, b\] is equinumerous to R while \[a, b\] and R are not homeomorphic.  
 \[Pugh 2015\] / 1 RealNumbers / 4 Cardinality / 11 Corollary  
-\[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Continuity and Compactness / 39 Corollary  
+\[Pugh 2015\] / 2 A Taste of Topology / 4 Compactness / Continuity and Compactness / 39 Corollary  
 //not continous  
 the open interval is homeomorphic to R  
 
@@ -322,6 +322,14 @@ uniformly continuous
 ProofWiki / Continuous Function on Compact Space is Uniformly Continuous  
 
 ### Connectedness  
+Proper Subset 真子集  
+
+Topological Property  
+\[Pugh 2015\] / 2 A Taste of Topology / 5 Connectedness / 44 Corollary  
+
+This theorem generalizes the **"Intermediate Value Theorem"**  
+ProofWiki / Intermediate Value Theorem (Topology)  
+\[Pugh 2015\] / 2 A Taste of Topology / 5 Connectedness / 45 Corollary  
 
 
 ## Reference  
