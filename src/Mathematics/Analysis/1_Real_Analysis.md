@@ -79,7 +79,7 @@ Donut(2-Torus) - Coffee Cup
 ProofWiki / Trefoil Knot is Homeomorphic to Circle  
 ProofWiki / Jokes / Coffee and Doughnuts  
 
-The "homeomorphic" means not only "equinumerous" but also "continuous"  
+The "**bijection**" means the "**equinumerous**" while the "**homeomorphic**" means not only the "**equinumerous**" but also the "**continuous**"  
 
 ### Limit  
 \[Pugh 2015\] / 2 A Taste of Topology / Convergent Sequences and Subsequences  
