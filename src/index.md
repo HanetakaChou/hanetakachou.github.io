@@ -1,6 +1,6 @@
 # Image Synthesis  
 [Image-Synthesis/OIT.html](Image-Synthesis/OIT.html)  
-[Image-Synthesis/Grass.html](Image-Synthesis/Grass.html)
+[Image-Synthesis/Grass.html](Image-Synthesis/Grass.html)  
 [Image-Synthesis/Volumetric-Rendering.html](Image-Synthesis/Volumetric-Rendering.html)
 
 # Scientific Web Browsing
