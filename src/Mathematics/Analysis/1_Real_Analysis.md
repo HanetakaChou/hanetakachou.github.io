@@ -331,6 +331,12 @@ This theorem generalizes the **"Intermediate Value Theorem"**
 ProofWiki / Intermediate Value Theorem (Topology)  
 \[Pugh 2015\] / 2 A Taste of Topology / 5 Connectedness / 45 Corollary  
 
+related to the Inheritance Principle  
+\[Pugh 2015\] / 3 The Topology of a Metric Space / Inheritance / 13 Inheritance Principle
+  
+Generally, the seperation of the subspace can't deduce the seperation of original space  
+However, it can decude the space included by the closure  
+\[Pugh 2015\] / 2 A Taste of Topology / 5 Connectedness / 49 Theorem  
 
 ## Reference  
 \[Pugh 2015\] Charles Pugh. "Real Mathematical Analysis, Second Edition." Springer 2015.  
