@@ -43,6 +43,11 @@ let x=$\displaystyle \frac{\displaystyle 1}{\displaystyle 2000\pi+\frac{\display
 
 ![](Topology.svg)
 
+cluster point: infinite  
+\[Pugh 2015\] / 2 A Taste of Topology / 6 Other Metric Space Concepts / 52 Theorem  
+
+condensation point: uncountable number of points   
+
 ### Mapping (Topology)  
 Inject 单射 / one-to-one 一一映射  
 Surject 满射 / onto  
