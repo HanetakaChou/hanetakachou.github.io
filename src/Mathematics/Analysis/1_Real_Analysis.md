@@ -326,7 +326,7 @@ uniformly continuous
 \[Pugh 2015\] / 1 Real Numbers / 42  
 ProofWiki / Continuous Function on Compact Space is Uniformly Continuous  
 
-### Connectedness  
+### Connectedness 连通性  
 Proper Subset 真子集  
 
 Topological Property  
@@ -342,6 +342,10 @@ related to the Inheritance Principle
 Generally, the seperation of the subspace can't deduce the seperation of original space  
 However, it can decude the space included by the closure  
 \[Pugh 2015\] / 2 A Taste of Topology / 5 Connectedness / 49 Theorem  
+
+### Perfect Set 完成集  
+Present Perfect 现在完成  
+
 
 ## Reference  
 \[Pugh 2015\] Charles Pugh. "Real Mathematical Analysis, Second Edition." Springer 2015.  
