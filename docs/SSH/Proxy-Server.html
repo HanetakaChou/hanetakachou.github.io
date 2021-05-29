@@ -10,15 +10,15 @@
 
 </head>
 <body class="markdown-body">
-<h2 id="proxy-server-3" data-line="0" class="code-line">Proxy Server</h2>
+<h2 id="proxy-server-19" data-line="0" class="code-line">Proxy Server</h2>
 <p data-line="2" class="code-line">You may rent the CentOS 8 machine by the Vultr / Alibaba Cloud and setup the proxy server by the following tutorial.</p>
-<h3 id="1setup-socks5-proxy-3" data-line="4" class="code-line">1.setup socks5 proxy</h3>
-<pre><code data-line="5" class="code-line"><code><div>ssh -D 9050 root@x.x.x.x ## dynamic port forwarding
+<h3 id="1setup-socks5-proxy-19" data-line="4" class="code-line">1.setup socks5 proxy</h3>
+<pre><code data-line="5" class="code-line"><code><div>ssh -f -N -T -M -D 9050 root@x.x.x.x ## dynamic port forwarding
 </div></code></code></pre>
-<h3 id="2use-socks5-proxy-3" data-line="9" class="code-line">2.use socks5 proxy</h3>
+<h3 id="2use-socks5-proxy-19" data-line="9" class="code-line">2.use socks5 proxy</h3>
 <pre><code data-line="10" class="code-line"><code><div>google-chrome --proxy-server=&quot;socks5://localhost:9050&quot; &amp; disown
 </div></code></code></pre>
-<h3 id="3setup-http-proxy-optional-3" data-line="14" class="code-line">3.setup http proxy (optional)</h3>
+<h3 id="3setup-http-proxy-optional-19" data-line="14" class="code-line">3.setup http proxy (optional)</h3>
 <pre><code data-line="15" class="code-line"><code><div>yum install privoxy
 
 vi /etc/privoxy/config
@@ -28,10 +28,10 @@ vi /etc/privoxy/config
 
 systemctl restart privoxy
 </div></code></code></pre>
-<h3 id="4use-http-proxy-optional-3" data-line="26" class="code-line">4.use http proxy (optional)</h3>
+<h3 id="4use-http-proxy-optional-19" data-line="26" class="code-line">4.use http proxy (optional)</h3>
 <pre><code data-line="27" class="code-line"><code><div>google-chrome --proxy-server=&quot;http://localhost:8118&quot; &amp; disown
 </div></code></code></pre>
-<h3 id="appendix-3" data-line="31" class="code-line">Appendix</h3>
+<h3 id="appendix-19" data-line="31" class="code-line">Appendix</h3>
 <p data-line="33" class="code-line">setup the proxy server on any PC in the local network</p>
 <pre><code data-line="34" class="code-line"><code><div>vi /etc/privoxy/config
 -- listen-address  127.0.0.1:8118

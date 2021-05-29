@@ -4,7 +4,7 @@ You may rent the CentOS 8 machine by the Vultr / Alibaba Cloud and setup the pro
 
 ### 1\.setup socks5 proxy 
 ```
-ssh -D 9050 root@x.x.x.x ## dynamic port forwarding
+ssh -f -N -T -M -D 9050 root@x.x.x.x ## dynamic port forwarding
 ```
 
 ### 2\.use socks5 proxy
