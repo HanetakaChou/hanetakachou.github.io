@@ -44,7 +44,7 @@ let x=$\displaystyle \frac{\displaystyle 1}{\displaystyle 2000\pi+\frac{\display
 ![](Topology.svg)
 
 cluster point: infinite  
-\[Pugh 2015\] / 2 A Taste of Topology / 6 Other Metric Space Concepts / 52 Theorem  
+\[Pugh 2015\] / 2 A Taste of Topology / 6 Other Metric Space Concepts / Clustering and Condensing /52 Theorem  
 
 condensation point: uncountable number of points   
 
@@ -346,6 +346,14 @@ However, it can decude the space included by the closure
 ### Perfect Set 完成集  
 Present Perfect 现在完成  
 
+Perfect means being closed and having no isolated points  
+\[Pugh 2015\] / 2 A Taste of Topology / 6 Other Metric Space Concepts / Perfect Metric Spaces / 56 Theorem  
+ProofWiki / Equivalence of Definitions of Perfect Set  
+
+\[Pugh 2015\] / 2 A Taste of Topology / 6 Other Metric Space Concepts / Perfect Metric Spaces / 57 Corollary  
+> Proof - Sketch  
+> NOTE "compact" implies "complete"  
+> ProofWiki / Sequentially Compact Metric Space is Complete  
 
 ## Reference  
 \[Pugh 2015\] Charles Pugh. "Real Mathematical Analysis, Second Edition." Springer 2015.  
