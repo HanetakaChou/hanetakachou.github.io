@@ -10,11 +10,12 @@
 
 </head>
 <body class="markdown-body">
-<h3 id="basic-idea-3" data-line="0" class="code-line">Basic Idea</h3>
-<p data-line="2" class="code-line">An <strong>identifier</strong> of which the <strong>type</strong> is the <strong>rvalue reference</strong> is still a <strong>lvalue</strong> since the identifier can be identified.</p>
-<h3 id="example-without-perfect-forwarding-3" data-line="4" class="code-line">Example without Perfect Forwarding</h3>
-<p data-line="6" class="code-line">For example, the following code will fail when compiled.</p>
-<pre><code data-line="8" class="code-line language-c++"><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;utility&gt;</span></span>
+<h3 id="basic-idea-2" data-line="0" class="code-line">Basic Idea</h3>
+<p data-line="2" class="code-line">An <strong>identifier</strong> of which the <strong>type</strong> is the <strong>rvalue reference</strong> is still a <strong>lvalue</strong>, since the identifier can be identified.<br>
+Note that the value which can be identified must be a lvalue([Stroustrup 2013] / Part II Basic Facilities / 6 Types and Declarations / 6.4.1 Lvalues and Rvalues).</p>
+<h3 id="example-without-perfect-forwarding-2" data-line="5" class="code-line">Example without Perfect Forwarding</h3>
+<p data-line="7" class="code-line">For example, the following code will fail when compiled.</p>
+<pre><code data-line="9" class="code-line language-c++"><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;utility&gt;</span></span>
 
 <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">foo</span><span class="hljs-params">(<span class="hljs-keyword">int</span> &amp;&amp;i)</span>
 </span>{
@@ -31,16 +32,16 @@
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }
 </div></code></pre>
-<pre><code data-line="27" class="code-line language-c++"><div>main.cpp: In function ‘<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>’:
+<pre><code data-line="28" class="code-line language-c++"><div>main.cpp: In function ‘<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>’:
 main.cpp:13:9: error: cannot bind rvalue reference of type ‘<span class="hljs-keyword">int</span>&amp;&amp;’ to lvalue of type ‘<span class="hljs-keyword">int</span>’
      <span class="hljs-title">foo</span><span class="hljs-params">(r)</span></span>;
          ^
 main.cpp:<span class="hljs-number">3</span>:<span class="hljs-number">6</span>: note:   initializing argument <span class="hljs-number">1</span> of ‘<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">foo</span><span class="hljs-params">(<span class="hljs-keyword">int</span>&amp;&amp;)</span>’
  <span class="hljs-keyword">void</span> <span class="hljs-title">foo</span><span class="hljs-params">(<span class="hljs-keyword">int</span> &amp;&amp;i)</span>
 </span></div></code></pre>
-<h3 id="example-with-perfect-forwarding-3" data-line="36" class="code-line">Example with Perfect Forwarding</h3>
-<p data-line="38" class="code-line">The &quot;std::forward&quot; can be used to fix the compilation error.</p>
-<pre><code data-line="40" class="code-line language-c++"><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;utility&gt;</span></span>
+<h3 id="example-with-perfect-forwarding-2" data-line="37" class="code-line">Example with Perfect Forwarding</h3>
+<p data-line="39" class="code-line">The &quot;std::forward&quot; can be used to fix the compilation error.</p>
+<pre><code data-line="41" class="code-line language-c++"><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;utility&gt;</span></span>
 
 <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">foo</span><span class="hljs-params">(<span class="hljs-keyword">int</span> &amp;&amp;i)</span>
 </span>{
@@ -57,5 +58,7 @@ main.cpp:<span class="hljs-number">3</span>:<span class="hljs-number">6</span>: 
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }
 </div></code></pre>
+<h3 id="reference-2" data-line="60" class="code-line">Reference</h3>
+<p data-line="61" class="code-line">[Stroustrup 2013] Bjarne Stroustrup. &quot;The C++ Programming Language Fourth Edition.&quot; Pearson Education 2013.</p>
 
 </body></html>

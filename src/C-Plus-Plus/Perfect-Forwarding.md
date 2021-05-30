@@ -1,6 +1,7 @@
 ### Basic Idea  
 
-An **identifier** of which the **type** is the **rvalue reference** is still a **lvalue** since the identifier can be identified.  
+An **identifier** of which the **type** is the **rvalue reference** is still a **lvalue**, since the identifier can be identified.  
+Note that the value which can be identified must be a lvalue(\[Stroustrup 2013\] / Part II Basic Facilities / 6 Types and Declarations / 6.4.1 Lvalues and Rvalues).  
 
 ### Example without Perfect Forwarding  
 
@@ -56,3 +57,6 @@ int main()
     return 0;
 }
 ```
+
+### Reference  
+\[Stroustrup 2013\] Bjarne Stroustrup. "The C++ Programming Language Fourth Edition." Pearson Education 2013.  
