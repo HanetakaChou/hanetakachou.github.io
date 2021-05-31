@@ -21,3 +21,6 @@
 
 ## Linux NVIDIA
 [Miscellaneous/Linux-NVIDIA.html](Miscellaneous/Linux-NVIDIA.html)  
+
+## Linux Steam
+[Miscellaneous/Linux-NVIDIA.html](Miscellaneous/Linux-Steam.html)  
