@@ -229,6 +229,10 @@ The completeness involves **metric** and is undefined in the topology space
 The completeness is not a topological property // can't be propagated by the homeomorphic  
 ProofWiki / Definition:Topological Property   
 
+### Boundedness 有界性  
+
+\[Pugh 2015\] / 2 A Taste of Topology / 6 Other Metric Space Concepts / Boundedness  
+
 ### Compactness 紧性 / Sequentially Compactness 列紧性    
 
 To reduce the infinite to the finite //closed and bounded ???  
@@ -247,6 +251,9 @@ ProofWiki / Countably Compact Metric Space is Sequentially Compact
 Heine-Borel Theorem/Metric Space 海涅-博雷尔定理/度量空间  
 For metric space, compact $\displaystyle \Leftrightarrow$ complete $\displaystyle \land$ totally bounded  
 ProofWiki / Heine-Borel Theorem/Metric Space  
+
+The "Boundedness" haven't been defined in this section  
+We should reference the \[Pugh 2015\] / 2 A Taste of Topology / 6 Other Metric Space Concepts / Boundedness  
 
 Heine-Borel Theorem/Euclidean Space 海涅-博雷尔定理/欧几里得空间  
 For euclidean space, compact $\displaystyle \Leftrightarrow$ closed $\displaystyle \land$ totally bounded  
@@ -354,6 +361,12 @@ ProofWiki / Equivalence of Definitions of Perfect Set
 > Proof - Sketch  
 > NOTE "compact" implies "complete"  
 > ProofWiki / Sequentially Compact Metric Space is Complete  
+
+### Arithmetic in R is continuous  
+Since the domain of the arithmetic in R is R $\displaystyle \times$ R  
+We would use the propositions in \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Product Metrics  
+
+
 
 ## Reference  
 \[Pugh 2015\] Charles Pugh. "Real Mathematical Analysis, Second Edition." Springer 2015.  
