@@ -233,20 +233,37 @@ ProofWiki / Definition:Topological Property
 
 \[Pugh 2015\] / 2 A Taste of Topology / 6 Other Metric Space Concepts / Boundedness  
 
-### Compactness 紧性 / Sequentially Compactness 列紧性    
+### (Covering) Compactness (覆盖)紧性  
 
-To reduce the infinite to the finite //closed and bounded ???  
+\[Pugh 2015\] / 2 A Taste of Topology / 6 Other Metric Space Concepts / Coverings   
 
-Defined in Topology space: Compact 紧的 //(finite or infinite)open cover has finite subcover  
-Defined in Metric space: Sequentially Compact 列紧的 //(infinite) sequence has convergent subsequence  
+Defined in topology space  
+(finite or infinite)open cover has finite subcover  //"has" means "reduce"  
 
-Evidently, empty set and finite sets are trivial (sequentially) compact  
 
-Since for metric space, compact $\displaystyle \Leftrightarrow$ sequentially compact, \[Pugh 2015\] doesn't distinguish them  
+reduce //infinite/finite cover to finite cover  
+Proofwiki / Definition:Subcover  
+
+cover consists of scraps/patches  
+
+For metric space, compact $\displaystyle \Leftrightarrow$ sequentially compact, and thus \[Pugh 2015\] doesn't distinguish them  
+\[Pugh 2015\] / 2 A Taste of Topology / 7 Coverings
+ / 63 Theorem  
 ProofWiki / Sequentially Compact Metric Space is Compact  
 ProofWiki / Compact Subspace of Metric Space is Sequentially Compact in Itself  
 ProofWiki / Compact Space is Countably Compact  
 ProofWiki / Countably Compact Metric Space is Sequentially Compact  
+
+
+
+### Sequentially Compactness 列紧性    
+
+Defined in metric space  
+(infinite) sequence has convergent subsequence  
+
+To reduce the infinite to the finite //closed and bounded ???  
+
+Evidently, empty set and finite sets are trivial (sequentially) compact  
 
 Heine-Borel Theorem/Metric Space 海涅-博雷尔定理/度量空间  
 For metric space, compact $\displaystyle \Leftrightarrow$ complete $\displaystyle \land$ totally bounded  
