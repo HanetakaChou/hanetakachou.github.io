@@ -271,9 +271,14 @@ To reduce the infinite to the finite //closed and bounded ???
 
 Evidently, empty set and finite sets are trivial (sequentially) compact  
 
+NOTE "compact" implies "complete"  
+\[Pugh 2015\] / 2 A Taste of Topology / 7 Coverings / Total Boundedness / 66 Corollary  
+ProofWiki / Sequentially Compact Metric Space is Complete  
+
 Heine-Borel Theorem/Metric Space 海涅-博雷尔定理/度量空间  
 For metric space, compact $\displaystyle \Leftrightarrow$ complete $\displaystyle \land$ totally bounded  
 ProofWiki / Heine-Borel Theorem/Metric Space  
+\[Pugh 2015\] / 2 A Taste of Topology / 7 Coverings / Total Boundedness / 66 Corollary  
 
 The "Boundedness" haven't been defined in this section  
 We should reference the \[Pugh 2015\] / 2 A Taste of Topology / 6 Other Metric Space Concepts / Boundedness  
@@ -383,6 +388,7 @@ ProofWiki / Equivalence of Definitions of Perfect Set
 \[Pugh 2015\] / 2 A Taste of Topology / 6 Other Metric Space Concepts / Perfect Metric Spaces / 57 Corollary  
 > Proof - Sketch  
 > NOTE "compact" implies "complete"  
+> \[Pugh 2015\] / 2 A Taste of Topology / 7 Coverings / Total Boundedness / 66 Corollary  
 > ProofWiki / Sequentially Compact Metric Space is Complete  
 
 ### Arithmetic in R is continuous  
