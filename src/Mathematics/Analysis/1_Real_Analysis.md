@@ -229,10 +229,6 @@ The completeness involves **metric** and is undefined in the topology space
 The completeness is not a topological property // can't be propagated by the homeomorphic  
 ProofWiki / Definition:Topological Property   
 
-### Boundedness 有界性  
-
-\[Pugh 2015\] / 2 A Taste of Topology / 6 Other Metric Space Concepts / Boundedness  
-
 ### (Covering) Compactness (覆盖)紧性  
 
 \[Pugh 2015\] / 2 A Taste of Topology / 6 Other Metric Space Concepts / Coverings   
@@ -244,7 +240,7 @@ Defined in topology space
 reduce //infinite/finite cover to finite cover  
 Proofwiki / Definition:Subcover  
 
-cover consists of scraps/patches  
+a cover consists of scraps/patches  
 
 For metric space, compact $\displaystyle \Leftrightarrow$ sequentially compact, and thus \[Pugh 2015\] doesn't distinguish them  
 \[Pugh 2015\] / 2 A Taste of Topology / 7 Coverings
@@ -254,7 +250,17 @@ ProofWiki / Compact Subspace of Metric Space is Sequentially Compact in Itself
 ProofWiki / Compact Space is Countably Compact  
 ProofWiki / Countably Compact Metric Space is Sequentially Compact  
 
+### Boundedness 有界性  
 
+\[Pugh 2015\] / 2 A Taste of Topology / 6 Other Metric Space Concepts / Boundedness  
+
+### Total Boundedness 全有界性
+
+\[Pugh 2015\] / 2 A Taste of Topology / 7 Coverings / Total Boundedness  
+
+discrete metric  
+a discrete metric with 4 elements can be comprehended as a regular tetrahedron  
+since d(x,y) = 1 (x $\displaystyle \ne$ y), **infinite discrete metric is bounded** //not totally bounded  
 
 ### Sequentially Compactness 列紧性    
 
