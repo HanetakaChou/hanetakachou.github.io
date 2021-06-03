@@ -43,10 +43,24 @@ let x=$\displaystyle \frac{\displaystyle 1}{\displaystyle 2000\pi+\frac{\display
 
 ![](Topology.svg)
 
+### Cluster Point
 cluster point: infinite  
 \[Pugh 2015\] / 2 A Taste of Topology / 6 Other Metric Space Concepts / Clustering and Condensing /52 Theorem  
 
 condensation point: uncountable number of points   
+
+### Perfect Set 完成集  
+Present Perfect 现在完成  
+
+Perfect means being closed and having no isolated points  
+\[Pugh 2015\] / 2 A Taste of Topology / 6 Other Metric Space Concepts / Perfect Metric Spaces / 56 Theorem  
+ProofWiki / Equivalence of Definitions of Perfect Set  
+
+\[Pugh 2015\] / 2 A Taste of Topology / 6 Other Metric Space Concepts / Perfect Metric Spaces / 57 Corollary  
+> Proof - Sketch  
+> NOTE "compact" implies "complete"  
+> \[Pugh 2015\] / 2 A Taste of Topology / 7 Coverings / Total Boundedness / 66 Corollary  
+> ProofWiki / Sequentially Compact Metric Space is Complete  
 
 ### Mapping (Topology)  
 Inject 单射 / one-to-one 一一映射  
@@ -378,24 +392,9 @@ Generally, the seperation of the subspace can't deduce the seperation of origina
 However, it can decude the space included by the closure  
 \[Pugh 2015\] / 2 A Taste of Topology / 5 Connectedness / 49 Theorem  
 
-### Perfect Set 完成集  
-Present Perfect 现在完成  
-
-Perfect means being closed and having no isolated points  
-\[Pugh 2015\] / 2 A Taste of Topology / 6 Other Metric Space Concepts / Perfect Metric Spaces / 56 Theorem  
-ProofWiki / Equivalence of Definitions of Perfect Set  
-
-\[Pugh 2015\] / 2 A Taste of Topology / 6 Other Metric Space Concepts / Perfect Metric Spaces / 57 Corollary  
-> Proof - Sketch  
-> NOTE "compact" implies "complete"  
-> \[Pugh 2015\] / 2 A Taste of Topology / 7 Coverings / Total Boundedness / 66 Corollary  
-> ProofWiki / Sequentially Compact Metric Space is Complete  
-
 ### Arithmetic in R is continuous  
 Since the domain of the arithmetic in R is R $\displaystyle \times$ R  
 We would use the propositions in \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Product Metrics  
-
-
 
 ## Reference  
 \[Pugh 2015\] Charles Pugh. "Real Mathematical Analysis, Second Edition." Springer 2015.  

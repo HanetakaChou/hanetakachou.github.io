@@ -12,12 +12,18 @@ graph topology{
         rankdir=LR
         Open_Set[label="Open Set"] //开集
         Closed_Set[label="Closed Set"] //闭集
-        Open_Set--Closed_Set[label="Complement"] //补集
+        Perfect_Set[label="Perfect Set"] //完成集
+        Open_Set--Perfect_Set--Closed_Set[style=invis]
     }
     Open_Set--Neighbourhood
     Open_Set--Interior[weight=100]
-    Open_Set--Interior_Point[label="Local criterion for openness",decorate=true]
+    Open_Set--Interior_Point[label="Local criterion for openness", decorate=true]
     Closed_Set--Closure[weight=100]
+    {
+        rankdir=LR
+        Open_Set--Closed_Set[label="Complement"] //补集
+    }
+    Perfect_Set--Derived_Set[weight=100]
 
     Neighbourhood //领域
     Interior_Point--Neighbourhood[weight=100 dir=back]
