@@ -340,15 +340,19 @@ since d(x,y) = 1 (x $\displaystyle \ne$ y), **infinite discrete metric is bounde
 however, no subsequence of 1,2,3,4,... convergences  
 
 Bolzano-Weierstrass Theorem 波尔查诺-维尔斯特拉斯定理   
-\[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Compactness / 31 Theorem  
+\[Pugh 2015\] / 2 A Taste of Topology / 4 Compactness / 31 Theorem  
 This theorem is merely a simple fact about compacts(the box in Rm)  
 > Proof - Sketch  
 Since the sequence is bounded, there exists a box in Rm and the sequence is in the box.  
 By 30 Corollary, the box in Rm is sequentially compact.  
 By the definition of sequentially compactness, we have the proof.  
   
-// ProofWiki / Compact Space satisfies Finite Intersection Axiom  
-// ProofWiki / Intersection of Closed Set with Compact Subspace is Compact  
+\[Pugh 2015\] / 2 A Taste of Topology / 4 Compactness / Ten Examples of Compact Sets  
+The **intersection** of **arbitrarily many** compact sets  
+> ProofWiki / Compact Subspace of Hausdorff Space is Closed  
+ProofWiki / Intersection of Closed Set with Compact Subspace is Compact  
+
+The **union** of **finitely many** compact sets  
 
 \[Pugh 2015\] / 2 A Taste of Topology / 4 Compactness / Continuity and Compactness / 36 Theorem  
 ProofWiki / Continuous Image of Compact Space is Compact  
