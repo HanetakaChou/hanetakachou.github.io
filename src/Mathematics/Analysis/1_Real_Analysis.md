@@ -379,6 +379,10 @@ uniformly continuous
 \[Pugh 2015\] / 1 Real Numbers / 42  
 ProofWiki / Continuous Function on Compact Space is Uniformly Continuous  
 
+### Arithmetic in R is continuous  
+Since the domain of the arithmetic in R is R $\displaystyle \times$ R  
+We would use the propositions in \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Product Metrics  
+
 ### Connectedness 连通性  
 Proper Subset 真子集  
 
@@ -400,9 +404,9 @@ Generally, the seperation of the subspace can't deduce the seperation of origina
 However, it can decude the space included by the closure  
 \[Pugh 2015\] / 2 A Taste of Topology / 5 Connectedness / 49 Theorem  
 
-### Arithmetic in R is continuous  
-Since the domain of the arithmetic in R is R $\displaystyle \times$ R  
-We would use the propositions in \[Pugh 2015\] / 2 A Taste of Topology / 3 The Topology of a Metric Space / Product Metrics  
+### Totally Disconnected 完全不连通  
+
+We would use the propositions in \[Pugh 2015\] / 2 A Taste of Topology / 8 Cantor Sets  
 
 ## Reference  
 \[Pugh 2015\] Charles Pugh. "Real Mathematical Analysis, Second Edition." Springer 2015.  
