@@ -382,6 +382,10 @@ ProofWiki / Continuous Function on Compact Space is Uniformly Continuous
 ### Connectedness 连通性  
 Proper Subset 真子集  
 
+Separation  
+Clopen Proper Subset  
+ProofWiki / Equivalence of Definitions of Connected Topological Space  
+
 Topological Property  
 \[Pugh 2015\] / 2 A Taste of Topology / 5 Connectedness / 44 Corollary  
 
