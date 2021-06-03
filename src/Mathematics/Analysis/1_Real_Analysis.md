@@ -41,7 +41,7 @@ let x=$\displaystyle \frac{\displaystyle 1}{\displaystyle 2000\pi+\frac{\display
 
 ## Topology  
 
-![](Topology.svg)
+![](Topology.svg)  
 
 ### Cluster Point
 cluster point: infinite  
@@ -215,6 +215,10 @@ ProofWiki / Chebyshev Distance is Limit of P-Product Metric //Squeeze Theorem
 
 
 unit disc dmax-square dsum-rhombus
+
+## Metric 度量
+
+![](Metric.svg)  
 
 ### Completeness 完备性  
 

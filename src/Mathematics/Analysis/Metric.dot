@@ -1,0 +1,40 @@
+graph Metric{
+    rankdir=TB
+    //splines=false
+    node[shape=box]
+    //edge[decorate=true]
+    
+
+    {
+        rank=same
+        rankdir=LR
+        Homeomorphism
+        Topological_Property[label="Topological Property"]
+        Compactness //紧
+        Closed_Set[label="Closed Set"] //闭集
+        Homeomorphism--Topological_Property--Compactness
+        Compactness--Closed_Set[style=invis]
+    }
+    Compactness--Sequentially_Compactness[weight=100]
+
+    {
+        rank=same
+        rankdir=LR
+        Sequentially_Compactness[label="Sequentially Compactness"] //列紧
+        Heine_Borel_Theorem[label="Heine-Borel Theorem"]
+        Sequentially_Compactness--Heine_Borel_Theorem[weight=100]
+    }
+
+
+    Completeness //完备性
+    {
+        rank=same
+        rankdir=LR
+        Total_Boundedness[label="Total Boundedness"] //全有界性
+        Boundedness //有界性
+        Total_Boundedness--Boundedness[label="Subspace of Euclidean Space" decorate=true]
+    }
+    Closed_Set--Completeness[label="Subspace of Complete Metric Space" decorate=true weight=100]
+    Completeness--Heine_Borel_Theorem--Total_Boundedness[weight=100]
+
+}
