@@ -351,6 +351,7 @@ By the definition of sequentially compactness, we have the proof.
 The **intersection** of **arbitrarily many** compact sets  
 > ProofWiki / Compact Subspace of Hausdorff Space is Closed  
 ProofWiki / Intersection of Closed Set with Compact Subspace is Compact  
+\[Pugh 2015\] / 2 A Taste of Topology / 4 Compactness / Nests of Compacts / 34 Theorem  
 
 The **union** of **finitely many** compact sets  
 
@@ -410,7 +411,9 @@ However, it can decude the space included by the closure
 
 ### Totally Disconnected 完全不连通  
 
-We would use the propositions in \[Pugh 2015\] / 2 A Taste of Topology / 8 Cantor Sets  
+\[Pugh 2015\] / 2 A Taste of Topology / 8 Cantor Sets  
+
+### Dense 稠密  
 
 ## Reference  
 \[Pugh 2015\] Charles Pugh. "Real Mathematical Analysis, Second Edition." Springer 2015.  
