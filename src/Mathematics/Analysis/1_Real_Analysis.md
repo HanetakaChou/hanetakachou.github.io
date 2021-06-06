@@ -414,6 +414,7 @@ However, it can decude the space included by the closure
 \[Pugh 2015\] / 2 A Taste of Topology / 8 Cantor Sets  
 
 ### Dense 稠密  
+a subset is considered dense if every point in the superset belongs to the subset or "arbitrarily close" to a point in the subset  
 
 ## Reference  
 \[Pugh 2015\] Charles Pugh. "Real Mathematical Analysis, Second Edition." Springer 2015.  
