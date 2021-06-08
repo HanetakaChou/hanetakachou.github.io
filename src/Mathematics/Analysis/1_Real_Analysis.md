@@ -426,8 +426,14 @@ Somewhere Dense
 Nowhere Dense  
 ProofWiki / Definition:Nowhere Dense  
 
-Cantor set -> uncountable + nowhere dense + zero set  
+cantor set -> uncountable + nowhere dense + zero set  
 
+### ----
+
+Compactness -> topological property  
+connectedness -> topological property  
+
+cantor set -> universal compact metric space / cantor surjection theorem  
 
 ## Reference  
 \[Pugh 2015\] Charles Pugh. "Real Mathematical Analysis, Second Edition." Springer 2015.  
