@@ -2,64 +2,65 @@
 <html>
 <head>
 <meta charset="utf-8">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.18.1/lib/index.min.js">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markdown-it-texmath@0.6.5/css/texmath.css">
-<link rel="stylesheet" href="https://gitcdn.xyz/repo/goessner/mdmath/master/css/vscode-texmath.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/default.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markdown-it-texmath/css/texmath.min.css">
+<link rel="stylesheet" href="file:////home/aduzha01/.vscode/extensions/goessner.mdmath-2.7.4/themes/default/style.css">
 
 </head>
 <body class="markdown-body">
-<pre><code data-line="1" class="code-line"><code><div>yum install http://developer.download.nvidia.com/compute/cuda/repos/rhel8/x86_64/cuda-repo-rhel8-10.2.89-1.x86_64.rpm 
-</div></code></code></pre>
-<p data-line="5" class="code-line"><a href="https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#runfile-nouveau" data-href="https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#runfile-nouveau">Disabling Nouveau</a></p>
-<pre><code data-line="6" class="code-line"><code><div>echo 'blacklist nouveau
-options nouveau modeset=0' &gt; /etc/modprobe.d/blacklist-nouveau.conf  
+<pre><code class="code-line language-bash"><div>yum install http://developer.download.nvidia.com/compute/cuda/repos/rhel8/x86_64/cuda-repo-rhel8-10.2.89-1.x86_64.rpm 
+</div></code></pre>
+<p><a href="https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#runfile-nouveau">Disabling Nouveau</a></p>
+<pre><code class="code-line language-bash"><div><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;blacklist nouveau
+options nouveau modeset=0&#x27;</span> &gt; /etc/modprobe.d/blacklist-nouveau.conf  
 dracut --force
-#lsmod | grep nouveau
+<span class="hljs-comment">#lsmod | grep nouveau</span>
 
 grub2-mkconfig -o /boot/efi/EFI/centos/grub.cfg
-</div></code></code></pre>
-<p data-line="15" class="code-line"><a href="https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#runfile-verifications" data-href="https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#runfile-verifications">Device Node Verification</a></p>
-<pre><code data-line="16" class="code-line"><code><div>yum install nvidia-driver
-# cd /usr/src/460.32.03
-# dkms install nvidia/460.32.03
-rm /etc/X11/xorg.conf.d/10-nvidia.conf # We should delete this file otherwise the X server can't start up
+</div></code></pre>
+<p><a href="https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#runfile-verifications">Device Node Verification</a></p>
+<pre><code class="code-line language-bash"><div>yum install nvidia-driver
+<span class="hljs-comment"># cd /usr/src/460.32.03</span>
+<span class="hljs-comment"># dkms install nvidia/460.32.03</span>
+rm /etc/X11/xorg.conf.d/10-nvidia.conf <span class="hljs-comment"># We should delete this file otherwise the X server can&#x27;t start up</span>
 
 yum install nvidia-modprobe
 modprobe nvidia
 modprobe nvidia-uvm
 nvidia-modprobe
-</div></code></code></pre>
-<p data-line="28" class="code-line"><a href="http://download.nvidia.com/XFree86/Linux-x86_64/460.32.03/README/primerenderoffload.html" data-href="http://download.nvidia.com/XFree86/Linux-x86_64/460.32.03/README/primerenderoffload.html">PRIME Render Offload</a><br>
-<a href="https://wiki.archlinux.org/index.php/NVIDIA_Optimus#Using_PRIME_render_offload" data-href="https://wiki.archlinux.org/index.php/NVIDIA_Optimus#Using_PRIME_render_offload">Using PRIME render offload</a><br>
-<a href="https://github.com/archlinux/svntogit-packages/tree/packages/nvidia-prime/trunk" data-href="https://github.com/archlinux/svntogit-packages/tree/packages/nvidia-prime/trunk">nvidia-prime</a><br>
-<a href="https://github.com/archlinux/svntogit-packages/tree/packages/nvidia-utils/trunk" data-href="https://github.com/archlinux/svntogit-packages/tree/packages/nvidia-utils/trunk">nvidia-utils</a></p>
-<pre><code data-line="32" class="code-line"><code><div>rm /etc/X11/xorg.conf.d/10-nvidia.conf # We should delete this file otherwise the X server can't start up
+</div></code></pre>
+<p><a href="http://download.nvidia.com/XFree86/Linux-x86_64/460.32.03/README/primerenderoffload.html">PRIME Render Offload</a><br>
+<a href="https://wiki.archlinux.org/index.php/NVIDIA_Optimus#Using_PRIME_render_offload">Using PRIME render offload</a><br>
+<a href="https://github.com/archlinux/svntogit-packages/tree/packages/nvidia-prime/trunk">nvidia-prime</a><br>
+<a href="https://github.com/archlinux/svntogit-packages/tree/packages/nvidia-utils/trunk">nvidia-utils</a></p>
+<pre><code class="code-line language-bash"><div>rm /etc/X11/xorg.conf.d/10-nvidia.conf <span class="hljs-comment"># We should delete this file otherwise the X server can&#x27;t start up</span>
 
-echo 'Section &quot;OutputClass&quot;
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;Section &quot;OutputClass&quot;
     Identifier &quot;nvidia&quot;
     MatchDriver &quot;nvidia-drm&quot;
     Driver &quot;nvidia&quot;
     Option &quot;AllowEmptyInitialConfiguration&quot;
-EndSection' &gt; /etc/X11/xorg.conf.d/10-nvidia.conf  
+EndSection&#x27;</span> &gt; /etc/X11/xorg.conf.d/10-nvidia.conf  
 
-# restart X server
-# xrandr --listproviders # &quot;NVIDIA-G0&quot; should be listed
+<span class="hljs-comment"># restart X server</span>
+<span class="hljs-comment"># xrandr --listproviders # &quot;NVIDIA-G0&quot; should be listed</span>
 
-export __NV_PRIME_RENDER_OFFLOAD=1
-# export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
-export __GLX_VENDOR_LIBRARY_NAME=nvidia
-# export __VK_LAYER_NV_optimus=NVIDIA_only
+<span class="hljs-built_in">export</span> __NV_PRIME_RENDER_OFFLOAD=1
+<span class="hljs-comment"># export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0</span>
+<span class="hljs-built_in">export</span> __GLX_VENDOR_LIBRARY_NAME=nvidia
+<span class="hljs-comment"># export __VK_LAYER_NV_optimus=NVIDIA_only</span>
 glxinfo | grep NVIDIA
 glxgears
 vkcube
 steam.sh
 
-# yum install nvidia-driver-cuda
-# nvidia-smi
-</div></code></code></pre>
-<p data-line="58" class="code-line"><a href="https://docs.nvidia.com/cuda/nsightee-plugins-install-guide/index.html#install-steps" data-href="https://docs.nvidia.com/cuda/nsightee-plugins-install-guide/index.html#install-steps">Install plugins using Eclipse IDE</a><br>
-<a href="https://docs.nvidia.com/cuda/nsight-eclipse-plugins-guide/index.html#import-sample" data-href="https://docs.nvidia.com/cuda/nsight-eclipse-plugins-guide/index.html#import-sample">Importing CUDA Samples</a></p>
+<span class="hljs-comment"># yum install nvidia-driver-cuda</span>
+<span class="hljs-comment"># nvidia-smi</span>
+</div></code></pre>
+<p><a href="https://docs.nvidia.com/cuda/nsightee-plugins-install-guide/index.html#install-steps">Install plugins using Eclipse IDE</a><br>
+<a href="https://docs.nvidia.com/cuda/nsight-eclipse-plugins-guide/index.html#import-sample">Importing CUDA Samples</a></p>
 
-</body></html>
+</body>
+</html>

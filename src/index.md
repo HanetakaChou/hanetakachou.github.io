@@ -23,5 +23,8 @@
 ## Linux NVIDIA
 [Miscellaneous/Linux-NVIDIA.html](Miscellaneous/Linux-NVIDIA.html)  
 
+## Linux CPU Governor
+[Miscellaneous/Linux-CPU-Governor.html](Miscellaneous/Linux-CPU-Governor.html)  
+
 ## Linux Steam
 [Miscellaneous/Linux-Steam.html](Miscellaneous/Linux-Steam.html)  
