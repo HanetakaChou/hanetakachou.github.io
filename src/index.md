@@ -3,6 +3,7 @@
 
 # Image Synthesis  
 [Image-Synthesis/OIT.html](Image-Synthesis/OIT.html)  
+[Image-Synthesis/MOC.html](Image-Synthesis/MOC.html)  
 [Image-Synthesis/VXGI.html](Image-Synthesis/VXGI.html)  
 [Image-Synthesis/Grass.html](Image-Synthesis/Grass.html)  
 [Image-Synthesis/Volumetric-Rendering.html](Image-Synthesis/Volumetric-Rendering.html)
