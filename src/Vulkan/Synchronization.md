@@ -5,7 +5,7 @@ All commands are executing in all stages defined by "VkPipelineStageFlag" while 
 For example, evidently, the copy command does nothinng in the "COMPUTE_SHADER" stage.  
 And there are two typical stages "TOP_OF_PIPE" and "BOTTOM_OF_PIPE" in which all commands do nothing.  
 
-In the mental model, the command is executing in these stages according to the [logical order]().  
+In the mental model, the command is executing in these stages according to the [logical order](https://www.khronos.org/registry/vulkan/specs/1.0-extensions/html/chap7.html#synchronization-pipeline-stages-order).  
 For example, logically, the copy command is  executing in the "TOP_OF_PIPE" stage first, the "COMPUTE_SHADER" stage next, the "TRANSFER" stage later and the "BOTTOM_OF_PIPE" stage finally.  
 Actually, the copy command  does nothing in the "TOP_OF_PIPE", "COMPUTE_SHADER" and "BOTTOM_OF_PIPE" stages.  
 And, in my opinion, the "TOP_OF_PIPE" and "COMPUTE_SHADER" stages are the equivalent for the copy command.
