@@ -51,7 +51,17 @@ google-chrome --proxy-server="http://localhost:8118" & disown ## use http proxy
 
 ### 2-3\.client side - Android  
 
+Set the http proxy to "127.0.0.1:8118" by [Android Help / Set up a proxy to connect phones](https://support.google.com/android/answer/9654714?hl=en#zippy=%2Cset-up-a-proxy-to-connect-phones)  
+
+### 2-3-1\.ConnectBot  
 Use the "SSH client [ConnectBot](https://play.google.com/store/apps/details?id=org.connectbot)" to setup the "local port forwarding"  
 
-Set the http proxy to "127.0.0.1:8118" by [Android Help / Set up a proxy to connect phones](https://support.google.com/android/answer/9654714?hl=en#zippy=%2Cset-up-a-proxy-to-connect-phones)
+### 2-3-2\.ADB
 
+Use the "ADB [Reverse](https://android.googlesource.com/platform/system/adb/+/master/SERVICES.TXT)" to setup the "reverse forwaring"  
+  
+```bash
+adb reverse tcp:8118 tcp:8080 ## adb reverse forwarding  
+
+ssh -f -N -T -M -L8080:localhost:8118 ## local port forwarding  
+```  

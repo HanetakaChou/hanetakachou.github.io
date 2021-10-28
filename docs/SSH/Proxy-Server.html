@@ -46,8 +46,15 @@ systemctl restart privoxy
 google-chrome --proxy-server=<span class="hljs-string">&quot;http://localhost:8118&quot;</span> &amp; <span class="hljs-built_in">disown</span> <span class="hljs-comment">## use http proxy</span>
 </div></code></pre>
 <h3 id="2-3client-side---android">2-3.client side - Android</h3>
-<p>Use the &quot;SSH client <a href="https://play.google.com/store/apps/details?id=org.connectbot">ConnectBot</a>&quot; to setup the &quot;local port forwarding&quot;</p>
 <p>Set the http proxy to &quot;127.0.0.1:8118&quot; by <a href="https://support.google.com/android/answer/9654714?hl=en#zippy=%2Cset-up-a-proxy-to-connect-phones">Android Help / Set up a proxy to connect phones</a></p>
+<h3 id="2-3-1connectbot">2-3-1.ConnectBot</h3>
+<p>Use the &quot;SSH client <a href="https://play.google.com/store/apps/details?id=org.connectbot">ConnectBot</a>&quot; to setup the &quot;local port forwarding&quot;</p>
+<h3 id="2-3-2adb">2-3-2.ADB</h3>
+<p>Use the &quot;ADB <a href="https://android.googlesource.com/platform/system/adb/+/master/SERVICES.TXT">Reverse</a>&quot; to setup the &quot;reverse forwaring&quot;</p>
+<pre><code class="code-line language-bash"><div>adb reverse tcp:8118 tcp:8080 <span class="hljs-comment">## adb reverse forwarding  </span>
+
+ssh -f -N -T -M -L8080:localhost:8118 <span class="hljs-comment">## local port forwarding  </span>
+</div></code></pre>
 
 </body>
 </html>
