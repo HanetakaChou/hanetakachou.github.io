@@ -19,6 +19,9 @@
 ## SSH
 [SSH/Proxy-Server.html](SSH/Proxy-Server.html)   
 
+## Tor
+[Tor/Tor-Bridge.html](Tor/Tor-Bridge.html)   
+
 ## Pritunl
 [OpenVPN/Pritunl.html](OpenVPN/Pritunl.html)   
 
