@@ -14,6 +14,9 @@
 # Vulkan
 [Vulkan/Synchronization.html](Vulkan/Synchronization.html)
 
+# Textbook Solution
+[Differential-Geometry/Visual-Differential-Geometry-and-Forms.html](Differential-Geometry/Visual-Differential-Geometry-and-Forms.html)
+
 # Scientific Web Browsing
 
 ## SSH
