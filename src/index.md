@@ -1,43 +1,34 @@
-# PatriotEngine
-[PatriotEngine](https://yuqiaozhang.github.io/PatriotEngine)
+# Hanetaka's Blog  
 
-# Image Synthesis  
+## C Plus Plus
+[C-Plus-Plus/Perfect-Forwarding.html](C-Plus-Plus/Perfect-Forwarding.html)  
+
+## Vulkan
+[Vulkan/Synchronization.html](Vulkan/Synchronization.html)  
+
+## Image Synthesis  
 [Image-Synthesis/OIT.html](Image-Synthesis/OIT.html)  
 [Image-Synthesis/MOC.html](Image-Synthesis/MOC.html)  
 [Image-Synthesis/VXGI.html](Image-Synthesis/VXGI.html)  
 [Image-Synthesis/Grass.html](Image-Synthesis/Grass.html)  
-[Image-Synthesis/Volumetric-Rendering.html](Image-Synthesis/Volumetric-Rendering.html)
+[Image-Synthesis/Volumetric-Rendering.html](Image-Synthesis/Volumetric-Rendering.html)  
 
-# C Plus Plus
-[C-Plus-Plus/Perfect-Forwarding.html](C-Plus-Plus/Perfect-Forwarding.html)  
+## PatriotEngine
+[PatriotEngine](https://yuqiaozhang.github.io/PatriotEngine)  
 
-# Vulkan
-[Vulkan/Synchronization.html](Vulkan/Synchronization.html)
+## Textbook Solution
+[Textbook-Solution/Visual-Differential-Geometry-and-Forms.html](Textbook-Solution/Visual-Differential-Geometry-and-Forms.html)  
 
-# Textbook Solution
-[Differential-Geometry/Visual-Differential-Geometry-and-Forms.html](Differential-Geometry/Visual-Differential-Geometry-and-Forms.html)
+## Project Note  
+[Project-Note/Google-Filament.html](Project-Note/Google-Filament.html)  
 
-# Scientific Web Browsing
+## Scientific Web Surf
+[Scientific-Web-Surf/SSH.html](Scientific-Web-Surf/SSH.html)   
+[Scientific-Web-Surf/Tor.html](Scientific-Web-Surf/Tor.html)   
+[Scientific-Web-Surf/OpenVPN.html](Scientific-Web-Surf/OpenVPN.html)   
 
-## SSH
-[SSH/Proxy-Server.html](SSH/Proxy-Server.html)   
-
-## Tor
-[Tor/Tor-Bridge.html](Tor/Tor-Bridge.html)   
-
-## Pritunl
-[OpenVPN/Pritunl.html](OpenVPN/Pritunl.html)   
-
-# Miscellaneous   
-
-## Linux Bluetooth  
-[Miscellaneous/Linux-Bluetooth.html](Miscellaneous/Linux-Bluetooth.html)  
-
-## Linux NVIDIA
-[Miscellaneous/Linux-NVIDIA.html](Miscellaneous/Linux-NVIDIA.html)  
-
-## Linux CPU Governor
-[Miscellaneous/Linux-CPU-Governor.html](Miscellaneous/Linux-CPU-Governor.html)  
-
-## Linux Steam
-[Miscellaneous/Linux-Steam.html](Miscellaneous/Linux-Steam.html)  
+## Linux   
+[Linux/Linux-Bluetooth.html](Linux/Linux-Bluetooth.html)  
+[Linux/Linux-NVIDIA.html](Linux/Linux-NVIDIA.html)  
+[Linux/Linux-CPU-Frequency-Scaling.html](Linux/Linux-CPU-Frequency-Scaling.html)  
+[Linux/Linux-Steam.html](Linux/Linux-Steam.html)  

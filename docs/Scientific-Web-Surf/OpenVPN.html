@@ -9,10 +9,10 @@
 
 </head>
 <body class="markdown-body">
-<h2 id="pritunl" data-line="0" class="code-line">Pritunl</h2>
-<p data-line="2" class="code-line">You may rent the CentOS 8 machine by the Vultr / Alibaba Cloud and deploy Pritunl (which is an free open source OpenVPN server) by the following tutorial.</p>
-<h3 id="1install-pritunl-the-openvpn-server" data-line="4" class="code-line">1.install Pritunl (the OpenVPN server)</h3>
-<pre><code data-line="6" class="code-line language-shell"><div><span class="hljs-meta">#</span><span class="bash"> -- server side shell --</span> 
+<h2 id="pritunl">Pritunl</h2>
+<p>You may rent the CentOS 8 machine by the Vultr / Alibaba Cloud and deploy Pritunl (which is an free open source OpenVPN server) by the following tutorial.</p>
+<h3 id="1install-pritunl-the-openvpn-server">1.install Pritunl (the OpenVPN server)</h3>
+<pre><code class="code-line language-shell"><div><span class="hljs-meta">#</span><span class="bash"> -- server side shell --</span> 
 
 yum install epel-release
 yum update
@@ -75,7 +75,7 @@ vi /etc/selinux/config
 <span class="hljs-meta">#</span><span class="bash"> semanage module -l | grep pritunl</span>
 <span class="hljs-meta">#</span><span class="bash"> semanage module -l | grep openvpn</span>
 </div></code></pre>
-<pre><code data-line="71" class="code-line language-shell"><div><span class="hljs-meta">#</span><span class="bash"> -- client side shell --</span> 
+<pre><code class="code-line language-shell"><div><span class="hljs-meta">#</span><span class="bash"> -- client side shell --</span> 
 <span class="hljs-meta">
 #</span><span class="bash"> https://docs.pritunl.com/docs/configuration-5</span>  
 ssh -L8080:localhost:443 root@x.x.x.x ## use ssh forwarding to tunnel through the firewall
@@ -99,7 +99,7 @@ ssh -L8080:localhost:4849 root@x.x.x.x ## restart your web browser since we chan
 <span class="hljs-meta">#</span><span class="bash"> add an organization and add a user</span>  
 <span class="hljs-meta">#</span><span class="bash"> attach the server <span class="hljs-string">&quot;openvpn-udp&quot;</span> and <span class="hljs-string">&quot;openvpn-tcp&quot;</span> to the organization and start the both servers</span>
 </div></code></pre>
-<pre><code data-line="97" class="code-line language-shell"><div><span class="hljs-meta">#</span><span class="bash"> -- server side shell --</span> 
+<pre><code class="code-line language-shell"><div><span class="hljs-meta">#</span><span class="bash"> -- server side shell --</span> 
 <span class="hljs-meta">
 #</span><span class="bash"> config firewall</span>
 systemctl enable firewalld
@@ -122,8 +122,8 @@ ECS / Instance / Instance Details / Security Groups
 Add Rule &quot;100/tcp/all&quot;, &quot;100/udp/all&quot; and &quot;100/all-gre&quot; in Security Groups Rules  
 
 </div></code></pre>
-<h4 id="2import-openvpn-profile" data-line="122" class="code-line">2.import OpenVPN profile</h4>
-<pre><code data-line="124" class="code-line language-shell"><div><span class="hljs-meta">#</span><span class="bash"> -- server side shell --</span> 
+<h4 id="2import-openvpn-profile">2.import OpenVPN profile</h4>
+<pre><code class="code-line language-shell"><div><span class="hljs-meta">#</span><span class="bash"> -- server side shell --</span> 
 
 ssh -L8080:localhost:443 root@x.x.x.x ## use ssh forwarding to tunnel through the firewall
 <span class="hljs-meta">#</span><span class="bash"> access the https://localhost:8080 by your web browser</span>
@@ -132,40 +132,41 @@ ssh -L8080:localhost:443 root@x.x.x.x ## use ssh forwarding to tunnel through th
 <span class="hljs-meta">#</span><span class="bash"> extract the <span class="hljs-string">&quot;xxx-openvpn-udp.ovpn&quot;</span> and <span class="hljs-string">&quot;xxx-openvpn-tcp.ovpn&quot;</span> from the downloaded tar file</span>
 <span class="hljs-meta">#</span><span class="bash"> download the openvpn client as the following and import the profile <span class="hljs-string">&quot;xxx-openvpn-udp.ovpn&quot;</span> and <span class="hljs-string">&quot;xxx-openvpn-tcp.ovpn&quot;</span> by the openvpn client UI</span>
 </div></code></pre>
-<h5 id="linux-client" data-line="135" class="code-line">Linux client</h5>
-<pre><code data-line="136" class="code-line language-shell"><div><span class="hljs-meta">#</span><span class="bash"> we don<span class="hljs-string">&#x27;t need to download the openvpn client and we may use the built-in &quot;plasma-nm-openvpn&quot;</span></span>
+<h5 id="linux-client">Linux client</h5>
+<pre><code class="code-line language-shell"><div><span class="hljs-meta">#</span><span class="bash"> we don<span class="hljs-string">&#x27;t need to download the openvpn client and we may use the built-in &quot;plasma-nm-openvpn&quot;</span></span>
 nmcli connection import type openvpn file &quot;path-to-the-xxx-openvpn-xxx.ovpn&quot; ## import the profile by the command line
 </div></code></pre>
-<h5 id="windows-client" data-line="141" class="code-line">Windows Client</h5>
-<pre><code data-line="142" class="code-line language-shell"><div><span class="hljs-meta">#</span><span class="bash"> download the openvpn client from the https://openvpn.net/download-open-vpn/ by your web browser</span> 
+<h5 id="windows-client">Windows Client</h5>
+<pre><code class="code-line language-shell"><div><span class="hljs-meta">#</span><span class="bash"> download the openvpn client from the https://openvpn.net/download-open-vpn/ by your web browser</span> 
 <span class="hljs-meta">#</span><span class="bash"> https://openvpn.net/downloads/openvpn-connect-v3-windows.msi</span>
 <span class="hljs-meta">
 #</span><span class="bash"> mirror</span> 
 <span class="hljs-meta">#</span><span class="bash"> https://github.com/YuqiaoZhang/ComputerScience/releases</span>
 <span class="hljs-meta">#</span><span class="bash"> https://github.com/YuqiaoZhang/ComputerScience/releases/download/openvpn-client-mirror-1.0/openvpn-connect-windows-3.2.2.1455.msi</span>
 </div></code></pre>
-<h5 id="mac-client" data-line="151" class="code-line">Mac Client</h5>
-<pre><code data-line="152" class="code-line language-shell"><div><span class="hljs-meta">#</span><span class="bash"> download the openvpn client from OpenVPN.Net(https://openvpn.net/download-open-vpn/)  by your web browser</span> 
+<h5 id="mac-client">Mac Client</h5>
+<pre><code class="code-line language-shell"><div><span class="hljs-meta">#</span><span class="bash"> download the openvpn client from OpenVPN.Net(https://openvpn.net/download-open-vpn/)  by your web browser</span> 
 <span class="hljs-meta">#</span><span class="bash"> https://openvpn.net/downloads/openvpn-connect-v3-macos.dmg</span>
 <span class="hljs-meta">
 #</span><span class="bash"> mirror</span> 
 <span class="hljs-meta">#</span><span class="bash"> https://github.com/YuqiaoZhang/ComputerScience/releases</span>
 <span class="hljs-meta">#</span><span class="bash"> https://github.com/YuqiaoZhang/ComputerScience/releases/download/openvpn-client-mirror-1.0/openvpn-connect-mac-3.2.5.2468.dmg</span>
 </div></code></pre>
-<h5 id="android-client" data-line="161" class="code-line">Android Client</h5>
-<pre><code data-line="162" class="code-line language-shell"><div><span class="hljs-meta">#</span><span class="bash"> download the openvpn client from F-Droid(https://github.com/schwabe/ics-openvpn) by your web browser</span> 
+<h5 id="android-client">Android Client</h5>
+<pre><code class="code-line language-shell"><div><span class="hljs-meta">#</span><span class="bash"> download the openvpn client from F-Droid(https://github.com/schwabe/ics-openvpn) by your web browser</span> 
 <span class="hljs-meta">#</span><span class="bash"> https://f-droid.org/repo/de.blinkt.openvpn_175.apk</span>
 <span class="hljs-meta">
 #</span><span class="bash"> mirror</span> 
 <span class="hljs-meta">#</span><span class="bash"> https://github.com/YuqiaoZhang/ComputerScience/releases</span>
 <span class="hljs-meta">#</span><span class="bash"> https://github.com/YuqiaoZhang/ComputerScience/releases/download/openvpn-client-mirror-1.0/ics-openvpn-android-175.apk</span>
 </div></code></pre>
-<h5 id="ios-client" data-line="171" class="code-line">IOS client</h5>
-<pre><code data-line="172" class="code-line language-shell"><div><span class="hljs-meta">#</span><span class="bash"> we have to download the openvpn client from AppStore(https://apps.apple.com/us/app/openvpn-connect/id590379981)</span>
+<h5 id="ios-client">IOS client</h5>
+<pre><code class="code-line language-shell"><div><span class="hljs-meta">#</span><span class="bash"> we have to download the openvpn client from AppStore(https://apps.apple.com/us/app/openvpn-connect/id590379981)</span>
 </div></code></pre>
-<h4 id="3connect-openvpn" data-line="176" class="code-line">3.connect OpenVPN</h4>
-<pre><code data-line="178" class="code-line language-shell"><div><span class="hljs-meta">#</span><span class="bash"> connect to the imported profile by the client UI</span>
+<h4 id="3connect-openvpn">3.connect OpenVPN</h4>
+<pre><code class="code-line language-shell"><div><span class="hljs-meta">#</span><span class="bash"> connect to the imported profile by the client UI</span>
 <span class="hljs-meta">#</span><span class="bash"> the <span class="hljs-string">&quot;tcp&quot;</span> profile is more stable and recommended</span>
 </div></code></pre>
 
-</body></html>
+</body>
+</html>
