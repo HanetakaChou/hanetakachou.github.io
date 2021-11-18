@@ -28,5 +28,5 @@ The **ultimate equality** notation "≍" actually represents the **equivalent in
 
 By (1.3), we have $\displaystyle \lim\limits_{\vartriangle_p \rightarrow 0} \operatorname{\varepsilon}(\vartriangle_p) = \lim\limits_{\vartriangle_p \rightarrow 0}\frac{\operatorname{A}(\vartriangle_p)}{R^2} = \frac{1}{R^2}\lim\limits_{\vartriangle_p \rightarrow 0}\operatorname{A}(\vartriangle_p) = \frac{1}{R^2} \times 0 = 0$.  
 
-And since "ε ≡ (angle sum of triangle) − π", we have "(angle sum of triangle) − π = 0" and thus "(angle sum of triangle) = π".
+And since "ε ≡ (angle sum of triangle) − π", we have $\displaystyle \lim\limits_{\vartriangle_p \rightarrow 0} \text{(angle sum of triangle)} − \pi = 0$ and thus $\displaystyle \lim\limits_{\vartriangle_p \rightarrow 0} \text{(angle sum of triangle)} = \pi$.
 
