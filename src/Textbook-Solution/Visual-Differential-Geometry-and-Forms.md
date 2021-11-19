@@ -24,6 +24,9 @@ The **ultimate equality** notation "≍" actually represents the **equivalent in
 
 ## Act I: Euclidean and Non-Euclidean Geometry
 
+The most important point of the example of the negative curvature is to wave up and down simultaneously.  
+![](negative-curvature.png)  
+
 ### 3-6
 
 By (1.3), we have $\displaystyle \lim\limits_{\vartriangle_p \rightarrow 0} \operatorname{\varepsilon}(\vartriangle_p) = \lim\limits_{\vartriangle_p \rightarrow 0}\frac{\operatorname{A}(\vartriangle_p)}{R^2} = \frac{1}{R^2}\lim\limits_{\vartriangle_p \rightarrow 0}\operatorname{A}(\vartriangle_p) = \frac{1}{R^2} \times 0 = 0$.  

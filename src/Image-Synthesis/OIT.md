@@ -566,7 +566,7 @@ The github address [https://github.com/YuqiaoZhang/WeightedBlendedOIT](https://g
 
 The demo was originally the "Weighted Blended Order-independent Transparency" of the "NVIDIA GameWorks Vulkan and OpenGL Samples"(24\.\[NVIDIA\]). The weighted blended is the simplest of the all OIT algorithms and I haven't made any substantial changes to the demo.  
   
-## 4\. Reference  
+## 4\. References  
 1\.\[Porter 1984\] [Thomas Porter, Tom Duff. "Compositing Digital Images." SIGGRAPH 1984.](https://keithp.com/~keithp/porterduff/p253-porter.pdf)  
 2\.\[Yusor 2013\] Egor Yusor. "Practical Implementation of Light Scattering Effects Using Epipolar Sampling and 1D Min/Max Binary Trees." GDC 2013. [First-Edition](https://software.intel.com/en-us/blogs/2013/03/18/gtd-light-scattering-sample-updated) [Second-Edition](https://software.intel.com/en-us/blogs/2013/06/26/outdoor-light-scattering-sample) [Third-Edition](https://software.intel.com/en-us/blogs/2013/09/19/otdoor-light-scattering-sample-update)  
 3\.\[Hoobler 2016\] [Nathan Hoobler. "Fast, Flexible, Physically-Based Volumetric Light Scattering." GDC 2016.](http://developer.nvidia.com/VolumetricLighting)  
