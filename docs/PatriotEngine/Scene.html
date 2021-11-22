@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/default.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markdown-it-texmath/css/texmath.min.css">
+
+</head>
+<body class="markdown-body">
+<h1 id="scene">Scene</h1>
+<h2 id="nvidia-pro-pipeline">NVIDIA PRO PIPELINE</h2>
+<p>By [Tavenrath 2013], the <a href="https://developer.nvidia.com/nvidia-pro-pipeline">NVIDIA PRO PIPELINE</a> consists of the following stages: SceneGraph -&gt; SceneTree -&gt; ShapeList.</p>
+<p>Since there is no document for <strong>NVIDIA PRO PIPELINE</strong>, we may refer to the documents of <a href="https://developer.nvidia.com/scenix-details">NVIDIA SceniX</a>.</p>
+<h3 id="scene-graph">Scene Graph</h3>
+<p>The <a href="https://github.com/nvpro-pipeline/pipeline/blob/master/dp/sg/core/Scene.h">dp::sg::core::Scene</a> represents the <strong>scene graph</strong> which is also referred to as the <strong>user tree</strong> by <strong>NVIDIA SceniX</strong> and <strong>user-oriented tree</strong> by [Akenine-Moller 2018] / 19.1.5 Scene Graphs.</p>
+<p>However, we should note that the <strong>scene graph</strong> and <strong>scene tree</strong> are diffirent. The <strong>scene graph</strong> is a DAG which may share the subtree and thus is not efficient. And, in real time rendering, we usually use the <strong>scene tree</strong> instead, which only shares the leaf nodes ([Akenine-Moller 2018] / 19.1.5 Scene Graphs).</p>
+<p>The <a href="https://github.com/nvpro-pipeline/pipeline/blob/master/dp/sg/core/Node.h">dp::sg::core::Node</a> represents all nodes (both the internal nodes and the leaf nodes) of the <strong>scene graph</strong>.</p>
+<p>And the <a href="https://github.com/nvpro-pipeline/pipeline/blob/master/dp/sg/core/Group.h">dp::sg::core::Group</a> represents the internal node which provides the ability to group <strong>dp::sg::core::Node</strong>-derived objects as children.</p>
+<p>There are several <strong>dp::sg::core::Group</strong>-derived internal nodes: <a href="https://github.com/nvpro-pipeline/pipeline/blob/master/dp/sg/core/Transform.h">dp::sg::core::Transform</a>, <a href="https://github.com/nvpro-pipeline/pipeline/blob/master/dp/sg/core/LOD.h">dp::sg::core::LOD</a> ([Akenine-Moller 2018] / Figure 19.34), <a href="https://github.com/nvpro-pipeline/pipeline/blob/master/dp/sg/core/Switch.h">dp::sg::core::Switch</a>, <a href="https://github.com/nvpro-pipeline/pipeline/blob/master/dp/sg/core/Billboard.h">dp::sg::core::Billboard</a> ([Akenine-Moller 2018] / 13.6. Billboarding).</p>
+<p>There are several <strong>dp::sg::core::Node</strong>-derived but <strong>NOT</strong> <strong>dp::sg::core::Group</strong>-derived leaf nodes: <a href="https://github.com/nvpro-pipeline/pipeline/blob/master/dp/sg/core/GeoNode.h">dp::sg::core::GeoNode</a>, <a href="https://github.com/nvpro-pipeline/pipeline/blob/master/dp/sg/core/LightSource.h">dp::sg::core::LightSource</a>, <a href="https://github.com/nvpro-pipeline/pipeline/blob/master/dp/sg/core/ClipPlane.h">dp::sg::core::ClipPlane</a>, <a href="https://github.com/nvpro-pipeline/pipeline/blob/master/dp/sg/core/ClipPlane.h">dp::sg::core::ClipPlane</a>.</p>
+<h3 id="scene-tree">Scene Tree</h3>
+<h2 id="pixar-hydra">Pixar Hydra</h2>
+<h2 id="references">References</h2>
+<p>[Harrison 2010] <a href="https://on-demand.gputechconf.com/gtc/2010/video/S12308-Building-Cutting-Edge-Realtime-3D-Apps-with-NVIDIA-SceniX.flv">Brian Harrison, Michael Morrison. &quot;BUILDING CUTTING-EDGE REALTIME 3D APPLICATIONS WITH NVIDIA SCENIX.&quot; GTC 2010.</a><br>
+[Tavenrath 2013] <a href="https://on-demand.gputechconf.com/gtc/2013/presentations/S3032-Advanced-Scenegraph-Rendering-Pipeline.pdf">Markus Tavenrath, Christoph Kubisch. &quot;Advanced Scenegraph Rendering Pipeline.&quot; GTC 2013.</a><br>
+[Akenine-Moller 2018] <a href="https://www.realtimerendering.com/">Tomas Akenine-Moller, Eric Haines, Naty Hoffman, Angelo Pesce, Michal Iwanicki, Sebastien Hillaire. &quot;Real-Time Rendering Fourth Edition.&quot; CRC Press 2018.</a><br>
+[Elkoura 2019] <a href="http://graphics.pixar.com/usd/files/Siggraph2019_Hydra.pdf">George Elkoura, Sebastian Grassia, Sunya Boonyatera, Alex Mohr, Pol Jeremias-Vila, Matt Kuruc. &quot;A deep dive into universal scene description and hydra.&quot; SIGGRAPH 2019.</a></p>
+
+</body>
+</html>
