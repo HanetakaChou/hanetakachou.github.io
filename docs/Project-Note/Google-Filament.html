@@ -1,22 +1,31 @@
 <!doctype html>
 <html>
+
 <head>
-<meta charset="utf-8">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/default.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markdown-it-texmath/css/texmath.min.css">
+    <meta charset="utf-8">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/default.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markdown-it-texmath/css/texmath.min.css">
 
 </head>
+
 <body class="markdown-body">
-<h1 id="google-filament">Google Filament</h1>
-<h2 id="backend">backend</h2>
-<p>Logically, the Renderer calls the Driver APIs of the &quot;DriverApi&quot;.<br>
-However, these Driver APIs are not executed immediately, but encoded as &quot;Command&quot;s which will be decoded and executed in another thread &quot;FEngine::loop&quot;.<br>
-Personally, I don't praise this design, since we benefit nothing from the encoding and decoding, but introduce extra latency. And we are not able to tune the Vulkan APIs in a fine-grained way, for example, like rendering the whole frame inside a single renderpass with multiple subpasses.<br>
-Besides, this design makes debugging more difficult, since we can't use the callstacks collected by the RenderDoc to analyze the FrameGraph of the Renderer.<br>
-We can use the following code to modify the macros &quot;DECL_DRIVER_API&quot; and &quot;DECL_DRIVER_API_RETURN&quot; inside the &quot;CommandStream.h&quot; to remove the encoding and decoding, and thus the Driver APIs will be executed immediately.</p>
-<pre><code class="code-line language-cxx"><div><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> DECL_DRIVER_API(methodName, paramsDecl, params)                                         \
+    <h1 id="google-filament">Google Filament</h1>
+    <h2 id="backend">backend</h2>
+    <p>Logically, the Renderer calls the Driver APIs of the &quot;DriverApi&quot;.<br>
+        However, these Driver APIs are not executed immediately, but encoded as &quot;Command&quot;s which will be
+        decoded and executed in another thread &quot;FEngine::loop&quot;.<br>
+        Personally, I don't praise this design, since we benefit nothing from the encoding and decoding, but introduce
+        extra latency. And we are not able to tune the Vulkan APIs in a fine-grained way, for example, like rendering
+        the whole frame inside a single renderpass with multiple subpasses.<br>
+        Besides, this design makes debugging more difficult, since we can't use the callstacks collected by the
+        RenderDoc to analyze the FrameGraph of the Renderer.<br>
+        We can use the following code to modify the macros &quot;DECL_DRIVER_API&quot; and
+        &quot;DECL_DRIVER_API_RETURN&quot; inside the &quot;CommandStream.h&quot; to remove the encoding and decoding,
+        and thus the Driver APIs will be executed immediately.</p>
+    <pre><code class="code-line language-cxx"><div><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> DECL_DRIVER_API(methodName, paramsDecl, params)                                         \
     inline void methodName(paramsDecl) {                                                        \
         DEBUG_COMMAND_BEGIN(methodName, false, params);                                         \
         AutoExecute callOnExit([=](){                                                           \
@@ -44,4 +53,5 @@ We can use the following code to modify the macros &quot;DECL_DRIVER_API&quot; a
 </div></code></pre>
 
 </body>
+
 </html>

@@ -1,26 +1,41 @@
 <!doctype html>
 <html>
+
 <head>
-<meta charset="utf-8">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/default.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markdown-it-texmath/css/texmath.min.css">
+    <meta charset="utf-8">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/default.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markdown-it-texmath/css/texmath.min.css">
 
 </head>
+
 <body class="markdown-body">
-<h2 id="mental-model">Mental model</h2>
-<p>All commands are executing in all stages defined by &quot;VkPipelineStageFlag&quot; while the command may do nothing in some of these stages.<br>
-For example, evidently, the copy command does nothinng in the &quot;COMPUTE_SHADER&quot; stage.<br>
-And there are two typical stages &quot;TOP_OF_PIPE&quot; and &quot;BOTTOM_OF_PIPE&quot; in which all commands do nothing.</p>
-<p>In the mental model, the command is executing in these stages according to the <a href="https://www.khronos.org/registry/vulkan/specs/1.0-extensions/html/chap7.html#synchronization-pipeline-stages-order">logical order</a>.<br>
-For example, logically, the copy command is  executing in the &quot;TOP_OF_PIPE&quot; stage first, the &quot;COMPUTE_SHADER&quot; stage next, the &quot;TRANSFER&quot; stage later and the &quot;BOTTOM_OF_PIPE&quot; stage finally.<br>
-Actually, the copy command  does nothing in the &quot;TOP_OF_PIPE&quot;, &quot;COMPUTE_SHADER&quot; and &quot;BOTTOM_OF_PIPE&quot; stages.<br>
-And, in my opinion, the &quot;TOP_OF_PIPE&quot; and &quot;COMPUTE_SHADER&quot; stages are the equivalent for the copy command.</p>
-<p>And thus, we may use the &quot;COMPUTE_SHADER&quot; stage to define the execution dependency to make the copy command wait for some other jobs.<br>
-This execution dependency is definitely legal and the &quot;TRANSFER&quot; stage of the copy command <strong>happens after</strong> the these jobs since the &quot;TRANSFER&quot; stage of the copy command logically <strong>happens after</strong> &quot;COMPUTE_SHADER&quot; stage of the same copy command.<br>
-However, the execution dependency doesn't imply the memory dependency and the &quot;TRANSFER&quot; stage of the copy command may not be able to use the data produced by these jobs.</p>
-<pre><code class="code-line language-c++"><div><span class="hljs-function">vkCmdDispatch
+    <h2 id="mental-model">Mental model</h2>
+    <p>All commands are executing in all stages defined by &quot;VkPipelineStageFlag&quot; while the command may do
+        nothing in some of these stages.<br>
+        For example, evidently, the copy command does nothinng in the &quot;COMPUTE_SHADER&quot; stage.<br>
+        And there are two typical stages &quot;TOP_OF_PIPE&quot; and &quot;BOTTOM_OF_PIPE&quot; in which all commands do
+        nothing.</p>
+    <p>In the mental model, the command is executing in these stages according to the <a
+            href="https://www.khronos.org/registry/vulkan/specs/1.0-extensions/html/chap7.html#synchronization-pipeline-stages-order">logical
+            order</a>.<br>
+        For example, logically, the copy command is executing in the &quot;TOP_OF_PIPE&quot; stage first, the
+        &quot;COMPUTE_SHADER&quot; stage next, the &quot;TRANSFER&quot; stage later and the &quot;BOTTOM_OF_PIPE&quot;
+        stage finally.<br>
+        Actually, the copy command does nothing in the &quot;TOP_OF_PIPE&quot;, &quot;COMPUTE_SHADER&quot; and
+        &quot;BOTTOM_OF_PIPE&quot; stages.<br>
+        And, in my opinion, the &quot;TOP_OF_PIPE&quot; and &quot;COMPUTE_SHADER&quot; stages are the equivalent for the
+        copy command.</p>
+    <p>And thus, we may use the &quot;COMPUTE_SHADER&quot; stage to define the execution dependency to make the copy
+        command wait for some other jobs.<br>
+        This execution dependency is definitely legal and the &quot;TRANSFER&quot; stage of the copy command
+        <strong>happens after</strong> the these jobs since the &quot;TRANSFER&quot; stage of the copy command logically
+        <strong>happens after</strong> &quot;COMPUTE_SHADER&quot; stage of the same copy command.<br>
+        However, the execution dependency doesn't imply the memory dependency and the &quot;TRANSFER&quot; stage of the
+        copy command may not be able to use the data produced by these jobs.</p>
+    <pre><code class="code-line language-c++"><div><span class="hljs-function">vkCmdDispatch
 
 <span class="hljs-title">vkCmdPipelineBarrier</span><span class="hljs-params">(..., VK_PIPELINE_STAGE_COMPUTE_SHADER_BIT, ...
 
@@ -33,4 +48,5 @@ vkCmdCopyBufferToImage
 </span></span></div></code></pre>
 
 </body>
+
 </html>

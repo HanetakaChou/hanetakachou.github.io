@@ -1,4 +1,5 @@
 ## License  
+
 ```  
 Copyright (C) 2018-2021 YuqiaoZhang(HanetakaChou)
 
@@ -8,3 +9,8 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 
 You should have received a copy of the GNU Lesser General Public License along with this program.  If not, see <https://www.gnu.org/licenses/>
 ```  
+## Introduction  
+
+I am a mathematics amateur and I am learning the book "Visual Complex Analysis" in my leisure time.  
+
+Since I am not professional, I am publishing my solutions here and I am willing to accept your criticism. If you find there are any mistakes or improvements, please don't hesitate to contact me by [email](mailto:HanetakaChou@outlook.com).  

@@ -25,7 +25,7 @@ The **ultimate equality** notation "≍" actually represents the **equivalent in
 ## Act I: Euclidean and Non-Euclidean Geometry
 
 The most important point of the example of the negative curvature is to wave up and down simultaneously.  
-![](negative-curvature.png)  
+![](Visual-Differential-Geometry-and-Forms-1.png)  
 
 ### 3-6
 

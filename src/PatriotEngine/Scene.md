@@ -19,7 +19,7 @@ And the [dp::sg::core::Group](https://github.com/nvpro-pipeline/pipeline/blob/ma
 
 There are several **dp::sg::core::Group**-derived internal nodes: [dp::sg::core::Transform](https://github.com/nvpro-pipeline/pipeline/blob/master/dp/sg/core/Transform.h), [dp::sg::core::LOD](https://github.com/nvpro-pipeline/pipeline/blob/master/dp/sg/core/LOD.h) (\[Akenine-Moller 2018\] / Figure 19.34), [dp::sg::core::Switch](https://github.com/nvpro-pipeline/pipeline/blob/master/dp/sg/core/Switch.h), [dp::sg::core::Billboard](https://github.com/nvpro-pipeline/pipeline/blob/master/dp/sg/core/Billboard.h) ([Akenine-Moller 2018\] / 13.6. Billboarding).  
 
-There are several **dp::sg::core::Node**-derived but **NOT** **dp::sg::core::Group**-derived leaf nodes: [dp::sg::core::GeoNode](https://github.com/nvpro-pipeline/pipeline/blob/master/dp/sg/core/GeoNode.h), [dp::sg::core::LightSource](https://github.com/nvpro-pipeline/pipeline/blob/master/dp/sg/core/LightSource.h), [dp::sg::core::ClipPlane](https://github.com/nvpro-pipeline/pipeline/blob/master/dp/sg/core/ClipPlane.h), [dp::sg::core::ClipPlane](https://github.com/nvpro-pipeline/pipeline/blob/master/dp/sg/core/ClipPlane.h).
+There are several **dp::sg::core::Node**-derived but **NOT** **dp::sg::core::Group**-derived leaf nodes: [dp::sg::core::GeoNode](https://github.com/nvpro-pipeline/pipeline/blob/master/dp/sg/core/GeoNode.h), [dp::sg::core::LightSource](https://github.com/nvpro-pipeline/pipeline/blob/master/dp/sg/core/LightSource.h), [dp::sg::core::ClipPlane](https://github.com/nvpro-pipeline/pipeline/blob/master/dp/sg/core/ClipPlane.h).
 
 ### Scene Tree  
 
