@@ -18,6 +18,7 @@ You should have received a copy of the GNU Lesser General Public License along w
 [Vulkan/Synchronization.html](Vulkan/Synchronization.html)  
 
 ## Image Synthesis  
+[Image-Synthesis/Skin.html](Image-Synthesis/Skin.html)  
 [Image-Synthesis/OIT.html](Image-Synthesis/OIT.html)  
 [Image-Synthesis/MOC.html](Image-Synthesis/MOC.html)  
 [Image-Synthesis/VXGI.html](Image-Synthesis/VXGI.html)  
