@@ -10,7 +10,7 @@ Deep Scatter | investigating |  Transmittance
 The "Subsurface Scattering" of FaceWorks is based on \[Penner 2011\], and the related source code in FaceWorks is the "EvaluateSSSDiffuseLight" function in "[lighting.hlsli](https://github.com/NVIDIAGameWorks/FaceWorks/blob/master/samples/d3d11/shaders/lighting.hlsli)".  
 
 The main idea is that the diffuse [BSDF](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Surface_Reflection) is calculated by "D(θ,r)", and the "D(θ,r)" is "Pre-Integrated" as the title of the paper indicates and stored in a LUT(Look Up Texture).   
-The "θ" is merely the traditional "dot(N,L)", and the "r" is called "curvature" by \[Penner 2011\] which can be calculated on-the-fly as "r = ddx(p)/ddx(N)". However, the "on-the-fly" method may be inefficient or inaccurate since FaceWorks chooses to precomputes the curvature instead.  
+The "θ" is merely the traditional "dot(N,L)", and the "r" is called "curvature" by \[Penner 2011\] which can be calculated on-the-fly as "r = ddx(p)/ddx(N)". However, the "on-the-fly" method may be inefficient or inaccurate since FaceWorks chooses to precompute the curvature instead.  
 Thus, the BSDF can be calculated as "BSDF(p,N,L) = D(dot(N,L), ddx(p)/ddx(N))".
 
 Unfortunately, the formula of "D(θ,r)" provided by "Chapter 1. Pre-Integrated Skin Shading" of "Part II. Rendering" of "GPU Pro 2" is **NOT** correct.  
