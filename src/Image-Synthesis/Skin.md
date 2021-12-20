@@ -4,19 +4,29 @@ FaceWorks - NVIDIA | Disney SSS - Unity | Separable SSS - UE4
 Subsurface Scattering | investigating |  Blur
 Deep Scatter | investigating |  Transmittance
 
+### Diffusion Profile  
+
+Currently, the real time methods are based on the diffusion profile("14.4.2 Rendering with Diffusion Profile" of [dEon 2007]) rather than the [BSSRDF](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Surface_Reflection#TheBSSRDF).  
+The key point is that the subsurface scattering is simulated by a much simpler process where we scatter the light of each location to its neighbors based on the weight indicated by the diffusion profiles.  
+
 ## 1\. FaceWorks - NVIDIA
 
 ### 1-1\. Subsurface Scattering
 The "Subsurface Scattering" of FaceWorks is based on \[Penner 2011\], and the related source code in FaceWorks is the "EvaluateSSSDiffuseLight" function in "[lighting.hlsli](https://github.com/NVIDIAGameWorks/FaceWorks/blob/master/samples/d3d11/shaders/lighting.hlsli)".  
 
-The main idea is that the diffuse [BSDF](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Surface_Reflection) is calculated by "D(θ,r)", and the "D(θ,r)" is "Pre-Integrated" as the title of the paper indicates and stored in a LUT(Look Up Texture).   
-The "θ" is merely the traditional "dot(N,L)", and the "r" is called "curvature" by \[Penner 2011\] which can be calculated on-the-fly as "r = ddx(p)/ddx(N)". However, the "on-the-fly" method may be inefficient or inaccurate since FaceWorks chooses to precompute the curvature instead.  
-Thus, the BSDF can be calculated as "BSDF(p,N,L) = D(dot(N,L), ddx(p)/ddx(N))".
+According to \[Penner 2011\], an equivalent gather operation can be used to replace the scatter operation of [dEon 2007].  
+And the diffuse term can be calculated as "$\displaystyle \operatorname{L}_o(p_o) = \int_A \operatorname{T}(\operatorname{distance}(p_o, p_i)) \cdot \operatorname{BRDF}(p_i, w_i) \cdot \operatorname{L_i}(p_i, w_i) \cdot |\cos(\theta)| \, dA$" where the "$\displaystyle \operatorname{R}(d)$" is the diffusion profile and the $\displaystyle \operatorname{T}(d) = \frac{\operatorname{R}(d)}{\int_A \operatorname{R}(\operatorname{distance}(p_o, p_i)) \, dA}$ which is introduced for energy conservation.   
+Note that we omit $\displaystyle w_o$ since the diffuse term is equilvalent for all $\displaystyle w_o$.  
+
+The main idea of \[Penner 2011\] is that the "$\displaystyle \operatorname{BRDF}(p_i, w_i)$" is assumed to be the constant "$\displaystyle \operatorname{BRDF}(p_o, w_i)$" for all vicinal locations.  
+And thus, the "$\displaystyle \operatorname{R}(\operatorname{distance}(p_o, p_i)) \cdot |\cos(\theta)|$" part of the diffuse term can be "Pre-Integrated" and stored in a LUT(Look Up Texture) which is called the "D(θ,r)".   
+The "θ" is merely the traditional "dot(N,L)", and the "r" is called "curvature" by \[Penner 2011\] which can be calculated on-the-fly as "$\displaystyle r = \frac{\operatorname{ddx}(P)}{\operatorname{ddx}(N)}$". However, the "on-the-fly" method may be inefficient or inaccurate since FaceWorks chooses to precompute the curvature instead.  
+In conclusion, the diffuse term can be calculated as "$\displaystyle \operatorname{D}(\operatorname{dot}(N,L), \frac{\operatorname{ddx}(P)}{\operatorname{ddx}(N)}) \cdot \operatorname{BRDF}(P) \cdot Lighting$".
 
 Unfortunately, the formula of "D(θ,r)" provided by "Chapter 1. Pre-Integrated Skin Shading" of "Part II. Rendering" of "GPU Pro 2" is **NOT** correct.  
-Here is a page from [Zhihu (in Chinese)](https://zhuanlan.zhihu.com/p/56052015) which elaborates the derivation of the "$\displaystyle \operatorname{D}(\theta, r)$".  
+Here is a page from [Zhihu (in Chinese)](https://zhuanlan.zhihu.com/p/56052015) which elaborates the derivation of the "D(θ,r)".  
 Since the denominator of $\displaystyle \operatorname{D}(\theta, r) = \frac{\int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \cos (\theta + x) \cdot R(2r\sin(\frac{x}{2})) \,dx}{\int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} R(2r\sin(\frac{x}{2})) \,dx}$ is a constant, the formula can be rewritten as $\displaystyle \operatorname{D}(\theta, r) = \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \cos (\theta + x) \cdot \frac{R(2r\sin(\frac{x}{2}))}{\int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} R(2r\sin(\frac{y}{2})) \,dy} \,dx$ (We use "y" to emphasize that this variable is different from x).  
-Let $\displaystyle \operatorname{t}(x) = \frac{R(2r\sin(\frac{x}{2}))}{\int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} R(2r\sin(\frac{y}{2})) \,dy}$, the key point is that t(x) obeys the formula "$\displaystyle \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \operatorname{t}(x) \,dx = 1$" which indicates the energy conservation.
+Let $\displaystyle \operatorname{T}(x) = \frac{R(2r\sin(\frac{x}{2}))}{\int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} R(2r\sin(\frac{y}{2})) \,dy}$, the key point is that T(x) obeys the formula "$\displaystyle \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \operatorname{T}(x) \,dx = 1$" which indicates the energy conservation.
 
 ### 1-2\. Deep Scatter
 The "Deep Scatter" of FaceWorks is based on the "16.3 Simulating Absorption Using Depth Maps" of \[Green 2004\].
@@ -28,6 +38,9 @@ TODO
 TODO
 
 ## References
+[dEon 2007] [Eugene dEon, David Luebke. "Advanced Techniques for Realistic Real-Time Skin Rendering." GPU Gem 3.](https://developer.nvidia.com/gpugems/gpugems3/part-iii-rendering/chapter-14-advanced-techniques-realistic-real-time-skin)  
+
+
 ### FaceWorks - NVIDIA  
 [NVIDIAGameWorks FaceWorks Github](https://github.com/NVIDIAGameWorks/FaceWorks/blob/master/doc/slides/FaceWorks-Overview-GTC14.pdf)  
 \[Penner 2011\] [Eric Penner. "Pre-Integrated Skin Shading." SIGGRAPH 2011.](http://advances.realtimerendering.com/s2011/)  
@@ -40,7 +53,7 @@ TODO
 
 ### Separable SSS - UE4  
 [EpicGames UnrealEngine Github](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Shaders/Private/SeparableSSS.ush)  
-[Separable Subsurface Scattering](http://www.iryoku.com/separable-sss/)  
+[Jimenez 2015] [Jorge Jimenez, Karoly Zsolnai, Adrian Jarabo1, Christian Freude, Thomas Auzinger, Xian-Chun Wu, Javier von der Pahlen, Michael Wimmer and Diego Gutierrez. "Separable Subsurface Scattering." EGSR 2015.](http://www.iryoku.com/separable-sss/)  
 
 ### PBRT  
 [Separable BSSRDFs](https://www.pbr-book.org/3ed-2018/Volume_Scattering/The_BSSRDF#SeparableBSSRDFs)  
