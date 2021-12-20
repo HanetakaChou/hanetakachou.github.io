@@ -6,8 +6,8 @@ Deep Scatter | investigating |  Transmittance
 
 ### Diffusion Profile  
 
-Currently, the real time methods are based on the diffusion profile("14.4.2 Rendering with Diffusion Profile" of [dEon 2007]) rather than the [BSSRDF](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Surface_Reflection#TheBSSRDF).  
-The key point is that the subsurface scattering is simulated by a much simpler process where we scatter the light of each location to its neighbors based on the weight indicated by the diffusion profiles.  
+The current real time methods are all based on the diffusion profile("14.4.2 Rendering with Diffusion Profile" of [dEon 2007]) rather than the [BSSRDF](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Surface_Reflection#TheBSSRDF).  
+The subsurface scattering is simulated by a much simpler process that the light of each location is scattered to the vicinal locations based on the weight indicated by the diffusion profiles.  
 
 ## 1\. FaceWorks - NVIDIA
 
@@ -15,12 +15,12 @@ The key point is that the subsurface scattering is simulated by a much simpler p
 The "Subsurface Scattering" of FaceWorks is based on \[Penner 2011\], and the related source code in FaceWorks is the "EvaluateSSSDiffuseLight" function in "[lighting.hlsli](https://github.com/NVIDIAGameWorks/FaceWorks/blob/master/samples/d3d11/shaders/lighting.hlsli)".  
 
 According to \[Penner 2011\], an equivalent gather operation can be used to replace the scatter operation of [dEon 2007].  
-And the diffuse term can be calculated as "$\displaystyle \operatorname{L}_o(p_o) = \int_A \operatorname{T}(\operatorname{distance}(p_o, p_i)) \cdot \operatorname{BRDF}(p_i, w_i) \cdot \operatorname{L_i}(p_i, w_i) \cdot |\cos(\theta)| \, dA$" where the "$\displaystyle \operatorname{R}(d)$" is the diffusion profile, and the $\displaystyle \operatorname{T}(d) = \frac{\operatorname{R}(d)}{\int_A \operatorname{R}(\operatorname{distance}(p_o, p_i)) \, dA}$ which is introduced for energy conservation.   
-Note that we omit $\displaystyle w_o$ since the diffuse term is equilvalent for all $\displaystyle w_o$.  
+And the diffuse term can be calculated as "$\displaystyle \operatorname{L}_o(p_o) = \int_A \operatorname{T}(\operatorname{distance}(p_o, p_i)) \cdot \operatorname{BRDF}(p_i, w_i) \cdot \operatorname{L_i}(p_i, w_i) \cdot |\cos(\theta)| \, dA$" where the $\displaystyle \operatorname{T}(d) = \frac{\operatorname{R}(d)}{\int_A \operatorname{R}(\operatorname{distance}(p_o, p_i)) \, dA}$, which is introduced for energy conservation, and the "$\displaystyle \operatorname{R}(d)$" is the diffusion profile.  
+Note that $\displaystyle w_o$ in the formula is omitted because the diffuse term is irrelevant to the $\displaystyle w_o$.  
 
 The main idea of \[Penner 2011\] is that the "$\displaystyle \operatorname{BRDF}(p_i, w_i)$" is assumed to be the constant "$\displaystyle \operatorname{BRDF}(p_o, w_i)$" for all vicinal locations.  
 And thus, the "$\displaystyle \operatorname{T}(\operatorname{distance}(p_o, p_i)) \cdot |\cos(\theta)|$" part of the diffuse term can be "Pre-Integrated" and stored in a LUT(Look Up Texture) which is called the "D(θ,r)".   
-The "θ" is merely the traditional "dot(N,L)", and the "r" is called "curvature" by \[Penner 2011\] which can be calculated on-the-fly as "$\displaystyle r = \frac{\operatorname{ddx}(P)}{\operatorname{ddx}(N)}$". However, the "on-the-fly" method may be inefficient or inaccurate since FaceWorks chooses to precompute the curvature instead.  
+The "θ" is merely the traditional "dot(N,L)", and the "r" is called "curvature" by \[Penner 2011\] which can be calculated on-the-fly as "$\displaystyle r = \frac{\operatorname{ddx}(P)}{\operatorname{ddx}(N)}$". However, the "on-the-fly" method may be not good since FaceWorks chooses to precompute the curvature instead.  
 In conclusion, the diffuse term can be calculated as "$\displaystyle \operatorname{D}(\operatorname{dot}(N,L), \frac{\operatorname{ddx}(P)}{\operatorname{ddx}(N)}) \cdot \operatorname{BRDF}(P) \cdot Lighting$".
 
 Unfortunately, the formula of "D(θ,r)" provided by "Chapter 1. Pre-Integrated Skin Shading" of "Part II. Rendering" of "GPU Pro 2" is **NOT** correct.  
