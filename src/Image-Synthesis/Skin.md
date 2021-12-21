@@ -6,25 +6,38 @@ Deep Scatter | investigating |  Transmittance
 
 ### Diffusion Profile  
 
-The current real time methods are all based on the diffusion profile("14.4.2 Rendering with Diffusion Profile" of [dEon 2007]) rather than the [BSSRDF](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Surface_Reflection#TheBSSRDF).  
-The subsurface scattering is simulated by a much simpler process that the light of each location is scattered to the vicinal locations based on the weight indicated by the diffusion profiles.  
+Currently, all real time methods are based on the diffusion profile("14.4.2 Rendering with Diffusion Profile" of [dEon 2007]) rather than the [BSSRDF](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Surface_Reflection#TheBSSRDF).  
+
+The subsurface scattering is simulated by a much simpler process that the light of each location is scattered to the vicinal locations according to the weights indicated by the diffusion profile.  
+
+Evidently, an equivalent gather operation can be used to replace the scatter operation, and the diffuse term can be considered as "$\displaystyle \operatorname{L}_o(p_o) = \int_A \operatorname{R}(p_o, p_i) \cdot \operatorname{BRDF}(p_i, w_i) \cdot \operatorname{L_i}(p_i, w_i) \cdot |\cos(\theta)| \, dA$" where the "$\displaystyle \operatorname{R}(p_o, p_i)$" is the diffusion profile, and the $\displaystyle w_o$ is deliberately omitted since the diffuse term is irrelevant to the $\displaystyle w_o$.  
+
+Currently, all real time methods assume a homogeneous material, and the $\displaystyle \operatorname{R}(p_o, p_i)$ can be considered radially symmetric, namely, $\displaystyle \operatorname{R}(\operatorname{distance}(p_o, p_i))$. And the diffuse term can be simplified to "$\displaystyle \operatorname{L}_o(p_o) = \int_A \operatorname{R}(\operatorname{distance}(p_o, p_i)) \cdot \operatorname{BRDF}(p_i, w_i) \cdot \operatorname{L_i}(p_i, w_i) \cdot |\cos(\theta)| \, dA$".
+
+However, although the method based on the diffusion profile is much simpler than the BSSRDF, a trivial one pass 2D convolution is still too expensive for real time rendering. Actually, if the width of the efficient domain of the diffusion profile is about 16 mm, and the width of pixel is about 0.25 mm, we would need a 4096(64 x 64) tap blur shader. Thus, a more efficient method needs to be proposed.
 
 ## 1\. FaceWorks - NVIDIA
 
 ### 1-1\. Subsurface Scattering
 The "Subsurface Scattering" of FaceWorks is based on \[Penner 2011\], and the related source code in FaceWorks is the "EvaluateSSSDiffuseLight" function in "[lighting.hlsli](https://github.com/NVIDIAGameWorks/FaceWorks/blob/master/samples/d3d11/shaders/lighting.hlsli)".  
 
-According to \[Penner 2011\], an equivalent gather operation can be used to replace the scatter operation of [dEon 2007].  
-And the diffuse term can be calculated as "$\displaystyle \operatorname{L}_o(p_o) = \int_A \operatorname{T}(\operatorname{distance}(p_o, p_i)) \cdot \operatorname{BRDF}(p_i, w_i) \cdot \operatorname{L_i}(p_i, w_i) \cdot |\cos(\theta)| \, dA$" where the $\displaystyle \operatorname{T}(d) = \frac{\operatorname{R}(d)}{\int_A \operatorname{R}(\operatorname{distance}(p_o, p_i)) \, dA}$, which is introduced for energy conservation, and the "$\displaystyle \operatorname{R}(d)$" is the diffusion profile. The $\displaystyle w_o$ in the formula is omitted because the diffuse term is irrelevant to the $\displaystyle w_o$.  
-
 The main idea of \[Penner 2011\] is that the "$\displaystyle \operatorname{BRDF}(p_i, w_i)$" is assumed to be the constant "$\displaystyle \operatorname{BRDF}(p_o, w_i)$" for all vicinal locations.  
-And thus, the "$\displaystyle \operatorname{T}(\operatorname{distance}(p_o, p_i)) \cdot |\cos(\theta)|$" part of the diffuse term can be "Pre-Integrated" and stored in a LUT(Look Up Texture) which is called the "D(θ,r)".   
-The "θ" is merely the traditional "dot(N,L)", and the "r" is called "curvature" by \[Penner 2011\] which can be calculated on-the-fly as "$\displaystyle r = \frac{\operatorname{ddx}(P)}{\operatorname{ddx}(N)}$". However, the "on-the-fly" method may be inaccurate since FaceWorks chooses to precompute the curvature instead.  
-In conclusion, the diffuse term can be calculated as "$\displaystyle \operatorname{D}(\operatorname{dot}(N,L), \frac{\operatorname{ddx}(P)}{\operatorname{ddx}(N)}) \cdot \operatorname{BRDF}(P) \cdot LI$".
+
+And thus, the "$\displaystyle \operatorname{R}(\operatorname{distance}(p_o, p_i)) \cdot |\cos(\theta)|$" part of the diffuse term can be "Pre-Integrated" and stored in a LUT(Look Up Texture) which is called the "$\displaystyle \operatorname{D}(\theta, \frac{1}{r})$".   
+
+The "θ" is merely the traditional "dot(N,L)", and the "$\displaystyle \frac{1}{r}$", which is called "curvature" by \[Penner 2011\], can be calculated on-the-fly as "$\displaystyle \frac{1}{r} = \frac{\operatorname{ddx}(N)}{\operatorname{ddx}(P)}$". However, the "on-the-fly" method may be inaccurate since FaceWorks chooses to precompute the curvature instead.  
+
+In conclusion, the diffuse term can be calculated as "$\displaystyle \operatorname{D}(\operatorname{dot}(N,L), \frac{\operatorname{ddx}(N)}{\operatorname{ddx}(P)}) \cdot \operatorname{BRDF}(P) \cdot LI$".
  
-There is a page from [Zhihu (in Chinese)](https://zhuanlan.zhihu.com/p/56052015) which elaborates the derivation of the "D(θ,r)".  
-Since the denominator of $\displaystyle \operatorname{D}(\theta, r) = \frac{\int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \cos (\theta + x) \cdot R(2r\sin(\frac{x}{2})) \,dx}{\int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} R(2r\sin(\frac{x}{2})) \,dx}$ is a constant, the formula can be rewritten as $\displaystyle \operatorname{D}(\theta, r) = \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \cos (\theta + x) \cdot \frac{R(2r\sin(\frac{x}{2}))}{\int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} R(2r\sin(\frac{y}{2})) \,dy} \,dx$ (We use "y" to emphasize that this variable is irrelevant to x).  
-Let $\displaystyle \operatorname{T}(x) = \frac{R(2r\sin(\frac{x}{2}))}{\int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} R(2r\sin(\frac{y}{2})) \,dy}$, the key point is that the T(x) obeys the formula "$\displaystyle \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \operatorname{T}(x) \,dx = 1$" which indicates the energy conservation.
+Usually, the diffusion profile is normalized which indicates the energy conservation. This means that $\displaystyle \int_0^\infin R(r) \, dr =1$.  
+
+However, according to \[Penner 2011\], $\displaystyle \operatorname{D}(\theta, \frac{1}{r}) = \frac{\int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} | \cos (\theta + x) | \cdot R(2r\sin(\frac{x}{2})) \,dx}{\int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} R(2r\sin(\frac{y}{2})) \,dy}$. The denominator is added to make sure the diffusion profile is normalized.
+
+// radially symmetric only calculate one direction and thus we need to divide to normalize //approximated a spherical integration with integration on a ring
+
+// "GFSDK_FaceWorks_GenerateCurvatureLUT"
+// 2rsin(x/2) replaced by rx("delta")  
+// denominator is omitted // total diffuse reflectance
 
 ### 1-2\. Deep Scatter
 The "Deep Scatter" of FaceWorks is based on the "16.3 Simulating Absorption Using Depth Maps" of \[Green 2004\].
@@ -34,6 +47,11 @@ TODO
 
 ## 3\. Separable SSS - UE4  
 TODO
+
+Advantages of a Sum-of-Gaussians Diffusion Profile
+
+However, each Gaussian convolution texture can be computed separably and, provided our fit is accurate, the weighted sum of these textures will accurately approximate the lengthy 2D convolution by the original, nonseparable function. This provides a nice way to accelerate general convolutions by nonseparable functions: approximate a nonseparable convolution with a sum of separable convolutions. We use this same idea to accelerate a high-dynamic-range (HDR) bloom filter in Section 14.6.
+
 
 ## References
 [dEon 2007] [Eugene dEon, David Luebke. "Advanced Techniques for Realistic Real-Time Skin Rendering." GPU Gem 3.](https://developer.nvidia.com/gpugems/gpugems3/part-iii-rendering/chapter-14-advanced-techniques-realistic-real-time-skin)  
