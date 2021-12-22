@@ -6,7 +6,7 @@ Deep Scatter | Transmittance |  investigating
 
 ### Diffusion Profile  
 
-Currently, all real time approaches are based on the diffusion profile("14.4.2 Rendering with Diffusion Profile" of [dEon 2007]) rather than the [BSSRDF](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Surface_Reflection#TheBSSRDF).  
+Currently, all real time approaches are based on the diffusion profile("14.4.2 Rendering with Diffusion Profile" of \[dEon 2007\]) rather than the [BSSRDF](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Surface_Reflection#TheBSSRDF).  
 
 By using the diffusion profile, the subsurface scattering, which was described by the BSSRDF, is simplified by scattering the **amount of light** (technically, the **irradiance E**) of each location to the vicinal locations according to the weights indicated by the diffusion profile.  
 Note that the **outgoing** irradiance E can also be called **radiant exitance M** and might be called **radiosity B** in the last century. 
@@ -21,7 +21,7 @@ And, currently, all real time approaches assume that the material is homogeneous
 
 And since for the diffuse term, the outgoing radiance is assumed to be the same in all directions, the diffuse term is simplified to $\displaystyle \operatorname{L}_o(p_o) = \frac{\operatorname{M}_o(p_o)}{\pi} = \frac{1}{\pi} \cdot \int_A \operatorname{R}(\operatorname{distance}(p_o, p_i)) \cdot \operatorname{c_{diffuse}}(p_i) \cdot \operatorname{E_{L}}(p_i) \cdot |\cos(\theta_i)| \, dA$.  
 
-However, although the proposals based on the diffusion profile are much simpler than the BSSRDF, a general 2D convolution is still too expensive for real time rendering. Actually, according to [dEon 2007], if the width of the efficient domain of the diffusion profile is about 16 mm, and the width of pixel is about 0.25 mm, we would sample 4096(64 x 64) pixels in the shader. Thus, we have to propose more efficient approaches.
+However, although the proposals based on the diffusion profile are much simpler than the BSSRDF, a general 2D convolution is still too expensive for real time rendering. Actually, according to \[dEon 2007\], if the width of the efficient domain of the diffusion profile is about 16 mm, and the width of pixel is about 0.25 mm, we would sample 4096(64 x 64) pixels in the shader. Thus, we have to propose more efficient approaches.
 
 ## 1\. FaceWorks - NVIDIA
 
@@ -42,7 +42,7 @@ However, according to \[Penner 2011\], $\displaystyle \operatorname{D}(\theta, \
 
 Note that the **pre-integral** is performed on a ring rather than on a sphere. This is reasonable since it is assumed that the diffusion profile is radially symmetric.
 
-The FaceWorks merely follows the diffusion profile of [dEon 2007] which is approximated by the weighted sum of Gaussians. The main idea of [dEon 2007] is that the [Gaussian blur](https://en.wikipedia.org/wiki/Gaussian_blur) is a **separable filter**, and thus the 2D convolution can be replaced by two 1D convolutions.  
+The FaceWorks merely follows the diffusion profile of \[dEon 2007\] which is approximated by the weighted sum of Gaussians. The main idea of \[dEon 2007\] is that the [Gaussian blur](https://en.wikipedia.org/wiki/Gaussian_blur) is a **separable filter**, and thus the 2D convolution can be replaced by two 1D convolutions.  
 
 However, the approach proposed by \[Penner 2011\] **pre-integrates** the convolution, and it is acceptable to perform a general 2D convolution even by using the exact accurate diffusion profile since the efficiency doesn't matter too much for offline precomputing.
 
@@ -59,7 +59,9 @@ The "Deep Scatter" of FaceWorks is based on the "16.3 Simulating Absorption Usin
 
 ## 2\. Separable SSS - UE4  
 
-The approach proposed by [dEon 2007] is applied in texture space. Evidently, the texture space approach is really weird in real time rendering. And
+The approach proposed by \[dEon 2007\] is applied in texture space. This is really weird since according to the convention, the approaches of the real time rendering are usually applied in screen space.  
+The screen space approach is proposed by \[Jimenez 2009\] and \[Jimenez 2010\].
+
 
 //weird didn't come up with the scene space approach following the convention
 
@@ -74,7 +76,7 @@ TODO
 ## References
 
 ### Outline  
-[dEon 2007] [Eugene dEon, David Luebke. "Advanced Techniques for Realistic Real-Time Skin Rendering." GPU Gem 3.](https://developer.nvidia.com/gpugems/gpugems3/part-iii-rendering/chapter-14-advanced-techniques-realistic-real-time-skin)  
+\[dEon 2007\] [Eugene dEon, David Luebke. "Advanced Techniques for Realistic Real-Time Skin Rendering." GPU Gem 3.](https://developer.nvidia.com/gpugems/gpugems3/part-iii-rendering/chapter-14-advanced-techniques-realistic-real-time-skin)  
 
 
 ### FaceWorks - NVIDIA  
@@ -85,9 +87,9 @@ TODO
 
 ### Separable SSS - UE4  
 [EpicGames UnrealEngine Github](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Shaders/Private/SeparableSSS.ush)  
-[Jimenez 2010] Jorge Jimenez, Diego Gutierrez. "Screen-Space Subsurface Scattering." GPU Pro 1.  
-[Jimenez 2009] [Jorge Jimenez, Veronica Sundstedt, Diego Gutierrez. "Screen-Space Perceptual Rendering of Human Skin." ACM TAP 2009](https://www.iryoku.com/sssss/)  
-[Jimenez 2015] [Jorge Jimenez, Karoly Zsolnai, Adrian Jarabo1, Christian Freude, Thomas Auzinger, Xian-Chun Wu, Javier von der Pahlen, Michael Wimmer and Diego Gutierrez. "Separable Subsurface Scattering." EGSR 2015.](http://www.iryoku.com/separable-sss/)  
+\[Jimenez 2009\] [Jorge Jimenez, Veronica Sundstedt, Diego Gutierrez. "Screen-Space Perceptual Rendering of Human Skin." ACM TAP 2009](https://www.iryoku.com/sssss/)  
+\[Jimenez 2010\] Jorge Jimenez, Diego Gutierrez. "Screen-Space Subsurface Scattering." GPU Pro 1.  
+\[Jimenez 2015\] [Jorge Jimenez, Karoly Zsolnai, Adrian Jarabo1, Christian Freude, Thomas Auzinger, Xian-Chun Wu, Javier von der Pahlen, Michael Wimmer and Diego Gutierrez. "Separable Subsurface Scattering." EGSR 2015.](http://www.iryoku.com/separable-sss/)  
 
 ### Disney SSS - Unity  
 [Unity-Technologies Graphics Github ](https://github.com/Unity-Technologies/Graphics/blob/master/com.unity.render-pipelines.high-definition/Runtime/Material/SubsurfaceScattering/SubsurfaceScattering.hlsl)  
