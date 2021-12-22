@@ -8,15 +8,18 @@ Deep Scatter | Transmittance |  investigating
 
 Currently, all real time approaches are based on the diffusion profile("14.4.2 Rendering with Diffusion Profile" of [dEon 2007]) rather than the [BSSRDF](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Surface_Reflection#TheBSSRDF).  
 
-By using the diffusion profile, the subsurface scattering, which was described by the BSSRDF, is simplified by scattering the light of each location to the vicinal locations according to the weights indicated by the diffusion profile.  
+By using the diffusion profile, the subsurface scattering, which was described by the BSSRDF, is simplified by scattering the **amount of light** (technically, the **irradiance E**) of each location to the vicinal locations according to the weights indicated by the diffusion profile.  
+Note that the **outgoing** irradiance E can also be called **radiant exitance M** and might be called **radiosity B** in the last century. 
 
-Evidently, an equivalent gather operation can be used to replace the scatter operation, and the diffuse term can be considered as $\displaystyle \operatorname{L}_o(p_o) = \int_A \operatorname{R}(p_o, p_i) \cdot \operatorname{L}_o(p_i) \, dA$ where the $\displaystyle \operatorname{R}(p_o, p_i)$ is the diffusion profile.  
-Note that the $\displaystyle w_o$ is deliberately omitted since the diffuse term is irrelevant to the the $\displaystyle w_o$.  
+In real time rendering, the light is assumed to be the punctual light rather than the area light.  
+The [Delta Distribution](https://www.pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/Sampling_Light_Sources#LightswithSingularities) is applied, and the reflectance equation is simplified to $\displaystyle \operatorname{L}_o(p, \omega_o) = \int_\Omega \operatorname{BRDF}(p, \omega_o, \omega_i) \cdot \operatorname{L_i}(p, \omega_i) \cdot |\cos(\theta_i)| \, d\omega_i = \operatorname{BRDF}(p_i, \omega_o, \omega_i) \otimes \operatorname{E_{L}}(p) \otimes |\cos(\theta_i)|$ where the $\displaystyle \operatorname{E_{L}}(p)$ is the irradiance perpendicular to the light direction.   
+And since the diffuse BRDF equals $\displaystyle \frac{c_{diffuse}}{\pi}$ which is irrelevant to the the $\displaystyle w_o$ and the $\displaystyle w_i$, the reflectance equation can be simplified further to $\displaystyle \operatorname{L}_o(p) = \frac{\operatorname{c_{diffuse}}(p)}{\pi} \otimes \operatorname{E_{L}}(p) \otimes |\cos(\theta_i)|$.  
+Thus, the radiant exitance M can be calculated as $\displaystyle \operatorname{M}(p) = \int_\Omega \operatorname{L}_o(p, \omega_o) \, d\omega_o  = \operatorname{L}_o(p) \cdot \int_\Omega 1 \, d\omega_o = \operatorname{L}_o(p) \cdot \pi = \operatorname{c_{diffuse}}(p) \otimes \operatorname{E_{L}}(p) \otimes |\cos(\theta_i)|$. 
 
-Currently, all real time approaches assume that the material is homogeneous. This means that the $\displaystyle \operatorname{R}(p_o, p_i)$ is radially symmetric, and can be characterized by $\displaystyle \operatorname{R}(\operatorname{distance}(p_o, p_i))$.  
-And, in real time rendering, the light is assumed to be the punctual light rather than the area light. The [Delta Distribution](https://www.pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/Sampling_Light_Sources#LightswithSingularities) is applied to simplify the reflectance equation to $\displaystyle \operatorname{L}_o(p_i) = \int_\Omega \operatorname{BRDF}(p_i) \cdot \operatorname{L_i}(p_i, w_i) \cdot |\cos(\theta_i)| \, dw_i = \operatorname{BRDF}(p_i) \cdot \operatorname{c_{light}}(p_i) \cdot |\cos(\theta_i)|$.  
-Thus, the diffuse term can be simplified to $\displaystyle \operatorname{L}_o(p_o) = \int_A \operatorname{R}(\operatorname{distance}(p_o, p_i)) \cdot \operatorname{BRDF}(p_i) \cdot \operatorname{c_{light}}(p_i) \cdot |\cos(\theta_i)| \, dA$.  
-Note that the $\displaystyle w_o$ and the $\displaystyle w_i$ are deliberately omitted since the diffuse BRDF is irrelevant to the the $\displaystyle w_o$ and the $\displaystyle w_i$.  
+Evidently, an equivalent gather operation can be used to replace the scatter operation, and the total radiant exitance can be considered as $\displaystyle \operatorname{M}_o(p_o) = \int_A \operatorname{R}(p_o, p_i) \cdot \operatorname{M}_o(p_i) \, dA$ where the $\displaystyle \operatorname{R}(p_o, p_i)$ is the diffusion profile.  
+And, currently, all real time approaches assume that the material is homogeneous. This means that the $\displaystyle \operatorname{R}(p_o, p_i)$ is radially symmetric, and can be characterized by $\displaystyle \operatorname{R}(\operatorname{distance}(p_o, p_i))$.  
+
+And since for the diffuse term, the outgoing radiance is assumed to be the same in all directions, the diffuse term is simplified to $\displaystyle \operatorname{L}_o(p_o) = \frac{\operatorname{M}_o(p_o)}{\pi} = \frac{1}{\pi} \cdot \int_A \operatorname{R}(\operatorname{distance}(p_o, p_i)) \cdot \operatorname{c_{diffuse}}(p_i) \cdot \operatorname{E_{L}}(p_i) \cdot |\cos(\theta_i)| \, dA$.  
 
 However, although the proposals based on the diffusion profile are much simpler than the BSSRDF, a general 2D convolution is still too expensive for real time rendering. Actually, according to [dEon 2007], if the width of the efficient domain of the diffusion profile is about 16 mm, and the width of pixel is about 0.25 mm, we would sample 4096(64 x 64) pixels in the shader. Thus, we have to propose more efficient approaches.
 
@@ -25,13 +28,13 @@ However, although the proposals based on the diffusion profile are much simpler 
 ### 1-1\. Subsurface Scattering
 The "Subsurface Scattering" of FaceWorks is based on \[Penner 2011\], and the related source code in FaceWorks is the **EvaluateSSSDiffuseLight** function in [lighting.hlsli](https://github.com/NVIDIAGameWorks/FaceWorks/blob/master/samples/d3d11/shaders/lighting.hlsli).  
 
-The main idea of \[Penner 2011\] is that the $\displaystyle \operatorname{BRDF}(p_i)$ is assumed to be the constant $\displaystyle \operatorname{BRDF}(p_o)$ for all vicinal locations.  
+The main idea of \[Penner 2011\] is that the $\displaystyle \operatorname{c_{diffuse}}(p_i)$ is assumed to be the constant $\displaystyle \operatorname{c_{diffuse}}(p_o)$ for all vicinal locations.  
 
 And thus, the $\displaystyle \operatorname{R}(\operatorname{distance}(p_o, p_i)) \cdot |\cos(\theta_i)|$ part of the diffuse term can be **pre-integrated** and stored in a LUT(Look Up Texture) which is called the $\displaystyle \operatorname{D}(\theta, \frac{1}{r})$.   
 
 The **θ** is merely the traditional **dot(N,L)**, and the $\displaystyle \frac{1}{r}$, which is called **curvature** by \[Penner 2011\], can be calculated on-the-fly as $\displaystyle \frac{1}{r} = \frac{\operatorname{ddx}(N)}{\operatorname{ddx}(P)}$. However, the on-the-fly method may be inaccurate since FaceWorks chooses to precompute the curvature instead.  
 
-In conclusion, the diffuse term can be calculated as $\displaystyle \operatorname{D}(\operatorname{dot}(N,L), \frac{\operatorname{ddx}(N)}{\operatorname{ddx}(P)}) \cdot \operatorname{BRDF}(P) \cdot C_{LIGHT}$.
+In conclusion, the diffuse term can be calculated as $\displaystyle \operatorname{D}(\operatorname{dot}(N,L), \frac{\operatorname{ddx}(N)}{\operatorname{ddx}(P)}) \otimes \frac{\operatorname{c_{diffuse}}(p)}{\pi} \otimes \operatorname{E_{L}}(p)$.
  
 Usually, the diffusion profile is normalized which indicates the energy conservation. This means that $\displaystyle \int_0^\infin R(r) \, dr =1$.  
 
@@ -41,7 +44,7 @@ Note that the **pre-integral** is performed on a ring rather than on a sphere. T
 
 The FaceWorks merely follows the diffusion profile of [dEon 2007] which is approximated by the weighted sum of Gaussians. The main idea of [dEon 2007] is that the [Gaussian blur](https://en.wikipedia.org/wiki/Gaussian_blur) is a **separable filter**, and thus the 2D convolution can be replaced by two 1D convolutions.  
 
-However, the approach proposed by \[Penner 2011\] **pre-integrates** the convolution, and it is acceptable to perform a general 2D convolution even by using the exact accurate diffusion profile.
+However, the approach proposed by \[Penner 2011\] **pre-integrates** the convolution, and it is acceptable to perform a general 2D convolution even by using the exact accurate diffusion profile since the efficiency doesn't matter too much for offline precomputing.
 
 // integrateDiffuseScatteringOnRing  
 // Quadrature Method  
@@ -56,7 +59,10 @@ The "Deep Scatter" of FaceWorks is based on the "16.3 Simulating Absorption Usin
 
 ## 2\. Separable SSS - UE4  
 
-The approach proposed by [dEon 2007] is applied in texture space. This is really weird in real time rendering since few real 
+The approach proposed by [dEon 2007] is applied in texture space. Evidently, the texture space approach is really weird in real time rendering. And
+
+//weird didn't come up with the scene space approach following the convention
+
 
 TODO
 
