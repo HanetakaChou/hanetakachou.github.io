@@ -26,7 +26,7 @@ And, currently, all real time approaches assume that the material is homogeneous
 
 And since for the diffuse term, the outgoing radiance is assumed to be the same in all directions, the diffuse term is simplified to $\displaystyle \operatorname{L}_o(p_o) = \frac{\operatorname{M}_o(p_o)}{\pi} = \frac{1}{\pi} \cdot \int_{S_{p_i}} \operatorname{R}(\operatorname{distance}(p_o, p_i)) \cdot \operatorname{c_{diffuse}}(p_i) \cdot \operatorname{E_{L}}(p_i) \cdot |\cos(\theta_i)| \, dp_i$.  
 
-However, although the proposals based on the diffusion profile are much simpler than the BSSRDF, a general 2D convolution is still too expensive for real time rendering. Actually, according to \[dEon 2007\], if the width of the efficient domain of the diffusion profile is about 16 mm, and the width of pixel is about 0.25 mm, we would sample 4096(64 x 64) pixels in the shader. Thus, we have to propose more efficient approaches.
+However, although the proposals based on the diffusion profile are much simpler than the BSSRDF, a general 2D convolution is still too expensive for real time rendering. Actually, according to \[dEon 2007\], if the width of the significant contribution domain of the diffusion profile is about 16 mm, and the width of pixel is about 0.25 mm, we would sample 4096(64 x 64) pixels in the shader. Thus, we have to propose more efficient approaches.
 
 ## 1\. FaceWorks - NVIDIA
 
@@ -72,11 +72,11 @@ The approach proposed by \[dEon 2007\] is applied in texture space.
 
 The main idea of \[dEon 2007\] is to approximate the diffusion profile by the weighted sum of Gaussians, and thus the general 2D convolution can be replaced by two 1D convolutions since the [Gaussian blur](https://en.wikipedia.org/wiki/Gaussian_blur) is a **separable filter**.
 
-And according to the **numerical quadrature**, the funtion value sampled from the irradiance texture should be multiplied by the difference of the domain ΔA. \[dEon 2007\] proposed the **stretch texture**, where the difference of the world position is stored, to described the ΔA.  
+And according to the **numerical quadrature**, the funtion value sampled from the irradiance texture should be multiplied by the difference of the domain $\displaystyle \operatorname{\Delta} p_i$. \[dEon 2007\] proposed the **stretch texture**, where the difference of the world position is stored, to described the $\displaystyle \operatorname{\Delta} p_i$.  
 
 Evidently, the texture space approach is really weird according to the convention of the real time rendering. And the screen space approach is proposed by \[Jimenez 2009\] and \[Jimenez 2010\].
 
-Definitely, the screen space depth can be used to calculate the world position and thus the ΔA can be obtained. However, the **stretch factor** proposed by \[Jimenez 2010\] is not proportional to the difference of the world position, and in my opinion, is empirical. And \[Mikkelsen 2010\] proposed a more reasonable filter size based on the mathematical derivation.  
+Definitely, the screen space depth can be used to calculate the world position and thus the $\displaystyle \operatorname{\Delta} p_i$ can be obtained. However, the **stretch factor** proposed by \[Jimenez 2010\] is not proportional to the difference of the world position, and in my opinion, is empirical. And \[Mikkelsen 2010\] proposed a more reasonable filter size based on the mathematical derivation.  
 
 
 
