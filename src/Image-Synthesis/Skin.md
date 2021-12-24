@@ -1,5 +1,5 @@
 ## Outline
-N/A| FaceWorks - NVIDIA | Separable SSS - UE4 | Disney SSS - Unity3D 
+N/A| [FaceWorks - NVIDIA](https://github.com/NVIDIAGameWorks/FaceWorks/blob/master/doc/slides/FaceWorks-Overview-GTC14.pdf) | [Separable SSS - UE4](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Shaders/Private/SeparableSSS.ush) | [Disney SSS - Unity3D](https://github.com/Unity-Technologies/Graphics/blob/master/com.unity.render-pipelines.high-definition/Runtime/Material/SubsurfaceScattering/SubsurfaceScattering.hlsl) 
 :-: | :-: | :-: | :-:  
 Subsurface Scattering | Pre-Integrated | Blur |  TODO
 Transmitted Light | Deep Scatter | Transmittance |  TODO
@@ -30,8 +30,8 @@ However, although the proposals based on the diffusion profile are much simpler 
 
 ## 1\. FaceWorks - NVIDIA
 
-### 1-1\. Subsurface Scattering
-The **Subsurface Scattering** of FaceWorks is based on \[Penner 2011\], and the related source code in FaceWorks is the **EvaluateSSSDiffuseLight** function in [lighting.hlsli](https://github.com/NVIDIAGameWorks/FaceWorks/blob/master/samples/d3d11/shaders/lighting.hlsli).  
+### 1-1\. Pre-Integrated
+The **Subsurface Scattering** of FaceWorks is based on the **Pre-Integrated** \[Penner 2011\], and the related source code in FaceWorks is the **EvaluateSSSDiffuseLight** function in [lighting.hlsli](https://github.com/NVIDIAGameWorks/FaceWorks/blob/master/samples/d3d11/shaders/lighting.hlsli).  
 
 The main idea of \[Penner 2011\] is that the $\displaystyle \operatorname{c_{diffuse}}(p_i)$ is assumed to be the constant $\displaystyle \operatorname{c_{diffuse}}(p_o)$ for all vicinal locations.  
 
@@ -52,7 +52,7 @@ The FaceWorks merely follows the diffusion profile of \[dEon 2007\] which is app
 However, the approach proposed by \[Penner 2011\] **pre-integrates** the convolution, and it is acceptable to perform a general 2D convolution even by using the exact accurate diffusion profile since the efficiency doesn't matter too much for offline precomputing.
 
 In the FaceWorks, the $\displaystyle \operatorname{D}(\theta, \frac{1}{r})$ is calculated by **GFSDK_FaceWorks_GenerateCurvatureLUT**. However, there is some subtle modification.  
-1. The $\displaystyle 2r\sin(\frac{x}{2})$ is replaced by $\displaystyle rx$ (the **delta** in the code). Technically, the $\displaystyle 2r\sin(\frac{x}{2})$ is more correct since the diffusion profile describes the light absorption inside the medium rather than over the surface.  
+1. The $\displaystyle 2r\sin(\frac{x}{2})$ is replaced by the $\displaystyle rx$ (the **delta** in the code). Technically, the $\displaystyle 2r\sin(\frac{x}{2})$ is more correct since the diffusion profile describes the light absorption inside the medium rather than over the surface. Perhaps the $\displaystyle 2r\sin(\frac{x}{2})$ and the $\displaystyle rx$ are close when the x is small.  
 2. And according to the **numerical quadrature**, the funtion value $\operatorname{f}(x)$ should be multiplied by the difference of the domain $\displaystyle \operatorname{\Delta}x$ (the **scale** in the code).  
 3. However, the denominator $\displaystyle \int_{-\pi}^{\pi} R(2r\sin(\frac{y}{2})) \,dy$ is omitted perhaps due to the fact that the diffusion profile has been normalized. Actually, I try to calculate the denominator by myself and I find the donominator is really close to one.  
 4. In the GPU Pro 2, three normals should be used for different RGB components and the LUT should be sampled three times according to three different $\displaystyle \theta$s.  
@@ -63,7 +63,7 @@ In the GPU Pro 2, the $\displaystyle \operatorname{D}(\theta, \frac{1}{r})$ is c
 1. Note that there such code like **scale** because the $\displaystyle \operatorname{\Delta}x$ appears in both numerator and denominator, and the it is not necessary to multiply $\displaystyle \operatorname{f}(x)$ by $\displaystyle \operatorname{\Delta}x$.  
 
 ### 1-2\. Deep Scatter
-The **Deep Scatter** of FaceWorks is based on the **16.3 Simulating Absorption Using Depth Maps** of \[Green 2004\].  
+The **Transmitted Light** of FaceWorks is based on the **16.3 Simulating Absorption Using Depth Maps** of \[Green 2004\].  
 
 TODO
 
@@ -98,12 +98,10 @@ TODO
 \[Penner 2011\] Eric Penner, George Borshukov. "Pre-Integrated Skin Shading." GPU Pro 2.  
 \[Penner 2011\] [Eric Penner. "Pre-Integrated Skin Shading." SIGGRAPH 2011.](http://advances.realtimerendering.com/s2011/)  
 \[Green 2004\] [Simon Green. "Chapter 16. Real-Time Approximations to Subsurface Scattering." GPU Gems 1.](https://developer.nvidia.com/gpugems/gpugems/part-iii-materials/chapter-16-real-time-approximations-subsurface-scattering)  
-\[UE4\] [EpicGames UnrealEngine Github](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Shaders/Private/SeparableSSS.ush)  
 \[Jimenez 2009\] [Jorge Jimenez, Veronica Sundstedt, Diego Gutierrez. "Screen-Space Perceptual Rendering of Human Skin." ACM TAP 2009](https://www.iryoku.com/sssss/)  
 \[Jimenez 2010\] Jorge Jimenez, Diego Gutierrez. "Screen-Space Subsurface Scattering." GPU Pro 1.  
 \[Mikkelsen 2010\] [Morten Mikkelsen. "Skin Rendering by Pseudo–Separable Cross Bilateral Filtering." Naughty Dog.](https://mmikk.github.io/papers3d/cbf_skin.pdf)  
 \[Jimenez 2015\] [Jorge Jimenez, Karoly Zsolnai, Adrian Jarabo1, Christian Freude, Thomas Auzinger, Xian-Chun Wu, Javier von der Pahlen, Michael Wimmer and Diego Gutierrez. "Separable Subsurface Scattering." EGSR 2015.](http://www.iryoku.com/separable-sss/)  
-\[Unity3D\] [Unity-Technologies Graphics Github ](https://github.com/Unity-Technologies/Graphics/blob/master/com.unity.render-pipelines.high-definition/Runtime/Material/SubsurfaceScattering/SubsurfaceScattering.hlsl)  
 [Christensen 2015] [Per Christensen, Brent Burley. "Approximate Reflectance Profiles for Efficient Subsurface Scattering." SIGGRAPH 2015.](https://graphics.pixar.com/library/)  
 [Golubev 2019] [Evgenii Golubev. "Sampling Burley's Normalized Diffusion Profiles. GitHub Pages."](https://zero-radiance.github.io/post/sampling-diffusion/)  
 
