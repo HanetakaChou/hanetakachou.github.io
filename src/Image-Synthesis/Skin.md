@@ -18,9 +18,9 @@ The [Delta Distribution](https://www.pbr-book.org/3ed-2018/Light_Transport_I_Sur
 
 And since the diffuse BRDF equals $\displaystyle \frac{c_{diffuse}}{\pi}$ which is irrelevant to the the $\displaystyle w_o$ and the $\displaystyle w_i$, the reflectance equation can be simplified further to $\displaystyle \operatorname{L}_o(p) = \frac{\operatorname{c_{diffuse}}(p)}{\pi} \otimes \operatorname{E_{L}}(p) \otimes |\cos(\theta_i)|$.  
 
-Thus, the radiant exitance M can be calculated as $\displaystyle \operatorname{M}(p) = \int_\Omega \operatorname{L}_o(p, \omega_o) \, d\omega_o  = \operatorname{L}_o(p) \cdot \int_\Omega 1 \, d\omega_o = \operatorname{L}_o(p) \cdot \pi = \operatorname{c_{diffuse}}(p) \otimes \operatorname{E_{L}}(p) \otimes |\cos(\theta_i)|$. 
+Thus, the irradiance E and the radiant exitance M can be calculated as $\displaystyle \operatorname{E}(p) = \operatorname{M}(p) = \int_\Omega \operatorname{L}_o(p, \omega_o) \, d\omega_o  = \operatorname{L}_o(p) \cdot \int_\Omega 1 \, d\omega_o = \operatorname{L}_o(p) \cdot \pi = \operatorname{c_{diffuse}}(p) \otimes \operatorname{E_{L}}(p) \otimes |\cos(\theta_i)|$. 
 
-Evidently, an equivalent gather operation can be used to replace the scatter operation, and the total radiant exitance can be considered as $\displaystyle \operatorname{M}(p_o) = \int_{S_{p_i}} \operatorname{R}(p_o, p_i) \cdot \operatorname{M}(p_i) \, dp_i$ where the $\displaystyle \operatorname{R}(p_o, p_i)$ is the diffusion profile.  
+Evidently, an equivalent gather operation can be used to replace the scatter operation, and the total radiant exitance can be considered as $\displaystyle \operatorname{M}(p_o) = \int_{S_{p_i}} \operatorname{R}(p_o, p_i) \cdot \operatorname{E}(p_i) \, dp_i$ where the $\displaystyle \operatorname{R}(p_o, p_i)$ is the diffusion profile.  
 
 And, currently, all real time approaches assume that the material is homogeneous. This means that the $\displaystyle \operatorname{R}(p_o, p_i)$ is radially symmetric, and can be characterized by $\displaystyle \operatorname{R}(\operatorname{distance}(p_o, p_i))$.  
 
@@ -45,22 +45,21 @@ Usually, the diffusion profile is normalized which indicates the energy conserva
 
 However, according to \[Penner 2011\], $\displaystyle \operatorname{D}(\theta, \frac{1}{r}) = \frac{\int_{-\pi}^{\pi} | \cos (\theta + x) | \cdot R(2r\sin(\frac{x}{2})) \,dx}{\int_{-\pi}^{\pi} R(2r\sin(\frac{y}{2})) \,dy}$. The denominator is added to make sure the diffusion profile is normalized.
 
-Note that the **pre-integral** is performed on a ring rather than on a sphere. This is reasonable since it is assumed that the diffusion profile is radially symmetric.
-
-The FaceWorks merely follows the diffusion profile of \[dEon 2007\] which is approximated by the weighted sum of Gaussians. The main idea of \[dEon 2007\] is that the [Gaussian blur](https://en.wikipedia.org/wiki/Gaussian_blur) is a **separable filter**, and thus the general 2D convolution can be replaced by two 1D convolutions.  
-
-However, the approach proposed by \[Penner 2011\] **pre-integrates** the convolution, and it is acceptable to perform a general 2D convolution even by using the exact accurate diffusion profile since the efficiency doesn't matter too much for offline precomputing.
+In the GPU Pro 2, the $\displaystyle \operatorname{D}(\theta, \frac{1}{r})$ is calculated by **integrateDiffuseScatteringOnRing**. And there are some points to note.  
+1. The **pre-integral** is performed on a ring rather than on a sphere. This is reasonable since it is assumed that the diffusion profile is radially symmetric.  
+2. \[Penner 2011\] merely follows the \[dEon 2007\] and the diffusion profile is approximated by the Gaussians (the **Scatter** in the code).  
+However, the motivation of \[dEon 2007\] is that the [Gaussian blur](https://en.wikipedia.org/wiki/Gaussian_blur) is a **separable filter**, and thus the general 2D convolution can be replaced by 1D convolutions.  
+The approach proposed by \[Penner 2011\] **pre-integrates** the convolution, and it is acceptable to perform a general 2D convolution even by using the exact accurate diffusion profile since the efficiency doesn't matter too much for offline precomputing.  
+3. In the FaceWorks, according to the **numerical quadrature**, the funtion value $\operatorname{f}(x)$ is multiplied by the difference of the domain $\displaystyle \operatorname{\Delta}x$ (the **scale** in the code).  
+However, in the GPU Pro 2, there is no such code like **scale** since the $\displaystyle \operatorname{\Delta}x$ appears in both numerator and denominator, and the it is not necessary to multiply $\displaystyle \operatorname{f}(x)$ by $\displaystyle \operatorname{\Delta}x$.  
 
 In the FaceWorks, the $\displaystyle \operatorname{D}(\theta, \frac{1}{r})$ is calculated by **GFSDK_FaceWorks_GenerateCurvatureLUT**. However, there is some subtle modification.  
 1. The $\displaystyle 2r\sin(\frac{x}{2})$ is replaced by the $\displaystyle rx$ (the **delta** in the code). Technically, the $\displaystyle 2r\sin(\frac{x}{2})$ is more correct since the diffusion profile describes the light absorption inside the medium rather than over the surface. Perhaps the $\displaystyle 2r\sin(\frac{x}{2})$ and the $\displaystyle rx$ are close when the x is small.  
-2. And according to the **numerical quadrature**, the funtion value $\operatorname{f}(x)$ should be multiplied by the difference of the domain $\displaystyle \operatorname{\Delta}x$ (the **scale** in the code).  
-3. However, the denominator $\displaystyle \int_{-\pi}^{\pi} R(2r\sin(\frac{y}{2})) \,dy$ is omitted perhaps due to the fact that the diffusion profile has been normalized. Actually, I try to calculate the denominator by myself and I find the donominator is really close to one.  
-4. In the GPU Pro 2, three normals should be used for different RGB components and the LUT should be sampled three times according to three different $\displaystyle \theta$s.  
+2. The denominator $\displaystyle \int_{-\pi}^{\pi} R(2r\sin(\frac{y}{2})) \,dy$ is omitted perhaps due to the fact that the diffusion profile has been normalized. Actually, I try to calculate the denominator by myself and I find the donominator is really close to one.  
+3. In the GPU Pro 2, three normals should be used for different RGB components and the LUT should be sampled three times according to three different $\displaystyle \theta$s.  
 Perhaps this method is not efficient and the FaceWorks detaches the $\displaystyle \operatorname{dot}(N,L)$, which denotes the part of the integral where x is close to zero and the diffuse profile is close to one, from the total integral $\displaystyle \operatorname{D}(\theta, \frac{1}{r})$. Evidently, the remaining part of the integral is relatively small, and thus FaceWorks maps the remaining part of the integral from [-0.25, 0.25] to [0, 1] to fully use the precision of the texture (the **rgbAdjust** in the code).  
 The **GFSDK_FaceWorks_EvaluateSSSDirectLight** is used to calculate the diffuse term. The LUT is only sampled once and three normals are used to calculate the $\displaystyle \operatorname{dot}(N,L)$ which is detached from the total integral. 
 
-In the GPU Pro 2, the $\displaystyle \operatorname{D}(\theta, \frac{1}{r})$ is calculated by **integrateDiffuseScatteringOnRing**.  
-1. Note that there such code like **scale** because the $\displaystyle \operatorname{\Delta}x$ appears in both numerator and denominator, and the it is not necessary to multiply $\displaystyle \operatorname{f}(x)$ by $\displaystyle \operatorname{\Delta}x$.  
 
 ### 1-2\. Deep Scatter
 The **Transmitted Light** of FaceWorks is based on the **16.3 Simulating Absorption Using Depth Maps** of \[Green 2004\].  
@@ -71,16 +70,15 @@ TODO
 
 ### 2-1\. Blur
 
-The approach proposed by \[dEon 2007\] is applied in texture space.  
-
-The main idea of \[dEon 2007\] is to approximate the diffusion profile by the weighted sum of Gaussians, and thus the general 2D convolution can be replaced by two 1D convolutions since the [Gaussian blur](https://en.wikipedia.org/wiki/Gaussian_blur) is a **separable filter**.
+The approach of \[dEon 2007\] is to approximate the diffusion profile by the weighted sum of 6 Gaussians, and thus the general 2D convolution can be replaced by 12(2 x 6) 1D convolutions since the [Gaussian blur](https://en.wikipedia.org/wiki/Gaussian_blur) is a **separable filter**.
 
 And according to the **numerical quadrature**, the funtion value sampled from the irradiance texture should be multiplied by the difference of the domain $\displaystyle \operatorname{\Delta} p_i$. \[dEon 2007\] proposed the **stretch texture**, where the difference of the world position is stored, to described the $\displaystyle \operatorname{\Delta} p_i$.  
 
-Evidently, the texture space approach is really weird according to the convention of the real time rendering. And the screen space approach is proposed by \[Jimenez 2009\] and \[Jimenez 2010\].
+However, the approach proposed by \[dEon 2007\] is applied in texture space which is too weird according to the convention of the real time rendering. And the screen space approach is proposed by \[Jimenez 2009\] and \[Jimenez 2010\].  
 
 Definitely, the screen space depth can be used to calculate the world position and thus the $\displaystyle \operatorname{\Delta} p_i$ can be obtained. However, the **stretch factor** proposed by \[Jimenez 2010\] is not proportional to the difference of the world position, and in my opinion, is empirical. And \[Mikkelsen 2010\] proposed a more reasonable filter size based on the mathematical derivation.  
 
+However, the approach proposed by \[Jimenez 2010\] still needs 2N passes to perform the 2N 1D convolutions where the N is the number of Gaussians. Evidently, this is still too expensive for real time rendering. And the 2 passes approach is proposed by \[Jimenez 2015\] by assuming the irradiance is [additively separable](https://calculus.subwiki.org/wiki/Additively_separable_function) and **pre-integrating** the **filter**.  
 
 
 
@@ -102,6 +100,3 @@ TODO
 \[Jimenez 2010\] Jorge Jimenez, Diego Gutierrez. "Screen-Space Subsurface Scattering." GPU Pro 1.  
 \[Mikkelsen 2010\] [Morten Mikkelsen. "Skin Rendering by Pseudo–Separable Cross Bilateral Filtering." Naughty Dog.](https://mmikk.github.io/papers3d/cbf_skin.pdf)  
 \[Jimenez 2015\] [Jorge Jimenez, Karoly Zsolnai, Adrian Jarabo1, Christian Freude, Thomas Auzinger, Xian-Chun Wu, Javier von der Pahlen, Michael Wimmer and Diego Gutierrez. "Separable Subsurface Scattering." EGSR 2015.](http://www.iryoku.com/separable-sss/)  
-[Christensen 2015] [Per Christensen, Brent Burley. "Approximate Reflectance Profiles for Efficient Subsurface Scattering." SIGGRAPH 2015.](https://graphics.pixar.com/library/)  
-[Golubev 2019] [Evgenii Golubev. "Sampling Burley's Normalized Diffusion Profiles. GitHub Pages."](https://zero-radiance.github.io/post/sampling-diffusion/)  
-
