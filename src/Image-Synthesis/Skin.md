@@ -76,9 +76,11 @@ And according to the **numerical quadrature**, the funtion value sampled from th
 
 However, the approach proposed by \[dEon 2007\] is applied in texture space which is too weird according to the convention of the real time rendering. And the screen space approach is proposed by \[Jimenez 2009\] and \[Jimenez 2010\].  
 
-Definitely, the screen space depth can be used to calculate the world position and thus the $\displaystyle \operatorname{\Delta} p_i$ can be obtained. However, the **stretch factor** proposed by \[Jimenez 2010\] is not proportional to the difference of the world position, and in my opinion, is empirical. And \[Mikkelsen 2010\] proposed a more reasonable filter size based on the mathematical derivation.  
+Definitely, the screen space depth can be used to calculate the world position and thus the $\displaystyle \operatorname{\Delta} p_i$ can be obtained. However, the **stretch factor** proposed by \[Jimenez 2010\] is not proportional to the difference of the world position, and in my opinion, is empirical. And \[Mikkelsen 2010\] proposed a more reasonable **kernel** size based on the mathematical derivation.  
 
-However, the approach proposed by \[Jimenez 2010\] still needs 2N passes to perform the 2N 1D convolutions where the N is the number of Gaussians. Evidently, this is still too expensive for real time rendering. And the 2 passes approach is proposed by \[Jimenez 2015\] by assuming the irradiance is [additively separable](https://calculus.subwiki.org/wiki/Additively_separable_function) and **pre-integrating** the **filter**.  
+Note that in image processing, the **filter** function is approximated with a discrete and finite **kernel**.
+
+However, the approach proposed by \[Jimenez 2010\] still needs 2N passes to perform the 2N 1D convolutions where the N is the number of Gaussians. Evidently, this is still too expensive for real time rendering. And the 2 passes approach is proposed by \[Jimenez 2015\] by assuming the irradiance is [additively separable](https://calculus.subwiki.org/wiki/Additively_separable_function) and **pre-integrating** the **kernel**.  
 
 
 
