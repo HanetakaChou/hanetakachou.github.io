@@ -76,15 +76,23 @@ And according to the **numerical quadrature**, the funtion value sampled from th
 
 However, the approach proposed by \[dEon 2007\] is applied in texture space which is too weird according to the convention of the real time rendering. And the screen space approach is proposed by \[Jimenez 2009\] and \[Jimenez 2010\].  
 
-Definitely, the screen space depth can be used to calculate the world position and thus the $\displaystyle \operatorname{\Delta} p_i$ can be obtained. However, the **stretch factor** proposed by \[Jimenez 2010\] is not proportional to the difference of the world position, and in my opinion, is empirical. And \[Mikkelsen 2010\] proposed a more reasonable approach which is based on the mathematical derivation.  
-
-However, the approach proposed by \[Jimenez 2010\] still needs 2N passes to perform the 2N 1D convolutions where the N is the number of Gaussians. Evidently, this is still too expensive for real time rendering. And the 2 passes approach is proposed by \[Jimenez 2015\] by assuming the irradiance is [additively separable](https://calculus.subwiki.org/wiki/Additively_separable_function) and **pre-integrating** the **kernel**.  
+Definitely, the screen space depth can be used to calculate the world position and thus the $\displaystyle \operatorname{\Delta} p_i$ can be obtained. However, the **stretch factor** proposed by \[Jimenez 2010\] is not proportional to the difference of the world position, and in my opinion, is empirical. And \[Mikkelsen 2010\] proposed a more reasonable approach to calculate the **kernel** size which is based on the mathematical derivation.  
 
 Note that in image processing, the **filter** is a (continuous) function which is approximated by a discrete and finite **kernel**.  
 
-Note that the $\displaystyle ||R_d||_1$ and $\displaystyle ||a_p||_1$denotes the [$\displaystyle L_p$ space](https://en.wikipedia.org/wiki/Lp_space). This means that $\displaystyle ||\operatorname{R_d}||_1 = ||\operatorname{a_p}||_1 = \int \operatorname{a_p}(x-u) \,du =  \int \operatorname{a_p}(y-v) \,dv$. The integral is performed on the whole domain of the diffusion profile and evidently the integral is irrelevant to x or y.  
+Although the approach proposed by \[Mikkelsen 2010\] is referenced by the section E of [Jimenez 2015\], it is neither implemented by the demo source code nor the UE4. TODO // We may investigate later.  
 
+However, the approach proposed by \[Jimenez 2010\] still needs 2N passes to perform the 2N 1D convolutions where the N is the number of Gaussians. Evidently, this is still too expensive for real time rendering. And the 2 passes approach is proposed by \[Jimenez 2015\].  
 
+The main idea of \[Jimenez 2015\] is that the irradiance texture is assumed to be [additively separable](https://calculus.subwiki.org/wiki/Additively_separable_function) $\displaystyle \operatorname{E}(x,y) = \operatorname{E}(x) + \operatorname{E}(y)$, and the formula to calculate the **radiant exitance M** can be transformed to a **separable** form 
+$\displaystyle \operatorname{M}(x,y) = \int \operatorname{R}(u - x, v - y) \cdot \operatorname{E}(u,v) \, dx \, dy = \int\int \operatorname{E}(u,v) \cdot \frac{1}{||a_p||_1} \cdot \operatorname{a_p}(x - u) \cdot \operatorname{a_p}(y - v) \, dx \, dy = \frac{1}{||a_p||_1} \cdot \int [\int \operatorname{E}(u,v) \cdot \operatorname{a_p}(x - u) \, dx] \cdot \operatorname{a_p}(y - v) \, dy$ where the $\displaystyle \operatorname{a_p}$ is the **pre-integrated** 1D kernel of the diffusion profile. And since the diffusion profile is assumed to be radially symmetric, the $\displaystyle \operatorname{a_p}(x)$ and the $\displaystyle \operatorname{a_p}(y)$ are the same function.
+
+Note that the $\displaystyle ||\operatorname{R_d}||_1$ and $\displaystyle ||\operatorname{a_p}||_1$denotes the [$\displaystyle L_p$ space](https://en.wikipedia.org/wiki/Lp_space). This means that $\displaystyle ||\operatorname{R_d}||_1 = ||\operatorname{a_p}||_1 = \int \operatorname{a_p}(x-u) \,du =  \int \operatorname{a_p}(y-v) \,dv$. The integral is performed on the whole domain of the diffusion profile and evidently the integral is irrelevant to x or y.  
+
+The $\displaystyle \operatorname{a_p}$ is calculated by **calculateKernel** in the demo source code and **ComputeMirroredSSSKernel** in the UE4. And there are some points to note.  
+1. Actually, the $\displaystyle \operatorname{a_p}$ is not pre-integrated, and the $\displaystyle \frac{\operatorname{a_p}}{||\operatorname{a_p}||_1}$ is pre-integrated on the **ring** instead. This is similar to \[Penner 2011\] according to the fact that the diffusion profile is assumed to be radially symmetric.  
+TODO However, the $\displaystyle ||\operatorname{a_p}||_1$ is divided twice, and this is not consistant with the formula. Perhaps the **strength** is used to alleviate this problem.  
+2. According to the **numerical quadrature**, the funtion value sampled from the irradiance texture should be multiplied by the difference of the domain $\displaystyle \operatorname{\Delta} x$ or $\displaystyle \operatorname{\Delta} y$ (the **scale** in the **SSSSBlurPS**).  
 
 ### 2-2\. Transmittance
 
