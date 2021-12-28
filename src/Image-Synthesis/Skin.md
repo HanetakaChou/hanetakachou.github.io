@@ -48,7 +48,7 @@ However, according to \[Penner 2011\], $\displaystyle \operatorname{D}(\theta, \
 In the GPU Pro 2, the $\displaystyle \operatorname{D}(\theta, \frac{1}{r})$ is calculated by **integrateDiffuseScatteringOnRing**. And there are some points to note.  
 1. The **pre-integral** is performed on a ring rather than on a sphere. This is reasonable since it is assumed that the diffusion profile is radially symmetric.  
 2. \[Penner 2011\] merely follows the \[dEon 2007\] and the diffusion profile is approximated by the Gaussians (the **Scatter** in the code).  
-However, the motivation of \[dEon 2007\] is that the [Gaussian blur](https://en.wikipedia.org/wiki/Gaussian_blur) is a **separable filter**, and thus the general 2D convolution can be replaced by 1D convolutions.  
+However, the motivation of \[dEon 2007\] is that the [Gaussian blur](https://en.wikipedia.org/wiki/Gaussian_blur) is a **separable filter**, and thus the general 2D convolution can be replaced by 1D convolutions to improve the performance.  
 The approach proposed by \[Penner 2011\] **pre-integrates** the convolution, and it is acceptable to perform a general 2D convolution even by using the exact accurate diffusion profile since the efficiency doesn't matter too much for offline precomputing.  
 3. In the FaceWorks, according to the **numerical quadrature**, the funtion value $\operatorname{f}(x)$ is multiplied by the difference of the domain $\displaystyle \operatorname{\Delta}x$ (the **scale** in the code).  
 However, in the GPU Pro 2, there is no such code like **scale** since the $\displaystyle \operatorname{\Delta}x$ appears in both numerator and denominator, and the it is not necessary to multiply $\displaystyle \operatorname{f}(x)$ by $\displaystyle \operatorname{\Delta}x$.  
