@@ -80,7 +80,7 @@ Definitely, the screen space depth can be used to calculate the world position a
 
 Note that in image processing, the **filter** is a (continuous) function which is approximated by a discrete and finite **kernel**.  
 
-Although the approach proposed by \[Mikkelsen 2010\] is referenced by the section E of [Jimenez 2015\], it is neither implemented by the demo source code nor the UE4. TODO // We may investigate later.  
+Although the approach proposed by \[Mikkelsen 2010\] is referenced by the section E of [Jimenez 2015\], this approach is neither implemented by the demo source code nor the UE4. TODO // We may investigate later.  
 
 However, the approach proposed by \[Jimenez 2010\] still needs 2N passes to perform the 2N 1D convolutions where the N is the number of Gaussians. Evidently, this is still too expensive for real time rendering. And the 2 passes approach is proposed by \[Jimenez 2015\].  
 
@@ -89,10 +89,12 @@ $\displaystyle \operatorname{M}(x,y) = \int \operatorname{R}(u - x, v - y) \cdot
 
 Note that the $\displaystyle ||\operatorname{R_d}||_1$ and $\displaystyle ||\operatorname{a_p}||_1$denotes the [$\displaystyle L_p$ space](https://en.wikipedia.org/wiki/Lp_space). This means that $\displaystyle ||\operatorname{R_d}||_1 = ||\operatorname{a_p}||_1 = \int \operatorname{a_p}(x-u) \,du =  \int \operatorname{a_p}(y-v) \,dv$. The integral is performed on the whole domain of the diffusion profile and evidently the integral is a constant and is irrelevant to x or y.  
 
-The $\displaystyle \operatorname{a_p}$ is calculated by **calculateKernel** in the demo source code and **ComputeMirroredSSSKernel** in the UE4. And there are some points to note.  
+The $\displaystyle \operatorname{a_p}$ is calculated by the **calculateKernel** in the demo source code and the **ComputeMirroredSSSKernel** in the UE4. And there are some points to note.  
 1. Actually, the $\displaystyle \operatorname{a_p}$ is not calculated at all, and the $\displaystyle \frac{\operatorname{a_p}}{||\operatorname{a_p}||_1}$ is pre-integrated on the **ring** instead. This is similar to \[Penner 2011\] according to the fact that the diffusion profile is assumed to be radially symmetric.  
 TODO However, the $\displaystyle ||\operatorname{a_p}||_1$ is divided twice, and this is not consistant with the formula. Perhaps the **strength** is used to alleviate this problem.  
 2. According to the **numerical quadrature**, the funtion value sampled from the irradiance texture should be multiplied by the difference of the domain $\displaystyle \operatorname{\Delta} x$ or $\displaystyle \operatorname{\Delta} y$ (the **scale** in the **SSSSBlurPS**).  
+
+Note that another two approaches are mentioned by \[Jimenez 2015\] as well. One is the low-rank approximation using SVD, and the other is the artist-friendly model. However, the low-rank approximation is rejected by \[Jimenez 2015\] itself and the artist-friendly model is neither implemented by the demo source code nor the UE4. And thus these two approaches will not be involved.  
 
 ### 2-2\. Transmittance
 
