@@ -33,7 +33,7 @@ However, although the proposals based on the diffusion profile are much simpler 
 ### 1-1\. Pre-Integrated
 The **Subsurface Scattering** of FaceWorks is based on the **Pre-Integrated** \[Penner 2011\], and the related source code in FaceWorks is the **EvaluateSSSDiffuseLight** function in [lighting.hlsli](https://github.com/NVIDIAGameWorks/FaceWorks/blob/master/samples/d3d11/shaders/lighting.hlsli).  
 
-The main idea of \[Penner 2011\] is that the $\displaystyle \operatorname{c_{diffuse}}(p_i)$ is assumed to be the constant $\displaystyle \operatorname{c_{diffuse}}(p_o)$ for all vicinal locations.  
+The main idea of \[Penner 2011\] is that the $\displaystyle \operatorname{c_{diffuse}}(p_i) \cdot \operatorname{E}(p_i)$ is assumed to be the constant $\displaystyle \operatorname{c_{diffuse}}(p_o) \cdot \operatorname{E}(p_o)$ for all vicinal locations.  
 
 And thus, the $\displaystyle \operatorname{R}(\operatorname{distance}(p_o, p_i)) \cdot |\cos(\theta_i)|$ part of the diffuse term can be **pre-integrated** and stored in a LUT(Look Up Texture) which is called the $\displaystyle \operatorname{D}(\theta, \frac{1}{r})$.   
 
