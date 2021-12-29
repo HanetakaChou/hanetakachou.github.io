@@ -7,18 +7,16 @@ Transmitted Light | Deep Scatter | Transmittance |  TODO
 ### Diffusion Profile  
 
 Currently, all real time approaches are based on the diffusion profile("14.4.2 Rendering with Diffusion Profile" of \[dEon 2007\]) rather than the [BSSRDF](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Surface_Reflection#TheBSSRDF).  
-
 By using the diffusion profile, the subsurface scattering, which was described by the BSSRDF, is simplified by scattering the **amount of light** (technically, the **irradiance E**) of each location to the vicinal locations according to the weights indicated by the diffusion profile.  
-
 Evidently, an equivalent gather operation can be used to replace the scatter operation, and the total radiant exitance can be considered as $\displaystyle \operatorname{M}(p_o) = \int_{S_{p_i}} \operatorname{R}(p_o, p_i) \cdot \operatorname{E}(p_i) \, dp_i$ where the $\displaystyle \operatorname{R}(p_o, p_i)$ is the diffusion profile.  
-
-Note that the **outgoing** irradiance E can also be called **radiant exitance M** and might be called **radiosity B** in the last century. 
-
+Note that the **outgoing** irradiance E can also be called **radiant exitance M** and might be called **radiosity B** in the last century.  
 And, currently, all real time approaches assume that the material is homogeneous. This means that the $\displaystyle \operatorname{R}(p_o, p_i)$ is radially symmetric, and can be characterized by $\displaystyle \operatorname{R}(\operatorname{distance}(p_o, p_i))$.  
+And, for the diffuse term, the outgoing radiance is assumed to be the same in all directions. Thus, the diffuse term can be simplified to $\displaystyle \operatorname{L}_o(p_o) = \frac{\operatorname{M}(p_o)}{\pi} = \frac{1}{\pi} \cdot \int_{S_{p_i}} \operatorname{R}(\operatorname{distance}(p_o, p_i)) \cdot \operatorname{E}(p_i) \, dp_i$.  
 
-And since for the diffuse term, the outgoing radiance is assumed to be the same in all directions, the diffuse term is simplified to $\displaystyle \operatorname{L}_o(p_o) = \frac{\operatorname{M}(p_o)}{\pi} = \frac{1}{\pi} \cdot \int_{S_{p_i}} \operatorname{R}(\operatorname{distance}(p_o, p_i)) \cdot \operatorname{E}(p_i) \, dp_i$.  
-
-However, although the proposals based on the diffusion profile are much simpler than the BSSRDF, a general 2D convolution is still too expensive for real time rendering. Actually, according to \[dEon 2007\], if the width of the significant contribution domain of the diffusion profile is about 16 mm, and the width of pixel is about 0.25 mm, we would need 4096(64 x 64) samples per pixel in the shader. Thus, we have to propose more efficient approaches.
+However, things are far from simple.  
+Although the proposals based on the diffusion profile are much simpler than the BSSRDF, a general 2D convolution is still too expensive for real time rendering.  
+Actually, according to \[dEon 2007\], if the width of the significant contribution domain of the diffusion profile is about 16 mm, and the width of pixel is about 0.25 mm, we would need 4096(64 x 64) samples per pixel in the shader.  
+Thus, we have to propose more efficient approaches.
 
 ## 1\. FaceWorks - NVIDIA
 
@@ -63,35 +61,32 @@ TODO
 
 ### 2-1\. Blur
 
-The approach of \[dEon 2007\] is to approximate the diffusion profile by the weighted sum of 6 Gaussians, and thus the general 2D convolution can be replaced by 12(2 x 6) 1D convolutions since the [Gaussian blur](https://en.wikipedia.org/wiki/Gaussian_blur) is a **separable filter**.
-
+The approach of \[dEon 2007\] is to approximate the diffusion profile by the weighted sum of 6 Gaussians, and thus the general 2D convolution can be replaced by 12(2 x 6) 1D convolutions since the [Gaussian blur](https://en.wikipedia.org/wiki/Gaussian_blur) is a **separable filter**.  
 And according to the **numerical quadrature**, the funtion value sampled from the irradiance texture should be multiplied by the difference of the domain $\displaystyle \operatorname{\Delta} p_i$. \[dEon 2007\] proposed the **stretch texture**, where the difference of the world position is stored, to described the $\displaystyle \operatorname{\Delta} p_i$.  
 
 However, the approach proposed by \[dEon 2007\] is applied in texture space which is too weird according to the convention of the real time rendering. And the screen space approach is proposed by \[Jimenez 2009\] and \[Jimenez 2010\].  
-
 Definitely, the screen space depth can be used to calculate the world position and thus the $\displaystyle \operatorname{\Delta} p_i$ can be obtained. However, the **stretch factor** proposed by \[Jimenez 2010\] is not proportional to the difference of the world position, and in my opinion, is empirical. And \[Mikkelsen 2010\] proposed a more reasonable approach to calculate the **kernel** size which is based on the mathematical derivation.  
-
 Note that in image processing, the **filter** is a (continuous) function which is approximated by a discrete and finite **kernel**.  
-
 Although the approach proposed by \[Mikkelsen 2010\] is referenced by the section E of [Jimenez 2015\], this approach is neither implemented by the demo source code nor the UE4. TODO // We may investigate later.  
 
 However, the approach proposed by \[Jimenez 2010\] still needs 2N passes to perform the 2N 1D convolutions where the N is the number of Gaussians. Evidently, this is still too expensive for real time rendering. And the 2 passes approach is proposed by \[Jimenez 2015\].  
-
 The main idea of \[Jimenez 2015\] is that the irradiance texture is assumed to be [additively separable](https://calculus.subwiki.org/wiki/Additively_separable_function) $\displaystyle \operatorname{E}(x,y) = \operatorname{E}(x) + \operatorname{E}(y)$, and the formula to calculate the **radiant exitance M** can be transformed to a **separable** form 
-$\displaystyle \operatorname{M}(x,y) = \int \operatorname{R}(u - x, v - y) \cdot \operatorname{E}(u,v) \, du \, dv = \int\int \operatorname{E}(u,v) \cdot \frac{1}{||a_p||_1} \cdot \operatorname{a_p}(x - u) \cdot \operatorname{a_p}(y - v) \, du \, dv = \frac{1}{||a_p||_1} \cdot \int (\int \operatorname{E}(u,v) \cdot \operatorname{a_p}(x - u) \, du) \cdot \operatorname{a_p}(y - v) \, dv$ where the $\displaystyle \operatorname{a_p}$ is the **pre-integrated** 1D kernel of the diffusion profile. And since the diffusion profile is assumed to be radially symmetric, the $\displaystyle \operatorname{a_p}(x)$ and the $\displaystyle \operatorname{a_p}(y)$ are the same function.
-
+$\displaystyle \operatorname{M}(x,y) = \int \operatorname{R}(u - x, v - y) \cdot \operatorname{E}(u,v) \, du \, dv = \int\int \operatorname{E}(u,v) \cdot \frac{1}{||a_p||_1} \cdot \operatorname{a_p}(x - u) \cdot \operatorname{a_p}(y - v) \, du \, dv = \frac{1}{||a_p||_1} \cdot \int (\int \operatorname{E}(u,v) \cdot \operatorname{a_p}(x - u) \, du) \cdot \operatorname{a_p}(y - v) \, dv$ where the $\displaystyle \operatorname{a_p}$ is the **pre-integrated** 1D kernel of the diffusion profile. And since the diffusion profile is assumed to be radially symmetric, the $\displaystyle \operatorname{a_p}(x)$ and the $\displaystyle \operatorname{a_p}(y)$ are the same function.  
 Note that the $\displaystyle ||\operatorname{R_d}||_1$ and $\displaystyle ||\operatorname{a_p}||_1$denotes the [$\displaystyle L_p$ space](https://en.wikipedia.org/wiki/Lp_space). This means that $\displaystyle ||\operatorname{R_d}||_1 = ||\operatorname{a_p}||_1 = \int \operatorname{a_p}(x-u) \,du =  \int \operatorname{a_p}(y-v) \,dv$. The integral is performed on the whole domain of the diffusion profile, and evidently the integral is a constant and is irrelevant to x or y.  
 
 The $\displaystyle \operatorname{a_p}$ is calculated by the **calculateKernel** in the demo source code and the **ComputeMirroredSSSKernel** in the UE4. And there are some points to note.  
 1. [Jimenez 2015\] merely follows \[dEon 2007\] as well and the diffusion profile is approximated by the Gaussians (the **Scatter** in the code).  
-However, the exact accurate diffusion profile can be used, since the approach proposed by [Jimenez 2015\] **pre-integrates** the kernel, and the efficiency doesn't matter too much for offline precomputing.  
+In my opinion, even the exact accurate diffusion profile can be used, since the approach proposed by [Jimenez 2015\] **pre-integrates** the kernel, and the efficiency doesn't matter too much for offline precomputing.  
 2. Actually, the $\displaystyle \operatorname{a_p}$ is not calculated at all, and the $\displaystyle \frac{\operatorname{a_p}}{||\operatorname{a_p}||_1}$ is pre-integrated on the **ring** instead.  
 The idea may be similar to \[Penner 2011\] based on the fact that the diffusion profile is assumed to be radially symmetric. However, the situation here is different, since we need to integrate along a coordinate axis to calculate the $\displaystyle \operatorname{a_p}$, and thus we can't rotate the **ring** around the center of the diffusion profile.  
 And the $\displaystyle ||\operatorname{a_p}||_1$ is divided twice here. This is not consistant with the formula.  
 Perhaps the **strength** in the code is used to alleviate these two errors.  
 3. According to the **numerical quadrature**, the funtion value sampled from the irradiance texture should be multiplied by the difference of the domain $\displaystyle \operatorname{\Delta} x$ or $\displaystyle \operatorname{\Delta} y$ (the **scale** in the **SSSSBlurPS**).  
 
-Note that two other approaches are mentioned by \[Jimenez 2015\] as well. One is the low-rank approximation using SVD, and the other is the artist-friendly model. However, the low-rank approximation is rejected by \[Jimenez 2015\] himself and the artist-friendly model is neither implemented by the demo source code nor the UE4. And thus these two approaches will not be involved.  
+Note that two other approaches are mentioned by \[Jimenez 2015\] as well.  
+One is the low-rank approximation using SVD, and the other is the artist-friendly model.  
+However, the low-rank approximation is rejected by \[Jimenez 2015\] himself and the artist-friendly model is neither implemented by the demo source code nor the UE4.  
+And thus these two approaches will not be involved.  
 
 ### 2-2\. Transmittance
 
