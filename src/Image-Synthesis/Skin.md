@@ -78,7 +78,7 @@ The $\displaystyle \operatorname{a_p}$ is calculated by the **calculateKernel** 
 In my opinion, even the exact accurate diffusion profile can be used, since the approach proposed by \[Jimenez 2015\] **pre-integrates** the kernel, and the efficiency doesn't matter too much for offline precomputing.  
 2. Actually, the $\displaystyle \operatorname{a_p}$ is not calculated at all, and the $\displaystyle \frac{\operatorname{a_p}}{||\operatorname{a_p}||_1}$ is pre-integrated on the **ring** instead.  
 The idea may be similar to \[Penner 2011\] based on the fact that the diffusion profile is assumed to be radially symmetric. However, the situation here is different, since we need to integrate along a coordinate axis to calculate the $\displaystyle \operatorname{a_p}$, and thus we can't rotate the **ring** around the center of the diffusion profile.  
-And the $\displaystyle ||\operatorname{a_p}||_1$ is divided twice here. This is not consistent with the formula.  
+And the $\displaystyle ||\operatorname{a_p}||_1$ is divided twice here. This is not consistent with the formula in the paper.  
 Perhaps the **strength** in the demo source code, which is the **SubsurfaceColor** in the UE4, is used to alleviate these two errors.  
 3. According to the **numerical quadrature**, the function value sampled from the irradiance texture should be multiplied by the difference of the domain $\displaystyle \operatorname{\Delta} x$ or $\displaystyle \operatorname{\Delta} y$ (the **scale** in the **SSSSBlurPS**).  
 
