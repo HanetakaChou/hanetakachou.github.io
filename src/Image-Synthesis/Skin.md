@@ -69,9 +69,11 @@ Definitely, the screen space depth can be used to calculate the world position a
 Note that in image processing, the **filter** is a (continuous) function which is approximated by a discrete and finite **kernel**.  
 Although the approach proposed by \[Mikkelsen 2010\] is referenced by the section E of \[Jimenez 2015\], this approach is neither implemented by the demo source code nor the UE4. TODO // We may investigate later.  
 
-However, the approach proposed by \[Jimenez 2010\] still needs 2N passes to perform the 2N 1D convolutions where the N is the number of Gaussians. Evidently, this is still too expensive for real time rendering. And the 2 passes approach is proposed by \[Jimenez 2015\].  
-The main idea of \[Jimenez 2015\] is that the irradiance texture is assumed to be [additively separable](https://calculus.subwiki.org/wiki/Additively_separable_function) $\displaystyle \operatorname{E}(x,y) = \operatorname{E}(x) + \operatorname{E}(y)$, and the formula to calculate the **radiant exitance M** can be transformed to a **separable** form $\displaystyle \operatorname{M}(x,y) = \int \operatorname{R}(u - x, v - y) \cdot \operatorname{E}(u,v) \, du \, dv = \int\int \operatorname{E}(u,v) \cdot \frac{1}{||a_p||_1} \cdot \operatorname{a_p}(x - u) \cdot \operatorname{a_p}(y - v) \, du \, dv = \frac{1}{||a_p||_1} \cdot \int (\int \operatorname{E}(u,v) \cdot \operatorname{a_p}(x - u) \, du) \cdot \operatorname{a_p}(y - v) \, dv$ where the $\displaystyle \operatorname{a_p}$ is the **pre-integrated** 1D kernel of the diffusion profile. And since the diffusion profile is assumed to be radially symmetric, the $\displaystyle \operatorname{a_p}(x)$ and the $\displaystyle \operatorname{a_p}(y)$ are the same function.  
-Note that both the $\displaystyle ||\operatorname{R_d}||_1$ and the $\displaystyle ||\operatorname{a_p}||_1$ denotes the [$\displaystyle L_p$ space](https://en.wikipedia.org/wiki/Lp_space). This means that $\displaystyle ||\operatorname{R_d}||_1 = ||\operatorname{a_p}||_1 = \int \operatorname{a_p}(x-u) \,du =  \int \operatorname{a_p}(y-v) \,dv$. The integral is performed on the whole domain of the diffusion profile, and evidently the integral is a constant and is irrelevant to x or y.  
+However, the approach proposed by \[Jimenez 2010\] still needs 2N passes to perform the 2N 1D convolutions where the N is the number of Gaussians. Evidently, this is still too expensive for real time rendering. And the 2 passes approach is proposed by \[Jimenez 2012\].  
+
+And the the demo source code of \[Jimenez 2012\] is provided by \[Jimenez 2015\]. Perhaps you can't believe it but it's really the truth. **The demo source code provided by \[Jimenez 2015\]  has nothing to do with \[Jimenez 2015\]**. This is really arcane, and I do spend some time to realize this fact.   
+
+The main idea of \[Jimenez 2012\] is that although the diffusion profile is not separable, the kernel used in real time rendering is discretized, and the SVD indicates that the diffusion profile can be approximated by a separable kernel which is defined by a 1D kernel.
 
 The $\displaystyle \operatorname{a_p}$ is calculated by the **calculateKernel** in the demo source code and the **ComputeMirroredSSSKernel** in the UE4. And there are some points to note.  
 1. \[Jimenez 2015\] merely follows \[dEon 2007\] as well and the diffusion profile is approximated by the Gaussians (the **Scatter** in the code).  
@@ -81,11 +83,6 @@ The idea may be similar to \[Penner 2011\] based on the fact that the diffusion 
 And the $\displaystyle ||\operatorname{a_p}||_1$ is divided twice here. This is not consistent with the formula in the paper.  
 Perhaps the **strength** in the demo source code, which is the **SubsurfaceColor** in the UE4, is used to alleviate these two errors.  
 3. According to the **numerical quadrature**, the function value sampled from the irradiance texture should be multiplied by the difference of the domain $\displaystyle \operatorname{\Delta} x$ or $\displaystyle \operatorname{\Delta} y$ (the **scale** in the **SSSSBlurPS**).  
-
-Note that two other approaches are mentioned by \[Jimenez 2015\] as well.  
-One is the low-rank approximation using SVD, and the other is the artist-friendly model.  
-However, the low-rank approximation is rejected by \[Jimenez 2015\] himself and the artist-friendly model is neither implemented by the demo source code nor the UE4.  
-And thus these two approaches will not be involved.  
 
 ### 2-2\. Transmittance
 
@@ -103,4 +100,6 @@ TODO
 \[Jimenez 2009\] [Jorge Jimenez, Veronica Sundstedt, Diego Gutierrez. "Screen-Space Perceptual Rendering of Human Skin." ACM TAP 2009.](https://www.iryoku.com/sssss/)  
 \[Jimenez 2010\] Jorge Jimenez, Diego Gutierrez. "Screen-Space Subsurface Scattering." GPU Pro 1.  
 \[Mikkelsen 2010\] [Morten Mikkelsen. "Skin Rendering by Pseudo–Separable Cross Bilateral Filtering." Naughty Dog.](https://mmikk.github.io/papers3d/cbf_skin.pdf)  
-\[Jimenez 2015\] [Jorge Jimenez, Karoly Zsolnai, Adrian Jarabo1, Christian Freude, Thomas Auzinger, Xian-Chun Wu, Javier von der Pahlen, Michael Wimmer and Diego Gutierrez. "Separable Subsurface Scattering." EGSR 2015.](http://www.iryoku.com/separable-sss/)  
+\[Jimenez 2012\] [Jorge Jimenez, Adrian Jarabo, Diego Gutierrez. "Separable Subsurface Scattering." Technical Report 2012.](https://graphics.unizar.es/publications.html#year_2012)   
+\[Jimenez 2012\] [Jorge Jimenez, Adrian Jarabo, Diego Gutierrez, Etienne Danvoye, Javier von der Pahlen. "Separable Subsurface Scattering and Photorealistic Eyes Rendering." SIGGRAPH 2012.](http://advances.realtimerendering.com/s2012/index.html)  
+\[Jimenez 2015\] [Jorge Jimenez, Karoly Zsolnai, Adrian Jarabo1, Christian Freude, Thomas Auzinger, Xian-Chun Wu, Javier von der Pahlen, Michael Wimmer, Diego Gutierrez. "Separable Subsurface Scattering." EGSR 2015.](http://www.iryoku.com/separable-sss/)  
