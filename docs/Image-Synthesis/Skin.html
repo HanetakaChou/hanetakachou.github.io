@@ -356,7 +356,7 @@
                                                         class="mord mathnormal mtight">i</span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.15em;"><span></span></span></span></span></span></span><span
-                            class="mclose">))</span></span></span></span></eq>. And, for the diffuse term, the outgoing
+                            class="mclose">))</span></span></span></span></eq>. And for the diffuse term, the outgoing
         radiance is assumed to be the same in all directions. Thus, the diffuse term can be simplified to <eq><span
                 class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
@@ -610,7 +610,7 @@
         the BSSRDF, a general 2D convolution is still too expensive for real time rendering. Actually, according to
         [dEon 2007], if the width (technically, the range of the significant contribution domain) of the diffusion
         profile is about 16 mm, and the width of pixel is about 0.25 mm, we would need 4096(64 x 64) samples per pixel
-        in the shader. Thus, we have to propose more efficient approaches.</p>
+        in the shader. Thus, we have to propose more efficient approaches to settle this problem.</p>
     <h2 id="1-faceworks---nvidia">1. FaceWorks - NVIDIA</h2>
     <h3 id="1-1-pre-integrated">1-1. Pre-Integrated</h3>
     <p>The <strong>Subsurface Scattering</strong> of FaceWorks is based on the <strong>Pre-Integrated</strong> [Penner
@@ -3113,7 +3113,7 @@
                                 class="mord mathnormal">d</span><span class="mord mathnormal"
                                 style="margin-right:0.03588em;">y</span></span></span></span></eq> is omitted perhaps
             due to the fact that the diffusion profile has been normalized. Actually, I try to calculate the denominator
-            by myself and I find the denominator is really close to one.</li>
+            by myself, and I find the denominator is really close to one.</li>
         <li>In the GPU Pro 2, three normals should be used for different RGB components and the LUT should be sampled
             three times according to three different <eq><span class="katex"><span class="katex-mathml"><math
                             xmlns="http://www.w3.org/1998/Math/MathML">
@@ -4334,8 +4334,8 @@
             row and the second column of the projection matrix, and the 2 is to transform from NDC to texture space.
             However, since the width of the diffusion profile is fixed at 6(3x2) mm as we have mentioned, the
             <strong>sssWidth</strong>, which is <strong>ScatterRadius</strong> in the UE4, is impossible to be
-            considered as the <strong>width</strong> of the diffusion profile. And the shader code of the demo source
-            code demonstrates that the transformation is calculated as <eq><span class="katex"><span
+            considered as the <strong>width</strong> of the diffusion profile. And since the shader code of the demo
+            source code demonstrates that the transformation is calculated as <eq><span class="katex"><span
                         class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                             <semantics>
                                 <mrow>
@@ -4402,7 +4402,7 @@
                             class="base"><span class="strut"
                                 style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span
                                 class="mord text"><span class="mord">WorldSpaceInMM</span></span></span></span></span>
-            </eq>. By comparing these two formulas, a hypothesis can be proposed that <eq><span class="katex"><span
+            </eq>, by comparing these two formulas, a hypothesis can be proposed that <eq><span class="katex"><span
                         class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                             <semantics>
                                 <mrow>
@@ -4453,10 +4453,10 @@
                                                                 class="mord">sssWIdth</span></span></span></span></span><span
                                                 class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                                 style="height:0.686em;"><span></span></span></span></span></span><span
-                                    class="mclose nulldelimiter"></span></span></span></span></span></eq>. And since the
-            default of the <strong>sssWidth</strong> in the demo source code is 0.012, the hypothesis implies that the
-            <strong>WorldSpaceUnitPerMeter</strong> of the demo is 8. This result is consistant with the vertex data of
-            the head mesh of the demo.</li>
+                                    class="mclose nulldelimiter"></span></span></span></span></span></eq>. The default
+            of the <strong>sssWidth</strong> in the demo source code is 0.012, and thus the hypothesis implies that the
+            <strong>WorldSpaceUnitPerMeter</strong> of the demo is 8. Actually, I check the vertex data of the head mesh
+            in the demo, and fortunately, I find the vertex data is consistent with this result.</li>
         <li>The <strong>SSSS_STREGTH_SOURCE</strong> in the shader code has nothing to do with the
             <strong>strength</strong> in the paper at all. In the demo source code, the
             <strong>SSSS_STREGTH_SOURCE</strong> is the alpha channel of the albedo texture, and is used to skip the
