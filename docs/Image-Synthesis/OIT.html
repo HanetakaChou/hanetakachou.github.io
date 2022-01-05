@@ -7,8 +7,6 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/default.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markdown-it-texmath/css/texmath.min.css">
-
 </head>
 
 <body class="markdown-body">
@@ -2863,7 +2861,8 @@
                                                         class="mord mathnormal mtight">i</span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.15em;"><span></span></span></span></span></span></span><span
-                            class="mclose">)</span></span></span></span></eq>.<br>
+                            class="mclose">)</span></span></span></span>
+        </eq>.<br>
         Note that the extension &quot;ARB_texture_multisample&quot; should be enabled to use texelFetch on sampler2DMS
         in OpenGL.<br>
         We should use the knowledge of statistics to prove why we can estimate and thus the proof is omitted.</p>
@@ -4395,8 +4394,8 @@
                                                         class="mord mathnormal mtight">i</span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.15em;"><span></span></span></span></span></span></span><span
-                            class="mclose">)</span></span></span></span></eq> is <eq><span class="katex"><span
-                    class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            class="mclose">)</span></span></span></span>
+        </eq> is <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
                                 <mn>1</mn>
@@ -5195,7 +5194,8 @@
                                                                 class="mclose mtight">)</span></span></span></span></span><span
                                                 class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                                 style="height:2.7390660000000002em;"><span></span></span></span></span></span><span
-                                    class="mclose nulldelimiter"></span></span></span></span></span></span></eq>.</p>
+                                    class="mclose nulldelimiter"></span></span></span></span></span></span></eq>.
+    </p>
     <p>We should use the knowledge of statistics to explain the meaning of the Alpha correction and thus the explanation
         is omitted.</p>
     <h3 id="3-2-3-render-pass">3-2-3. Render Pass</h3>
@@ -5588,7 +5588,8 @@
             3-5.The author(6.[Enderton 2010]) use two separate passes AccumulatePass(which calculates the
             StochasticColor and the StochasticTotalAlpha) and TotalAlphaPass(which calculates CorrectAlphaTotal).
             However, we can totally merge them into a single pass. Maybe the SeparateBlend/IndependentBlend was not
-            supported by the hardware when the author published the paper.</p>
+            supported by the hardware when the author published the paper.
+        </p>
     </blockquote>
     <blockquote>
         <p>4.CompositePass //FullScreenTrianglePass<br>
@@ -8365,7 +8366,8 @@
                                                         class="mord mathnormal mtight">i</span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.15em;"><span></span></span></span></span></span></span><span
-                            class="mclose">)</span></span></span></span></eq> is monotonically decreasing and the
+                            class="mclose">)</span></span></span></span>
+        </eq> is monotonically decreasing and the
         farthest fragments generally introduce the lowest error.<br>
         3.Based on the generated K-Buffer, we calculate the total contribution of the transparent geometries to the
         final color <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -10978,7 +10980,8 @@
                                                                 class="mclose mtight">)</span></span></span></span></span><span
                                                 class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                                 style="height:2.7390660000000002em;"><span></span></span></span></span></span><span
-                                    class="mclose nulldelimiter"></span></span></span></span></span></span></eq>.</p>
+                                    class="mclose nulldelimiter"></span></span></span></span></span></span></eq>.
+    </p>
     <h3 id="3-4-3-render-pass">3-4-3. Render Pass</h3>
     <blockquote>
         <p>1.OpaquePass<br>
@@ -11153,8 +11156,9 @@
                                                             class="mord mathnormal mtight">i</span></span></span></span><span
                                                 class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                                 style="height:0.15em;"><span></span></span></span></span></span></span><span
-                                class="mclose">)</span></span></span></span></eq> and WeightedTotalAlpha=<eq><span
-                    class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                                class="mclose">)</span></span></span></span>
+            </eq> and WeightedTotalAlpha=<eq><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
                             <semantics>
                                 <mrow>
                                     <msub>
@@ -12121,7 +12125,8 @@
                                                         class="mord mathnormal mtight">i</span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.15em;"><span></span></span></span></span></span></span><span
-                            class="mclose">)</span></span></span></span></eq>, omitting the calculation of the
+                            class="mclose">)</span></span></span></span>
+        </eq>, omitting the calculation of the
         visibility function.<br>
         To some extent, the weighted blending is considered as a simplified version of the stochastic transparency which
         omits the StochasticDepthPass.<br>
@@ -12211,7 +12216,8 @@
                                                         class="mord mathnormal mtight">i</span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.15em;"><span></span></span></span></span></span></span><span
-                            class="mclose">)</span></span></span></span></eq> is not related to the scene at all.</p>
+                            class="mclose">)</span></span></span></span></eq> is not related to the scene at all.
+    </p>
     <h3 id="3-4-5-demo">3-4-5. Demo</h3>
     <p>The github address <a
             href="https://github.com/YuqiaoZhang/WeightedBlendedOIT">https://github.com/YuqiaoZhang/WeightedBlendedOIT</a>
@@ -12284,7 +12290,8 @@
             Blended Order-Independent Transparency. &quot; JCGT 2013.</a><br>
         24.[NVIDIA] <a
             href="https://github.com/NVIDIAGameWorks/GraphicsSamples/tree/master/samples/gl4-kepler/WeightedBlendedOIT">NVIDIA
-            GameWorks Vulkan and OpenGL Samples / Weighted Blended Order-independent Transparency</a></p>
+            GameWorks Vulkan and OpenGL Samples / Weighted Blended Order-independent Transparency</a>
+    </p>
 
 </body>
 
