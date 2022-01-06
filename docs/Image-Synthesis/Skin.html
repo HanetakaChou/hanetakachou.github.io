@@ -4207,12 +4207,86 @@
                                 style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal"
                                 style="margin-right:0.03588em;">y</span></span></span></span></eq> (the
             <strong>area</strong> in the <strong>calculateKernel</strong> in the code). And the demo source code
-            demonstrates that the deviations of the locations of the samples in world space (in mm) is fixed and stored
-            in the <strong>w</strong> component of the <strong>kernel</strong> member of the
-            <strong>SeparableSSS</strong> class. Thus, the mere purpose of the <strong>SSSSBlurPS</strong> in the shader
-            code is to transform the deviations from world space to texture space. Assuming that the deviations are from
-            the origin of the Y axis, the transformation can be calculated as <eq><span class="katex"><span
-                        class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+            demonstrates that the <eq><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle scriptlevel="0" displaystyle="true">
+                                        <mfrac>
+                                            <mrow>
+                                                <mi mathvariant="normal">Δ</mi>
+                                                <mi>x</mi>
+                                            </mrow>
+                                            <mrow>
+                                                <mn>0.001</mn>
+                                                <mo>+</mo>
+                                                <mi>f</mi>
+                                            </mrow>
+                                        </mfrac>
+                                    </mstyle>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\displaystyle \frac{\Delta x}{0.001 + f}
+                                </annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:2.2407700000000004em;vertical-align:-0.8804400000000001em;"></span><span
+                                class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                        class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                style="height:1.36033em;"><span style="top:-2.314em;"><span
+                                                        class="pstrut" style="height:3em;"></span><span
+                                                        class="mord"><span class="mord">0.001</span><span class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mbin">+</span><span class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mord mathnormal"
+                                                            style="margin-right:0.10764em;">f</span></span></span><span
+                                                    style="top:-3.23em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="frac-line"
+                                                        style="border-bottom-width:0.04em;"></span></span><span
+                                                    style="top:-3.677em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="mord"><span
+                                                            class="mord">Δ</span><span
+                                                            class="mord mathnormal">x</span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:0.8804400000000001em;"><span></span></span></span></span></span><span
+                                    class="mclose nulldelimiter"></span></span></span></span></span></eq> is passed to
+            the diffusion profile <eq><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle scriptlevel="0" displaystyle="true">
+                                        <mi mathvariant="normal">P</mi>
+                                        <mo>⁡</mo>
+                                        <mo stretchy="false">(</mo>
+                                        <mi>r</mi>
+                                        <mo stretchy="false">)</mo>
+                                    </mstyle>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\displaystyle \operatorname{P}(r)</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span
+                                    class="mord mathrm">P</span></span><span class="mopen">(</span><span
+                                class="mord mathnormal" style="margin-right:0.02778em;">r</span><span
+                                class="mclose">)</span></span></span></span></eq> directly without the <eq><span
+                    class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle scriptlevel="0" displaystyle="true">
+                                        <mi>w</mi>
+                                    </mstyle>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\displaystyle w</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal"
+                                style="margin-right:0.02691em;">w</span></span></span></span></eq> in the formula, and
+            the deviations of the locations of the samples in world space (in mm) is fixed and stored in the
+            <strong>w</strong> component of the <strong>kernel</strong> member of the <strong>SeparableSSS</strong>
+            class. Thus, the mere purpose of the <strong>SSSSBlurPS</strong> in the shader code is to transform the
+            deviations from world space to texture space. Assuming that the deviations are from the origin of the Y
+            axis, the transformation can be calculated as <eq><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
                             <semantics>
                                 <mrow>
                                     <mstyle scriptlevel="0" displaystyle="true">
@@ -4332,11 +4406,85 @@
                                                 style="height:0.936em;"><span></span></span></span></span></span><span
                                     class="mclose nulldelimiter"></span></span></span></span></span></eq> is the second
             row and the second column of the projection matrix, and the 2 is to transform from NDC to texture space.
-            However, since the width of the diffusion profile is fixed at 6(3x2) mm as we have mentioned, the
+            However, since the width of the diffusion profile is fixed at 6(3x2) mm and the <eq><span
+                    class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle scriptlevel="0" displaystyle="true">
+                                        <mfrac>
+                                            <mrow>
+                                                <mi mathvariant="normal">Δ</mi>
+                                                <mi>x</mi>
+                                            </mrow>
+                                            <mrow>
+                                                <mn>0.001</mn>
+                                                <mo>+</mo>
+                                                <mi>f</mi>
+                                            </mrow>
+                                        </mfrac>
+                                    </mstyle>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\displaystyle \frac{\Delta x}{0.001 + f}
+                                </annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:2.2407700000000004em;vertical-align:-0.8804400000000001em;"></span><span
+                                class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                        class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                style="height:1.36033em;"><span style="top:-2.314em;"><span
+                                                        class="pstrut" style="height:3em;"></span><span
+                                                        class="mord"><span class="mord">0.001</span><span class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mbin">+</span><span class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mord mathnormal"
+                                                            style="margin-right:0.10764em;">f</span></span></span><span
+                                                    style="top:-3.23em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="frac-line"
+                                                        style="border-bottom-width:0.04em;"></span></span><span
+                                                    style="top:-3.677em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="mord"><span
+                                                            class="mord">Δ</span><span
+                                                            class="mord mathnormal">x</span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:0.8804400000000001em;"><span></span></span></span></span></span><span
+                                    class="mclose nulldelimiter"></span></span></span></span></span></eq> is passed to
+            the diffusion profile <eq><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle scriptlevel="0" displaystyle="true">
+                                        <mi mathvariant="normal">P</mi>
+                                        <mo>⁡</mo>
+                                        <mo stretchy="false">(</mo>
+                                        <mi>r</mi>
+                                        <mo stretchy="false">)</mo>
+                                    </mstyle>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\displaystyle \operatorname{P}(r)</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span
+                                    class="mord mathrm">P</span></span><span class="mopen">(</span><span
+                                class="mord mathnormal" style="margin-right:0.02778em;">r</span><span
+                                class="mclose">)</span></span></span></span></eq> directly without the <eq><span
+                    class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle scriptlevel="0" displaystyle="true">
+                                        <mi>w</mi>
+                                    </mstyle>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\displaystyle w</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal"
+                                style="margin-right:0.02691em;">w</span></span></span></span></eq> in the formula, the
             <strong>sssWidth</strong>, which is <strong>ScatterRadius</strong> in the UE4, is impossible to be
-            considered as the <strong>width</strong> of the diffusion profile. And since the shader code of the demo
-            source code demonstrates that the transformation is calculated as <eq><span class="katex"><span
-                        class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+            considered as the <strong>width</strong> of the diffusion profile or the <strong>width</strong> in the
+            formula. And since the shader code of the demo source code demonstrates that the transformation is
+            calculated as <eq><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
                             <semantics>
                                 <mrow>
                                     <mstyle scriptlevel="0" displaystyle="true">
