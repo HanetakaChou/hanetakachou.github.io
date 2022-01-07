@@ -1,10 +1,12 @@
-## Outline
-N/A| [FaceWorks - NVIDIA](https://github.com/NVIDIAGameWorks/FaceWorks/blob/master/doc/slides/FaceWorks-Overview-GTC14.pdf) | UE4 | [Disney SSS - Unity3D](https://github.com/Unity-Technologies/Graphics/blob/master/com.unity.render-pipelines.high-definition/Runtime/Material/SubsurfaceScattering/SubsurfaceScattering.hlsl) 
-:-: | :-: | :-: | :-:  
-Subsurface Scattering | Pre-Integrated | [Separable SSS](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Shaders/Private/SeparableSSS.ush) |  TODO
-Transmitted Light | Deep Scatter | TODO |  TODO
+N/A | [NVIDIA FaceWorks](https://github.com/NVIDIAGameWorks/FaceWorks/blob/master/doc/slides/FaceWorks-Overview-GTC14.pdf) | UE4 | [Jimenez 2015]((http://www.iryoku.com/separable-sss/)) | Unity3D  
+:-: | :-: | :-: | :-: | :-: 
+Diffuse Term | Pre-Integrated | [Separable SSS](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Shaders/Private/SeparableSSS.ush) | [Separable SSS](https://graphics.unizar.es/publications.html#year_2012) | [Disney SSS](https://github.com/Unity-Technologies/Graphics/blob/master/com.unity.render-pipelines.high-definition/Runtime/Material/SubsurfaceScattering/SubsurfaceScattering.hlsl)  
+Specular Term | TODO | TODO | TODO | TODO  
+Transmittance Term | Deep Scatter | TODO | [Realistic Skin Translucency](http://www.iryoku.com/translucency/) | TODO
 
-### Diffusion Profile  
+## 1\. Diffuse Term
+
+### 1-1\. Diffusion Profile  
 
 Currently, all real time approaches are based on the diffusion profile(**14.4.2 Rendering with Diffusion Profile** of \[dEon 2007\]) rather than the [BSSRDF](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Surface_Reflection#TheBSSRDF).  
 
@@ -12,14 +14,12 @@ By using the diffusion profile, the subsurface scattering, which was described b
 
 However, things are far from simple. Although the proposals based on the diffusion profile are much simpler than the BSSRDF, a general 2D convolution is still too expensive for real time rendering. Actually, according to \[dEon 2007\], if the width (technically, the range of the significant contribution domain) of the diffusion profile is about 16 mm, and the width of pixel is about 0.25 mm, we would need 4096(64 x 64) samples per pixel in the shader. Thus, we have to propose more efficient approaches to settle this problem.
 
-## 1\. FaceWorks - NVIDIA
-
-### 1-1\. Pre-Integrated
-The **Subsurface Scattering** of FaceWorks is based on the **Pre-Integrated** \[Penner 2011\].  
+### 1-2\. Pre-Integrated
+The **diffuse** term of FaceWorks is based on the **Pre-Integrated** \[Penner 2011\].  
 
 In real time rendering, the light is assumed to be the punctual light rather than the area light. The [Delta Distribution](https://www.pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/Sampling_Light_Sources#LightswithSingularities) is applied, and the reflectance equation is simplified to $\displaystyle \operatorname{L}_o(p, \omega_o) = \int_\Omega \operatorname{BRDF}(p, \omega_o, \omega_i) \cdot \operatorname{L_i}(p, \omega_i) \cdot |\cos(\theta_i)| \, d\omega_i = \operatorname{BRDF}(p_i, \omega_o, \omega_i) \otimes \operatorname{E_{L}}(p) \otimes |\cos(\theta_i)|$ where the $\displaystyle \operatorname{E_{L}}(p)$ is the irradiance perpendicular to the light direction. And since the diffuse BRDF equals $\displaystyle \frac{c_{diffuse}}{\pi}$ which is irrelevant to the the $\displaystyle w_o$ and the $\displaystyle w_i$, the reflectance equation can be simplified further to $\displaystyle \operatorname{L}_o(p) = \frac{\operatorname{c_{diffuse}}(p)}{\pi} \otimes \operatorname{E_{L}}(p) \otimes |\cos(\theta_i)|$. Thus, the irradiance E  can be calculated as $\displaystyle \operatorname{E}(p) = \int_\Omega \operatorname{L}_o(p, \omega_o) \, d\omega_o  = \operatorname{L}_o(p) \cdot \int_\Omega 1 \, d\omega_o = \operatorname{L}_o(p) \cdot \pi = \operatorname{c_{diffuse}}(p) \otimes \operatorname{E_{L}}(p) \otimes |\cos(\theta_i)|$, and the diffuse term is simplified to $\displaystyle \operatorname{L}_o(p_o) = \frac{\operatorname{M}(p_o)}{\pi} = \frac{1}{\pi} \cdot \int_{S_{p_i}} \operatorname{R}(\operatorname{distance}(p_o, p_i)) \cdot \operatorname{c_{diffuse}}(p_i) \cdot \operatorname{E_{L}}(p_i) \cdot |\cos(\theta_i)| \, dp_i$.  
 
-The main idea of \[Penner 2011\] is that the $\displaystyle \operatorname{c_{diffuse}}(p_i) \cdot \operatorname{E}(p_i)$ is assumed to be the constant $\displaystyle \operatorname{c_{diffuse}}(p_o) \cdot \operatorname{E}(p_o)$ for all vicinal locations. And thus, the $\displaystyle \operatorname{R}(\operatorname{distance}(p_o, p_i)) \cdot |\cos(\theta_i)|$ part of the diffuse term can be **pre-integrated** and stored in a LUT(Look Up Texture) which is called the $\displaystyle \operatorname{D}(\theta, \frac{1}{r})$. The $\displaystyle \theta$ is merely the traditional $\displaystyle \operatorname{dot}(N,L)$, and the $\displaystyle \frac{1}{r}$, which is called **curvature** by \[Penner 2011\], can be calculated on-the-fly as $\displaystyle \frac{1}{r} = \frac{\operatorname{ddx}(N)}{\operatorname{ddx}(P)}$. However, the on-the-fly method may be inaccurate since FaceWorks chooses to precompute the curvature instead. In conclusion, the diffuse term can be calculated as $\displaystyle \operatorname{D}(\operatorname{dot}(N,L), \frac{\operatorname{ddx}(N)}{\operatorname{ddx}(P)}) \otimes \frac{\operatorname{c_{diffuse}}(p)}{\pi} \otimes \operatorname{E_{L}}(p)$.
+The main idea of \[Penner 2011\] is that the $\displaystyle \operatorname{c_{diffuse}}(p_i) \cdot \operatorname{E}(p_i)$ is assumed to be the constant $\displaystyle \operatorname{c_{diffuse}}(p_o) \cdot \operatorname{E}(p_o)$ for all vicinal locations. And thus, the $\displaystyle \operatorname{R}(\operatorname{distance}(p_o, p_i)) \cdot |\cos(\theta_i)|$ part of the diffuse term can be **pre-integrated** and stored in a LUT(Look Up Texture) which is called the $\displaystyle \operatorname{D}(\theta, \frac{1}{r})$. The $\displaystyle \theta$ is merely the traditional $\displaystyle \operatorname{dot}(N,L)$, and the $\displaystyle \frac{1}{r}$, which is called **curvature** by \[Penner 2011\], can be calculated on-the-fly as $\displaystyle \frac{1}{r} = \frac{\operatorname{ddx}(N)}{\operatorname{ddx}(P)}$. However, the on-the-fly method may be inaccurate since the FaceWorks chooses to precompute the curvature instead. In conclusion, the diffuse term can be calculated as $\displaystyle \operatorname{D}(\operatorname{dot}(N,L), \frac{\operatorname{ddx}(N)}{\operatorname{ddx}(P)}) \otimes \frac{\operatorname{c_{diffuse}}(p)}{\pi} \otimes \operatorname{E_{L}}(p)$.
  
 Usually, the diffusion profile is normalized which indicates the energy conservation. This means that $\displaystyle \int_0^\infin R(r) \, dr =1$. However, according to \[Penner 2011\], $\displaystyle \operatorname{D}(\theta, \frac{1}{r}) = \frac{\int_{-\pi}^{\pi} | \cos (\theta + x) | \cdot R(2r\sin(\frac{x}{2})) \,dx}{\int_{-\pi}^{\pi} R(2r\sin(\frac{y}{2})) \,dy}$ where denominator is added to make sure the diffusion profile is normalized.
 
@@ -34,16 +34,8 @@ In the FaceWorks, the $\displaystyle \operatorname{D}(\theta, \frac{1}{r})$ is c
 2. The denominator $\displaystyle \int_{-\pi}^{\pi} R(2r\sin(\frac{y}{2})) \,dy$ is omitted perhaps due to the fact that the diffusion profile has been normalized. Actually, I try to calculate the denominator by myself, and I find the denominator is really close to one.  
 3. In the GPU Pro 2, three normals should be used for different RGB components and the LUT should be sampled three times according to three different $\displaystyle \theta$s. Perhaps this method is not efficient and the FaceWorks detaches the $\displaystyle \operatorname{dot}(N,L)$, which denotes the part of the integral where x is close to zero and the diffuse profile is close to one, from the total integral $\displaystyle \operatorname{D}(\theta, \frac{1}{r})$. Evidently, the remaining part of the integral is relatively small, and thus FaceWorks maps the remaining part of the integral from [-0.25, 0.25] to [0, 1] to fully use the precision of the texture (the **rgbAdjust** in the code). The **GFSDK_FaceWorks_EvaluateSSSDirectLight** is used to calculate the diffuse term. The LUT is only sampled once and three normals are used to calculate the $\displaystyle \operatorname{dot}(N,L)$ which is detached from the total integral. 
 
-
-### 1-2\. Deep Scatter
-The **Transmitted Light** of FaceWorks is based on the **16.3 Simulating Absorption Using Depth Maps** of \[Green 2004\].  
-
-TODO
-
-## 2\. Separable SSS - UE4  
-
-### 2-1\. Separable SSS
-The **Subsurface Scattering** of UE4 is based on the **Separable SSS** \[Jimenez 2012\].  
+### 1-3\. Separable SSS
+The **diffuse** term of UE4 is based on the **Separable SSS** \[Jimenez 2012\].  
 
 The approach of \[dEon 2007\] is to approximate the diffusion profile by the weighted sum of 6 Gaussians, and thus the general 2D convolution can be replaced by 12(2 x 6) 1D convolutions since the [Gaussian blur](https://en.wikipedia.org/wiki/Gaussian_blur) is a [separable filter](https://en.wikipedia.org/wiki/Separable_filter). However, the approach proposed by \[dEon 2007\] is applied in texture space which is too weird according to the convention of the real time rendering. And the screen space approach is proposed by \[Jimenez 2009\] and \[Jimenez 2010\]. However, the approach proposed by \[Jimenez 2010\] still needs 12(2 x 6) passes to perform the 12(2 x 6) 1D convolutions. Evidently, this is still too expensive for real time rendering. And thus, the 2 passes approach is proposed by \[Jimenez 2012\].    
 
@@ -59,13 +51,22 @@ The $\displaystyle \operatorname{S}(\Delta x)$ is calculated by the **calculateK
 3. Actually, the demo source code demonstrates that the $\displaystyle \frac{\Delta x}{0.001 + \text{falloff}}$ is passed to the diffusion profile $\displaystyle \operatorname{P}(r)$ directly without the **width** in the formula. This implies the **width** in the formula is actually fixed at 1.
 4. According to the **numerical quadrature**, the function value sampled from the irradiance texture should be multiplied by the difference of the domain the $\displaystyle \operatorname{\Delta} x$ and the $\displaystyle \operatorname{\Delta} y$ (the **area** in the **calculateKernel** in the code). And the demo source code demonstrates that the deviations of the locations of the samples in world space (in mm) is fixed and stored in the **w** component of the **kernel** member of the **SeparableSSS** class. Thus, the mere purpose of the **SSSSBlurPS** in the shader code is to transform the deviations from world space to texture space. Assuming that the deviations are from the origin of the Y axis, the transformation can be calculated as $\displaystyle \text{TextureSpace} = \frac{0.001 \times \text{WorldSpaceUnitPerMeter}}{\tan(\text{FOVY} \times 0.5) \times 2} \times \text{WorldSpaceInMM}$ where the 0.001 is to transform from mm to m, the $\displaystyle \frac{1}{\tan(\text{FOVY} \times 0.5)}$ is the second row and the second column of the projection matrix, and the 2 is to transform from NDC to texture space. However, since the width of the diffusion profile is fixed at 6(3x2) mm and the $\displaystyle \frac{\Delta x}{0.001 + \text{falloff}}$ is passed to the diffusion profile $\displaystyle \operatorname{P}(r)$ directly without the $\displaystyle w$ in the formula, the **sssWidth**, which is **ScatterRadius** in the UE4, is impossible to be considered as the **width** of the diffusion profile or the **width** in the formula. And since the shader code of the demo source code demonstrates that the transformation is calculated as $\displaystyle \text{TextureSpace} = \frac{\text{sssWidth}}{\tan(\text{FOVY} \times 0.5) \times 3} \times \text{WorldSpaceInMM}$, by comparing these two formulas, a hypothesis can be proposed that $\displaystyle \text{WorldSpaceUnitPerMeter} = \frac{1000 \times 2 \times \text{sssWidth}}{3}$. The default of the **sssWidth** in the demo source code is 0.012, and thus the hypothesis implies that the **WorldSpaceUnitPerMeter** of the demo is 8. Actually, I check the vertex data of the head mesh in the demo, and fortunately, I find the vertex data is consistent with this result.  
 5. The **SSSS_STREGTH_SOURCE** in the shader code has nothing to do with the **strength** in the paper at all. In the demo source code, the **SSSS_STREGTH_SOURCE** is the alpha channel of the albedo texture, and is used to skip the pixels which represent the eyebrow rather than the skin.  
-    
-### 2-2\. Transmittance
+
+### 1-4\. Disney SSS
+TODO    
+
+## 2\. Transmittance Term
+
+### 2-1\. Deep Scatter
+The **transmittance** term of the FaceWorks is based on the **16.3 Simulating Absorption Using Depth Maps** of \[Green 2004\].  
 
 TODO
 
-## 3\. Disney SSS - Unity3D  
+### 2-2\. Realistic Skin Translucency
+
 TODO
+
+
 
 ## References
 \[Green 2004\] [Simon Green. "Chapter 16. Real-Time Approximations to Subsurface Scattering." GPU Gems 1.](https://developer.nvidia.com/gpugems/gpugems/part-iii-materials/chapter-16-real-time-approximations-subsurface-scattering)  

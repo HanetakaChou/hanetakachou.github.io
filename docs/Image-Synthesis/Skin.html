@@ -10,38 +10,50 @@
 </head>
 
 <body class="markdown-body">
-    <h2 id="outline">Outline</h2>
     <table>
         <thead>
             <tr>
                 <th style="text-align:center">N/A</th>
                 <th style="text-align:center"><a
-                        href="https://github.com/NVIDIAGameWorks/FaceWorks/blob/master/doc/slides/FaceWorks-Overview-GTC14.pdf">FaceWorks
-                        - NVIDIA</a></th>
+                        href="https://github.com/NVIDIAGameWorks/FaceWorks/blob/master/doc/slides/FaceWorks-Overview-GTC14.pdf">NVIDIA
+                        FaceWorks</a></th>
                 <th style="text-align:center">UE4</th>
-                <th style="text-align:center"><a
-                        href="https://github.com/Unity-Technologies/Graphics/blob/master/com.unity.render-pipelines.high-definition/Runtime/Material/SubsurfaceScattering/SubsurfaceScattering.hlsl">Disney
-                        SSS - Unity3D</a></th>
+                <th style="text-align:center"><a href="(http://www.iryoku.com/separable-sss/)">Jimenez 2015</a></th>
+                <th style="text-align:center">Unity3D</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td style="text-align:center">Subsurface Scattering</td>
+                <td style="text-align:center">Diffuse Term</td>
                 <td style="text-align:center">Pre-Integrated</td>
                 <td style="text-align:center"><a
                         href="https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Shaders/Private/SeparableSSS.ush">Separable
                         SSS</a></td>
+                <td style="text-align:center"><a href="https://graphics.unizar.es/publications.html#year_2012">Separable
+                        SSS</a></td>
+                <td style="text-align:center"><a
+                        href="https://github.com/Unity-Technologies/Graphics/blob/master/com.unity.render-pipelines.high-definition/Runtime/Material/SubsurfaceScattering/SubsurfaceScattering.hlsl">Disney
+                        SSS</a></td>
+            </tr>
+            <tr>
+                <td style="text-align:center">Specular Term</td>
+                <td style="text-align:center">TODO</td>
+                <td style="text-align:center">TODO</td>
+                <td style="text-align:center">TODO</td>
                 <td style="text-align:center">TODO</td>
             </tr>
             <tr>
-                <td style="text-align:center">Transmitted Light</td>
+                <td style="text-align:center">Transmittance Term</td>
                 <td style="text-align:center">Deep Scatter</td>
                 <td style="text-align:center">TODO</td>
+                <td style="text-align:center"><a href="http://www.iryoku.com/translucency/">Realistic Skin
+                        Translucency</a></td>
                 <td style="text-align:center">TODO</td>
             </tr>
         </tbody>
     </table>
-    <h3 id="diffusion-profile">Diffusion Profile</h3>
+    <h2 id="1-diffuse-term">1. Diffuse Term</h2>
+    <h3 id="1-1-diffusion-profile">1-1. Diffusion Profile</h3>
     <p>Currently, all real time approaches are based on the diffusion profile(<strong>14.4.2 Rendering with Diffusion
             Profile</strong> of [dEon 2007]) rather than the <a
             href="https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Surface_Reflection#TheBSSRDF">BSSRDF</a>.</p>
@@ -611,10 +623,8 @@
         [dEon 2007], if the width (technically, the range of the significant contribution domain) of the diffusion
         profile is about 16 mm, and the width of pixel is about 0.25 mm, we would need 4096(64 x 64) samples per pixel
         in the shader. Thus, we have to propose more efficient approaches to settle this problem.</p>
-    <h2 id="1-faceworks---nvidia">1. FaceWorks - NVIDIA</h2>
-    <h3 id="1-1-pre-integrated">1-1. Pre-Integrated</h3>
-    <p>The <strong>Subsurface Scattering</strong> of FaceWorks is based on the <strong>Pre-Integrated</strong> [Penner
-        2011].</p>
+    <h3 id="1-2-pre-integrated">1-2. Pre-Integrated</h3>
+    <p>The <strong>diffuse</strong> term of FaceWorks is based on the <strong>Pre-Integrated</strong> [Penner 2011].</p>
     <p>In real time rendering, the light is assumed to be the punctual light rather than the area light. The <a
             href="https://www.pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/Sampling_Light_Sources#LightswithSingularities">Delta
             Distribution</a> is applied, and the reflectance equation is simplified to <eq><span class="katex"><span
@@ -2224,8 +2234,8 @@
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.936em;"><span></span></span></span></span></span><span
                                 class="mclose nulldelimiter"></span></span></span></span></span></eq>. However, the
-        on-the-fly method may be inaccurate since FaceWorks chooses to precompute the curvature instead. In conclusion,
-        the diffuse term can be calculated as <eq><span class="katex"><span class="katex-mathml"><math
+        on-the-fly method may be inaccurate since the FaceWorks chooses to precompute the curvature instead. In
+        conclusion, the diffuse term can be calculated as <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
@@ -3224,14 +3234,8 @@
                                 class="mord mathnormal">L</span><span class="mclose">)</span></span></span></span></eq>
             which is detached from the total integral.</li>
     </ol>
-    <h3 id="1-2-deep-scatter">1-2. Deep Scatter</h3>
-    <p>The <strong>Transmitted Light</strong> of FaceWorks is based on the <strong>16.3 Simulating Absorption Using
-            Depth Maps</strong> of [Green 2004].</p>
-    <p>TODO</p>
-    <h2 id="2-separable-sss---ue4">2. Separable SSS - UE4</h2>
-    <h3 id="2-1-separable-sss">2-1. Separable SSS</h3>
-    <p>The <strong>Subsurface Scattering</strong> of UE4 is based on the <strong>Separable SSS</strong> [Jimenez 2012].
-    </p>
+    <h3 id="1-3-separable-sss">1-3. Separable SSS</h3>
+    <p>The <strong>diffuse</strong> term of UE4 is based on the <strong>Separable SSS</strong> [Jimenez 2012].</p>
     <p>The approach of [dEon 2007] is to approximate the diffusion profile by the weighted sum of 6 Gaussians, and thus
         the general 2D convolution can be replaced by 12(2 x 6) 1D convolutions since the <a
             href="https://en.wikipedia.org/wiki/Gaussian_blur">Gaussian blur</a> is a <a
@@ -4600,9 +4604,14 @@
             <strong>SSSS_STREGTH_SOURCE</strong> is the alpha channel of the albedo texture, and is used to skip the
             pixels which represent the eyebrow rather than the skin.</li>
     </ol>
-    <h3 id="2-2-transmittance">2-2. Transmittance</h3>
+    <h3 id="1-4-disney-sss">1-4. Disney SSS</h3>
     <p>TODO</p>
-    <h2 id="3-disney-sss---unity3d">3. Disney SSS - Unity3D</h2>
+    <h2 id="2-transmittance-term">2. Transmittance Term</h2>
+    <h3 id="2-1-deep-scatter">2-1. Deep Scatter</h3>
+    <p>The <strong>transmittance</strong> term of the FaceWorks is based on the <strong>16.3 Simulating Absorption Using
+            Depth Maps</strong> of [Green 2004].</p>
+    <p>TODO</p>
+    <h3 id="2-2-realistic-skin-translucency">2-2. Realistic Skin Translucency</h3>
     <p>TODO</p>
     <h2 id="references">References</h2>
     <p>[Green 2004] <a
