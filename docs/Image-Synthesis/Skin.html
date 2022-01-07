@@ -3535,17 +3535,17 @@
                                             <mi mathvariant="normal">Δ</mi>
                                             <mi>x</mi>
                                             <mo>∗</mo>
-                                            <mi>w</mi>
+                                            <mtext>width</mtext>
                                         </mrow>
                                         <mrow>
                                             <mn>0.001</mn>
                                             <mo>+</mo>
-                                            <mi>f</mi>
+                                            <mtext>falloff</mtext>
                                         </mrow>
                                     </mfrac>
                                     <mo stretchy="false">)</mo>
                                     <mo>∗</mo>
-                                    <mi>t</mi>
+                                    <mtext>strength</mtext>
                                     <mo>+</mo>
                                     <mi mathvariant="normal">δ</mi>
                                     <mo>⁡</mo>
@@ -3557,13 +3557,13 @@
                                     <mo stretchy="false">(</mo>
                                     <mn>1</mn>
                                     <mo>−</mo>
-                                    <mi>t</mi>
+                                    <mtext>strength</mtext>
                                     <mo stretchy="false">)</mo>
                                 </mstyle>
                             </mrow>
                             <annotation encoding="application/x-tex">\displaystyle \operatorname{S}(\Delta x) =
-                                \operatorname{P}(\frac{\Delta x*w}{0.001 + f})*t + \operatorname{\delta}(\Delta x)*(1-t)
-                            </annotation>
+                                \operatorname{P}(\frac{\Delta x*\text{width}}{0.001 + \text{falloff}})*\text{strength} +
+                                \operatorname{\delta}(\Delta x)*(1-\text{strength})</annotation>
                         </semantics>
                     </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
                             style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span
@@ -3573,18 +3573,18 @@
                             style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
                             class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
                         class="base"><span class="strut"
-                            style="height:2.2407700000000004em;vertical-align:-0.8804400000000001em;"></span><span
+                            style="height:2.14077em;vertical-align:-0.7693300000000001em;"></span><span
                             class="mop"><span class="mord mathrm">P</span></span><span class="mopen">(</span><span
                             class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
                                     class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                            style="height:1.36033em;"><span style="top:-2.314em;"><span class="pstrut"
+                                            style="height:1.37144em;"><span style="top:-2.314em;"><span class="pstrut"
                                                     style="height:3em;"></span><span class="mord"><span
                                                         class="mord">0.001</span><span class="mspace"
                                                         style="margin-right:0.2222222222222222em;"></span><span
                                                         class="mbin">+</span><span class="mspace"
                                                         style="margin-right:0.2222222222222222em;"></span><span
-                                                        class="mord mathnormal"
-                                                        style="margin-right:0.10764em;">f</span></span></span><span
+                                                        class="mord text"><span
+                                                            class="mord">falloff</span></span></span></span><span
                                                 style="top:-3.23em;"><span class="pstrut"
                                                     style="height:3em;"></span><span class="frac-line"
                                                     style="border-bottom-width:0.04em;"></span></span><span
@@ -3595,16 +3595,16 @@
                                                         style="margin-right:0.2222222222222222em;"></span><span
                                                         class="mbin">∗</span><span class="mspace"
                                                         style="margin-right:0.2222222222222222em;"></span><span
-                                                        class="mord mathnormal"
-                                                        style="margin-right:0.02691em;">w</span></span></span></span><span
+                                                        class="mord text"><span
+                                                            class="mord">width</span></span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:0.8804400000000001em;"><span></span></span></span></span></span><span
+                                            style="height:0.7693300000000001em;"><span></span></span></span></span></span><span
                                 class="mclose nulldelimiter"></span></span><span class="mclose">)</span><span
                             class="mspace" style="margin-right:0.2222222222222222em;"></span><span
                             class="mbin">∗</span><span class="mspace"
                             style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span
-                            class="strut" style="height:0.69841em;vertical-align:-0.08333em;"></span><span
-                            class="mord mathnormal">t</span><span class="mspace"
+                            class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span
+                            class="mord text"><span class="mord">strength</span></span><span class="mspace"
                             style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span
                             class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
                         class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
@@ -3618,9 +3618,9 @@
                             style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span
                             class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
                         class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
-                            class="mord mathnormal">t</span><span class="mclose">)</span></span></span></span></eq>
-        where P denotes the 1D diffusion profile, <eq><span class="katex"><span class="katex-mathml"><math
-                        xmlns="http://www.w3.org/1998/Math/MathML">
+                            class="mord text"><span class="mord">strength</span></span><span
+                            class="mclose">)</span></span></span></span></eq> where P denotes the 1D diffusion profile,
+        <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
                                 <mstyle scriptlevel="0" displaystyle="true">
@@ -3702,33 +3702,33 @@
                                                 <mi mathvariant="normal">Δ</mi>
                                                 <mi>x</mi>
                                                 <mo>∗</mo>
-                                                <mi>w</mi>
+                                                <mtext>width</mtext>
                                             </mrow>
                                             <mrow>
                                                 <mn>0.001</mn>
                                                 <mo>+</mo>
-                                                <mi>f</mi>
+                                                <mtext>falloff</mtext>
                                             </mrow>
                                         </mfrac>
                                         <mo stretchy="false">)</mo>
                                     </mstyle>
                                 </mrow>
                                 <annotation encoding="application/x-tex">\displaystyle \operatorname{P}(\frac{\Delta
-                                    x*w}{0.001 + f})</annotation>
+                                    x*\text{width}}{0.001 + \text{falloff}})</annotation>
                             </semantics>
                         </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
-                                style="height:2.2407700000000004em;vertical-align:-0.8804400000000001em;"></span><span
+                                style="height:2.14077em;vertical-align:-0.7693300000000001em;"></span><span
                                 class="mop"><span class="mord mathrm">P</span></span><span class="mopen">(</span><span
                                 class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
                                         class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                                style="height:1.36033em;"><span style="top:-2.314em;"><span
+                                                style="height:1.37144em;"><span style="top:-2.314em;"><span
                                                         class="pstrut" style="height:3em;"></span><span
                                                         class="mord"><span class="mord">0.001</span><span class="mspace"
                                                             style="margin-right:0.2222222222222222em;"></span><span
                                                             class="mbin">+</span><span class="mspace"
                                                             style="margin-right:0.2222222222222222em;"></span><span
-                                                            class="mord mathnormal"
-                                                            style="margin-right:0.10764em;">f</span></span></span><span
+                                                            class="mord text"><span
+                                                                class="mord">falloff</span></span></span></span><span
                                                     style="top:-3.23em;"><span class="pstrut"
                                                         style="height:3em;"></span><span class="frac-line"
                                                         style="border-bottom-width:0.04em;"></span></span><span
@@ -3739,10 +3739,10 @@
                                                             style="margin-right:0.2222222222222222em;"></span><span
                                                             class="mbin">∗</span><span class="mspace"
                                                             style="margin-right:0.2222222222222222em;"></span><span
-                                                            class="mord mathnormal"
-                                                            style="margin-right:0.02691em;">w</span></span></span></span><span
+                                                            class="mord text"><span
+                                                                class="mord">width</span></span></span></span></span><span
                                                 class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                                style="height:0.8804400000000001em;"><span></span></span></span></span></span><span
+                                                style="height:0.7693300000000001em;"><span></span></span></span></span></span><span
                                     class="mclose nulldelimiter"></span></span><span
                                 class="mclose">)</span></span></span></span></eq> and the conventional diffuse term <eq>
                 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -3765,7 +3765,7 @@
                                     class="mord">δ</span></span><span class="mopen">(</span><span
                                 class="mord">Δ</span><span class="mord mathnormal">x</span><span
                                 class="mclose">)</span></span></span></span></eq>. Evidently, when the
-            <strong>strength</strong> equals zero, since <eq><span class="katex"><span class="katex-mathml"><math
+            <strong>strength</strong> equals 0, since <eq><span class="katex"><span class="katex-mathml"><math
                             xmlns="http://www.w3.org/1998/Math/MathML">
                             <semantics>
                                 <mrow>
@@ -4170,6 +4170,70 @@
             the width of the diffusion profile in the demo source code is reduced to 6(3x2) mm (the
             <strong>RANGE</strong> in the <strong>calculateKernel</strong> in the code). The default of the
             <strong>falloff</strong> in the demo source code is (1.0, 0.37, 0.3).</li>
+        <li>Actually, the demo source code demonstrates that the <eq><span class="katex"><span
+                        class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle scriptlevel="0" displaystyle="true">
+                                        <mfrac>
+                                            <mrow>
+                                                <mi mathvariant="normal">Δ</mi>
+                                                <mi>x</mi>
+                                            </mrow>
+                                            <mrow>
+                                                <mn>0.001</mn>
+                                                <mo>+</mo>
+                                                <mtext>falloff</mtext>
+                                            </mrow>
+                                        </mfrac>
+                                    </mstyle>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\displaystyle \frac{\Delta x}{0.001 +
+                                    \text{falloff}}</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:2.1296600000000003em;vertical-align:-0.7693300000000001em;"></span><span
+                                class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                        class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                style="height:1.36033em;"><span style="top:-2.314em;"><span
+                                                        class="pstrut" style="height:3em;"></span><span
+                                                        class="mord"><span class="mord">0.001</span><span class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mbin">+</span><span class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mord text"><span
+                                                                class="mord">falloff</span></span></span></span><span
+                                                    style="top:-3.23em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="frac-line"
+                                                        style="border-bottom-width:0.04em;"></span></span><span
+                                                    style="top:-3.677em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="mord"><span
+                                                            class="mord">Δ</span><span
+                                                            class="mord mathnormal">x</span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:0.7693300000000001em;"><span></span></span></span></span></span><span
+                                    class="mclose nulldelimiter"></span></span></span></span></span></eq> is passed to
+            the diffusion profile <eq><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle scriptlevel="0" displaystyle="true">
+                                        <mi mathvariant="normal">P</mi>
+                                        <mo>⁡</mo>
+                                        <mo stretchy="false">(</mo>
+                                        <mi>r</mi>
+                                        <mo stretchy="false">)</mo>
+                                    </mstyle>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\displaystyle \operatorname{P}(r)</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span
+                                    class="mord mathrm">P</span></span><span class="mopen">(</span><span
+                                class="mord mathnormal" style="margin-right:0.02778em;">r</span><span
+                                class="mclose">)</span></span></span></span></eq> directly without the
+            <strong>width</strong> in the formula. This implies the <strong>width</strong> in the formula is actually
+            fixed at 1.</li>
         <li>According to the <strong>numerical quadrature</strong>, the function value sampled from the irradiance
             texture should be multiplied by the difference of the domain the <eq><span class="katex"><span
                         class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -4207,86 +4271,12 @@
                                 style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal"
                                 style="margin-right:0.03588em;">y</span></span></span></span></eq> (the
             <strong>area</strong> in the <strong>calculateKernel</strong> in the code). And the demo source code
-            demonstrates that the <eq><span class="katex"><span class="katex-mathml"><math
-                            xmlns="http://www.w3.org/1998/Math/MathML">
-                            <semantics>
-                                <mrow>
-                                    <mstyle scriptlevel="0" displaystyle="true">
-                                        <mfrac>
-                                            <mrow>
-                                                <mi mathvariant="normal">Δ</mi>
-                                                <mi>x</mi>
-                                            </mrow>
-                                            <mrow>
-                                                <mn>0.001</mn>
-                                                <mo>+</mo>
-                                                <mi>f</mi>
-                                            </mrow>
-                                        </mfrac>
-                                    </mstyle>
-                                </mrow>
-                                <annotation encoding="application/x-tex">\displaystyle \frac{\Delta x}{0.001 + f}
-                                </annotation>
-                            </semantics>
-                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
-                                style="height:2.2407700000000004em;vertical-align:-0.8804400000000001em;"></span><span
-                                class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
-                                        class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                                style="height:1.36033em;"><span style="top:-2.314em;"><span
-                                                        class="pstrut" style="height:3em;"></span><span
-                                                        class="mord"><span class="mord">0.001</span><span class="mspace"
-                                                            style="margin-right:0.2222222222222222em;"></span><span
-                                                            class="mbin">+</span><span class="mspace"
-                                                            style="margin-right:0.2222222222222222em;"></span><span
-                                                            class="mord mathnormal"
-                                                            style="margin-right:0.10764em;">f</span></span></span><span
-                                                    style="top:-3.23em;"><span class="pstrut"
-                                                        style="height:3em;"></span><span class="frac-line"
-                                                        style="border-bottom-width:0.04em;"></span></span><span
-                                                    style="top:-3.677em;"><span class="pstrut"
-                                                        style="height:3em;"></span><span class="mord"><span
-                                                            class="mord">Δ</span><span
-                                                            class="mord mathnormal">x</span></span></span></span><span
-                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                                style="height:0.8804400000000001em;"><span></span></span></span></span></span><span
-                                    class="mclose nulldelimiter"></span></span></span></span></span></eq> is passed to
-            the diffusion profile <eq><span class="katex"><span class="katex-mathml"><math
-                            xmlns="http://www.w3.org/1998/Math/MathML">
-                            <semantics>
-                                <mrow>
-                                    <mstyle scriptlevel="0" displaystyle="true">
-                                        <mi mathvariant="normal">P</mi>
-                                        <mo>⁡</mo>
-                                        <mo stretchy="false">(</mo>
-                                        <mi>r</mi>
-                                        <mo stretchy="false">)</mo>
-                                    </mstyle>
-                                </mrow>
-                                <annotation encoding="application/x-tex">\displaystyle \operatorname{P}(r)</annotation>
-                            </semantics>
-                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
-                                style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span
-                                    class="mord mathrm">P</span></span><span class="mopen">(</span><span
-                                class="mord mathnormal" style="margin-right:0.02778em;">r</span><span
-                                class="mclose">)</span></span></span></span></eq> directly without the <eq><span
-                    class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
-                            <semantics>
-                                <mrow>
-                                    <mstyle scriptlevel="0" displaystyle="true">
-                                        <mi>w</mi>
-                                    </mstyle>
-                                </mrow>
-                                <annotation encoding="application/x-tex">\displaystyle w</annotation>
-                            </semantics>
-                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
-                                style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal"
-                                style="margin-right:0.02691em;">w</span></span></span></span></eq> in the formula, and
-            the deviations of the locations of the samples in world space (in mm) is fixed and stored in the
-            <strong>w</strong> component of the <strong>kernel</strong> member of the <strong>SeparableSSS</strong>
-            class. Thus, the mere purpose of the <strong>SSSSBlurPS</strong> in the shader code is to transform the
-            deviations from world space to texture space. Assuming that the deviations are from the origin of the Y
-            axis, the transformation can be calculated as <eq><span class="katex"><span class="katex-mathml"><math
-                            xmlns="http://www.w3.org/1998/Math/MathML">
+            demonstrates that the deviations of the locations of the samples in world space (in mm) is fixed and stored
+            in the <strong>w</strong> component of the <strong>kernel</strong> member of the
+            <strong>SeparableSSS</strong> class. Thus, the mere purpose of the <strong>SSSSBlurPS</strong> in the shader
+            code is to transform the deviations from world space to texture space. Assuming that the deviations are from
+            the origin of the Y axis, the transformation can be calculated as <eq><span class="katex"><span
+                        class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                             <semantics>
                                 <mrow>
                                     <mstyle scriptlevel="0" displaystyle="true">
@@ -4419,16 +4409,16 @@
                                             <mrow>
                                                 <mn>0.001</mn>
                                                 <mo>+</mo>
-                                                <mi>f</mi>
+                                                <mtext>falloff</mtext>
                                             </mrow>
                                         </mfrac>
                                     </mstyle>
                                 </mrow>
-                                <annotation encoding="application/x-tex">\displaystyle \frac{\Delta x}{0.001 + f}
-                                </annotation>
+                                <annotation encoding="application/x-tex">\displaystyle \frac{\Delta x}{0.001 +
+                                    \text{falloff}}</annotation>
                             </semantics>
                         </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
-                                style="height:2.2407700000000004em;vertical-align:-0.8804400000000001em;"></span><span
+                                style="height:2.1296600000000003em;vertical-align:-0.7693300000000001em;"></span><span
                                 class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
                                         class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
                                                 style="height:1.36033em;"><span style="top:-2.314em;"><span
@@ -4437,8 +4427,8 @@
                                                             style="margin-right:0.2222222222222222em;"></span><span
                                                             class="mbin">+</span><span class="mspace"
                                                             style="margin-right:0.2222222222222222em;"></span><span
-                                                            class="mord mathnormal"
-                                                            style="margin-right:0.10764em;">f</span></span></span><span
+                                                            class="mord text"><span
+                                                                class="mord">falloff</span></span></span></span><span
                                                     style="top:-3.23em;"><span class="pstrut"
                                                         style="height:3em;"></span><span class="frac-line"
                                                         style="border-bottom-width:0.04em;"></span></span><span
@@ -4447,7 +4437,7 @@
                                                             class="mord">Δ</span><span
                                                             class="mord mathnormal">x</span></span></span></span><span
                                                 class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                                style="height:0.8804400000000001em;"><span></span></span></span></span></span><span
+                                                style="height:0.7693300000000001em;"><span></span></span></span></span></span><span
                                     class="mclose nulldelimiter"></span></span></span></span></span></eq> is passed to
             the diffusion profile <eq><span class="katex"><span class="katex-mathml"><math
                             xmlns="http://www.w3.org/1998/Math/MathML">
@@ -4615,21 +4605,21 @@
     <h2 id="3-disney-sss---unity3d">3. Disney SSS - Unity3D</h2>
     <p>TODO</p>
     <h2 id="references">References</h2>
-    <p>[dEon 2007] <a
+    <p>[Green 2004] <a
+            href="https://developer.nvidia.com/gpugems/gpugems/part-iii-materials/chapter-16-real-time-approximations-subsurface-scattering">Simon
+            Green. &quot;Chapter 16. Real-Time Approximations to Subsurface Scattering.&quot; GPU Gems 1.</a><br>
+        [dEon 2007] <a
             href="https://developer.nvidia.com/gpugems/gpugems3/part-iii-rendering/chapter-14-advanced-techniques-realistic-real-time-skin">Eugene
             dEon, David Luebke. &quot;Advanced Techniques for Realistic Real-Time Skin Rendering.&quot; GPU Gem
             3.</a><br>
-        [Penner 2011] Eric Penner, George Borshukov. &quot;Pre-Integrated Skin Shading.&quot; GPU Pro 2.<br>
-        [Penner 2011] <a href="http://advances.realtimerendering.com/s2011/">Eric Penner. &quot;Pre-Integrated Skin
-            Shading.&quot; SIGGRAPH 2011.</a><br>
-        [Green 2004] <a
-            href="https://developer.nvidia.com/gpugems/gpugems/part-iii-materials/chapter-16-real-time-approximations-subsurface-scattering">Simon
-            Green. &quot;Chapter 16. Real-Time Approximations to Subsurface Scattering.&quot; GPU Gems 1.</a><br>
         [Jimenez 2009] <a href="https://www.iryoku.com/sssss/">Jorge Jimenez, Veronica Sundstedt, Diego Gutierrez.
             &quot;Screen-Space Perceptual Rendering of Human Skin.&quot; ACM TAP 2009.</a><br>
         [Jimenez 2010] Jorge Jimenez, Diego Gutierrez. &quot;Screen-Space Subsurface Scattering.&quot; GPU Pro 1.<br>
         [Mikkelsen 2010] <a href="https://mmikk.github.io/papers3d/cbf_skin.pdf">Morten Mikkelsen. &quot;Skin Rendering
             by Pseudo–Separable Cross Bilateral Filtering.&quot; Naughty Dog.</a><br>
+        [Penner 2011] Eric Penner, George Borshukov. &quot;Pre-Integrated Skin Shading.&quot; GPU Pro 2.<br>
+        [Penner 2011] <a href="http://advances.realtimerendering.com/s2011/">Eric Penner. &quot;Pre-Integrated Skin
+            Shading.&quot; SIGGRAPH 2011.</a><br>
         [Jimenez 2012] <a href="https://graphics.unizar.es/publications.html#year_2012">Jorge Jimenez, Adrian Jarabo,
             Diego Gutierrez. &quot;Separable Subsurface Scattering.&quot; Technical Report 2012.</a><br>
         [Jimenez 2012] <a href="http://advances.realtimerendering.com/s2012/index.html">Jorge Jimenez, Adrian Jarabo,
