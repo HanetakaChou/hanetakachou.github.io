@@ -36,7 +36,7 @@
                         SSS</a></td>
             </tr>
             <tr>
-                <td style="text-align:center">Transmittance</td>
+                <td style="text-align:center">Diffuse Transmittance Term</td>
                 <td style="text-align:center">Deep Scatter</td>
                 <td style="text-align:center">TODO</td>
                 <td style="text-align:center"><a href="http://www.iryoku.com/translucency/">Realistic Skin
@@ -52,7 +52,7 @@
             </tr>
         </tbody>
     </table>
-    <h2 id="1-diffuse-term">1. Diffuse Term</h2>
+    <h2 id="1-diffuse-reflectance-term">1. Diffuse Reflectance Term</h2>
     <h3 id="1-1-diffusion-profile">1-1. Diffusion Profile</h3>
     <p>Currently, all real time approaches are based on the diffusion profile(<strong>14.4.2 Rendering with Diffusion
             Profile</strong> of [dEon 2007]) rather than the <a
@@ -4431,18 +4431,18 @@
                             <semantics>
                                 <mrow>
                                     <mstyle scriptlevel="0" displaystyle="true">
-                                        <mi mathvariant="normal">P</mi>
+                                        <mi mathvariant="normal">R</mi>
                                         <mo>⁡</mo>
                                         <mo stretchy="false">(</mo>
                                         <mi>r</mi>
                                         <mo stretchy="false">)</mo>
                                     </mstyle>
                                 </mrow>
-                                <annotation encoding="application/x-tex">\displaystyle \operatorname{P}(r)</annotation>
+                                <annotation encoding="application/x-tex">\displaystyle \operatorname{R}(r)</annotation>
                             </semantics>
                         </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
                                 style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span
-                                    class="mord mathrm">P</span></span><span class="mopen">(</span><span
+                                    class="mord mathrm">R</span></span><span class="mopen">(</span><span
                                 class="mord mathnormal" style="margin-right:0.02778em;">r</span><span
                                 class="mclose">)</span></span></span></span></eq> directly without the
             <strong>width</strong> in the formula. This implies the <strong>width</strong> in the formula is actually
@@ -4815,7 +4815,7 @@
     </ol>
     <h3 id="1-4-disney-sss">1-4. Disney SSS</h3>
     <p>TODO</p>
-    <h2 id="2-transmittance">2. Transmittance</h2>
+    <h2 id="2-diffuse-transmittance-term">2. Diffuse Transmittance Term</h2>
     <h3 id="2-1-deep-scatter">2-1. Deep Scatter</h3>
     <p>The <strong>diffuse transmittance</strong> term of the FaceWorks is based on the <strong>16.3 Simulating
             Absorption Using Depth Maps</strong> of [Green 2004].</p>
@@ -4830,7 +4830,7 @@
     <p>The <strong>diffuse transmittance</strong> term of demo source code provided by [Jimenez 2015] is based on
         [Jimenez 2010].</p>
     <p>The main idea of [Jimenez 2010] is that the approach proposed by [Green 2004] is applied to calculate the
-        thickness while the transmittance coefficient is calculated based on the diffuse profile rather than the
+        thickness while the transmittance coefficient is calculated based on the diffusion profile rather than the
         <strong>Beer–Lambert law</strong>. According to [Jimenez 2010], the idea of the <strong>14.5.3 Modified
             Translucent Shadow Maps</strong> of [dEon 2007] is applied, and the transmittance coefficient is calculated
         as <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
