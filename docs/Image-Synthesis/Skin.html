@@ -45,9 +45,9 @@
             </tr>
             <tr>
                 <td style="text-align:center">Specular Term</td>
+                <td style="text-align:center">Two Lobes</td>
                 <td style="text-align:center">TODO</td>
-                <td style="text-align:center">TODO</td>
-                <td style="text-align:center">TODO</td>
+                <td style="text-align:center">KSK</td>
                 <td style="text-align:center">TODO</td>
             </tr>
         </tbody>
@@ -5445,8 +5445,429 @@ M1001 80h400000v40h-400000z' />
                                     class="mclose nulldelimiter"></span></span></span></span></span></eq> which is
             exactly the transformation from world space unit to mm.</li>
     </ol>
+    <h2 id="3-specular-term">3. Specular Term</h2>
+    <h3 id="3-1-two-lobes">3-1. Two Lobes</h3>
+    <p>TODO</p>
+    <h3 id="3-2-ksk">3-2. KSK</h3>
+    <p>The <strong>specular</strong> term of demo source code provided by [Jimenez 2015] is based on [Lazarov 2011].<br>
+        The D is Beckmann <eq><span class="katex"><span class="katex-mathml"><math
+                        xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mtext>D</mtext>
+                                    <mo>=</mo>
+                                    <mfrac>
+                                        <msup>
+                                            <mi>e</mi>
+                                            <mrow>
+                                                <mo stretchy="false">(</mo>
+                                                <mo>−</mo>
+                                                <mfrac>
+                                                    <mn>1</mn>
+                                                    <msup>
+                                                        <mtext>roughness</mtext>
+                                                        <mn>2</mn>
+                                                    </msup>
+                                                </mfrac>
+                                                <mfrac>
+                                                    <mrow>
+                                                        <mn>1</mn>
+                                                        <mo>−</mo>
+                                                        <msup>
+                                                            <mtext>NoH</mtext>
+                                                            <mn>2</mn>
+                                                        </msup>
+                                                    </mrow>
+                                                    <msup>
+                                                        <mtext>NoH</mtext>
+                                                        <mn>2</mn>
+                                                    </msup>
+                                                </mfrac>
+                                                <mo stretchy="false">)</mo>
+                                            </mrow>
+                                        </msup>
+                                        <mrow>
+                                            <mi>π</mi>
+                                            <mtext> </mtext>
+                                            <msup>
+                                                <mtext>roughness</mtext>
+                                                <mn>2</mn>
+                                            </msup>
+                                            <mtext> </mtext>
+                                            <msup>
+                                                <mrow>
+                                                    <mo stretchy="false">(</mo>
+                                                    <msup>
+                                                        <mtext>NoH</mtext>
+                                                        <mn>2</mn>
+                                                    </msup>
+                                                    <mo stretchy="false">)</mo>
+                                                </mrow>
+                                                <mn>2</mn>
+                                            </msup>
+                                        </mrow>
+                                    </mfrac>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle \text{D} = \frac{e^{(-
+                                \frac{1}{{\text{roughness}}^2}\frac{1 - {\text{NoH}}^2}{ {\text{NoH}}^2})}}{\pi \,
+                                {\text{roughness}}^2 \, {({\text{NoH}}^2)}^2}</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.68333em;vertical-align:0em;"></span><span class="mord text"><span
+                                class="mord">D</span></span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                        class="base"><span class="strut"
+                            style="height:3.252006em;vertical-align:-1.2313459999999998em;"></span><span
+                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:2.0206600000000003em;"><span style="top:-2.362314em;"><span
+                                                    class="pstrut" style="height:3.34366em;"></span><span
+                                                    class="mord"><span class="mord mathnormal"
+                                                        style="margin-right:0.03588em;">π</span><span class="mspace"
+                                                        style="margin-right:0.16666666666666666em;"></span><span
+                                                        class="mord"><span class="mord"><span class="mord text"><span
+                                                                    class="mord">roughness</span></span></span><span
+                                                            class="msupsub"><span class="vlist-t"><span
+                                                                    class="vlist-r"><span class="vlist"
+                                                                        style="height:0.8984479999999999em;"><span
+                                                                            style="top:-3.1473400000000002em;margin-right:0.05em;"><span
+                                                                                class="pstrut"
+                                                                                style="height:2.7em;"></span><span
+                                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                                    class="mord mtight">2</span></span></span></span></span></span></span></span><span
+                                                        class="mspace"
+                                                        style="margin-right:0.16666666666666666em;"></span><span
+                                                        class="mord"><span class="mord"><span
+                                                                class="mopen">(</span><span class="mord"><span
+                                                                    class="mord"><span class="mord text"><span
+                                                                            class="mord">NoH</span></span></span><span
+                                                                    class="msupsub"><span class="vlist-t"><span
+                                                                            class="vlist-r"><span class="vlist"
+                                                                                style="height:0.887338em;"><span
+                                                                                    style="top:-3.1362300000000003em;margin-right:0.05em;"><span
+                                                                                        class="pstrut"
+                                                                                        style="height:2.7em;"></span><span
+                                                                                        class="sizing reset-size6 size3 mtight"><span
+                                                                                            class="mord mtight">2</span></span></span></span></span></span></span></span><span
+                                                                class="mclose">)</span></span><span
+                                                            class="msupsub"><span class="vlist-t"><span
+                                                                    class="vlist-r"><span class="vlist"
+                                                                        style="height:1.091346em;"><span
+                                                                            style="top:-3.3402380000000003em;margin-right:0.05em;"><span
+                                                                                class="pstrut"
+                                                                                style="height:2.7em;"></span><span
+                                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                                    class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span
+                                                style="top:-3.57366em;"><span class="pstrut"
+                                                    style="height:3.34366em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-4.0206599999999995em;"><span class="pstrut"
+                                                    style="height:3.34366em;"></span><span class="mord"><span
+                                                        class="mord"><span class="mord mathnormal">e</span><span
+                                                            class="msupsub"><span class="vlist-t"><span
+                                                                    class="vlist-r"><span class="vlist"
+                                                                        style="height:1.34366em;"><span
+                                                                            style="top:-3.55064em;margin-right:0.05em;"><span
+                                                                                class="pstrut"
+                                                                                style="height:3em;"></span><span
+                                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                                    class="mord mtight"><span
+                                                                                        class="mopen mtight">(</span><span
+                                                                                        class="mord mtight">−</span><span
+                                                                                        class="mord mtight"><span
+                                                                                            class="mopen nulldelimiter sizing reset-size3 size6"></span><span
+                                                                                            class="mfrac"><span
+                                                                                                class="vlist-t vlist-t2"><span
+                                                                                                    class="vlist-r"><span
+                                                                                                        class="vlist"
+                                                                                                        style="height:0.8443142857142858em;"><span
+                                                                                                            style="top:-2.5061857142857145em;"><span
+                                                                                                                class="pstrut"
+                                                                                                                style="height:3em;"></span><span
+                                                                                                                class="sizing reset-size3 size1 mtight"><span
+                                                                                                                    class="mord mtight"><span
+                                                                                                                        class="mord mtight"><span
+                                                                                                                            class="mord mtight"><span
+                                                                                                                                class="mord text mtight"><span
+                                                                                                                                    class="mord mtight">roughness</span></span></span><span
+                                                                                                                            class="msupsub"><span
+                                                                                                                                class="vlist-t"><span
+                                                                                                                                    class="vlist-r"><span
+                                                                                                                                        class="vlist"
+                                                                                                                                        style="height:0.9384399999999999em;"><span
+                                                                                                                                            style="top:-2.93844em;margin-right:0.1em;"><span
+                                                                                                                                                class="pstrut"
+                                                                                                                                                style="height:2.64444em;"></span><span
+                                                                                                                                                class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span
+                                                                                                            style="top:-3.2255000000000003em;"><span
+                                                                                                                class="pstrut"
+                                                                                                                style="height:3em;"></span><span
+                                                                                                                class="frac-line mtight"
+                                                                                                                style="border-bottom-width:0.049em;"></span></span><span
+                                                                                                            style="top:-3.384em;"><span
+                                                                                                                class="pstrut"
+                                                                                                                style="height:3em;"></span><span
+                                                                                                                class="sizing reset-size3 size1 mtight"><span
+                                                                                                                    class="mord mtight"><span
+                                                                                                                        class="mord mtight">1</span></span></span></span></span><span
+                                                                                                        class="vlist-s">​</span></span><span
+                                                                                                    class="vlist-r"><span
+                                                                                                        class="vlist"
+                                                                                                        style="height:0.6326999999999999em;"><span></span></span></span></span></span><span
+                                                                                            class="mclose nulldelimiter sizing reset-size3 size6"></span></span><span
+                                                                                        class="mord mtight"><span
+                                                                                            class="mopen nulldelimiter sizing reset-size3 size6"></span><span
+                                                                                            class="mfrac"><span
+                                                                                                class="vlist-t vlist-t2"><span
+                                                                                                    class="vlist-r"><span
+                                                                                                        class="vlist"
+                                                                                                        style="height:1.1328857142857145em;"><span
+                                                                                                            style="top:-2.5061857142857145em;"><span
+                                                                                                                class="pstrut"
+                                                                                                                style="height:3em;"></span><span
+                                                                                                                class="sizing reset-size3 size1 mtight"><span
+                                                                                                                    class="mord mtight"><span
+                                                                                                                        class="mord mtight"><span
+                                                                                                                            class="mord mtight"><span
+                                                                                                                                class="mord text mtight"><span
+                                                                                                                                    class="mord mtight">NoH</span></span></span><span
+                                                                                                                            class="msupsub"><span
+                                                                                                                                class="vlist-t"><span
+                                                                                                                                    class="vlist-r"><span
+                                                                                                                                        class="vlist"
+                                                                                                                                        style="height:0.9384399999999999em;"><span
+                                                                                                                                            style="top:-2.93844em;margin-right:0.1em;"><span
+                                                                                                                                                class="pstrut"
+                                                                                                                                                style="height:2.64444em;"></span><span
+                                                                                                                                                class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span
+                                                                                                            style="top:-3.2255000000000003em;"><span
+                                                                                                                class="pstrut"
+                                                                                                                style="height:3em;"></span><span
+                                                                                                                class="frac-line mtight"
+                                                                                                                style="border-bottom-width:0.049em;"></span></span><span
+                                                                                                            style="top:-3.384em;"><span
+                                                                                                                class="pstrut"
+                                                                                                                style="height:3em;"></span><span
+                                                                                                                class="sizing reset-size3 size1 mtight"><span
+                                                                                                                    class="mord mtight"><span
+                                                                                                                        class="mord mtight">1</span><span
+                                                                                                                        class="mbin mtight">−</span><span
+                                                                                                                        class="mord mtight"><span
+                                                                                                                            class="mord mtight"><span
+                                                                                                                                class="mord text mtight"><span
+                                                                                                                                    class="mord mtight">NoH</span></span></span><span
+                                                                                                                            class="msupsub"><span
+                                                                                                                                class="vlist-t"><span
+                                                                                                                                    class="vlist-r"><span
+                                                                                                                                        class="vlist"
+                                                                                                                                        style="height:1.04844em;"><span
+                                                                                                                                            style="top:-3.04844em;margin-right:0.1em;"><span
+                                                                                                                                                class="pstrut"
+                                                                                                                                                style="height:2.64444em;"></span><span
+                                                                                                                                                class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span><span
+                                                                                                        class="vlist-s">​</span></span><span
+                                                                                                    class="vlist-r"><span
+                                                                                                        class="vlist"
+                                                                                                        style="height:0.49381428571428565em;"><span></span></span></span></span></span><span
+                                                                                            class="mclose nulldelimiter sizing reset-size3 size6"></span></span><span
+                                                                                        class="mclose mtight">)</span></span></span></span></span></span></span></span></span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:1.2313459999999998em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span></span></span></span></eq>.<br>
+        The F is Schlick <eq><span class="katex"><span class="katex-mathml"><math
+                        xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mtext>F</mtext>
+                                    <mo>=</mo>
+                                    <mtext>specularcolor</mtext>
+                                    <mo>+</mo>
+                                    <mo stretchy="false">(</mo>
+                                    <mn>1</mn>
+                                    <mo>−</mo>
+                                    <mtext>specularcolor</mtext>
+                                    <mo stretchy="false">)</mo>
+                                    <mtext> </mtext>
+                                    <msup>
+                                        <mrow>
+                                            <mo stretchy="false">(</mo>
+                                            <mn>1</mn>
+                                            <mo>−</mo>
+                                            <mtext>VoH</mtext>
+                                            <mo stretchy="false">)</mo>
+                                        </mrow>
+                                        <mn>5</mn>
+                                    </msup>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle \text{F} = \text{specularcolor} + (1
+                                - \text{specularcolor}) \, {(1 - \text{VoH})}^5</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.68333em;vertical-align:0em;"></span><span class="mord text"><span
+                                class="mord">F</span></span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                        class="base"><span class="strut"
+                            style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span
+                            class="mord text"><span class="mord">specularcolor</span></span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                            class="mopen">(</span><span class="mord">1</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:1.204008em;vertical-align:-0.25em;"></span><span
+                            class="mord text"><span class="mord">specularcolor</span></span><span
+                            class="mclose">)</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mord"><span
+                                class="mord"><span class="mopen">(</span><span class="mord">1</span><span class="mspace"
+                                    style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span
+                                    class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+                                    class="mord text"><span class="mord">VoH</span></span><span
+                                    class="mclose">)</span></span><span class="msupsub"><span class="vlist-t"><span
+                                        class="vlist-r"><span class="vlist" style="height:0.954008em;"><span
+                                                style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut"
+                                                    style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight">5</span></span></span></span></span></span></span></span></span></span></span>
+        </eq>.<br>
+        The V is KSK (Kelemen-Szirmay-Kalos [Kelemen 2001]) <eq><span class="katex"><span class="katex-mathml"><math
+                        xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mtext>V</mtext>
+                                    <mo>=</mo>
+                                    <mfrac>
+                                        <mn>1</mn>
+                                        <mrow>
+                                            <mi mathvariant="normal">dot</mi>
+                                            <mo>⁡</mo>
+                                            <mo stretchy="false">(</mo>
+                                            <mtext>V</mtext>
+                                            <mo>+</mo>
+                                            <mtext>L</mtext>
+                                            <mo separator="true">,</mo>
+                                            <mtext>V</mtext>
+                                            <mo>+</mo>
+                                            <mtext>L</mtext>
+                                            <mo stretchy="false">)</mo>
+                                        </mrow>
+                                    </mfrac>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle \text{V} =
+                                \frac{1}{\operatorname{dot}(\text{V} + \text{L}, \text{V} + \text{L})}</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.68333em;vertical-align:0em;"></span><span class="mord text"><span
+                                class="mord">V</span></span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                        class="base"><span class="strut" style="height:2.25744em;vertical-align:-0.936em;"></span><span
+                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mop"><span class="mord mathrm">dot</span></span><span
+                                                        class="mopen">(</span><span class="mord text"><span
+                                                            class="mord">V</span></span><span class="mspace"
+                                                        style="margin-right:0.2222222222222222em;"></span><span
+                                                        class="mbin">+</span><span class="mspace"
+                                                        style="margin-right:0.2222222222222222em;"></span><span
+                                                        class="mord text"><span class="mord">L</span></span><span
+                                                        class="mpunct">,</span><span class="mspace"
+                                                        style="margin-right:0.16666666666666666em;"></span><span
+                                                        class="mord text"><span class="mord">V</span></span><span
+                                                        class="mspace"
+                                                        style="margin-right:0.2222222222222222em;"></span><span
+                                                        class="mbin">+</span><span class="mspace"
+                                                        style="margin-right:0.2222222222222222em;"></span><span
+                                                        class="mord text"><span class="mord">L</span></span><span
+                                                        class="mclose">)</span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">1</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.936em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span></span></span></span></eq>. Note that <eq>
+            <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mtext>H</mtext>
+                                    <mo mathvariant="normal">≠</mo>
+                                    <mtext>V</mtext>
+                                    <mo>+</mo>
+                                    <mtext>L</mtext>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle \text{H} \ne \text{V} + \text{L}
+                            </annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span
+                            class="mord text"><span class="mord">H</span></span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span
+                                class="mrel"><span class="mord vbox"><span class="thinbox"><span class="rlap"><span
+                                                class="strut"
+                                                style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span
+                                                class="inner"><span class="mord"><span
+                                                        class="mrel"></span></span></span><span
+                                                class="fix"></span></span></span></span></span><span
+                                class="mrel">=</span></span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+                            class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span
+                            class="mord text"><span class="mord">V</span></span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span
+                            class="mord text"><span class="mord">L</span></span></span></span></span></eq> since <eq>
+            <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mtext>H</mtext>
+                                    <mo>=</mo>
+                                    <mi mathvariant="normal">normalize</mi>
+                                    <mo>⁡</mo>
+                                    <mo stretchy="false">(</mo>
+                                    <mtext>V</mtext>
+                                    <mo>+</mo>
+                                    <mtext>L</mtext>
+                                    <mo stretchy="false">)</mo>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle \text{H} =
+                                \operatorname{normalize}(\text{V} + \text{L})</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.68333em;vertical-align:0em;"></span><span class="mord text"><span
+                                class="mord">H</span></span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                        class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                            class="mop"><span class="mord mathrm">normalize</span></span><span
+                            class="mopen">(</span><span class="mord text"><span class="mord">V</span></span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+                            class="mbin">+</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span
+                            class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                            class="mord text"><span class="mord">L</span></span><span
+                            class="mclose">)</span></span></span></span></eq>.</p>
     <h2 id="references">References</h2>
-    <p>[Green 2004] <a
+    <p>[Kelemen 2001] <a href="http://cg.iit.bme.hu/~szirmay/scook_link.htm">Csaba Kelemen, László Szirmay-Kalos.
+            &quot;A Microfacet Based Coupled Specular-Matte BRDF Model with Importance Sampling.&quot; EGSR
+            2001.</a><br>
+        [Green 2004] <a
             href="https://developer.nvidia.com/gpugems/gpugems/part-iii-materials/chapter-16-real-time-approximations-subsurface-scattering">Simon
             Green. &quot;Chapter 16. Real-Time Approximations to Subsurface Scattering.&quot; GPU Gems 1.</a><br>
         [dEon 2007] <a
@@ -5463,6 +5884,8 @@ M1001 80h400000v40h-400000z' />
         [Penner 2011] Eric Penner, George Borshukov. &quot;Pre-Integrated Skin Shading.&quot; GPU Pro 2.<br>
         [Penner 2011] <a href="http://advances.realtimerendering.com/s2011/">Eric Penner. &quot;Pre-Integrated Skin
             Shading.&quot; SIGGRAPH 2011.</a><br>
+        [Lazarov 2011] <a href="http://advances.realtimerendering.com/s2011/">Dimitar Lazarov. &quot;Physically Based
+            Lighting in Call of Duty : Black Ops.&quot; SIGGRAPH 2011.</a><br>
         [Jimenez 2012] <a href="https://graphics.unizar.es/publications.html#year_2012">Jorge Jimenez, Adrian Jarabo,
             Diego Gutierrez. &quot;Separable Subsurface Scattering.&quot; Technical Report 2012.</a><br>
         [Jimenez 2012] <a href="http://advances.realtimerendering.com/s2012/index.html">Jorge Jimenez, Adrian Jarabo,

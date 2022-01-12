@@ -2,7 +2,7 @@ N/A | [NVIDIA FaceWorks](https://github.com/NVIDIAGameWorks/FaceWorks/blob/maste
 :-: | :-: | :-: | :-: | :-: 
 Diffuse Reflectance Term | Pre-Integrated | [Separable SSS](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Shaders/Private/SeparableSSS.ush) | [Separable SSS](https://graphics.unizar.es/publications.html#year_2012) | [Disney SSS](https://github.com/Unity-Technologies/Graphics/blob/master/com.unity.render-pipelines.high-definition/Runtime/Material/SubsurfaceScattering/SubsurfaceScattering.hlsl)  
 Diffuse Transmittance Term | Deep Scatter | TODO | [Realistic Skin Translucency](http://www.iryoku.com/translucency/) | TODO
-Specular Term | TODO | TODO | TODO | TODO  
+Specular Term | Two Lobes | TODO | KSK | TODO  
 
 ## 1\. Diffuse Reflectance Term
 
@@ -72,7 +72,19 @@ The main idea of \[Jimenez 2010\] is that the approach proposed by \[Green 2004\
 The **transmittance coefficient** is calculated by the **SSSSTransmittance** in the demo source code provided by \[Jimenez 2015\]. And there are some points to note.  
 1. Actually, the mere purpose of the **scale** in the shader code is to transform the thickness from world space unit to mm. The shader code of the demo source code demonstrates that the **scale** is calculated as $\displaystyle 8.25 \times (1 - \text{translucency}) \times \frac{1}{\text{sssWidth}}$. According to the **1-3\. Separable SSS** of this page, the $\displaystyle \frac{1}{\text{sssWidth}}$ can be substituted as $\displaystyle \frac{1000 \times 2}{3 \times \text{WorldSpaceUnitPerMeter}}$, and thus the **scale** is actually calculated as $\displaystyle 8.25 \times (1 - \text{translucency}) \times \frac{2}{3} \times \frac{1000}{\text{WorldSpaceUnitPerMeter}}$. The default of the **translucency** in the demo source code is 0.83, and thus the value of $\displaystyle 8.25 \times (1 - \text{translucency}) \times \frac{2}{3}$ is 0.935 which is really close to 1. This implies that the **scale** is actually calculated as $\displaystyle \frac{1000}{\text{WorldSpaceUnitPerMeter}}$ which is exactly the transformation from world space unit to mm.  
 
+## 3\. Specular Term  
+
+### 3-1\. Two Lobes  
+TODO  
+
+### 3-2\. KSK  
+The **specular** term of demo source code provided by \[Jimenez 2015\] is based on \[Lazarov 2011\].  
+The D is Beckmann $\displaystyle \text{D} = \frac{e^{(- \frac{1}{{\text{roughness}}^2}\frac{1 - {\text{NoH}}^2}{ {\text{NoH}}^2})}}{\pi \, {\text{roughness}}^2 \, {({\text{NoH}}^2)}^2}$.  
+The F is Schlick $\displaystyle \text{F} = \text{specularcolor} + (1 - \text{specularcolor}) \, {(1 - \text{VoH})}^5$.  
+The V is KSK (Kelemen-Szirmay-Kalos \[Kelemen 2001\]) $\displaystyle \text{V} = \frac{1}{\operatorname{dot}(\text{V} + \text{L}, \text{V} + \text{L})}$. Note that $\displaystyle \text{H} \ne \text{V} + \text{L}$ since $\displaystyle \text{H} = \operatorname{normalize}(\text{V} + \text{L})$.  
+  
 ## References
+\[Kelemen 2001\] [Csaba Kelemen, László Szirmay-Kalos. "A Microfacet Based Coupled Specular-Matte BRDF Model with Importance Sampling." EGSR 2001.](http://cg.iit.bme.hu/~szirmay/scook_link.htm)  
 \[Green 2004\] [Simon Green. "Chapter 16. Real-Time Approximations to Subsurface Scattering." GPU Gems 1.](https://developer.nvidia.com/gpugems/gpugems/part-iii-materials/chapter-16-real-time-approximations-subsurface-scattering)  
 \[dEon 2007\] [Eugene dEon, David Luebke. "Advanced Techniques for Realistic Real-Time Skin Rendering." GPU Gem 3.](https://developer.nvidia.com/gpugems/gpugems3/part-iii-rendering/chapter-14-advanced-techniques-realistic-real-time-skin)  
 \[Jimenez 2009\] [Jorge Jimenez, Veronica Sundstedt, Diego Gutierrez. "Screen-Space Perceptual Rendering of Human Skin." ACM TAP 2009.](https://www.iryoku.com/sssss/)  
@@ -81,6 +93,7 @@ The **transmittance coefficient** is calculated by the **SSSSTransmittance** in 
 \[Mikkelsen 2010\] [Morten Mikkelsen. "Skin Rendering by Pseudo–Separable Cross Bilateral Filtering." Naughty Dog.](https://mmikk.github.io/papers3d/cbf_skin.pdf)  
 \[Penner 2011\] Eric Penner, George Borshukov. "Pre-Integrated Skin Shading." GPU Pro 2.  
 \[Penner 2011\] [Eric Penner. "Pre-Integrated Skin Shading." SIGGRAPH 2011.](http://advances.realtimerendering.com/s2011/)  
+\[Lazarov 2011\] [Dimitar Lazarov. "Physically Based Lighting in Call of Duty : Black Ops." SIGGRAPH 2011.](http://advances.realtimerendering.com/s2011/)  
 \[Jimenez 2012\] [Jorge Jimenez, Adrian Jarabo, Diego Gutierrez. "Separable Subsurface Scattering." Technical Report 2012.](https://graphics.unizar.es/publications.html#year_2012)   
 \[Jimenez 2012\] [Jorge Jimenez, Adrian Jarabo, Diego Gutierrez, Etienne Danvoye, Javier von der Pahlen. "Separable Subsurface Scattering and Photorealistic Eyes Rendering." SIGGRAPH 2012.](http://advances.realtimerendering.com/s2012/index.html)  
 \[Jimenez 2015\] [Jorge Jimenez, Karoly Zsolnai, Adrian Jarabo1, Christian Freude, Thomas Auzinger, Xian-Chun Wu, Javier von der Pahlen, Michael Wimmer, Diego Gutierrez. "Separable Subsurface Scattering." EGSR 2015.](http://www.iryoku.com/separable-sss/)  
