@@ -24,7 +24,7 @@
         </thead>
         <tbody>
             <tr>
-                <td style="text-align:center">Diffuse Term</td>
+                <td style="text-align:center">Diffuse Reflectance Term</td>
                 <td style="text-align:center">Pre-Integrated</td>
                 <td style="text-align:center"><a
                         href="https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Shaders/Private/SeparableSSS.ush">Separable
@@ -36,18 +36,18 @@
                         SSS</a></td>
             </tr>
             <tr>
-                <td style="text-align:center">Specular Term</td>
-                <td style="text-align:center">TODO</td>
-                <td style="text-align:center">TODO</td>
-                <td style="text-align:center">TODO</td>
-                <td style="text-align:center">TODO</td>
-            </tr>
-            <tr>
-                <td style="text-align:center">Transmittance Term</td>
+                <td style="text-align:center">Transmittance</td>
                 <td style="text-align:center">Deep Scatter</td>
                 <td style="text-align:center">TODO</td>
                 <td style="text-align:center"><a href="http://www.iryoku.com/translucency/">Realistic Skin
                         Translucency</a></td>
+                <td style="text-align:center">TODO</td>
+            </tr>
+            <tr>
+                <td style="text-align:center">Specular Term</td>
+                <td style="text-align:center">TODO</td>
+                <td style="text-align:center">TODO</td>
+                <td style="text-align:center">TODO</td>
                 <td style="text-align:center">TODO</td>
             </tr>
         </tbody>
@@ -449,12 +449,118 @@
                                         <mi>p</mi>
                                         <mi>i</mi>
                                     </msub>
+                                    <mo>=</mo>
+                                    <mfrac>
+                                        <mn>1</mn>
+                                        <mi>π</mi>
+                                    </mfrac>
+                                    <mo>⋅</mo>
+                                    <msub>
+                                        <mo>∫</mo>
+                                        <msub>
+                                            <mi>S</mi>
+                                            <msub>
+                                                <mi>p</mi>
+                                                <mi>i</mi>
+                                            </msub>
+                                        </msub>
+                                    </msub>
+                                    <mi mathvariant="normal">R</mi>
+                                    <mo>⁡</mo>
+                                    <mo stretchy="false">(</mo>
+                                    <mi mathvariant="normal">distance</mi>
+                                    <mo>⁡</mo>
+                                    <mo stretchy="false">(</mo>
+                                    <msub>
+                                        <mi>p</mi>
+                                        <mi>o</mi>
+                                    </msub>
+                                    <mo separator="true">,</mo>
+                                    <msub>
+                                        <mi>p</mi>
+                                        <mi>i</mi>
+                                    </msub>
+                                    <mo stretchy="false">)</mo>
+                                    <mo stretchy="false">)</mo>
+                                    <mo>⋅</mo>
+                                    <mi>π</mi>
+                                    <mo>⋅</mo>
+                                    <mi mathvariant="normal">
+                                        <msub>
+                                            <mi mathvariant="normal">L</mi>
+                                            <mi mathvariant="normal">i</mi>
+                                        </msub>
+                                    </mi>
+                                    <mo>⁡</mo>
+                                    <mo stretchy="false">(</mo>
+                                    <msub>
+                                        <mi>p</mi>
+                                        <mi>i</mi>
+                                    </msub>
+                                    <mo stretchy="false">)</mo>
+                                    <mtext> </mtext>
+                                    <mi>d</mi>
+                                    <msub>
+                                        <mi>p</mi>
+                                        <mi>i</mi>
+                                    </msub>
+                                    <mo>=</mo>
+                                    <msub>
+                                        <mo>∫</mo>
+                                        <msub>
+                                            <mi>S</mi>
+                                            <msub>
+                                                <mi>p</mi>
+                                                <mi>i</mi>
+                                            </msub>
+                                        </msub>
+                                    </msub>
+                                    <mi mathvariant="normal">R</mi>
+                                    <mo>⁡</mo>
+                                    <mo stretchy="false">(</mo>
+                                    <mi mathvariant="normal">distance</mi>
+                                    <mo>⁡</mo>
+                                    <mo stretchy="false">(</mo>
+                                    <msub>
+                                        <mi>p</mi>
+                                        <mi>o</mi>
+                                    </msub>
+                                    <mo separator="true">,</mo>
+                                    <msub>
+                                        <mi>p</mi>
+                                        <mi>i</mi>
+                                    </msub>
+                                    <mo stretchy="false">)</mo>
+                                    <mo stretchy="false">)</mo>
+                                    <mo>⋅</mo>
+                                    <mi mathvariant="normal">
+                                        <msub>
+                                            <mi mathvariant="normal">L</mi>
+                                            <mi mathvariant="normal">i</mi>
+                                        </msub>
+                                    </mi>
+                                    <mo>⁡</mo>
+                                    <mo stretchy="false">(</mo>
+                                    <msub>
+                                        <mi>p</mi>
+                                        <mi>i</mi>
+                                    </msub>
+                                    <mo stretchy="false">)</mo>
+                                    <mtext> </mtext>
+                                    <mi>d</mi>
+                                    <msub>
+                                        <mi>p</mi>
+                                        <mi>i</mi>
+                                    </msub>
                                 </mstyle>
                             </mrow>
                             <annotation encoding="application/x-tex">\displaystyle \operatorname{L}_o(p_o) =
                                 \frac{\operatorname{M}(p_o)}{\pi} = \frac{1}{\pi} \cdot \int_{S_{p_i}}
                                 \operatorname{R}(\operatorname{distance}(p_o, p_i)) \cdot \operatorname{E}(p_i) \, dp_i
-                            </annotation>
+                                = \frac{1}{\pi} \cdot \int_{S_{p_i}} \operatorname{R}(\operatorname{distance}(p_o, p_i))
+                                \cdot \pi \cdot \operatorname{L_i}(p_i) \, dp_i = \int_{S_{p_i}}
+                                \operatorname{R}(\operatorname{distance}(p_o, p_i)) \cdot \operatorname{L_i}(p_i) \,
+                                dp_i</annotation>
                         </semantics>
                     </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
                             style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span class="mop"><span
@@ -616,6 +722,227 @@
                                                     class="sizing reset-size6 size3 mtight"><span
                                                         class="mord mathnormal mtight">i</span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span><span
+                            class="mrel">=</span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+                            class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span
+                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord mathnormal"
+                                                        style="margin-right:0.03588em;">π</span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">1</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut"
+                            style="height:2.5294100000000004em;vertical-align:-1.16941em;"></span><span
+                            class="mop"><span class="mop op-symbol large-op"
+                                style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span
+                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:-0.4336190000000001em;"><span
+                                                style="top:-1.7880500000000001em;margin-left:-0.44445em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight"><span class="mord mtight"><span
+                                                                class="mord mathnormal mtight"
+                                                                style="margin-right:0.05764em;">S</span><span
+                                                                class="msupsub"><span class="vlist-t vlist-t2"><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.1645428571428572em;"><span
+                                                                                style="top:-2.357em;margin-left:-0.05764em;margin-right:0.07142857142857144em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:2.5em;"></span><span
+                                                                                    class="sizing reset-size3 size1 mtight"><span
+                                                                                        class="mord mtight"><span
+                                                                                            class="mord mtight"><span
+                                                                                                class="mord mathnormal mtight">p</span><span
+                                                                                                class="msupsub"><span
+                                                                                                    class="vlist-t vlist-t2"><span
+                                                                                                        class="vlist-r"><span
+                                                                                                            class="vlist"
+                                                                                                            style="height:0.3448em;"><span
+                                                                                                                style="top:-2.3448em;margin-left:0em;margin-right:0.1em;"><span
+                                                                                                                    class="pstrut"
+                                                                                                                    style="height:2.65952em;"></span><span
+                                                                                                                    class="mord mathnormal mtight">i</span></span></span><span
+                                                                                                            class="vlist-s">​</span></span><span
+                                                                                                        class="vlist-r"><span
+                                                                                                            class="vlist"
+                                                                                                            style="height:0.31472em;"><span></span></span></span></span></span></span></span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.3678em;"><span></span></span></span></span></span></span></span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:1.16941em;"><span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop"><span
+                                class="mord mathrm">R</span></span><span class="mopen">(</span><span class="mop"><span
+                                class="mord mathrm">distance</span></span><span class="mopen">(</span><span
+                            class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.151392em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathnormal mtight">o</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
+                            class="mpunct">,</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mord"><span
+                                class="mord mathnormal">p</span><span class="msupsub"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.31166399999999994em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathnormal mtight">i</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
+                            class="mclose">))</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:0.44445em;vertical-align:0em;"></span><span
+                            class="mord mathnormal" style="margin-right:0.03588em;">π</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                            class="mop"><span class="mord"><span class="mord mathrm">L</span><span class="msupsub"><span
+                                        class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                style="height:0.31750199999999995em;"><span
+                                                    style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                        class="pstrut" style="height:2.7em;"></span><span
+                                                        class="sizing reset-size6 size3 mtight"><span
+                                                            class="mord mathrm mtight">i</span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:0.15em;"><span></span></span></span></span></span></span></span><span
+                            class="mopen">(</span><span class="mord"><span class="mord mathnormal">p</span><span
+                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.31166399999999994em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathnormal mtight">i</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
+                            class="mclose">)</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span
+                            class="mord mathnormal">d</span><span class="mord"><span
+                                class="mord mathnormal">p</span><span class="msupsub"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.31166399999999994em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathnormal mtight">i</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span><span
+                            class="mrel">=</span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+                            class="strut" style="height:2.5294100000000004em;vertical-align:-1.16941em;"></span><span
+                            class="mop"><span class="mop op-symbol large-op"
+                                style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span
+                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:-0.4336190000000001em;"><span
+                                                style="top:-1.7880500000000001em;margin-left:-0.44445em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight"><span class="mord mtight"><span
+                                                                class="mord mathnormal mtight"
+                                                                style="margin-right:0.05764em;">S</span><span
+                                                                class="msupsub"><span class="vlist-t vlist-t2"><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.1645428571428572em;"><span
+                                                                                style="top:-2.357em;margin-left:-0.05764em;margin-right:0.07142857142857144em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:2.5em;"></span><span
+                                                                                    class="sizing reset-size3 size1 mtight"><span
+                                                                                        class="mord mtight"><span
+                                                                                            class="mord mtight"><span
+                                                                                                class="mord mathnormal mtight">p</span><span
+                                                                                                class="msupsub"><span
+                                                                                                    class="vlist-t vlist-t2"><span
+                                                                                                        class="vlist-r"><span
+                                                                                                            class="vlist"
+                                                                                                            style="height:0.3448em;"><span
+                                                                                                                style="top:-2.3448em;margin-left:0em;margin-right:0.1em;"><span
+                                                                                                                    class="pstrut"
+                                                                                                                    style="height:2.65952em;"></span><span
+                                                                                                                    class="mord mathnormal mtight">i</span></span></span><span
+                                                                                                            class="vlist-s">​</span></span><span
+                                                                                                        class="vlist-r"><span
+                                                                                                            class="vlist"
+                                                                                                            style="height:0.31472em;"><span></span></span></span></span></span></span></span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.3678em;"><span></span></span></span></span></span></span></span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:1.16941em;"><span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop"><span
+                                class="mord mathrm">R</span></span><span class="mopen">(</span><span class="mop"><span
+                                class="mord mathrm">distance</span></span><span class="mopen">(</span><span
+                            class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.151392em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathnormal mtight">o</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
+                            class="mpunct">,</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mord"><span
+                                class="mord mathnormal">p</span><span class="msupsub"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.31166399999999994em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathnormal mtight">i</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
+                            class="mclose">))</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                            class="mop"><span class="mord"><span class="mord mathrm">L</span><span class="msupsub"><span
+                                        class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                style="height:0.31750199999999995em;"><span
+                                                    style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                        class="pstrut" style="height:2.7em;"></span><span
+                                                        class="sizing reset-size6 size3 mtight"><span
+                                                            class="mord mathrm mtight">i</span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:0.15em;"><span></span></span></span></span></span></span></span><span
+                            class="mopen">(</span><span class="mord"><span class="mord mathnormal">p</span><span
+                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.31166399999999994em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathnormal mtight">i</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
+                            class="mclose">)</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span
+                            class="mord mathnormal">d</span><span class="mord"><span
+                                class="mord mathnormal">p</span><span class="msupsub"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.31166399999999994em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathnormal mtight">i</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
         </eq>.</p>
     <p>However, things are far from simple. Although the proposals based on the diffusion profile are much simpler than
@@ -624,7 +951,8 @@
         profile is about 16 mm, and the width of pixel is about 0.25 mm, we would need 4096(64 x 64) samples per pixel
         in the shader. Thus, we have to propose more efficient approaches to settle this problem.</p>
     <h3 id="1-2-pre-integrated">1-2. Pre-Integrated</h3>
-    <p>The <strong>diffuse</strong> term of FaceWorks is based on the <strong>Pre-Integrated</strong> [Penner 2011].</p>
+    <p>The <strong>diffuse reflectance</strong> term of FaceWorks is based on the <strong>Pre-Integrated</strong>
+        [Penner 2011].</p>
     <p>In real time rendering, the light is assumed to be the punctual light rather than the area light. The <a
             href="https://www.pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/Sampling_Light_Sources#LightswithSingularities">Delta
             Distribution</a> is applied, and the reflectance equation is simplified to <eq><span class="katex"><span
@@ -1214,285 +1542,6 @@
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.15em;"><span></span></span></span></span></span></span><span
                             class="mclose">)</span><span class="mord">∣</span></span></span></span></eq>. Thus, the
-        irradiance E can be calculated as <eq><span class="katex"><span class="katex-mathml"><math
-                        xmlns="http://www.w3.org/1998/Math/MathML">
-                        <semantics>
-                            <mrow>
-                                <mstyle scriptlevel="0" displaystyle="true">
-                                    <mi mathvariant="normal">E</mi>
-                                    <mo>⁡</mo>
-                                    <mo stretchy="false">(</mo>
-                                    <mi>p</mi>
-                                    <mo stretchy="false">)</mo>
-                                    <mo>=</mo>
-                                    <msub>
-                                        <mo>∫</mo>
-                                        <mi mathvariant="normal">Ω</mi>
-                                    </msub>
-                                    <msub>
-                                        <mrow>
-                                            <mi mathvariant="normal">L</mi>
-                                            <mo>⁡</mo>
-                                        </mrow>
-                                        <mi>o</mi>
-                                    </msub>
-                                    <mo stretchy="false">(</mo>
-                                    <mi>p</mi>
-                                    <mo separator="true">,</mo>
-                                    <msub>
-                                        <mi>ω</mi>
-                                        <mi>o</mi>
-                                    </msub>
-                                    <mo stretchy="false">)</mo>
-                                    <mtext> </mtext>
-                                    <mi>d</mi>
-                                    <msub>
-                                        <mi>ω</mi>
-                                        <mi>o</mi>
-                                    </msub>
-                                    <mo>=</mo>
-                                    <msub>
-                                        <mrow>
-                                            <mi mathvariant="normal">L</mi>
-                                            <mo>⁡</mo>
-                                        </mrow>
-                                        <mi>o</mi>
-                                    </msub>
-                                    <mo stretchy="false">(</mo>
-                                    <mi>p</mi>
-                                    <mo stretchy="false">)</mo>
-                                    <mo>⋅</mo>
-                                    <msub>
-                                        <mo>∫</mo>
-                                        <mi mathvariant="normal">Ω</mi>
-                                    </msub>
-                                    <mn>1</mn>
-                                    <mtext> </mtext>
-                                    <mi>d</mi>
-                                    <msub>
-                                        <mi>ω</mi>
-                                        <mi>o</mi>
-                                    </msub>
-                                    <mo>=</mo>
-                                    <msub>
-                                        <mrow>
-                                            <mi mathvariant="normal">L</mi>
-                                            <mo>⁡</mo>
-                                        </mrow>
-                                        <mi>o</mi>
-                                    </msub>
-                                    <mo stretchy="false">(</mo>
-                                    <mi>p</mi>
-                                    <mo stretchy="false">)</mo>
-                                    <mo>⋅</mo>
-                                    <mi>π</mi>
-                                    <mo>=</mo>
-                                    <mi mathvariant="normal">
-                                        <msub>
-                                            <mi mathvariant="normal">c</mi>
-                                            <mrow>
-                                                <mi mathvariant="normal">d</mi>
-                                                <mi mathvariant="normal">i</mi>
-                                                <mi mathvariant="normal">f</mi>
-                                                <mi mathvariant="normal">f</mi>
-                                                <mi mathvariant="normal">u</mi>
-                                                <mi mathvariant="normal">s</mi>
-                                                <mi mathvariant="normal">e</mi>
-                                            </mrow>
-                                        </msub>
-                                    </mi>
-                                    <mo>⁡</mo>
-                                    <mo stretchy="false">(</mo>
-                                    <mi>p</mi>
-                                    <mo stretchy="false">)</mo>
-                                    <mo>⊗</mo>
-                                    <mi mathvariant="normal">
-                                        <msub>
-                                            <mi mathvariant="normal">E</mi>
-                                            <mi mathvariant="normal">L</mi>
-                                        </msub>
-                                    </mi>
-                                    <mo>⁡</mo>
-                                    <mo stretchy="false">(</mo>
-                                    <mi>p</mi>
-                                    <mo stretchy="false">)</mo>
-                                    <mo>⊗</mo>
-                                    <mi mathvariant="normal">∣</mi>
-                                    <mi>cos</mi>
-                                    <mo>⁡</mo>
-                                    <mo stretchy="false">(</mo>
-                                    <msub>
-                                        <mi>θ</mi>
-                                        <mi>i</mi>
-                                    </msub>
-                                    <mo stretchy="false">)</mo>
-                                    <mi mathvariant="normal">∣</mi>
-                                </mstyle>
-                            </mrow>
-                            <annotation encoding="application/x-tex">\displaystyle \operatorname{E}(p) = \int_\Omega
-                                \operatorname{L}_o(p, \omega_o) \, d\omega_o = \operatorname{L}_o(p) \cdot \int_\Omega 1
-                                \, d\omega_o = \operatorname{L}_o(p) \cdot \pi = \operatorname{c_{diffuse}}(p) \otimes
-                                \operatorname{E_{L}}(p) \otimes |\cos(\theta_i)|</annotation>
-                        </semantics>
-                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
-                            style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span
-                                class="mord mathrm">E</span></span><span class="mopen">(</span><span
-                            class="mord mathnormal">p</span><span class="mclose">)</span><span class="mspace"
-                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-                        class="base"><span class="strut"
-                            style="height:2.27195em;vertical-align:-0.9119499999999999em;"></span><span
-                            class="mop"><span class="mop op-symbol large-op"
-                                style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span
-                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                            style="height:-0.433619em;"><span
-                                                style="top:-1.7880500000000001em;margin-left:-0.44445em;margin-right:0.05em;"><span
-                                                    class="pstrut" style="height:2.7em;"></span><span
-                                                    class="sizing reset-size6 size3 mtight"><span
-                                                        class="mord mtight">Ω</span></span></span></span><span
-                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:0.9119499999999999em;"><span></span></span></span></span></span></span><span
-                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop"><span
-                                class="mop"><span class="mord mathrm">L</span></span><span class="msupsub"><span
-                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                            style="height:0.151392em;"><span
-                                                style="top:-2.5500000000000003em;margin-right:0.05em;"><span
-                                                    class="pstrut" style="height:2.7em;"></span><span
-                                                    class="sizing reset-size6 size3 mtight"><span
-                                                        class="mord mathnormal mtight">o</span></span></span></span><span
-                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
-                            class="mopen">(</span><span class="mord mathnormal">p</span><span
-                            class="mpunct">,</span><span class="mspace"
-                            style="margin-right:0.16666666666666666em;"></span><span class="mord"><span
-                                class="mord mathnormal" style="margin-right:0.03588em;">ω</span><span
-                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                            style="height:0.151392em;"><span
-                                                style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
-                                                    class="pstrut" style="height:2.7em;"></span><span
-                                                    class="sizing reset-size6 size3 mtight"><span
-                                                        class="mord mathnormal mtight">o</span></span></span></span><span
-                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
-                            class="mclose">)</span><span class="mspace"
-                            style="margin-right:0.16666666666666666em;"></span><span
-                            class="mord mathnormal">d</span><span class="mord"><span class="mord mathnormal"
-                                style="margin-right:0.03588em;">ω</span><span class="msupsub"><span
-                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                            style="height:0.151392em;"><span
-                                                style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
-                                                    class="pstrut" style="height:2.7em;"></span><span
-                                                    class="sizing reset-size6 size3 mtight"><span
-                                                        class="mord mathnormal mtight">o</span></span></span></span><span
-                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
-                            class="mspace" style="margin-right:0.2777777777777778em;"></span><span
-                            class="mrel">=</span><span class="mspace"
-                            style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-                            class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span
-                                class="mop"><span class="mord mathrm">L</span></span><span class="msupsub"><span
-                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                            style="height:0.151392em;"><span
-                                                style="top:-2.5500000000000003em;margin-right:0.05em;"><span
-                                                    class="pstrut" style="height:2.7em;"></span><span
-                                                    class="sizing reset-size6 size3 mtight"><span
-                                                        class="mord mathnormal mtight">o</span></span></span></span><span
-                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
-                            class="mopen">(</span><span class="mord mathnormal">p</span><span
-                            class="mclose">)</span><span class="mspace"
-                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span
-                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
-                        class="base"><span class="strut"
-                            style="height:2.27195em;vertical-align:-0.9119499999999999em;"></span><span
-                            class="mop"><span class="mop op-symbol large-op"
-                                style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span
-                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                            style="height:-0.433619em;"><span
-                                                style="top:-1.7880500000000001em;margin-left:-0.44445em;margin-right:0.05em;"><span
-                                                    class="pstrut" style="height:2.7em;"></span><span
-                                                    class="sizing reset-size6 size3 mtight"><span
-                                                        class="mord mtight">Ω</span></span></span></span><span
-                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:0.9119499999999999em;"><span></span></span></span></span></span></span><span
-                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span
-                            class="mord">1</span><span class="mspace"
-                            style="margin-right:0.16666666666666666em;"></span><span
-                            class="mord mathnormal">d</span><span class="mord"><span class="mord mathnormal"
-                                style="margin-right:0.03588em;">ω</span><span class="msupsub"><span
-                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                            style="height:0.151392em;"><span
-                                                style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
-                                                    class="pstrut" style="height:2.7em;"></span><span
-                                                    class="sizing reset-size6 size3 mtight"><span
-                                                        class="mord mathnormal mtight">o</span></span></span></span><span
-                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
-                            class="mspace" style="margin-right:0.2777777777777778em;"></span><span
-                            class="mrel">=</span><span class="mspace"
-                            style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-                            class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span
-                                class="mop"><span class="mord mathrm">L</span></span><span class="msupsub"><span
-                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                            style="height:0.151392em;"><span
-                                                style="top:-2.5500000000000003em;margin-right:0.05em;"><span
-                                                    class="pstrut" style="height:2.7em;"></span><span
-                                                    class="sizing reset-size6 size3 mtight"><span
-                                                        class="mord mathnormal mtight">o</span></span></span></span><span
-                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
-                            class="mopen">(</span><span class="mord mathnormal">p</span><span
-                            class="mclose">)</span><span class="mspace"
-                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span
-                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
-                        class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span
-                            class="mord mathnormal" style="margin-right:0.03588em;">π</span><span class="mspace"
-                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-                        class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
-                            class="mop"><span class="mord"><span class="mord mathrm">c</span><span class="msupsub"><span
-                                        class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                                style="height:0.33610799999999996em;"><span
-                                                    style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
-                                                        class="pstrut" style="height:2.7em;"></span><span
-                                                        class="sizing reset-size6 size3 mtight"><span
-                                                            class="mord mtight"><span
-                                                                class="mord mathrm mtight">diffuse</span></span></span></span></span><span
-                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                                style="height:0.15em;"><span></span></span></span></span></span></span></span><span
-                            class="mopen">(</span><span class="mord mathnormal">p</span><span
-                            class="mclose">)</span><span class="mspace"
-                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊗</span><span
-                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
-                        class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
-                            class="mop"><span class="mord"><span class="mord mathrm">E</span><span class="msupsub"><span
-                                        class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                                style="height:0.32833099999999993em;"><span
-                                                    style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
-                                                        class="pstrut" style="height:2.7em;"></span><span
-                                                        class="sizing reset-size6 size3 mtight"><span
-                                                            class="mord mtight"><span
-                                                                class="mord mathrm mtight">L</span></span></span></span></span><span
-                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                                style="height:0.15em;"><span></span></span></span></span></span></span></span><span
-                            class="mopen">(</span><span class="mord mathnormal">p</span><span
-                            class="mclose">)</span><span class="mspace"
-                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊗</span><span
-                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
-                        class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
-                            class="mord">∣</span><span class="mspace"
-                            style="margin-right:0.16666666666666666em;"></span><span class="mop">cos</span><span
-                            class="mopen">(</span><span class="mord"><span class="mord mathnormal"
-                                style="margin-right:0.02778em;">θ</span><span class="msupsub"><span
-                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                            style="height:0.31166399999999994em;"><span
-                                                style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span
-                                                    class="pstrut" style="height:2.7em;"></span><span
-                                                    class="sizing reset-size6 size3 mtight"><span
-                                                        class="mord mathnormal mtight">i</span></span></span></span><span
-                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
-                            class="mclose">)</span><span class="mord">∣</span></span></span></span></eq>, and the
         diffuse term is simplified to <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
@@ -1512,25 +1561,6 @@
                                     </msub>
                                     <mo stretchy="false">)</mo>
                                     <mo>=</mo>
-                                    <mfrac>
-                                        <mrow>
-                                            <mi mathvariant="normal">M</mi>
-                                            <mo>⁡</mo>
-                                            <mo stretchy="false">(</mo>
-                                            <msub>
-                                                <mi>p</mi>
-                                                <mi>o</mi>
-                                            </msub>
-                                            <mo stretchy="false">)</mo>
-                                        </mrow>
-                                        <mi>π</mi>
-                                    </mfrac>
-                                    <mo>=</mo>
-                                    <mfrac>
-                                        <mn>1</mn>
-                                        <mi>π</mi>
-                                    </mfrac>
-                                    <mo>⋅</mo>
                                     <msub>
                                         <mo>∫</mo>
                                         <msub>
@@ -1561,16 +1591,8 @@
                                     <mo>⋅</mo>
                                     <mi mathvariant="normal">
                                         <msub>
-                                            <mi mathvariant="normal">c</mi>
-                                            <mrow>
-                                                <mi mathvariant="normal">d</mi>
-                                                <mi mathvariant="normal">i</mi>
-                                                <mi mathvariant="normal">f</mi>
-                                                <mi mathvariant="normal">f</mi>
-                                                <mi mathvariant="normal">u</mi>
-                                                <mi mathvariant="normal">s</mi>
-                                                <mi mathvariant="normal">e</mi>
-                                            </mrow>
+                                            <mi mathvariant="normal">L</mi>
+                                            <mi mathvariant="normal">i</mi>
                                         </msub>
                                     </mi>
                                     <mo>⁡</mo>
@@ -1580,6 +1602,67 @@
                                         <mi>i</mi>
                                     </msub>
                                     <mo stretchy="false">)</mo>
+                                    <mtext> </mtext>
+                                    <mi>d</mi>
+                                    <msub>
+                                        <mi>p</mi>
+                                        <mi>i</mi>
+                                    </msub>
+                                    <mo>=</mo>
+                                    <msub>
+                                        <mo>∫</mo>
+                                        <msub>
+                                            <mi>S</mi>
+                                            <msub>
+                                                <mi>p</mi>
+                                                <mi>i</mi>
+                                            </msub>
+                                        </msub>
+                                    </msub>
+                                    <mi mathvariant="normal">R</mi>
+                                    <mo>⁡</mo>
+                                    <mo stretchy="false">(</mo>
+                                    <mi mathvariant="normal">distance</mi>
+                                    <mo>⁡</mo>
+                                    <mo stretchy="false">(</mo>
+                                    <msub>
+                                        <mi>p</mi>
+                                        <mi>o</mi>
+                                    </msub>
+                                    <mo separator="true">,</mo>
+                                    <msub>
+                                        <mi>p</mi>
+                                        <mi>i</mi>
+                                    </msub>
+                                    <mo stretchy="false">)</mo>
+                                    <mo stretchy="false">)</mo>
+                                    <mo>⋅</mo>
+                                    <mfrac>
+                                        <mrow>
+                                            <mi mathvariant="normal">
+                                                <msub>
+                                                    <mi mathvariant="normal">c</mi>
+                                                    <mrow>
+                                                        <mi mathvariant="normal">d</mi>
+                                                        <mi mathvariant="normal">i</mi>
+                                                        <mi mathvariant="normal">f</mi>
+                                                        <mi mathvariant="normal">f</mi>
+                                                        <mi mathvariant="normal">u</mi>
+                                                        <mi mathvariant="normal">s</mi>
+                                                        <mi mathvariant="normal">e</mi>
+                                                    </mrow>
+                                                </msub>
+                                            </mi>
+                                            <mo>⁡</mo>
+                                            <mo stretchy="false">(</mo>
+                                            <msub>
+                                                <mi>p</mi>
+                                                <mi>i</mi>
+                                            </msub>
+                                            <mo stretchy="false">)</mo>
+                                        </mrow>
+                                        <mi>π</mi>
+                                    </mfrac>
                                     <mo>⋅</mo>
                                     <mi mathvariant="normal">
                                         <msub>
@@ -1614,10 +1697,11 @@
                                 </mstyle>
                             </mrow>
                             <annotation encoding="application/x-tex">\displaystyle \operatorname{L}_o(p_o) =
-                                \frac{\operatorname{M}(p_o)}{\pi} = \frac{1}{\pi} \cdot \int_{S_{p_i}}
+                                \int_{S_{p_i}} \operatorname{R}(\operatorname{distance}(p_o, p_i)) \cdot
+                                \operatorname{L_i}(p_i) \, dp_i = \int_{S_{p_i}}
                                 \operatorname{R}(\operatorname{distance}(p_o, p_i)) \cdot
-                                \operatorname{c_{diffuse}}(p_i) \cdot \operatorname{E_{L}}(p_i) \cdot |\cos(\theta_i)|
-                                \, dp_i</annotation>
+                                \frac{\operatorname{c_{diffuse}}(p_i)}{\pi} \cdot \operatorname{E_{L}}(p_i) \cdot
+                                |\cos(\theta_i)| \, dp_i</annotation>
                         </semantics>
                     </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
                             style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span class="mop"><span
@@ -1642,55 +1726,6 @@
                             class="mclose">)</span><span class="mspace"
                             style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
                             class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-                        class="base"><span class="strut" style="height:2.113em;vertical-align:-0.686em;"></span><span
-                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
-                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                            style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut"
-                                                    style="height:3em;"></span><span class="mord"><span
-                                                        class="mord mathnormal"
-                                                        style="margin-right:0.03588em;">π</span></span></span><span
-                                                style="top:-3.23em;"><span class="pstrut"
-                                                    style="height:3em;"></span><span class="frac-line"
-                                                    style="border-bottom-width:0.04em;"></span></span><span
-                                                style="top:-3.677em;"><span class="pstrut"
-                                                    style="height:3em;"></span><span class="mord"><span
-                                                        class="mop"><span class="mord mathrm">M</span></span><span
-                                                        class="mopen">(</span><span class="mord"><span
-                                                            class="mord mathnormal">p</span><span class="msupsub"><span
-                                                                class="vlist-t vlist-t2"><span class="vlist-r"><span
-                                                                        class="vlist" style="height:0.151392em;"><span
-                                                                            style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
-                                                                                class="pstrut"
-                                                                                style="height:2.7em;"></span><span
-                                                                                class="sizing reset-size6 size3 mtight"><span
-                                                                                    class="mord mathnormal mtight">o</span></span></span></span><span
-                                                                        class="vlist-s">​</span></span><span
-                                                                    class="vlist-r"><span class="vlist"
-                                                                        style="height:0.15em;"><span></span></span></span></span></span></span><span
-                                                        class="mclose">)</span></span></span></span><span
-                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:0.686em;"><span></span></span></span></span></span><span
-                                class="mclose nulldelimiter"></span></span><span class="mspace"
-                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-                        class="base"><span class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span
-                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
-                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                            style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut"
-                                                    style="height:3em;"></span><span class="mord"><span
-                                                        class="mord mathnormal"
-                                                        style="margin-right:0.03588em;">π</span></span></span><span
-                                                style="top:-3.23em;"><span class="pstrut"
-                                                    style="height:3em;"></span><span class="frac-line"
-                                                    style="border-bottom-width:0.04em;"></span></span><span
-                                                style="top:-3.677em;"><span class="pstrut"
-                                                    style="height:3em;"></span><span class="mord"><span
-                                                        class="mord">1</span></span></span></span><span
-                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:0.686em;"><span></span></span></span></span></span><span
-                                class="mclose nulldelimiter"></span></span><span class="mspace"
-                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span
-                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
                         class="base"><span class="strut"
                             style="height:2.5294100000000004em;vertical-align:-1.16941em;"></span><span
                             class="mop"><span class="mop op-symbol large-op"
@@ -1758,14 +1793,13 @@
                             style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span
                             class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
                         class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
-                            class="mop"><span class="mord"><span class="mord mathrm">c</span><span class="msupsub"><span
+                            class="mop"><span class="mord"><span class="mord mathrm">L</span><span class="msupsub"><span
                                         class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                                style="height:0.33610799999999996em;"><span
+                                                style="height:0.31750199999999995em;"><span
                                                     style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
                                                         class="pstrut" style="height:2.7em;"></span><span
                                                         class="sizing reset-size6 size3 mtight"><span
-                                                            class="mord mtight"><span
-                                                                class="mord mathrm mtight">diffuse</span></span></span></span></span><span
+                                                            class="mord mathrm mtight">i</span></span></span></span><span
                                                 class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                                 style="height:0.15em;"><span></span></span></span></span></span></span></span><span
                             class="mopen">(</span><span class="mord"><span class="mord mathnormal">p</span><span
@@ -1778,6 +1812,128 @@
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.15em;"><span></span></span></span></span></span></span><span
                             class="mclose">)</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span
+                            class="mord mathnormal">d</span><span class="mord"><span
+                                class="mord mathnormal">p</span><span class="msupsub"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.31166399999999994em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathnormal mtight">i</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span><span
+                            class="mrel">=</span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+                            class="strut" style="height:2.5294100000000004em;vertical-align:-1.16941em;"></span><span
+                            class="mop"><span class="mop op-symbol large-op"
+                                style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span
+                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:-0.4336190000000001em;"><span
+                                                style="top:-1.7880500000000001em;margin-left:-0.44445em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight"><span class="mord mtight"><span
+                                                                class="mord mathnormal mtight"
+                                                                style="margin-right:0.05764em;">S</span><span
+                                                                class="msupsub"><span class="vlist-t vlist-t2"><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.1645428571428572em;"><span
+                                                                                style="top:-2.357em;margin-left:-0.05764em;margin-right:0.07142857142857144em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:2.5em;"></span><span
+                                                                                    class="sizing reset-size3 size1 mtight"><span
+                                                                                        class="mord mtight"><span
+                                                                                            class="mord mtight"><span
+                                                                                                class="mord mathnormal mtight">p</span><span
+                                                                                                class="msupsub"><span
+                                                                                                    class="vlist-t vlist-t2"><span
+                                                                                                        class="vlist-r"><span
+                                                                                                            class="vlist"
+                                                                                                            style="height:0.3448em;"><span
+                                                                                                                style="top:-2.3448em;margin-left:0em;margin-right:0.1em;"><span
+                                                                                                                    class="pstrut"
+                                                                                                                    style="height:2.65952em;"></span><span
+                                                                                                                    class="mord mathnormal mtight">i</span></span></span><span
+                                                                                                            class="vlist-s">​</span></span><span
+                                                                                                        class="vlist-r"><span
+                                                                                                            class="vlist"
+                                                                                                            style="height:0.31472em;"><span></span></span></span></span></span></span></span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.3678em;"><span></span></span></span></span></span></span></span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:1.16941em;"><span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop"><span
+                                class="mord mathrm">R</span></span><span class="mopen">(</span><span class="mop"><span
+                                class="mord mathrm">distance</span></span><span class="mopen">(</span><span
+                            class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.151392em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathnormal mtight">o</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
+                            class="mpunct">,</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mord"><span
+                                class="mord mathnormal">p</span><span class="msupsub"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.31166399999999994em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathnormal mtight">i</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
+                            class="mclose">))</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:2.113em;vertical-align:-0.686em;"></span><span
+                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord mathnormal"
+                                                        style="margin-right:0.03588em;">π</span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mop"><span class="mord"><span
+                                                                class="mord mathrm">c</span><span class="msupsub"><span
+                                                                    class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                                            class="vlist"
+                                                                            style="height:0.33610799999999996em;"><span
+                                                                                style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:2.7em;"></span><span
+                                                                                    class="sizing reset-size6 size3 mtight"><span
+                                                                                        class="mord mtight"><span
+                                                                                            class="mord mathrm mtight">diffuse</span></span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.15em;"><span></span></span></span></span></span></span></span><span
+                                                        class="mopen">(</span><span class="mord"><span
+                                                            class="mord mathnormal">p</span><span class="msupsub"><span
+                                                                class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                                        class="vlist"
+                                                                        style="height:0.31166399999999994em;"><span
+                                                                            style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                                                class="pstrut"
+                                                                                style="height:2.7em;"></span><span
+                                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                                    class="mord mathnormal mtight">i</span></span></span></span><span
+                                                                        class="vlist-s">​</span></span><span
+                                                                    class="vlist-r"><span class="vlist"
+                                                                        style="height:0.15em;"><span></span></span></span></span></span></span><span
+                                                        class="mclose">)</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span><span class="mspace"
                             style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span
                             class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
                         class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
@@ -1834,27 +1990,32 @@
                         <semantics>
                             <mrow>
                                 <mstyle scriptlevel="0" displaystyle="true">
-                                    <mi mathvariant="normal">
-                                        <msub>
-                                            <mi mathvariant="normal">c</mi>
-                                            <mrow>
-                                                <mi mathvariant="normal">d</mi>
-                                                <mi mathvariant="normal">i</mi>
-                                                <mi mathvariant="normal">f</mi>
-                                                <mi mathvariant="normal">f</mi>
-                                                <mi mathvariant="normal">u</mi>
-                                                <mi mathvariant="normal">s</mi>
-                                                <mi mathvariant="normal">e</mi>
-                                            </mrow>
-                                        </msub>
-                                    </mi>
-                                    <mo>⁡</mo>
-                                    <mo stretchy="false">(</mo>
-                                    <msub>
-                                        <mi>p</mi>
-                                        <mi>i</mi>
-                                    </msub>
-                                    <mo stretchy="false">)</mo>
+                                    <mfrac>
+                                        <mrow>
+                                            <mi mathvariant="normal">
+                                                <msub>
+                                                    <mi mathvariant="normal">c</mi>
+                                                    <mrow>
+                                                        <mi mathvariant="normal">d</mi>
+                                                        <mi mathvariant="normal">i</mi>
+                                                        <mi mathvariant="normal">f</mi>
+                                                        <mi mathvariant="normal">f</mi>
+                                                        <mi mathvariant="normal">u</mi>
+                                                        <mi mathvariant="normal">s</mi>
+                                                        <mi mathvariant="normal">e</mi>
+                                                    </mrow>
+                                                </msub>
+                                            </mi>
+                                            <mo>⁡</mo>
+                                            <mo stretchy="false">(</mo>
+                                            <msub>
+                                                <mi>p</mi>
+                                                <mi>i</mi>
+                                            </msub>
+                                            <mo stretchy="false">)</mo>
+                                        </mrow>
+                                        <mi>π</mi>
+                                    </mfrac>
                                     <mo>⋅</mo>
                                     <mi mathvariant="normal">E</mi>
                                     <mo>⁡</mo>
@@ -1866,31 +2027,53 @@
                                     <mo stretchy="false">)</mo>
                                 </mstyle>
                             </mrow>
-                            <annotation encoding="application/x-tex">\displaystyle \operatorname{c_{diffuse}}(p_i) \cdot
-                                \operatorname{E}(p_i)</annotation>
+                            <annotation encoding="application/x-tex">\displaystyle
+                                \frac{\operatorname{c_{diffuse}}(p_i)}{\pi} \cdot \operatorname{E}(p_i)</annotation>
                         </semantics>
                     </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
-                            style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span class="mord"><span
-                                    class="mord mathrm">c</span><span class="msupsub"><span
-                                        class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                                style="height:0.33610799999999996em;"><span
-                                                    style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
-                                                        class="pstrut" style="height:2.7em;"></span><span
-                                                        class="sizing reset-size6 size3 mtight"><span
-                                                            class="mord mtight"><span
-                                                                class="mord mathrm mtight">diffuse</span></span></span></span></span><span
-                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                                style="height:0.15em;"><span></span></span></span></span></span></span></span><span
-                            class="mopen">(</span><span class="mord"><span class="mord mathnormal">p</span><span
-                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                            style="height:0.31166399999999994em;"><span
-                                                style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
-                                                    class="pstrut" style="height:2.7em;"></span><span
-                                                    class="sizing reset-size6 size3 mtight"><span
-                                                        class="mord mathnormal mtight">i</span></span></span></span><span
+                            style="height:2.113em;vertical-align:-0.686em;"></span><span class="mord"><span
+                                class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord mathnormal"
+                                                        style="margin-right:0.03588em;">π</span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mop"><span class="mord"><span
+                                                                class="mord mathrm">c</span><span class="msupsub"><span
+                                                                    class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                                            class="vlist"
+                                                                            style="height:0.33610799999999996em;"><span
+                                                                                style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:2.7em;"></span><span
+                                                                                    class="sizing reset-size6 size3 mtight"><span
+                                                                                        class="mord mtight"><span
+                                                                                            class="mord mathrm mtight">diffuse</span></span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.15em;"><span></span></span></span></span></span></span></span><span
+                                                        class="mopen">(</span><span class="mord"><span
+                                                            class="mord mathnormal">p</span><span class="msupsub"><span
+                                                                class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                                        class="vlist"
+                                                                        style="height:0.31166399999999994em;"><span
+                                                                            style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                                                class="pstrut"
+                                                                                style="height:2.7em;"></span><span
+                                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                                    class="mord mathnormal mtight">i</span></span></span></span><span
+                                                                        class="vlist-s">​</span></span><span
+                                                                    class="vlist-r"><span class="vlist"
+                                                                        style="height:0.15em;"><span></span></span></span></span></span></span><span
+                                                        class="mclose">)</span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
-                            class="mclose">)</span><span class="mspace"
+                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span><span class="mspace"
                             style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span
                             class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
                         class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
@@ -1909,27 +2092,32 @@
                         <semantics>
                             <mrow>
                                 <mstyle scriptlevel="0" displaystyle="true">
-                                    <mi mathvariant="normal">
-                                        <msub>
-                                            <mi mathvariant="normal">c</mi>
-                                            <mrow>
-                                                <mi mathvariant="normal">d</mi>
-                                                <mi mathvariant="normal">i</mi>
-                                                <mi mathvariant="normal">f</mi>
-                                                <mi mathvariant="normal">f</mi>
-                                                <mi mathvariant="normal">u</mi>
-                                                <mi mathvariant="normal">s</mi>
-                                                <mi mathvariant="normal">e</mi>
-                                            </mrow>
-                                        </msub>
-                                    </mi>
-                                    <mo>⁡</mo>
-                                    <mo stretchy="false">(</mo>
-                                    <msub>
-                                        <mi>p</mi>
-                                        <mi>o</mi>
-                                    </msub>
-                                    <mo stretchy="false">)</mo>
+                                    <mfrac>
+                                        <mrow>
+                                            <mi mathvariant="normal">
+                                                <msub>
+                                                    <mi mathvariant="normal">c</mi>
+                                                    <mrow>
+                                                        <mi mathvariant="normal">d</mi>
+                                                        <mi mathvariant="normal">i</mi>
+                                                        <mi mathvariant="normal">f</mi>
+                                                        <mi mathvariant="normal">f</mi>
+                                                        <mi mathvariant="normal">u</mi>
+                                                        <mi mathvariant="normal">s</mi>
+                                                        <mi mathvariant="normal">e</mi>
+                                                    </mrow>
+                                                </msub>
+                                            </mi>
+                                            <mo>⁡</mo>
+                                            <mo stretchy="false">(</mo>
+                                            <msub>
+                                                <mi>p</mi>
+                                                <mi>o</mi>
+                                            </msub>
+                                            <mo stretchy="false">)</mo>
+                                        </mrow>
+                                        <mi>π</mi>
+                                    </mfrac>
                                     <mo>⋅</mo>
                                     <mi mathvariant="normal">E</mi>
                                     <mo>⁡</mo>
@@ -1941,31 +2129,52 @@
                                     <mo stretchy="false">)</mo>
                                 </mstyle>
                             </mrow>
-                            <annotation encoding="application/x-tex">\displaystyle \operatorname{c_{diffuse}}(p_o) \cdot
-                                \operatorname{E}(p_o)</annotation>
+                            <annotation encoding="application/x-tex">\displaystyle
+                                \frac{\operatorname{c_{diffuse}}(p_o)}{\pi} \cdot \operatorname{E}(p_o)</annotation>
                         </semantics>
                     </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
-                            style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span class="mord"><span
-                                    class="mord mathrm">c</span><span class="msupsub"><span
-                                        class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                                style="height:0.33610799999999996em;"><span
-                                                    style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
-                                                        class="pstrut" style="height:2.7em;"></span><span
-                                                        class="sizing reset-size6 size3 mtight"><span
-                                                            class="mord mtight"><span
-                                                                class="mord mathrm mtight">diffuse</span></span></span></span></span><span
-                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                                style="height:0.15em;"><span></span></span></span></span></span></span></span><span
-                            class="mopen">(</span><span class="mord"><span class="mord mathnormal">p</span><span
-                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                            style="height:0.151392em;"><span
-                                                style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
-                                                    class="pstrut" style="height:2.7em;"></span><span
-                                                    class="sizing reset-size6 size3 mtight"><span
-                                                        class="mord mathnormal mtight">o</span></span></span></span><span
+                            style="height:2.113em;vertical-align:-0.686em;"></span><span class="mord"><span
+                                class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord mathnormal"
+                                                        style="margin-right:0.03588em;">π</span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mop"><span class="mord"><span
+                                                                class="mord mathrm">c</span><span class="msupsub"><span
+                                                                    class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                                            class="vlist"
+                                                                            style="height:0.33610799999999996em;"><span
+                                                                                style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:2.7em;"></span><span
+                                                                                    class="sizing reset-size6 size3 mtight"><span
+                                                                                        class="mord mtight"><span
+                                                                                            class="mord mathrm mtight">diffuse</span></span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.15em;"><span></span></span></span></span></span></span></span><span
+                                                        class="mopen">(</span><span class="mord"><span
+                                                            class="mord mathnormal">p</span><span class="msupsub"><span
+                                                                class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                                        class="vlist" style="height:0.151392em;"><span
+                                                                            style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                                                class="pstrut"
+                                                                                style="height:2.7em;"></span><span
+                                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                                    class="mord mathnormal mtight">o</span></span></span></span><span
+                                                                        class="vlist-s">​</span></span><span
+                                                                    class="vlist-r"><span class="vlist"
+                                                                        style="height:0.15em;"><span></span></span></span></span></span></span><span
+                                                        class="mclose">)</span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
-                            class="mclose">)</span><span class="mspace"
+                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span><span class="mspace"
                             style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span
                             class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
                         class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
@@ -1979,7 +2188,7 @@
                                                         class="mord mathnormal mtight">o</span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.15em;"><span></span></span></span></span></span></span><span
-                            class="mclose">)</span></span></span></span></eq> for all vicinal locations. And thus, the
+                            class="mclose">)</span></span></span></span></eq> for all vicinal locations, and thus the
         <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
@@ -3235,16 +3444,16 @@
             which is detached from the total integral.</li>
     </ol>
     <h3 id="1-3-separable-sss">1-3. Separable SSS</h3>
-    <p>The <strong>diffuse</strong> term of UE4 is based on the <strong>Separable SSS</strong> [Jimenez 2012].</p>
+    <p>The <strong>diffuse reflectance</strong> term of UE4 is based on the <strong>Separable SSS</strong> [Jimenez
+        2012].</p>
     <p>The approach of [dEon 2007] is to approximate the diffusion profile by the weighted sum of 6 Gaussians, and thus
         the general 2D convolution can be replaced by 12(2 x 6) 1D convolutions since the <a
             href="https://en.wikipedia.org/wiki/Gaussian_blur">Gaussian blur</a> is a <a
             href="https://en.wikipedia.org/wiki/Separable_filter">separable filter</a>. However, the approach proposed
         by [dEon 2007] is applied in texture space which is too weird according to the convention of the real time
-        rendering. And the screen space approach is proposed by [Jimenez 2009] and [Jimenez 2010]. However, the approach
-        proposed by [Jimenez 2010] still needs 12(2 x 6) passes to perform the 12(2 x 6) 1D convolutions. Evidently,
-        this is still too expensive for real time rendering. And thus, the 2 passes approach is proposed by [Jimenez
-        2012].</p>
+        rendering. And the screen space approach is proposed by [Jimenez 2009]. However, the approach proposed by
+        [Jimenez 2009] still needs 12(2 x 6) passes to perform the 12(2 x 6) 1D convolutions. Evidently, this is still
+        too expensive for real time rendering. And thus, the 2 passes approach is proposed by [Jimenez 2012].</p>
     <p>According to the <strong>numerical quadrature</strong>, the funtion value sampled from the irradiance texture
         should be multiplied by the difference of the domain <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
@@ -3334,7 +3543,7 @@
                                                         class="mord mathnormal mtight">i</span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
-        </eq> can be obtained. However, the <strong>stretch factor</strong> proposed by [Jimenez 2010] is not
+        </eq> can be obtained. However, the <strong>stretch factor</strong> proposed by [Jimenez 2009] is not
         proportional to the difference of the world position, and in my opinion, is empirical. And [Mikkelsen 2010]
         proposed a more reasonable approach to calculate the <strong>kernel</strong> size which is based on the
         mathematical derivation. Note that in image processing, the <strong>filter</strong> is a (continuous) function
@@ -3531,7 +3740,7 @@
                                     <mi>x</mi>
                                     <mo stretchy="false">)</mo>
                                     <mo>=</mo>
-                                    <mi mathvariant="normal">P</mi>
+                                    <mi mathvariant="normal">R</mi>
                                     <mo>⁡</mo>
                                     <mo stretchy="false">(</mo>
                                     <mfrac>
@@ -3566,7 +3775,7 @@
                                 </mstyle>
                             </mrow>
                             <annotation encoding="application/x-tex">\displaystyle \operatorname{S}(\Delta x) =
-                                \operatorname{P}(\frac{\Delta x*\text{width}}{0.001 + \text{falloff}})*\text{strength} +
+                                \operatorname{R}(\frac{\Delta x*\text{width}}{0.001 + \text{falloff}})*\text{strength} +
                                 \operatorname{\delta}(\Delta x)*(1-\text{strength})</annotation>
                         </semantics>
                     </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
@@ -3578,7 +3787,7 @@
                             class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
                         class="base"><span class="strut"
                             style="height:2.14077em;vertical-align:-0.7693300000000001em;"></span><span
-                            class="mop"><span class="mord mathrm">P</span></span><span class="mopen">(</span><span
+                            class="mop"><span class="mord mathrm">R</span></span><span class="mopen">(</span><span
                             class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
                                     class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
                                             style="height:1.37144em;"><span style="top:-2.314em;"><span class="pstrut"
@@ -3623,7 +3832,7 @@
                             class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
                         class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
                             class="mord text"><span class="mord">strength</span></span><span
-                            class="mclose">)</span></span></span></span></eq> where P denotes the 1D diffusion profile,
+                            class="mclose">)</span></span></span></span></eq> where R denotes the 1D diffusion profile,
         <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
@@ -3698,7 +3907,7 @@
                             <semantics>
                                 <mrow>
                                     <mstyle scriptlevel="0" displaystyle="true">
-                                        <mi mathvariant="normal">P</mi>
+                                        <mi mathvariant="normal">R</mi>
                                         <mo>⁡</mo>
                                         <mo stretchy="false">(</mo>
                                         <mfrac>
@@ -3717,12 +3926,12 @@
                                         <mo stretchy="false">)</mo>
                                     </mstyle>
                                 </mrow>
-                                <annotation encoding="application/x-tex">\displaystyle \operatorname{P}(\frac{\Delta
+                                <annotation encoding="application/x-tex">\displaystyle \operatorname{R}(\frac{\Delta
                                     x*\text{width}}{0.001 + \text{falloff}})</annotation>
                             </semantics>
                         </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
                                 style="height:2.14077em;vertical-align:-0.7693300000000001em;"></span><span
-                                class="mop"><span class="mord mathrm">P</span></span><span class="mopen">(</span><span
+                                class="mop"><span class="mord mathrm">R</span></span><span class="mopen">(</span><span
                                 class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
                                         class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
                                                 style="height:1.37144em;"><span style="top:-2.314em;"><span
@@ -4606,13 +4815,636 @@
     </ol>
     <h3 id="1-4-disney-sss">1-4. Disney SSS</h3>
     <p>TODO</p>
-    <h2 id="2-transmittance-term">2. Transmittance Term</h2>
+    <h2 id="2-transmittance">2. Transmittance</h2>
     <h3 id="2-1-deep-scatter">2-1. Deep Scatter</h3>
-    <p>The <strong>transmittance</strong> term of the FaceWorks is based on the <strong>16.3 Simulating Absorption Using
-            Depth Maps</strong> of [Green 2004].</p>
-    <p>TODO</p>
+    <p>The <strong>diffuse transmittance</strong> term of the FaceWorks is based on the <strong>16.3 Simulating
+            Absorption Using Depth Maps</strong> of [Green 2004].</p>
+    <p>The main idea of [Green 2004] is that the objects are assumed to be convex, and thus the thickness ( the distance
+        a light ray travels inside an object) can be estimated by using the shadow maps. According to the thickness, the
+        <a href="https://en.wikipedia.org/wiki/Beer%E2%80%93Lambert_law">Beer–Lambert law</a> can be applied to
+        calculate the transmittance coefficient.</p>
+    <p>In the FaceWorks, the <strong>thickness</strong> is calculated by
+        <strong>GFSDK_FaceWorks_EstimateThicknessFromParallelShadowPoisson32</strong> and the <strong>transmittance
+            coefficient</strong> is calculated by <strong>GFSDK_FaceWorks_EvaluateDeepScatterDirectLight</strong>.</p>
     <h3 id="2-2-realistic-skin-translucency">2-2. Realistic Skin Translucency</h3>
-    <p>TODO</p>
+    <p>The <strong>diffuse transmittance</strong> term of demo source code provided by [Jimenez 2015] is based on
+        [Jimenez 2010].</p>
+    <p>The main idea of [Jimenez 2010] is that the approach proposed by [Green 2004] is applied to calculate the
+        thickness while the transmittance coefficient is calcuated based on the diffuse profile rather than the
+        <strong>Beer–Lambert law</strong>. According to [Jimenez 2010], the idea of the <strong>14.5.3 Modified
+            Translucent Shadow Maps</strong> of [dEon 2007] is applied, and the transmittance coefficient is calcuated
+        as <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mi mathvariant="normal">T</mi>
+                                    <mo>⁡</mo>
+                                    <mo stretchy="false">(</mo>
+                                    <mi>d</mi>
+                                    <mo stretchy="false">)</mo>
+                                    <mo>=</mo>
+                                    <msub>
+                                        <mo>∫</mo>
+                                        <msub>
+                                            <mi>S</mi>
+                                            <msub>
+                                                <mi>p</mi>
+                                                <mi>i</mi>
+                                            </msub>
+                                        </msub>
+                                    </msub>
+                                    <mi mathvariant="normal">R</mi>
+                                    <mo>⁡</mo>
+                                    <msqrt>
+                                        <mrow>
+                                            <mi mathvariant="normal">distance</mi>
+                                            <mo>⁡</mo>
+                                            <mo stretchy="false">(</mo>
+                                            <msub>
+                                                <mi>p</mi>
+                                                <mi>i</mi>
+                                            </msub>
+                                            <mo separator="true">,</mo>
+                                            <mtext>B</mtext>
+                                            <msup>
+                                                <mo stretchy="false">)</mo>
+                                                <mn>2</mn>
+                                            </msup>
+                                            <mo>+</mo>
+                                            <msup>
+                                                <mi>d</mi>
+                                                <mn>2</mn>
+                                            </msup>
+                                        </mrow>
+                                    </msqrt>
+                                    <mtext> </mtext>
+                                    <mi>d</mi>
+                                    <msub>
+                                        <mi>p</mi>
+                                        <mi>i</mi>
+                                    </msub>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle \operatorname{T}(d) = \int_{S_{p_i}}
+                                \operatorname{R} \sqrt{\operatorname{distance}(p_i, \text{B})^2 + d^2} \, dp_i
+                            </annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span
+                                class="mord mathrm">T</span></span><span class="mopen">(</span><span
+                            class="mord mathnormal">d</span><span class="mclose">)</span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                        class="base"><span class="strut"
+                            style="height:2.5294100000000004em;vertical-align:-1.16941em;"></span><span
+                            class="mop"><span class="mop op-symbol large-op"
+                                style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span
+                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:-0.4336190000000001em;"><span
+                                                style="top:-1.7880500000000001em;margin-left:-0.44445em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight"><span class="mord mtight"><span
+                                                                class="mord mathnormal mtight"
+                                                                style="margin-right:0.05764em;">S</span><span
+                                                                class="msupsub"><span class="vlist-t vlist-t2"><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.1645428571428572em;"><span
+                                                                                style="top:-2.357em;margin-left:-0.05764em;margin-right:0.07142857142857144em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:2.5em;"></span><span
+                                                                                    class="sizing reset-size3 size1 mtight"><span
+                                                                                        class="mord mtight"><span
+                                                                                            class="mord mtight"><span
+                                                                                                class="mord mathnormal mtight">p</span><span
+                                                                                                class="msupsub"><span
+                                                                                                    class="vlist-t vlist-t2"><span
+                                                                                                        class="vlist-r"><span
+                                                                                                            class="vlist"
+                                                                                                            style="height:0.3448em;"><span
+                                                                                                                style="top:-2.3448em;margin-left:0em;margin-right:0.1em;"><span
+                                                                                                                    class="pstrut"
+                                                                                                                    style="height:2.65952em;"></span><span
+                                                                                                                    class="mord mathnormal mtight">i</span></span></span><span
+                                                                                                            class="vlist-s">​</span></span><span
+                                                                                                        class="vlist-r"><span
+                                                                                                            class="vlist"
+                                                                                                            style="height:0.31472em;"><span></span></span></span></span></span></span></span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.3678em;"><span></span></span></span></span></span></span></span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:1.16941em;"><span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop"><span
+                                class="mord mathrm">R</span></span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mord sqrt"><span
+                                class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                        style="height:0.983875em;"><span class="svg-align" style="top:-3.2em;"><span
+                                                class="pstrut" style="height:3.2em;"></span><span class="mord"
+                                                style="padding-left:1em;"><span class="mop"><span
+                                                        class="mord mathrm">distance</span></span><span
+                                                    class="mopen">(</span><span class="mord"><span
+                                                        class="mord mathnormal">p</span><span class="msupsub"><span
+                                                            class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                                    class="vlist"
+                                                                    style="height:0.31166399999999994em;"><span
+                                                                        style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                                            class="pstrut"
+                                                                            style="height:2.7em;"></span><span
+                                                                            class="sizing reset-size6 size3 mtight"><span
+                                                                                class="mord mathnormal mtight">i</span></span></span></span><span
+                                                                    class="vlist-s">​</span></span><span
+                                                                class="vlist-r"><span class="vlist"
+                                                                    style="height:0.15em;"><span></span></span></span></span></span></span><span
+                                                    class="mpunct">,</span><span class="mspace"
+                                                    style="margin-right:0.16666666666666666em;"></span><span
+                                                    class="mord text"><span class="mord">B</span></span><span
+                                                    class="mclose"><span class="mclose">)</span><span
+                                                        class="msupsub"><span class="vlist-t"><span
+                                                                class="vlist-r"><span class="vlist"
+                                                                    style="height:0.740108em;"><span
+                                                                        style="top:-2.9890000000000003em;margin-right:0.05em;"><span
+                                                                            class="pstrut"
+                                                                            style="height:2.7em;"></span><span
+                                                                            class="sizing reset-size6 size3 mtight"><span
+                                                                                class="mord mtight">2</span></span></span></span></span></span></span></span><span
+                                                    class="mspace"
+                                                    style="margin-right:0.2222222222222222em;"></span><span
+                                                    class="mbin">+</span><span class="mspace"
+                                                    style="margin-right:0.2222222222222222em;"></span><span
+                                                    class="mord"><span class="mord mathnormal">d</span><span
+                                                        class="msupsub"><span class="vlist-t"><span
+                                                                class="vlist-r"><span class="vlist"
+                                                                    style="height:0.740108em;"><span
+                                                                        style="top:-2.9890000000000003em;margin-right:0.05em;"><span
+                                                                            class="pstrut"
+                                                                            style="height:2.7em;"></span><span
+                                                                            class="sizing reset-size6 size3 mtight"><span
+                                                                                class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span
+                                            style="top:-2.9438750000000002em;"><span class="pstrut"
+                                                style="height:3.2em;"></span><span class="hide-tail"
+                                                style="min-width:1.02em;height:1.28em;"><svg width='400em'
+                                                    height='1.28em' viewBox='0 0 400000 1296'
+                                                    preserveAspectRatio='xMinYMin slice'>
+                                                    <path d='M263,681c0.7,0,18,39.7,52,119
+c34,79.3,68.167,158.7,102.5,238c34.3,79.3,51.8,119.3,52.5,120
+c340,-704.7,510.7,-1060.3,512,-1067
+l0 -0
+c4.7,-7.3,11,-11,19,-11
+H40000v40H1012.3
+s-271.3,567,-271.3,567c-38.7,80.7,-84,175,-136,283c-52,108,-89.167,185.3,-111.5,232
+c-22.3,46.7,-33.8,70.3,-34.5,71c-4.7,4.7,-12.3,7,-23,7s-12,-1,-12,-1
+s-109,-253,-109,-253c-72.7,-168,-109.3,-252,-110,-252c-10.7,8,-22,16.7,-34,26
+c-22,17.3,-33.3,26,-34,26s-26,-26,-26,-26s76,-59,76,-59s76,-60,76,-60z
+M1001 80h400000v40h-400000z' />
+                                                </svg></span></span></span><span class="vlist-s">​</span></span><span
+                                    class="vlist-r"><span class="vlist"
+                                        style="height:0.25612499999999994em;"><span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                            class="mord mathnormal">d</span><span class="mord"><span
+                                class="mord mathnormal">p</span><span class="msupsub"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.31166399999999994em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathnormal mtight">i</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
+        </eq> where the R is the 1D diffusion profile and the B is the point where the light is assumed to exit. If the
+        diffusion profile is approximated by the Gaussians proposed by [Green 2004], the result of the integral is
+        analytical and can be calculated as <eq><span class="katex"><span class="katex-mathml"><math
+                        xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mi mathvariant="normal">T</mi>
+                                    <mo>⁡</mo>
+                                    <mo stretchy="false">(</mo>
+                                    <mi>d</mi>
+                                    <mo stretchy="false">)</mo>
+                                    <mo>=</mo>
+                                    <munderover>
+                                        <mo>∑</mo>
+                                        <mi>i</mi>
+                                        <mi>k</mi>
+                                    </munderover>
+                                    <msub>
+                                        <mi>w</mi>
+                                        <mi>i</mi>
+                                    </msub>
+                                    <msup>
+                                        <mi>e</mi>
+                                        <mfrac>
+                                            <mrow>
+                                                <mo>−</mo>
+                                                <msup>
+                                                    <mi>d</mi>
+                                                    <mn>2</mn>
+                                                </msup>
+                                            </mrow>
+                                            <msub>
+                                                <mi>v</mi>
+                                                <mi>i</mi>
+                                            </msub>
+                                        </mfrac>
+                                    </msup>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle \operatorname{T}(d) = \sum_i^k w_i
+                                e^{\frac{-d^2}{v_i}}</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span
+                                class="mord mathrm">T</span></span><span class="mopen">(</span><span
+                            class="mord mathnormal">d</span><span class="mclose">)</span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                        class="base"><span class="strut"
+                            style="height:3.1137820000000005em;vertical-align:-1.277669em;"></span><span
+                            class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                        class="vlist" style="height:1.8361130000000003em;"><span
+                                            style="top:-1.872331em;margin-left:0em;"><span class="pstrut"
+                                                style="height:3.05em;"></span><span
+                                                class="sizing reset-size6 size3 mtight"><span
+                                                    class="mord mathnormal mtight">i</span></span></span><span
+                                            style="top:-3.050005em;"><span class="pstrut"
+                                                style="height:3.05em;"></span><span><span
+                                                    class="mop op-symbol large-op">∑</span></span></span><span
+                                            style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut"
+                                                style="height:3.05em;"></span><span
+                                                class="sizing reset-size6 size3 mtight"><span
+                                                    class="mord mathnormal mtight"
+                                                    style="margin-right:0.03148em;">k</span></span></span></span><span
+                                        class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                        style="height:1.277669em;"><span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span
+                                class="mord mathnormal" style="margin-right:0.02691em;">w</span><span
+                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.31166399999999994em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathnormal mtight">i</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
+                            class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span
+                                    class="vlist-t"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.2989300000000001em;"><span
+                                                style="top:-3.50591em;margin-right:0.05em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight"><span class="mord mtight"><span
+                                                                class="mopen nulldelimiter sizing reset-size3 size6"></span><span
+                                                                class="mfrac"><span class="vlist-t vlist-t2"><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:1.1328857142857145em;"><span
+                                                                                style="top:-2.656em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="sizing reset-size3 size1 mtight"><span
+                                                                                        class="mord mtight"><span
+                                                                                            class="mord mtight"><span
+                                                                                                class="mord mathnormal mtight"
+                                                                                                style="margin-right:0.03588em;">v</span><span
+                                                                                                class="msupsub"><span
+                                                                                                    class="vlist-t vlist-t2"><span
+                                                                                                        class="vlist-r"><span
+                                                                                                            class="vlist"
+                                                                                                            style="height:0.3448em;"><span
+                                                                                                                style="top:-2.3448em;margin-left:-0.03588em;margin-right:0.1em;"><span
+                                                                                                                    class="pstrut"
+                                                                                                                    style="height:2.65952em;"></span><span
+                                                                                                                    class="mord mathnormal mtight">i</span></span></span><span
+                                                                                                            class="vlist-s">​</span></span><span
+                                                                                                        class="vlist-r"><span
+                                                                                                            class="vlist"
+                                                                                                            style="height:0.31472em;"><span></span></span></span></span></span></span></span></span></span><span
+                                                                                style="top:-3.2255000000000003em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="frac-line mtight"
+                                                                                    style="border-bottom-width:0.049em;"></span></span><span
+                                                                                style="top:-3.384em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="sizing reset-size3 size1 mtight"><span
+                                                                                        class="mord mtight"><span
+                                                                                            class="mord mtight">−</span><span
+                                                                                            class="mord mtight"><span
+                                                                                                class="mord mathnormal mtight">d</span><span
+                                                                                                class="msupsub"><span
+                                                                                                    class="vlist-t"><span
+                                                                                                        class="vlist-r"><span
+                                                                                                            class="vlist"
+                                                                                                            style="height:1.04844em;"><span
+                                                                                                                style="top:-3.04844em;margin-right:0.1em;"><span
+                                                                                                                    class="pstrut"
+                                                                                                                    style="height:2.64444em;"></span><span
+                                                                                                                    class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.5688em;"><span></span></span></span></span></span><span
+                                                                class="mclose nulldelimiter sizing reset-size3 size6"></span></span></span></span></span></span></span></span></span></span></span></span></span>
+        </eq>.</p>
+    <p>The <strong>transmittance coefficient</strong> is calculated by the <strong>SSSSTransmittance</strong> in the
+        demo source code provided by [Jimenez 2015]. And there are some points to note.</p>
+    <ol>
+        <li>Actually, the mere purpose of the <strong>scale</strong> in the shader code is to transform the thickness
+            from world space unit to mm. The shader code of the demo source code demonstrates that the
+            <strong>scale</strong> is calculated as <eq><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle scriptlevel="0" displaystyle="true">
+                                        <mn>8.25</mn>
+                                        <mo>×</mo>
+                                        <mo stretchy="false">(</mo>
+                                        <mn>1</mn>
+                                        <mo>−</mo>
+                                        <mtext>translucency</mtext>
+                                        <mo stretchy="false">)</mo>
+                                        <mo>×</mo>
+                                        <mfrac>
+                                            <mn>1</mn>
+                                            <mtext>sssWidth</mtext>
+                                        </mfrac>
+                                    </mstyle>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\displaystyle 8.25 \times (1 -
+                                    \text{translucency}) \times \frac{1}{\text{sssWidth}}</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:0.72777em;vertical-align:-0.08333em;"></span><span
+                                class="mord">8.25</span><span class="mspace"
+                                style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+                                class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                            class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                class="mopen">(</span><span class="mord">1</span><span class="mspace"
+                                style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span
+                                class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                            class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                class="mord text"><span class="mord">translucency</span></span><span
+                                class="mclose">)</span><span class="mspace"
+                                style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+                                class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                            class="base"><span class="strut"
+                                style="height:2.00744em;vertical-align:-0.686em;"></span><span class="mord"><span
+                                    class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                        class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                style="height:1.32144em;"><span style="top:-2.314em;"><span
+                                                        class="pstrut" style="height:3em;"></span><span
+                                                        class="mord"><span class="mord text"><span
+                                                                class="mord">sssWidth</span></span></span></span><span
+                                                    style="top:-3.23em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="frac-line"
+                                                        style="border-bottom-width:0.04em;"></span></span><span
+                                                    style="top:-3.677em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="mord"><span
+                                                            class="mord">1</span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:0.686em;"><span></span></span></span></span></span><span
+                                    class="mclose nulldelimiter"></span></span></span></span></span></eq>. According to
+            the <strong>1-3. Separable SSS</strong> of this page, the <eq><span class="katex"><span
+                        class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle scriptlevel="0" displaystyle="true">
+                                        <mfrac>
+                                            <mn>1</mn>
+                                            <mtext>sssWidth</mtext>
+                                        </mfrac>
+                                    </mstyle>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\displaystyle \frac{1}{\text{sssWidth}}
+                                </annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:2.00744em;vertical-align:-0.686em;"></span><span class="mord"><span
+                                    class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                        class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                style="height:1.32144em;"><span style="top:-2.314em;"><span
+                                                        class="pstrut" style="height:3em;"></span><span
+                                                        class="mord"><span class="mord text"><span
+                                                                class="mord">sssWidth</span></span></span></span><span
+                                                    style="top:-3.23em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="frac-line"
+                                                        style="border-bottom-width:0.04em;"></span></span><span
+                                                    style="top:-3.677em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="mord"><span
+                                                            class="mord">1</span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:0.686em;"><span></span></span></span></span></span><span
+                                    class="mclose nulldelimiter"></span></span></span></span></span></eq> can be
+            substituted as <eq><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle scriptlevel="0" displaystyle="true">
+                                        <mfrac>
+                                            <mrow>
+                                                <mn>1000</mn>
+                                                <mo>×</mo>
+                                                <mn>2</mn>
+                                            </mrow>
+                                            <mrow>
+                                                <mn>3</mn>
+                                                <mo>×</mo>
+                                                <mtext>WorldSpaceUnitPerMeter</mtext>
+                                            </mrow>
+                                        </mfrac>
+                                    </mstyle>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\displaystyle \frac{1000 \times 2}{3 \times
+                                    \text{WorldSpaceUnitPerMeter}}</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:2.20188em;vertical-align:-0.8804400000000001em;"></span><span
+                                class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                        class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                style="height:1.32144em;"><span style="top:-2.314em;"><span
+                                                        class="pstrut" style="height:3em;"></span><span
+                                                        class="mord"><span class="mord">3</span><span class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mbin">×</span><span class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mord text"><span
+                                                                class="mord">WorldSpaceUnitPerMeter</span></span></span></span><span
+                                                    style="top:-3.23em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="frac-line"
+                                                        style="border-bottom-width:0.04em;"></span></span><span
+                                                    style="top:-3.677em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="mord"><span
+                                                            class="mord">1000</span><span class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mbin">×</span><span class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mord">2</span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:0.8804400000000001em;"><span></span></span></span></span></span><span
+                                    class="mclose nulldelimiter"></span></span></span></span></span></eq>, and thus the
+            <strong>scale</strong> is actually calculated as <eq><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle scriptlevel="0" displaystyle="true">
+                                        <mn>8.25</mn>
+                                        <mo>×</mo>
+                                        <mo stretchy="false">(</mo>
+                                        <mn>1</mn>
+                                        <mo>−</mo>
+                                        <mtext>translucency</mtext>
+                                        <mo stretchy="false">)</mo>
+                                        <mo>×</mo>
+                                        <mfrac>
+                                            <mn>2</mn>
+                                            <mn>3</mn>
+                                        </mfrac>
+                                        <mo>×</mo>
+                                        <mfrac>
+                                            <mn>1000</mn>
+                                            <mtext>WorldSpaceUnitPerMeter</mtext>
+                                        </mfrac>
+                                    </mstyle>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\displaystyle 8.25 \times (1 -
+                                    \text{translucency}) \times \frac{2}{3} \times
+                                    \frac{1000}{\text{WorldSpaceUnitPerMeter}}</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:0.72777em;vertical-align:-0.08333em;"></span><span
+                                class="mord">8.25</span><span class="mspace"
+                                style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+                                class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                            class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                class="mopen">(</span><span class="mord">1</span><span class="mspace"
+                                style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span
+                                class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                            class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                class="mord text"><span class="mord">translucency</span></span><span
+                                class="mclose">)</span><span class="mspace"
+                                style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+                                class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                            class="base"><span class="strut"
+                                style="height:2.00744em;vertical-align:-0.686em;"></span><span class="mord"><span
+                                    class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                        class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                style="height:1.32144em;"><span style="top:-2.314em;"><span
+                                                        class="pstrut" style="height:3em;"></span><span
+                                                        class="mord"><span class="mord">3</span></span></span><span
+                                                    style="top:-3.23em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="frac-line"
+                                                        style="border-bottom-width:0.04em;"></span></span><span
+                                                    style="top:-3.677em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="mord"><span
+                                                            class="mord">2</span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:0.686em;"><span></span></span></span></span></span><span
+                                    class="mclose nulldelimiter"></span></span><span class="mspace"
+                                style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+                                class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                            class="base"><span class="strut"
+                                style="height:2.20188em;vertical-align:-0.8804400000000001em;"></span><span
+                                class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                        class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                style="height:1.32144em;"><span style="top:-2.314em;"><span
+                                                        class="pstrut" style="height:3em;"></span><span
+                                                        class="mord"><span class="mord text"><span
+                                                                class="mord">WorldSpaceUnitPerMeter</span></span></span></span><span
+                                                    style="top:-3.23em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="frac-line"
+                                                        style="border-bottom-width:0.04em;"></span></span><span
+                                                    style="top:-3.677em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="mord"><span
+                                                            class="mord">1000</span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:0.8804400000000001em;"><span></span></span></span></span></span><span
+                                    class="mclose nulldelimiter"></span></span></span></span></span></eq>. The default
+            of the <strong>translucency</strong> in the demo source code is 0.83, and thus the value of <eq><span
+                    class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle scriptlevel="0" displaystyle="true">
+                                        <mn>8.25</mn>
+                                        <mo>×</mo>
+                                        <mo stretchy="false">(</mo>
+                                        <mn>1</mn>
+                                        <mo>−</mo>
+                                        <mtext>translucency</mtext>
+                                        <mo stretchy="false">)</mo>
+                                        <mo>×</mo>
+                                        <mfrac>
+                                            <mn>2</mn>
+                                            <mn>3</mn>
+                                        </mfrac>
+                                    </mstyle>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\displaystyle 8.25 \times (1 -
+                                    \text{translucency}) \times \frac{2}{3}</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:0.72777em;vertical-align:-0.08333em;"></span><span
+                                class="mord">8.25</span><span class="mspace"
+                                style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+                                class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                            class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                class="mopen">(</span><span class="mord">1</span><span class="mspace"
+                                style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span
+                                class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                            class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                class="mord text"><span class="mord">translucency</span></span><span
+                                class="mclose">)</span><span class="mspace"
+                                style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+                                class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                            class="base"><span class="strut"
+                                style="height:2.00744em;vertical-align:-0.686em;"></span><span class="mord"><span
+                                    class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                        class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                style="height:1.32144em;"><span style="top:-2.314em;"><span
+                                                        class="pstrut" style="height:3em;"></span><span
+                                                        class="mord"><span class="mord">3</span></span></span><span
+                                                    style="top:-3.23em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="frac-line"
+                                                        style="border-bottom-width:0.04em;"></span></span><span
+                                                    style="top:-3.677em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="mord"><span
+                                                            class="mord">2</span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:0.686em;"><span></span></span></span></span></span><span
+                                    class="mclose nulldelimiter"></span></span></span></span></span></eq> is 0.935 which
+            is really close to 1. This implies that <strong>scale</strong> is actually calcuated as <eq><span
+                    class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle scriptlevel="0" displaystyle="true">
+                                        <mfrac>
+                                            <mn>1000</mn>
+                                            <mtext>WorldSpaceUnitPerMeter</mtext>
+                                        </mfrac>
+                                    </mstyle>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\displaystyle
+                                    \frac{1000}{\text{WorldSpaceUnitPerMeter}}</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:2.20188em;vertical-align:-0.8804400000000001em;"></span><span
+                                class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                        class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                style="height:1.32144em;"><span style="top:-2.314em;"><span
+                                                        class="pstrut" style="height:3em;"></span><span
+                                                        class="mord"><span class="mord text"><span
+                                                                class="mord">WorldSpaceUnitPerMeter</span></span></span></span><span
+                                                    style="top:-3.23em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="frac-line"
+                                                        style="border-bottom-width:0.04em;"></span></span><span
+                                                    style="top:-3.677em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="mord"><span
+                                                            class="mord">1000</span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:0.8804400000000001em;"><span></span></span></span></span></span><span
+                                    class="mclose nulldelimiter"></span></span></span></span></span></eq> which is
+            exactly the transformation from world space unit to mm.</li>
+    </ol>
     <h2 id="references">References</h2>
     <p>[Green 2004] <a
             href="https://developer.nvidia.com/gpugems/gpugems/part-iii-materials/chapter-16-real-time-approximations-subsurface-scattering">Simon
@@ -4623,7 +5455,9 @@
             3.</a><br>
         [Jimenez 2009] <a href="https://www.iryoku.com/sssss/">Jorge Jimenez, Veronica Sundstedt, Diego Gutierrez.
             &quot;Screen-Space Perceptual Rendering of Human Skin.&quot; ACM TAP 2009.</a><br>
-        [Jimenez 2010] Jorge Jimenez, Diego Gutierrez. &quot;Screen-Space Subsurface Scattering.&quot; GPU Pro 1.<br>
+        [Jimenez 2009] Jorge Jimenez, Diego Gutierrez. &quot;Screen-Space Subsurface Scattering.&quot; GPU Pro 1.<br>
+        [Jimenez 2010] <a href="http://www.iryoku.com/translucency/">Jorge Jimenez, David Whelan, Veronica Sundstedt,
+            Diego Gutierrez. &quot;Real-Time Realistic Skin Translucency.&quot; IEEE 2010.</a><br>
         [Mikkelsen 2010] <a href="https://mmikk.github.io/papers3d/cbf_skin.pdf">Morten Mikkelsen. &quot;Skin Rendering
             by Pseudo–Separable Cross Bilateral Filtering.&quot; Naughty Dog.</a><br>
         [Penner 2011] Eric Penner, George Borshukov. &quot;Pre-Integrated Skin Shading.&quot; GPU Pro 2.<br>
