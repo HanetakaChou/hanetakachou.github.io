@@ -71,7 +71,7 @@ The main idea of \[Jimenez 2010\] is that the approach proposed by \[Green 2004\
 
 The **transmittance coefficient** is calculated by the **SSSSTransmittance** in the demo source code provided by \[Jimenez 2015\]. And there are some points to note.  
 1. Actually, the mere purpose of the **scale** in the shader code is to transform the thickness from world space unit to mm. The shader code of the demo source code demonstrates that the **scale** is calculated as $\displaystyle 8.25 \times (1 - \text{translucency}) \times \frac{1}{\text{sssWidth}}$. According to the **1-3\. Separable SSS** of this page, the $\displaystyle \frac{1}{\text{sssWidth}}$ can be substituted as $\displaystyle \frac{1000 \times 2}{3 \times \text{WorldSpaceUnitPerMeter}}$, and thus the **scale** is actually calculated as $\displaystyle 8.25 \times (1 - \text{translucency}) \times \frac{2}{3} \times \frac{1000}{\text{WorldSpaceUnitPerMeter}}$. The default of the **translucency** in the demo source code is 0.83, and thus the value of $\displaystyle 8.25 \times (1 - \text{translucency}) \times \frac{2}{3}$ is 0.935 which is really close to 1. This implies that the **scale** is actually calculated as $\displaystyle \frac{1000}{\text{WorldSpaceUnitPerMeter}}$ which is exactly the transformation from world space unit to mm.  
-2. The demo uses **0.005** to shrink the object in the normal direction to avoid artifacts. Evidently, this value should be changed according to the **WorldSpaceUnitPerMeter**. 
+2. The demo uses **0.005** to shrink the object in the normal direction to avoid artifacts. Evidently, this value is proportional to the **WorldSpaceUnitPerMeter**. 
 
 
 ## 3\. Specular Term  
