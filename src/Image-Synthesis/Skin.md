@@ -1,8 +1,8 @@
-N/A | [NVIDIA FaceWorks](https://github.com/NVIDIAGameWorks/FaceWorks/blob/master/doc/slides/FaceWorks-Overview-GTC14.pdf) | UE4 | [Jimenez 2015]((http://www.iryoku.com/separable-sss/)) | Unity3D  
+N/A | [NVIDIA FaceWorks](https://github.com/NVIDIAGameWorks/FaceWorks/blob/master/doc/slides/FaceWorks-Overview-GTC14.pdf) | [Demo Source Code of Jimenez 2015]((http://www.iryoku.com/separable-sss/)) | UE4 | Unity3D  
 :-: | :-: | :-: | :-: | :-: 
-Diffuse Reflectance Term | Pre-Integrated | [Separable SSS](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Shaders/Private/SeparableSSS.ush) | [Separable SSS](https://graphics.unizar.es/publications.html#year_2012) | [Disney SSS](https://github.com/Unity-Technologies/Graphics/blob/master/com.unity.render-pipelines.high-definition/Runtime/Material/SubsurfaceScattering/SubsurfaceScattering.hlsl)  
-Diffuse Transmittance Term | Deep Scatter | TODO | [Realistic Skin Translucency](http://www.iryoku.com/translucency/) | TODO
-Specular Term | Two Lobes | TODO | KSK | TODO  
+Diffuse Reflectance Term | Pre-Integrated | [Separable SSS](https://graphics.unizar.es/publications.html#year_2012) | [Separable SSS](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Shaders/Private/SeparableSSS.ush)| [Disney SSS](https://github.com/Unity-Technologies/Graphics/blob/master/com.unity.render-pipelines.high-definition/Runtime/Material/SubsurfaceScattering/SubsurfaceScattering.hlsl)  
+Diffuse Transmittance Term | Deep Scatter | [Realistic Skin Translucency](http://www.iryoku.com/translucency/) | TODO  | TODO
+Specular Term | Two Lobes | KSK | GGX | TODO  
 
 ## 1\. Diffuse Reflectance Term
 
@@ -84,6 +84,9 @@ The D is Beckmann $\displaystyle \text{D} = \frac{e^{(- \frac{1}{{\text{roughnes
 The F is Schlick $\displaystyle \text{F} = \text{specularcolor} + (1 - \text{specularcolor}) \, {(1 - \text{VoH})}^5$.  
 The V is KSK (Kelemen-Szirmay-Kalos \[Kelemen 2001\]) $\displaystyle \text{V} = \frac{1}{\operatorname{dot}(\text{V} + \text{L}, \text{V} + \text{L})}$. Note that $\displaystyle \text{H} \ne \text{V} + \text{L}$ since $\displaystyle \text{H} = \operatorname{normalize}(\text{V} + \text{L})$.  
   
+### 3-3\. GGX    
+TODO  
+
 ## References
 \[Kelemen 2001\] [Csaba Kelemen, László Szirmay-Kalos. "A Microfacet Based Coupled Specular-Matte BRDF Model with Importance Sampling." EGSR 2001.](http://cg.iit.bme.hu/~szirmay/scook_link.htm)  
 \[Green 2004\] [Simon Green. "Chapter 16. Real-Time Approximations to Subsurface Scattering." GPU Gems 1.](https://developer.nvidia.com/gpugems/gpugems/part-iii-materials/chapter-16-real-time-approximations-subsurface-scattering)  
