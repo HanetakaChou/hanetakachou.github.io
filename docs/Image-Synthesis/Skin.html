@@ -4497,11 +4497,12 @@
                                         <mtext>TextureSpace</mtext>
                                         <mo>=</mo>
                                         <mfrac>
-                                            <mrow>
-                                                <mn>0.001</mn>
-                                                <mo>×</mo>
-                                                <mtext>WorldSpaceUnitPerMeter</mtext>
-                                            </mrow>
+                                            <mn>1</mn>
+                                            <mn>2</mn>
+                                        </mfrac>
+                                        <mo>×</mo>
+                                        <mfrac>
+                                            <mn>1</mn>
                                             <mrow>
                                                 <mi>tan</mi>
                                                 <mo>⁡</mo>
@@ -4510,17 +4511,30 @@
                                                 <mo>×</mo>
                                                 <mn>0.5</mn>
                                                 <mo stretchy="false">)</mo>
-                                                <mo>×</mo>
-                                                <mn>2</mn>
                                             </mrow>
                                         </mfrac>
                                         <mo>×</mo>
-                                        <mtext>WorldSpaceInMM</mtext>
+                                        <mfrac>
+                                            <mn>1</mn>
+                                            <mtext>ViewPositionZInWorldSpaceUnit</mtext>
+                                        </mfrac>
+                                        <mo>×</mo>
+                                        <mfrac>
+                                            <mn>1</mn>
+                                            <mrow>
+                                                <mn>1000</mn>
+                                                <mo>×</mo>
+                                                <mtext>MetersPerWorldSpaceUnit</mtext>
+                                            </mrow>
+                                        </mfrac>
+                                        <mo>×</mo>
+                                        <mtext>WorldSpaceDeltaXInMM</mtext>
                                     </mstyle>
                                 </mrow>
-                                <annotation encoding="application/x-tex">\displaystyle \text{TextureSpace} = \frac{0.001
-                                    \times \text{WorldSpaceUnitPerMeter}}{\tan(\text{FOVY} \times 0.5) \times 2} \times
-                                    \text{WorldSpaceInMM}</annotation>
+                                <annotation encoding="application/x-tex">\displaystyle \text{TextureSpace} = \frac{1}{2}
+                                    \times\frac{1}{\tan(\text{FOVY} \times 0.5)} \times
+                                    \frac{1}{\text{ViewPositionZInWorldSpaceUnit}} \times \frac{1}{1000 \times
+                                    \text{MetersPerWorldSpaceUnit}} \times \text{WorldSpaceDeltaXInMM}</annotation>
                             </semantics>
                         </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
                                 style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span
@@ -4528,10 +4542,28 @@
                                 style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
                                 class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
                             class="base"><span class="strut"
-                                style="height:2.3074399999999997em;vertical-align:-0.936em;"></span><span
-                                class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                style="height:2.00744em;vertical-align:-0.686em;"></span><span class="mord"><span
+                                    class="mopen nulldelimiter"></span><span class="mfrac"><span
                                         class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                                style="height:1.3714399999999998em;"><span style="top:-2.314em;"><span
+                                                style="height:1.32144em;"><span style="top:-2.314em;"><span
+                                                        class="pstrut" style="height:3em;"></span><span
+                                                        class="mord"><span class="mord">2</span></span></span><span
+                                                    style="top:-3.23em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="frac-line"
+                                                        style="border-bottom-width:0.04em;"></span></span><span
+                                                    style="top:-3.677em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="mord"><span
+                                                            class="mord">1</span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:0.686em;"><span></span></span></span></span></span><span
+                                    class="mclose nulldelimiter"></span></span><span class="mspace"
+                                style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+                                class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                            class="base"><span class="strut"
+                                style="height:2.25744em;vertical-align:-0.936em;"></span><span class="mord"><span
+                                    class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                        class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                style="height:1.32144em;"><span style="top:-2.314em;"><span
                                                         class="pstrut" style="height:3em;"></span><span
                                                         class="mord"><span class="mop">tan</span><span
                                                             class="mopen">(</span><span class="mord text"><span
@@ -4539,33 +4571,67 @@
                                                             style="margin-right:0.2222222222222222em;"></span><span
                                                             class="mbin">×</span><span class="mspace"
                                                             style="margin-right:0.2222222222222222em;"></span><span
-                                                            class="mord">0.5</span><span class="mclose">)</span><span
-                                                            class="mspace"
-                                                            style="margin-right:0.2222222222222222em;"></span><span
-                                                            class="mbin">×</span><span class="mspace"
-                                                            style="margin-right:0.2222222222222222em;"></span><span
-                                                            class="mord">2</span></span></span><span
+                                                            class="mord">0.5</span><span
+                                                            class="mclose">)</span></span></span><span
                                                     style="top:-3.23em;"><span class="pstrut"
                                                         style="height:3em;"></span><span class="frac-line"
                                                         style="border-bottom-width:0.04em;"></span></span><span
                                                     style="top:-3.677em;"><span class="pstrut"
                                                         style="height:3em;"></span><span class="mord"><span
-                                                            class="mord">0.001</span><span class="mspace"
-                                                            style="margin-right:0.2222222222222222em;"></span><span
-                                                            class="mbin">×</span><span class="mspace"
-                                                            style="margin-right:0.2222222222222222em;"></span><span
-                                                            class="mord text"><span
-                                                                class="mord">WorldSpaceUnitPerMeter</span></span></span></span></span><span
+                                                            class="mord">1</span></span></span></span><span
                                                 class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                                 style="height:0.936em;"><span></span></span></span></span></span><span
                                     class="mclose nulldelimiter"></span></span><span class="mspace"
                                 style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
                                 class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
                             class="base"><span class="strut"
+                                style="height:2.20188em;vertical-align:-0.8804400000000001em;"></span><span
+                                class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                        class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                style="height:1.32144em;"><span style="top:-2.314em;"><span
+                                                        class="pstrut" style="height:3em;"></span><span
+                                                        class="mord"><span class="mord text"><span
+                                                                class="mord">ViewPositionZInWorldSpaceUnit</span></span></span></span><span
+                                                    style="top:-3.23em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="frac-line"
+                                                        style="border-bottom-width:0.04em;"></span></span><span
+                                                    style="top:-3.677em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="mord"><span
+                                                            class="mord">1</span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:0.8804400000000001em;"><span></span></span></span></span></span><span
+                                    class="mclose nulldelimiter"></span></span><span class="mspace"
+                                style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+                                class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                            class="base"><span class="strut"
+                                style="height:2.20188em;vertical-align:-0.8804400000000001em;"></span><span
+                                class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                        class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                style="height:1.32144em;"><span style="top:-2.314em;"><span
+                                                        class="pstrut" style="height:3em;"></span><span
+                                                        class="mord"><span class="mord">1000</span><span class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mbin">×</span><span class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mord text"><span
+                                                                class="mord">MetersPerWorldSpaceUnit</span></span></span></span><span
+                                                    style="top:-3.23em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="frac-line"
+                                                        style="border-bottom-width:0.04em;"></span></span><span
+                                                    style="top:-3.677em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="mord"><span
+                                                            class="mord">1</span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:0.8804400000000001em;"><span></span></span></span></span></span><span
+                                    class="mclose nulldelimiter"></span></span><span class="mspace"
+                                style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+                                class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                            class="base"><span class="strut"
                                 style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span
-                                class="mord text"><span class="mord">WorldSpaceInMM</span></span></span></span></span>
-            </eq> where the 0.001 is to transform from mm to m, the <eq><span class="katex"><span
-                        class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                                class="mord text"><span
+                                    class="mord">WorldSpaceDeltaXInMM</span></span></span></span></span></eq> where the
+            0.001 is to transform from mm to m, the <eq><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
                             <semantics>
                                 <mrow>
                                     <mstyle scriptlevel="0" displaystyle="true">
@@ -4695,7 +4761,7 @@
                                         <mtext>TextureSpace</mtext>
                                         <mo>=</mo>
                                         <mfrac>
-                                            <mtext>sssWidth</mtext>
+                                            <mn>1</mn>
                                             <mrow>
                                                 <mi>tan</mi>
                                                 <mo>⁡</mo>
@@ -4704,17 +4770,26 @@
                                                 <mo>×</mo>
                                                 <mn>0.5</mn>
                                                 <mo stretchy="false">)</mo>
-                                                <mo>×</mo>
-                                                <mn>3</mn>
                                             </mrow>
                                         </mfrac>
                                         <mo>×</mo>
-                                        <mtext>WorldSpaceInMM</mtext>
+                                        <mfrac>
+                                            <mn>1</mn>
+                                            <mtext>ViewPositionZInWorldSpaceUnit</mtext>
+                                        </mfrac>
+                                        <mo>×</mo>
+                                        <mfrac>
+                                            <mtext>sssWidth</mtext>
+                                            <mn>3</mn>
+                                        </mfrac>
+                                        <mo>×</mo>
+                                        <mtext>WorldSpaceDeltaXInMM</mtext>
                                     </mstyle>
                                 </mrow>
                                 <annotation encoding="application/x-tex">\displaystyle \text{TextureSpace} =
-                                    \frac{\text{sssWidth}}{\tan(\text{FOVY} \times 0.5) \times 3} \times
-                                    \text{WorldSpaceInMM}</annotation>
+                                    \frac{1}{\tan(\text{FOVY} \times 0.5)} \times
+                                    \frac{1}{\text{ViewPositionZInWorldSpaceUnit}} \times\frac{\text{sssWidth}}{3}
+                                    \times \text{WorldSpaceDeltaXInMM}</annotation>
                             </semantics>
                         </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
                                 style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span
@@ -4722,10 +4797,10 @@
                                 style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
                                 class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
                             class="base"><span class="strut"
-                                style="height:2.30744em;vertical-align:-0.936em;"></span><span class="mord"><span
+                                style="height:2.25744em;vertical-align:-0.936em;"></span><span class="mord"><span
                                     class="mopen nulldelimiter"></span><span class="mfrac"><span
                                         class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                                style="height:1.37144em;"><span style="top:-2.314em;"><span
+                                                style="height:1.32144em;"><span style="top:-2.314em;"><span
                                                         class="pstrut" style="height:3em;"></span><span
                                                         class="mord"><span class="mop">tan</span><span
                                                             class="mopen">(</span><span class="mord text"><span
@@ -4733,57 +4808,41 @@
                                                             style="margin-right:0.2222222222222222em;"></span><span
                                                             class="mbin">×</span><span class="mspace"
                                                             style="margin-right:0.2222222222222222em;"></span><span
-                                                            class="mord">0.5</span><span class="mclose">)</span><span
-                                                            class="mspace"
-                                                            style="margin-right:0.2222222222222222em;"></span><span
-                                                            class="mbin">×</span><span class="mspace"
-                                                            style="margin-right:0.2222222222222222em;"></span><span
-                                                            class="mord">3</span></span></span><span
+                                                            class="mord">0.5</span><span
+                                                            class="mclose">)</span></span></span><span
                                                     style="top:-3.23em;"><span class="pstrut"
                                                         style="height:3em;"></span><span class="frac-line"
                                                         style="border-bottom-width:0.04em;"></span></span><span
                                                     style="top:-3.677em;"><span class="pstrut"
                                                         style="height:3em;"></span><span class="mord"><span
-                                                            class="mord text"><span
-                                                                class="mord">sssWidth</span></span></span></span></span><span
+                                                            class="mord">1</span></span></span></span><span
                                                 class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                                 style="height:0.936em;"><span></span></span></span></span></span><span
                                     class="mclose nulldelimiter"></span></span><span class="mspace"
                                 style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
                                 class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
                             class="base"><span class="strut"
-                                style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span
-                                class="mord text"><span class="mord">WorldSpaceInMM</span></span></span></span></span>
-            </eq>, by comparing these two formulas, a hypothesis can be proposed that <eq><span class="katex"><span
-                        class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
-                            <semantics>
-                                <mrow>
-                                    <mstyle scriptlevel="0" displaystyle="true">
-                                        <mtext>WorldSpaceUnitPerMeter</mtext>
-                                        <mo>=</mo>
-                                        <mfrac>
-                                            <mrow>
-                                                <mn>1000</mn>
-                                                <mo>×</mo>
-                                                <mn>2</mn>
-                                                <mo>×</mo>
-                                                <mtext>sssWidth</mtext>
-                                            </mrow>
-                                            <mn>3</mn>
-                                        </mfrac>
-                                    </mstyle>
-                                </mrow>
-                                <annotation encoding="application/x-tex">\displaystyle \text{WorldSpaceUnitPerMeter} =
-                                    \frac{1000 \times 2 \times \text{sssWidth}}{3}</annotation>
-                            </semantics>
-                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
-                                style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span
-                                class="mord text"><span class="mord">WorldSpaceUnitPerMeter</span></span><span
-                                class="mspace" style="margin-right:0.2777777777777778em;"></span><span
-                                class="mrel">=</span><span class="mspace"
-                                style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-                                class="strut" style="height:2.05744em;vertical-align:-0.686em;"></span><span
+                                style="height:2.20188em;vertical-align:-0.8804400000000001em;"></span><span
                                 class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                        class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                style="height:1.32144em;"><span style="top:-2.314em;"><span
+                                                        class="pstrut" style="height:3em;"></span><span
+                                                        class="mord"><span class="mord text"><span
+                                                                class="mord">ViewPositionZInWorldSpaceUnit</span></span></span></span><span
+                                                    style="top:-3.23em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="frac-line"
+                                                        style="border-bottom-width:0.04em;"></span></span><span
+                                                    style="top:-3.677em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="mord"><span
+                                                            class="mord">1</span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:0.8804400000000001em;"><span></span></span></span></span></span><span
+                                    class="mclose nulldelimiter"></span></span><span class="mspace"
+                                style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+                                class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                            class="base"><span class="strut"
+                                style="height:2.05744em;vertical-align:-0.686em;"></span><span class="mord"><span
+                                    class="mopen nulldelimiter"></span><span class="mfrac"><span
                                         class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
                                                 style="height:1.37144em;"><span style="top:-2.314em;"><span
                                                         class="pstrut" style="height:3em;"></span><span
@@ -4793,7 +4852,52 @@
                                                         style="border-bottom-width:0.04em;"></span></span><span
                                                     style="top:-3.677em;"><span class="pstrut"
                                                         style="height:3em;"></span><span class="mord"><span
-                                                            class="mord">1000</span><span class="mspace"
+                                                            class="mord text"><span
+                                                                class="mord">sssWidth</span></span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:0.686em;"><span></span></span></span></span></span><span
+                                    class="mclose nulldelimiter"></span></span><span class="mspace"
+                                style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+                                class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                            class="base"><span class="strut"
+                                style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span
+                                class="mord text"><span
+                                    class="mord">WorldSpaceDeltaXInMM</span></span></span></span></span></eq>, by
+            comparing these two formulas, a hypothesis can be proposed that <eq><span class="katex"><span
+                        class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle scriptlevel="0" displaystyle="true">
+                                        <mtext>MetersPerWorldSpaceUnit</mtext>
+                                        <mo>=</mo>
+                                        <mfrac>
+                                            <mn>3</mn>
+                                            <mrow>
+                                                <mn>1000</mn>
+                                                <mo>×</mo>
+                                                <mn>2</mn>
+                                                <mo>×</mo>
+                                                <mtext>sssWidth</mtext>
+                                            </mrow>
+                                        </mfrac>
+                                    </mstyle>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\displaystyle \text{MetersPerWorldSpaceUnit} =
+                                    \frac{3}{1000 \times 2 \times \text{sssWidth}}</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span
+                                class="mord text"><span class="mord">MetersPerWorldSpaceUnit</span></span><span
+                                class="mspace" style="margin-right:0.2777777777777778em;"></span><span
+                                class="mrel">=</span><span class="mspace"
+                                style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+                                class="strut"
+                                style="height:2.09077em;vertical-align:-0.7693300000000001em;"></span><span
+                                class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                        class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                style="height:1.32144em;"><span style="top:-2.314em;"><span
+                                                        class="pstrut" style="height:3em;"></span><span
+                                                        class="mord"><span class="mord">1000</span><span class="mspace"
                                                             style="margin-right:0.2222222222222222em;"></span><span
                                                             class="mbin">×</span><span class="mspace"
                                                             style="margin-right:0.2222222222222222em;"></span><span
@@ -4802,13 +4906,48 @@
                                                             class="mbin">×</span><span class="mspace"
                                                             style="margin-right:0.2222222222222222em;"></span><span
                                                             class="mord text"><span
-                                                                class="mord">sssWidth</span></span></span></span></span><span
+                                                                class="mord">sssWidth</span></span></span></span><span
+                                                    style="top:-3.23em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="frac-line"
+                                                        style="border-bottom-width:0.04em;"></span></span><span
+                                                    style="top:-3.677em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="mord"><span
+                                                            class="mord">3</span></span></span></span><span
                                                 class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                                style="height:0.686em;"><span></span></span></span></span></span><span
+                                                style="height:0.7693300000000001em;"><span></span></span></span></span></span><span
                                     class="mclose nulldelimiter"></span></span></span></span></span></eq>. The default
             of the <strong>sssWidth</strong> in the demo source code is 0.012, and thus the hypothesis implies that the
-            <strong>WorldSpaceUnitPerMeter</strong> of the demo is 8. Actually, I check the vertex data of the head mesh
-            in the demo, and fortunately, I find the vertex data is consistent with this result.</li>
+            <strong>MetersPerWorldSpaceUnit</strong> of the demo is <eq><span class="katex"><span
+                        class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle scriptlevel="0" displaystyle="true">
+                                        <mfrac>
+                                            <mn>1</mn>
+                                            <mn>8</mn>
+                                        </mfrac>
+                                    </mstyle>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\displaystyle \frac{1}{8}</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:2.00744em;vertical-align:-0.686em;"></span><span class="mord"><span
+                                    class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                        class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                style="height:1.32144em;"><span style="top:-2.314em;"><span
+                                                        class="pstrut" style="height:3em;"></span><span
+                                                        class="mord"><span class="mord">8</span></span></span><span
+                                                    style="top:-3.23em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="frac-line"
+                                                        style="border-bottom-width:0.04em;"></span></span><span
+                                                    style="top:-3.677em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="mord"><span
+                                                            class="mord">1</span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:0.686em;"><span></span></span></span></span></span><span
+                                    class="mclose nulldelimiter"></span></span></span></span></span></eq>. Actually, I
+            check the vertex data of the head mesh in the demo, and fortunately, I find the vertex data is consistent
+            with this result.</li>
         <li>The <strong>SSSS_STREGTH_SOURCE</strong> in the shader code has nothing to do with the
             <strong>strength</strong> in the paper at all. In the demo source code, the
             <strong>SSSS_STREGTH_SOURCE</strong> is the alpha channel of the albedo texture, and is used to skip the
@@ -5152,7 +5291,37 @@ M1001 80h400000v40h-400000z' />
         demo source code provided by [Jimenez 2015]. And there are some points to note.</p>
     <ol>
         <li>The demo uses <strong>0.005</strong> to shrink the object in the normal direction to avoid artifacts.
-            Evidently, this value is proportional to the <strong>WorldSpaceUnitPerMeter</strong>.</li>
+            Evidently, this value is proportional to the <eq><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle scriptlevel="0" displaystyle="true">
+                                        <mfrac>
+                                            <mn>1</mn>
+                                            <mtext>MetersPerWorldSpaceUnit</mtext>
+                                        </mfrac>
+                                    </mstyle>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\displaystyle
+                                    \frac{1}{\text{MetersPerWorldSpaceUnit}}</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:2.20188em;vertical-align:-0.8804400000000001em;"></span><span
+                                class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                        class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                style="height:1.32144em;"><span style="top:-2.314em;"><span
+                                                        class="pstrut" style="height:3em;"></span><span
+                                                        class="mord"><span class="mord text"><span
+                                                                class="mord">MetersPerWorldSpaceUnit</span></span></span></span><span
+                                                    style="top:-3.23em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="frac-line"
+                                                        style="border-bottom-width:0.04em;"></span></span><span
+                                                    style="top:-3.677em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="mord"><span
+                                                            class="mord">1</span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:0.8804400000000001em;"><span></span></span></span></span></span><span
+                                    class="mclose nulldelimiter"></span></span></span></span></span></eq>.</li>
         <li>Actually, the mere purpose of the <strong>scale</strong> in the shader code is to transform the thickness
             from world space unit to mm. The shader code of the demo source code demonstrates that the
             <strong>scale</strong> is calculated as <eq><span class="katex"><span class="katex-mathml"><math
@@ -5249,30 +5418,23 @@ M1001 80h400000v40h-400000z' />
                                                 <mn>1000</mn>
                                                 <mo>×</mo>
                                                 <mn>2</mn>
-                                            </mrow>
-                                            <mrow>
-                                                <mn>3</mn>
                                                 <mo>×</mo>
-                                                <mtext>WorldSpaceUnitPerMeter</mtext>
+                                                <mtext>MetersPerWorldSpaceUnit</mtext>
                                             </mrow>
+                                            <mn>3</mn>
                                         </mfrac>
                                     </mstyle>
                                 </mrow>
-                                <annotation encoding="application/x-tex">\displaystyle \frac{1000 \times 2}{3 \times
-                                    \text{WorldSpaceUnitPerMeter}}</annotation>
+                                <annotation encoding="application/x-tex">\displaystyle \frac{1000 \times 2 \times
+                                    \text{MetersPerWorldSpaceUnit}}{3}</annotation>
                             </semantics>
                         </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
-                                style="height:2.20188em;vertical-align:-0.8804400000000001em;"></span><span
+                                style="height:2.0574399999999997em;vertical-align:-0.686em;"></span><span
                                 class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
                                         class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                                style="height:1.32144em;"><span style="top:-2.314em;"><span
+                                                style="height:1.3714399999999998em;"><span style="top:-2.314em;"><span
                                                         class="pstrut" style="height:3em;"></span><span
-                                                        class="mord"><span class="mord">3</span><span class="mspace"
-                                                            style="margin-right:0.2222222222222222em;"></span><span
-                                                            class="mbin">×</span><span class="mspace"
-                                                            style="margin-right:0.2222222222222222em;"></span><span
-                                                            class="mord text"><span
-                                                                class="mord">WorldSpaceUnitPerMeter</span></span></span></span><span
+                                                        class="mord"><span class="mord">3</span></span></span><span
                                                     style="top:-3.23em;"><span class="pstrut"
                                                         style="height:3em;"></span><span class="frac-line"
                                                         style="border-bottom-width:0.04em;"></span></span><span
@@ -5282,9 +5444,14 @@ M1001 80h400000v40h-400000z' />
                                                             style="margin-right:0.2222222222222222em;"></span><span
                                                             class="mbin">×</span><span class="mspace"
                                                             style="margin-right:0.2222222222222222em;"></span><span
-                                                            class="mord">2</span></span></span></span><span
+                                                            class="mord">2</span><span class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mbin">×</span><span class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mord text"><span
+                                                                class="mord">MetersPerWorldSpaceUnit</span></span></span></span></span><span
                                                 class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                                style="height:0.8804400000000001em;"><span></span></span></span></span></span><span
+                                                style="height:0.686em;"><span></span></span></span></span></span><span
                                     class="mclose nulldelimiter"></span></span></span></span></span></eq>, and thus the
             <strong>scale</strong> is actually calculated as <eq><span class="katex"><span class="katex-mathml"><math
                             xmlns="http://www.w3.org/1998/Math/MathML">
@@ -5304,15 +5471,14 @@ M1001 80h400000v40h-400000z' />
                                             <mn>3</mn>
                                         </mfrac>
                                         <mo>×</mo>
-                                        <mfrac>
-                                            <mn>1000</mn>
-                                            <mtext>WorldSpaceUnitPerMeter</mtext>
-                                        </mfrac>
+                                        <mn>1000</mn>
+                                        <mo>×</mo>
+                                        <mtext>MetersPerWorldSpaceUnit</mtext>
                                     </mstyle>
                                 </mrow>
                                 <annotation encoding="application/x-tex">\displaystyle 8.25 \times (1 -
-                                    \text{translucency}) \times \frac{2}{3} \times
-                                    \frac{1000}{\text{WorldSpaceUnitPerMeter}}</annotation>
+                                    \text{translucency}) \times \frac{2}{3} \times 1000 \times
+                                    \text{MetersPerWorldSpaceUnit}</annotation>
                             </semantics>
                         </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
                                 style="height:0.72777em;vertical-align:-0.08333em;"></span><span
@@ -5347,24 +5513,16 @@ M1001 80h400000v40h-400000z' />
                                 style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
                                 class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
                             class="base"><span class="strut"
-                                style="height:2.20188em;vertical-align:-0.8804400000000001em;"></span><span
-                                class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
-                                        class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                                style="height:1.32144em;"><span style="top:-2.314em;"><span
-                                                        class="pstrut" style="height:3em;"></span><span
-                                                        class="mord"><span class="mord text"><span
-                                                                class="mord">WorldSpaceUnitPerMeter</span></span></span></span><span
-                                                    style="top:-3.23em;"><span class="pstrut"
-                                                        style="height:3em;"></span><span class="frac-line"
-                                                        style="border-bottom-width:0.04em;"></span></span><span
-                                                    style="top:-3.677em;"><span class="pstrut"
-                                                        style="height:3em;"></span><span class="mord"><span
-                                                            class="mord">1000</span></span></span></span><span
-                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                                style="height:0.8804400000000001em;"><span></span></span></span></span></span><span
-                                    class="mclose nulldelimiter"></span></span></span></span></span></eq>. The default
-            of the <strong>translucency</strong> in the demo source code is 0.83, and thus the value of <eq><span
-                    class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                                style="height:0.72777em;vertical-align:-0.08333em;"></span><span
+                                class="mord">1000</span><span class="mspace"
+                                style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+                                class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                            class="base"><span class="strut"
+                                style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span
+                                class="mord text"><span
+                                    class="mord">MetersPerWorldSpaceUnit</span></span></span></span></span></eq>. The
+            default of the <strong>translucency</strong> in the demo source code is 0.83, and thus the value of <eq>
+                <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                             <semantics>
                                 <mrow>
                                     <mstyle scriptlevel="0" displaystyle="true">
@@ -5420,33 +5578,24 @@ M1001 80h400000v40h-400000z' />
                             <semantics>
                                 <mrow>
                                     <mstyle scriptlevel="0" displaystyle="true">
-                                        <mfrac>
-                                            <mn>1000</mn>
-                                            <mtext>WorldSpaceUnitPerMeter</mtext>
-                                        </mfrac>
+                                        <mn>1000</mn>
+                                        <mo>×</mo>
+                                        <mtext>MetersPerWorldSpaceUnit</mtext>
                                     </mstyle>
                                 </mrow>
-                                <annotation encoding="application/x-tex">\displaystyle
-                                    \frac{1000}{\text{WorldSpaceUnitPerMeter}}</annotation>
+                                <annotation encoding="application/x-tex">\displaystyle 1000 \times
+                                    \text{MetersPerWorldSpaceUnit}</annotation>
                             </semantics>
                         </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
-                                style="height:2.20188em;vertical-align:-0.8804400000000001em;"></span><span
-                                class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
-                                        class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                                style="height:1.32144em;"><span style="top:-2.314em;"><span
-                                                        class="pstrut" style="height:3em;"></span><span
-                                                        class="mord"><span class="mord text"><span
-                                                                class="mord">WorldSpaceUnitPerMeter</span></span></span></span><span
-                                                    style="top:-3.23em;"><span class="pstrut"
-                                                        style="height:3em;"></span><span class="frac-line"
-                                                        style="border-bottom-width:0.04em;"></span></span><span
-                                                    style="top:-3.677em;"><span class="pstrut"
-                                                        style="height:3em;"></span><span class="mord"><span
-                                                            class="mord">1000</span></span></span></span><span
-                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                                style="height:0.8804400000000001em;"><span></span></span></span></span></span><span
-                                    class="mclose nulldelimiter"></span></span></span></span></span></eq> which is
-            exactly the transformation from world space unit to mm.</li>
+                                style="height:0.72777em;vertical-align:-0.08333em;"></span><span
+                                class="mord">1000</span><span class="mspace"
+                                style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+                                class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                            class="base"><span class="strut"
+                                style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span
+                                class="mord text"><span
+                                    class="mord">MetersPerWorldSpaceUnit</span></span></span></span></span></eq> which
+            is exactly the transformation from world space unit to mm.</li>
     </ol>
     <h2 id="3-specular-term">3. Specular Term</h2>
     <h3 id="3-1-two-lobes">3-1. Two Lobes</h3>
