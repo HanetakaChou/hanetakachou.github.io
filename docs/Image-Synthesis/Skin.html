@@ -30,26 +30,36 @@
                 <td style="text-align:center"><a href="https://graphics.unizar.es/publications.html#year_2012">Separable
                         SSS</a></td>
                 <td style="text-align:center"><a
-                        href="https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Shaders/Private/SeparableSSS.ush">Separable
+                        href="https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Shaders/Private/ShadingModels.ush">Disney
+                        Diffuse</a> + <a
+                        href="https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Runtime/Engine/Private/Rendering/SeparableSSS.cpp">Separable
+                        SSS</a> + <a
+                        href="https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Runtime/Engine/Private/Rendering/BurleyNormalizedSSS.cpp">Disney
                         SSS</a></td>
                 <td style="text-align:center"><a
-                        href="https://github.com/Unity-Technologies/Graphics/blob/master/com.unity.render-pipelines.high-definition/Runtime/Material/SubsurfaceScattering/SubsurfaceScattering.hlsl">Disney
+                        href="https://github.com/Unity-Technologies/Graphics/blob/master/com.unity.render-pipelines.high-definition/Runtime/Material/Lit/Lit.hlsl">Disney
+                        Diffuse</a> + <a
+                        href="https://github.com/Unity-Technologies/Graphics/blob/master/com.unity.render-pipelines.high-definition/Runtime/Material/DiffusionProfile/DiffusionProfile.hlsl">Disney
                         SSS</a></td>
             </tr>
             <tr>
                 <td style="text-align:center">Diffuse Transmittance Term</td>
                 <td style="text-align:center">Deep Scatter</td>
-                <td style="text-align:center"><a href="http://www.iryoku.com/translucency/">Realistic Skin
+                <td style="text-align:center"><a href="http://www.iryoku.com/translucency/">Analytically-Integrated
                         Translucency</a></td>
-                <td style="text-align:center">TODO</td>
-                <td style="text-align:center">TODO</td>
+                <td style="text-align:center"><a
+                        href="https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Shaders/Private/ShadingModels.ush">HG
+                        Phase function</a></td>
+                <td style="text-align:center"><a
+                        href="https://github.com/Unity-Technologies/Graphics/blob/master/com.unity.render-pipelines.high-definition/Runtime/Material/DiffusionProfile/DiffusionProfile.hlsl">Disney
+                        SSS</a></td>
             </tr>
             <tr>
                 <td style="text-align:center">Specular Term</td>
-                <td style="text-align:center">Two Lobes</td>
+                <td style="text-align:center">Two-lobe Blinn-Phong</td>
                 <td style="text-align:center">KSK</td>
+                <td style="text-align:center">Dual GGX</td>
                 <td style="text-align:center">GGX</td>
-                <td style="text-align:center">TODO</td>
             </tr>
         </tbody>
     </table>
@@ -3748,7 +3758,7 @@
                                         <mrow>
                                             <mi mathvariant="normal">Δ</mi>
                                             <mi>x</mi>
-                                            <mo>∗</mo>
+                                            <mo>⋅</mo>
                                             <mtext>width</mtext>
                                         </mrow>
                                         <mrow>
@@ -3758,7 +3768,7 @@
                                         </mrow>
                                     </mfrac>
                                     <mo stretchy="false">)</mo>
-                                    <mo>∗</mo>
+                                    <mo>⋅</mo>
                                     <mtext>strength</mtext>
                                     <mo>+</mo>
                                     <mi mathvariant="normal">δ</mi>
@@ -3767,7 +3777,7 @@
                                     <mi mathvariant="normal">Δ</mi>
                                     <mi>x</mi>
                                     <mo stretchy="false">)</mo>
-                                    <mo>∗</mo>
+                                    <mo>⋅</mo>
                                     <mo stretchy="false">(</mo>
                                     <mn>1</mn>
                                     <mo>−</mo>
@@ -3776,8 +3786,9 @@
                                 </mstyle>
                             </mrow>
                             <annotation encoding="application/x-tex">\displaystyle \operatorname{S}(\Delta x) =
-                                \operatorname{R}(\frac{\Delta x*\text{width}}{0.001 + \text{falloff}})*\text{strength} +
-                                \operatorname{\delta}(\Delta x)*(1-\text{strength})</annotation>
+                                \operatorname{R}(\frac{\Delta x \cdot \text{width}}{0.001 + \text{falloff}}) \cdot
+                                \text{strength} + \operatorname{\delta}(\Delta x) \cdot (1 - \text{strength})
+                            </annotation>
                         </semantics>
                     </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
                             style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span
@@ -3807,7 +3818,7 @@
                                                         class="mord">Δ</span><span class="mord mathnormal">x</span><span
                                                         class="mspace"
                                                         style="margin-right:0.2222222222222222em;"></span><span
-                                                        class="mbin">∗</span><span class="mspace"
+                                                        class="mbin">⋅</span><span class="mspace"
                                                         style="margin-right:0.2222222222222222em;"></span><span
                                                         class="mord text"><span
                                                             class="mord">width</span></span></span></span></span><span
@@ -3815,7 +3826,7 @@
                                             style="height:0.7693300000000001em;"><span></span></span></span></span></span><span
                                 class="mclose nulldelimiter"></span></span><span class="mclose">)</span><span
                             class="mspace" style="margin-right:0.2222222222222222em;"></span><span
-                            class="mbin">∗</span><span class="mspace"
+                            class="mbin">⋅</span><span class="mspace"
                             style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span
                             class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span
                             class="mord text"><span class="mord">strength</span></span><span class="mspace"
@@ -3825,7 +3836,7 @@
                             class="mop"><span class="mord">δ</span></span><span class="mopen">(</span><span
                             class="mord">Δ</span><span class="mord mathnormal">x</span><span
                             class="mclose">)</span><span class="mspace"
-                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span
                             class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
                         class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
                             class="mopen">(</span><span class="mord">1</span><span class="mspace"
@@ -3915,7 +3926,7 @@
                                             <mrow>
                                                 <mi mathvariant="normal">Δ</mi>
                                                 <mi>x</mi>
-                                                <mo>∗</mo>
+                                                <mo>⋅</mo>
                                                 <mtext>width</mtext>
                                             </mrow>
                                             <mrow>
@@ -3927,8 +3938,8 @@
                                         <mo stretchy="false">)</mo>
                                     </mstyle>
                                 </mrow>
-                                <annotation encoding="application/x-tex">\displaystyle \operatorname{R}(\frac{\Delta
-                                    x*\text{width}}{0.001 + \text{falloff}})</annotation>
+                                <annotation encoding="application/x-tex">\displaystyle \operatorname{R}(\frac{\Delta x
+                                    \cdot \text{width}}{0.001 + \text{falloff}})</annotation>
                             </semantics>
                         </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
                                 style="height:2.14077em;vertical-align:-0.7693300000000001em;"></span><span
@@ -3951,7 +3962,7 @@
                                                             class="mord">Δ</span><span
                                                             class="mord mathnormal">x</span><span class="mspace"
                                                             style="margin-right:0.2222222222222222em;"></span><span
-                                                            class="mbin">∗</span><span class="mspace"
+                                                            class="mbin">⋅</span><span class="mspace"
                                                             style="margin-right:0.2222222222222222em;"></span><span
                                                             class="mord text"><span
                                                                 class="mord">width</span></span></span></span></span><span
@@ -4966,7 +4977,7 @@
     <p>In the FaceWorks, the <strong>thickness</strong> is calculated by
         <strong>GFSDK_FaceWorks_EstimateThicknessFromParallelShadowPoisson32</strong> and the <strong>transmittance
             coefficient</strong> is calculated by <strong>GFSDK_FaceWorks_EvaluateDeepScatterDirectLight</strong>.</p>
-    <h3 id="2-2-realistic-skin-translucency">2-2. Realistic Skin Translucency</h3>
+    <h3 id="2-2-analytically-integrated-translucency">2-2. Analytically-Integrated Translucency</h3>
     <p>The <strong>diffuse transmittance</strong> term of demo source code provided by [Jimenez 2015] is based on
         [Jimenez 2010].</p>
     <p>The main idea of [Jimenez 2010] is that the approach proposed by [Green 2004] is applied to calculate the
@@ -4983,31 +4994,24 @@
                                     <mi>d</mi>
                                     <mo stretchy="false">)</mo>
                                     <mo>=</mo>
-                                    <msub>
+                                    <msubsup>
                                         <mo>∫</mo>
-                                        <msub>
-                                            <mi>S</mi>
-                                            <msub>
-                                                <mi>p</mi>
-                                                <mi>i</mi>
-                                            </msub>
-                                        </msub>
-                                    </msub>
+                                        <mn>0</mn>
+                                        <mi mathvariant="normal">∞</mi>
+                                    </msubsup>
+                                    <mn>2</mn>
+                                    <mo>⋅</mo>
+                                    <mi>π</mi>
+                                    <mo>⋅</mo>
+                                    <mi>r</mi>
+                                    <mo>⋅</mo>
                                     <mi mathvariant="normal">R</mi>
                                     <mo>⁡</mo>
+                                    <mo stretchy="false">(</mo>
                                     <msqrt>
                                         <mrow>
-                                            <mi mathvariant="normal">distance</mi>
-                                            <mo>⁡</mo>
-                                            <mo stretchy="false">(</mo>
-                                            <msub>
-                                                <mi>p</mi>
-                                                <mi>i</mi>
-                                            </msub>
-                                            <mo separator="true">,</mo>
-                                            <mtext>B</mtext>
                                             <msup>
-                                                <mo stretchy="false">)</mo>
+                                                <mi>r</mi>
                                                 <mn>2</mn>
                                             </msup>
                                             <mo>+</mo>
@@ -5017,17 +5021,14 @@
                                             </msup>
                                         </mrow>
                                     </msqrt>
+                                    <mo stretchy="false">)</mo>
                                     <mtext> </mtext>
                                     <mi>d</mi>
-                                    <msub>
-                                        <mi>p</mi>
-                                        <mi>i</mi>
-                                    </msub>
+                                    <mi>r</mi>
                                 </mstyle>
                             </mrow>
-                            <annotation encoding="application/x-tex">\displaystyle \operatorname{T}(d) = \int_{S_{p_i}}
-                                \operatorname{R} \sqrt{\operatorname{distance}(p_i, \text{B})^2 + d^2} \, dp_i
-                            </annotation>
+                            <annotation encoding="application/x-tex">\displaystyle \operatorname{T}(d) = \int_0^\infin 2
+                                \cdot \pi \cdot r \cdot \operatorname{R} (\sqrt{r^2 + d^2}) \, dr</annotation>
                         </semantics>
                     </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
                             style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span
@@ -5036,70 +5037,42 @@
                             style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
                             class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
                         class="base"><span class="strut"
-                            style="height:2.5294100000000004em;vertical-align:-1.16941em;"></span><span
+                            style="height:2.326242em;vertical-align:-0.9119499999999999em;"></span><span
                             class="mop"><span class="mop op-symbol large-op"
                                 style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span
                                 class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                            style="height:-0.4336190000000001em;"><span
+                                            style="height:1.414292em;"><span
                                                 style="top:-1.7880500000000001em;margin-left:-0.44445em;margin-right:0.05em;"><span
                                                     class="pstrut" style="height:2.7em;"></span><span
                                                     class="sizing reset-size6 size3 mtight"><span
-                                                        class="mord mtight"><span class="mord mtight"><span
-                                                                class="mord mathnormal mtight"
-                                                                style="margin-right:0.05764em;">S</span><span
-                                                                class="msupsub"><span class="vlist-t vlist-t2"><span
-                                                                        class="vlist-r"><span class="vlist"
-                                                                            style="height:0.1645428571428572em;"><span
-                                                                                style="top:-2.357em;margin-left:-0.05764em;margin-right:0.07142857142857144em;"><span
-                                                                                    class="pstrut"
-                                                                                    style="height:2.5em;"></span><span
-                                                                                    class="sizing reset-size3 size1 mtight"><span
-                                                                                        class="mord mtight"><span
-                                                                                            class="mord mtight"><span
-                                                                                                class="mord mathnormal mtight">p</span><span
-                                                                                                class="msupsub"><span
-                                                                                                    class="vlist-t vlist-t2"><span
-                                                                                                        class="vlist-r"><span
-                                                                                                            class="vlist"
-                                                                                                            style="height:0.3448em;"><span
-                                                                                                                style="top:-2.3448em;margin-left:0em;margin-right:0.1em;"><span
-                                                                                                                    class="pstrut"
-                                                                                                                    style="height:2.65952em;"></span><span
-                                                                                                                    class="mord mathnormal mtight">i</span></span></span><span
-                                                                                                            class="vlist-s">​</span></span><span
-                                                                                                        class="vlist-r"><span
-                                                                                                            class="vlist"
-                                                                                                            style="height:0.31472em;"><span></span></span></span></span></span></span></span></span></span></span><span
-                                                                            class="vlist-s">​</span></span><span
-                                                                        class="vlist-r"><span class="vlist"
-                                                                            style="height:0.3678em;"><span></span></span></span></span></span></span></span></span></span></span><span
+                                                        class="mord mtight">0</span></span></span><span
+                                                style="top:-3.8129000000000004em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight">∞</span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:1.16941em;"><span></span></span></span></span></span></span><span
-                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop"><span
-                                class="mord mathrm">R</span></span><span class="mspace"
-                            style="margin-right:0.16666666666666666em;"></span><span class="mord sqrt"><span
-                                class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                        style="height:0.983875em;"><span class="svg-align" style="top:-3.2em;"><span
-                                                class="pstrut" style="height:3.2em;"></span><span class="mord"
-                                                style="padding-left:1em;"><span class="mop"><span
-                                                        class="mord mathrm">distance</span></span><span
-                                                    class="mopen">(</span><span class="mord"><span
-                                                        class="mord mathnormal">p</span><span class="msupsub"><span
-                                                            class="vlist-t vlist-t2"><span class="vlist-r"><span
-                                                                    class="vlist"
-                                                                    style="height:0.31166399999999994em;"><span
-                                                                        style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
-                                                                            class="pstrut"
-                                                                            style="height:2.7em;"></span><span
-                                                                            class="sizing reset-size6 size3 mtight"><span
-                                                                                class="mord mathnormal mtight">i</span></span></span></span><span
-                                                                    class="vlist-s">​</span></span><span
-                                                                class="vlist-r"><span class="vlist"
-                                                                    style="height:0.15em;"><span></span></span></span></span></span></span><span
-                                                    class="mpunct">,</span><span class="mspace"
-                                                    style="margin-right:0.16666666666666666em;"></span><span
-                                                    class="mord text"><span class="mord">B</span></span><span
-                                                    class="mclose"><span class="mclose">)</span><span
+                                            style="height:0.9119499999999999em;"><span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                            class="mord">2</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:0.44445em;vertical-align:0em;"></span><span
+                            class="mord mathnormal" style="margin-right:0.03588em;">π</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:0.44445em;vertical-align:0em;"></span><span
+                            class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut"
+                            style="height:1.3122639999999999em;vertical-align:-0.25em;"></span><span class="mop"><span
+                                class="mord mathrm">R</span></span><span class="mopen">(</span><span
+                            class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                        style="height:1.0622639999999999em;"><span class="svg-align"
+                                            style="top:-3.2em;"><span class="pstrut" style="height:3.2em;"></span><span
+                                                class="mord" style="padding-left:1em;"><span class="mord"><span
+                                                        class="mord mathnormal"
+                                                        style="margin-right:0.02778em;">r</span><span
                                                         class="msupsub"><span class="vlist-t"><span
                                                                 class="vlist-r"><span class="vlist"
                                                                     style="height:0.740108em;"><span
@@ -5121,7 +5094,7 @@
                                                                             style="height:2.7em;"></span><span
                                                                             class="sizing reset-size6 size3 mtight"><span
                                                                                 class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span
-                                            style="top:-2.9438750000000002em;"><span class="pstrut"
+                                            style="top:-3.0222640000000003em;"><span class="pstrut"
                                                 style="height:3.2em;"></span><span class="hide-tail"
                                                 style="min-width:1.02em;height:1.28em;"><svg width='400em'
                                                     height='1.28em' viewBox='0 0 400000 1296'
@@ -5139,22 +5112,14 @@ c-22,17.3,-33.3,26,-34,26s-26,-26,-26,-26s76,-59,76,-59s76,-60,76,-60z
 M1001 80h400000v40h-400000z' />
                                                 </svg></span></span></span><span class="vlist-s">​</span></span><span
                                     class="vlist-r"><span class="vlist"
-                                        style="height:0.25612499999999994em;"><span></span></span></span></span></span><span
-                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span
-                            class="mord mathnormal">d</span><span class="mord"><span
-                                class="mord mathnormal">p</span><span class="msupsub"><span
-                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                            style="height:0.31166399999999994em;"><span
-                                                style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
-                                                    class="pstrut" style="height:2.7em;"></span><span
-                                                    class="sizing reset-size6 size3 mtight"><span
-                                                        class="mord mathnormal mtight">i</span></span></span></span><span
-                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
-        </eq> where the R is the 1D diffusion profile and the B is the point where the light is assumed to exit. If the
-        diffusion profile is approximated by the Gaussians proposed by [Green 2004], the result of the integral is
-        analytical and can be calculated as <eq><span class="katex"><span class="katex-mathml"><math
-                        xmlns="http://www.w3.org/1998/Math/MathML">
+                                        style="height:0.177736em;"><span></span></span></span></span></span><span
+                            class="mclose">)</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span
+                            class="mord mathnormal">d</span><span class="mord mathnormal"
+                            style="margin-right:0.02778em;">r</span></span></span></span></eq> where the R is the 1D
+        diffusion profile and the r is the distance over the surface. If the diffusion profile is approximated by the
+        Gaussians proposed by [Green 2004], the result of the integral is analytical and can be calculated as <eq><span
+                class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
                                 <mstyle scriptlevel="0" displaystyle="true">
@@ -5598,7 +5563,7 @@ M1001 80h400000v40h-400000z' />
             is exactly the transformation from world space unit to mm.</li>
     </ol>
     <h2 id="3-specular-term">3. Specular Term</h2>
-    <h3 id="3-1-two-lobes">3-1. Two Lobes</h3>
+    <h3 id="3-1-two-lobe-blinn-phong">3-1. Two-lobe Blinn-Phong</h3>
     <p>TODO</p>
     <h3 id="3-2-ksk">3-2. KSK</h3>
     <p>The <strong>specular</strong> term of demo source code provided by [Jimenez 2015] is based on [Lazarov 2011].<br>
@@ -6015,7 +5980,7 @@ M1001 80h400000v40h-400000z' />
                             class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
                             class="mord text"><span class="mord">L</span></span><span
                             class="mclose">)</span></span></span></span></eq>.</p>
-    <h3 id="3-3-ggx">3-3. GGX</h3>
+    <h3 id="3-3-dual-ggx">3-3. Dual GGX</h3>
     <p>TODO</p>
     <h2 id="references">References</h2>
     <p>[Kelemen 2001] <a href="http://cg.iit.bme.hu/~szirmay/scook_link.htm">Csaba Kelemen, László Szirmay-Kalos.
