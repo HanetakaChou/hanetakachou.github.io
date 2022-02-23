@@ -2,7 +2,7 @@
 
 ## License  
 ```  
-Copyright (C) 2018-2021 YuqiaoZhang(HanetakaChou)
+Copyright (C) 2018-2022 YuqiaoZhang(HanetakaChou)
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
@@ -16,13 +16,16 @@ You should have received a copy of the GNU Lesser General Public License along w
 
 ## Vulkan
 [Vulkan/Synchronization.html](Vulkan/Synchronization.html)  
+[Vulkan/ResourceBinding.html](Vulkan/ResourceBinding.html)  
 
 ## Image Synthesis  
-[Image-Synthesis/Skin.html](Image-Synthesis/Skin.html)  
-[Image-Synthesis/OIT.html](Image-Synthesis/OIT.html)  
 [Image-Synthesis/MOC.html](Image-Synthesis/MOC.html)  
-[Image-Synthesis/VXGI.html](Image-Synthesis/VXGI.html)  
+[Image-SYnthesis/Projector-Functions.html](Image-Synthesis/Projector-Functions.html)  
+[Image-Synthesis/Skin.html](Image-Synthesis/Skin.html)  
 [Image-Synthesis/Grass.html](Image-Synthesis/Grass.html)  
+[Image-Synthesis/Billboard.html](Image-Synthesis/Billboard.html)  
+[Image-Synthesis/OIT.html](Image-Synthesis/OIT.html)  
+[Image-Synthesis/VXGI.html](Image-Synthesis/VXGI.html)  
 [Image-Synthesis/Volumetric-Rendering.html](Image-Synthesis/Volumetric-Rendering.html)  
 
 ## PatriotEngine

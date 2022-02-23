@@ -1,7 +1,9 @@
-Vertex Position //quad in XOY
-(-1.0, 1.0, 0.0f)
-(1.0, 1.0, 0.0f)
-(-1.0, -1.0, 0.0f)
+Real-Time Rendering Fourth Edition / 13.6 Billboarding  
+
+Vertex Position //quad in XOY  
+(-1.0, 1.0, 0.0f)  
+(1.0, 1.0, 0.0f)  
+(-1.0, -1.0, 0.0f)  
 (1.0, -1.0, 0.0f)
 
 RightDirection + UpDirection => Rotation
@@ -25,7 +27,7 @@ UpDirection = normalize(Cross(FrontDirection, RightDirection))
 
 //1-1\. screen-aligned  
 
-1-2\. viewplane-aligned  
+//1-2\. viewplane-aligned  
 FrontDirection is fixed to EyeDirection of ViewTransform  
 
 1-3\. viewpoint-oriented //Spherical Symmetry  

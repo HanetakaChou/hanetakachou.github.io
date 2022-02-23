@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/default.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+
+</head>
+
+<body class="markdown-body">
+    <p dir="auto">The key point is that the resource binding operations of the traditional APIs, such as
+        <strong>OpenGL</strong>, is split into two different functions <strong>vkUpdateDescriptorSets</strong> and
+        <strong>vkCmdBindDescriptorSets</strong> in <strong>Vulkan</strong>.</p>
+    <p dir="auto">The <strong>vkUpdateDescriptorSets</strong> is expected to be called on initialization rather than per
+        frame, and thus the <strong>vkCmdBindDescriptorSets</strong>, which is expected to be called per frame, is much
+        faster than the traditional binding APIs, such as <strong>glBindBufferBase</strong>,
+        <strong>glBindTexture</strong>, etc.</p>
+    <p dir="auto">Actually, the <strong>descriptor set</strong> in <strong>Vulkan</strong> can be treated as assets,
+        merely following the vertex buffers of a mesh or the textures of a material.</p>
+    <p dir="auto">Here is a typical pipeline layout of <strong>Vulkan</strong>.</p>
+    <table dir="auto">
+        <thead dir="auto">
+            <tr dir="auto">
+                <th style="text-align:left">location</th>
+                <th style="text-align:left">type</th>
+                <th style="text-align:left">readable name</th>
+                <th style="text-align:left">introduction</th>
+            </tr>
+        </thead>
+        <tbody dir="auto">
+            <tr dir="auto">
+                <td style="text-align:left">set = 0</td>
+                <td style="text-align:left">N/A</td>
+                <td style="text-align:left">global descriptor set</td>
+                <td style="text-align:left">the <strong>vkUpdateDescriptorSets</strong> is called on rendering module
+                    initialization</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:left">set = 0 binding = 0</td>
+                <td style="text-align:left">UNIFORM_BUFFER_DYNAMIC</td>
+                <td style="text-align:left">per frame dynamic offset</td>
+                <td style="text-align:left">dynamic offset of the unique global_upload_ringbuffer</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:left">set = 0 binding = 1</td>
+                <td style="text-align:left">UNIFORM_BUFFER_DYNAMIC</td>
+                <td style="text-align:left">per camera dynamic offset</td>
+                <td style="text-align:left">dynamic offset of the unique global_upload_ringbuffer</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:left">set = 0 binding = ...</td>
+                <td style="text-align:left">UNIFORM_BUFFER_DYNAMIC</td>
+                <td style="text-align:left">per ... dynamic offset</td>
+                <td style="text-align:left">dynamic offset of the unique global_upload_ringbuffer</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:left">set = 0 binding = 3</td>
+                <td style="text-align:left">UNIFORM_BUFFER_DYNAMIC</td>
+                <td style="text-align:left">per drawcall dynamic offset</td>
+                <td style="text-align:left">dynamic offset of the unique global_upload_ringbuffer</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:left">set = 0 binding = 4</td>
+                <td style="text-align:left">COMBINED_IMAGE_SAMPLER</td>
+                <td style="text-align:left">shadow maps</td>
+                <td style="text-align:left">for example, the texture array shadow maps of the point lights</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:left">set = 0 binding = 5</td>
+                <td style="text-align:left">COMBINED_IMAGE_SAMPLER</td>
+                <td style="text-align:left">LUT</td>
+                <td style="text-align:left">for example, the global BRDF LUT</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:left">--------</td>
+                <td style="text-align:left">--------</td>
+                <td style="text-align:left">--------</td>
+                <td style="text-align:left">--------</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:left">set = 1</td>
+                <td style="text-align:left">N/A</td>
+                <td style="text-align:left">permesh descriptor set</td>
+                <td style="text-align:left">the <strong>vkUpdateDescriptorSets</strong> is called on mesh initialization
+                </td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:left">set = 1 binding = 0</td>
+                <td style="text-align:left">UNIFORM_BUFFER</td>
+                <td style="text-align:left">mesh arguments</td>
+                <td style="text-align:left">the uniform buffer owned by the mesh</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:left">--------</td>
+                <td style="text-align:left">--------</td>
+                <td style="text-align:left">--------</td>
+                <td style="text-align:left">--------</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:left">set = 2</td>
+                <td style="text-align:left">N/A</td>
+                <td style="text-align:left">permaterial descriptor set</td>
+                <td style="text-align:left">the <strong>vkUpdateDescriptorSets</strong> is called on material
+                    initialization</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:left">set = 2 binding = 0</td>
+                <td style="text-align:left">UNIFORM_BUFFER</td>
+                <td style="text-align:left">material arguments</td>
+                <td style="text-align:left">the uniform buffer owned by the material</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:left">set = 2 binding = 1</td>
+                <td style="text-align:left">COMBINED_IMAGE_SAMPLER</td>
+                <td style="text-align:left">albedo map</td>
+                <td style="text-align:left">the albedo map owned by the material</td>
+            </tr>
+        </tbody>
+    </table>
+    <p dir="auto">Actually, by using this pipeline layout, the <strong>vkUpdateDescriptorSets</strong> is always called
+        on initialization, and we don't need to call the <strong>vkUpdateDescriptorSets</strong> at all when rendering.
+    </p>
+
+</body>
+
+</html>
