@@ -16,7 +16,7 @@ You should have received a copy of the GNU Lesser General Public License along w
 
 ## Vulkan
 [Vulkan/Synchronization.html](Vulkan/Synchronization.html)  
-[Vulkan/ResourceBinding.html](Vulkan/ResourceBinding.html)  
+[Vulkan/Resource-Binding.html](Vulkan/Resource-Binding.html)  
 
 ## Image Synthesis  
 [Image-Synthesis/MOC.html](Image-Synthesis/MOC.html)  

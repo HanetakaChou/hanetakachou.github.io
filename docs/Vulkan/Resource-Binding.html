@@ -7,17 +7,18 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/default.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
-
 </head>
 
 <body class="markdown-body">
-    <p dir="auto">The key point is that the resource binding operations of the traditional APIs, such as
+    <p dir="auto">The key point is that the resource binding operation of the traditional APIs, such as
         <strong>OpenGL</strong>, is split into two different functions <strong>vkUpdateDescriptorSets</strong> and
-        <strong>vkCmdBindDescriptorSets</strong> in <strong>Vulkan</strong>.</p>
+        <strong>vkCmdBindDescriptorSets</strong> in <strong>Vulkan</strong>.
+    </p>
     <p dir="auto">The <strong>vkUpdateDescriptorSets</strong> is expected to be called on initialization rather than per
         frame, and thus the <strong>vkCmdBindDescriptorSets</strong>, which is expected to be called per frame, is much
         faster than the traditional binding APIs, such as <strong>glBindBufferBase</strong>,
-        <strong>glBindTexture</strong>, etc.</p>
+        <strong>glBindTexture</strong>, etc.
+    </p>
     <p dir="auto">Actually, the <strong>descriptor set</strong> in <strong>Vulkan</strong> can be treated as assets,
         merely following the vertex buffers of a mesh or the textures of a material.</p>
     <p dir="auto">Here is a typical pipeline layout of <strong>Vulkan</strong>.</p>
