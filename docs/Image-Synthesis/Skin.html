@@ -10,9 +10,9 @@
 </head>
 
 <body class="markdown-body">
-    <table>
-        <thead>
-            <tr>
+    <table dir="auto">
+        <thead dir="auto">
+            <tr dir="auto">
                 <th style="text-align:center">N/A</th>
                 <th style="text-align:center"><a
                         href="https://github.com/NVIDIAGameWorks/FaceWorks/blob/master/doc/slides/FaceWorks-Overview-GTC14.pdf">NVIDIA
@@ -20,11 +20,13 @@
                 <th style="text-align:center"><a href="(http://www.iryoku.com/separable-sss/)">Demo Source Code of
                         Jimenez 2015</a></th>
                 <th style="text-align:center">UE4</th>
-                <th style="text-align:center">Unity3D</th>
+                <th style="text-align:center"><a
+                        href="https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@10.8/manual/Diffusion-Profile.html">Unity3D</a>
+                </th>
             </tr>
         </thead>
-        <tbody>
-            <tr>
+        <tbody dir="auto">
+            <tr dir="auto">
                 <td style="text-align:center">Diffuse Reflectance Term</td>
                 <td style="text-align:center">Pre-Integrated</td>
                 <td style="text-align:center"><a href="https://graphics.unizar.es/publications.html#year_2012">Separable
@@ -42,7 +44,7 @@
                         href="https://github.com/Unity-Technologies/Graphics/blob/master/com.unity.render-pipelines.high-definition/Runtime/Material/DiffusionProfile/DiffusionProfile.hlsl">Disney
                         SSS</a></td>
             </tr>
-            <tr>
+            <tr dir="auto">
                 <td style="text-align:center">Diffuse Transmittance Term</td>
                 <td style="text-align:center">Deep Scatter</td>
                 <td style="text-align:center"><a href="http://www.iryoku.com/translucency/">Analytically-Integrated
@@ -51,10 +53,10 @@
                         href="https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Shaders/Private/ShadingModels.ush">HG
                         Phase function</a></td>
                 <td style="text-align:center"><a
-                        href="https://github.com/Unity-Technologies/Graphics/blob/master/com.unity.render-pipelines.high-definition/Runtime/Material/DiffusionProfile/DiffusionProfile.hlsl">Disney
-                        SSS</a></td>
+                        href="https://github.com/Unity-Technologies/Graphics/blob/master/com.unity.render-pipelines.high-definition/Runtime/Material/SubsurfaceScattering/SubsurfaceScattering.hlsl">Baked
+                        Textured Thickness</a></td>
             </tr>
-            <tr>
+            <tr dir="auto">
                 <td style="text-align:center">Specular Term</td>
                 <td style="text-align:center">Two-lobe Blinn-Phong</td>
                 <td style="text-align:center">KSK</td>
@@ -63,15 +65,15 @@
             </tr>
         </tbody>
     </table>
-    <h2 id="1-diffuse-reflectance-term">1. Diffuse Reflectance Term</h2>
-    <h3 id="1-1-diffusion-profile">1-1. Diffusion Profile</h3>
-    <p>Currently, all real time approaches are based on the diffusion profile(<strong>14.4.2 Rendering with Diffusion
-            Profile</strong> of [dEon 2007]) rather than the <a
+    <h2 dir="auto" id="1-diffuse-reflectance-term-1">1. Diffuse Reflectance Term</h2>
+    <h3 dir="auto" id="1-1-diffusion-profile-1">1-1. Diffusion Profile</h3>
+    <p dir="auto">Currently, all real time approaches are based on the diffusion profile(<strong>14.4.2 Rendering with
+            Diffusion Profile</strong> of [dEon 2007]) rather than the <a
             href="https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Surface_Reflection#TheBSSRDF">BSSRDF</a>.</p>
-    <p>By using the diffusion profile, the subsurface scattering, which was described by the BSSRDF, is simplified by
-        scattering the <strong>amount</strong> of light (technically, the <strong>irradiance E</strong>) of each
-        location to the vicinal locations according to the weights indicated by the diffusion profile. Note that the
-        <strong>outgoing</strong> irradiance E can also be called <strong>radiant exitance M</strong> and might be
+    <p dir="auto">By using the diffusion profile, the subsurface scattering, which was described by the BSSRDF, is
+        simplified by scattering the <strong>amount</strong> of light (technically, the <strong>irradiance E</strong>)
+        of each location to the vicinal locations according to the weights indicated by the diffusion profile. Note that
+        the <strong>outgoing</strong> irradiance E can also be called <strong>radiant exitance M</strong> and might be
         called <strong>radiosity B</strong> in the last century. Evidently, an equivalent gather operation can be used
         to replace the scatter operation, and the total <strong>radiant exitance</strong> can be considered as <eq><span
                 class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -956,15 +958,16 @@
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
         </eq>.</p>
-    <p>However, things are far from simple. Although the proposals based on the diffusion profile are much simpler than
-        the BSSRDF, a general 2D convolution is still too expensive for real time rendering. Actually, according to
-        [dEon 2007], if the width (technically, the range of the significant contribution domain) of the diffusion
-        profile is about 16 mm, and the width of pixel is about 0.25 mm, we would need 4096(64 x 64) samples per pixel
-        in the shader. Thus, we have to propose more efficient approaches to settle this problem.</p>
-    <h3 id="1-2-pre-integrated">1-2. Pre-Integrated</h3>
-    <p>The <strong>diffuse reflectance</strong> term of FaceWorks is based on the <strong>Pre-Integrated</strong>
-        [Penner 2011].</p>
-    <p>In real time rendering, the light is assumed to be the punctual light rather than the area light. The <a
+    <p dir="auto">However, things are far from simple. Although the proposals based on the diffusion profile are much
+        simpler than the BSSRDF, a general 2D convolution is still too expensive for real time rendering. Actually,
+        according to [dEon 2007], if the width (technically, the range of the significant contribution domain) of the
+        diffusion profile is about 16 mm, and the width of pixel is about 0.25 mm, we would need 4096(64 x 64) samples
+        per pixel in the shader. Thus, we have to propose more efficient approaches to settle this problem.</p>
+    <h3 dir="auto" id="1-2-pre-integrated-1">1-2. Pre-Integrated</h3>
+    <p dir="auto">The <strong>diffuse reflectance</strong> term of FaceWorks is based on the
+        <strong>Pre-Integrated</strong> [Penner 2011].</p>
+    <p dir="auto">In real time rendering, the light is assumed to be the punctual light rather than the area light. The
+        <a
             href="https://www.pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/Sampling_Light_Sources#LightswithSingularities">Delta
             Distribution</a> is applied, and the reflectance equation is simplified to <eq><span class="katex"><span
                     class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -1996,7 +1999,7 @@
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
         </eq>.</p>
-    <p>The main idea of [Penner 2011] is that the <eq><span class="katex"><span class="katex-mathml"><math
+    <p dir="auto">The main idea of [Penner 2011] is that the <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
@@ -2610,8 +2613,8 @@
                                                 style="height:0.15em;"><span></span></span></span></span></span></span></span><span
                             class="mopen">(</span><span class="mord mathnormal">p</span><span
                             class="mclose">)</span></span></span></span></eq>.</p>
-    <p>Usually, the diffusion profile is normalized which indicates the energy conservation. This means that <eq><span
-                class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <p dir="auto">Usually, the diffusion profile is normalized which indicates the energy conservation. This means that
+        <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
                                 <mstyle scriptlevel="0" displaystyle="true">
@@ -2918,7 +2921,7 @@
                                             style="height:1.163443em;"><span></span></span></span></span></span><span
                                 class="mclose nulldelimiter"></span></span></span></span></span></eq> where denominator
         is added to make sure the diffusion profile is normalized.</p>
-    <p>In the GPU Pro 2, the <eq><span class="katex"><span class="katex-mathml"><math
+    <p dir="auto">In the GPU Pro 2, the <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
@@ -2961,19 +2964,19 @@
                                 class="mclose nulldelimiter"></span></span><span
                             class="mclose">)</span></span></span></span></eq> is calculated by
         <strong>integrateDiffuseScatteringOnRing</strong>. And there are some points to note.</p>
-    <ol>
-        <li>[Penner 2011] merely follows [dEon 2007] and the diffusion profile is approximated by the Gaussians (the
-            <strong>Scatter</strong> in the code). However, the motivation of [dEon 2007] is that the <a
+    <ol dir="auto">
+        <li dir="auto">[Penner 2011] merely follows [dEon 2007] and the diffusion profile is approximated by the
+            Gaussians (the <strong>Scatter</strong> in the code). However, the motivation of [dEon 2007] is that the <a
                 href="https://en.wikipedia.org/wiki/Gaussian_blur">Gaussian blur</a> is a <a
                 href="https://en.wikipedia.org/wiki/Separable_filter">separable filter</a>, and thus the general 2D
             convolution can be replaced by 1D convolutions to improve the performance. In my opinion, it is acceptable
             to perform a general 2D convolution even by using the exact accurate diffusion profile, since the approach
             proposed by [Penner 2011] <strong>pre-integrates</strong> the convolution, and the efficiency doesn't matter
             too much for offline precomputing.</li>
-        <li>The <strong>pre-integral</strong> is performed on a ring rather than on a sphere. This is reasonable since
-            it is assumed that the diffusion profile is radially symmetric.</li>
-        <li>In the FaceWorks, according to the <strong>numerical quadrature</strong>, the funtion value <eq><span
-                    class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+        <li dir="auto">The <strong>pre-integral</strong> is performed on a ring rather than on a sphere. This is
+            reasonable since it is assumed that the diffusion profile is radially symmetric.</li>
+        <li dir="auto">In the FaceWorks, according to the <strong>numerical quadrature</strong>, the funtion value <eq>
+                <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                             <semantics>
                                 <mrow>
                                     <mi mathvariant="normal">f</mi>
@@ -3062,7 +3065,7 @@
                                 style="margin-right:0.16666666666666666em;"></span><span
                                 class="mord mathnormal">x</span></span></span></span></eq>.</li>
     </ol>
-    <p>In the FaceWorks, the <eq><span class="katex"><span class="katex-mathml"><math
+    <p dir="auto">In the FaceWorks, the <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
@@ -3105,8 +3108,9 @@
                                 class="mclose nulldelimiter"></span></span><span
                             class="mclose">)</span></span></span></span></eq> is calculated by
         <strong>GFSDK_FaceWorks_GenerateCurvatureLUT</strong>. However, there is some subtle modification.</p>
-    <ol>
-        <li>The <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <ol dir="auto">
+        <li dir="auto">The <eq><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
                             <semantics>
                                 <mrow>
                                     <mstyle scriptlevel="0" displaystyle="true">
@@ -3265,7 +3269,7 @@
                         </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
                                 style="height:0.43056em;vertical-align:0em;"></span><span
                                 class="mord mathnormal">x</span></span></span></span></eq> is small.</li>
-        <li>The denominator <eq><span class="katex"><span class="katex-mathml"><math
+        <li dir="auto">The denominator <eq><span class="katex"><span class="katex-mathml"><math
                             xmlns="http://www.w3.org/1998/Math/MathML">
                             <semantics>
                                 <mrow>
@@ -3344,8 +3348,8 @@
                                 style="margin-right:0.03588em;">y</span></span></span></span></eq> is omitted perhaps
             due to the fact that the diffusion profile has been normalized. Actually, I try to calculate the denominator
             by myself, and I find the denominator is really close to one.</li>
-        <li>In the GPU Pro 2, three normals should be used for different RGB components and the LUT should be sampled
-            three times according to three different <eq><span class="katex"><span class="katex-mathml"><math
+        <li dir="auto">In the GPU Pro 2, three normals should be used for different RGB components and the LUT should be
+            sampled three times according to three different <eq><span class="katex"><span class="katex-mathml"><math
                             xmlns="http://www.w3.org/1998/Math/MathML">
                             <semantics>
                                 <mrow>
@@ -3454,20 +3458,20 @@
                                 class="mord mathnormal">L</span><span class="mclose">)</span></span></span></span></eq>
             which is detached from the total integral.</li>
     </ol>
-    <h3 id="1-3-separable-sss">1-3. Separable SSS</h3>
-    <p>The <strong>diffuse reflectance</strong> term of UE4 is based on the <strong>Separable SSS</strong> [Jimenez
-        2012].</p>
-    <p>The approach of [dEon 2007] is to approximate the diffusion profile by the weighted sum of 6 Gaussians, and thus
-        the general 2D convolution can be replaced by 12(2 x 6) 1D convolutions since the <a
+    <h3 dir="auto" id="1-3-separable-sss-1">1-3. Separable SSS</h3>
+    <p dir="auto">The <strong>diffuse reflectance</strong> term of UE4 is based on the <strong>Separable SSS</strong>
+        [Jimenez 2012].</p>
+    <p dir="auto">The approach of [dEon 2007] is to approximate the diffusion profile by the weighted sum of 6
+        Gaussians, and thus the general 2D convolution can be replaced by 12(2 x 6) 1D convolutions since the <a
             href="https://en.wikipedia.org/wiki/Gaussian_blur">Gaussian blur</a> is a <a
             href="https://en.wikipedia.org/wiki/Separable_filter">separable filter</a>. However, the approach proposed
         by [dEon 2007] is applied in texture space which is too weird according to the convention of the real time
         rendering. And the screen space approach is proposed by [Jimenez 2009]. However, the approach proposed by
         [Jimenez 2009] still needs 12(2 x 6) passes to perform the 12(2 x 6) 1D convolutions. Evidently, this is still
         too expensive for real time rendering. And thus, the 2 passes approach is proposed by [Jimenez 2012].</p>
-    <p>According to the <strong>numerical quadrature</strong>, the funtion value sampled from the irradiance texture
-        should be multiplied by the difference of the domain <eq><span class="katex"><span class="katex-mathml"><math
-                        xmlns="http://www.w3.org/1998/Math/MathML">
+    <p dir="auto">According to the <strong>numerical quadrature</strong>, the funtion value sampled from the irradiance
+        texture should be multiplied by the difference of the domain <eq><span class="katex"><span
+                    class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
                                 <mstyle scriptlevel="0" displaystyle="true">
@@ -3559,10 +3563,10 @@
         proposed a more reasonable approach to calculate the <strong>kernel</strong> size which is based on the
         mathematical derivation. Note that in image processing, the <strong>filter</strong> is a (continuous) function
         which is approximated by a discrete and finite <strong>kernel</strong>.</p>
-    <p>The the demo source code of [Jimenez 2012] is provided by [Jimenez 2015]. Perhaps you can not believe it but it
-        is really the truth. <strong>The demo source code provided by [Jimenez 2015] has nothing to do with [Jimenez
-            2015]</strong>. This is really arcane, and I do spend some time to realize this fact.</p>
-    <p>The main idea of [Jimenez 2012] is that in real time rendering, the non-separable diffusion profile is
+    <p dir="auto">The the demo source code of [Jimenez 2012] is provided by [Jimenez 2015]. Perhaps you can not believe
+        it but it is really the truth. <strong>The demo source code provided by [Jimenez 2015] has nothing to do with
+            [Jimenez 2015]</strong>. This is really arcane, and I do spend some time to realize this fact.</p>
+    <p dir="auto">The main idea of [Jimenez 2012] is that in real time rendering, the non-separable diffusion profile is
         represented by the discretized kernel where the SVD can be applied, and the SVD indicates that the diffusion
         profile kernel can be approximated by a separable kernel <eq><span class="katex"><span
                     class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -3890,7 +3894,8 @@
                             class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
                         class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span
                             class="mord">1</span></span></span></span></eq>.</p>
-    <p>The <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <p dir="auto">The <eq><span class="katex"><span class="katex-mathml"><math
+                        xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
                                 <mstyle scriptlevel="0" displaystyle="true">
@@ -3912,9 +3917,9 @@
                             class="mclose">)</span></span></span></span></eq> is calculated by the
         <strong>calculateKernel</strong> in the demo source code provided by [Jimenez 2015] and the
         <strong>ComputeMirroredSSSKernel</strong> in the UE4. And there are some points to note.</p>
-    <ol>
-        <li>The <strong>strength</strong>, which is the <strong>SubsurfaceColor</strong> in the UE4, is to lerp between
-            the SSS diffuse term <eq><span class="katex"><span class="katex-mathml"><math
+    <ol dir="auto">
+        <li dir="auto">The <strong>strength</strong>, which is the <strong>SubsurfaceColor</strong> in the UE4, is to
+            lerp between the SSS diffuse term <eq><span class="katex"><span class="katex-mathml"><math
                             xmlns="http://www.w3.org/1998/Math/MathML">
                             <semantics>
                                 <mrow>
@@ -4390,12 +4395,12 @@
                                                 style="height:0.15em;"><span></span></span></span></span></span></span><span
                                 class="mclose">)</span></span></span></span></eq>. The default of the
             <strong>strength</strong> in the demo source code is (0.48, 0.41, 0.28).</li>
-        <li>According to [dEon 2007], the width of the diffusion profile is about 16 mm. The <strong>falloff</strong>,
-            which is the <strong>FalloffColor</strong> in the UE4, is to make the diffusion profile narrower, and thus
-            the width of the diffusion profile in the demo source code is reduced to 6(3x2) mm (the
-            <strong>RANGE</strong> in the <strong>calculateKernel</strong> in the code). The default of the
+        <li dir="auto">According to [dEon 2007], the width of the diffusion profile is about 16 mm. The
+            <strong>falloff</strong>, which is the <strong>FalloffColor</strong> in the UE4, is to make the diffusion
+            profile narrower, and thus the width of the diffusion profile in the demo source code is reduced to 6(3x2)
+            mm (the <strong>RANGE</strong> in the <strong>calculateKernel</strong> in the code). The default of the
             <strong>falloff</strong> in the demo source code is (1.0, 0.37, 0.3).</li>
-        <li>Actually, the demo source code demonstrates that the <eq><span class="katex"><span
+        <li dir="auto">Actually, the demo source code demonstrates that the <eq><span class="katex"><span
                         class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                             <semantics>
                                 <mrow>
@@ -4459,8 +4464,8 @@
                                 class="mclose">)</span></span></span></span></eq> directly without the
             <strong>width</strong> in the formula. This implies the <strong>width</strong> in the formula is actually
             fixed at 1.</li>
-        <li>According to the <strong>numerical quadrature</strong>, the function value sampled from the irradiance
-            texture should be multiplied by the difference of the domain the <eq><span class="katex"><span
+        <li dir="auto">According to the <strong>numerical quadrature</strong>, the function value sampled from the
+            irradiance texture should be multiplied by the difference of the domain the <eq><span class="katex"><span
                         class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                             <semantics>
                                 <mrow>
@@ -4959,29 +4964,28 @@
                                     class="mclose nulldelimiter"></span></span></span></span></span></eq>. Actually, I
             check the vertex data of the head mesh in the demo, and fortunately, I find the vertex data is consistent
             with this result.</li>
-        <li>The <strong>SSSS_STREGTH_SOURCE</strong> in the shader code has nothing to do with the
+        <li dir="auto">The <strong>SSSS_STREGTH_SOURCE</strong> in the shader code has nothing to do with the
             <strong>strength</strong> in the paper at all. In the demo source code, the
             <strong>SSSS_STREGTH_SOURCE</strong> is the alpha channel of the albedo texture, and is used to skip the
             pixels which represent the eyebrow rather than the skin.</li>
     </ol>
-    <h3 id="1-4-disney-sss">1-4. Disney SSS</h3>
-    <p>TODO</p>
-    <h2 id="2-diffuse-transmittance-term">2. Diffuse Transmittance Term</h2>
-    <h3 id="2-1-deep-scatter">2-1. Deep Scatter</h3>
-    <p>The <strong>diffuse transmittance</strong> term of the FaceWorks is based on the <strong>16.3 Simulating
-            Absorption Using Depth Maps</strong> of [Green 2004].</p>
-    <p>The main idea of [Green 2004] is that the objects are assumed to be convex, and thus the thickness (the distance
-        a light ray travels inside an object) can be estimated by using the shadow maps. According to the thickness, the
-        <a href="https://en.wikipedia.org/wiki/Beer%E2%80%93Lambert_law">Beer–Lambert law</a> can be applied to
-        calculate the transmittance coefficient.</p>
-    <p>In the FaceWorks, the <strong>thickness</strong> is calculated by
+    <h3 dir="auto" id="1-4-disney-sss-1">1-4. Disney SSS</h3>
+    <h2 dir="auto" id="2-diffuse-transmittance-term-1">2. Diffuse Transmittance Term</h2>
+    <h3 dir="auto" id="2-1-deep-scatter-1">2-1. Deep Scatter</h3>
+    <p dir="auto">The <strong>diffuse transmittance</strong> term of the FaceWorks is based on the <strong>16.3
+            Simulating Absorption Using Depth Maps</strong> of [Green 2004].</p>
+    <p dir="auto">The main idea of [Green 2004] is that the objects are assumed to be convex, and thus the thickness
+        (the distance a light ray travels inside an object) can be estimated by using the shadow maps. According to the
+        thickness, the <a href="https://en.wikipedia.org/wiki/Beer%E2%80%93Lambert_law">Beer–Lambert law</a> can be
+        applied to calculate the transmittance coefficient.</p>
+    <p dir="auto">In the FaceWorks, the <strong>thickness</strong> is calculated by
         <strong>GFSDK_FaceWorks_EstimateThicknessFromParallelShadowPoisson32</strong> and the <strong>transmittance
             coefficient</strong> is calculated by <strong>GFSDK_FaceWorks_EvaluateDeepScatterDirectLight</strong>.</p>
-    <h3 id="2-2-analytically-integrated-translucency">2-2. Analytically-Integrated Translucency</h3>
-    <p>The <strong>diffuse transmittance</strong> term of demo source code provided by [Jimenez 2015] is based on
-        [Jimenez 2010].</p>
-    <p>The main idea of [Jimenez 2010] is that the approach proposed by [Green 2004] is applied to calculate the
-        thickness while the transmittance coefficient is calculated based on the diffusion profile rather than the
+    <h3 dir="auto" id="2-2-analytically-integrated-translucency-1">2-2. Analytically-Integrated Translucency</h3>
+    <p dir="auto">The <strong>diffuse transmittance</strong> term of demo source code provided by [Jimenez 2015] is
+        based on [Jimenez 2010].</p>
+    <p dir="auto">The main idea of [Jimenez 2010] is that the approach proposed by [Green 2004] is applied to calculate
+        the thickness while the transmittance coefficient is calculated based on the diffusion profile rather than the
         <strong>Beer–Lambert law</strong>. According to [Jimenez 2010], the idea of the <strong>14.5.3 Modified
             Translucent Shadow Maps</strong> of [dEon 2007] is applied, and the transmittance coefficient is calculated
         as <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -5000,9 +5004,7 @@
                                         <mi mathvariant="normal">∞</mi>
                                     </msubsup>
                                     <mn>2</mn>
-                                    <mo>⋅</mo>
                                     <mi>π</mi>
-                                    <mo>⋅</mo>
                                     <mi>r</mi>
                                     <mo>⋅</mo>
                                     <mi mathvariant="normal">R</mi>
@@ -5028,7 +5030,7 @@
                                 </mstyle>
                             </mrow>
                             <annotation encoding="application/x-tex">\displaystyle \operatorname{T}(d) = \int_0^\infin 2
-                                \cdot \pi \cdot r \cdot \operatorname{R} (\sqrt{r^2 + d^2}) \, dr</annotation>
+                                \pi r \cdot \operatorname{R} (\sqrt{r^2 + d^2}) \, dr</annotation>
                         </semantics>
                     </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
                             style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span
@@ -5053,15 +5055,9 @@
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.9119499999999999em;"><span></span></span></span></span></span></span><span
                             class="mspace" style="margin-right:0.16666666666666666em;"></span><span
-                            class="mord">2</span><span class="mspace"
-                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span
-                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
-                        class="base"><span class="strut" style="height:0.44445em;vertical-align:0em;"></span><span
-                            class="mord mathnormal" style="margin-right:0.03588em;">π</span><span class="mspace"
-                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span
-                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
-                        class="base"><span class="strut" style="height:0.44445em;vertical-align:0em;"></span><span
-                            class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mspace"
+                            class="mord">2</span><span class="mord mathnormal"
+                            style="margin-right:0.03588em;">π</span><span class="mord mathnormal"
+                            style="margin-right:0.02778em;">r</span><span class="mspace"
                             style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span
                             class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
                         class="base"><span class="strut"
@@ -5252,12 +5248,12 @@ M1001 80h400000v40h-400000z' />
                                                                             style="height:0.5688em;"><span></span></span></span></span></span><span
                                                                 class="mclose nulldelimiter sizing reset-size3 size6"></span></span></span></span></span></span></span></span></span></span></span></span></span>
         </eq>.</p>
-    <p>The <strong>transmittance coefficient</strong> is calculated by the <strong>SSSSTransmittance</strong> in the
-        demo source code provided by [Jimenez 2015]. And there are some points to note.</p>
-    <ol>
-        <li>The demo uses <strong>0.005</strong> to shrink the object in the normal direction to avoid artifacts.
-            Evidently, this value is proportional to the <eq><span class="katex"><span class="katex-mathml"><math
-                            xmlns="http://www.w3.org/1998/Math/MathML">
+    <p dir="auto">The <strong>transmittance coefficient</strong> is calculated by the <strong>SSSSTransmittance</strong>
+        in the demo source code provided by [Jimenez 2015]. And there are some points to note.</p>
+    <ol dir="auto">
+        <li dir="auto">The demo uses <strong>0.005</strong> to shrink the object in the normal direction to avoid
+            artifacts. Evidently, this value is proportional to the <eq><span class="katex"><span
+                        class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                             <semantics>
                                 <mrow>
                                     <mstyle scriptlevel="0" displaystyle="true">
@@ -5287,8 +5283,8 @@ M1001 80h400000v40h-400000z' />
                                                 class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                                 style="height:0.8804400000000001em;"><span></span></span></span></span></span><span
                                     class="mclose nulldelimiter"></span></span></span></span></span></eq>.</li>
-        <li>Actually, the mere purpose of the <strong>scale</strong> in the shader code is to transform the thickness
-            from world space unit to mm. The shader code of the demo source code demonstrates that the
+        <li dir="auto">Actually, the mere purpose of the <strong>scale</strong> in the shader code is to transform the
+            thickness from world space unit to mm. The shader code of the demo source code demonstrates that the
             <strong>scale</strong> is calculated as <eq><span class="katex"><span class="katex-mathml"><math
                             xmlns="http://www.w3.org/1998/Math/MathML">
                             <semantics>
@@ -5562,11 +5558,249 @@ M1001 80h400000v40h-400000z' />
                                     class="mord">MetersPerWorldSpaceUnit</span></span></span></span></span></eq> which
             is exactly the transformation from world space unit to mm.</li>
     </ol>
-    <h2 id="3-specular-term">3. Specular Term</h2>
-    <h3 id="3-1-two-lobe-blinn-phong">3-1. Two-lobe Blinn-Phong</h3>
-    <p>TODO</p>
-    <h3 id="3-2-ksk">3-2. KSK</h3>
-    <p>The <strong>specular</strong> term of demo source code provided by [Jimenez 2015] is based on [Lazarov 2011].<br>
+    <h3 dir="auto" id="2-3-baked-textured-thickness-1">2-3. Baked Textured Thickness</h3>
+    <p dir="auto">The <strong>diffuse transmittance</strong> term of Unity3D is based on [Golubev 2018].</p>
+    <p dir="auto">[Golubev 2018] follows the analytically-integrated formula of [Jimenez 2010] while the diffuse profile
+        of [Christensen 2015] is applied. And thus, we have that <eq><span class="katex"><span
+                    class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mi mathvariant="normal">T</mi>
+                                    <mo>⁡</mo>
+                                    <mo stretchy="false">(</mo>
+                                    <mi>d</mi>
+                                    <mo stretchy="false">)</mo>
+                                    <mo>=</mo>
+                                    <msubsup>
+                                        <mo>∫</mo>
+                                        <mn>0</mn>
+                                        <mi mathvariant="normal">∞</mi>
+                                    </msubsup>
+                                    <mn>2</mn>
+                                    <mi>π</mi>
+                                    <mi>r</mi>
+                                    <mo>⋅</mo>
+                                    <mi mathvariant="normal">R</mi>
+                                    <mo>⁡</mo>
+                                    <mo stretchy="false">(</mo>
+                                    <msqrt>
+                                        <mrow>
+                                            <msup>
+                                                <mi>r</mi>
+                                                <mn>2</mn>
+                                            </msup>
+                                            <mo>+</mo>
+                                            <msup>
+                                                <mi>d</mi>
+                                                <mn>2</mn>
+                                            </msup>
+                                        </mrow>
+                                    </msqrt>
+                                    <mo stretchy="false">)</mo>
+                                    <mtext> </mtext>
+                                    <mi>d</mi>
+                                    <mi>r</mi>
+                                    <mo>=</mo>
+                                    <mfrac>
+                                        <mn>1</mn>
+                                        <mn>4</mn>
+                                    </mfrac>
+                                    <mi>A</mi>
+                                    <mo stretchy="false">(</mo>
+                                    <msup>
+                                        <mi>e</mi>
+                                        <mrow>
+                                            <mo>−</mo>
+                                            <mi>s</mi>
+                                            <mi>d</mi>
+                                        </mrow>
+                                    </msup>
+                                    <mo>+</mo>
+                                    <mn>3</mn>
+                                    <msup>
+                                        <mi>e</mi>
+                                        <mrow>
+                                            <mo>−</mo>
+                                            <mfrac>
+                                                <mrow>
+                                                    <mi>s</mi>
+                                                    <mi>d</mi>
+                                                </mrow>
+                                                <mn>3</mn>
+                                            </mfrac>
+                                        </mrow>
+                                    </msup>
+                                    <mo stretchy="false">)</mo>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle \operatorname{T}(d) = \int_0^\infin 2
+                                \pi r \cdot \operatorname{R} (\sqrt{r^2 + d^2}) \, dr = \frac{1}{4} A (e^{-sd} +
+                                3e^{-\frac{sd}{3}})</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span
+                                class="mord mathrm">T</span></span><span class="mopen">(</span><span
+                            class="mord mathnormal">d</span><span class="mclose">)</span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                        class="base"><span class="strut"
+                            style="height:2.326242em;vertical-align:-0.9119499999999999em;"></span><span
+                            class="mop"><span class="mop op-symbol large-op"
+                                style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span
+                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.414292em;"><span
+                                                style="top:-1.7880500000000001em;margin-left:-0.44445em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight">0</span></span></span><span
+                                                style="top:-3.8129000000000004em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight">∞</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.9119499999999999em;"><span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                            class="mord">2</span><span class="mord mathnormal"
+                            style="margin-right:0.03588em;">π</span><span class="mord mathnormal"
+                            style="margin-right:0.02778em;">r</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut"
+                            style="height:1.3122639999999999em;vertical-align:-0.25em;"></span><span class="mop"><span
+                                class="mord mathrm">R</span></span><span class="mopen">(</span><span
+                            class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                        style="height:1.0622639999999999em;"><span class="svg-align"
+                                            style="top:-3.2em;"><span class="pstrut" style="height:3.2em;"></span><span
+                                                class="mord" style="padding-left:1em;"><span class="mord"><span
+                                                        class="mord mathnormal"
+                                                        style="margin-right:0.02778em;">r</span><span
+                                                        class="msupsub"><span class="vlist-t"><span
+                                                                class="vlist-r"><span class="vlist"
+                                                                    style="height:0.740108em;"><span
+                                                                        style="top:-2.9890000000000003em;margin-right:0.05em;"><span
+                                                                            class="pstrut"
+                                                                            style="height:2.7em;"></span><span
+                                                                            class="sizing reset-size6 size3 mtight"><span
+                                                                                class="mord mtight">2</span></span></span></span></span></span></span></span><span
+                                                    class="mspace"
+                                                    style="margin-right:0.2222222222222222em;"></span><span
+                                                    class="mbin">+</span><span class="mspace"
+                                                    style="margin-right:0.2222222222222222em;"></span><span
+                                                    class="mord"><span class="mord mathnormal">d</span><span
+                                                        class="msupsub"><span class="vlist-t"><span
+                                                                class="vlist-r"><span class="vlist"
+                                                                    style="height:0.740108em;"><span
+                                                                        style="top:-2.9890000000000003em;margin-right:0.05em;"><span
+                                                                            class="pstrut"
+                                                                            style="height:2.7em;"></span><span
+                                                                            class="sizing reset-size6 size3 mtight"><span
+                                                                                class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span
+                                            style="top:-3.0222640000000003em;"><span class="pstrut"
+                                                style="height:3.2em;"></span><span class="hide-tail"
+                                                style="min-width:1.02em;height:1.28em;"><svg width='400em'
+                                                    height='1.28em' viewBox='0 0 400000 1296'
+                                                    preserveAspectRatio='xMinYMin slice'>
+                                                    <path d='M263,681c0.7,0,18,39.7,52,119
+c34,79.3,68.167,158.7,102.5,238c34.3,79.3,51.8,119.3,52.5,120
+c340,-704.7,510.7,-1060.3,512,-1067
+l0 -0
+c4.7,-7.3,11,-11,19,-11
+H40000v40H1012.3
+s-271.3,567,-271.3,567c-38.7,80.7,-84,175,-136,283c-52,108,-89.167,185.3,-111.5,232
+c-22.3,46.7,-33.8,70.3,-34.5,71c-4.7,4.7,-12.3,7,-23,7s-12,-1,-12,-1
+s-109,-253,-109,-253c-72.7,-168,-109.3,-252,-110,-252c-10.7,8,-22,16.7,-34,26
+c-22,17.3,-33.3,26,-34,26s-26,-26,-26,-26s76,-59,76,-59s76,-60,76,-60z
+M1001 80h400000v40h-400000z' />
+                                                </svg></span></span></span><span class="vlist-s">​</span></span><span
+                                    class="vlist-r"><span class="vlist"
+                                        style="height:0.177736em;"><span></span></span></span></span></span><span
+                            class="mclose">)</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span
+                            class="mord mathnormal">d</span><span class="mord mathnormal"
+                            style="margin-right:0.02778em;">r</span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                        class="base"><span class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span
+                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">4</span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">1</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span><span class="mord mathnormal">A</span><span
+                            class="mopen">(</span><span class="mord"><span class="mord mathnormal">e</span><span
+                                class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.8991079999999999em;"><span
+                                                style="top:-3.113em;margin-right:0.05em;"><span class="pstrut"
+                                                    style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight"><span class="mord mtight">−</span><span
+                                                            class="mord mathnormal mtight">s</span><span
+                                                            class="mord mathnormal mtight">d</span></span></span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+                            class="mbin">+</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span
+                            class="strut" style="height:1.27902em;vertical-align:-0.25em;"></span><span
+                            class="mord">3</span><span class="mord"><span class="mord mathnormal">e</span><span
+                                class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.02902em;"><span
+                                                style="top:-3.4130000000000003em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:3em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight"><span class="mord mtight">−</span><span
+                                                            class="mord mtight"><span
+                                                                class="mopen nulldelimiter sizing reset-size3 size6"></span><span
+                                                                class="mfrac"><span class="vlist-t vlist-t2"><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.8800285714285714em;"><span
+                                                                                style="top:-2.656em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="sizing reset-size3 size1 mtight"><span
+                                                                                        class="mord mtight"><span
+                                                                                            class="mord mtight">3</span></span></span></span><span
+                                                                                style="top:-3.2255000000000003em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="frac-line mtight"
+                                                                                    style="border-bottom-width:0.049em;"></span></span><span
+                                                                                style="top:-3.384em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="sizing reset-size3 size1 mtight"><span
+                                                                                        class="mord mtight"><span
+                                                                                            class="mord mathnormal mtight">s</span><span
+                                                                                            class="mord mathnormal mtight">d</span></span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.344em;"><span></span></span></span></span></span><span
+                                                                class="mclose nulldelimiter sizing reset-size3 size6"></span></span></span></span></span></span></span></span></span></span><span
+                            class="mclose">)</span></span></span></span></eq>.</p>
+    <p dir="auto">There are two <a
+            href="https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@10.8/manual/Diffusion-Profile.html">Transmission
+            Mode</a>s: <strong>Thick Object</strong> and <strong>Thin Object</strong>. The <strong>Thick Object</strong>
+        mode merely follows the approach of [Jimenez 2010] which uses the shadow map to calculate the thickness. And the
+        <strong>Thin Object</strong> mode uses the baked textured thickness which can be provided by the <a
+            href="https://substance3d.adobe.com/documentation/bake/thickness-map-from-mesh-172818642.html">Substance</a>.
+    </p>
+    <p dir="auto">The <strong>transmittance coefficient</strong> term is calculated by the
+        <strong>FillMaterialTransmission</strong>, the <strong>ShouldEvaluateThickObjectTransmission</strong> and the
+        <strong>EvaluateTransmittance_Punctual</strong> in <a
+            href="https://github.com/Unity-Technologies/Graphics">Unity3D</a>.</p>
+    <h2 dir="auto" id="3-specular-term-1">3. Specular Term</h2>
+    <h3 dir="auto" id="3-1-two-lobe-blinn-phong-1">3-1. Two-lobe Blinn-Phong</h3>
+    <p dir="auto">TODO</p>
+    <h3 dir="auto" id="3-2-ksk-1">3-2. KSK</h3>
+    <p dir="auto">The <strong>specular</strong> term of demo source code provided by [Jimenez 2015] is based on [Lazarov
+        2011].<br>
         The D is Beckmann <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
@@ -5980,12 +6214,12 @@ M1001 80h400000v40h-400000z' />
                             class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
                             class="mord text"><span class="mord">L</span></span><span
                             class="mclose">)</span></span></span></span></eq>.</p>
-    <h3 id="3-3-dual-ggx">3-3. Dual GGX</h3>
-    <p>TODO</p>
-    <h2 id="references">References</h2>
-    <p>[Kelemen 2001] <a href="http://cg.iit.bme.hu/~szirmay/scook_link.htm">Csaba Kelemen, László Szirmay-Kalos.
-            &quot;A Microfacet Based Coupled Specular-Matte BRDF Model with Importance Sampling.&quot; EGSR
-            2001.</a><br>
+    <h3 dir="auto" id="3-3-dual-ggx-1">3-3. Dual GGX</h3>
+    <p dir="auto">TODO</p>
+    <h2 dir="auto" id="references-1">References</h2>
+    <p dir="auto">[Kelemen 2001] <a href="http://cg.iit.bme.hu/~szirmay/scook_link.htm">Csaba Kelemen, László
+            Szirmay-Kalos. &quot;A Microfacet Based Coupled Specular-Matte BRDF Model with Importance Sampling.&quot;
+            EGSR 2001.</a><br>
         [Green 2004] <a
             href="https://developer.nvidia.com/gpugems/gpugems/part-iii-materials/chapter-16-real-time-approximations-subsurface-scattering">Simon
             Green. &quot;Chapter 16. Real-Time Approximations to Subsurface Scattering.&quot; GPU Gems 1.</a><br>
@@ -6012,7 +6246,12 @@ M1001 80h400000v40h-400000z' />
             Photorealistic Eyes Rendering.&quot; SIGGRAPH 2012.</a><br>
         [Jimenez 2015] <a href="http://www.iryoku.com/separable-sss/">Jorge Jimenez, Karoly Zsolnai, Adrian Jarabo1,
             Christian Freude, Thomas Auzinger, Xian-Chun Wu, Javier von der Pahlen, Michael Wimmer, Diego Gutierrez.
-            &quot;Separable Subsurface Scattering.&quot; EGSR 2015.</a></p>
+            &quot;Separable Subsurface Scattering.&quot; EGSR 2015.</a><br>
+        [Christensen 2015] <a href="https://graphics.pixar.com/library/">Per Christensen, Brent Burley.
+            &quot;Approximate Reflectance Profiles for Efficient Subsurface Scattering.&quot; SIGGRAPH 2015.</a><br>
+        [Golubev 2018] <a href="https://zero-radiance.github.io/post/sampling-diffusion/">Evgenii Golubev.
+            &quot;Efficient Screen-Space Subsurface Scattering Using Burley's Normalized Diffusion in Real-Time.&quot;
+            SIGGRAPH 2018.</a></p>
 
 </body>
 

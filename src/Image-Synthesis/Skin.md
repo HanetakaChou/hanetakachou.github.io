@@ -1,7 +1,7 @@
-N/A | [NVIDIA FaceWorks](https://github.com/NVIDIAGameWorks/FaceWorks/blob/master/doc/slides/FaceWorks-Overview-GTC14.pdf) | [Demo Source Code of Jimenez 2015]((http://www.iryoku.com/separable-sss/)) | UE4 | Unity3D  
+N/A | [NVIDIA FaceWorks](https://github.com/NVIDIAGameWorks/FaceWorks/blob/master/doc/slides/FaceWorks-Overview-GTC14.pdf) | [Demo Source Code of Jimenez 2015]((http://www.iryoku.com/separable-sss/)) | UE4 | [Unity3D](https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@10.8/manual/Diffusion-Profile.html)  
 :-: | :-: | :-: | :-: | :-: 
 Diffuse Reflectance Term | Pre-Integrated | [Separable SSS](https://graphics.unizar.es/publications.html#year_2012) | [Disney Diffuse](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Shaders/Private/ShadingModels.ush) + [Separable SSS](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Runtime/Engine/Private/Rendering/SeparableSSS.cpp) + [Disney SSS](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Runtime/Engine/Private/Rendering/BurleyNormalizedSSS.cpp) | [Disney Diffuse](https://github.com/Unity-Technologies/Graphics/blob/master/com.unity.render-pipelines.high-definition/Runtime/Material/Lit/Lit.hlsl) + [Disney SSS](https://github.com/Unity-Technologies/Graphics/blob/master/com.unity.render-pipelines.high-definition/Runtime/Material/DiffusionProfile/DiffusionProfile.hlsl)  
-Diffuse Transmittance Term | Deep Scatter | [Analytically-Integrated Translucency](http://www.iryoku.com/translucency/) | [HG Phase function](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Shaders/Private/ShadingModels.ush)  | [Disney SSS](https://github.com/Unity-Technologies/Graphics/blob/master/com.unity.render-pipelines.high-definition/Runtime/Material/DiffusionProfile/DiffusionProfile.hlsl)  
+Diffuse Transmittance Term | Deep Scatter | [Analytically-Integrated Translucency](http://www.iryoku.com/translucency/) | [HG Phase function](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Shaders/Private/ShadingModels.ush)  | [Baked Textured Thickness](https://github.com/Unity-Technologies/Graphics/blob/master/com.unity.render-pipelines.high-definition/Runtime/Material/SubsurfaceScattering/SubsurfaceScattering.hlsl)  
 Specular Term | Two-lobe Blinn-Phong | KSK | Dual GGX | GGX  
 
 ## 1\. Diffuse Reflectance Term
@@ -53,7 +53,7 @@ The $\displaystyle \operatorname{S}(\Delta x)$ is calculated by the **calculateK
 5. The **SSSS_STREGTH_SOURCE** in the shader code has nothing to do with the **strength** in the paper at all. In the demo source code, the **SSSS_STREGTH_SOURCE** is the alpha channel of the albedo texture, and is used to skip the pixels which represent the eyebrow rather than the skin.  
 
 ### 1-4\. Disney SSS
-TODO    
+
 
 ## 2\. Diffuse Transmittance Term
 
@@ -67,11 +67,21 @@ In the FaceWorks, the **thickness** is calculated by **GFSDK_FaceWorks_EstimateT
 ### 2-2\. Analytically-Integrated Translucency  
 The **diffuse transmittance** term of demo source code provided by \[Jimenez 2015\] is based on \[Jimenez 2010\].  
 
-The main idea of \[Jimenez 2010\] is that the approach proposed by \[Green 2004\] is applied to calculate the thickness while the transmittance coefficient is calculated based on the diffusion profile rather than the **Beer–Lambert law**. According to \[Jimenez 2010\], the idea of the **14.5.3 Modified Translucent Shadow Maps** of \[dEon 2007\] is applied, and the transmittance coefficient is calculated as $\displaystyle \operatorname{T}(d) = \int_0^\infin 2 \cdot \pi \cdot r \cdot \operatorname{R} (\sqrt{r^2 + d^2}) \, dr$ where the R is the 1D diffusion profile and the r is the distance over the surface. If the diffusion profile is approximated by the Gaussians proposed by \[Green 2004\], the result of the integral is analytical and can be calculated as $\displaystyle \operatorname{T}(d) = \sum_i^k w_i e^{\frac{-d^2}{v_i}}$.  
+The main idea of \[Jimenez 2010\] is that the approach proposed by \[Green 2004\] is applied to calculate the thickness while the transmittance coefficient is calculated based on the diffusion profile rather than the **Beer–Lambert law**. According to \[Jimenez 2010\], the idea of the **14.5.3 Modified Translucent Shadow Maps** of \[dEon 2007\] is applied, and the transmittance coefficient is calculated as $\displaystyle \operatorname{T}(d) = \int_0^\infin 2 \pi r \cdot \operatorname{R} (\sqrt{r^2 + d^2}) \, dr$ where the R is the 1D diffusion profile and the r is the distance over the surface. If the diffusion profile is approximated by the Gaussians proposed by \[Green 2004\], the result of the integral is analytical and can be calculated as $\displaystyle \operatorname{T}(d) = \sum_i^k w_i e^{\frac{-d^2}{v_i}}$.  
 
 The **transmittance coefficient** is calculated by the **SSSSTransmittance** in the demo source code provided by \[Jimenez 2015\]. And there are some points to note.  
 1. The demo uses **0.005** to shrink the object in the normal direction to avoid artifacts. Evidently, this value is proportional to the $\displaystyle \frac{1}{\text{MetersPerWorldSpaceUnit}}$.  
 2. Actually, the mere purpose of the **scale** in the shader code is to transform the thickness from world space unit to mm. The shader code of the demo source code demonstrates that the **scale** is calculated as $\displaystyle 8.25 \times (1 - \text{translucency}) \times \frac{1}{\text{sssWidth}}$. According to the **1-3\. Separable SSS** of this page, the $\displaystyle \frac{1}{\text{sssWidth}}$ can be substituted as $\displaystyle \frac{1000 \times 2 \times \text{MetersPerWorldSpaceUnit}}{3}$, and thus the **scale** is actually calculated as $\displaystyle 8.25 \times (1 - \text{translucency}) \times \frac{2}{3} \times 1000 \times \text{MetersPerWorldSpaceUnit}$. The default of the **translucency** in the demo source code is 0.83, and thus the value of $\displaystyle 8.25 \times (1 - \text{translucency}) \times \frac{2}{3}$ is 0.935 which is really close to 1. This implies that the **scale** is actually calculated as $\displaystyle 1000 \times \text{MetersPerWorldSpaceUnit}$ which is exactly the transformation from world space unit to mm.  
+
+### 2-3\. Baked Textured Thickness  
+The **diffuse transmittance** term of Unity3D is based on \[Golubev 2018\].  
+
+\[Golubev 2018\] follows the analytically-integrated formula of \[Jimenez 2010\] while the diffuse profile of \[Christensen 2015\] is applied. And thus, we have that $\displaystyle \operatorname{T}(d) = \int_0^\infin 2 \pi r \cdot \operatorname{R} (\sqrt{r^2 + d^2}) \, dr = \frac{1}{4} A (e^{-sd} + 3e^{-\frac{sd}{3}})$.  
+
+There are two [Transmission Mode](https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@10.8/manual/Diffusion-Profile.html)s: **Thick Object** and **Thin Object**. The **Thick Object** mode merely follows the approach of \[Jimenez 2010\] which uses the shadow map to calculate the thickness. And the **Thin Object** mode uses the baked textured thickness which can be provided by the [Substance](https://substance3d.adobe.com/documentation/bake/thickness-map-from-mesh-172818642.html).  
+
+The **transmittance coefficient** term is calculated by the **FillMaterialTransmission**, the **ShouldEvaluateThickObjectTransmission** and the **EvaluateTransmittance_Punctual** in [Unity3D](https://github.com/Unity-Technologies/Graphics).  
+
 
 ## 3\. Specular Term  
 
@@ -101,3 +111,5 @@ TODO
 \[Jimenez 2012\] [Jorge Jimenez, Adrian Jarabo, Diego Gutierrez. "Separable Subsurface Scattering." Technical Report 2012.](https://graphics.unizar.es/publications.html#year_2012)   
 \[Jimenez 2012\] [Jorge Jimenez, Adrian Jarabo, Diego Gutierrez, Etienne Danvoye, Javier von der Pahlen. "Separable Subsurface Scattering and Photorealistic Eyes Rendering." SIGGRAPH 2012.](http://advances.realtimerendering.com/s2012/index.html)  
 \[Jimenez 2015\] [Jorge Jimenez, Karoly Zsolnai, Adrian Jarabo1, Christian Freude, Thomas Auzinger, Xian-Chun Wu, Javier von der Pahlen, Michael Wimmer, Diego Gutierrez. "Separable Subsurface Scattering." EGSR 2015.](http://www.iryoku.com/separable-sss/)  
+\[Christensen 2015\] [Per Christensen, Brent Burley. "Approximate Reflectance Profiles for Efficient Subsurface Scattering." SIGGRAPH 2015.](https://graphics.pixar.com/library/)  
+\[Golubev 2018\] [Evgenii Golubev. "Efficient Screen-Space Subsurface Scattering Using Burley's Normalized Diffusion in Real-Time." SIGGRAPH 2018.](https://zero-radiance.github.io/post/sampling-diffusion/)  
