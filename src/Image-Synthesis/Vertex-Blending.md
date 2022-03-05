@@ -14,6 +14,9 @@ Evidently, we have $b_0b_0 = a_0$ and $2b_0b_\varepsilon = a_\varepsilon$. And t
 
 A dual quaternion can be considered as quaternions whose elements are dual numbers $\hat{\overrightarrow{q}} = \hat{q_w} + \hat{q_x}\text{i} + \hat{q_y}\text{j} + \hat{q_z}\text{k}$ where $\varepsilon\text{i} = \text{i}\varepsilon = i$, $\varepsilon\text{j} = \text{j}\varepsilon = j$ and $\varepsilon\text{k} = \text{k}\varepsilon = k$. Actually, a dual quaternion can also be considered as $\hat{\overrightarrow{q}} = \overrightarrow{q_0} + \overrightarrow{q_\varepsilon}\varepsilon$ where $\overrightarrow{q_0}$ and $\overrightarrow{q_\varepsilon}$ are ordinary quaternions (\[Kavan 2008\] / A Dual Quaternion Tutorial / A.2 Dual Quaternions).  
 
+### Multiplication  
+$\hat{\overrightarrow{p}}\hat{\overrightarrow{q}} = \overrightarrow{p}\overrightarrow{q}$
+
 
 ### The correspondence between rigid transformations and unit dual quaternions  
 
