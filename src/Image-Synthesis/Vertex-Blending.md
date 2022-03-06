@@ -34,7 +34,10 @@ $\overline{\hat{q}} = \overline{\boldsymbol{q_0} + \boldsymbol{q_\varepsilon}\va
 #### Quaternion Conjugation and Dual Number Conjugation are Commutative  
 $\overline{{\hat{\boldsymbol{q}}}^*} = {\overline{\hat{q}}}^*$ (\[Kavan 2008\] / A Dual Quaternion Tutorial / A.2 Dual Quaternions).  
 Proof:  
+$\overline{{\hat{\boldsymbol{q}}}^*} = \overline{{(\boldsymbol{q_0} + \boldsymbol{q_\varepsilon}\varepsilon)}^*} = \overline{ {\boldsymbol{q_0}}^* + {{\boldsymbol{q_\varepsilon}}^*}\varepsilon} = {\boldsymbol{q_0}}^* - {{\boldsymbol{q_\varepsilon}}^*}\varepsilon = {(\boldsymbol{q_0} - \boldsymbol{q_\varepsilon}\varepsilon)}^* = {(\overline{\boldsymbol{q_0} + \boldsymbol{q_\varepsilon}\varepsilon})}^* = {\overline{\hat{q}}}^*$
 
+### Norm  
+(\[Kavan 2008\] / A Dual Quaternion Tutorial / A.2 Dual Quaternions / Lemma 9).
 
 ### The correspondence between rigid transformations and unit dual quaternions  
 
