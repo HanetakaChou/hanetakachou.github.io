@@ -21,6 +21,7 @@ You should have received a copy of the GNU Lesser General Public License along w
 ## Image Synthesis  
 [Image-Synthesis/MOC.html](Image-Synthesis/MOC.html)  
 [Image-SYnthesis/Projector-Functions.html](Image-Synthesis/Projector-Functions.html)  
+[Image-Synthesis/Vertex-Blending.html](Image-Synthesis/Vertex-Blending.html)  
 [Image-Synthesis/Skin.html](Image-Synthesis/Skin.html)  
 [Image-Synthesis/Grass.html](Image-Synthesis/Grass.html)  
 [Image-Synthesis/Billboard.html](Image-Synthesis/Billboard.html)  
