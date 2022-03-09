@@ -28,11 +28,11 @@
         <tbody dir="auto">
             <tr dir="auto">
                 <td style="text-align:center">Diffuse Reflectance Term</td>
-                <td style="text-align:center">Pre-Integrated</td>
+                <td style="text-align:center">Preintegrated</td>
                 <td style="text-align:center"><a href="https://graphics.unizar.es/publications.html#year_2012">Separable
                         SSS</a></td>
                 <td style="text-align:center"><a
-                        href="https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Shaders/Private/ShadingModels.ush">Pre-Integrated</a>
+                        href="https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Shaders/Private/ShadingModels.ush">Preintegrated</a>
                     + <a
                         href="https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Shaders/Private/ShadingModels.ush">Disney
                         Diffuse</a> + <a
@@ -54,7 +54,7 @@
                 <td style="text-align:center"><a
                         href="https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Shaders/Private/ShadingModels.ush">HG
                         Phase function</a></td>
-                <td style="text-align:center"><a
+                <td style="text-align:center">Disney SSS + Analytically-Integrated Translucency + <a
                         href="https://github.com/Unity-Technologies/Graphics/blob/master/com.unity.render-pipelines.high-definition/Runtime/Material/SubsurfaceScattering/SubsurfaceScattering.hlsl">Baked
                         Textured Thickness</a></td>
             </tr>
@@ -965,11 +965,11 @@
         according to [dEon 2007], if the width (technically, the range of the significant contribution domain) of the
         diffusion profile is about 16 mm, and the width of pixel is about 0.25 mm, we would need 4096(64 x 64) samples
         per pixel in the shader. Thus, we have to propose more efficient approaches to settle this problem.</p>
-    <h3 dir="auto" id="1-2-pre-integrated">1-2. Pre-Integrated</h3>
+    <h3 dir="auto" id="1-2-preintegrated">1-2. Preintegrated</h3>
     <p dir="auto">The <strong>diffuse reflectance</strong> term of NVIDIA FaceWorks and the <strong>Preintegrated
             Skin</strong> <a
             href="https://docs.unrealengine.com/4.27/en-US/RenderingAndGraphics/Materials/MaterialProperties/LightingModels/">Shading
-            Model</a> of UE4 is based on the <strong>Pre-Integrated</strong> [Penner 2011].</p>
+            Model</a> of UE4 is based on the <strong>Preintegrated</strong> [Penner 2011].</p>
     <p dir="auto">In real time rendering, the light is assumed to be the punctual light rather than the area light. The
         <a
             href="https://www.pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/Sampling_Light_Sources#LightswithSingularities">Delta
@@ -2285,8 +2285,8 @@
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.15em;"><span></span></span></span></span></span></span><span
                             class="mclose">)</span><span class="mord">∣</span></span></span></span></eq> part of the
-        diffuse term can be <strong>pre-integrated</strong> and stored in a LUT(Look Up Texture) which is called the
-        <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+        diffuse term can be <strong>preintegrated</strong> and stored in a LUT(Look Up Texture) which is called the <eq>
+            <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
                                 <mstyle scriptlevel="0" displaystyle="true">
@@ -5806,10 +5806,10 @@ M1001 80h400000v40h-400000z' />
         <strong>Thin Object</strong> mode uses the baked textured thickness which can be provided by the <a
             href="https://substance3d.adobe.com/documentation/bake/thickness-map-from-mesh-172818642.html">Substance</a>.
     </p>
-    <p dir="auto">The <strong>transmittance coefficient</strong> term is calculated by the
-        <strong>FillMaterialTransmission</strong>, the <strong>ShouldEvaluateThickObjectTransmission</strong> and the
-        <strong>EvaluateTransmittance_Punctual</strong> in <a
-            href="https://github.com/Unity-Technologies/Graphics">Unity3D</a>.</p>
+    <p dir="auto">In the <a href="https://github.com/Unity-Technologies/Graphics">Unity3D</a>, the
+        <strong>thickness</strong> is calculated by the <strong>FillMaterialTransmission</strong>, the
+        <strong>ShouldEvaluateThickObjectTransmission</strong> and the <strong>EvaluateTransmittance_Punctual</strong>.
+    </p>
     <h2 dir="auto" id="3-specular-term">3. Specular Term</h2>
     <h3 dir="auto" id="3-1-two-lobe-blinn-phong">3-1. Two-lobe Blinn-Phong</h3>
     <p dir="auto">TODO</p>
