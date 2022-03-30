@@ -13,10 +13,18 @@ Real-Time Rendering Fourth Edition / 10.4.4 Other Projections
 
 "The parabolic map has more **uniform** texel sampling of the environment compared to the sphere map, and even to the cube map." by Real-Time Rendering Fourth Edition  
 
-
 ![](Projector-Functions-1.png)  
 ![](Projector-Functions-2.png)  
 ![](Projector-Functions-3.png)  
+
+### 1-3\. Octahedral Mapping  
+Real-Time Rendering Fourth Edition / 10.4.4 Other Projections  
+
+// Octahedron Environment Maps  
+// On Floating-Point Normal Vectors  
+// A Survey of Efficient Representations for Independent Unit Vectors
+
+
 
 ## 2\. Applications  
 
