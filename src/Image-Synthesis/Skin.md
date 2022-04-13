@@ -39,7 +39,7 @@ The **diffuse reflectance** term of the **Subsurface Profile** [Shading Model](h
 
 The approach of \[dEon 2007\] is to approximate the diffusion profile by the weighted sum of 6 Gaussians, and thus the general 2D convolution can be replaced by 12(2 x 6) 1D convolutions since the [Gaussian blur](https://en.wikipedia.org/wiki/Gaussian_blur) is a [separable filter](https://en.wikipedia.org/wiki/Separable_filter). However, the approach proposed by \[dEon 2007\] is applied in texture space which is too weird according to the convention of the real time rendering. And the screen space approach is proposed by \[Jimenez 2009\]. However, the approach proposed by \[Jimenez 2009\] still needs 12(2 x 6) passes to perform the 12(2 x 6) 1D convolutions. Evidently, this is still too expensive for real time rendering. And thus, the 2 passes approach is proposed by \[Jimenez 2012\].    
 
-According to the **numerical quadrature**, the funtion value sampled from the irradiance texture should be multiplied by the difference of the domain $\displaystyle \operatorname{\Delta} p_i$. \[dEon 2007\] proposed the **stretch texture**, where the difference of the world position is stored, to described the $\displaystyle \operatorname{\Delta} p_i$. Definitely, the screen space depth can be used to calculate the world position and thus the $\displaystyle \operatorname{\Delta} p_i$ can be obtained. However, the **stretch factor** proposed by \[Jimenez 2009\] is not proportional to the difference of the world position, and in my opinion, is empirical. And \[Mikkelsen 2010\] proposed a more reasonable approach to calculate the **kernel** size which is based on the mathematical derivation. Note that in image processing, the **filter** is a (continuous) function which is approximated by a discrete and finite **kernel**.  
+According to the **numerical quadrature**, the funtion value sampled from the irradiance texture should be multiplied by the difference of the domain $\displaystyle \operatorname{\Delta} p_i$. \[dEon 2007\] proposed the **stretch texture**, where the difference of the world position is stored, to described the $\displaystyle \operatorname{\Delta} p_i$. Definitely, the screen space depth can be used to calculate the world position and thus the $\displaystyle \operatorname{\Delta} p_i$ can be obtained. However, the **stretch factor** proposed by \[Jimenez 2009\] is not proportional to the difference of the world position, and in my opinion, is empirical.  
 
 The the demo source code of \[Jimenez 2012\] is provided by \[Jimenez 2015\]. Perhaps you can not believe it but it is really the truth. **The demo source code provided by \[Jimenez 2015\] has nothing to do with \[Jimenez 2015\]**. This is really arcane, and I do spend some time to realize this fact.   
 
@@ -55,6 +55,14 @@ The $\displaystyle \operatorname{S}(\Delta x)$ is calculated by the **calculateK
 ### 1-4\. Disney SSS
 The **diffuse reflectance** term of [Unity3D](https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@10.8/manual/Diffusion-Profile.html) and the **Subsurface Profile** [Shading Model](https://docs.unrealengine.com/4.27/en-US/RenderingAndGraphics/Materials/MaterialProperties/LightingModels/) with [Enable Burley](https://docs.unrealengine.com/4.27/en-US/RenderingAndGraphics/Materials/LightingModels/SubSurfaceProfile/) of UE4 is based on the **Disney SSS** \[Golubev 2018\].  
 TODO  
+
+The **cross bilateral filter** proposed by \[Mikkelsen 2010\] is applied.  
+Note that \[Mikkelsen 2010\] claims that $dx = \frac{\cos^3(\phi_i)\|x\|^2}{\cos(\phi_j)} \, dp$ as shown below:  
+![](Mikkelsen-2010-1.png)  
+And this equation can be deduced as following:  
+Let $d\omega$ be the same differential solid angle subtended by the differential area $dp$ and $dx$.  
+According to the [Equation (5.6) of PBR Book](https://pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#IntegralsoverArea), we have $dw = \cos(\phi_j)\frac{1}{\|x\|^2} \, dx$ and $dw = \cos(\phi_i)\frac{1}{\frac{1}{\cos^2(\phi_i)}} \, dp = \cos^3(\phi_i) \, dp$.  
+Since $dw$ is the same, we have $\cos(\phi_j)\frac{1}{\|x\|^2} \, dx = \cos^3(\phi_i) \, dp$, namely $dx = \frac{\cos^3(\phi_i)\|x\|^2}{\cos(\phi_j)} \, dp$.   
 
 ## 2\. Diffuse Transmittance Term
 
