@@ -57,12 +57,17 @@ The **diffuse reflectance** term of [Unity3D](https://docs.unity3d.com/Packages/
 TODO  
 
 The **cross bilateral filter** proposed by \[Mikkelsen 2010\] is applied.  
-Note that \[Mikkelsen 2010\] claims that $dx = \frac{\cos^3(\phi_i)\|x\|^2}{\cos(\phi_j)} \, dp$ as shown below:  
+  
+\[Mikkelsen 2010\] claims that $\displaystyle dx = \frac{\cos^3(\phi_i)\|x\|^2}{\cos(\phi_j)} \, dp$ as shown below:  
 ![](Mikkelsen-2010-1.png)  
-And this equation can be deduced as following:  
-Let $d\omega$ be the same differential solid angle subtended by the differential area $dp$ and $dx$.  
-According to the [Equation (5.6) of PBR Book](https://pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#IntegralsoverArea), we have $dw = \cos(\phi_j)\frac{1}{\|x\|^2} \, dx$ and $dw = \cos(\phi_i)\frac{1}{\frac{1}{\cos^2(\phi_i)}} \, dp = \cos^3(\phi_i) \, dp$.  
-Since $dw$ is the same, we have $\cos(\phi_j)\frac{1}{\|x\|^2} \, dx = \cos^3(\phi_i) \, dp$, namely $dx = \frac{\cos^3(\phi_i)\|x\|^2}{\cos(\phi_j)} \, dp$.   
+This equation can be deduced by constructing the intermediate  $\displaystyle d\omega$ such that the $\displaystyle d\omega$ is the same differential solid angle subtended by the differential area $dp$ and $dx$.  
+According to the [Equation (5.6) of PBR Book](https://pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#IntegralsoverArea), we have $\displaystyle dw = \cos(\phi_j)\frac{1}{\|x\|^2} \, dx$ and $\displaystyle dw = \cos(\phi_i)\frac{1}{\frac{1}{\cos^2(\phi_i)}} \, dp = \cos^3(\phi_i) \, dp$.  
+Since $\displaystyle dw$ is the same, we have $\displaystyle \cos(\phi_j)\frac{1}{\|x\|^2} \, dx = \cos^3(\phi_i) \, dp$, namely $\displaystyle dx = \frac{\cos^3(\phi_i)\|x\|^2}{\cos(\phi_j)} \, dp$.  
+  
+And \[Mikkelsen 2010\] claims that $\displaystyle \operatorname{r_{12}}(x) - \operatorname{r_{12}}(x_0) \approx \operatorname{K_{p_0}} \cdot \| p - p_0 \|$ where $\displaystyle \operatorname{K_{p_0}} = \frac{2 \cdot r_{max} \cdot |\cos(\theta_0)|}{d \cdot \cos(\phi_0)}$ as shown below:  
+![](Mikkelsen-2010-2.png)  
+The form of this equation is similar to one degree [Taylor polynomial](https://en.wikipedia.org/wiki/Taylor%27s_theorem), but $\displaystyle r_{max}$ and d are the macro quantities which can NOT be explained by the micro differential.  
+This equation may be comprehended as $\displaystyle \frac{1}{2 \cdot r_{max}} \cdot \frac{\cos(\phi_0)}{\cos(\theta_0)} \cdot (\operatorname{r_{12}}(x) - \operatorname{r_{12}}(x_0)) = \frac{1}{d} \cdot \| p - p_0 \|$.
 
 ## 2\. Diffuse Transmittance Term
 
