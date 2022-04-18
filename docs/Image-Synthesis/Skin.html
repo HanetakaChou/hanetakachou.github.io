@@ -4985,7 +4985,7 @@
             href="https://docs.unrealengine.com/4.27/en-US/RenderingAndGraphics/Materials/LightingModels/SubSurfaceProfile/">Enable
             Burley</a> of UE4 is based on the <strong>Disney SSS</strong> [Golubev 2018].<br>
         TODO</p>
-    <p dir="auto">The <strong>cross bilateral filter</strong> proposed by [Mikkelsen 2010] is applied.</p>
+    <p dir="auto">The <strong>bilateral filter</strong> proposed by [Mikkelsen 2010] is applied.</p>
     <p dir="auto">[Mikkelsen 2010] claims that <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
@@ -5168,7 +5168,7 @@
                             <mrow>
                                 <mstyle scriptlevel="0" displaystyle="true">
                                     <mi>d</mi>
-                                    <mi>w</mi>
+                                    <mi>ω</mi>
                                     <mo>=</mo>
                                     <mi>cos</mi>
                                     <mo>⁡</mo>
@@ -5194,13 +5194,13 @@
                                     <mi>x</mi>
                                 </mstyle>
                             </mrow>
-                            <annotation encoding="application/x-tex">\displaystyle dw = \cos(\phi_j)\frac{1}{\|x\|^2} \,
-                                dx</annotation>
+                            <annotation encoding="application/x-tex">\displaystyle d\omega =
+                                \cos(\phi_j)\frac{1}{\|x\|^2} \, dx</annotation>
                         </semantics>
                     </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
                             style="height:0.69444em;vertical-align:0em;"></span><span
                             class="mord mathnormal">d</span><span class="mord mathnormal"
-                            style="margin-right:0.02691em;">w</span><span class="mspace"
+                            style="margin-right:0.03588em;">ω</span><span class="mspace"
                             style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
                             class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
                         class="base"><span class="strut" style="height:2.25744em;vertical-align:-0.936em;"></span><span
@@ -5245,7 +5245,7 @@
                             <mrow>
                                 <mstyle scriptlevel="0" displaystyle="true">
                                     <mi>d</mi>
-                                    <mi>w</mi>
+                                    <mi>ω</mi>
                                     <mo>=</mo>
                                     <mi>cos</mi>
                                     <mo>⁡</mo>
@@ -5298,13 +5298,13 @@
                                     <mi>p</mi>
                                 </mstyle>
                             </mrow>
-                            <annotation encoding="application/x-tex">\displaystyle dw =
+                            <annotation encoding="application/x-tex">\displaystyle d\omega =
                                 \cos(\phi_i)\frac{1}{\frac{1}{\cos^2(\phi_i)}} \, dp = \cos^3(\phi_i) \, dp</annotation>
                         </semantics>
                     </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
                             style="height:0.69444em;vertical-align:0em;"></span><span
                             class="mord mathnormal">d</span><span class="mord mathnormal"
-                            style="margin-right:0.02691em;">w</span><span class="mspace"
+                            style="margin-right:0.03588em;">ω</span><span class="mspace"
                             style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
                             class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
                         class="base"><span class="strut"
@@ -5416,15 +5416,15 @@
                             <mrow>
                                 <mstyle scriptlevel="0" displaystyle="true">
                                     <mi>d</mi>
-                                    <mi>w</mi>
+                                    <mi>ω</mi>
                                 </mstyle>
                             </mrow>
-                            <annotation encoding="application/x-tex">\displaystyle dw</annotation>
+                            <annotation encoding="application/x-tex">\displaystyle d\omega</annotation>
                         </semantics>
                     </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
                             style="height:0.69444em;vertical-align:0em;"></span><span
                             class="mord mathnormal">d</span><span class="mord mathnormal"
-                            style="margin-right:0.02691em;">w</span></span></span></span></eq> is the same, we have <eq>
+                            style="margin-right:0.03588em;">ω</span></span></span></span></eq> is the same, we have <eq>
             <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
@@ -5974,7 +5974,19 @@
                                                             class="mord mathnormal mtight">x</span></span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
-        </eq> and d are the macro quantities which can NOT be explained by the micro differential.<br>
+        </eq> and <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mi>d</mi>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle d</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.69444em;vertical-align:0em;"></span><span
+                            class="mord mathnormal">d</span></span></span></span></eq> are the macro quantities which
+        can NOT be explained by the micro differential.<br>
         This equation may be comprehended as <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
