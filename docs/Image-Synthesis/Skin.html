@@ -4680,9 +4680,8 @@
     <h4 dir="auto" id="1-4-1-bilateral-filter">1-4-1. Bilateral Filter</h4>
     <p dir="auto">The approach of [Mikkelsen 2010] is used by [Golubev 2018] to the estimated surface area based on the
         screen space area.</p>
-    <p dir="auto">Let x be the point on the surface, and p is the projection of x on the screen space.</p>
-    <p dir="auto">We have <eq><span class="katex"><span class="katex-mathml"><math
-                        xmlns="http://www.w3.org/1998/Math/MathML">
+    <p dir="auto">Let x be the point on the surface, and p is the perspective projection of x on the screen space. We
+        have <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
                                 <mstyle scriptlevel="0" displaystyle="true">
@@ -4978,8 +4977,8 @@
                                                 </svg></span></span></span><span class="vlist-s">​</span></span><span
                                     class="vlist-r"><span class="vlist"
                                         style="height:0.19444em;"><span></span></span></span></span></span></span></span></span>
-        </eq>.<br>
-        Let <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+        </eq>. Proof: Let <eq><span class="katex"><span class="katex-mathml"><math
+                        xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
                                 <mstyle scriptlevel="0" displaystyle="true">
@@ -4997,10 +4996,12 @@
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
-                                <mi>d</mi>
-                                <mi>p</mi>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mi>d</mi>
+                                    <mi>p</mi>
+                                </mstyle>
                             </mrow>
-                            <annotation encoding="application/x-tex">dp</annotation>
+                            <annotation encoding="application/x-tex">\displaystyle dp</annotation>
                         </semantics>
                     </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
                             style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span
@@ -5008,16 +5009,17 @@
         </eq> and <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
-                                <mi>d</mi>
-                                <mi>x</mi>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mi>d</mi>
+                                    <mi>x</mi>
+                                </mstyle>
                             </mrow>
-                            <annotation encoding="application/x-tex">dx</annotation>
+                            <annotation encoding="application/x-tex">\displaystyle dx</annotation>
                         </semantics>
                     </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
                             style="height:0.69444em;vertical-align:0em;"></span><span
                             class="mord mathnormal">d</span><span class="mord mathnormal">x</span></span></span></span>
-        </eq>.<br>
-        By the <a
+        </eq>. By the <a
             href="https://pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#IntegralsoverArea">Equation
             (5.6) of PBR Book</a>, we have <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
@@ -5267,8 +5269,8 @@
                             class="mclose">)</span><span class="mspace"
                             style="margin-right:0.16666666666666666em;"></span><span
                             class="mord mathnormal">d</span><span class="mord mathnormal">p</span></span></span></span>
-        </eq>.<br>
-        Since <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+        </eq>. Since <eq><span class="katex"><span class="katex-mathml"><math
+                        xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
                                 <mstyle scriptlevel="0" displaystyle="true">
@@ -5733,8 +5735,8 @@ M1001 80h400000v40h-400000z' />
                                             style="height:0.15em;"><span></span></span></span></span></span></span><span
                             class="mord">.</span><span class="mord mathnormal"
                             style="margin-right:0.04398em;">z</span><span class="mord">∣</span></span></span></span>
-        </eq>.<br>
-        We have <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+        </eq>. We have <eq><span class="katex"><span class="katex-mathml"><math
+                        xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
                                 <mstyle scriptlevel="0" displaystyle="true">
@@ -5874,9 +5876,7 @@ M1001 80h400000v40h-400000z' />
                                                 </svg></span></span></span><span class="vlist-s">​</span></span><span
                                     class="vlist-r"><span class="vlist"
                                         style="height:0.5055099999999999em;"><span></span></span></span></span></span></span></span></span>
-        </eq>.<br>
-        According to [Mikkelsen 2010], <eq><span class="katex"><span class="katex-mathml"><math
-                        xmlns="http://www.w3.org/1998/Math/MathML">
+        </eq>. And <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
                                 <mstyle scriptlevel="0" displaystyle="true">
@@ -6124,10 +6124,10 @@ M1001 80h400000v40h-400000z' />
                                                         class="mord">∣</span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.8804400000000001em;"><span></span></span></span></span></span><span
-                                class="mclose nulldelimiter"></span></span></span></span></span></eq>.<br>
-        The form of this equation may remind us of the one degree <a
-            href="https://en.wikipedia.org/wiki/Taylor%27s_theorem">Taylor polynomial</a>, but <eq><span
-                class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                                class="mclose nulldelimiter"></span></span></span></span></span></eq>. The form of this
+        equation may remind us of the one degree <a href="https://en.wikipedia.org/wiki/Taylor%27s_theorem">Taylor
+            polynomial</a>, but <eq><span class="katex"><span class="katex-mathml"><math
+                        xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
                                 <mstyle scriptlevel="0" displaystyle="true">
@@ -6168,8 +6168,8 @@ M1001 80h400000v40h-400000z' />
                     </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
                             style="height:0.69444em;vertical-align:0em;"></span><span
                             class="mord mathnormal">d</span></span></span></span></eq> are the macro quantities which
-        can NOT be explained by the micro differential.</p>
-    <p dir="auto">Let the diffusion profile <eq><span class="katex"><span class="katex-mathml"><math
+        can <strong>NOT</strong> be explained by the micro differential.</p>
+    <p dir="auto">When the diffusion profile <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
@@ -6186,7 +6186,7 @@ M1001 80h400000v40h-400000z' />
                     </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
                             style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span
                                 class="mord mathrm">R</span></span><span class="mopen">(</span><span
-                            class="mord mathnormal">x</span><span class="mclose">)</span></span></span></span></eq> be
+                            class="mord mathnormal">x</span><span class="mclose">)</span></span></span></span></eq> is
         the Gaussian function <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
@@ -6210,10 +6210,10 @@ M1001 80h400000v40h-400000z' />
                             class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span
                             class="mpunct">,</span><span class="mspace"
                             style="margin-right:0.16666666666666666em;"></span><span
-                            class="mord mathnormal">x</span><span class="mclose">)</span></span></span></span></eq>.<br>
-        According to [Mikkelsen 2010], the integral can be transformed from the surface area to the screen space area by
-        <a href="https://en.wikipedia.org/wiki/Integration_by_substitution">Integration by Substitution</a>
-        <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            class="mord mathnormal">x</span><span class="mclose">)</span></span></span></span></eq>, by
+        <a href="https://en.wikipedia.org/wiki/Integration_by_substitution">Integration by Substitution</a>, the
+        integral can be transformed from the surface area to the screen space area <eq><span class="katex"><span
+                    class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
                                 <mstyle scriptlevel="0" displaystyle="true">
@@ -6721,9 +6721,8 @@ M1001 80h400000v40h-400000z' />
                             class="mclose">)</span><span class="mspace"
                             style="margin-right:0.16666666666666666em;"></span><span
                             class="mord mathnormal">d</span><span class="mord mathnormal">p</span></span></span></span>
-        </eq>.<br>
-        And according to [dEon 2007], the radius of the surface area <eq><span class="katex"><span
-                    class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+        </eq>. The surface area <eq><span class="katex"><span class="katex-mathml"><math
+                        xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
                                 <mstyle scriptlevel="0" displaystyle="true">
@@ -6761,8 +6760,8 @@ M1001 80h400000v40h-400000z' />
                                                                             style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.2501em;"><span></span></span></span></span></span></span></span></span></span>
-        </eq> is 8mm. Since the surface area is relatively small, <eq><span class="katex"><span
-                    class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+        </eq>, of which the radius is 8mm by [dEon 2007], is relatively small, and thus the <eq><span
+                class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
                                 <mstyle scriptlevel="0" displaystyle="true">
@@ -6799,7 +6798,7 @@ M1001 80h400000v40h-400000z' />
                                                 class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                                 style="height:0.383108em;"><span></span></span></span></span></span></span></span><span
                             class="mopen">(</span><span class="mord mathnormal">p</span><span
-                            class="mclose">)</span></span></span></span></eq> can be approximated by <eq><span
+                            class="mclose">)</span></span></span></span></eq> can be approximated by the <eq><span
                 class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
@@ -6848,9 +6847,8 @@ M1001 80h400000v40h-400000z' />
                                                         class="mord mtight">0</span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.15em;"><span></span></span></span></span></span></span><span
-                            class="mclose">)</span></span></span></span></eq>.<br>
-        Since the diffusion profile <eq><span class="katex"><span class="katex-mathml"><math
-                        xmlns="http://www.w3.org/1998/Math/MathML">
+                            class="mclose">)</span></span></span></span></eq>. And since the diffusion profile <eq><span
+                class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
                                 <mstyle scriptlevel="0" displaystyle="true">
@@ -7169,8 +7167,8 @@ M1001 80h400000v40h-400000z' />
                             style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
                             class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
                         class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span
-                            class="mord">1</span></span></span></span></eq>. And thus we do NOT need to calculate <eq>
-            <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            class="mord">1</span></span></span></span></eq>. This means that the <eq><span
+                class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
                                 <mstyle scriptlevel="0" displaystyle="true">
@@ -7208,9 +7206,8 @@ M1001 80h400000v40h-400000z' />
                                                                             style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span>
-        </eq>.
-    </p>
-    <p dir="auto">Evidently, the diffusion profile <eq><span class="katex"><span class="katex-mathml"><math
+        </eq> does <strong>NOT</strong> need to be calculated.</p>
+    <p dir="auto">However, the diffusion profile <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
@@ -7228,8 +7225,8 @@ M1001 80h400000v40h-400000z' />
                             style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span
                                 class="mord mathrm">R</span></span><span class="mopen">(</span><span
                             class="mord mathnormal">x</span><span class="mclose">)</span></span></span></span></eq> of
-        [Golubev 2018] is <strong>NOT</strong> the Gaussian function, and thus does <strong>NOT</strong> follow the
-        preceding formula. The Unity3D and the UE4 both mere assume that <eq><span class="katex"><span
+        [Golubev 2018] is <strong>NOT</strong> the Gaussian function, and thus the formula provided by [Mikkelsen 2010]
+        does <strong>NOT</strong> apply. The Unity3D and the UE4 both merely assume that <eq><span class="katex"><span
                     class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
@@ -7274,7 +7271,7 @@ M1001 80h400000v40h-400000z' />
                             class="mrel">=</span><span class="mspace"
                             style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
                             class="strut" style="height:0.64444em;vertical-align:0em;"></span><span
-                            class="mord">1</span></span></span></span></eq>, and thus <eq><span class="katex"><span
+                            class="mord">1</span></span></span></span></eq>, and the <eq><span class="katex"><span
                     class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
@@ -7422,7 +7419,130 @@ M1001 80h400000v40h-400000z' />
     <p dir="auto">The <strong>Bilateral Filter</strong> is controlled by the macro <strong>SSS_BILATERAL_FILTER</strong>
         in the Unity3D and the macro <strong>USE_BILATERAL_FILTERING</strong> in the UE4.</p>
     <h4 dir="auto" id="1-4-2-importance-sampling">1-4-2. Importance Sampling</h4>
-    <p dir="auto">TODO</p>
+    <p dir="auto">The normalized diffusion profile <eq><span class="katex"><span class="katex-mathml"><math
+                        xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mi mathvariant="normal">R</mi>
+                                    <mo>⁡</mo>
+                                    <mo stretchy="false">(</mo>
+                                    <mi>x</mi>
+                                    <mo stretchy="false">)</mo>
+                                    <mo>=</mo>
+                                    <mfrac>
+                                        <mi>s</mi>
+                                        <mrow>
+                                            <mn>8</mn>
+                                            <mi>π</mi>
+                                        </mrow>
+                                    </mfrac>
+                                    <mo stretchy="false">(</mo>
+                                    <msup>
+                                        <mi>e</mi>
+                                        <mrow>
+                                            <mo>−</mo>
+                                            <mi>s</mi>
+                                            <mi>r</mi>
+                                        </mrow>
+                                    </msup>
+                                    <mo>+</mo>
+                                    <msup>
+                                        <mi>e</mi>
+                                        <mrow>
+                                            <mo>−</mo>
+                                            <mfrac>
+                                                <mrow>
+                                                    <mi>s</mi>
+                                                    <mi>r</mi>
+                                                </mrow>
+                                                <mn>3</mn>
+                                            </mfrac>
+                                        </mrow>
+                                    </msup>
+                                    <mo stretchy="false">)</mo>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle \operatorname{R}(x) =
+                                \frac{s}{8\pi}(e^{-sr}+e^{-\frac{sr}{3}})</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span
+                                class="mord mathrm">R</span></span><span class="mopen">(</span><span
+                            class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                        class="base"><span class="strut"
+                            style="height:1.7935600000000003em;vertical-align:-0.686em;"></span><span class="mord"><span
+                                class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.10756em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">8</span><span class="mord mathnormal"
+                                                        style="margin-right:0.03588em;">π</span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord mathnormal">s</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span><span class="mopen">(</span><span
+                            class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span
+                                    class="vlist-t"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.821331em;"><span
+                                                style="top:-3.113em;margin-right:0.05em;"><span class="pstrut"
+                                                    style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight"><span class="mord mtight">−</span><span
+                                                            class="mord mathnormal mtight"
+                                                            style="margin-right:0.02778em;">sr</span></span></span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+                            class="mbin">+</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span
+                            class="strut" style="height:1.1470799999999999em;vertical-align:-0.25em;"></span><span
+                            class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span
+                                    class="vlist-t"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.89708em;"><span
+                                                style="top:-3.4130000000000003em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:3em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight"><span class="mord mtight">−</span><span
+                                                            class="mord mtight"><span
+                                                                class="mopen nulldelimiter sizing reset-size3 size6"></span><span
+                                                                class="mfrac"><span class="vlist-t vlist-t2"><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.6915428571428572em;"><span
+                                                                                style="top:-2.656em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="sizing reset-size3 size1 mtight"><span
+                                                                                        class="mord mtight"><span
+                                                                                            class="mord mtight">3</span></span></span></span><span
+                                                                                style="top:-3.2255000000000003em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="frac-line mtight"
+                                                                                    style="border-bottom-width:0.049em;"></span></span><span
+                                                                                style="top:-3.384em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="sizing reset-size3 size1 mtight"><span
+                                                                                        class="mord mtight"><span
+                                                                                            class="mord mathnormal mtight"
+                                                                                            style="margin-right:0.02778em;">sr</span></span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.344em;"><span></span></span></span></span></span><span
+                                                                class="mclose nulldelimiter sizing reset-size3 size6"></span></span></span></span></span></span></span></span></span></span><span
+                            class="mclose">)</span></span></span></span></eq> is used as PDF by [Golubev 2018].</p>
+    <p dir="auto">However, the normalized diffusion profile is 1D, and thus only the 1D radial distance r of the sample
+        can be deduced. Both Unity3D and UE4 use the <strong>Fibonacci sequence</strong>, which represents the <a
+            href="https://en.wikipedia.org/wiki/Golden_ratio#Relationship_to_Fibonacci_sequence">Golden ratio</a>, to
+        determine the direction.</p>
+    <p dir="auto">The <strong>Fibonacci sequence</strong> is calculated by the <strong>SampleDiskFibonacci</strong> in
+        the Unity3D and the <strong>FIBONACCI_SEQUENCE_ANGLE</strong> in the UE4.</p>
     <h2 dir="auto" id="2-diffuse-transmittance-term">2. Diffuse Transmittance Term</h2>
     <h3 dir="auto" id="2-1-deep-scatter">2-1. Deep Scatter</h3>
     <p dir="auto">The <strong>diffuse transmittance</strong> term of the FaceWorks is based on the <strong>16.3
