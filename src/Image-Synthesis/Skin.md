@@ -1,7 +1,7 @@
 N/A | [NVIDIA FaceWorks](https://github.com/NVIDIAGameWorks/FaceWorks/blob/master/doc/slides/FaceWorks-Overview-GTC14.pdf) | [Demo Source Code of Jimenez 2015]((http://www.iryoku.com/separable-sss/)) | UE4 | Unity3D  
 :-: | :-: | :-: | :-: | :-: 
-Diffuse Reflectance Term | Preintegrated | [Separable SSS](https://graphics.unizar.es/publications.html#year_2012) | [Preintegrated](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Shaders/Private/ShadingModels.ush) + [Disney Diffuse](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Shaders/Private/ShadingModels.ush) + [Separable SSS](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Runtime/Engine/Private/Rendering/SeparableSSS.cpp) + [Disney SSS](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Runtime/Engine/Private/Rendering/BurleyNormalizedSSS.cpp) | [Disney Diffuse](https://github.com/Unity-Technologies/Graphics/blob/master/com.unity.render-pipelines.high-definition/Runtime/Material/Lit/Lit.hlsl) + [Disney SSS](https://github.com/Unity-Technologies/Graphics/blob/master/com.unity.render-pipelines.high-definition/Runtime/Material/SubsurfaceScattering/SubsurfaceScattering.compute)  
-Diffuse Transmittance Term | Deep Scatter | [Analytically-Integrated Translucency](http://www.iryoku.com/translucency/) | [HG Phase function](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Shaders/Private/ShadingModels.ush)  | Disney SSS + Analytically-Integrated Translucency + [Baked Textured Thickness](https://github.com/Unity-Technologies/Graphics/blob/master/com.unity.render-pipelines.high-definition/Runtime/Material/SubsurfaceScattering/SubsurfaceScattering.hlsl)  
+Diffuse Reflectance Term | Preintegrated | [Separable SSS](https://graphics.unizar.es/publications.html#year_2012) | [Preintegrated](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/ShadingModels.ush) + [Disney Diffuse](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/ShadingModels.ush) + [Separable SSS](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Source/Runtime/Engine/Private/Rendering/SeparableSSS.cpp) + [Disney SSS](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Source/Runtime/Engine/Private/Rendering/BurleyNormalizedSSS.cpp) | [Disney Diffuse](https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.high-definition/Runtime/Material/Lit/Lit.hlsl) + [Disney SSS](https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.high-definition/Runtime/Material/SubsurfaceScattering/SubsurfaceScattering.compute)  
+Diffuse Transmittance Term | Deep Scatter | [Analytically-Integrated Translucency](http://www.iryoku.com/translucency/) | [HG Phase function](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/ShadingModels.ush)  | Disney SSS + Analytically-Integrated Translucency + [Baked Textured Thickness](https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.high-definition/Runtime/Material/SubsurfaceScattering/SubsurfaceScattering.hlsl)  
 Specular Term | Two-lobe Blinn-Phong | KSK | Dual GGX | GGX  
 
 ## 1\. Diffuse Reflectance Term
@@ -76,6 +76,18 @@ The normalized diffusion profile $\displaystyle \operatorname{R}(x) = \frac{s}{8
 However, the normalized diffusion profile is 1D, and thus only the 1D radial distance r of the sample can be deduced. Both Unity3D and UE4 use the **Fibonacci sequence**, which represents the [Golden ratio](https://en.wikipedia.org/wiki/Golden_ratio#Relationship_to_Fibonacci_sequence), to determine the direction.  
 
 The **Fibonacci sequence** is calculated by the **SampleDiskFibonacci** in the Unity3D and the **FIBONACCI_SEQUENCE_ANGLE** in the UE4.  
+
+
+#### 1-4-3\. Properties between Unity3D and UE4  
+Formula Name | [Unity3D Name](https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@10.8/manual/Diffusion-Profile.html) | [Unity3D Default](https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.high-definition/Runtime/RenderPipelineResources/Skin%20Diffusion%20Profile.asset) | [UE4 Name](https://docs.unrealengine.com/4.27/en-US/RenderingAndGraphics/Materials/LightingModels/SubSurfaceProfile/) | [UE4 Default](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Source/Runtime/Engine/Classes/Engine/SubsurfaceProfile.h)  
+:-: | :-: | :-: | :-: | :-:  
+A | Diffuse Color | N/A | SurfaceAlbedo | (0.91058, 0.338275, 0.2718)  
+S | ScatteringDistance | (0.7568628, 0.32156864, 0.20000002) | MeanFreePathColor\*MeanFreePathDistance | (1.0\*(1.2\*2.229), (0.1983/2.229)\*(1.2\*2.229), (0.1607/2.229)\*(1.2\*2.229))  
+N/A | WorldScale (MetersPerUnit) | 1 | WorldUnitScale (UnitsPerCentimeter) | 0.1  
+
+
+
+
 
 ## 2\. Diffuse Transmittance Term
 

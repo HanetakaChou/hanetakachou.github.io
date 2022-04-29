@@ -30,18 +30,18 @@
                 <td style="text-align:center"><a href="https://graphics.unizar.es/publications.html#year_2012">Separable
                         SSS</a></td>
                 <td style="text-align:center"><a
-                        href="https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Shaders/Private/ShadingModels.ush">Preintegrated</a>
+                        href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/ShadingModels.ush">Preintegrated</a>
                     + <a
-                        href="https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Shaders/Private/ShadingModels.ush">Disney
+                        href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/ShadingModels.ush">Disney
                         Diffuse</a> + <a
-                        href="https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Runtime/Engine/Private/Rendering/SeparableSSS.cpp">Separable
+                        href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Source/Runtime/Engine/Private/Rendering/SeparableSSS.cpp">Separable
                         SSS</a> + <a
-                        href="https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Runtime/Engine/Private/Rendering/BurleyNormalizedSSS.cpp">Disney
+                        href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Source/Runtime/Engine/Private/Rendering/BurleyNormalizedSSS.cpp">Disney
                         SSS</a></td>
                 <td style="text-align:center"><a
-                        href="https://github.com/Unity-Technologies/Graphics/blob/master/com.unity.render-pipelines.high-definition/Runtime/Material/Lit/Lit.hlsl">Disney
+                        href="https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.high-definition/Runtime/Material/Lit/Lit.hlsl">Disney
                         Diffuse</a> + <a
-                        href="https://github.com/Unity-Technologies/Graphics/blob/master/com.unity.render-pipelines.high-definition/Runtime/Material/SubsurfaceScattering/SubsurfaceScattering.compute">Disney
+                        href="https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.high-definition/Runtime/Material/SubsurfaceScattering/SubsurfaceScattering.compute">Disney
                         SSS</a></td>
             </tr>
             <tr dir="auto">
@@ -50,10 +50,10 @@
                 <td style="text-align:center"><a href="http://www.iryoku.com/translucency/">Analytically-Integrated
                         Translucency</a></td>
                 <td style="text-align:center"><a
-                        href="https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Shaders/Private/ShadingModels.ush">HG
+                        href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/ShadingModels.ush">HG
                         Phase function</a></td>
                 <td style="text-align:center">Disney SSS + Analytically-Integrated Translucency + <a
-                        href="https://github.com/Unity-Technologies/Graphics/blob/master/com.unity.render-pipelines.high-definition/Runtime/Material/SubsurfaceScattering/SubsurfaceScattering.hlsl">Baked
+                        href="https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.high-definition/Runtime/Material/SubsurfaceScattering/SubsurfaceScattering.hlsl">Baked
                         Textured Thickness</a></td>
             </tr>
             <tr dir="auto">
@@ -7543,6 +7543,50 @@ M1001 80h400000v40h-400000z' />
         determine the direction.</p>
     <p dir="auto">The <strong>Fibonacci sequence</strong> is calculated by the <strong>SampleDiskFibonacci</strong> in
         the Unity3D and the <strong>FIBONACCI_SEQUENCE_ANGLE</strong> in the UE4.</p>
+    <h4 dir="auto" id="1-4-3-properties-between-unity3d-and-ue4">1-4-3. Properties between Unity3D and UE4</h4>
+    <table dir="auto">
+        <thead dir="auto">
+            <tr dir="auto">
+                <th style="text-align:center">Formula Name</th>
+                <th style="text-align:center"><a
+                        href="https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@10.8/manual/Diffusion-Profile.html">Unity3D
+                        Name</a></th>
+                <th style="text-align:center"><a
+                        href="https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.high-definition/Runtime/RenderPipelineResources/Skin%20Diffusion%20Profile.asset">Unity3D
+                        Default</a></th>
+                <th style="text-align:center"><a
+                        href="https://docs.unrealengine.com/4.27/en-US/RenderingAndGraphics/Materials/LightingModels/SubSurfaceProfile/">UE4
+                        Name</a></th>
+                <th style="text-align:center"><a
+                        href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Source/Runtime/Engine/Classes/Engine/SubsurfaceProfile.h">UE4
+                        Default</a></th>
+            </tr>
+        </thead>
+        <tbody dir="auto">
+            <tr dir="auto">
+                <td style="text-align:center">A</td>
+                <td style="text-align:center">Diffuse Color</td>
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">SurfaceAlbedo</td>
+                <td style="text-align:center">(0.91058, 0.338275, 0.2718)</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">S</td>
+                <td style="text-align:center">ScatteringDistance</td>
+                <td style="text-align:center">(0.7568628, 0.32156864, 0.20000002)</td>
+                <td style="text-align:center">MeanFreePathColor*MeanFreePathDistance</td>
+                <td style="text-align:center">(1.0*(1.2*2.229), (0.1983/2.229)*(1.2*2.229), (0.1607/2.229)*(1.2*2.229))
+                </td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">WorldScale (MetersPerUnit)</td>
+                <td style="text-align:center">1</td>
+                <td style="text-align:center">WorldUnitScale (UnitsPerCentimeter)</td>
+                <td style="text-align:center">0.1</td>
+            </tr>
+        </tbody>
+    </table>
     <h2 dir="auto" id="2-diffuse-transmittance-term">2. Diffuse Transmittance Term</h2>
     <h3 dir="auto" id="2-1-deep-scatter">2-1. Deep Scatter</h3>
     <p dir="auto">The <strong>diffuse transmittance</strong> term of the FaceWorks is based on the <strong>16.3
