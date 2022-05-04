@@ -30,18 +30,18 @@
                 <td style="text-align:center"><a href="https://graphics.unizar.es/publications.html#year_2012">Separable
                         SSS</a></td>
                 <td style="text-align:center"><a
-                        href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/ShadingModels.ush">Preintegrated</a>
+                        href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/ShadingModels.ush#L754">Preintegrated</a>
                     + <a
-                        href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/ShadingModels.ush">Disney
+                        href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/ShadingModels.ush#L585">Disney
                         Diffuse</a> + <a
                         href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Source/Runtime/Engine/Private/Rendering/SeparableSSS.cpp">Separable
                         SSS</a> + <a
-                        href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Source/Runtime/Engine/Private/Rendering/BurleyNormalizedSSS.cpp">Disney
+                        href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/SubsurfaceBurleyNormalized.ush#L1163">Disney
                         SSS</a></td>
                 <td style="text-align:center"><a
-                        href="https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.high-definition/Runtime/Material/Lit/Lit.hlsl">Disney
+                        href="https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.high-definition/Runtime/Material/Lit/Lit.hlsl#L1349">Disney
                         Diffuse</a> + <a
-                        href="https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.high-definition/Runtime/Material/SubsurfaceScattering/SubsurfaceScattering.compute">Disney
+                        href="https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.high-definition/Runtime/Material/SubsurfaceScattering/SubsurfaceScattering.compute#L248">Disney
                         SSS</a></td>
             </tr>
             <tr dir="auto">
@@ -50,23 +50,25 @@
                 <td style="text-align:center"><a href="http://www.iryoku.com/translucency/">Analytically-Integrated
                         Translucency</a></td>
                 <td style="text-align:center"><a
-                        href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/ShadingModels.ush">HG
+                        href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/ShadingModels.ush#L609">HG
                         Phase function</a></td>
                 <td style="text-align:center">Disney SSS + Analytically-Integrated Translucency + <a
-                        href="https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.high-definition/Runtime/Material/SubsurfaceScattering/SubsurfaceScattering.hlsl">Baked
+                        href="https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.high-definition/Runtime/Material/SubsurfaceScattering/SubsurfaceScattering.hlsl#L225">Baked
                         Textured Thickness</a></td>
             </tr>
             <tr dir="auto">
                 <td style="text-align:center">Specular Term</td>
                 <td style="text-align:center">Two-lobe Blinn-Phong</td>
                 <td style="text-align:center">KSK</td>
-                <td style="text-align:center">Dual GGX</td>
+                <td style="text-align:center"><a
+                        href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/ShadingModels.ush#L595">Dual
+                        GGX</a></td>
                 <td style="text-align:center">GGX</td>
             </tr>
         </tbody>
     </table>
-    <h2 dir="auto" id="1-diffuse-reflectance-term">1. Diffuse Reflectance Term</h2>
-    <h3 dir="auto" id="1-1-diffusion-profile">1-1. Diffusion Profile</h3>
+    <h2 dir="auto" id="1-diffuse-reflectance-term-1">1. Diffuse Reflectance Term</h2>
+    <h3 dir="auto" id="1-1-diffusion-profile-1">1-1. Diffusion Profile</h3>
     <p dir="auto">Currently, all real time approaches are based on the diffusion profile(<strong>14.4.2 Rendering with
             Diffusion Profile</strong> of [dEon 2007]) rather than the <a
             href="https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Surface_Reflection#TheBSSRDF">BSSRDF</a>.</p>
@@ -782,7 +784,7 @@
         according to [dEon 2007], if the width (technically, the range of the significant contribution domain) of the
         diffusion profile is about 16 mm, and the width of pixel is about 0.25 mm, we would need 4096(64 x 64) samples
         per pixel in the shader. Thus, we have to propose more efficient approaches to settle this problem.</p>
-    <h3 dir="auto" id="1-2-preintegrated">1-2. Preintegrated</h3>
+    <h3 dir="auto" id="1-2-preintegrated-1">1-2. Preintegrated</h3>
     <p dir="auto">The <strong>diffuse reflectance</strong> term of NVIDIA FaceWorks and the <strong>Preintegrated
             Skin</strong> <a
             href="https://docs.unrealengine.com/4.27/en-US/RenderingAndGraphics/Materials/MaterialProperties/LightingModels/">Shading
@@ -3153,7 +3155,7 @@
                                 class="mord mathnormal">L</span><span class="mclose">)</span></span></span></span></eq>
             which is detached from the total integral.</li>
     </ol>
-    <h3 dir="auto" id="1-3-separable-sss">1-3. Separable SSS</h3>
+    <h3 dir="auto" id="1-3-separable-sss-1">1-3. Separable SSS</h3>
     <p dir="auto">The <strong>diffuse reflectance</strong> term of the <strong>Subsurface Profile</strong> <a
             href="https://docs.unrealengine.com/4.27/en-US/RenderingAndGraphics/Materials/MaterialProperties/LightingModels/">Shading
             Model</a> <strong>without</strong> <a
@@ -4669,7 +4671,7 @@
                 href="https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@10.8/manual/Material-Type.html">Subsurface
                 Mask Map</a>.</li>
     </ol>
-    <h3 dir="auto" id="1-4-disney-sss">1-4. Disney SSS</h3>
+    <h3 dir="auto" id="1-4-disney-sss-1">1-4. Disney SSS</h3>
     <p dir="auto">The <strong>diffuse reflectance</strong> term of <a
             href="https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@10.8/manual/Diffusion-Profile.html">Unity3D</a>
         and the <strong>Subsurface Profile</strong> <a
@@ -4677,7 +4679,7 @@
             Model</a> with <a
             href="https://docs.unrealengine.com/4.27/en-US/RenderingAndGraphics/Materials/LightingModels/SubSurfaceProfile/">Enable
             Burley</a> of UE4 is based on the <strong>Disney SSS</strong> [Golubev 2018].</p>
-    <h4 dir="auto" id="1-4-1-bilateral-filter">1-4-1. Bilateral Filter</h4>
+    <h4 dir="auto" id="1-4-1-bilateral-filter-1">1-4-1. Bilateral Filter</h4>
     <p dir="auto">The approach of [Mikkelsen 2010] is used by [Golubev 2018] to the estimated surface area based on the
         screen space area.</p>
     <p dir="auto">Let x be the point on the surface, and p is the perspective projection of x on the screen space. We
@@ -7418,8 +7420,8 @@ M1001 80h400000v40h-400000z' />
         </eq>.</p>
     <p dir="auto">The <strong>Bilateral Filter</strong> is controlled by the macro <strong>SSS_BILATERAL_FILTER</strong>
         in the Unity3D and the macro <strong>USE_BILATERAL_FILTERING</strong> in the UE4.</p>
-    <h4 dir="auto" id="1-4-2-importance-sampling">1-4-2. Importance Sampling</h4>
-    <p dir="auto">The normalized diffusion profile <eq><span class="katex"><span class="katex-mathml"><math
+    <h4 dir="auto" id="1-4-2-importance-sampling-1">1-4-2. Importance Sampling</h4>
+    <p dir="auto">The diffusion profile <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
@@ -7427,8 +7429,32 @@ M1001 80h400000v40h-400000z' />
                                     <mi mathvariant="normal">R</mi>
                                     <mo>⁡</mo>
                                     <mo stretchy="false">(</mo>
-                                    <mi>x</mi>
+                                    <mi>r</mi>
                                     <mo stretchy="false">)</mo>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle \operatorname{R}(r)</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span
+                                class="mord mathrm">R</span></span><span class="mopen">(</span><span
+                            class="mord mathnormal" style="margin-right:0.02778em;">r</span><span
+                            class="mclose">)</span></span></span></span></eq> is normalized <eq><span
+                class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mfrac>
+                                        <mrow>
+                                            <mi mathvariant="normal">R</mi>
+                                            <mo>⁡</mo>
+                                            <mo stretchy="false">(</mo>
+                                            <mi>r</mi>
+                                            <mo stretchy="false">)</mo>
+                                        </mrow>
+                                        <mi>A</mi>
+                                    </mfrac>
+                                    <mi>r</mi>
                                     <mo>=</mo>
                                     <mfrac>
                                         <mi>s</mi>
@@ -7463,13 +7489,29 @@ M1001 80h400000v40h-400000z' />
                                     <mo stretchy="false">)</mo>
                                 </mstyle>
                             </mrow>
-                            <annotation encoding="application/x-tex">\displaystyle \operatorname{R}(x) =
+                            <annotation encoding="application/x-tex">\displaystyle \frac{\operatorname{R}(r)}{A}r =
                                 \frac{s}{8\pi}(e^{-sr}+e^{-\frac{sr}{3}})</annotation>
                         </semantics>
                     </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
-                            style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span
-                                class="mord mathrm">R</span></span><span class="mopen">(</span><span
-                            class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace"
+                            style="height:2.113em;vertical-align:-0.686em;"></span><span class="mord"><span
+                                class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord mathnormal">A</span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mop"><span class="mord mathrm">R</span></span><span
+                                                        class="mopen">(</span><span class="mord mathnormal"
+                                                        style="margin-right:0.02778em;">r</span><span
+                                                        class="mclose">)</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span><span class="mord mathnormal"
+                            style="margin-right:0.02778em;">r</span><span class="mspace"
                             style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
                             class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
                         class="base"><span class="strut"
@@ -7536,14 +7578,19 @@ M1001 80h400000v40h-400000z' />
                                                                         class="vlist-r"><span class="vlist"
                                                                             style="height:0.344em;"><span></span></span></span></span></span><span
                                                                 class="mclose nulldelimiter sizing reset-size3 size6"></span></span></span></span></span></span></span></span></span></span><span
-                            class="mclose">)</span></span></span></span></eq> is used as PDF by [Golubev 2018].</p>
-    <p dir="auto">However, the normalized diffusion profile is 1D, and thus only the 1D radial distance r of the sample
-        can be deduced. Both Unity3D and UE4 use the <strong>Fibonacci sequence</strong>, which represents the <a
+                            class="mclose">)</span></span></span></span></eq> and used as the PDF by [Golubev 2018].
+        Note that the diffusion profile and the PDF are <strong>NOT</strong> equivalent.</p>
+    <p dir="auto">However, the diffusion profile is 1D, and thus only the 1D radial distance r of the sample can be
+        deduced. Both Unity3D and UE4 use the <strong>Fibonacci sequence</strong>, which represents the <a
             href="https://en.wikipedia.org/wiki/Golden_ratio#Relationship_to_Fibonacci_sequence">Golden ratio</a>, to
         determine the direction.</p>
     <p dir="auto">The <strong>Fibonacci sequence</strong> is calculated by the <strong>SampleDiskFibonacci</strong> in
         the Unity3D and the <strong>FIBONACCI_SEQUENCE_ANGLE</strong> in the UE4.</p>
-    <h4 dir="auto" id="1-4-3-properties-between-unity3d-and-ue4">1-4-3. Properties between Unity3D and UE4</h4>
+    <p dir="auto">In Unity3D, the color of the center sample is accumulated to the result by the <strong>Combine
+            Color</strong> pass. However, in UE4, the <strong>Center Sample Reweighting</strong>, which is controlled by
+        the macro <strong>REWEIGHT_CENTER_SAMPLE</strong>, is used. The <strong>CDF</strong> of the center sample is
+        calculated and removed from the vicinal samples, and it can be proved that the result is unbiased.</p>
+    <h4 dir="auto" id="1-4-3-properties-between-unity3d-and-ue4-1">1-4-3. Properties between Unity3D and UE4</h4>
     <table dir="auto">
         <thead dir="auto">
             <tr dir="auto">
@@ -7552,31 +7599,52 @@ M1001 80h400000v40h-400000z' />
                         href="https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@10.8/manual/Diffusion-Profile.html">Unity3D
                         Name</a></th>
                 <th style="text-align:center"><a
-                        href="https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.high-definition/Runtime/RenderPipelineResources/Skin%20Diffusion%20Profile.asset">Unity3D
+                        href="https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.high-definition/Runtime/RenderPipelineResources/Skin%20Diffusion%20Profile.asset#L17">Unity3D
                         Default</a></th>
                 <th style="text-align:center"><a
                         href="https://docs.unrealengine.com/4.27/en-US/RenderingAndGraphics/Materials/LightingModels/SubSurfaceProfile/">UE4
                         Name</a></th>
                 <th style="text-align:center"><a
-                        href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Source/Runtime/Engine/Classes/Engine/SubsurfaceProfile.h">UE4
+                        href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Source/Runtime/Engine/Classes/Engine/SubsurfaceProfile.h#L113">UE4
                         Default</a></th>
             </tr>
         </thead>
         <tbody dir="auto">
             <tr dir="auto">
                 <td style="text-align:center">A</td>
-                <td style="text-align:center">Diffuse Color</td>
+                <td style="text-align:center">DiffuseColor</td>
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">N/A</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">N/A</td>
                 <td style="text-align:center">N/A</td>
                 <td style="text-align:center">SurfaceAlbedo</td>
                 <td style="text-align:center">(0.91058, 0.338275, 0.2718)</td>
             </tr>
             <tr dir="auto">
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">MeanFreePathColor</td>
+                <td style="text-align:center">(1.0, 0.1983/2.229, (0.1607/2.229)</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">MeanFreePathDistance</td>
+                <td style="text-align:center">(1.2*2.229, 1.2*2.229, 1.2*2.229)</td>
+            </tr>
+            <tr dir="auto">
                 <td style="text-align:center">S</td>
                 <td style="text-align:center">ScatteringDistance</td>
                 <td style="text-align:center">(0.7568628, 0.32156864, 0.20000002)</td>
-                <td style="text-align:center">MeanFreePathColor*MeanFreePathDistance</td>
-                <td style="text-align:center">(1.0*(1.2*2.229), (0.1983/2.229)*(1.2*2.229), (0.1607/2.229)*(1.2*2.229))
+                <td style="text-align:center">MeanFreePathColor*MeanFreePathDistance/GetScalingFactor(SurfaceAlbedo)
                 </td>
+                <td style="text-align:center">N/A</td>
             </tr>
             <tr dir="auto">
                 <td style="text-align:center">N/A</td>
@@ -7587,8 +7655,8 @@ M1001 80h400000v40h-400000z' />
             </tr>
         </tbody>
     </table>
-    <h2 dir="auto" id="2-diffuse-transmittance-term">2. Diffuse Transmittance Term</h2>
-    <h3 dir="auto" id="2-1-deep-scatter">2-1. Deep Scatter</h3>
+    <h2 dir="auto" id="2-diffuse-transmittance-term-1">2. Diffuse Transmittance Term</h2>
+    <h3 dir="auto" id="2-1-deep-scatter-1">2-1. Deep Scatter</h3>
     <p dir="auto">The <strong>diffuse transmittance</strong> term of the FaceWorks is based on the <strong>16.3
             Simulating Absorption Using Depth Maps</strong> of [Green 2004].</p>
     <p dir="auto">The main idea of [Green 2004] is that the objects are assumed to be convex, and thus the thickness
@@ -7598,7 +7666,7 @@ M1001 80h400000v40h-400000z' />
     <p dir="auto">In the FaceWorks, the <strong>thickness</strong> is calculated by
         <strong>GFSDK_FaceWorks_EstimateThicknessFromParallelShadowPoisson32</strong> and the <strong>transmittance
             coefficient</strong> is calculated by <strong>GFSDK_FaceWorks_EvaluateDeepScatterDirectLight</strong>.</p>
-    <h3 dir="auto" id="2-2-analytically-integrated-translucency">2-2. Analytically-Integrated Translucency</h3>
+    <h3 dir="auto" id="2-2-analytically-integrated-translucency-1">2-2. Analytically-Integrated Translucency</h3>
     <p dir="auto">The <strong>diffuse transmittance</strong> term of demo source code provided by [Jimenez 2015] is
         based on [Jimenez 2010].</p>
     <p dir="auto">The main idea of [Jimenez 2010] is that the approach proposed by [Green 2004] is applied to calculate
@@ -8175,7 +8243,7 @@ M1001 80h400000v40h-400000z' />
                                     class="mord">MetersPerWorldSpaceUnit</span></span></span></span></span></eq> which
             is exactly the transformation from world space unit to mm.</li>
     </ol>
-    <h3 dir="auto" id="2-3-baked-textured-thickness">2-3. Baked Textured Thickness</h3>
+    <h3 dir="auto" id="2-3-baked-textured-thickness-1">2-3. Baked Textured Thickness</h3>
     <p dir="auto">The <strong>diffuse transmittance</strong> term of Unity3D is based on [Golubev 2018].</p>
     <p dir="auto">[Golubev 2018] follows the analytically-integrated formula of [Jimenez 2010] while the diffuse profile
         of [Christensen 2015] is applied. And thus, we have that <eq><span class="katex"><span
@@ -8412,12 +8480,12 @@ M1001 80h400000v40h-400000z' />
         <strong>thickness</strong> is calculated by the <strong>FillMaterialTransmission</strong>, the
         <strong>ShouldEvaluateThickObjectTransmission</strong> and the <strong>EvaluateTransmittance_Punctual</strong>.
     </p>
-    <h2 dir="auto" id="3-specular-term">3. Specular Term</h2>
-    <h3 dir="auto" id="3-1-two-lobe-blinn-phong">3-1. Two-lobe Blinn-Phong</h3>
+    <h2 dir="auto" id="3-specular-term-1">3. Specular Term</h2>
+    <h3 dir="auto" id="3-1-two-lobe-blinn-phong-1">3-1. Two-lobe Blinn-Phong</h3>
     <p dir="auto">TODO</p>
-    <h3 dir="auto" id="3-2-dual-ggx">3-2. Dual GGX</h3>
+    <h3 dir="auto" id="3-2-dual-ggx-1">3-2. Dual GGX</h3>
     <p dir="auto">TODO</p>
-    <h2 dir="auto" id="references">References</h2>
+    <h2 dir="auto" id="references-1">References</h2>
     <p dir="auto">[Kelemen 2001] <a href="http://cg.iit.bme.hu/~szirmay/scook_link.htm">Csaba Kelemen, László
             Szirmay-Kalos. &quot;A Microfacet Based Coupled Specular-Matte BRDF Model with Importance Sampling.&quot;
             EGSR 2001.</a><br>
