@@ -72,13 +72,11 @@ The **Bilateral Filter** is controlled by the macro **SSS_BILATERAL_FILTER** in 
 #### 1-4-2\. Importance Sampling  
 The diffusion profile $\displaystyle \operatorname{R}(r)$ is normalized $\displaystyle \frac{\operatorname{R}(r)}{A}r = \frac{s}{8\pi}(e^{-sr}+e^{-\frac{sr}{3}})$ and used as the PDF by \[Golubev 2018\].  
 
-Evidently, the diffusion profile and the PDF are **NOT** equivalent. In Unity3D, the result of the PDF is multiplied by the **albedo**  $\displaystyle A$ to calculate the **weight**, while, in UE4, the result of the PDF is simply treated as the **weight**.  
+Evidently, the diffusion profile and the PDF are **NOT** equivalent. In Unity3D, the result of the PDF is multiplied by the **surface albedo** A to calculate the **weight**. However, in UE4, the result of the PDF is simply treated as the **weight**. Thus, in UE4, there is no true equivalence of the **surface albedo** A.  
+ 
+However, the diffusion profile is 1D, and thus only the 1D radial distance r of the sample can be deduced. Both Unity3D and UE4 use the **Fibonacci sequence**, which represents the [Golden ratio](https://en.wikipedia.org/wiki/Golden_ratio#Relationship_to_Fibonacci_sequence), to choose the direction. The **Fibonacci sequence** is calculated by the **SampleDiskFibonacci** in the Unity3D and the **FIBONACCI_SEQUENCE_ANGLE** in the UE4.  
 
-However, the diffusion profile is 1D, and thus only the 1D radial distance r of the sample can be deduced. Both Unity3D and UE4 use the **Fibonacci sequence**, which represents the [Golden ratio](https://en.wikipedia.org/wiki/Golden_ratio#Relationship_to_Fibonacci_sequence), to determine the direction.  
-
-The **Fibonacci sequence** is calculated by the **SampleDiskFibonacci** in the Unity3D and the **FIBONACCI_SEQUENCE_ANGLE** in the UE4.  
-
-In Unity3D, the color of the center sample is accumulated to the result by the **Combine Lighting** pass, while, in UE4, the **Center Sample Reweighting**, which is controlled by the macro **REWEIGHT_CENTER_SAMPLE**, is used. In UE4, the **CDF** of the center sample is calculated and removed from the vicinal samples, and the result can be proved to be unbiased.  
+In Unity3D, the color of the center sample is accumulated to the result by the **Combine Lighting** pass. However, in UE4, the **Center Sample Reweighting**, which is controlled by the macro **REWEIGHT_CENTER_SAMPLE**, is used, and the **CDF** of the center sample is calculated and removed from the vicinal samples. The UE4 claims that the result of this approach is still unbiased.  
 
 #### 1-4-3\. Properties between Unity3D and UE4  
 Formula Name | [Unity3D Name](https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@10.8/manual/Diffusion-Profile.html) | [Unity3D Default](https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.high-definition/Runtime/RenderPipelineResources/Skin%20Diffusion%20Profile.asset#L17) | [UE4 Name](https://docs.unrealengine.com/4.27/en-US/RenderingAndGraphics/Materials/LightingModels/SubSurfaceProfile/) | [UE4 Default](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Source/Runtime/Engine/Classes/Engine/SubsurfaceProfile.h#L113)  
@@ -88,7 +86,7 @@ N/A | N/A | N/A | SurfaceAlbedo | (0.91058, 0.338275, 0.2718)
 N/A | N/A | N/A | MeanFreePathColor | (1.0, 0.1983/2.229, (0.1607/2.229)  
 N/A | N/A | N/A | MeanFreePathDistance | (1.2\*2.229, 1.2\*2.229, 1.2\*2.229)  
 S | ScatteringDistance | (0.7568628, 0.32156864, 0.20000002) | MeanFreePathColor\*MeanFreePathDistance/GetScalingFactor(SurfaceAlbedo) | N/A  
-N/A | WorldScale (MetersPerUnit) | 1 | WorldUnitScale (UnitsPerCentimeter) | 0.1  
+N/A | WorldScale | 1 (MetersPerUnit) | WorldUnitScale | 0.1 (UnitsPerCentimeter)  
 
 ### 1-5\. Disney Diffuse
 TODO  

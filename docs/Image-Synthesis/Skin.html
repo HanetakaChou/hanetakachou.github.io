@@ -7580,31 +7580,21 @@ M1001 80h400000v40h-400000z' />
                                                                 class="mclose nulldelimiter sizing reset-size3 size6"></span></span></span></span></span></span></span></span></span></span><span
                             class="mclose">)</span></span></span></span></eq> and used as the PDF by [Golubev 2018].</p>
     <p dir="auto">Evidently, the diffusion profile and the PDF are <strong>NOT</strong> equivalent. In Unity3D, the
-        result of the PDF is multiplied by the <strong>albedo</strong>
-        <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
-                        <semantics>
-                            <mrow>
-                                <mstyle scriptlevel="0" displaystyle="true">
-                                    <mi>A</mi>
-                                </mstyle>
-                            </mrow>
-                            <annotation encoding="application/x-tex">\displaystyle A</annotation>
-                        </semantics>
-                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
-                            style="height:0.68333em;vertical-align:0em;"></span><span
-                            class="mord mathnormal">A</span></span></span></span></eq> to calculate the
-        <strong>weight</strong>, while, in UE4, the result of the PDF is simply treated as the <strong>weight</strong>.
+        result of the PDF is multiplied by the <strong>surface albedo</strong> A to calculate the
+        <strong>weight</strong>. However, in UE4, the result of the PDF is simply treated as the
+        <strong>weight</strong>. Thus, in UE4, there is no true equivalence of the <strong>surface albedo</strong> A.
     </p>
     <p dir="auto">However, the diffusion profile is 1D, and thus only the 1D radial distance r of the sample can be
         deduced. Both Unity3D and UE4 use the <strong>Fibonacci sequence</strong>, which represents the <a
             href="https://en.wikipedia.org/wiki/Golden_ratio#Relationship_to_Fibonacci_sequence">Golden ratio</a>, to
-        determine the direction.</p>
-    <p dir="auto">The <strong>Fibonacci sequence</strong> is calculated by the <strong>SampleDiskFibonacci</strong> in
-        the Unity3D and the <strong>FIBONACCI_SEQUENCE_ANGLE</strong> in the UE4.</p>
+        choose the direction. The <strong>Fibonacci sequence</strong> is calculated by the
+        <strong>SampleDiskFibonacci</strong> in the Unity3D and the <strong>FIBONACCI_SEQUENCE_ANGLE</strong> in the
+        UE4.</p>
     <p dir="auto">In Unity3D, the color of the center sample is accumulated to the result by the <strong>Combine
-            Lighting</strong> pass, while, in UE4, the <strong>Center Sample Reweighting</strong>, which is controlled
-        by the macro <strong>REWEIGHT_CENTER_SAMPLE</strong>, is used. In UE4, the <strong>CDF</strong> of the center
-        sample is calculated and removed from the vicinal samples, and the result can be proved to be unbiased.</p>
+            Lighting</strong> pass. However, in UE4, the <strong>Center Sample Reweighting</strong>, which is controlled
+        by the macro <strong>REWEIGHT_CENTER_SAMPLE</strong>, is used, and the <strong>CDF</strong> of the center sample
+        is calculated and removed from the vicinal samples. The UE4 claims that the result of this approach is still
+        unbiased.</p>
     <h4 dir="auto" id="1-4-3-properties-between-unity3d-and-ue4">1-4-3. Properties between Unity3D and UE4</h4>
     <table dir="auto">
         <thead dir="auto">
@@ -7663,10 +7653,10 @@ M1001 80h400000v40h-400000z' />
             </tr>
             <tr dir="auto">
                 <td style="text-align:center">N/A</td>
-                <td style="text-align:center">WorldScale (MetersPerUnit)</td>
-                <td style="text-align:center">1</td>
-                <td style="text-align:center">WorldUnitScale (UnitsPerCentimeter)</td>
-                <td style="text-align:center">0.1</td>
+                <td style="text-align:center">WorldScale</td>
+                <td style="text-align:center">1 (MetersPerUnit)</td>
+                <td style="text-align:center">WorldUnitScale</td>
+                <td style="text-align:center">0.1 (UnitsPerCentimeter)</td>
             </tr>
         </tbody>
     </table>
