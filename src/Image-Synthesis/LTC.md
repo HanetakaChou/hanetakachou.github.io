@@ -1,31 +1,11 @@
-#### 换元积分法 Integration by Substitution    
-     
-##### 第一类换元法 //凑微分法       
-设g(x)可以写成g(x)=f\[φ(x)\]φ'(x)的形式    
-有$\displaystyle \int_a^b g(x) \, dx = \int_{\operatorname{\phi}(a)}^{\operatorname{\phi}(b)} f(u) \, du$    
-即$\displaystyle \int_a^b g(x) \, dx = \int_a^b f[\operatorname{\phi}(x)]\operatorname{\phi}'(x) \, dx = {[\int_{\phi(a)}^{\phi(b)} f(u) \, du]}_{}$      
-  
-> 证明    
-> 设F(u)是f(u)的原函数    
-> 有$\displaystyle \int_{\phi(a)}^{\phi(b)} f(u) \, du$ = F\[φ(b)\] - F\[φ(a)\] （等式1）    
->           
-> 设G(x)=F\[φ(x)\]     
-> **有G'(x)=F'\[φ(x)\]φ'(x)=f\[φ(x)\]φ'(x) ⇒ 因此G(x)是g(x)的原函数** //证明的关键     
-> $\displaystyle \int_a^b g(x) \, dx$ = G(b) - G(a) = F\[φ(b)\]  - F\[φ(a)\] （等式2）
-> 
-> 结合（等式1）（等式2），我们有$\displaystyle \int_a^b g(x) \, dx = \int_{\phi(a)}^{\phi(b)} f(u) \, du$，命题得证  
-   
-##### 第二类换元法 //变量代换法   
-设φ(a)=α、φ(b)=β、u=φ(x)可导      
-有$\displaystyle \int_{\alpha}^{\beta} f(u) \, du = \int_a^b f(\operatorname{\phi}(t))\operatorname{\phi}'(t) \, dt$    
-即$\displaystyle \int_{\alpha}^{\beta} f(u) \, du = \int_{{\operatorname{\phi}}^{-1}(\alpha)}^{{\operatorname{\phi}}^{-1}(\beta)} f(\operatorname{\phi}(t))\operatorname{\phi}'(t) \, dt$    
+#### Define: Original Distribution 
 
-> 证明    
-> 设F(u)是f(u)的原函数      
-> 有$\displaystyle \int_{\alpha}^{\beta} f(u) \, du$ = F(β) - F(α) （等式1）     
->           
-> 设G(x)=F\[φ(x)\]      
-> **有G'(x)=F'\[φ(x)\]φ'(x)=f\[φ(x)\]φ'(x) ⇒ 因此G(x)是f\[φ(x)\]φ'(x)的原函数** //证明的关键      
-> $\displaystyle \int_a^b f(\operatorname{\phi}(t))\operatorname{\phi}'(t) \, dt$ = G(b) - G(a) = F\[φ(b)\]  - F\[φ(a)\] = F(β) - F(α) （等式2）        
->      
-> 结合（等式1）（等式2），我们有$\displaystyle \int_{\alpha}^{\beta} f(u) \, du = \int_a^b f(\operatorname{\phi}(t))\operatorname{\phi}'(t) \, dt$，命题得证   
+Evidently, the normal direction in the local tangent space is (0, 0, 1), which is called the **Median Vector** in \[Heitz 2016\], and the **original distribution** $\displaystyle \operatorname{D_o}$ is defined as the normalized clamped cosine distribution $\displaystyle \operatorname{D_o} = \frac{1}{\pi} |\cos \theta_o| = \frac{1}{\pi} |\operatorname{dot}(\operatorname{vec3}(0,0,1), \omega_o = (x, y, z))| = \frac{1}{\pi} \max(z)$. By [the Figure 5.13 of the PBR Book](https://pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#IntegralsoverProjectedSolidAngle), we have $\displaystyle \int_\Omega \operatorname{D_o} \, d\omega_o = \frac{1}{\pi} \int_\Omega |\cos \theta_o| \, d\omega_o = \frac{1}{\pi} \int_\Omega 1 \, d\omega^{\perp} = \frac{1}{\pi} \cdot \pi = 1$, and thus the $\displaystyle \operatorname{D_o}$ is normalized.  
+
+#### Define: Linearly Transformed Spherical Distribution  
+M is the linear transform. Let $\displaystyle \omega = \operatorname{normalize}(M \omega_o)$. Evidently, we have $\displaystyle \omega_o = \operatorname{normalize}(M^{-1} \omega)$, and the **linearly transformed spherical distribution** $\displaystyle \operatorname{D}$ is defined as $\displaystyle \operatorname{D}(\omega) = \operatorname{D_o}(\omega_o) \frac{d\omega_o}{d\omega}$. The **Jacobian** $\displaystyle \frac{d\omega_o}{d\omega}$ has the closed-form expression $\displaystyle \frac{d\omega_o}{d\omega} = \frac{|M^{-1}|}{{\|M^{-1}w\|}^3}$. The proof is provided in **Appendix A** of \[Heitz 2016\]. Note that $\displaystyle \omega_o$ and $\displaystyle \omega$ are actually vectors which represent the **direction**, while $\displaystyle d\omega_o$ and $\displaystyle d\omega$ are steradians which represent the **area** on the sphere surface. And [the Equation (5.6) of the PBR Book](https://pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#IntegralsoverArea) should be used.  
+
+#### Theorem: Integration over Polygons  
+
+By [Integration by Substitution](https://en.wikipedia.org/wiki/Integration_by_substitution), we have $\displaystyle \int_{P} \operatorname{D}(\omega) \, d\omega = \int_{P} \operatorname{D_o}(\omega_o) \frac{d\omega_o}{d\omega} d\omega = \int_{P_o} \operatorname{D_o}(\omega_o) d\omega_o$ where $\displaystyle P_o = M^{-1} P$. Intuitively, $\displaystyle P_o = \operatorname{normalize}(M^{-1} P)$ is more consistent with $\displaystyle \omega_o = \operatorname{normalize}(M^{-1} \omega)$. However, even if the $\displaystyle M^{-1} P$ is **NOT** normalized, the area on the sphere surface subtended by the polygon remains the same. Thus, the normalize operator is **NOT** necessary.  
+
