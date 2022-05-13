@@ -11,7 +11,7 @@ When the **clamped cosine** is used as the **original distribution** $\displayst
 
 
 ## 2\. LUT 
-By [the Equation (5.9) of the PBR Book](https://pbr-book.org/3ed-2018/Color_and_Radiometry/Surface_Reflection#TheBRDF), we have $\displaystyle \operatorname{L_v}(\omega_v) = \int_{S^2} \operatorname{BRDF}(\omega_v, \omega_l) \operatorname{L_l}(\omega_l) |\cos \theta_l| \, d\omega_l$. And we try to approximate the $\displaystyle \operatorname{BRDF}(p, \omega_v, \omega_l)|\cos \theta_l|$ part of this formula by using the LTCs.  
+By [the Equation (5.9) of the PBR Book](https://pbr-book.org/3ed-2018/Color_and_Radiometry/Surface_Reflection#TheBRDF), we have $\displaystyle \operatorname{L_v}(\omega_v) = \int_{S^2} \operatorname{BRDF}(\omega_v, \omega_l) \operatorname{L_l}(\omega_l) |\cos \theta_l| \, d\omega_l$. And we try to approximate the $\displaystyle \operatorname{BRDF}(\omega_v, \omega_l)|\cos \theta_l|$ part of this formula by using the LTCs.  
 
 ### 2-1\. UV
 Since the GGX BRDF is isotropic, the distribution can be determined by the outgoing direction $\displaystyle \omega_v$ (in tangent space) and the roughness $\displaystyle \alpha$, which are used as the UV of the LUT.  
