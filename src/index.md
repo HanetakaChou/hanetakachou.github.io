@@ -25,6 +25,7 @@ You should have received a copy of the GNU Lesser General Public License along w
 [Image-Synthesis/Skin.html](Image-Synthesis/Skin.html)  
 [Image-Synthesis/Grass.html](Image-Synthesis/Grass.html)  
 [Image-Synthesis/Billboard.html](Image-Synthesis/Billboard.html)  
+[Image-Synthesis/LTC.html](Image-Synthesis/LTC.html)  
 [Image-Synthesis/OIT.html](Image-Synthesis/OIT.html)  
 [Image-Synthesis/VXGI.html](Image-Synthesis/VXGI.html)  
 [Image-Synthesis/Volumetric-Rendering.html](Image-Synthesis/Volumetric-Rendering.html)  
