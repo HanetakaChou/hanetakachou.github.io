@@ -70,7 +70,7 @@ However, the diffusion profile $\displaystyle \operatorname{R}(x)$ of \[Golubev 
 The **Bilateral Filter** is controlled by the macro **SSS_BILATERAL_FILTER** in the Unity3D and the macro **USE_BILATERAL_FILTERING** in the UE4.  
 
 #### 1-4-2\. Importance Sampling  
-The diffusion profile $\displaystyle \operatorname{R}(r) = \frac{A s}{8 \pi r}(e^{-sr}+e^{-\frac{1}{3}sr})$, where the A is the surface albedo and the s is the scaling factor, proposed by \[Christensen 2015\] is applied. Since the total integral of the diffusion profile is the surface albedo  $\displaystyle A = \int_0^\infin \operatorname{R} (r) 2 \pi r \, dr$, by \[Golubev 2018\], the diffusion profile is normalized to be used as the PDF $\displaystyle \operatorname{p}(r) = \frac{\operatorname{R}(r)}{A}r = \frac{s}{8\pi}(e^{-sr}+e^{-\frac{sr}{3}})$. Evidently, the diffusion profile and the PDF are **NOT** equivalent. In Unity3D, the result of the PDF is multiplied by the surface albedo to calculate the diffusion profile. However, in UE4, the result of the PDF is simply treated as the diffusion profile, and thus, in UE4, there is no actual equivalence of the surface albedo. And, in UE4, the scaling factor is calculated by $\displaystyle s = \frac{\operatorname{GetScalingFactor}(\mathrm{SurfaceAlbedo})}{\mathrm{MeanFreePathColor} \cdot \mathrm{MeanFreePathDistance}}$ where the $\displaystyle \operatorname{GetScalingFactor}$ follows the Equation 5, 6, 7 of \[Christensen 2015\]. However, by \[Christensen 2015\], the result of the $\displaystyle \operatorname{GetScalingFactor}$ is the very scaling factor, and thus the denominator is **NOT** reasonable.  
+The diffusion profile $\displaystyle \operatorname{R}(r) = \frac{A s}{8 \pi r}(e^{-sr}+e^{-\frac{1}{3}sr})$, where the A is the surface albedo and the s is the scaling factor, proposed by \[Christensen 2015\] is applied. Since the total integral of the diffusion profile is the surface albedo  $\displaystyle A = \int_0^\infin \operatorname{R} (r) 2 \pi r \, dr$, by \[Golubev 2018\], the diffusion profile is normalized to be used as the PDF $\displaystyle \operatorname{p}(r) = \frac{\operatorname{R}(r)}{A}r = \frac{s}{8\pi}(e^{-sr}+e^{-\frac{sr}{3}})$. Evidently, the diffusion profile and the PDF are **NOT** equivalent, and the result of the PDF is multiplied by the surface albedo to calculate the diffusion profile. The **surface albedo** is multiplied by the [**SubsurfaceScattering**](https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.high-definition/Runtime/Material/SubsurfaceScattering/SubsurfaceScattering.compute#L469) in the Unity3D and the [**SubsurfaceRecombinePS**](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/PostProcessSubsurface.usf#L741) in the UE4. However, in UE4, the scaling factor is calculated by $\displaystyle s = \frac{\operatorname{GetScalingFactor}(\mathrm{SurfaceAlbedo})}{\mathrm{MeanFreePathColor} \cdot \mathrm{MeanFreePathDistance}}$ where the $\displaystyle \operatorname{GetScalingFactor}$ follows the Equation 5, 6, 7 of \[Christensen 2015\]. But, by \[Christensen 2015\], the result of the $\displaystyle \operatorname{GetScalingFactor}$ is exactly the scaling factor. Thus, the denominator is **NOT** reasonable.  
 
 Since the diffusion profile is 1D, the mere 1D radial distance r of the sample can be deduced. Both Unity3D and UE4 use the **Fibonacci sequence**, which represents the [Golden ratio](https://en.wikipedia.org/wiki/Golden_ratio#Relationship_to_Fibonacci_sequence), to choose the direction. The **Fibonacci sequence** is calculated by the **SampleDiskFibonacci** in the Unity3D and the **FIBONACCI_SEQUENCE_ANGLE** in the UE4.  
 
@@ -79,13 +79,13 @@ In Unity3D, the color of the center sample is accumulated to the result by the *
 #### 1-4-3\. Properties between Unity3D and UE4  
 Formula | [Unity3D Name](https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@10.8/manual/Diffusion-Profile.html) | [Unity3D Default](https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.high-definition/Runtime/RenderPipelineResources/Skin%20Diffusion%20Profile.asset#L17) | [UE4 Name](https://docs.unrealengine.com/4.27/en-US/RenderingAndGraphics/Materials/LightingModels/SubSurfaceProfile/) | [UE4 Default](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Source/Runtime/Engine/Classes/Engine/SubsurfaceProfile.h#L113)  
 :-: | :-: | :-: | :-: | :-:  
-A | DiffuseColor | N/A | N/A | N/A  
-N/A | N/A | N/A | SurfaceAlbedo | (0.91058, 0.338275, 0.2718)  
-N/A | N/A | N/A | MeanFreePathColor | (1.0, 0.1983/2.229, (0.1607/2.229)  
-N/A | N/A | N/A | MeanFreePathDistance | (1.2\*2.229, 1.2\*2.229, 1.2\*2.229)  
-N/A | ScatteringDistance | (0.7568628, 0.32156864, 0.20000002) | N/A | N/A  
+A | Diffuse Color | N/A | Base Color | N/A  
+N/A | N/A | N/A | Surface Albedo | (0.91058, 0.338275, 0.2718)  
+N/A | N/A | N/A | Mean Free Path Color | (1.0, 0.1983/2.229, (0.1607/2.229)  
+N/A | N/A | N/A | Mean Free Path Distance | (1.2\*2.229, 1.2\*2.229, 1.2\*2.229)  
+N/A | Scattering Distance | (0.7568628, 0.32156864, 0.20000002) | N/A | N/A  
 s | N/A | $\displaystyle \frac{1}{\mathrm{ScatteringDistance}}$ | N/A | $\displaystyle \frac{\operatorname{GetScalingFactor}(\mathrm{SurfaceAlbedo})}{\mathrm{MeanFreePathColor} \cdot \mathrm{MeanFreePathDistance}}$  
-N/A | WorldScale | 1 (MetersPerUnit) | WorldUnitScale | 0.1 (UnitsPerCentimeter)  
+N/A | World Scale | 1 (Meters Per Unit) | World Unit Scale | 0.1 (Units Per Centimeter)  
 
 ### 1-5\. Disney Diffuse
 TODO  

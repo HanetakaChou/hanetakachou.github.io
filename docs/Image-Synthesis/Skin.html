@@ -5021,9 +5021,9 @@
                     </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
                             style="height:0.69444em;vertical-align:0em;"></span><span
                             class="mord mathnormal">d</span><span class="mord mathnormal">x</span></span></span></span>
-        </eq>. By the <a
-            href="https://pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#IntegralsoverArea">Equation
-            (5.6) of PBR Book</a>, we have <eq><span class="katex"><span class="katex-mathml"><math
+        </eq>. By <a
+            href="https://pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#IntegralsoverArea">the
+            Equation (5.6) of the PBR Book</a>, we have <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
@@ -7757,11 +7757,13 @@ M1001 80h400000v40h-400000z' />
                                                                             style="height:0.344em;"><span></span></span></span></span></span><span
                                                                 class="mclose nulldelimiter sizing reset-size3 size6"></span></span></span></span></span></span></span></span></span></span><span
                             class="mclose">)</span></span></span></span></eq>. Evidently, the diffusion profile and the
-        PDF are <strong>NOT</strong> equivalent. In Unity3D, the result of the PDF is multiplied by the surface albedo
-        to calculate the diffusion profile. However, in UE4, the result of the PDF is simply treated as the diffusion
-        profile, and thus, in UE4, there is no actual equivalence of the surface albedo. And, in UE4, the scaling factor
-        is calculated by <eq><span class="katex"><span class="katex-mathml"><math
-                        xmlns="http://www.w3.org/1998/Math/MathML">
+        PDF are <strong>NOT</strong> equivalent, and the result of the PDF is multiplied by the surface albedo to
+        calculate the diffusion profile. The <strong>surface albedo</strong> is multiplied by the <a
+            href="https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.high-definition/Runtime/Material/SubsurfaceScattering/SubsurfaceScattering.compute#L469"><strong>SubsurfaceScattering</strong></a>
+        in the Unity3D and the <a
+            href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/PostProcessSubsurface.usf#L741"><strong>SubsurfaceRecombinePS</strong></a>
+        in the UE4. However, in UE4, the scaling factor is calculated by <eq><span class="katex"><span
+                    class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
                                 <mstyle scriptlevel="0" displaystyle="true">
@@ -7885,7 +7887,7 @@ M1001 80h400000v40h-400000z' />
                     </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
                             style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span
                             class="mop"><span class="mord mathrm">GetScalingFactor</span></span></span></span></span>
-        </eq> follows the Equation 5, 6, 7 of [Christensen 2015]. However, by [Christensen 2015], the result of the <eq>
+        </eq> follows the Equation 5, 6, 7 of [Christensen 2015]. But, by [Christensen 2015], the result of the <eq>
             <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
@@ -7900,7 +7902,7 @@ M1001 80h400000v40h-400000z' />
                     </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
                             style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span
                             class="mop"><span class="mord mathrm">GetScalingFactor</span></span></span></span></span>
-        </eq> is the very scaling factor, and thus the denominator is <strong>NOT</strong> reasonable.</p>
+        </eq> is exactly the scaling factor. Thus, the denominator is <strong>NOT</strong> reasonable.</p>
     <p dir="auto">Since the diffusion profile is 1D, the mere 1D radial distance r of the sample can be deduced. Both
         Unity3D and UE4 use the <strong>Fibonacci sequence</strong>, which represents the <a
             href="https://en.wikipedia.org/wiki/Golden_ratio#Relationship_to_Fibonacci_sequence">Golden ratio</a>, to
@@ -7934,35 +7936,35 @@ M1001 80h400000v40h-400000z' />
         <tbody dir="auto">
             <tr dir="auto">
                 <td style="text-align:center">A</td>
-                <td style="text-align:center">DiffuseColor</td>
+                <td style="text-align:center">Diffuse Color</td>
                 <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">Base Color</td>
                 <td style="text-align:center">N/A</td>
             </tr>
             <tr dir="auto">
                 <td style="text-align:center">N/A</td>
                 <td style="text-align:center">N/A</td>
                 <td style="text-align:center">N/A</td>
-                <td style="text-align:center">SurfaceAlbedo</td>
+                <td style="text-align:center">Surface Albedo</td>
                 <td style="text-align:center">(0.91058, 0.338275, 0.2718)</td>
             </tr>
             <tr dir="auto">
                 <td style="text-align:center">N/A</td>
                 <td style="text-align:center">N/A</td>
                 <td style="text-align:center">N/A</td>
-                <td style="text-align:center">MeanFreePathColor</td>
+                <td style="text-align:center">Mean Free Path Color</td>
                 <td style="text-align:center">(1.0, 0.1983/2.229, (0.1607/2.229)</td>
             </tr>
             <tr dir="auto">
                 <td style="text-align:center">N/A</td>
                 <td style="text-align:center">N/A</td>
                 <td style="text-align:center">N/A</td>
-                <td style="text-align:center">MeanFreePathDistance</td>
+                <td style="text-align:center">Mean Free Path Distance</td>
                 <td style="text-align:center">(1.2*2.229, 1.2*2.229, 1.2*2.229)</td>
             </tr>
             <tr dir="auto">
                 <td style="text-align:center">N/A</td>
-                <td style="text-align:center">ScatteringDistance</td>
+                <td style="text-align:center">Scattering Distance</td>
                 <td style="text-align:center">(0.7568628, 0.32156864, 0.20000002)</td>
                 <td style="text-align:center">N/A</td>
                 <td style="text-align:center">N/A</td>
@@ -8134,10 +8136,10 @@ M1001 80h400000v40h-400000z' />
             </tr>
             <tr dir="auto">
                 <td style="text-align:center">N/A</td>
-                <td style="text-align:center">WorldScale</td>
-                <td style="text-align:center">1 (MetersPerUnit)</td>
-                <td style="text-align:center">WorldUnitScale</td>
-                <td style="text-align:center">0.1 (UnitsPerCentimeter)</td>
+                <td style="text-align:center">World Scale</td>
+                <td style="text-align:center">1 (Meters Per Unit)</td>
+                <td style="text-align:center">World Unit Scale</td>
+                <td style="text-align:center">0.1 (Units Per Centimeter)</td>
             </tr>
         </tbody>
     </table>
