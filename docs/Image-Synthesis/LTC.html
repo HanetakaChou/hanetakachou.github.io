@@ -3059,7 +3059,37 @@
                                                             class="mord mtight">1</span></span></span></span></span></span></span></span></span><span
                             class="mord mathnormal" style="margin-right:0.13889em;">P</span></span></span></span></eq>
         is <strong>NOT</strong> normalized, the area on the sphere surface subtended by the polygon remains the same.
-        Thus, the normalize operator is <strong>NOT</strong> necessary.</p>
+        Thus, the normalize operator is <strong>NOT</strong> necessary here. Actually, the normalize operator will
+        eventually be applied when the irradiance <eq><span class="katex"><span class="katex-mathml"><math
+                        xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mi mathvariant="normal">E</mi>
+                                    <mo>⁡</mo>
+                                    <mo stretchy="false">(</mo>
+                                    <msub>
+                                        <mi>P</mi>
+                                        <mi>o</mi>
+                                    </msub>
+                                    <mo stretchy="false">)</mo>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle \operatorname{E}(P_o)</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span
+                                class="mord mathrm">E</span></span><span class="mopen">(</span><span class="mord"><span
+                                class="mord mathnormal" style="margin-right:0.13889em;">P</span><span
+                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.151392em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathnormal mtight">o</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
+                            class="mclose">)</span></span></span></span></eq> is calculated by [Heitz 2017].</p>
     <h3 dir="auto" id="3-2-shading-with-constant-polygonal-lights">3-2. Shading with Constant Polygonal Lights</h3>
     <p dir="auto">When the <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
@@ -3738,8 +3768,8 @@
                                                         style="margin-right:0.01968em;">l</span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
-        </eq>. Note that the P should be transformed into the tangent space before this approximation is applied. And by
-        <strong>3-1. Integration over Polygons</strong>, we have <eq><span class="katex"><span
+        </eq>. Note that the polygon P should be transformed into the tangent space before this approximation is
+        applied. And by <strong>3-1. Integration over Polygons</strong>, we have <eq><span class="katex"><span
                     class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
@@ -4388,8 +4418,9 @@
                                                         class="mord mathnormal mtight">o</span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
-        </eq>, and we assume that the vertices are in the tangent space, normalized, and located in the upper
-        hemisphere. By [Heitz 2017], the irradiance <eq><span class="katex"><span class="katex-mathml"><math
+        </eq>. Note that the facing of the polygon P is determined by the <strong>winding order</strong> of the
+        vertices. We assume that the vertices are in the tangent space, normalized, and located in the upper hemisphere.
+        By [Heitz 2017], the irradiance <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
@@ -4616,8 +4647,9 @@
                             style="margin-right:0.16666666666666666em;"></span><span class="mord">0</span><span
                             class="mpunct">,</span><span class="mspace"
                             style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span
-                            class="mclose">))</span></span></span></span></eq>. The irradiance <eq><span
-                class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            class="mclose">))</span></span></span></span></eq>. The facing is controlled by the <a
+            href="https://blog.selfshadow.com/sandbox/shaders/ltc/ltc.fs"><strong>twoSided</strong></a>, and the
+        irradiance <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
                                 <mstyle scriptlevel="0" displaystyle="true">
@@ -4647,9 +4679,6 @@
                                             style="height:0.15em;"><span></span></span></span></span></span></span><span
                             class="mclose">)</span></span></span></span></eq> is calculated by the <a
             href="https://blog.selfshadow.com/sandbox/shaders/ltc/ltc.fs"><strong>LTC_Evaluate</strong></a> in the
-        <strong>WebGL Demo</strong> provided by [Heitz 2016]. Note that the facing of the polygon light is determined by
-        the <strong>winding order</strong> of the vertices. The facing is controlled by the <a
-            href="https://blog.selfshadow.com/sandbox/shaders/ltc/ltc.fs"><strong>twoSided</strong></a> in the
         <strong>WebGL Demo</strong> provided by [Heitz 2016].</p>
     <h2 dir="auto" id="references">References</h2>
     <p dir="auto">[Heitz 2016] <a href="https://eheitzresearch.wordpress.com/415-2/">Eric Heitz, Jonathan Dupuy, Stephen
