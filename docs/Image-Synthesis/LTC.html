@@ -1216,7 +1216,7 @@
                             class="mclose">)</span></span></span></span></eq> is called the <strong>linearly transformed
             cosine</strong>.
     </p>
-    <h2 dir="auto" id="2-lut">2. LUT</h2>
+    <h2 dir="auto" id="2-approximation">2. Approximation</h2>
     <p dir="auto">By <a href="https://pbr-book.org/3ed-2018/Color_and_Radiometry/Surface_Reflection#TheBRDF">the
             Equation (5.9) of the PBR Book</a>, we have <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
@@ -1410,7 +1410,7 @@
                                                         style="margin-right:0.01968em;">l</span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
-        </eq>. And we try to approximate the <eq><span class="katex"><span class="katex-mathml"><math
+        </eq>. And we approximate the <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
@@ -1479,8 +1479,250 @@
                                                         style="margin-right:0.01968em;">l</span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.15em;"><span></span></span></span></span></span></span><span
-                            class="mord">∣</span></span></span></span></eq> part of this formula by using the LTCs.</p>
-    <h3 dir="auto" id="2-1-uv">2-1. UV</h3>
+                            class="mord">∣</span></span></span></span></eq> by using the LTCs <eq><span
+                class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mi mathvariant="normal">BRDF</mi>
+                                    <mo>⁡</mo>
+                                    <mo stretchy="false">(</mo>
+                                    <msub>
+                                        <mi>ω</mi>
+                                        <mi>v</mi>
+                                    </msub>
+                                    <mo separator="true">,</mo>
+                                    <msub>
+                                        <mi>ω</mi>
+                                        <mi>l</mi>
+                                    </msub>
+                                    <mo stretchy="false">)</mo>
+                                    <mi mathvariant="normal">∣</mi>
+                                    <mi>cos</mi>
+                                    <mo>⁡</mo>
+                                    <msub>
+                                        <mi>θ</mi>
+                                        <mi>l</mi>
+                                    </msub>
+                                    <mi mathvariant="normal">∣</mi>
+                                    <mo>≈</mo>
+                                    <mrow>
+                                        <mi mathvariant="normal">N</mi>
+                                        <mi mathvariant="normal">o</mi>
+                                        <mi mathvariant="normal">r</mi>
+                                        <mi mathvariant="normal">m</mi>
+                                        <mi mathvariant="normal">B</mi>
+                                        <mi mathvariant="normal">R</mi>
+                                        <mi mathvariant="normal">D</mi>
+                                        <mi mathvariant="normal">F</mi>
+                                        <mi mathvariant="normal">C</mi>
+                                        <mi mathvariant="normal">o</mi>
+                                        <mi mathvariant="normal">s</mi>
+                                        <mi mathvariant="normal">i</mi>
+                                        <mi mathvariant="normal">n</mi>
+                                        <mi mathvariant="normal">e</mi>
+                                    </mrow>
+                                    <mo>⋅</mo>
+                                    <mi mathvariant="normal">D</mi>
+                                    <mo>⁡</mo>
+                                    <mo stretchy="false">(</mo>
+                                    <msub>
+                                        <mi>ω</mi>
+                                        <mi>l</mi>
+                                    </msub>
+                                    <mo stretchy="false">)</mo>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle \operatorname{BRDF}(\omega_v,
+                                \omega_l)|\cos \theta_l| \approx \mathrm{NormBRDFCosine} \cdot
+                                \operatorname{D}(\omega_l)</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span
+                                class="mord mathrm">BRDF</span></span><span class="mopen">(</span><span
+                            class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">ω</span><span
+                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.151392em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathnormal mtight"
+                                                        style="margin-right:0.03588em;">v</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
+                            class="mpunct">,</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mord"><span
+                                class="mord mathnormal" style="margin-right:0.03588em;">ω</span><span
+                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.33610799999999996em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathnormal mtight"
+                                                        style="margin-right:0.01968em;">l</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
+                            class="mclose">)</span><span class="mord">∣</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mop">cos</span><span
+                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span
+                                class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span
+                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.33610799999999996em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathnormal mtight"
+                                                        style="margin-right:0.01968em;">l</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
+                            class="mord">∣</span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">≈</span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                        class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span
+                            class="mord"><span class="mord mathrm">NormBRDFCosine</span></span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                            class="mop"><span class="mord mathrm">D</span></span><span class="mopen">(</span><span
+                            class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">ω</span><span
+                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.33610799999999996em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathnormal mtight"
+                                                        style="margin-right:0.01968em;">l</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
+                            class="mclose">)</span></span></span></span></eq> where <eq><span class="katex"><span
+                    class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mrow>
+                                        <mi mathvariant="normal">N</mi>
+                                        <mi mathvariant="normal">o</mi>
+                                        <mi mathvariant="normal">r</mi>
+                                        <mi mathvariant="normal">m</mi>
+                                        <mi mathvariant="normal">B</mi>
+                                        <mi mathvariant="normal">R</mi>
+                                        <mi mathvariant="normal">D</mi>
+                                        <mi mathvariant="normal">F</mi>
+                                        <mi mathvariant="normal">C</mi>
+                                        <mi mathvariant="normal">o</mi>
+                                        <mi mathvariant="normal">s</mi>
+                                        <mi mathvariant="normal">i</mi>
+                                        <mi mathvariant="normal">n</mi>
+                                        <mi mathvariant="normal">e</mi>
+                                    </mrow>
+                                    <mo>=</mo>
+                                    <msub>
+                                        <mo>∫</mo>
+                                        <mi mathvariant="normal">Ω</mi>
+                                    </msub>
+                                    <mi mathvariant="normal">BRDF</mi>
+                                    <mo>⁡</mo>
+                                    <mo stretchy="false">(</mo>
+                                    <msub>
+                                        <mi>ω</mi>
+                                        <mi>v</mi>
+                                    </msub>
+                                    <mo separator="true">,</mo>
+                                    <msub>
+                                        <mi>ω</mi>
+                                        <mi>l</mi>
+                                    </msub>
+                                    <mo stretchy="false">)</mo>
+                                    <mi mathvariant="normal">∣</mi>
+                                    <mi>cos</mi>
+                                    <mo>⁡</mo>
+                                    <msub>
+                                        <mi>θ</mi>
+                                        <mi>l</mi>
+                                    </msub>
+                                    <mi mathvariant="normal">∣</mi>
+                                    <mtext> </mtext>
+                                    <mi>d</mi>
+                                    <msub>
+                                        <mi>ω</mi>
+                                        <mi>l</mi>
+                                    </msub>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle \mathrm{NormBRDFCosine} =
+                                \int_{\Omega} \operatorname{BRDF}(\omega_v, \omega_l)|\cos \theta_l| \, d\omega_l
+                            </annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span
+                                class="mord mathrm">NormBRDFCosine</span></span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                        class="base"><span class="strut"
+                            style="height:2.27195em;vertical-align:-0.9119499999999999em;"></span><span
+                            class="mop"><span class="mop op-symbol large-op"
+                                style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span
+                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:-0.433619em;"><span
+                                                style="top:-1.7880500000000001em;margin-left:-0.44445em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight"><span
+                                                            class="mord mtight">Ω</span></span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.9119499999999999em;"><span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop"><span
+                                class="mord mathrm">BRDF</span></span><span class="mopen">(</span><span
+                            class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">ω</span><span
+                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.151392em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathnormal mtight"
+                                                        style="margin-right:0.03588em;">v</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
+                            class="mpunct">,</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mord"><span
+                                class="mord mathnormal" style="margin-right:0.03588em;">ω</span><span
+                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.33610799999999996em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathnormal mtight"
+                                                        style="margin-right:0.01968em;">l</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
+                            class="mclose">)</span><span class="mord">∣</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mop">cos</span><span
+                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span
+                                class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span
+                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.33610799999999996em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathnormal mtight"
+                                                        style="margin-right:0.01968em;">l</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
+                            class="mord">∣</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span
+                            class="mord mathnormal">d</span><span class="mord"><span class="mord mathnormal"
+                                style="margin-right:0.03588em;">ω</span><span class="msupsub"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.33610799999999996em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathnormal mtight"
+                                                        style="margin-right:0.01968em;">l</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
+        </eq>.</p>
+    <h3 dir="auto" id="2-1-lut-uv">2-1. LUT UV</h3>
     <p dir="auto">Since the GGX BRDF is isotropic, the distribution can be determined by the outgoing direction <eq>
             <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
@@ -1506,7 +1748,7 @@
                                                         style="margin-right:0.03588em;">v</span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
-        </eq> (in tangent space) and the roughness <eq><span class="katex"><span class="katex-mathml"><math
+        </eq> and the roughness <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
@@ -1519,8 +1761,37 @@
                     </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
                             style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal"
                             style="margin-right:0.0037em;">α</span></span></span></span></eq>, which are used as the UV
-        of the LUT.</p>
-    <h3 dir="auto" id="2-2-m">2-2. M</h3>
+        of the LUTs.</p>
+    <h3 dir="auto" id="2-2-tangent-space">2-2. Tangent Space</h3>
+    <p dir="auto">Note that the LUTs are precomputed by assuming that the vectors are in the tangent space where the
+        normal direction is assumed to be the Z axis (0, 0, 1), and since the GGX BRDF is isotropic, the outgoing
+        direction <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <msub>
+                                        <mi>ω</mi>
+                                        <mi>v</mi>
+                                    </msub>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle \omega_v</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span
+                                class="mord mathnormal" style="margin-right:0.03588em;">ω</span><span
+                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.151392em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathnormal mtight"
+                                                        style="margin-right:0.03588em;">v</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
+        </eq> is assumed to be in the XOZ plane. Thus, the vectors should be transformed into the tangent space before
+        this approximation is applied.</p>
+    <h3 dir="auto" id="2-3-lut-m">2-3. LUT M</h3>
     <p dir="auto">Actually, when M is the scaling transformation <eq><span class="katex"><span
                     class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
@@ -1964,7 +2235,7 @@
         </eq>, which is used when rendering, is stored in the LUT. This LUT is called the <a
             href="https://blog.selfshadow.com/sandbox/js/ltc_tables.js"><strong>g_ltc_mat</strong></a> in the
         <strong>WebGL Demo</strong> provided by [Heitz 2016].</p>
-    <h3 dir="auto" id="2-3-norm">2-3. Norm</h3>
+    <h3 dir="auto" id="2-4-lut-norm">2-4. LUT Norm</h3>
     <p dir="auto">By <a href="https://en.wikipedia.org/wiki/Integration_by_substitution">Integration by
             Substitution</a>, we can comprehend intuitively that <eq><span class="katex"><span
                     class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -2307,8 +2578,8 @@
                                     </msub>
                                 </mstyle>
                             </mrow>
-                            <annotation encoding="application/x-tex">\displaystyle \mathrm{NormBRDFCosine}
-                                =\int_{\Omega} \operatorname{BRDF}(\omega_v, \omega_l)|\cos \theta_l| \, d\omega_l
+                            <annotation encoding="application/x-tex">\displaystyle \mathrm{NormBRDFCosine} =
+                                \int_{\Omega} \operatorname{BRDF}(\omega_v, \omega_l)|\cos \theta_l| \, d\omega_l
                             </annotation>
                         </semantics>
                     </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
@@ -2379,275 +2650,10 @@
                                                         style="margin-right:0.01968em;">l</span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
-        </eq> should be stored in the LUT to accomplish the approximation. This means that <eq><span class="katex"><span
-                    class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
-                        <semantics>
-                            <mrow>
-                                <mi mathvariant="normal">D</mi>
-                                <mo>⁡</mo>
-                                <mo stretchy="false">(</mo>
-                                <msub>
-                                    <mi>ω</mi>
-                                    <mi>l</mi>
-                                </msub>
-                                <mo stretchy="false">)</mo>
-                                <mo>≈</mo>
-                                <mfrac>
-                                    <mrow>
-                                        <mi mathvariant="normal">BRDF</mi>
-                                        <mo>⁡</mo>
-                                        <mo stretchy="false">(</mo>
-                                        <msub>
-                                            <mi>ω</mi>
-                                            <mi>v</mi>
-                                        </msub>
-                                        <mo separator="true">,</mo>
-                                        <msub>
-                                            <mi>ω</mi>
-                                            <mi>l</mi>
-                                        </msub>
-                                        <mo stretchy="false">)</mo>
-                                        <mi mathvariant="normal">∣</mi>
-                                        <mi>cos</mi>
-                                        <mo>⁡</mo>
-                                        <msub>
-                                            <mi>θ</mi>
-                                            <mi>l</mi>
-                                        </msub>
-                                        <mi mathvariant="normal">∣</mi>
-                                    </mrow>
-                                    <mrow>
-                                        <mi mathvariant="normal">N</mi>
-                                        <mi mathvariant="normal">o</mi>
-                                        <mi mathvariant="normal">r</mi>
-                                        <mi mathvariant="normal">m</mi>
-                                        <mi mathvariant="normal">B</mi>
-                                        <mi mathvariant="normal">R</mi>
-                                        <mi mathvariant="normal">D</mi>
-                                        <mi mathvariant="normal">F</mi>
-                                        <mi mathvariant="normal">C</mi>
-                                        <mi mathvariant="normal">o</mi>
-                                        <mi mathvariant="normal">s</mi>
-                                        <mi mathvariant="normal">i</mi>
-                                        <mi mathvariant="normal">n</mi>
-                                        <mi mathvariant="normal">e</mi>
-                                    </mrow>
-                                </mfrac>
-                            </mrow>
-                            <annotation encoding="application/x-tex">\operatorname{D}(\omega_l) \approx
-                                \frac{\operatorname{BRDF}(\omega_v, \omega_l)|\cos \theta_l|}{\mathrm{NormBRDFCosine}}
-                            </annotation>
-                        </semantics>
-                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
-                            style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span
-                                class="mord mathrm">D</span></span><span class="mopen">(</span><span class="mord"><span
-                                class="mord mathnormal" style="margin-right:0.03588em;">ω</span><span
-                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                            style="height:0.33610799999999996em;"><span
-                                                style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
-                                                    class="pstrut" style="height:2.7em;"></span><span
-                                                    class="sizing reset-size6 size3 mtight"><span
-                                                        class="mord mathnormal mtight"
-                                                        style="margin-right:0.01968em;">l</span></span></span></span><span
-                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
-                            class="mclose">)</span><span class="mspace"
-                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">≈</span><span
-                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-                        class="base"><span class="strut" style="height:1.355em;vertical-align:-0.345em;"></span><span
-                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
-                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                            style="height:1.01em;"><span style="top:-2.6550000000000002em;"><span
-                                                    class="pstrut" style="height:3em;"></span><span
-                                                    class="sizing reset-size6 size3 mtight"><span
-                                                        class="mord mtight"><span class="mord mtight"><span
-                                                                class="mord mathrm mtight">NormBRDFCosine</span></span></span></span></span><span
-                                                style="top:-3.23em;"><span class="pstrut"
-                                                    style="height:3em;"></span><span class="frac-line"
-                                                    style="border-bottom-width:0.04em;"></span></span><span
-                                                style="top:-3.485em;"><span class="pstrut"
-                                                    style="height:3em;"></span><span
-                                                    class="sizing reset-size6 size3 mtight"><span
-                                                        class="mord mtight"><span class="mop mtight"><span
-                                                                class="mord mathrm mtight">BRDF</span></span><span
-                                                            class="mopen mtight">(</span><span class="mord mtight"><span
-                                                                class="mord mathnormal mtight"
-                                                                style="margin-right:0.03588em;">ω</span><span
-                                                                class="msupsub"><span class="vlist-t vlist-t2"><span
-                                                                        class="vlist-r"><span class="vlist"
-                                                                            style="height:0.16454285714285719em;"><span
-                                                                                style="top:-2.357em;margin-left:-0.03588em;margin-right:0.07142857142857144em;"><span
-                                                                                    class="pstrut"
-                                                                                    style="height:2.5em;"></span><span
-                                                                                    class="sizing reset-size3 size1 mtight"><span
-                                                                                        class="mord mathnormal mtight"
-                                                                                        style="margin-right:0.03588em;">v</span></span></span></span><span
-                                                                            class="vlist-s">​</span></span><span
-                                                                        class="vlist-r"><span class="vlist"
-                                                                            style="height:0.143em;"><span></span></span></span></span></span></span><span
-                                                            class="mpunct mtight">,</span><span
-                                                            class="mord mtight"><span class="mord mathnormal mtight"
-                                                                style="margin-right:0.03588em;">ω</span><span
-                                                                class="msupsub"><span class="vlist-t vlist-t2"><span
-                                                                        class="vlist-r"><span class="vlist"
-                                                                            style="height:0.3448em;"><span
-                                                                                style="top:-2.3487714285714287em;margin-left:-0.03588em;margin-right:0.07142857142857144em;"><span
-                                                                                    class="pstrut"
-                                                                                    style="height:2.5em;"></span><span
-                                                                                    class="sizing reset-size3 size1 mtight"><span
-                                                                                        class="mord mathnormal mtight"
-                                                                                        style="margin-right:0.01968em;">l</span></span></span></span><span
-                                                                            class="vlist-s">​</span></span><span
-                                                                        class="vlist-r"><span class="vlist"
-                                                                            style="height:0.15122857142857138em;"><span></span></span></span></span></span></span><span
-                                                            class="mclose mtight">)</span><span
-                                                            class="mord mtight">∣</span><span class="mspace mtight"
-                                                            style="margin-right:0.19516666666666668em;"></span><span
-                                                            class="mop mtight"><span class="mtight">c</span><span
-                                                                class="mtight">o</span><span
-                                                                class="mtight">s</span></span><span
-                                                            class="mspace mtight"
-                                                            style="margin-right:0.19516666666666668em;"></span><span
-                                                            class="mord mtight"><span class="mord mathnormal mtight"
-                                                                style="margin-right:0.02778em;">θ</span><span
-                                                                class="msupsub"><span class="vlist-t vlist-t2"><span
-                                                                        class="vlist-r"><span class="vlist"
-                                                                            style="height:0.3448em;"><span
-                                                                                style="top:-2.3487714285714287em;margin-left:-0.02778em;margin-right:0.07142857142857144em;"><span
-                                                                                    class="pstrut"
-                                                                                    style="height:2.5em;"></span><span
-                                                                                    class="sizing reset-size3 size1 mtight"><span
-                                                                                        class="mord mathnormal mtight"
-                                                                                        style="margin-right:0.01968em;">l</span></span></span></span><span
-                                                                            class="vlist-s">​</span></span><span
-                                                                        class="vlist-r"><span class="vlist"
-                                                                            style="height:0.15122857142857138em;"><span></span></span></span></span></span></span><span
-                                                            class="mord mtight">∣</span></span></span></span></span><span
-                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:0.345em;"><span></span></span></span></span></span><span
-                                class="mclose nulldelimiter"></span></span></span></span></span></eq>. This LUT is
-        called the <a href="https://blog.selfshadow.com/sandbox/js/ltc_tables.js"><strong>g_ltc_mag</strong></a> in the
+        </eq> should be introduced and stored in the LUT to accomplish the approximation. This LUT is called the <a
+            href="https://blog.selfshadow.com/sandbox/js/ltc_tables.js"><strong>g_ltc_mag</strong></a> in the
         <strong>WebGL Demo</strong> provided by [Heitz 2016].
     </p>
-    <h3 dir="auto" id="2-4-tangent-space">2-4. Tangent Space</h3>
-    <p dir="auto">By using the LTCs, we have <eq><span class="katex"><span class="katex-mathml"><math
-                        xmlns="http://www.w3.org/1998/Math/MathML">
-                        <semantics>
-                            <mrow>
-                                <mstyle scriptlevel="0" displaystyle="true">
-                                    <mi mathvariant="normal">BRDF</mi>
-                                    <mo>⁡</mo>
-                                    <mo stretchy="false">(</mo>
-                                    <msub>
-                                        <mi>ω</mi>
-                                        <mi>v</mi>
-                                    </msub>
-                                    <mo separator="true">,</mo>
-                                    <msub>
-                                        <mi>ω</mi>
-                                        <mi>l</mi>
-                                    </msub>
-                                    <mo stretchy="false">)</mo>
-                                    <mi mathvariant="normal">∣</mi>
-                                    <mi>cos</mi>
-                                    <mo>⁡</mo>
-                                    <msub>
-                                        <mi>θ</mi>
-                                        <mi>l</mi>
-                                    </msub>
-                                    <mi mathvariant="normal">∣</mi>
-                                    <mo>≈</mo>
-                                    <mrow>
-                                        <mi mathvariant="normal">N</mi>
-                                        <mi mathvariant="normal">o</mi>
-                                        <mi mathvariant="normal">r</mi>
-                                        <mi mathvariant="normal">m</mi>
-                                        <mi mathvariant="normal">B</mi>
-                                        <mi mathvariant="normal">R</mi>
-                                        <mi mathvariant="normal">D</mi>
-                                        <mi mathvariant="normal">F</mi>
-                                        <mi mathvariant="normal">C</mi>
-                                        <mi mathvariant="normal">o</mi>
-                                        <mi mathvariant="normal">s</mi>
-                                        <mi mathvariant="normal">i</mi>
-                                        <mi mathvariant="normal">n</mi>
-                                        <mi mathvariant="normal">e</mi>
-                                    </mrow>
-                                    <mo>⋅</mo>
-                                    <mi mathvariant="normal">D</mi>
-                                    <mo>⁡</mo>
-                                    <mo stretchy="false">(</mo>
-                                    <msub>
-                                        <mi>ω</mi>
-                                        <mi>l</mi>
-                                    </msub>
-                                    <mo stretchy="false">)</mo>
-                                </mstyle>
-                            </mrow>
-                            <annotation encoding="application/x-tex">\displaystyle \operatorname{BRDF}(\omega_v,
-                                \omega_l)|\cos \theta_l| \approx \mathrm{NormBRDFCosine} \cdot
-                                \operatorname{D}(\omega_l)</annotation>
-                        </semantics>
-                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
-                            style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span
-                                class="mord mathrm">BRDF</span></span><span class="mopen">(</span><span
-                            class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">ω</span><span
-                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                            style="height:0.151392em;"><span
-                                                style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
-                                                    class="pstrut" style="height:2.7em;"></span><span
-                                                    class="sizing reset-size6 size3 mtight"><span
-                                                        class="mord mathnormal mtight"
-                                                        style="margin-right:0.03588em;">v</span></span></span></span><span
-                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
-                            class="mpunct">,</span><span class="mspace"
-                            style="margin-right:0.16666666666666666em;"></span><span class="mord"><span
-                                class="mord mathnormal" style="margin-right:0.03588em;">ω</span><span
-                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                            style="height:0.33610799999999996em;"><span
-                                                style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
-                                                    class="pstrut" style="height:2.7em;"></span><span
-                                                    class="sizing reset-size6 size3 mtight"><span
-                                                        class="mord mathnormal mtight"
-                                                        style="margin-right:0.01968em;">l</span></span></span></span><span
-                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
-                            class="mclose">)</span><span class="mord">∣</span><span class="mspace"
-                            style="margin-right:0.16666666666666666em;"></span><span class="mop">cos</span><span
-                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span
-                                class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span
-                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                            style="height:0.33610799999999996em;"><span
-                                                style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span
-                                                    class="pstrut" style="height:2.7em;"></span><span
-                                                    class="sizing reset-size6 size3 mtight"><span
-                                                        class="mord mathnormal mtight"
-                                                        style="margin-right:0.01968em;">l</span></span></span></span><span
-                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
-                            class="mord">∣</span><span class="mspace"
-                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">≈</span><span
-                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-                        class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span
-                            class="mord"><span class="mord mathrm">NormBRDFCosine</span></span><span class="mspace"
-                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span
-                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
-                        class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
-                            class="mop"><span class="mord mathrm">D</span></span><span class="mopen">(</span><span
-                            class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">ω</span><span
-                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                            style="height:0.33610799999999996em;"><span
-                                                style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
-                                                    class="pstrut" style="height:2.7em;"></span><span
-                                                    class="sizing reset-size6 size3 mtight"><span
-                                                        class="mord mathnormal mtight"
-                                                        style="margin-right:0.01968em;">l</span></span></span></span><span
-                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
-                            class="mclose">)</span></span></span></span></eq>. Note that the M is precomputed by
-        assuming that the vectors are in the tangent space where (0, 0, 1) is the normal direction. Thus, the vectors
-        should be transformed into the tangent space before this approximation is applied.</p>
     <h2 dir="auto" id="3-light">3. Light</h2>
     <h3 dir="auto" id="3-1-integration-over-polygons">3-1. Integration over Polygons</h3>
     <p dir="auto">By <a href="https://en.wikipedia.org/wiki/Integration_by_substitution">Integration by
@@ -3418,9 +3424,8 @@
                                                         style="margin-right:0.01968em;">l</span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
-        </eq>.<br>
-        By using the LTCs, this integral can be approximated, and we have <eq><span class="katex"><span
-                    class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+        </eq>. By <strong>2. Approximation</strong>, we have <eq><span class="katex"><span class="katex-mathml"><math
+                        xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
                                 <msub>
@@ -3733,10 +3738,9 @@
                                                         style="margin-right:0.01968em;">l</span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
-        </eq>. Note that the P should be transformed into the tangent space before this approximation is applied.<br>
-        And by <a href="https://en.wikipedia.org/wiki/Integration_by_substitution">Integration by Substitution</a>, we
-        can comprehend intuitively that <eq><span class="katex"><span class="katex-mathml"><math
-                        xmlns="http://www.w3.org/1998/Math/MathML">
+        </eq>. Note that the P should be transformed into the tangent space before this approximation is applied. And by
+        <strong>3-1. Integration over Polygons</strong>, we have <eq><span class="katex"><span
+                    class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
                                 <mstyle scriptlevel="0" displaystyle="true">
@@ -4439,8 +4443,8 @@
                                         <mo>∑</mo>
                                         <mrow>
                                             <mi>i</mi>
-                                            <mo>=</mo>
-                                            <mn>1</mn>
+                                            <mtext> </mtext>
+                                            <mi>j</mi>
                                         </mrow>
                                         <mi>n</mi>
                                     </munderover>
@@ -4496,7 +4500,7 @@
                                 </mstyle>
                             </mrow>
                             <annotation encoding="application/x-tex">\displaystyle \operatorname{E}(P_o) =
-                                \frac{1}{2\pi} \sum_{i=1}^n \arccos(\operatorname{dot}(p_i, p_j)) \cdot
+                                \frac{1}{2\pi} \sum_{i \, j}^n \arccos(\operatorname{dot}(p_i, p_j)) \cdot
                                 \operatorname{dot}(\operatorname{normalize}(\operatorname{cross}(p_i, p_j)),
                                 \operatorname{vec3}(0, 0, 1))</annotation>
                         </semantics>
@@ -4516,8 +4520,8 @@
                             style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
                             class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
                         class="base"><span class="strut"
-                            style="height:2.929066em;vertical-align:-1.277669em;"></span><span class="mord"><span
-                                class="mopen nulldelimiter"></span><span class="mfrac"><span
+                            style="height:3.0651740000000007em;vertical-align:-1.4137769999999998em;"></span><span
+                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
                                     class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
                                             style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut"
                                                     style="height:3em;"></span><span class="mord"><span
@@ -4534,13 +4538,15 @@
                                 class="mclose nulldelimiter"></span></span><span class="mspace"
                             style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span
                                 class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                        style="height:1.6513970000000002em;"><span
+                                        style="height:1.6513970000000007em;"><span
                                             style="top:-1.872331em;margin-left:0em;"><span class="pstrut"
                                                 style="height:3.05em;"></span><span
                                                 class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span
                                                         class="mord mathnormal mtight">i</span><span
-                                                        class="mrel mtight">=</span><span
-                                                        class="mord mtight">1</span></span></span></span><span
+                                                        class="mspace mtight"
+                                                        style="margin-right:0.19516666666666668em;"></span><span
+                                                        class="mord mathnormal mtight"
+                                                        style="margin-right:0.05724em;">j</span></span></span></span><span
                                             style="top:-3.050005em;"><span class="pstrut"
                                                 style="height:3.05em;"></span><span><span
                                                     class="mop op-symbol large-op">∑</span></span></span><span
@@ -4549,7 +4555,7 @@
                                                 class="sizing reset-size6 size3 mtight"><span
                                                     class="mord mathnormal mtight">n</span></span></span></span><span
                                         class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                        style="height:1.277669em;"><span></span></span></span></span></span><span
+                                        style="height:1.4137769999999998em;"><span></span></span></span></span></span><span
                             class="mspace" style="margin-right:0.16666666666666666em;"></span><span
                             class="mop">arccos</span><span class="mopen">(</span><span class="mop"><span
                                 class="mord mathrm">dot</span></span><span class="mopen">(</span><span
@@ -4641,6 +4647,9 @@
                                             style="height:0.15em;"><span></span></span></span></span></span></span><span
                             class="mclose">)</span></span></span></span></eq> is calculated by the <a
             href="https://blog.selfshadow.com/sandbox/shaders/ltc/ltc.fs"><strong>LTC_Evaluate</strong></a> in the
+        <strong>WebGL Demo</strong> provided by [Heitz 2016]. Note that the facing of the polygon light is determined by
+        the <strong>winding order</strong> of the vertices. The facing is controlled by the <a
+            href="https://blog.selfshadow.com/sandbox/shaders/ltc/ltc.fs"><strong>twoSided</strong></a> in the
         <strong>WebGL Demo</strong> provided by [Heitz 2016].</p>
     <h2 dir="auto" id="references">References</h2>
     <p dir="auto">[Heitz 2016] <a href="https://eheitzresearch.wordpress.com/415-2/">Eric Heitz, Jonathan Dupuy, Stephen
