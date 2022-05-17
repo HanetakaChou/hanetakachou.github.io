@@ -37,6 +37,9 @@ And by **3-1\. Integration over Polygons**, we have $\displaystyle  L_l \cdot \m
 ### Irradiance
 We assume that the points $\displaystyle p_1$, $\displaystyle p_2$, ..., $\displaystyle p_n$, which are in the tangent space, normalized, and located in the upper hemisphere,  are vertices of the polygon $\displaystyle P_o$. Note that the facing of the polygon P is determined by the **winding order** of the vertices. By \[Heitz 2017\], the irradiance $\displaystyle \operatorname{E}(P_o)$ is closed-form $\displaystyle \operatorname{E}(P_o) = \frac{1}{2\pi} \sum_{i \, j}^n \arccos(\operatorname{dot}(p_i, p_j)) \cdot \operatorname{dot}(\operatorname{normalize}(\operatorname{cross}(p_i, p_j)), \operatorname{vec3}(0, 0, 1))$. The facing is controlled by the [**twoSided**](https://blog.selfshadow.com/sandbox/shaders/ltc/ltc.fs), and the irradiance $\displaystyle \operatorname{E}(P_o)$ is calculated by the [**LTC_Evaluate**](https://blog.selfshadow.com/sandbox/shaders/ltc/ltc.fs) in the **WebGL Demo** provided by \[Heitz 2016\].  
 
+[**RectGGXApproxLTC**](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/RectLight.ush#L442)  
+
+
 ## References  
 \[Heitz 2016\] [Eric Heitz, Jonathan Dupuy, Stephen Hill, David Neubelt. "Real-Time Polygonal-Light Shading with Linearly Transformed Cosines." SIGGRAPH 2016.](https://eheitzresearch.wordpress.com/415-2/)  
 \[Heitz 2017\] [Eric Heitz. "Geometric Derivation of the Irradiance of Polygonal Lights." Technical report 2017.](https://hal.archives-ouvertes.fr/hal-01458129)  
