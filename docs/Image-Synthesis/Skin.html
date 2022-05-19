@@ -17,8 +17,8 @@
                 <th style="text-align:center"><a
                         href="https://github.com/NVIDIAGameWorks/FaceWorks/blob/master/doc/slides/FaceWorks-Overview-GTC14.pdf">NVIDIA
                         FaceWorks</a></th>
-                <th style="text-align:center"><a href="(http://www.iryoku.com/separable-sss/)">Demo Source Code of
-                        Jimenez 2015</a></th>
+                <th style="text-align:center"><a href="http://www.iryoku.com/separable-sss/">Demo Source Code of Jimenez
+                        2015</a></th>
                 <th style="text-align:center">UE4</th>
                 <th style="text-align:center">Unity3D</th>
             </tr>
@@ -4671,6 +4671,14 @@
                 href="https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@10.8/manual/Material-Type.html">Subsurface
                 Mask Map</a>.</li>
     </ol>
+    <p dir="auto">Canonically, we should <strong>NOT</strong> blur the specular lighting. Thus, a dedicated <a
+            href="https://github.com/iryoku/separable-sss/blob/master/Demo/Shaders/Main.fx#L272">specularRT</a> is added
+        in the demo source code provided by [Jimenez 2015] to store the specular lighting. However, the <a
+            href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/LightAccumulator.ush#L18">checkerboard
+            rendering</a>, which is a bit tricky, is applied in UE4 to store the diffuse lighting and specular lighting
+        in adjacent pixels. And the gbuffer data is modified by <a
+            href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/DeferredShadingCommon.ush#L605">AdjustBaseColorAndSpecularColorForSubsurfaceProfileLighting</a>
+        in UE4 before the lighting is calculated.</p>
     <h3 dir="auto" id="1-4-disney-sss">1-4. Disney SSS</h3>
     <p dir="auto">The <strong>diffuse reflectance</strong> term of <a
             href="https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@10.8/manual/Diffusion-Profile.html">Unity3D</a>
