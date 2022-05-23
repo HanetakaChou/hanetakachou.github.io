@@ -67,8 +67,8 @@
             </tr>
         </tbody>
     </table>
-    <h2 dir="auto" id="1-diffuse-reflectance-term">1. Diffuse Reflectance Term</h2>
-    <h3 dir="auto" id="1-1-diffusion-profile">1-1. Diffusion Profile</h3>
+    <h2 dir="auto" id="1-diffuse-reflectance-term-1">1. Diffuse Reflectance Term</h2>
+    <h3 dir="auto" id="1-1-diffusion-profile-1">1-1. Diffusion Profile</h3>
     <p dir="auto">Currently, all real time approaches are based on the diffusion profile(<strong>14.4.2 Rendering with
             Diffusion Profile</strong> of [dEon 2007]) rather than the <a
             href="https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Surface_Reflection#TheBSSRDF">BSSRDF</a>.</p>
@@ -782,7 +782,7 @@
         according to [dEon 2007], if the width (technically, the range of the significant contribution domain) of the
         diffusion profile is about 16 mm, and the width of pixel is about 0.25 mm, we would need 4096(64 x 64) samples
         per pixel in the shader. Thus, we have to propose more efficient approaches to settle this problem.</p>
-    <h3 dir="auto" id="1-2-preintegrated">1-2. Preintegrated</h3>
+    <h3 dir="auto" id="1-2-preintegrated-1">1-2. Preintegrated</h3>
     <p dir="auto">The <strong>diffuse reflectance</strong> term of NVIDIA FaceWorks and the <strong>Preintegrated
             Skin</strong> <a
             href="https://docs.unrealengine.com/4.27/en-US/RenderingAndGraphics/Materials/MaterialProperties/LightingModels/">Shading
@@ -3147,7 +3147,7 @@
                                 class="mord mathnormal">L</span><span class="mclose">)</span></span></span></span></eq>
             which is detached from the total integral.</li>
     </ol>
-    <h3 dir="auto" id="1-3-separable-sss">1-3. Separable SSS</h3>
+    <h3 dir="auto" id="1-3-separable-sss-1">1-3. Separable SSS</h3>
     <p dir="auto">The <strong>diffuse reflectance</strong> term of the <strong>Subsurface Profile</strong> <a
             href="https://docs.unrealengine.com/4.27/en-US/RenderingAndGraphics/Materials/MaterialProperties/LightingModels/">Shading
             Model</a> <strong>without</strong> <a
@@ -4671,7 +4671,7 @@
         in adjacent pixels. And the gbuffer data is modified by <a
             href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/DeferredShadingCommon.ush#L605">AdjustBaseColorAndSpecularColorForSubsurfaceProfileLighting</a>
         in UE4 before the lighting is calculated.</p>
-    <h3 dir="auto" id="1-4-disney-sss">1-4. Disney SSS</h3>
+    <h3 dir="auto" id="1-4-disney-sss-1">1-4. Disney SSS</h3>
     <p dir="auto">The <strong>diffuse reflectance</strong> term of <a
             href="https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@10.8/manual/Diffusion-Profile.html">Unity3D</a>
         and the <strong>Subsurface Profile</strong> <a
@@ -4679,7 +4679,7 @@
             Model</a> with <a
             href="https://docs.unrealengine.com/4.27/en-US/RenderingAndGraphics/Materials/LightingModels/SubSurfaceProfile/">Enable
             Burley</a> of UE4 is based on the <strong>Disney SSS</strong> [Golubev 2018].</p>
-    <h4 dir="auto" id="1-4-1-bilateral-filter">1-4-1. Bilateral Filter</h4>
+    <h4 dir="auto" id="1-4-1-bilateral-filter-1">1-4-1. Bilateral Filter</h4>
     <p dir="auto">The approach of [Mikkelsen 2010] is used by [Golubev 2018] to the estimated surface area based on the
         screen space area.</p>
     <p dir="auto">Let x be the point on the surface, and p is the perspective projection of x on the screen space. We
@@ -7420,7 +7420,7 @@ M1001 80h400000v40h-400000z' />
         </eq>.</p>
     <p dir="auto">The <strong>Bilateral Filter</strong> is controlled by the macro <strong>SSS_BILATERAL_FILTER</strong>
         in the Unity3D and the macro <strong>USE_BILATERAL_FILTERING</strong> in the UE4.</p>
-    <h4 dir="auto" id="1-4-2-importance-sampling">1-4-2. Importance Sampling</h4>
+    <h4 dir="auto" id="1-4-2-importance-sampling-1">1-4-2. Importance Sampling</h4>
     <p dir="auto">The diffusion profile <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
@@ -7769,7 +7769,7 @@ M1001 80h400000v40h-400000z' />
         <strong>REWEIGHT_CENTER_SAMPLE</strong>, is used, and the <strong>CDF</strong> of the center sample is
         calculated and removed from the vicinal samples. The UE4 claims that the result of this approach is still
         unbiased.</p>
-    <h4 dir="auto" id="1-4-3-albedo">1-4-3. Albedo</h4>
+    <h4 dir="auto" id="1-4-3-albedo-1">1-4-3. Albedo</h4>
     <p dir="auto">Evidently, the diffusion profile and the PDF are <strong>NOT</strong> equivalent, and we can
         comprehend intuitively that the PDF should be multiplied by the <strong>albedo</strong> to calculate the
         original diffusion profile. If the diffuse BRDF is assumed to be the lambert <eq><span class="katex"><span
@@ -9222,7 +9222,7 @@ M1001 80h400000v40h-400000z' />
         and <a
             href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/PostProcessSubsurface.usf#L741">SubsurfaceRecombinePS</a>
         in UE4.</p>
-    <h4 dir="auto" id="1-4-4-properties-between-unity3d-and-ue4">1-4-4. Properties between Unity3D and UE4</h4>
+    <h4 dir="auto" id="1-4-4-properties-between-unity3d-and-ue4-1">1-4-4. Properties between Unity3D and UE4</h4>
     <table dir="auto">
         <thead dir="auto">
             <tr dir="auto">
@@ -9444,17 +9444,17 @@ M1001 80h400000v40h-400000z' />
             </tr>
             <tr dir="auto">
                 <td style="text-align:center">N/A</td>
-                <td style="text-align:center">World Scale</td>
-                <td style="text-align:center">1 (Meters Per Unit)</td>
-                <td style="text-align:center">World Unit Scale</td>
-                <td style="text-align:center">0.1 (Units Per Centimeter)</td>
-            </tr>
-            <tr dir="auto">
-                <td style="text-align:center">N/A</td>
                 <td style="text-align:center">Texturing Mode</td>
                 <td style="text-align:center">Pre- and Post-Scatter</td>
                 <td style="text-align:center">N/A</td>
                 <td style="text-align:center">Post-Scatter</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">World Scale</td>
+                <td style="text-align:center">1 (Meters Per Unit)</td>
+                <td style="text-align:center">World Unit Scale</td>
+                <td style="text-align:center">0.1 (Units Per Centimeter)</td>
             </tr>
         </tbody>
     </table>
@@ -9599,10 +9599,10 @@ M1001 80h400000v40h-400000z' />
                             style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span
                             class="mop"><span class="mord mathrm">GetScalingFactor</span></span></span></span></span>
         </eq> is exactly the scaling factor. Thus, the denominator is <strong>NOT</strong> reasonable.</p>
-    <h3 dir="auto" id="1-5-disney-diffuse">1-5. Disney Diffuse</h3>
+    <h3 dir="auto" id="1-5-disney-diffuse-1">1-5. Disney Diffuse</h3>
     <p dir="auto">TODO</p>
-    <h2 dir="auto" id="2-diffuse-transmittance-term">2. Diffuse Transmittance Term</h2>
-    <h3 dir="auto" id="2-1-deep-scatter">2-1. Deep Scatter</h3>
+    <h2 dir="auto" id="2-diffuse-transmittance-term-1">2. Diffuse Transmittance Term</h2>
+    <h3 dir="auto" id="2-1-deep-scatter-1">2-1. Deep Scatter</h3>
     <p dir="auto">The <strong>diffuse transmittance</strong> term of the FaceWorks is based on the <strong>16.3
             Simulating Absorption Using Depth Maps</strong> of [Green 2004].</p>
     <p dir="auto">The main idea of [Green 2004] is that the objects are assumed to be convex, and thus the thickness
@@ -9612,7 +9612,7 @@ M1001 80h400000v40h-400000z' />
     <p dir="auto">In the FaceWorks, the <strong>thickness</strong> is calculated by
         <strong>GFSDK_FaceWorks_EstimateThicknessFromParallelShadowPoisson32</strong> and the <strong>transmittance
             coefficient</strong> is calculated by <strong>GFSDK_FaceWorks_EvaluateDeepScatterDirectLight</strong>.</p>
-    <h3 dir="auto" id="2-2-analytically-integrated-translucency">2-2. Analytically-Integrated Translucency</h3>
+    <h3 dir="auto" id="2-2-analytically-integrated-translucency-1">2-2. Analytically-Integrated Translucency</h3>
     <p dir="auto">The <strong>diffuse transmittance</strong> term of demo source code provided by [Jimenez 2015] is
         based on [Jimenez 2010].</p>
     <p dir="auto">The main idea of [Jimenez 2010] is that the approach proposed by [Green 2004] is applied to calculate
@@ -10189,7 +10189,7 @@ M1001 80h400000v40h-400000z' />
                                     class="mord">MetersPerWorldSpaceUnit</span></span></span></span></span></eq> which
             is exactly the transformation from world space unit to mm.</li>
     </ol>
-    <h3 dir="auto" id="2-3-baked-textured-thickness">2-3. Baked Textured Thickness</h3>
+    <h3 dir="auto" id="2-3-baked-textured-thickness-1">2-3. Baked Textured Thickness</h3>
     <p dir="auto">The <strong>diffuse transmittance</strong> term of Unity3D is based on [Golubev 2018].</p>
     <p dir="auto">[Golubev 2018] follows the analytically-integrated formula of [Jimenez 2010] while the diffuse profile
         of [Christensen 2015] is applied. And thus, we have that <eq><span class="katex"><span
@@ -10427,12 +10427,12 @@ M1001 80h400000v40h-400000z' />
         <strong>thickness</strong> is calculated by the <strong>FillMaterialTransmission</strong>, the
         <strong>ShouldEvaluateThickObjectTransmission</strong> and the <strong>EvaluateTransmittance_Punctual</strong>.
     </p>
-    <h2 dir="auto" id="3-specular-term">3. Specular Term</h2>
-    <h3 dir="auto" id="3-1-two-lobe-blinn-phong">3-1. Two-lobe Blinn-Phong</h3>
+    <h2 dir="auto" id="3-specular-term-1">3. Specular Term</h2>
+    <h3 dir="auto" id="3-1-two-lobe-blinn-phong-1">3-1. Two-lobe Blinn-Phong</h3>
     <p dir="auto">TODO</p>
-    <h3 dir="auto" id="3-2-dual-ggx">3-2. Dual GGX</h3>
+    <h3 dir="auto" id="3-2-dual-ggx-1">3-2. Dual GGX</h3>
     <p dir="auto">TODO</p>
-    <h2 dir="auto" id="references">References</h2>
+    <h2 dir="auto" id="references-1">References</h2>
     <p dir="auto">[Kelemen 2001] <a href="http://cg.iit.bme.hu/~szirmay/scook_link.htm">Csaba Kelemen, László
             Szirmay-Kalos. &quot;A Microfacet Based Coupled Specular-Matte BRDF Model with Importance Sampling.&quot;
             EGSR 2001.</a><br>

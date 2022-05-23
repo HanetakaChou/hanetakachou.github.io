@@ -97,8 +97,8 @@ N/A | N/A | N/A | Mean Free Path Color | (1.0, 0.1983/2.229, (0.1607/2.229)
 N/A | N/A | N/A | Mean Free Path Distance | (1.2\*2.229, 1.2\*2.229, 1.2\*2.229)  
 N/A | Scattering Distance | (0.7568628, 0.32156864, 0.20000002) | N/A | N/A  
 s | N/A | $\displaystyle \frac{1}{\mathrm{ScatteringDistance}}$ | N/A | $\displaystyle \frac{\operatorname{GetScalingFactor}(\mathrm{SurfaceAlbedo})}{\mathrm{MeanFreePathColor} \cdot \mathrm{MeanFreePathDistance}}$  
-N/A | World Scale | 1 (Meters Per Unit) | World Unit Scale | 0.1 (Units Per Centimeter)  
 N/A | Texturing Mode | Pre- and Post-Scatter | N/A |  Post-Scatter  
+N/A | World Scale | 1 (Meters Per Unit) | World Unit Scale | 0.1 (Units Per Centimeter)  
 
 Note that, in UE4, the scaling factor is calculated by $\displaystyle s = \frac{\operatorname{GetScalingFactor}(\mathrm{SurfaceAlbedo})}{\mathrm{MeanFreePathColor} \cdot \mathrm{MeanFreePathDistance}}$ where the $\displaystyle \operatorname{GetScalingFactor}$ follows the Equation 5, 6, 7 of \[Christensen 2015\]. But, by \[Christensen 2015\], the result of the $\displaystyle \operatorname{GetScalingFactor}$ is exactly the scaling factor. Thus, the denominator is **NOT** reasonable.  
 
