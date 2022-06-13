@@ -1,4 +1,4 @@
-# Hanetaka's Blog  
+# YuqiaoZhang(HanetakaChou)'s Blog  
 
 ## License  
 ```  
@@ -19,12 +19,15 @@ You should have received a copy of the GNU Lesser General Public License along w
 [Vulkan/Resource-Binding.html](Vulkan/Resource-Binding.html)  
 
 ## Image Synthesis  
+### Geometry  
 [Image-Synthesis/MOC.html](Image-Synthesis/MOC.html)  
 [Image-SYnthesis/Projector-Functions.html](Image-Synthesis/Projector-Functions.html)  
 [Image-Synthesis/Vertex-Blending.html](Image-Synthesis/Vertex-Blending.html)  
 [Image-Synthesis/Skin.html](Image-Synthesis/Skin.html)  
 [Image-Synthesis/Grass.html](Image-Synthesis/Grass.html)  
 [Image-Synthesis/Billboard.html](Image-Synthesis/Billboard.html)  
+### Lighting
+[Image-Synthesis/Radiometric-and-Photometric-quantities.html](Image-Synthesis/Radiometric-and-Photometric-quantities.html)  
 [Image-Synthesis/LTC.html](Image-Synthesis/LTC.html)  
 [Image-Synthesis/OIT.html](Image-Synthesis/OIT.html)  
 [Image-Synthesis/VXGI.html](Image-Synthesis/VXGI.html)  
