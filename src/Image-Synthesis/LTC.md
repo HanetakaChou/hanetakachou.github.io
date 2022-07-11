@@ -1,5 +1,4 @@
 ## 1\. Clamped Cosine Integral  
-
 ### 1-1\. Clamped Cosine  
 We assume that the normal direction in the tangent space is (0, 0, 1), which is called the **Median Vector** in \[Heitz 2016\]. The **clamped cosine** is defined as $\displaystyle \operatorname{D_o}(\omega_o) = \frac{1}{\pi} |\cos \theta_o| = \frac{1}{\pi} | \overrightarrow{(0,0,1)} \cdot \overrightarrow{\omega_o}| = \frac{1}{\pi} \max(0, z)$ where $\displaystyle \overrightarrow{\omega_o} = (x, y, z)$. Evidently, by [the Figure 5.13 of the PBR Book](https://pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#IntegralsoverProjectedSolidAngle), we have $\displaystyle \int_\Omega \operatorname{D_o} \, d\omega_o = \frac{1}{\pi} \int_\Omega |\cos \theta_o| \, d\omega_o = \frac{1}{\pi} \int_\Omega 1 \, d\omega_o^{\perp} = \frac{1}{\pi} \cdot \pi = 1$, and thus $\displaystyle \operatorname{D_o}$ is normalized.  
 
@@ -14,8 +13,7 @@ The integral over the sphere is calcualted by the [genSphereTab](https://github.
 
 By [Stephen 2016], the **vector form factor** over the polygon can be calculated as $\displaystyle \overrightarrow{\operatorname{F}}(P_o) = \frac{1}{2\pi} \sum_{i \, j}^n \arccos(\overrightarrow{p_i} \cdot \overrightarrow{p_j}) \operatorname{normalize}(\overrightarrow{p_i} \times \overrightarrow{p_j})$ even if the vertices are NOT in the upper hemisphere. The term **vector form factor** is analogous to the term **vector irradiance** of which the direction is the direction where a flat surface can receive the highest irradiance.  
 And the vector form factor over the sphere is the vector of which the direction is towards the center of the sphere and the length is $\displaystyle F = \frac{1}{\pi} \int_0^{2\pi} \int_0^\alpha \cos \theta \sin \theta \, d \theta d \phi  = \sin^2(\sigma)$ where $\displaystyle \sigma$ is the angular extent. Thus, a proxy sphere with the same vector form factor can be introduced. This proxy sphere can be used to calculate the integral over the polygon without clipping according to the formulation by [Snyder 1996].  
-The clamped cosine integral over the polygon $\displaystyle \operatorname{F}(P_o)$ is calculated by the [**LTC_Evaluate**](https://github.com/selfshadow/ltc_code/blob/master/webgl/shaders/ltc/ltc_quad.fs#L274) in the **WebGL Demo** provided by \[Stephen 2016\], [EvaluateBSDF_Rect](https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.high-definition/Runtime/Material/Lit/Lit.hlsl#L1764) in Unity3D, and [RectIrradianceLambert](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/RectLight.ush#L108) and [RectGGXApproxLTC](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/RectLight.ush#L442) in UE4.  
-
+The clamped cosine integral over the polygon $\displaystyle \operatorname{F}(P_o)$ is calculated by the [**LTC_Evaluate**](https://github.com/selfshadow/ltc_code/blob/master/webgl/shaders/ltc/ltc_quad.fs#L274) in the WebGL Demo provided by \[Stephen 2016\], [EvaluateBSDF_Rect](https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.high-definition/Runtime/Material/Lit/Lit.hlsl#L1764) in Unity3D, and [RectIrradianceLambert](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/RectLight.ush#L108) and [RectGGXApproxLTC](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/RectLight.ush#L442) in UE4.  
 
 ## 2\. LTC  
 ### 2-1\. LTSD   
@@ -27,8 +25,7 @@ When the **clamped cosine** $\displaystyle \operatorname{D_o}(\omega_o) = \frac{
 ### 2-3\. Shading with Constant Polygonal Lights  
 When the $\displaystyle \operatorname{L_l}(\omega_l)$ is assumed to be constant $\displaystyle L_l$, we have $\displaystyle \operatorname{L_v}(\omega_v) = \int_{P} \operatorname{BRDF}(\omega_v, \omega_l) \operatorname{L_l}(\omega_l) |\cos \theta_l| \, d\omega_l = L_l \int_{P} \operatorname{BRDF}(\omega_v, \omega_l) |\cos \theta_l| \, d\omega_l$.  
 
-## 3\. Approximation 
-
+## 3\. Approximation  
 ### 3-1\. Approximation GGX
 By [the Equation (5.9) of the PBR Book](https://pbr-book.org/3ed-2018/Color_and_Radiometry/Surface_Reflection#TheBRDF), we have $\displaystyle \operatorname{L_v}(\omega_v) = \int_{S^2} \operatorname{BRDF}(\omega_v, \omega_l) \operatorname{L_l}(\omega_l) |\cos \theta_l| \, d\omega_l$. And we use **non-linear optimization** to approximate the BRDF cosine by $\displaystyle \operatorname{BRDF}(\omega_v, \omega_l)|\cos \theta_l| \approx \mathrm{NormBRDFCosine} \cdot \operatorname{D}(\omega_l)$ where $\displaystyle \mathrm{NormBRDFCosine} = \int_{\Omega} \operatorname{BRDF}(\omega_v, \omega_l)|\cos \theta_l| \, d\omega_l$. The [fitting](https://github.com/selfshadow/ltc_code/blob/master/fit/fitLTC.cpp) code  
 
