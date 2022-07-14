@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/default.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+</head>
+
+<body class="markdown-body">
+    <p dir="auto">The following typical spherical distributions are plotted by the <a href="http://www.octave.org">GNU
+            Octave</a> which is an open source alternative to <a
+            href="https://www.mathworks.com/help/matlab/index.html">MATLAB</a>.</p>
+    <h2 dir="auto" id="ndf-ggx">NDF GGX</h2>
+    <pre><code class="code-line language-MATLAB" dir="auto"><div># user-interface roughness parameter
+r = <span class="hljs-number">0.5</span>;
+
+# H = [h_x, h_y, h_z] is the half vector which is the domain of the spherical distribution
+[h_x, h_y, h_z] = sphere (<span class="hljs-number">256</span> - <span class="hljs-number">1</span>);
+
+a = r * r;
+a2 = a * a;
+
+# H is in the tangent space where the N is (<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>)
+NoH = h_z;
+
+# positive characteristic <span class="hljs-function"><span class="hljs-keyword">function</span></span>
+X = NoH;
+X(X &gt; <span class="hljs-number">0.0</span>) = <span class="hljs-number">1.0</span>;
+X(X &lt;= <span class="hljs-number">0.0</span>) = <span class="hljs-number">0.0</span>;
+
+# https://github.com/EpicGames/UnrealEngine/blob/<span class="hljs-number">4.27</span>/Engine/Shaders/Private/BRDF.ush#L318
+# https://www.mathworks.com/help/matlab/matlab_prog/array-vs-matrix-operations.html
+d = <span class="hljs-number">1.0</span> + NoH .* (NoH .* a2 - NoH);
+D_GGX = a2 ./ (<span class="hljs-built_in">pi</span> .* d .* d);
+
+D_GGX = X .* D_GGX;
+
+# surf(D_GGX .* h_x, D_GGX .* h_y, D_GGX .* h_z);
+mesh(D_GGX .* h_x, D_GGX .* h_y, D_GGX .* h_z);
+axis equal;
+title (<span class="hljs-string">&quot;NDF GGX &quot;</span>);
+</div></code></pre>
+    <p dir="auto"><img src="NDF-GGX.png" alt="" class="loading" id="image-hash--598837267" data-src="NDF-GGX.png"></p>
+
+</body>
+
+</html>
