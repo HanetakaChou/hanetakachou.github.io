@@ -35,3 +35,17 @@ title ("NDF GGX");
 ```  
 
 ![](NDF-GGX.png)
+
+## VISIBILITY GGX
+
+```MATLAB
+# user-interface roughness parameter
+r = 0.5;
+
+# The Λ function
+lambda =
+
+# G2(l, v, m) = G1(m, v) /*masking*/ * G1(l, m) /*shadowing*/
+
+# G1 = 1 / (1 + Λ(v))
+```
