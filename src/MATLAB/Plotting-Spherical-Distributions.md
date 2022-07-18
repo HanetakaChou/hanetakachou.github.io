@@ -23,9 +23,8 @@ d = 1.0 + NoH .* (NoH .* a2 - NoH);
 D_GGX = a2 ./ (pi .* d .* d);
 
 # χ is the positive characteristic function
-chi = NoH;
-chi(chi > 0.0) = 1.0;
-chi(chi <= 0.0) = 0.0;
+# chi = heaviside(NoH);
+chi = cast (NoH > 0, class (NoH));
 D_GGX = chi .* D_GGX;
 
 # surf(D_GGX .* h_x, D_GGX .* h_y, D_GGX .* h_z);
