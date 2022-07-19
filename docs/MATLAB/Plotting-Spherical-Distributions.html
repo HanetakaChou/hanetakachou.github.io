@@ -13,7 +13,7 @@
     <p dir="auto">The following typical spherical distributions are plotted by the <a href="http://www.octave.org">GNU
             Octave</a> which is an open source alternative to <a
             href="https://www.mathworks.com/help/matlab/index.html">MATLAB</a>.</p>
-    <h2 dir="auto" id="ndf-ggx">NDF GGX</h2>
+    <h2 dir="auto" id="ndf-ggx-1">NDF GGX</h2>
     <pre><code class="code-line language-MATLAB" dir="auto"><div># user-interface roughness parameter
 r = <span class="hljs-number">0.5</span>;
 
@@ -22,32 +22,32 @@ r = <span class="hljs-number">0.5</span>;
 alpha = r * r;
 alpha2 = alpha * alpha;
 
-# H = [h_x, h_y, h_z] is the half vector
+# H = [H_x, H_y, H_z] is the half vector, namely, the micro normal
 # Usually, H is the <span class="hljs-string">&#x27;m&#x27;</span> in the NDF formulation
 # And H is treated as the domain of the spherical distribution
-[h_x, h_y, h_z] = sphere (<span class="hljs-number">256</span> - <span class="hljs-number">1</span>);
+[H_x, H_y, H_z] = sphere (<span class="hljs-number">256</span> - <span class="hljs-number">1</span>);
 
 # H is in the tangent space where the N is (<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>)
-NoH = h_z;
-
-# https://github.com/EpicGames/UnrealEngine/blob/<span class="hljs-number">4.27</span>/Engine/Shaders/Private/BRDF.ush#L318
-# https://www.mathworks.com/help/matlab/matlab_prog/array-vs-matrix-operations.html
-d = <span class="hljs-number">1.0</span> + NoH .* (NoH .* alpha2 - NoH);
-D_GGX = alpha2 ./ (<span class="hljs-built_in">pi</span> .* d .* d);
+NoH = H_z;
 
 # χ is the positive characteristic <span class="hljs-function"><span class="hljs-keyword">function</span></span>
 # chi = heaviside(NoH);
 chi = cast (NoH &gt; <span class="hljs-number">0</span>, class (NoH));
-D_GGX = chi .* D_GGX;
+
+# https://github.com/EpicGames/UnrealEngine/blob/<span class="hljs-number">4.27</span>/Engine/Shaders/Private/BRDF.ush#L318
+# https://www.mathworks.com/help/matlab/matlab_prog/array-vs-matrix-operations.html
+d = <span class="hljs-number">1.0</span> + NoH .* (NoH .* alpha2 - NoH);
+D = alpha2 ./ (<span class="hljs-built_in">pi</span> .* d .* d);
+D = chi .* D;
 
 # <span class="hljs-built_in">plot</span>
-# surf(D_GGX .* h_x, D_GGX .* h_y, D_GGX .* h_z);
-mesh(D_GGX .* h_x, D_GGX .* h_y, D_GGX .* h_z);
+# surf(D .* H_x, D .* H_y, D .* H_z);
+mesh(D .* H_x, D .* H_y, D.* H_z);
 axis equal;
 title (<span class="hljs-string">&quot;NDF GGX&quot;</span>);
 </div></code></pre>
     <p dir="auto"><img src="NDF-GGX.png" alt="" class="loading" id="image-hash--598837267" data-src="NDF-GGX.png"></p>
-    <h2 dir="auto" id="g1-ggx">G1 GGX</h2>
+    <h2 dir="auto" id="g1-ggx-1">G1 GGX</h2>
     <pre><code class="code-line language-MATLAB" dir="auto"><div># user-interface roughness parameter
 r = <span class="hljs-number">0.5</span>;
 
@@ -56,24 +56,13 @@ r = <span class="hljs-number">0.5</span>;
 alpha = r * r;
 alpha2 = alpha * alpha;
 
-# V = [v_x, v_y, v_z] is the outgoing direction
+# V = [V_x, V_y, V_z] is the outgoing direction
 # Usually, V is the <span class="hljs-string">&#x27;ω_o&#x27;</span> in the G formulation
 # And V is treated as the domain of the spherical distribution
-[v_x, v_y, v_z] = sphere (<span class="hljs-number">256</span> - <span class="hljs-number">1</span>);
+[V_x, V_y, V_z] = sphere (<span class="hljs-number">256</span> - <span class="hljs-number">1</span>);
 
 # V is in the tangent space where the N is (<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>)
-NoV = v_z;
-
-# Equation <span class="hljs-number">9.37</span> of Real-Time Rendering Fourth Edition
-a2 = NoV .* NoV ./ (alpha2 .* (<span class="hljs-number">1.0</span> - NoV .* NoV));
-
-# The Λ <span class="hljs-function"><span class="hljs-keyword">function</span></span>
-# Equation <span class="hljs-number">9.42</span> of Real-Time Rendering Fourth Edition  
-lambda_GGX = <span class="hljs-number">0.5</span> * (<span class="hljs-number">-1.0</span> + <span class="hljs-built_in">sqrt</span>(<span class="hljs-number">1.0</span> + <span class="hljs-number">1.0</span> ./ a2));
-
-# The G1 <span class="hljs-function"><span class="hljs-keyword">function</span></span>
-# Equation <span class="hljs-number">9.24</span> of Real-Time Rendering Fourth Edition  
-G1_GGX = <span class="hljs-number">1.0</span> ./ (<span class="hljs-number">1.0</span> + lambda_GGX);
+NoV = V_z;
 
 # technically, H is the micro normal <span class="hljs-keyword">while</span> N is the macro normal
 HoV = NoV;
@@ -81,15 +70,122 @@ HoV = NoV;
 # χ is the positive characteristic <span class="hljs-function"><span class="hljs-keyword">function</span></span>
 # chi = heaviside(HoV);
 chi = cast (HoV &gt; <span class="hljs-number">0</span>, class (HoV));
-G1_GGX = chi .* G1_GGX;
+
+# Equation <span class="hljs-number">9.37</span> of Real-Time Rendering Fourth Edition
+a2 = NoV .* NoV ./ (alpha2 .* (<span class="hljs-number">1.0</span> - NoV .* NoV));
+
+# The Λ <span class="hljs-function"><span class="hljs-keyword">function</span></span>
+# Equation <span class="hljs-number">9.42</span> of Real-Time Rendering Fourth Edition  
+lambda = <span class="hljs-number">0.5</span> * (<span class="hljs-number">-1.0</span> + <span class="hljs-built_in">sqrt</span>(<span class="hljs-number">1.0</span> + <span class="hljs-number">1.0</span> ./ a2));
+
+# The G1 <span class="hljs-function"><span class="hljs-keyword">function</span></span>
+# Equation <span class="hljs-number">9.24</span> of Real-Time Rendering Fourth Edition  
+G1 = <span class="hljs-number">1.0</span> ./ (<span class="hljs-number">1.0</span> + lambda);
+G1 = chi .* G1;
 
 # <span class="hljs-built_in">plot</span>
-# surf(G1_GGX .* v_x, G1_GGX .* v_y, G1_GGX .* v_z);
-mesh(G1_GGX .* v_x, G1_GGX .* v_y, G1_GGX .* v_z);
+# surf(G1 .* V_x, G1 .* V_y, G1 .* V_z);
+mesh(G1 .* V_x, G1 .* V_y, G1 .* V_z);
 axis equal;
 title (<span class="hljs-string">&quot;G1 GGX&quot;</span>);
 </div></code></pre>
     <p dir="auto"><img src="G1-GGX.png" alt="" class="loading" id="image-hash--1408418535" data-src="G1-GGX.png"></p>
+    <h2 dir="auto" id="weak-white-furnace-test-ggx-1">Weak White Furnace Test GGX</h2>
+    <pre><code class="code-line language-MATLAB" dir="auto"><div># user-interface roughness parameter
+r = <span class="hljs-number">0.5</span>;
+
+# Physically Based Shading at Disney
+# α = r2
+alpha = r * r;
+alpha2 = alpha * alpha;
+
+# V = [V_x, V_y, V_z] is the outgoing direction
+# Usually, V is the <span class="hljs-string">&#x27;ω_o&#x27;</span> in the G formulation
+# And V is treated as the domain of the spherical distribution
+[VM_x, VM_y, VM_z] = sphere (<span class="hljs-number">256</span> - <span class="hljs-number">1</span>);
+
+P_x = [];
+P_y = [];
+P_z = [];
+
+# TODO: use the vector operation to replace the <span class="hljs-keyword">for</span> loop
+<span class="hljs-keyword">parfor</span> r = <span class="hljs-number">170</span>:<span class="hljs-number">1</span>:<span class="hljs-number">180</span>;
+<span class="hljs-keyword">parfor</span> c = <span class="hljs-number">170</span>:<span class="hljs-number">1</span>:<span class="hljs-number">180</span>;
+V_x = VM_x(r, c);
+V_y = VM_y(r, c);
+V_z = VM_z(r, c);
+
+# V is in the tangent space where the N is (<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>)
+NoV = V_z;
+
+# Equation <span class="hljs-number">9.37</span> of Real-Time Rendering Fourth Edition
+a2 = NoV * NoV / (alpha2 * (<span class="hljs-number">1.0</span> - NoV * NoV));
+
+# The Λ <span class="hljs-function"><span class="hljs-keyword">function</span></span>
+# Equation <span class="hljs-number">9.42</span> of Real-Time Rendering Fourth Edition
+lambda = <span class="hljs-number">0.5</span> * (<span class="hljs-number">-1.0</span> + <span class="hljs-built_in">sqrt</span>(<span class="hljs-number">1.0</span> + <span class="hljs-number">1.0</span> / a2));
+
+# The G1 <span class="hljs-function"><span class="hljs-keyword">function</span></span>
+# Equation <span class="hljs-number">9.24</span> of Real-Time Rendering Fourth Edition
+G1 = <span class="hljs-number">1.0</span> / (<span class="hljs-number">1.0</span> + lambda);
+
+# L = [L_x, L_y, L_z] is the incident direction
+# Usually, L is the <span class="hljs-string">&#x27;ω_i&#x27;</span> in the BRDF formulation
+numSamples = <span class="hljs-number">1024</span> - <span class="hljs-number">1</span>;
+[L_x, L_y, L_z] = sphere (numSamples);
+
+# d_L is the corresponding surface area of the unit sphere
+# Usually, d_L is the <span class="hljs-string">&#x27;dω_i&#x27;</span> in the integral formulation
+# Note: The <span class="hljs-string">&#x27;d_L&#x27;</span> is NOT correct since the area of the faces generated by the <span class="hljs-string">&#x27;sphere&#x27;</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">is</span> <span class="hljs-title">NOT</span> <span class="hljs-title">the</span> <span class="hljs-title">same</span></span>
+d_L = (<span class="hljs-number">4.0</span> * <span class="hljs-built_in">pi</span> / numSamples / numSamples);
+
+# H = [H_x, H_y, H_z] is the half vector, namely, the micro normal
+# Usually, H is the <span class="hljs-string">&#x27;m&#x27;</span> in the NDF formulation
+H_x = V_x + L_x;
+H_y = V_y + L_y;
+H_z = V_z + L_z;
+H_norm = <span class="hljs-built_in">sqrt</span>(H_x .* H_x + H_y .* H_y + H_z .* H_z);
+H_x = H_x ./ H_norm;
+H_y = H_y ./ H_norm;
+H_z = H_z ./ H_norm;
+
+# H is in the tangent space where the N is (<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>)
+NoH = H_z;
+
+# χ is the positive characteristic <span class="hljs-function"><span class="hljs-keyword">function</span></span>
+# chi = heaviside(NoH);
+chi = cast (NoH &gt; <span class="hljs-number">0</span>, class (NoH));
+
+# https://github.com/EpicGames/UnrealEngine/blob/<span class="hljs-number">4.27</span>/Engine/Shaders/Private/BRDF.ush#L318
+d = <span class="hljs-number">1.0</span> + NoH .* (NoH .* alpha2 - NoH);
+D = alpha2 ./ (<span class="hljs-built_in">pi</span> .* d .* d);
+
+absNoV(NoV &gt; <span class="hljs-number">0</span>) = NoV;
+absNoV(NoV &lt;= <span class="hljs-number">0</span>) = -NoV;
+
+# Note: The <span class="hljs-string">&#x27;d_L&#x27;</span> is NOT correct since the area of the faces generated by the <span class="hljs-string">&#x27;sphere&#x27;</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">is</span> <span class="hljs-title">NOT</span> <span class="hljs-title">the</span> <span class="hljs-title">same</span></span>
+intMat = chi .* G1 .* D ./ (<span class="hljs-number">4</span> .* absNoV) .* d_L;
+
+int = sum(sum(intMat));
+
+P_x(r, c) = int * V_x;
+P_y(r, c) = int * V_y;
+P_z(r, c) = int * V_z;
+<span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+
+P_x = resize(P_x, <span class="hljs-number">256</span>, <span class="hljs-number">256</span>);
+P_y = resize(P_y, <span class="hljs-number">256</span>, <span class="hljs-number">256</span>);
+P_z = resize(P_z, <span class="hljs-number">256</span>, <span class="hljs-number">256</span>);
+
+# <span class="hljs-built_in">plot</span>
+# surf(P_x, P_y, P_z);
+mesh(P_x, P_y, P_z);
+axis equal;
+title (<span class="hljs-string">&quot;Weak White Furnace Test GGX&quot;</span>);
+</div></code></pre>
+    <p dir="auto"><img src="Weak-White-Furnace-Test-GGX.png" alt="" class="loading" id="image-hash--1989020451"
+            data-src="Weak-White-Furnace-Test-GGX.png"></p>
 
 </body>
 
