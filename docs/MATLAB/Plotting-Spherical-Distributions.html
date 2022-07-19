@@ -17,33 +17,79 @@
     <pre><code class="code-line language-MATLAB" dir="auto"><div># user-interface roughness parameter
 r = <span class="hljs-number">0.5</span>;
 
-# H = [h_x, h_y, h_z] is the half vector which is the domain of the spherical distribution
-[h_x, h_y, h_z] = sphere (<span class="hljs-number">256</span> - <span class="hljs-number">1</span>);
+# Physically Based Shading at Disney
+# α = r2
+alpha = r * r;
+alpha2 = alpha * alpha;
 
-a = r * r;
-a2 = a * a;
+# H = [h_x, h_y, h_z] is the half vector
+# Usually, H is the <span class="hljs-string">&#x27;m&#x27;</span> in the NDF formulation
+# And H is treated as the domain of the spherical distribution
+[h_x, h_y, h_z] = sphere (<span class="hljs-number">256</span> - <span class="hljs-number">1</span>);
 
 # H is in the tangent space where the N is (<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>)
 NoH = h_z;
 
-# positive characteristic <span class="hljs-function"><span class="hljs-keyword">function</span></span>
-X = NoH;
-X(X &gt; <span class="hljs-number">0.0</span>) = <span class="hljs-number">1.0</span>;
-X(X &lt;= <span class="hljs-number">0.0</span>) = <span class="hljs-number">0.0</span>;
-
 # https://github.com/EpicGames/UnrealEngine/blob/<span class="hljs-number">4.27</span>/Engine/Shaders/Private/BRDF.ush#L318
 # https://www.mathworks.com/help/matlab/matlab_prog/array-vs-matrix-operations.html
-d = <span class="hljs-number">1.0</span> + NoH .* (NoH .* a2 - NoH);
-D_GGX = a2 ./ (<span class="hljs-built_in">pi</span> .* d .* d);
+d = <span class="hljs-number">1.0</span> + NoH .* (NoH .* alpha2 - NoH);
+D_GGX = alpha2 ./ (<span class="hljs-built_in">pi</span> .* d .* d);
 
-D_GGX = X .* D_GGX;
+# χ is the positive characteristic <span class="hljs-function"><span class="hljs-keyword">function</span></span>
+# chi = heaviside(NoH);
+chi = cast (NoH &gt; <span class="hljs-number">0</span>, class (NoH));
+D_GGX = chi .* D_GGX;
 
+# <span class="hljs-built_in">plot</span>
 # surf(D_GGX .* h_x, D_GGX .* h_y, D_GGX .* h_z);
 mesh(D_GGX .* h_x, D_GGX .* h_y, D_GGX .* h_z);
 axis equal;
-title (<span class="hljs-string">&quot;NDF GGX &quot;</span>);
+title (<span class="hljs-string">&quot;NDF GGX&quot;</span>);
 </div></code></pre>
     <p dir="auto"><img src="NDF-GGX.png" alt="" class="loading" id="image-hash--598837267" data-src="NDF-GGX.png"></p>
+    <h2 dir="auto" id="g1-ggx">G1 GGX</h2>
+    <pre><code class="code-line language-MATLAB" dir="auto"><div># user-interface roughness parameter
+r = <span class="hljs-number">0.5</span>;
+
+# Physically Based Shading at Disney
+# α = r2
+alpha = r * r;
+alpha2 = alpha * alpha;
+
+# V = [v_x, v_y, v_z] is the outgoing direction
+# Usually, V is the <span class="hljs-string">&#x27;ω_o&#x27;</span> in the G formulation
+# And V is treated as the domain of the spherical distribution
+[v_x, v_y, v_z] = sphere (<span class="hljs-number">256</span> - <span class="hljs-number">1</span>);
+
+# V is in the tangent space where the N is (<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>)
+NoV = v_z;
+
+# Equation <span class="hljs-number">9.37</span> of Real-Time Rendering Fourth Edition
+a2 = NoV .* NoV ./ (alpha2 .* (<span class="hljs-number">1.0</span> - NoV .* NoV));
+
+# The Λ <span class="hljs-function"><span class="hljs-keyword">function</span></span>
+# Equation <span class="hljs-number">9.42</span> of Real-Time Rendering Fourth Edition  
+lambda_GGX = <span class="hljs-number">0.5</span> * (<span class="hljs-number">-1.0</span> + <span class="hljs-built_in">sqrt</span>(<span class="hljs-number">1.0</span> + <span class="hljs-number">1.0</span> ./ a2));
+
+# The G1 <span class="hljs-function"><span class="hljs-keyword">function</span></span>
+# Equation <span class="hljs-number">9.24</span> of Real-Time Rendering Fourth Edition  
+G1_GGX = <span class="hljs-number">1.0</span> ./ (<span class="hljs-number">1.0</span> + lambda_GGX);
+
+# technically, H is the micro normal <span class="hljs-keyword">while</span> N is the macro normal
+HoV = NoV;
+
+# χ is the positive characteristic <span class="hljs-function"><span class="hljs-keyword">function</span></span>
+# chi = heaviside(HoV);
+chi = cast (HoV &gt; <span class="hljs-number">0</span>, class (HoV));
+G1_GGX = chi .* G1_GGX;
+
+# <span class="hljs-built_in">plot</span>
+# surf(G1_GGX .* v_x, G1_GGX .* v_y, G1_GGX .* v_z);
+mesh(G1_GGX .* v_x, G1_GGX .* v_y, G1_GGX .* v_z);
+axis equal;
+title (<span class="hljs-string">&quot;G1 GGX&quot;</span>);
+</div></code></pre>
+    <p dir="auto"><img src="G1-GGX.png" alt="" class="loading" id="image-hash--1408418535" data-src="G1-GGX.png"></p>
 
 </body>
 
