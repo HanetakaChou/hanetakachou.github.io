@@ -104,6 +104,7 @@ alpha2 = alpha * alpha;
 P_x = [];
 P_y = [];
 P_z = [];
+Int = [];
 
 # TODO: use the vector operation to replace the for loop
 parfor r = 170:1:180;
@@ -165,19 +166,21 @@ intMat = chi .* G1 .* D ./ (4 .* absNoV) .* d_L;
 
 int = sum(sum(intMat));
 
-P_x(r, c) = int * V_x;
-P_y(r, c) = int * V_y;
-P_z(r, c) = int * V_z;
+P_x(r, c) = V_x;
+P_y(r, c) = V_y;
+P_z(r, c) = V_z;
+Int(r, c) = int;
 end
 end
 
 P_x = resize(P_x, 256, 256);
 P_y = resize(P_y, 256, 256);
 P_z = resize(P_z, 256, 256);
+Int = resize(Int, 256, 256);
 
 # plot
-# surf(P_x, P_y, P_z);
-mesh(P_x, P_y, P_z);
+# surf(Int .* P_x, Int .* P_y, Int .* P_z);
+mesh(Int .* P_x, Int .* P_y, Int .* P_z);
 axis equal;
 title ("Weak White Furnace Test GGX");
 ```  
