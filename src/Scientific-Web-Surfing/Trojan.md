@@ -21,7 +21,6 @@ systemctl enable dnf-automatic-install.timer
 systemctl restart dnf-automatic-install.timer
 # systemctl status dnf-automatic-install.timer
 ```
-
 ### 1-2\. deploy Nginx server
 ```bash
 yum install nginx
@@ -80,7 +79,6 @@ vi /usr/local/etc/trojan/config.json
 + "cert": "/etc/pki/nginx/server.crt"
 - "key": "/path/to/private.key"
 + "key": "/etc/pki/nginx/private/server.key"
-- "mysql" ... # remove the 'mysql' part
 
 
 # firewall-cmd --info-service=https
@@ -102,8 +100,6 @@ systemctl restart trojan
 download https://github.com/trojan-gfw/trojan/releases  
 
 edit config.json
-- "run_type": "client" 
-+ "run_type": "client" # should NOT be 'server'
 - "local_port": 1080
 + "local_port": 9050 # follow the convention of Tor
 - "remote_addr": "example.com"
@@ -114,9 +110,8 @@ edit config.json
 + "verify": false
 - "verify_hostname": true 
 + "verify_hostname": false
-- - h2 # remove 'h2' from 'alpn'
 
-execute trojan
+execute trojan # cd to the trojan directory
 
 google-chrome --proxy-server="socks5://localhost:9050" & disown # use socks5 proxy
 
