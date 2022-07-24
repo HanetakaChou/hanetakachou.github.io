@@ -14,11 +14,24 @@
     <p dir="auto">You may rent the CentOS 8 machine by the Vultr / Alibaba Cloud and deploy your own Trojan by the
         following tutorial.</p>
     <h2 dir="auto" id="1-server-side">1. server side</h2>
-    <h3 dir="auto" id="1-1-deploy-nginx-server">1-1. deploy nginx server</h3>
-    <pre><code class="code-line language-bash" dir="auto"><div>yum install epel-release
+    <h3 dir="auto" id="1-1-config-centos-server">1-1. config CentOS server</h3>
+    <pre><code class="code-line language-bash" dir="auto"><div><span class="hljs-comment"># change to Minimal Server</span>
+yum group install <span class="hljs-string">&#x27;Minimal Server&#x27;</span>
+rpm -e --nodeps sudo
+yum group remove <span class="hljs-string">&#x27;Server&#x27;</span>
+
+<span class="hljs-comment"># add epel repo</span>
+yum install epel-release
 yum update
 
-yum install nginx
+<span class="hljs-comment"># enable automatic update </span>
+yum install dnf-automatic
+systemctl <span class="hljs-built_in">enable</span> dnf-automatic-install.timer
+systemctl restart dnf-automatic-install.timer
+<span class="hljs-comment"># systemctl status dnf-automatic-install.timer</span>
+</div></code></pre>
+    <h3 dir="auto" id="1-2-deploy-nginx-server">1-2. deploy Nginx server</h3>
+    <pre><code class="code-line language-bash" dir="auto"><div>yum install nginx
 
 <span class="hljs-comment"># firewall-cmd --info-service=http</span>
 firewall-cmd --add-service http <span class="hljs-comment">## --zone=public</span>
@@ -34,11 +47,8 @@ systemctl <span class="hljs-built_in">enable</span> nginx
 systemctl restart nginx
 <span class="hljs-comment"># systemctl status nginx</span>
 </div></code></pre>
-    <h3 dir="auto" id="1-2-generate-tls-cert">1-2. generate TLS cert</h3>
-    <pre><code class="code-line language-bash" dir="auto"><div><span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> certbot</span>
-<span class="hljs-comment"># yum install certbot</span>
-
-<span class="hljs-built_in">mkdir</span> -p /etc/pki/nginx
+    <h3 dir="auto" id="1-3-generate-tls-cert">1-3. generate TLS cert</h3>
+    <pre><code class="code-line language-bash" dir="auto"><div><span class="hljs-built_in">mkdir</span> -p /etc/pki/nginx
 <span class="hljs-built_in">mkdir</span> -p /etc/pki/nginx/private
 
 <span class="hljs-comment"># generate key</span>
@@ -53,8 +63,11 @@ openssl req -new -key /etc/pki/nginx/private/server.key -out tmp-server.csr
 openssl x509 -req -days 7777 -<span class="hljs-keyword">in</span> tmp-server.csr -CA tmp-server.crt -CAkey /etc/pki/nginx/private/server.key -CAcreateserial -out /etc/pki/nginx/server.crt
 <span class="hljs-built_in">rm</span> tmp-server.crt
 <span class="hljs-built_in">rm</span> tmp-server.csr
+
+<span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> certbot</span>
+<span class="hljs-comment"># yum install certbot</span>
 </div></code></pre>
-    <h3 dir="auto" id="1-3-deploy-trojan-server">1-3. deploy trojan server</h3>
+    <h3 dir="auto" id="1-4-deploy-trojan-server">1-4. deploy Trojan server</h3>
     <pre><code class="code-line language-bash" dir="auto"><div><span class="hljs-comment"># https://github.com/trojan-gfw/trojan/wiki/Binary-&amp;-Package-Distributions</span>
 curl -o ./trojan-quickstart.sh -fsSL https://raw.githubusercontent.com/trojan-gfw/trojan-quickstart/master/trojan-quickstart.sh
 <span class="hljs-built_in">chmod</span> +X ./trojan-quickstart.sh
@@ -68,9 +81,8 @@ vi /usr/local/etc/trojan/config.json
 + <span class="hljs-string">&quot;cert&quot;</span>: <span class="hljs-string">&quot;/etc/pki/nginx/server.crt&quot;</span>
 - <span class="hljs-string">&quot;key&quot;</span>: <span class="hljs-string">&quot;/path/to/private.key&quot;</span>
 + <span class="hljs-string">&quot;key&quot;</span>: <span class="hljs-string">&quot;/etc/pki/nginx/private/server.key&quot;</span>
-- <span class="hljs-string">&quot;http/1.1&quot;</span>
-+ <span class="hljs-string">&quot;h2&quot;</span>,
-+ <span class="hljs-string">&quot;http/1.1&quot;</span>
+- <span class="hljs-string">&quot;mysql&quot;</span> ... <span class="hljs-comment"># remove the &#x27;mysql&#x27; part</span>
+
 
 <span class="hljs-comment"># firewall-cmd --info-service=https</span>
 firewall-cmd --add-service https <span class="hljs-comment">## --zone=public</span>
@@ -88,22 +100,25 @@ systemctl restart trojan
     <pre><code class="code-line language-bash" dir="auto"><div>download https://github.com/trojan-gfw/trojan/releases  
 
 edit config.json
-- <span class="hljs-string">&quot;run_type&quot;</span>: <span class="hljs-string">&quot;client&quot;</span> <span class="hljs-comment"># should NOT be &#x27;server&#x27;</span>
-+ <span class="hljs-string">&quot;run_type&quot;</span>: <span class="hljs-string">&quot;client&quot;</span>
+- <span class="hljs-string">&quot;run_type&quot;</span>: <span class="hljs-string">&quot;client&quot;</span> 
++ <span class="hljs-string">&quot;run_type&quot;</span>: <span class="hljs-string">&quot;client&quot;</span> <span class="hljs-comment"># should NOT be &#x27;server&#x27;</span>
 - <span class="hljs-string">&quot;local_port&quot;</span>: 1080
-+ <span class="hljs-string">&quot;local_port&quot;</span>: 9050 <span class="hljs-comment"># follow the convention of tor</span>
++ <span class="hljs-string">&quot;local_port&quot;</span>: 9050 <span class="hljs-comment"># follow the convention of Tor</span>
 - <span class="hljs-string">&quot;remote_addr&quot;</span>: <span class="hljs-string">&quot;example.com&quot;</span>
 + <span class="hljs-string">&quot;remote_addr&quot;</span>: <span class="hljs-string">&quot;YourPrivateAddress&quot;</span>
 - <span class="hljs-string">&quot;password1&quot;</span>
 + <span class="hljs-string">&quot;YourPrivatePassword&quot;</span>
-<span class="hljs-comment"># - &quot;verify&quot;: true</span>
-<span class="hljs-comment"># + &quot;verify&quot;: false</span>
-<span class="hljs-comment"># - &quot;verify_hostname&quot;: true </span>
-<span class="hljs-comment"># + &quot;verify_hostname&quot;: false</span>
+- <span class="hljs-string">&quot;verify&quot;</span>: <span class="hljs-literal">true</span>
++ <span class="hljs-string">&quot;verify&quot;</span>: <span class="hljs-literal">false</span>
+- <span class="hljs-string">&quot;verify_hostname&quot;</span>: <span class="hljs-literal">true</span> 
++ <span class="hljs-string">&quot;verify_hostname&quot;</span>: <span class="hljs-literal">false</span>
+- - h2 <span class="hljs-comment"># remove &#x27;h2&#x27; from &#x27;alpn&#x27;</span>
 
-google-chrome --proxy-server=<span class="hljs-string">&quot;socks5://localhost:9050&quot;</span> &amp; <span class="hljs-built_in">disown</span> <span class="hljs-comment">## use socks5 proxy</span>
+execute trojan
 
-<span class="hljs-comment"># you may use privoxy to forward the http proxy to the socks5 proxy  </span>
+google-chrome --proxy-server=<span class="hljs-string">&quot;socks5://localhost:9050&quot;</span> &amp; <span class="hljs-built_in">disown</span> <span class="hljs-comment"># use socks5 proxy</span>
+
+<span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> you may use privoxy to forward the http proxy to the socks5 proxy  </span>
 </div></code></pre>
     <h2 dir="auto" id="3client-side---android">3.client side - Android</h2>
     <pre><code class="code-line language-bash" dir="auto"><div>download https://github.com/Kr328/ClashForAndroid/releases
@@ -117,7 +132,7 @@ edit clash_template2.yaml
 + server: YourPrivateAddress
 - password: password
 + password: YourPrivatePassword
-<span class="hljs-comment"># + skip-cert-verify: true</span>
++ skip-cert-verify: <span class="hljs-literal">true</span>
 </div></code></pre>
 
 </body>

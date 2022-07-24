@@ -4,11 +4,26 @@ You may rent the CentOS 8 machine by the Vultr / Alibaba Cloud and deploy your o
 
 ## 1\. server side  
 
-### 1-1\. deploy nginx server
+### 1-1\. config CentOS server
 ```bash
+# change to Minimal Server
+yum group install 'Minimal Server'
+rpm -e --nodeps sudo
+yum group remove 'Server'
+
+# add epel repo
 yum install epel-release
 yum update
 
+# enable automatic update 
+yum install dnf-automatic
+systemctl enable dnf-automatic-install.timer
+systemctl restart dnf-automatic-install.timer
+# systemctl status dnf-automatic-install.timer
+```
+
+### 1-2\. deploy Nginx server
+```bash
 yum install nginx
 
 # firewall-cmd --info-service=http
@@ -26,12 +41,9 @@ systemctl restart nginx
 # systemctl status nginx
 ```
 
-### 1-2\. generate TLS cert
+### 1-3\. generate TLS cert
 
 ```bash
-# TODO: certbot
-# yum install certbot
-
 mkdir -p /etc/pki/nginx
 mkdir -p /etc/pki/nginx/private
 
@@ -47,9 +59,12 @@ openssl req -new -key /etc/pki/nginx/private/server.key -out tmp-server.csr
 openssl x509 -req -days 7777 -in tmp-server.csr -CA tmp-server.crt -CAkey /etc/pki/nginx/private/server.key -CAcreateserial -out /etc/pki/nginx/server.crt
 rm tmp-server.crt
 rm tmp-server.csr
+
+# TODO: certbot
+# yum install certbot
 ```
 
-### 1-3\. deploy trojan server
+### 1-4\. deploy Trojan server
 
 ```bash
 # https://github.com/trojan-gfw/trojan/wiki/Binary-&-Package-Distributions
@@ -65,9 +80,8 @@ vi /usr/local/etc/trojan/config.json
 + "cert": "/etc/pki/nginx/server.crt"
 - "key": "/path/to/private.key"
 + "key": "/etc/pki/nginx/private/server.key"
-- "http/1.1"
-+ "h2",
-+ "http/1.1"
+- "mysql" ... # remove the 'mysql' part
+
 
 # firewall-cmd --info-service=https
 firewall-cmd --add-service https ## --zone=public
@@ -88,22 +102,25 @@ systemctl restart trojan
 download https://github.com/trojan-gfw/trojan/releases  
 
 edit config.json
-- "run_type": "client" # should NOT be 'server'
-+ "run_type": "client"
+- "run_type": "client" 
++ "run_type": "client" # should NOT be 'server'
 - "local_port": 1080
-+ "local_port": 9050 # follow the convention of tor
++ "local_port": 9050 # follow the convention of Tor
 - "remote_addr": "example.com"
 + "remote_addr": "YourPrivateAddress"
 - "password1"
 + "YourPrivatePassword"
-# - "verify": true
-# + "verify": false
-# - "verify_hostname": true 
-# + "verify_hostname": false
+- "verify": true
++ "verify": false
+- "verify_hostname": true 
++ "verify_hostname": false
+- - h2 # remove 'h2' from 'alpn'
 
-google-chrome --proxy-server="socks5://localhost:9050" & disown ## use socks5 proxy
+execute trojan
 
-# you may use privoxy to forward the http proxy to the socks5 proxy  
+google-chrome --proxy-server="socks5://localhost:9050" & disown # use socks5 proxy
+
+# TODO: you may use privoxy to forward the http proxy to the socks5 proxy  
 ```
 
 ## 3\.client side - Android
@@ -120,5 +137,5 @@ type: trojan
 + server: YourPrivateAddress
 - password: password
 + password: YourPrivatePassword
-# + skip-cert-verify: true
++ skip-cert-verify: true
 ```
