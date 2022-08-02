@@ -13,7 +13,7 @@
     <p dir="auto">The following typical spherical distributions are plotted by the <a href="http://www.octave.org">GNU
             Octave</a> which is an open source alternative to <a
             href="https://www.mathworks.com/help/matlab/index.html">MATLAB</a>.</p>
-    <h2 dir="auto" id="ndf-ggx-1">NDF GGX</h2>
+    <h2 dir="auto" id="ndf-ggx">NDF GGX</h2>
     <pre><code class="code-line language-MATLAB" dir="auto"><div># user-interface roughness parameter
 r = <span class="hljs-number">0.5</span>;
 
@@ -36,8 +36,9 @@ chi = cast (NoH &gt; <span class="hljs-number">0</span>, class (NoH));
 
 # https://github.com/EpicGames/UnrealEngine/blob/<span class="hljs-number">4.27</span>/Engine/Shaders/Private/BRDF.ush#L318
 # https://www.mathworks.com/help/matlab/matlab_prog/array-vs-matrix-operations.html
-d = <span class="hljs-number">1.0</span> + NoH .* (NoH .* alpha2 - NoH);
-D = alpha2 ./ (<span class="hljs-built_in">pi</span> .* d .* d);
+# Equation <span class="hljs-number">9.41</span> of Real-Time Rendering Fourth Edition
+denominator = <span class="hljs-number">1.0</span> + NoH .* (NoH .* alpha2 - NoH);
+D = alpha2 ./ (<span class="hljs-built_in">pi</span> .* denominator .* denominator);
 D = chi .* D;
 
 # <span class="hljs-built_in">plot</span>
@@ -47,7 +48,7 @@ axis equal;
 title (<span class="hljs-string">&quot;NDF GGX&quot;</span>);
 </div></code></pre>
     <p dir="auto"><img src="NDF-GGX.png" alt="" class="loading" id="image-hash--598837267" data-src="NDF-GGX.png"></p>
-    <h2 dir="auto" id="g1-ggx-1">G1 GGX</h2>
+    <h2 dir="auto" id="g1-ggx">G1 GGX</h2>
     <pre><code class="code-line language-MATLAB" dir="auto"><div># user-interface roughness parameter
 r = <span class="hljs-number">0.5</span>;
 
@@ -90,7 +91,7 @@ axis equal;
 title (<span class="hljs-string">&quot;G1 GGX&quot;</span>);
 </div></code></pre>
     <p dir="auto"><img src="G1-GGX.png" alt="" class="loading" id="image-hash--1408418535" data-src="G1-GGX.png"></p>
-    <h2 dir="auto" id="weak-white-furnace-test-ggx-1">Weak White Furnace Test GGX</h2>
+    <h2 dir="auto" id="weak-white-furnace-test-ggx">Weak White Furnace Test GGX</h2>
     <pre><code class="code-line language-MATLAB" dir="auto"><div># user-interface roughness parameter
 r = <span class="hljs-number">0.5</span>;
 
@@ -107,6 +108,7 @@ alpha2 = alpha * alpha;
 P_x = [];
 P_y = [];
 P_z = [];
+Int = [];
 
 # TODO: use the vector operation to replace the <span class="hljs-keyword">for</span> loop
 <span class="hljs-keyword">parfor</span> r = <span class="hljs-number">170</span>:<span class="hljs-number">1</span>:<span class="hljs-number">180</span>;
@@ -157,8 +159,9 @@ NoH = H_z;
 chi = cast (NoH &gt; <span class="hljs-number">0</span>, class (NoH));
 
 # https://github.com/EpicGames/UnrealEngine/blob/<span class="hljs-number">4.27</span>/Engine/Shaders/Private/BRDF.ush#L318
-d = <span class="hljs-number">1.0</span> + NoH .* (NoH .* alpha2 - NoH);
-D = alpha2 ./ (<span class="hljs-built_in">pi</span> .* d .* d);
+# Equation <span class="hljs-number">9.41</span> of Real-Time Rendering Fourth Edition
+denominator = <span class="hljs-number">1.0</span> + NoH .* (NoH .* alpha2 - NoH);
+D = alpha2 ./ (<span class="hljs-built_in">pi</span> .* denominator .* denominator);
 
 absNoV(NoV &gt; <span class="hljs-number">0</span>) = NoV;
 absNoV(NoV &lt;= <span class="hljs-number">0</span>) = -NoV;
@@ -168,19 +171,21 @@ intMat = chi .* G1 .* D ./ (<span class="hljs-number">4</span> .* absNoV) .* d_L
 
 int = sum(sum(intMat));
 
-P_x(r, c) = int * V_x;
-P_y(r, c) = int * V_y;
-P_z(r, c) = int * V_z;
+P_x(r, c) = V_x;
+P_y(r, c) = V_y;
+P_z(r, c) = V_z;
+Int(r, c) = int;
 <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span>
 
 P_x = resize(P_x, <span class="hljs-number">256</span>, <span class="hljs-number">256</span>);
 P_y = resize(P_y, <span class="hljs-number">256</span>, <span class="hljs-number">256</span>);
 P_z = resize(P_z, <span class="hljs-number">256</span>, <span class="hljs-number">256</span>);
+Int = resize(Int, <span class="hljs-number">256</span>, <span class="hljs-number">256</span>);
 
 # <span class="hljs-built_in">plot</span>
-# surf(P_x, P_y, P_z);
-mesh(P_x, P_y, P_z);
+# surf(Int .* P_x, Int .* P_y, Int .* P_z);
+mesh(Int .* P_x, Int .* P_y, Int .* P_z);
 axis equal;
 title (<span class="hljs-string">&quot;Weak White Furnace Test GGX&quot;</span>);
 </div></code></pre>

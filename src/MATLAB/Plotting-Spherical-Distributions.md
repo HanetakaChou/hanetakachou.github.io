@@ -25,8 +25,9 @@ chi = cast (NoH > 0, class (NoH));
 
 # https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/BRDF.ush#L318
 # https://www.mathworks.com/help/matlab/matlab_prog/array-vs-matrix-operations.html
-d = 1.0 + NoH .* (NoH .* alpha2 - NoH);
-D = alpha2 ./ (pi .* d .* d);
+# Equation 9.41 of Real-Time Rendering Fourth Edition
+denominator = 1.0 + NoH .* (NoH .* alpha2 - NoH);
+D = alpha2 ./ (pi .* denominator .* denominator);
 D = chi .* D;
 
 # plot
@@ -155,8 +156,9 @@ NoH = H_z;
 chi = cast (NoH > 0, class (NoH));
 
 # https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/BRDF.ush#L318
-d = 1.0 + NoH .* (NoH .* alpha2 - NoH);
-D = alpha2 ./ (pi .* d .* d);
+# Equation 9.41 of Real-Time Rendering Fourth Edition
+denominator = 1.0 + NoH .* (NoH .* alpha2 - NoH);
+D = alpha2 ./ (pi .* denominator .* denominator);
 
 absNoV(NoV > 0) = NoV;
 absNoV(NoV <= 0) = -NoV;
