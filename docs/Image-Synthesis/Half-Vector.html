@@ -10,10 +10,24 @@
 </head>
 
 <body class="markdown-body">
-    <p dir="auto">Real-Time Rendering Fourth Edition: &quot;Hammon also shows a method to optimize the BRDF
-        implementation by calculating <strong>n·h</strong> and <strong>l·h</strong> without calculating the vector
-        <strong>h</strong> itself.&quot;</p>
-    <p dir="auto">The <strong>n·h</strong> and the <strong>l·h</strong> are calculated by <a
+    <h3 dir="auto" id="nh-and-lh"><strong>N·H</strong> and <strong>L·H</strong></h3>
+    <pre><code class="code-line language-c++" dir="auto"><div><span class="hljs-comment">// Real-Time Rendering Fourth Edition: &quot;Hammon also shows a method to optimize the BRDF implementation by calculating **n·h** and **l·h** without calculating the vector **h** itself.&quot;  </span>
+
+<span class="hljs-comment">// We assume that N, V, L are normalized.</span>
+
+<span class="hljs-comment">// |L + V|^2 = L^2 + V^2 + 2L·V = 1 + 1 + 2L·V</span>
+<span class="hljs-type">float</span> rcpLen_LV = <span class="hljs-built_in">rsqrt</span>(<span class="hljs-number">2.0</span> + <span class="hljs-number">2</span> * NdotV);
+
+<span class="hljs-comment">// N·H = N·((L + V)/(|L + V|)) = (N·L + N·V)/(|L + V|)</span>
+<span class="hljs-type">float</span> NdotH = <span class="hljs-built_in">saturate</span>((NdotL + NdotV) * rcpLen_LV);
+
+<span class="hljs-comment">// L·H = L·((L + V)/(|L + V|)) = (L^2 + L·V)/(|L + V|)</span>
+<span class="hljs-comment">// V·H = V·((L + V)/(|L + V|)) = (L·V + V^2)/(|L + V|)</span>
+<span class="hljs-comment">// 2L·H = 2V·H = L·H + V·H = (L^2 + L·V + L·V + V^2)/(|L + V|) = (|L + V|^2)/(|L + V|) = |L + V| = 1 + 1 + 2L·V</span>
+<span class="hljs-comment">// ⇒ L·H = 0.5 * |L + V| = (0.5 * |L + V|^2)/(|L + V|) =(0.5 * (1 + 1 + 2L·V))/(|L + V|) = 1/(|L + V|) + (L·V)/(|L + V|)</span>
+<span class="hljs-type">float</span> LdotH = <span class="hljs-built_in">saturate</span>(rcpLen_LV * LdotV + invLenLV);
+</div></code></pre>
+    <p dir="auto">The <strong>N·H</strong> and the <strong>L·H</strong> are calculated by <a
             href="https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.core/ShaderLibrary/CommonLighting.hlsl#L361">GetBSDFAngle</a>
         in Unity3D and <a
             href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/BRDF.ush#L31">Init</a> in
