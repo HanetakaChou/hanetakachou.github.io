@@ -188,3 +188,75 @@ title ("Weak White Furnace Test GGX");
 ```  
 
 ![](Weak-White-Furnace-Test-GGX.png)  
+
+## BRDF GGX  
+
+```MATLAB
+# user-interface roughness parameter
+r = 0.83666;
+
+# Physically Based Shading at Disney
+# α = r2
+alpha = r * r;
+alpha2 = alpha * alpha;
+
+# V = [V_x, V_y, V_z] is the outgoing direction
+# Usually, V is the 'ω_o' in the G formulation
+theta_o = 1.5;
+V_x = sin(theta_o);
+V_y = 0;
+V_z = cos(theta_o);
+
+# V is in the tangent space where the N is (0, 0, 1)
+NoV = V_z;
+
+# Equation 9.37 of Real-Time Rendering Fourth Edition
+a2 = NoV * NoV / (alpha2 * (1.0 - NoV * NoV));
+
+# The Λ function
+# Equation 9.42 of Real-Time Rendering Fourth Edition
+lambda = 0.5 * (-1.0 + sqrt(1.0 + 1.0 / a2));
+
+# The G1 function
+# Equation 9.24 of Real-Time Rendering Fourth Edition
+G1 = 1.0 / (1.0 + lambda);
+
+# L = [L_x, L_y, L_z] is the incident direction
+# Usually, L is the 'ω_i' in the BRDF formulation
+numSamples = 1024 - 1;
+[L_x, L_y, L_z] = sphere (numSamples);
+
+# H = [H_x, H_y, H_z] is the half vector, namely, the micro normal
+# Usually, H is the 'm' in the NDF formulation
+H_x = V_x + L_x;
+H_y = V_y + L_y;
+H_z = V_z + L_z;
+H_norm = sqrt(H_x .* H_x + H_y .* H_y + H_z .* H_z);
+H_x = H_x ./ H_norm;
+H_y = H_y ./ H_norm;
+H_z = H_z ./ H_norm;
+
+# H is in the tangent space where the N is (0, 0, 1)
+NoH = H_z;
+
+# χ is the positive characteristic function
+# chi = heaviside(NoH);
+chi = cast (NoH > 0, class (NoH));
+
+# https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/BRDF.ush#L318
+denominator = 1.0 + NoH .* (NoH .* alpha2 - NoH);
+D = alpha2 ./ (pi .* denominator .* denominator);
+
+# L is in the tangent space where the N is (0, 0, 1)
+NoL = L_z;
+
+# Equation 35 of "Understanding the Masking-Shadowing Function in Microfacet-Based BRDFs"
+DV = chi .* G1 .* D ./ (4 .* abs(NoV) .* abs(NoL));
+
+# plot
+# surf(DV .* L_x, DV .* L_y, DV .* L_z);
+mesh(DV .* L_x, DV .* L_y, DV .* L_z);
+axis equal;
+title ("BRDF GGX");
+```  
+
