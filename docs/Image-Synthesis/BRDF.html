@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/default.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+</head>
+
+<body class="markdown-body">
+    <h3 dir="auto" id="half-vector">Half Vector</h3>
+    <p dir="auto">The half vector H is the microsurface normal <eq><span class="katex"><span class="katex-mathml"><math
+                        xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <msub>
+                                        <mi>ω</mi>
+                                        <mi>m</mi>
+                                    </msub>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle \omega_m</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span
+                                class="mord mathnormal" style="margin-right:0.03588em;">ω</span><span
+                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.151392em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathnormal mtight">m</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
+        </eq> in the formulation while the normal N is the geometric normal <eq><span class="katex"><span
+                    class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <msub>
+                                        <mi>ω</mi>
+                                        <mi>g</mi>
+                                    </msub>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle \omega_g</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.716668em;vertical-align:-0.286108em;"></span><span class="mord"><span
+                                class="mord mathnormal" style="margin-right:0.03588em;">ω</span><span
+                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15139200000000003em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathnormal mtight"
+                                                        style="margin-right:0.03588em;">g</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span>
+        </eq> in the formulation.</p>
+    <p dir="auto">According to the &quot;9.8 BRDF Models for Surface Reflection&quot; of <a
+            href="https://www.realtimerendering.com/">Real-Time Rendering Fourth Edition</a>, [Hammon 2017] proposed a
+        method to calculate the NdotH and LdotH without the knowledge of the half vector H itself.</p>
+    <pre><code class="code-line language-GLSL" dir="auto"><div>    <span class="hljs-comment">// |L + V|^2 = L^2 + V^2 + 2L·V = 1 + 1 + 2L·V</span>
+    <span class="hljs-comment">// N·H = N·((L + V)/(|L + V|)) = (N·L + N·V)/(|L + V|)</span>
+    <span class="hljs-comment">// L·H = L·((L + V)/(|L + V|)) = (L^2 + L·V)/(|L + V|)</span>
+    <span class="hljs-comment">// V·H = V·((L + V)/(|L + V|)) = (L·V + V^2)/(|L + V|)</span>
+    <span class="hljs-comment">// 2L·H = 2V·H = L·H + V·H = (L^2 + L·V + L·V + V^2)/(|L + V|) = (|L + V|^2)/(|L + V|) = |L + V| = 1 + 1 + 2L·V</span>
+    <span class="hljs-comment">// ⇒ L·H = 0.5 * |L + V| = (0.5 * |L + V|^2)/(|L + V|) =(0.5 * (1 + 1 + 2L·V))/(|L + V|) = 1/(|L + V|) + (L·V)/(|L + V|)</span>
+    <span class="hljs-comment">// UE: [Init](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/BRDF.ush#L31)</span>
+    <span class="hljs-comment">// U3D: [GetBSDFAngle](https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.core/ShaderLibrary/CommonLighting.hlsl#L361)</span>
+    <span class="hljs-keyword">highp</span> <span class="hljs-type">float</span> invLenH = <span class="hljs-built_in">inversesqrt</span>(<span class="hljs-number">2.0</span> + <span class="hljs-number">2.0</span> * NdotL);
+    <span class="hljs-keyword">highp</span> <span class="hljs-type">float</span> NdotH = <span class="hljs-built_in">clamp</span>((NdotL + NdotV) * invLenH, <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>);
+    <span class="hljs-keyword">highp</span> <span class="hljs-type">float</span> LdotH = <span class="hljs-built_in">clamp</span>(invLenH * VdotL + invLenH, <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>);
+</div></code></pre>
+    <p dir="auto">The <strong>NdotH</strong> and the <strong>LdotH</strong> are calculated by <a
+            href="https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.core/ShaderLibrary/CommonLighting.hlsl#L361">GetBSDFAngle</a>
+        in Unity3D and <a
+            href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/BRDF.ush#L31">Init</a> in
+        UE4.</p>
+    <h3 dir="auto" id="ndf">NDF</h3>
+    <p dir="auto">According to the &quot;9.8.1 Normal Distribution Functions&quot; of <a
+            href="https://www.realtimerendering.com/">Real-Time Rendering Fourth Edition</a>, the <strong>GGX</strong>
+        should technically be called the <strong>Trowbridge-Reitz</strong> which is also adopted by the &quot;8.4
+        Microfacet Models&quot; of <a href="https://pbr-book.org/">PBR Book</a>.</p>
+    <h3 dir="auto" id="g">G</h3>
+    <p dir="auto">[Heitz 2014]</p>
+    <h2 dir="auto" id="references">References</h2>
+    <p dir="auto">[Heitz 2014] <a href="https://jcgt.org/published/0003/02/03/">Eric Heitz. &quot;Understanding the
+            Masking-Shadowing Function in Microfacet-Based BRDFs.&quot; JCGT 2014.</a><br>
+        [Hammon 2017] <a href="https://www.gdcvault.com/play/1024478/PBR-Diffuse-Lighting-for-GGX">Earl Hammon.
+            &quot;PBR Diffuse Lighting for GGX+Smith Microsurfaces.&quot; GDC 2017.</a></p>
+
+</body>
+
+</html>
