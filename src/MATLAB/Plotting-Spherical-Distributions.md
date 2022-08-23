@@ -260,3 +260,48 @@ axis equal;
 title ("BRDF GGX");
 ```  
 
+## SH (Spherical Harmonics)  
+
+```MATLAB
+# 'dir' is treated as the domain of the spherical distribution
+[dir_x, dir_y, dir_z] = sphere (256 - 1);
+
+# [Sloan 2008] / Appendix A2 Polynomial Forms of SH Basis
+# [sh_eval_basis_2](https://github.com/microsoft/DirectXMath/blob/main/SHMath/DirectXSH.cpp#L143)
+# ZH(Zonal Harmonics): 0->(0,0) 2->(1,0) 6->(2,0)
+# Sectorial Harmonics: 1->(1,-1) 3->(1,+1) 4->(2,-2) 5->(2,-1) 7->(2,+1) 8->(2,+2)
+
+# 1.0/(2.0*sqrt(pi)) = 0.282094791773878140
+polynomial_i0_l0_m0 = 0.282094791773878140; 
+
+# sqrt(3.0)/(2.0*sqrt(pi)) = 0.488602511902919920)*z
+polynomial_i2_l1_m0 = 0.488602511902919920 .* dir_z;
+
+# (sqrt(5.0)*3.0)/(4.0*sqrt(pi)) = 0.946174695757560080
+# (sqrt(5.0)*-1.0)/(4.0*sqrt(pi)) = -0.315391565252520050
+polynomial_i6_l2_m0 = 0.946174695757560080 .* dir_z .* dir_z + -0.315391565252520050;
+
+# -sqrt(3.0)/(2.0*sqrt(pi)) = -0.488602511902919920
+polynomial_i1_l1_mN1 = -0.488602511902919920 .* dir_y;
+polynomial_i3_l1_m1 = -0.488602511902919920 .* dir_x;
+
+# sqrt(15.0)/(2.0*sqrt(pi)) = 1.092548430592079200
+# sqrt(15.0)/(4.0*sqrt(pi)) = 0.546274215296039590
+polynomial_i4_l2_mN2 = 1.092548430592079200 .* dir_y .* dir_x;
+# polynomial_i4_l2_mN2 = 0.546274215296039590 .* (dir_x .* dir_y + dir_y .* dir_x);
+polynomial_i8_l2_m2 = 0.546274215296039590 .* (dir_x .* dir_x - dir_y .* dir_y);
+
+# -sqrt(15.0)/(2.0*sqrt(pi)) = -1.092548430592079200
+polynomial_i5_l2_mN1 = -1.092548430592079200 .* dir_y .* dir_z;
+polynomial_i7_l2_m1 = -1.092548430592079200 .* dir_x .* dir_z;
+
+# change to the target basis function
+polynomial = abs(polynomial_2_0);
+
+# plot
+# surf(polynomial .* dir_x, polynomial .* dir_y, polynomial .* dir_z);
+mesh(polynomial .* dir_x, polynomial .* dir_y, polynomial .* dir_z);
+axis equal;
+title ("SH 2 0");
+```
+![](SH-2-0.png)  

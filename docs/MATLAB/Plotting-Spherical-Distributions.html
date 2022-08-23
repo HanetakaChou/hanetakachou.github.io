@@ -191,6 +191,117 @@ title (<span class="hljs-string">&quot;Weak White Furnace Test GGX&quot;</span>)
 </div></code></pre>
     <p dir="auto"><img src="Weak-White-Furnace-Test-GGX.png" alt="" class="loading" id="image-hash--1989020451"
             data-src="Weak-White-Furnace-Test-GGX.png"></p>
+    <h2 dir="auto" id="brdf-ggx">BRDF GGX</h2>
+    <pre><code class="code-line language-MATLAB" dir="auto"><div># user-interface roughness parameter
+r = <span class="hljs-number">0.83666</span>;
+
+# Physically Based Shading at Disney
+# α = r2
+alpha = r * r;
+alpha2 = alpha * alpha;
+
+# V = [V_x, V_y, V_z] is the outgoing direction
+# Usually, V is the <span class="hljs-string">&#x27;ω_o&#x27;</span> in the G formulation
+theta_o = <span class="hljs-number">1.5</span>;
+V_x = <span class="hljs-built_in">sin</span>(theta_o);
+V_y = <span class="hljs-number">0</span>;
+V_z = <span class="hljs-built_in">cos</span>(theta_o);
+
+# V is in the tangent space where the N is (<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>)
+NoV = V_z;
+
+# Equation <span class="hljs-number">9.37</span> of Real-Time Rendering Fourth Edition
+a2 = NoV * NoV / (alpha2 * (<span class="hljs-number">1.0</span> - NoV * NoV));
+
+# The Λ <span class="hljs-function"><span class="hljs-keyword">function</span></span>
+# Equation <span class="hljs-number">9.42</span> of Real-Time Rendering Fourth Edition
+lambda = <span class="hljs-number">0.5</span> * (<span class="hljs-number">-1.0</span> + <span class="hljs-built_in">sqrt</span>(<span class="hljs-number">1.0</span> + <span class="hljs-number">1.0</span> / a2));
+
+# The G1 <span class="hljs-function"><span class="hljs-keyword">function</span></span>
+# Equation <span class="hljs-number">9.24</span> of Real-Time Rendering Fourth Edition
+G1 = <span class="hljs-number">1.0</span> / (<span class="hljs-number">1.0</span> + lambda);
+
+# L = [L_x, L_y, L_z] is the incident direction
+# Usually, L is the <span class="hljs-string">&#x27;ω_i&#x27;</span> in the BRDF formulation
+numSamples = <span class="hljs-number">1024</span> - <span class="hljs-number">1</span>;
+[L_x, L_y, L_z] = sphere (numSamples);
+
+# H = [H_x, H_y, H_z] is the half vector, namely, the micro normal
+# Usually, H is the <span class="hljs-string">&#x27;m&#x27;</span> in the NDF formulation
+H_x = V_x + L_x;
+H_y = V_y + L_y;
+H_z = V_z + L_z;
+H_norm = <span class="hljs-built_in">sqrt</span>(H_x .* H_x + H_y .* H_y + H_z .* H_z);
+H_x = H_x ./ H_norm;
+H_y = H_y ./ H_norm;
+H_z = H_z ./ H_norm;
+
+# H is in the tangent space where the N is (<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>)
+NoH = H_z;
+
+# χ is the positive characteristic <span class="hljs-function"><span class="hljs-keyword">function</span></span>
+# chi = heaviside(NoH);
+chi = cast (NoH &gt; <span class="hljs-number">0</span>, class (NoH));
+
+# https://github.com/EpicGames/UnrealEngine/blob/<span class="hljs-number">4.27</span>/Engine/Shaders/Private/BRDF.ush#L318
+denominator = <span class="hljs-number">1.0</span> + NoH .* (NoH .* alpha2 - NoH);
+D = alpha2 ./ (<span class="hljs-built_in">pi</span> .* denominator .* denominator);
+
+# L is in the tangent space where the N is (<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>)
+NoL = L_z;
+
+# Equation <span class="hljs-number">35</span> of <span class="hljs-string">&quot;Understanding the Masking-Shadowing Function in Microfacet-Based BRDFs&quot;</span>
+DV = chi .* G1 .* D ./ (<span class="hljs-number">4</span> .* <span class="hljs-built_in">abs</span>(NoV) .* <span class="hljs-built_in">abs</span>(NoL));
+
+# <span class="hljs-built_in">plot</span>
+# surf(DV .* L_x, DV .* L_y, DV .* L_z);
+mesh(DV .* L_x, DV .* L_y, DV .* L_z);
+axis equal;
+title (<span class="hljs-string">&quot;BRDF GGX&quot;</span>);
+</div></code></pre>
+    <h2 dir="auto" id="sh-spherical-harmonics">SH (Spherical Harmonics)</h2>
+    <pre><code class="code-line language-MATLAB" dir="auto"><div># <span class="hljs-string">&#x27;dir&#x27;</span> is treated as the domain of the spherical distribution
+[dir_x, dir_y, dir_z] = sphere (<span class="hljs-number">256</span> - <span class="hljs-number">1</span>);
+
+# [Sloan <span class="hljs-number">2008</span>] / Appendix A2 Polynomial Forms of SH Basis
+# [sh_eval_basis_2](https://github.com/microsoft/DirectXMath/blob/main/SHMath/DirectXSH.cpp#L143)
+# ZH(Zonal Harmonics): <span class="hljs-number">0</span>-&gt;(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>) <span class="hljs-number">2</span>-&gt;(<span class="hljs-number">1</span>,<span class="hljs-number">0</span>) <span class="hljs-number">6</span>-&gt;(<span class="hljs-number">2</span>,<span class="hljs-number">0</span>)
+# Sectorial Harmonics: <span class="hljs-number">1</span>-&gt;(<span class="hljs-number">1</span>,<span class="hljs-number">-1</span>) <span class="hljs-number">3</span>-&gt;(<span class="hljs-number">1</span>,+<span class="hljs-number">1</span>) <span class="hljs-number">4</span>-&gt;(<span class="hljs-number">2</span>,<span class="hljs-number">-2</span>) <span class="hljs-number">5</span>-&gt;(<span class="hljs-number">2</span>,<span class="hljs-number">-1</span>) <span class="hljs-number">7</span>-&gt;(<span class="hljs-number">2</span>,+<span class="hljs-number">1</span>) <span class="hljs-number">8</span>-&gt;(<span class="hljs-number">2</span>,+<span class="hljs-number">2</span>)
+
+# <span class="hljs-number">1.0</span>/(<span class="hljs-number">2.0</span>*<span class="hljs-built_in">sqrt</span>(<span class="hljs-built_in">pi</span>)) = <span class="hljs-number">0.282094791773878140</span>
+polynomial_i0_l0_m0 = <span class="hljs-number">0.282094791773878140</span>; 
+
+# <span class="hljs-built_in">sqrt</span>(<span class="hljs-number">3.0</span>)/(<span class="hljs-number">2.0</span>*<span class="hljs-built_in">sqrt</span>(<span class="hljs-built_in">pi</span>)) = <span class="hljs-number">0.488602511902919920</span>)*z
+polynomial_i2_l1_m0 = <span class="hljs-number">0.488602511902919920</span> .* dir_z;
+
+# (<span class="hljs-built_in">sqrt</span>(<span class="hljs-number">5.0</span>)*<span class="hljs-number">3.0</span>)/(<span class="hljs-number">4.0</span>*<span class="hljs-built_in">sqrt</span>(<span class="hljs-built_in">pi</span>)) = <span class="hljs-number">0.946174695757560080</span>
+# (<span class="hljs-built_in">sqrt</span>(<span class="hljs-number">5.0</span>)*<span class="hljs-number">-1.0</span>)/(<span class="hljs-number">4.0</span>*<span class="hljs-built_in">sqrt</span>(<span class="hljs-built_in">pi</span>)) = <span class="hljs-number">-0.315391565252520050</span>
+polynomial_i6_l2_m0 = <span class="hljs-number">0.946174695757560080</span> .* dir_z .* dir_z + <span class="hljs-number">-0.315391565252520050</span>;
+
+# -<span class="hljs-built_in">sqrt</span>(<span class="hljs-number">3.0</span>)/(<span class="hljs-number">2.0</span>*<span class="hljs-built_in">sqrt</span>(<span class="hljs-built_in">pi</span>)) = <span class="hljs-number">-0.488602511902919920</span>
+polynomial_i1_l1_mN1 = <span class="hljs-number">-0.488602511902919920</span> .* dir_y;
+polynomial_i3_l1_m1 = <span class="hljs-number">-0.488602511902919920</span> .* dir_x;
+
+# <span class="hljs-built_in">sqrt</span>(<span class="hljs-number">15.0</span>)/(<span class="hljs-number">2.0</span>*<span class="hljs-built_in">sqrt</span>(<span class="hljs-built_in">pi</span>)) = <span class="hljs-number">1.092548430592079200</span>
+# <span class="hljs-built_in">sqrt</span>(<span class="hljs-number">15.0</span>)/(<span class="hljs-number">4.0</span>*<span class="hljs-built_in">sqrt</span>(<span class="hljs-built_in">pi</span>)) = <span class="hljs-number">0.546274215296039590</span>
+polynomial_i4_l2_mN2 = <span class="hljs-number">1.092548430592079200</span> .* dir_y .* dir_x;
+# polynomial_i4_l2_mN2 = <span class="hljs-number">0.546274215296039590</span> .* (dir_x .* dir_y + dir_y .* dir_x);
+polynomial_i8_l2_m2 = <span class="hljs-number">0.546274215296039590</span> .* (dir_x .* dir_x - dir_y .* dir_y);
+
+# -<span class="hljs-built_in">sqrt</span>(<span class="hljs-number">15.0</span>)/(<span class="hljs-number">2.0</span>*<span class="hljs-built_in">sqrt</span>(<span class="hljs-built_in">pi</span>)) = <span class="hljs-number">-1.092548430592079200</span>
+polynomial_i5_l2_mN1 = <span class="hljs-number">-1.092548430592079200</span> .* dir_y .* dir_z;
+polynomial_i7_l2_m1 = <span class="hljs-number">-1.092548430592079200</span> .* dir_x .* dir_z;
+
+# change to the target basis <span class="hljs-function"><span class="hljs-keyword">function</span></span>
+polynomial = <span class="hljs-built_in">abs</span>(polynomial_2_0);
+
+# <span class="hljs-built_in">plot</span>
+# surf(polynomial .* dir_x, polynomial .* dir_y, polynomial .* dir_z);
+mesh(polynomial .* dir_x, polynomial .* dir_y, polynomial .* dir_z);
+axis equal;
+title (<span class="hljs-string">&quot;SH 2 0&quot;</span>);
+</div></code></pre>
+    <p dir="auto"><img src="SH-2-0.png" alt="" class="loading" id="image-hash--332399871" data-src="SH-2-0.png"></p>
 
 </body>
 
