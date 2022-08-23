@@ -30,6 +30,7 @@ You should have received a copy of the GNU Lesser General Public License along w
 [Image-Synthesis/Billboard.html](Image-Synthesis/Billboard.html)  
 ### Lighting
 [Image-Synthesis/Radiometric-and-Photometric-quantities.html](Image-Synthesis/Radiometric-and-Photometric-quantities.html)  
+[Image-Synthesis/Spherical-Functions.html](Image-Synthesis/Spherical-Functions.html)  
 [Image-Synthesis/BRDF.html](Image-Synthesis/BRDF.html)  
 [Image-Synthesis/LTC.html](Image-Synthesis/LTC.html)  
 [Image-Synthesis/Skin.html](Image-Synthesis/Skin.html)  
