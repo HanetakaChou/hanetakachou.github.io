@@ -3,7 +3,18 @@
 
 ### Polynomial Forms
 
-As an engineer, we may merely focus on the polynomial forms ([Sloan 2008] / Appendix A2 Polynomial Forms of SH Basis).  
+We merely focus on the polynomial forms by "[Sloan 2008] / Appendix A2 Polynomial Forms of SH Basis".  
+ i  |  l  |  m  | P  
+:-: | :-: | :-: | :-  
+ 0  |  0  |  0  | 0.282094791773878140  
+ 1  |  1  | -1  | -0.488602511902919920\*y  
+ 2  |  1  |  0  | 0.488602511902919920\*z  
+ 3  |  1  |  1  | -0.488602511902919920\*x  
+ 4  |  2  | -2  | 1.092548430592079200\*x\*y  
+ 4  |  2  | -1  | -1.092548430592079200\*y\*z  
+ 4  |  2  |  0  | 0.946174695757560080\*z\*z + -0.315391565252520050  
+ 4  |  2  |  1  | -1.092548430592079200\*x\*z  
+ 4  |  2  |  2  | 0.546274215296039590\*(x\*x - y\*y)  
 
 ### Projection  
 
@@ -30,10 +41,11 @@ groundtruth_omega = 4.0 .* pi .* 1.0 .* 1.0 / 6.0;
 printf("numerical:%f groundtruth:%f\n", numerical_omega, groundtruth_omega);
 ```
 
-
+### Evaluation
 
 ## Reference  
 
-[Sloan 2008] [Peter-Pike Sloan. "Stupid Spherical Harmonics (SH)." Tricks GDC 2008.](http://www.ppsloan.org/publications/StupidSH36.pdf)  
+\[Sloan 2003\] [Peter-Pike Sloan. "Efficient Evaluation of Irradiance Environment Maps." ShaderX2.](https://www.realtimerendering.com/resources/shaderx/Tips_and_Tricks_with_DirectX_9.pdf)  
+\[Sloan 2008\] [Peter-Pike Sloan. "Stupid Spherical Harmonics (SH)." Tricks GDC 2008.](http://www.ppsloan.org/publications/StupidSH36.pdf)  
 
 
