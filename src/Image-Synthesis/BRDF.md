@@ -1,4 +1,4 @@
-### Half Vector
+## Half Vector
 
 The half vector H is the microsurface normal $\displaystyle \omega_m$ in the formulation while the normal N is the geometric normal $\displaystyle \omega_g$ in the formulation.  
 
@@ -19,6 +19,14 @@ According to the "9.8 BRDF Models for Surface Reflection" of [Real-Time Renderin
 ```
 
 The **NdotH** and the **LdotH** are calculated by [GetBSDFAngle](https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.core/ShaderLibrary/CommonLighting.hlsl#L361) in Unity3D and [Init](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/BRDF.ush#L31) in UE4.  
+
+
+## Specular AA
+
+"Real-Time Rendering Fourth Edition \ Equation 9.76"  
+[TextureNormalVariance](https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.core/ShaderLibrary/CommonMaterial.hlsl#L214) by U3D  
+
+## Trowbridge-Reitz  
 
 ### NDF  
 
