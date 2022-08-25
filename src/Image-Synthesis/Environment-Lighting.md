@@ -3,7 +3,7 @@
 The name **environment lighting** is from "10.2 Environment Lighting" of [Real-Time Rendering Fourth Edition](https://www.realtimerendering.com/). The most important difference between environment light and global illumination is that the shading algorithm of the environment light does NOT depend on the information about other positions on the surface than the shading position.  
 
 
-### Irradiance Environment Lighting  
+### Diffuse Environment Lighting  
 
 Let $\displaystyle \operatorname{L}(\omega)$ denote the infinitely distant radiance distribution. By \[Ramamoorthi 2001\], the irradiance can be calculated as $\displaystyle E(\overrightarrow{n}) = \int_{\operatorname{\Omega}(\overrightarrow{n})} \operatorname{L}(\omega) |\cos \theta| \, d \omega = \int_{\operatorname{\Omega}(\overrightarrow{n})} \operatorname{L}(\omega) |\overrightarrow{n} \cdot \overrightarrow{\omega}| \, d \omega$.  
 
