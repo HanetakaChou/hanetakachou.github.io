@@ -16,7 +16,11 @@ We merely focus on the polynomial forms by "[Sloan 2008] / Appendix A2 Polynomia
  4  |  2  |  1  | -1.092548430592079200\*x\*z  
  4  |  2  |  2  | 0.546274215296039590\*(x\*x - y\*y)  
 
-### Projection  
+
+### Cubemap Texel Solid Angle
+
+Let u and v be the texcoord of the cubemap, 
+
 
 The pseudo-code is provided by "[Sloan 2008] / Projection from Cube Maps". According to the Equation (5.6) of the [PBR Book](https://pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#IntegralsoverArea), we can comprehend that the "fWt = 4 / (sqrt(fTmp) * fTmp)" in the pseudo-code is merely to calculate the $\displaystyle d\omega$ without the common divisor "1.0 / cube_size / cube_size". And here is the MATLAB code which verifies the meaning of "fWt".  
 ```MATLAB
@@ -40,6 +44,8 @@ groundtruth_omega = 4.0 .* pi .* 1.0 .* 1.0 / 6.0;
 % output: "numerical:2.093936 groundtruth:2.094395"
 printf("numerical:%f groundtruth:%f\n", numerical_omega, groundtruth_omega);
 ```
+
+### Projection  
 
 ### Evaluation
 
