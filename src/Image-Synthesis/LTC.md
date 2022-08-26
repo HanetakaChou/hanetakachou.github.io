@@ -29,30 +29,33 @@ When the $\displaystyle \operatorname{L_l}(\omega_l)$ is assumed to be constant 
 ### 3-1\. Approximation GGX
 By [the Equation (5.9) of the PBR Book](https://pbr-book.org/3ed-2018/Color_and_Radiometry/Surface_Reflection#TheBRDF), we have $\displaystyle \operatorname{L_v}(\omega_v) = \int_{S^2} \operatorname{BRDF}(\omega_v, \omega_l) \operatorname{L_l}(\omega_l) |\cos \theta_l| \, d\omega_l$. And we use **non-linear optimization** to approximate the BRDF cosine by $\displaystyle \operatorname{BRDF}(\omega_v, \omega_l)|\cos \theta_l| \approx \mathrm{NormBRDFCosine} \cdot \operatorname{D}(\omega_l)$ where $\displaystyle \mathrm{NormBRDFCosine} = \int_{\Omega} \operatorname{BRDF}(\omega_v, \omega_l)|\cos \theta_l| \, d\omega_l$. The [fitting](https://github.com/selfshadow/ltc_code/blob/master/fit/fitLTC.cpp) code  
 
-### 2-1\. LUT UV
+### 3-1\. LUT UV
 Since the GGX BRDF is isotropic, the distribution can be determined by the outgoing direction $\displaystyle \omega_v$ and the roughness $\displaystyle \alpha$, which are used as the UV of the LUTs. 
 
-### 2-2\. Tangent Space  
+### 3-2\. Tangent Space  
 Note that the LUTs are precomputed by assuming that the vectors are in the tangent space where the normal direction is assumed to be the Z axis (0, 0, 1), and since the GGX BRDF is isotropic, the outgoing direction $\displaystyle \omega_v$ is assumed to be in the XOZ plane. Thus, the vectors should be transformed to this tangent space before the approximation is applied.  
 
-### 2-3\. LUT M
+### 3-3\. LUT M
 Actually, when M is the scaling transformation $\displaystyle M = \lambda I$, we have $\displaystyle \frac{d\omega_o}{d\omega} = \frac{|M^{-1}|}{{\|M^{-1}w\|}^3} = \frac{\frac{1}{{\lambda}^3}}{{(\frac{1}{\lambda})}^3} = 1$, and thus the LTSC is scale invariant. And since GGX BRDF is planar symmetry and isotropic, by \[Heitz 2016\], the M can be represented by only 4 parameters. The the inverse $\displaystyle M^{-1} = \begin{bmatrix} 1 & 0 & G \\ 0 & B & 0 \\ A & 0 & R \end{bmatrix}$, which is used when rendering, is stored in the LUT. This LUT is called the [**g_ltc_mat**](https://blog.selfshadow.com/sandbox/js/ltc_tables.js) in the **WebGL Demo** provided by \[Heitz 2016\].  
 
-### 2-4\. LUT Norm
+### 3-4\. LUT Norm
 By [Integration by Substitution](https://en.wikipedia.org/wiki/Integration_by_substitution), we can comprehend intuitively that $\displaystyle \int_{\Omega} \operatorname{D}(\omega) \, d\omega = \int_{\Omega} \operatorname{D_o}(\omega_o) \frac{d\omega_o}{d\omega} d\omega = \int_{\Omega} \operatorname{D_o}(\omega_o) d\omega_o = 1$. Since the **clamped cosine** is normalied, the LTCs must be normalized.  However, $\displaystyle \operatorname{BRDF}(\omega_v, \omega_l)|\cos \theta_l|$ is **NOT** normalized. And thus the **norm** $\displaystyle \mathrm{NormBRDFCosine} = \int_{\Omega} \operatorname{BRDF}(\omega_v, \omega_l)|\cos \theta_l| \, d\omega_l$ should be introduced and stored in the LUT to accomplish the approximation. This LUT is called the [**g_ltc_mag**](https://blog.selfshadow.com/sandbox/js/ltc_tables.js) in the **WebGL Demo** provided by \[Heitz 2016\].  
 
-## 3\. Light
+Analogous to the "Equation (9)" of \[Karis 2013\], the [LTC Fresnel Approximation](https://blog.selfshadow.com/publications/s2016-advances/s2016_ltc_fresnel.pdf) of \[Stephen 2016\] proposed that the Fresnel term is treated separately
 
-### 3-1\. Integration over Polygons
+## 4\. Light
+
+### 4-1\. Integration over Polygons
 By [Integration by Substitution](https://en.wikipedia.org/wiki/Integration_by_substitution), we can comprehend intuitively that $\displaystyle \int_{P} \operatorname{D}(\omega) \, d\omega = \int_{P} \operatorname{D_o}(\omega_o) \frac{d\omega_o}{d\omega} d\omega = \int_{P_o} \operatorname{D_o}(\omega_o) d\omega_o$ where $\displaystyle P_o = M^{-1} P$. Evidently, $\displaystyle P_o = \operatorname{normalize}(M^{-1} P)$ is more consistent with $\displaystyle \omega_o = \operatorname{normalize}(M^{-1} \omega)$. However, even if the $\displaystyle M^{-1} P$ is **NOT** normalized, the area on the sphere surface subtended by the polygon remains the same. Thus, the normalize operator is **NOT** necessary here. Actually, the normalize operator will eventually be applied when the irradiance $\displaystyle \operatorname{E}(P_o)$ is calculated by \[Heitz 2017\].  
 
-### 3-2\. Shading with Constant Polygonal Lights  
+### 4-2\. Shading with Constant Polygonal Lights  
 
 By **2\. Approximation**, we have $L_l \int_{P} \operatorname{BRDF}(\omega_v, \omega_l) |\cos \theta_l| \, d\omega_l \approx L_l \int_{P} \mathrm{NormBRDFCosine} \cdot \operatorname{D}(\omega_l) \, d\omega_l = L_l \cdot \mathrm{NormBRDFCosine} \cdot \int_{P} \operatorname{D}(\omega_l) \, d\omega_l$. Note that the polygon P should be transformed to the tangent space before the approximation is applied.  
 And by **3-1\. Integration over Polygons**, we have $\displaystyle  L_l \cdot \mathrm{NormBRDFCosine} \cdot \int_{P} \operatorname{D}(\omega_l) \, d\omega_l = L_l \cdot \mathrm{NormBRDFCosine} \cdot \int_{P_o} \operatorname{D_o}(\omega_o) \, d\omega_o = L_l \cdot \mathrm{NormBRDFCosine} \cdot \operatorname{E}(P_o)$ where $\displaystyle P_o = M^{-1} P$ and $\displaystyle \operatorname{E}(P_o) = \int_{P_o} \operatorname{D_o}(\omega_o) \, d\omega_o = \int_{P_o} \frac{1}{\pi}|\cos \theta_o| \, d\omega_o$.  
 
 ## References  
 \[Snyder 1996\] [John Snyder. "Area Light Sources for Real-Time Graphics." Technical Report 1996](https://www.microsoft.com/en-us/research/publication/area-light-sources-for-real-time-graphics/)  
+\[Karis 2013\] [Brian Karis. "Real Shading in Unreal Engine 4." SIGGRAPH 2013.](https://cdn2.unrealengine.com/Resources/files/2013SiggraphPresentationsNotes-26915738.pdf)  
 \[Heitz 2016\] [Eric Heitz, Jonathan Dupuy, Stephen Hill, David Neubelt. "Real-Time Polygonal-Light Shading with Linearly Transformed Cosines." SIGGRAPH 2016.](https://eheitzresearch.wordpress.com/415-2/)  
 \[Stephen 2016\] [Stephen Hill, Eric Heitz. "Real-Time Area Lighting: a Journey from Research to Production." SIGGRAPH 2016.](https://blog.selfshadow.com/publications/s2016-advances/)  
 \[Heitz 2017\] [Eric Heitz. "Geometric Derivation of the Irradiance of Polygonal Lights." Technical report 2017.](https://hal.archives-ouvertes.fr/hal-01458129)  
