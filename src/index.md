@@ -31,6 +31,7 @@ You should have received a copy of the GNU Lesser General Public License along w
 [Image-Synthesis/Lighting/Radiometric-and-Photometric-quantities.html](Image-Synthesis/Lighting/Radiometric-and-Photometric-quantities.html)  
 [Image-Synthesis/Lighting/Spherical-Functions.html](Image-Synthesis/Lighting/Spherical-Functions.html)  
 [Image-Synthesis/Lighting/BRDF.html](Image-Synthesis/Lighting/BRDF.html)  
+[Image-Synthesis/Lighting/Environment-Lighting.html](Image-Synthesis/Lighting/Environment-Lighting.html)  
 [Image-Synthesis/Lighting/LTC.html](Image-Synthesis/Lighting/LTC.html)  
 [Image-Synthesis/Lighting/Skin.html](Image-Synthesis/Lighting/Skin.html)  
 [Image-Synthesis/Lighting/OIT.html](Image-Synthesis/Lighting/OIT.html)  
