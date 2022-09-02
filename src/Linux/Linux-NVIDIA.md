@@ -1,4 +1,4 @@
-
+[Package Manager Installation](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#package-manager-installation)  
 ```bash
 yum install http://developer.download.nvidia.com/compute/cuda/repos/rhel8/x86_64/cuda-repo-rhel8-10.2.89-1.x86_64.rpm 
 ```

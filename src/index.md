@@ -22,21 +22,20 @@ You should have received a copy of the GNU Lesser General Public License along w
 [Vulkan/Resource-Binding.html](Vulkan/Resource-Binding.html)  
 
 ## Image Synthesis  
-### Geometry  
-[Image-Synthesis/MOC.html](Image-Synthesis/MOC.html)  
-[Image-Synthesis/Projector-Functions.html](Image-Synthesis/Projector-Functions.html)  
-[Image-Synthesis/Vertex-Blending.html](Image-Synthesis/Vertex-Blending.html)  
-[Image-Synthesis/Grass.html](Image-Synthesis/Grass.html)  
-[Image-Synthesis/Billboard.html](Image-Synthesis/Billboard.html)  
-### Lighting
-[Image-Synthesis/Radiometric-and-Photometric-quantities.html](Image-Synthesis/Radiometric-and-Photometric-quantities.html)  
-[Image-Synthesis/Spherical-Functions.html](Image-Synthesis/Spherical-Functions.html)  
-[Image-Synthesis/BRDF.html](Image-Synthesis/BRDF.html)  
-[Image-Synthesis/LTC.html](Image-Synthesis/LTC.html)  
-[Image-Synthesis/Skin.html](Image-Synthesis/Skin.html)  
-[Image-Synthesis/OIT.html](Image-Synthesis/OIT.html)  
-[Image-Synthesis/VXGI.html](Image-Synthesis/VXGI.html)  
-[Image-Synthesis/Volumetric-Rendering.html](Image-Synthesis/Volumetric-Rendering.html)  
+[Image-Synthesis/Geometry/MOC.html](Image-Synthesis/Geometry/MOC.html)  
+[Image-Synthesis/Geometry/Projector-Functions.html](Image-Synthesis/Geometry/Projector-Functions.html)  
+[Image-Synthesis/Geometry/Vertex-Blending.html](Image-Synthesis/Geometry/Vertex-Blending.html)  
+[Image-Synthesis/Geometry/Grass.html](Image-Synthesis/Geometry/Grass.html)  
+[Image-Synthesis/Geometry/Billboard.html](Image-Synthesis/Geometry/Billboard.html)  
+
+[Image-Synthesis/Lighting/Radiometric-and-Photometric-quantities.html](Image-Synthesis/Lighting/Radiometric-and-Photometric-quantities.html)  
+[Image-Synthesis/Lighting/Spherical-Functions.html](Image-Synthesis/Lighting/Spherical-Functions.html)  
+[Image-Synthesis/Lighting/BRDF.html](Image-Synthesis/Lighting/BRDF.html)  
+[Image-Synthesis/Lighting/LTC.html](Image-Synthesis/Lighting/LTC.html)  
+[Image-Synthesis/Lighting/Skin.html](Image-Synthesis/Lighting/Skin.html)  
+[Image-Synthesis/Lighting/OIT.html](Image-Synthesis/Lighting/OIT.html)  
+[Image-Synthesis/Lighting/VXGI.html](Image-Synthesis/Lighting/VXGI.html)  
+[Image-Synthesis/Lighting/Volumetric-Rendering.html](Image-Synthesis/Lighting/Volumetric-Rendering.html)  
 
 ## PatriotEngine
 [PatriotEngine/index.html](PatriotEngine/index.html)  
