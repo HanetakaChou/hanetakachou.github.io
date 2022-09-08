@@ -22,21 +22,24 @@ You should have received a copy of the GNU Lesser General Public License along w
 [Vulkan/Resource-Binding.html](Vulkan/Resource-Binding.html)  
 
 ## Image Synthesis  
-[Image-Synthesis/Geometry/MOC.html](Image-Synthesis/Geometry/MOC.html)  
-[Image-Synthesis/Geometry/Projector-Functions.html](Image-Synthesis/Geometry/Projector-Functions.html)  
-[Image-Synthesis/Geometry/Vertex-Blending.html](Image-Synthesis/Geometry/Vertex-Blending.html)  
-[Image-Synthesis/Geometry/Grass.html](Image-Synthesis/Geometry/Grass.html)  
-[Image-Synthesis/Geometry/Billboard.html](Image-Synthesis/Geometry/Billboard.html)  
 
-[Image-Synthesis/Lighting/Radiometric-and-Photometric-quantities.html](Image-Synthesis/Lighting/Radiometric-and-Photometric-quantities.html)  
-[Image-Synthesis/Lighting/Spherical-Functions.html](Image-Synthesis/Lighting/Spherical-Functions.html)  
-[Image-Synthesis/Lighting/BRDF.html](Image-Synthesis/Lighting/BRDF.html)  
-[Image-Synthesis/Lighting/Environment-Lighting.html](Image-Synthesis/Lighting/Environment-Lighting.html)  
-[Image-Synthesis/Lighting/LTC.html](Image-Synthesis/Lighting/LTC.html)  
-[Image-Synthesis/Lighting/Skin.html](Image-Synthesis/Lighting/Skin.html)  
-[Image-Synthesis/Lighting/OIT.html](Image-Synthesis/Lighting/OIT.html)  
-[Image-Synthesis/Lighting/VXGI.html](Image-Synthesis/Lighting/VXGI.html)  
-[Image-Synthesis/Lighting/Volumetric-Rendering.html](Image-Synthesis/Lighting/Volumetric-Rendering.html)  
+### Geometry  
+- MOC [Documentation](Image-Synthesis/Geometry/MOC.html)  
+- Projector Functions [Documentation](Image-Synthesis/Geometry/Projector-Functions.html)  
+- Vertex Blending [Documentation](Image-Synthesis/Geometry/Vertex-Blending.html)  
+- Grass [Documentation](Image-Synthesis/Geometry/Grass.html)  
+- Billboard [Documentation](Image-Synthesis/Geometry/Billboard.html)  
+
+### Lighting  
+- Radiometric and Photometric quantities [Documentation](Image-Synthesis/Lighting/Radiometric-and-Photometric-quantities.html)  
+- Spherical Functions [Documentation](Image-Synthesis/Lighting/Spherical-Functions.html)  
+- BRDF [Documentation](Image-Synthesis/Lighting/BRDF.html)  
+- Environment Lighting [Documentation](Image-Synthesis/Lighting/Environment-Lighting.html)  
+- LTC [Documentation](Image-Synthesis/Lighting/LTC.html) [Code](https://github.com/YuqiaoZhang/LTC)  
+- Skin [Documentation](Image-Synthesis/Lighting/Skin.html) [Code](https://github.com/YuqiaoZhang/Burley-SSS)  
+- OIT [Documentation](Image-Synthesis/Lighting/OIT.html) [Code-Stochastic-Transparency](https://github.com/YuqiaoZhang/StochasticTransparency) [Code-MLAB](https://github.com/YuqiaoZhang/MultiLayerAlphaBlending) [Code-WBOIT](https://github.com/YuqiaoZhang/WeightedBlendedOIT)  
+- VXGI [Documentation](Image-Synthesis/Lighting/VXGI.html)  
+- Volumetric-Rendering [Documentation](Image-Synthesis/Lighting/Volumetric-Rendering.html)  
 
 ## PatriotEngine
 [PatriotEngine/index.html](PatriotEngine/index.html)  
