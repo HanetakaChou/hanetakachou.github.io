@@ -7227,6 +7227,833 @@ M834 80h400000v40h-400000z' />
             </tr>
         </tbody>
     </table>
+    <p dir="auto">It should be noted that the solid angle subtended by each texel of the cubemap is NOT the same. Let u
+        and v be the texcoord of the cubemap. By &quot;Equation (5.6)&quot; of <a
+            href="https://pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#IntegralsoverArea">PBR
+            Book</a>, we have <eq><span class="katex"><span class="katex-mathml"><math
+                        xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mi>d</mi>
+                                    <mi>ω</mi>
+                                    <mo>=</mo>
+                                    <mfrac>
+                                        <mrow>
+                                            <mi>d</mi>
+                                            <mi>A</mi>
+                                            <mi>cos</mi>
+                                            <mo>⁡</mo>
+                                            <mi>θ</mi>
+                                        </mrow>
+                                        <msup>
+                                            <mi>r</mi>
+                                            <mn>2</mn>
+                                        </msup>
+                                    </mfrac>
+                                    <mo>=</mo>
+                                    <mi>d</mi>
+                                    <mi>A</mi>
+                                    <mo>⋅</mo>
+                                    <mi>cos</mi>
+                                    <mo>⁡</mo>
+                                    <mi>θ</mi>
+                                    <mo>⋅</mo>
+                                    <mfrac>
+                                        <mn>1</mn>
+                                        <msup>
+                                            <mi>r</mi>
+                                            <mn>2</mn>
+                                        </msup>
+                                    </mfrac>
+                                    <mo>=</mo>
+                                    <mfrac>
+                                        <mrow>
+                                            <mo stretchy="false">(</mo>
+                                            <mn>1</mn>
+                                            <mo>−</mo>
+                                            <mo stretchy="false">(</mo>
+                                            <mo>−</mo>
+                                            <mn>1</mn>
+                                            <mo stretchy="false">)</mo>
+                                            <mo stretchy="false">)</mo>
+                                            <mo>∗</mo>
+                                            <mo stretchy="false">(</mo>
+                                            <mn>1</mn>
+                                            <mo>−</mo>
+                                            <mo stretchy="false">(</mo>
+                                            <mo>−</mo>
+                                            <mn>1</mn>
+                                            <mo stretchy="false">)</mo>
+                                            <mo stretchy="false">)</mo>
+                                        </mrow>
+                                        <mrow>
+                                            <mtext>cubesize.u</mtext>
+                                            <mo>∗</mo>
+                                            <mtext>cubesize.v</mtext>
+                                        </mrow>
+                                    </mfrac>
+                                    <mo>⋅</mo>
+                                    <mfrac>
+                                        <mn>1</mn>
+                                        <msqrt>
+                                            <mrow>
+                                                <msup>
+                                                    <mn>1</mn>
+                                                    <mn>2</mn>
+                                                </msup>
+                                                <mo>+</mo>
+                                                <msup>
+                                                    <mi>u</mi>
+                                                    <mn>2</mn>
+                                                </msup>
+                                                <mo>+</mo>
+                                                <msup>
+                                                    <mi>v</mi>
+                                                    <mn>2</mn>
+                                                </msup>
+                                            </mrow>
+                                        </msqrt>
+                                    </mfrac>
+                                    <mo>⋅</mo>
+                                    <mfrac>
+                                        <mn>1</mn>
+                                        <mrow>
+                                            <msup>
+                                                <mn>1</mn>
+                                                <mn>2</mn>
+                                            </msup>
+                                            <mo>+</mo>
+                                            <msup>
+                                                <mi>u</mi>
+                                                <mn>2</mn>
+                                            </msup>
+                                            <mo>+</mo>
+                                            <msup>
+                                                <mi>v</mi>
+                                                <mn>2</mn>
+                                            </msup>
+                                        </mrow>
+                                    </mfrac>
+                                    <mo>=</mo>
+                                    <mfrac>
+                                        <mn>1</mn>
+                                        <mrow>
+                                            <mtext>cubesize.u</mtext>
+                                            <mo>∗</mo>
+                                            <mtext>cubesize.v</mtext>
+                                        </mrow>
+                                    </mfrac>
+                                    <mo>⋅</mo>
+                                    <mfrac>
+                                        <mn>4</mn>
+                                        <mrow>
+                                            <msqrt>
+                                                <mrow>
+                                                    <msup>
+                                                        <mn>1</mn>
+                                                        <mn>2</mn>
+                                                    </msup>
+                                                    <mo>+</mo>
+                                                    <msup>
+                                                        <mi>u</mi>
+                                                        <mn>2</mn>
+                                                    </msup>
+                                                    <mo>+</mo>
+                                                    <msup>
+                                                        <mi>v</mi>
+                                                        <mn>2</mn>
+                                                    </msup>
+                                                </mrow>
+                                            </msqrt>
+                                            <mo>⋅</mo>
+                                            <mo stretchy="false">(</mo>
+                                            <msup>
+                                                <mn>1</mn>
+                                                <mn>2</mn>
+                                            </msup>
+                                            <mo>+</mo>
+                                            <msup>
+                                                <mi>u</mi>
+                                                <mn>2</mn>
+                                            </msup>
+                                            <mo>+</mo>
+                                            <msup>
+                                                <mi>v</mi>
+                                                <mn>2</mn>
+                                            </msup>
+                                            <mo stretchy="false">)</mo>
+                                        </mrow>
+                                    </mfrac>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle d\omega = \frac{dA \cos \theta}{r^2}
+                                = dA \cdot \cos \theta \cdot \frac{1}{r^2} = \frac{(1 - (-1))*(1 -
+                                (-1))}{\text{cubesize.u}*\text{cubesize.v}} \cdot \frac{1}{\sqrt{1^2 + u^2 +v^2}} \cdot
+                                \frac{1}{1^2 + u^2 +v^2} = \frac{1}{\text{cubesize.u}*\text{cubesize.v}} \cdot
+                                \frac{4}{\sqrt{1^2 + u^2 +v^2} \cdot (1^2 + u^2 +v^2)}</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.69444em;vertical-align:0em;"></span><span
+                            class="mord mathnormal">d</span><span class="mord mathnormal"
+                            style="margin-right:0.03588em;">ω</span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                        class="base"><span class="strut" style="height:2.05744em;vertical-align:-0.686em;"></span><span
+                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.37144em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord"><span class="mord mathnormal"
+                                                            style="margin-right:0.02778em;">r</span><span
+                                                            class="msupsub"><span class="vlist-t"><span
+                                                                    class="vlist-r"><span class="vlist"
+                                                                        style="height:0.740108em;"><span
+                                                                            style="top:-2.9890000000000003em;margin-right:0.05em;"><span
+                                                                                class="pstrut"
+                                                                                style="height:2.7em;"></span><span
+                                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                                    class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord mathnormal">d</span><span
+                                                        class="mord mathnormal">A</span><span class="mspace"
+                                                        style="margin-right:0.16666666666666666em;"></span><span
+                                                        class="mop">cos</span><span class="mspace"
+                                                        style="margin-right:0.16666666666666666em;"></span><span
+                                                        class="mord mathnormal"
+                                                        style="margin-right:0.02778em;">θ</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                        class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span
+                            class="mord mathnormal">d</span><span class="mord mathnormal">A</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span
+                            class="mop">cos</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal"
+                            style="margin-right:0.02778em;">θ</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span
+                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord"><span class="mord mathnormal"
+                                                            style="margin-right:0.02778em;">r</span><span
+                                                            class="msupsub"><span class="vlist-t"><span
+                                                                    class="vlist-r"><span class="vlist"
+                                                                        style="height:0.740108em;"><span
+                                                                            style="top:-2.9890000000000003em;margin-right:0.05em;"><span
+                                                                                class="pstrut"
+                                                                                style="height:2.7em;"></span><span
+                                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                                    class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">1</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                        class="base"><span class="strut" style="height:2.113em;vertical-align:-0.686em;"></span><span
+                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord text"><span
+                                                            class="mord">cubesize.u</span></span><span class="mspace"
+                                                        style="margin-right:0.2222222222222222em;"></span><span
+                                                        class="mbin">∗</span><span class="mspace"
+                                                        style="margin-right:0.2222222222222222em;"></span><span
+                                                        class="mord text"><span
+                                                            class="mord">cubesize.v</span></span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mopen">(</span><span class="mord">1</span><span
+                                                        class="mspace"
+                                                        style="margin-right:0.2222222222222222em;"></span><span
+                                                        class="mbin">−</span><span class="mspace"
+                                                        style="margin-right:0.2222222222222222em;"></span><span
+                                                        class="mopen">(</span><span class="mord">−</span><span
+                                                        class="mord">1</span><span class="mclose">))</span><span
+                                                        class="mspace"
+                                                        style="margin-right:0.2222222222222222em;"></span><span
+                                                        class="mbin">∗</span><span class="mspace"
+                                                        style="margin-right:0.2222222222222222em;"></span><span
+                                                        class="mopen">(</span><span class="mord">1</span><span
+                                                        class="mspace"
+                                                        style="margin-right:0.2222222222222222em;"></span><span
+                                                        class="mbin">−</span><span class="mspace"
+                                                        style="margin-right:0.2222222222222222em;"></span><span
+                                                        class="mopen">(</span><span class="mord">−</span><span
+                                                        class="mord">1</span><span
+                                                        class="mclose">))</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:2.25144em;vertical-align:-0.93em;"></span><span
+                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.32144em;"><span style="top:-2.196611em;"><span
+                                                    class="pstrut" style="height:3em;"></span><span class="mord"><span
+                                                        class="mord sqrt"><span class="vlist-t vlist-t2"><span
+                                                                class="vlist-r"><span class="vlist"
+                                                                    style="height:0.913389em;"><span class="svg-align"
+                                                                        style="top:-3em;"><span class="pstrut"
+                                                                            style="height:3em;"></span><span
+                                                                            class="mord"
+                                                                            style="padding-left:0.833em;"><span
+                                                                                class="mord"><span
+                                                                                    class="mord">1</span><span
+                                                                                    class="msupsub"><span
+                                                                                        class="vlist-t"><span
+                                                                                            class="vlist-r"><span
+                                                                                                class="vlist"
+                                                                                                style="height:0.740108em;"><span
+                                                                                                    style="top:-2.9890000000000003em;margin-right:0.05em;"><span
+                                                                                                        class="pstrut"
+                                                                                                        style="height:2.7em;"></span><span
+                                                                                                        class="sizing reset-size6 size3 mtight"><span
+                                                                                                            class="mord mtight">2</span></span></span></span></span></span></span></span><span
+                                                                                class="mspace"
+                                                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                                                class="mbin">+</span><span
+                                                                                class="mspace"
+                                                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                                                class="mord"><span
+                                                                                    class="mord mathnormal">u</span><span
+                                                                                    class="msupsub"><span
+                                                                                        class="vlist-t"><span
+                                                                                            class="vlist-r"><span
+                                                                                                class="vlist"
+                                                                                                style="height:0.740108em;"><span
+                                                                                                    style="top:-2.9890000000000003em;margin-right:0.05em;"><span
+                                                                                                        class="pstrut"
+                                                                                                        style="height:2.7em;"></span><span
+                                                                                                        class="sizing reset-size6 size3 mtight"><span
+                                                                                                            class="mord mtight">2</span></span></span></span></span></span></span></span><span
+                                                                                class="mspace"
+                                                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                                                class="mbin">+</span><span
+                                                                                class="mspace"
+                                                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                                                class="mord"><span
+                                                                                    class="mord mathnormal"
+                                                                                    style="margin-right:0.03588em;">v</span><span
+                                                                                    class="msupsub"><span
+                                                                                        class="vlist-t"><span
+                                                                                            class="vlist-r"><span
+                                                                                                class="vlist"
+                                                                                                style="height:0.740108em;"><span
+                                                                                                    style="top:-2.9890000000000003em;margin-right:0.05em;"><span
+                                                                                                        class="pstrut"
+                                                                                                        style="height:2.7em;"></span><span
+                                                                                                        class="sizing reset-size6 size3 mtight"><span
+                                                                                                            class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span
+                                                                        style="top:-2.873389em;"><span class="pstrut"
+                                                                            style="height:3em;"></span><span
+                                                                            class="hide-tail"
+                                                                            style="min-width:0.853em;height:1.08em;"><svg
+                                                                                width='400em' height='1.08em'
+                                                                                viewBox='0 0 400000 1080'
+                                                                                preserveAspectRatio='xMinYMin slice'>
+                                                                                <path d='M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z' />
+                                                                            </svg></span></span></span><span
+                                                                    class="vlist-s">​</span></span><span
+                                                                class="vlist-r"><span class="vlist"
+                                                                    style="height:0.12661100000000003em;"><span></span></span></span></span></span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">1</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.93em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut"
+                            style="height:2.09077em;vertical-align:-0.7693300000000001em;"></span><span
+                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord"><span class="mord">1</span><span
+                                                            class="msupsub"><span class="vlist-t"><span
+                                                                    class="vlist-r"><span class="vlist"
+                                                                        style="height:0.740108em;"><span
+                                                                            style="top:-2.9890000000000003em;margin-right:0.05em;"><span
+                                                                                class="pstrut"
+                                                                                style="height:2.7em;"></span><span
+                                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                                    class="mord mtight">2</span></span></span></span></span></span></span></span><span
+                                                        class="mspace"
+                                                        style="margin-right:0.2222222222222222em;"></span><span
+                                                        class="mbin">+</span><span class="mspace"
+                                                        style="margin-right:0.2222222222222222em;"></span><span
+                                                        class="mord"><span class="mord mathnormal">u</span><span
+                                                            class="msupsub"><span class="vlist-t"><span
+                                                                    class="vlist-r"><span class="vlist"
+                                                                        style="height:0.740108em;"><span
+                                                                            style="top:-2.9890000000000003em;margin-right:0.05em;"><span
+                                                                                class="pstrut"
+                                                                                style="height:2.7em;"></span><span
+                                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                                    class="mord mtight">2</span></span></span></span></span></span></span></span><span
+                                                        class="mspace"
+                                                        style="margin-right:0.2222222222222222em;"></span><span
+                                                        class="mbin">+</span><span class="mspace"
+                                                        style="margin-right:0.2222222222222222em;"></span><span
+                                                        class="mord"><span class="mord mathnormal"
+                                                            style="margin-right:0.03588em;">v</span><span
+                                                            class="msupsub"><span class="vlist-t"><span
+                                                                    class="vlist-r"><span class="vlist"
+                                                                        style="height:0.740108em;"><span
+                                                                            style="top:-2.9890000000000003em;margin-right:0.05em;"><span
+                                                                                class="pstrut"
+                                                                                style="height:2.7em;"></span><span
+                                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                                    class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">1</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.7693300000000001em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                        class="base"><span class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span
+                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord text"><span
+                                                            class="mord">cubesize.u</span></span><span class="mspace"
+                                                        style="margin-right:0.2222222222222222em;"></span><span
+                                                        class="mbin">∗</span><span class="mspace"
+                                                        style="margin-right:0.2222222222222222em;"></span><span
+                                                        class="mord text"><span
+                                                            class="mord">cubesize.v</span></span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">1</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut"
+                            style="height:2.374829em;vertical-align:-1.0533890000000001em;"></span><span
+                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.32144em;"><span style="top:-2.196611em;"><span
+                                                    class="pstrut" style="height:3em;"></span><span class="mord"><span
+                                                        class="mord sqrt"><span class="vlist-t vlist-t2"><span
+                                                                class="vlist-r"><span class="vlist"
+                                                                    style="height:0.913389em;"><span class="svg-align"
+                                                                        style="top:-3em;"><span class="pstrut"
+                                                                            style="height:3em;"></span><span
+                                                                            class="mord"
+                                                                            style="padding-left:0.833em;"><span
+                                                                                class="mord"><span
+                                                                                    class="mord">1</span><span
+                                                                                    class="msupsub"><span
+                                                                                        class="vlist-t"><span
+                                                                                            class="vlist-r"><span
+                                                                                                class="vlist"
+                                                                                                style="height:0.740108em;"><span
+                                                                                                    style="top:-2.9890000000000003em;margin-right:0.05em;"><span
+                                                                                                        class="pstrut"
+                                                                                                        style="height:2.7em;"></span><span
+                                                                                                        class="sizing reset-size6 size3 mtight"><span
+                                                                                                            class="mord mtight">2</span></span></span></span></span></span></span></span><span
+                                                                                class="mspace"
+                                                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                                                class="mbin">+</span><span
+                                                                                class="mspace"
+                                                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                                                class="mord"><span
+                                                                                    class="mord mathnormal">u</span><span
+                                                                                    class="msupsub"><span
+                                                                                        class="vlist-t"><span
+                                                                                            class="vlist-r"><span
+                                                                                                class="vlist"
+                                                                                                style="height:0.740108em;"><span
+                                                                                                    style="top:-2.9890000000000003em;margin-right:0.05em;"><span
+                                                                                                        class="pstrut"
+                                                                                                        style="height:2.7em;"></span><span
+                                                                                                        class="sizing reset-size6 size3 mtight"><span
+                                                                                                            class="mord mtight">2</span></span></span></span></span></span></span></span><span
+                                                                                class="mspace"
+                                                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                                                class="mbin">+</span><span
+                                                                                class="mspace"
+                                                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                                                class="mord"><span
+                                                                                    class="mord mathnormal"
+                                                                                    style="margin-right:0.03588em;">v</span><span
+                                                                                    class="msupsub"><span
+                                                                                        class="vlist-t"><span
+                                                                                            class="vlist-r"><span
+                                                                                                class="vlist"
+                                                                                                style="height:0.740108em;"><span
+                                                                                                    style="top:-2.9890000000000003em;margin-right:0.05em;"><span
+                                                                                                        class="pstrut"
+                                                                                                        style="height:2.7em;"></span><span
+                                                                                                        class="sizing reset-size6 size3 mtight"><span
+                                                                                                            class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span
+                                                                        style="top:-2.873389em;"><span class="pstrut"
+                                                                            style="height:3em;"></span><span
+                                                                            class="hide-tail"
+                                                                            style="min-width:0.853em;height:1.08em;"><svg
+                                                                                width='400em' height='1.08em'
+                                                                                viewBox='0 0 400000 1080'
+                                                                                preserveAspectRatio='xMinYMin slice'>
+                                                                                <path d='M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z' />
+                                                                            </svg></span></span></span><span
+                                                                    class="vlist-s">​</span></span><span
+                                                                class="vlist-r"><span class="vlist"
+                                                                    style="height:0.12661100000000003em;"><span></span></span></span></span></span><span
+                                                        class="mspace"
+                                                        style="margin-right:0.2222222222222222em;"></span><span
+                                                        class="mbin">⋅</span><span class="mspace"
+                                                        style="margin-right:0.2222222222222222em;"></span><span
+                                                        class="mopen">(</span><span class="mord"><span
+                                                            class="mord">1</span><span class="msupsub"><span
+                                                                class="vlist-t"><span class="vlist-r"><span
+                                                                        class="vlist" style="height:0.740108em;"><span
+                                                                            style="top:-2.9890000000000003em;margin-right:0.05em;"><span
+                                                                                class="pstrut"
+                                                                                style="height:2.7em;"></span><span
+                                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                                    class="mord mtight">2</span></span></span></span></span></span></span></span><span
+                                                        class="mspace"
+                                                        style="margin-right:0.2222222222222222em;"></span><span
+                                                        class="mbin">+</span><span class="mspace"
+                                                        style="margin-right:0.2222222222222222em;"></span><span
+                                                        class="mord"><span class="mord mathnormal">u</span><span
+                                                            class="msupsub"><span class="vlist-t"><span
+                                                                    class="vlist-r"><span class="vlist"
+                                                                        style="height:0.740108em;"><span
+                                                                            style="top:-2.9890000000000003em;margin-right:0.05em;"><span
+                                                                                class="pstrut"
+                                                                                style="height:2.7em;"></span><span
+                                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                                    class="mord mtight">2</span></span></span></span></span></span></span></span><span
+                                                        class="mspace"
+                                                        style="margin-right:0.2222222222222222em;"></span><span
+                                                        class="mbin">+</span><span class="mspace"
+                                                        style="margin-right:0.2222222222222222em;"></span><span
+                                                        class="mord"><span class="mord mathnormal"
+                                                            style="margin-right:0.03588em;">v</span><span
+                                                            class="msupsub"><span class="vlist-t"><span
+                                                                    class="vlist-r"><span class="vlist"
+                                                                        style="height:0.740108em;"><span
+                                                                            style="top:-2.9890000000000003em;margin-right:0.05em;"><span
+                                                                                class="pstrut"
+                                                                                style="height:2.7em;"></span><span
+                                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                                    class="mord mtight">2</span></span></span></span></span></span></span></span><span
+                                                        class="mclose">)</span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">4</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:1.0533890000000001em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span></span></span></span></eq>. Actually the
+        &quot;fWt = 4/(sqrt(fTmp)*fTmp)&quot; by the pseudo code of [Sloan 2008] is exactly the <eq><span
+                class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mfrac>
+                                        <mn>4</mn>
+                                        <mrow>
+                                            <msqrt>
+                                                <mrow>
+                                                    <msup>
+                                                        <mn>1</mn>
+                                                        <mn>2</mn>
+                                                    </msup>
+                                                    <mo>+</mo>
+                                                    <msup>
+                                                        <mi>u</mi>
+                                                        <mn>2</mn>
+                                                    </msup>
+                                                    <mo>+</mo>
+                                                    <msup>
+                                                        <mi>v</mi>
+                                                        <mn>2</mn>
+                                                    </msup>
+                                                </mrow>
+                                            </msqrt>
+                                            <mo>⋅</mo>
+                                            <mo stretchy="false">(</mo>
+                                            <msup>
+                                                <mn>1</mn>
+                                                <mn>2</mn>
+                                            </msup>
+                                            <mo>+</mo>
+                                            <msup>
+                                                <mi>u</mi>
+                                                <mn>2</mn>
+                                            </msup>
+                                            <mo>+</mo>
+                                            <msup>
+                                                <mi>v</mi>
+                                                <mn>2</mn>
+                                            </msup>
+                                            <mo stretchy="false">)</mo>
+                                        </mrow>
+                                    </mfrac>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle \frac{4}{\sqrt{1^2 + u^2 +v^2} \cdot
+                                (1^2 + u^2 +v^2)}</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:2.374829em;vertical-align:-1.0533890000000001em;"></span><span
+                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.32144em;"><span style="top:-2.196611em;"><span
+                                                    class="pstrut" style="height:3em;"></span><span class="mord"><span
+                                                        class="mord sqrt"><span class="vlist-t vlist-t2"><span
+                                                                class="vlist-r"><span class="vlist"
+                                                                    style="height:0.913389em;"><span class="svg-align"
+                                                                        style="top:-3em;"><span class="pstrut"
+                                                                            style="height:3em;"></span><span
+                                                                            class="mord"
+                                                                            style="padding-left:0.833em;"><span
+                                                                                class="mord"><span
+                                                                                    class="mord">1</span><span
+                                                                                    class="msupsub"><span
+                                                                                        class="vlist-t"><span
+                                                                                            class="vlist-r"><span
+                                                                                                class="vlist"
+                                                                                                style="height:0.740108em;"><span
+                                                                                                    style="top:-2.9890000000000003em;margin-right:0.05em;"><span
+                                                                                                        class="pstrut"
+                                                                                                        style="height:2.7em;"></span><span
+                                                                                                        class="sizing reset-size6 size3 mtight"><span
+                                                                                                            class="mord mtight">2</span></span></span></span></span></span></span></span><span
+                                                                                class="mspace"
+                                                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                                                class="mbin">+</span><span
+                                                                                class="mspace"
+                                                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                                                class="mord"><span
+                                                                                    class="mord mathnormal">u</span><span
+                                                                                    class="msupsub"><span
+                                                                                        class="vlist-t"><span
+                                                                                            class="vlist-r"><span
+                                                                                                class="vlist"
+                                                                                                style="height:0.740108em;"><span
+                                                                                                    style="top:-2.9890000000000003em;margin-right:0.05em;"><span
+                                                                                                        class="pstrut"
+                                                                                                        style="height:2.7em;"></span><span
+                                                                                                        class="sizing reset-size6 size3 mtight"><span
+                                                                                                            class="mord mtight">2</span></span></span></span></span></span></span></span><span
+                                                                                class="mspace"
+                                                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                                                class="mbin">+</span><span
+                                                                                class="mspace"
+                                                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                                                class="mord"><span
+                                                                                    class="mord mathnormal"
+                                                                                    style="margin-right:0.03588em;">v</span><span
+                                                                                    class="msupsub"><span
+                                                                                        class="vlist-t"><span
+                                                                                            class="vlist-r"><span
+                                                                                                class="vlist"
+                                                                                                style="height:0.740108em;"><span
+                                                                                                    style="top:-2.9890000000000003em;margin-right:0.05em;"><span
+                                                                                                        class="pstrut"
+                                                                                                        style="height:2.7em;"></span><span
+                                                                                                        class="sizing reset-size6 size3 mtight"><span
+                                                                                                            class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span
+                                                                        style="top:-2.873389em;"><span class="pstrut"
+                                                                            style="height:3em;"></span><span
+                                                                            class="hide-tail"
+                                                                            style="min-width:0.853em;height:1.08em;"><svg
+                                                                                width='400em' height='1.08em'
+                                                                                viewBox='0 0 400000 1080'
+                                                                                preserveAspectRatio='xMinYMin slice'>
+                                                                                <path d='M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z' />
+                                                                            </svg></span></span></span><span
+                                                                    class="vlist-s">​</span></span><span
+                                                                class="vlist-r"><span class="vlist"
+                                                                    style="height:0.12661100000000003em;"><span></span></span></span></span></span><span
+                                                        class="mspace"
+                                                        style="margin-right:0.2222222222222222em;"></span><span
+                                                        class="mbin">⋅</span><span class="mspace"
+                                                        style="margin-right:0.2222222222222222em;"></span><span
+                                                        class="mopen">(</span><span class="mord"><span
+                                                            class="mord">1</span><span class="msupsub"><span
+                                                                class="vlist-t"><span class="vlist-r"><span
+                                                                        class="vlist" style="height:0.740108em;"><span
+                                                                            style="top:-2.9890000000000003em;margin-right:0.05em;"><span
+                                                                                class="pstrut"
+                                                                                style="height:2.7em;"></span><span
+                                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                                    class="mord mtight">2</span></span></span></span></span></span></span></span><span
+                                                        class="mspace"
+                                                        style="margin-right:0.2222222222222222em;"></span><span
+                                                        class="mbin">+</span><span class="mspace"
+                                                        style="margin-right:0.2222222222222222em;"></span><span
+                                                        class="mord"><span class="mord mathnormal">u</span><span
+                                                            class="msupsub"><span class="vlist-t"><span
+                                                                    class="vlist-r"><span class="vlist"
+                                                                        style="height:0.740108em;"><span
+                                                                            style="top:-2.9890000000000003em;margin-right:0.05em;"><span
+                                                                                class="pstrut"
+                                                                                style="height:2.7em;"></span><span
+                                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                                    class="mord mtight">2</span></span></span></span></span></span></span></span><span
+                                                        class="mspace"
+                                                        style="margin-right:0.2222222222222222em;"></span><span
+                                                        class="mbin">+</span><span class="mspace"
+                                                        style="margin-right:0.2222222222222222em;"></span><span
+                                                        class="mord"><span class="mord mathnormal"
+                                                            style="margin-right:0.03588em;">v</span><span
+                                                            class="msupsub"><span class="vlist-t"><span
+                                                                    class="vlist-r"><span class="vlist"
+                                                                        style="height:0.740108em;"><span
+                                                                            style="top:-2.9890000000000003em;margin-right:0.05em;"><span
+                                                                                class="pstrut"
+                                                                                style="height:2.7em;"></span><span
+                                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                                    class="mord mtight">2</span></span></span></span></span></span></span></span><span
+                                                        class="mclose">)</span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">4</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:1.0533890000000001em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span></span></span></span></eq>. The common
+        divisor <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mfrac>
+                                        <mn>1</mn>
+                                        <mrow>
+                                            <mtext>cubesize.u</mtext>
+                                            <mo>∗</mo>
+                                            <mtext>cubesize.v</mtext>
+                                        </mrow>
+                                    </mfrac>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle
+                                \frac{1}{\text{cubesize.u}*\text{cubesize.v}}</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:2.00744em;vertical-align:-0.686em;"></span><span class="mord"><span
+                                class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord text"><span
+                                                            class="mord">cubesize.u</span></span><span class="mspace"
+                                                        style="margin-right:0.2222222222222222em;"></span><span
+                                                        class="mbin">∗</span><span class="mspace"
+                                                        style="margin-right:0.2222222222222222em;"></span><span
+                                                        class="mord text"><span
+                                                            class="mord">cubesize.v</span></span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">1</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span></span></span></span></eq> can be reduced,
+        and thus is NOT calculated by [Sloan 2008].</p>
+    <pre><code class="code-line language-MATLAB" dir="auto"><div><span class="hljs-comment">% here is the MATLAB code which verifies the meaning of &quot;fWt = 4/(sqrt(fTmp)*fTmp)&quot;.</span>
+
+<span class="hljs-comment">% retrieved by &quot;textureSize(GLSL)&quot; or &quot;GetDimensions(HLSL)&quot;.</span>
+cube_size_u = <span class="hljs-number">4096.0</span>;
+cube_size_v = <span class="hljs-number">4096.0</span>;
+
+[ u, v ] = <span class="hljs-built_in">meshgrid</span>(<span class="hljs-built_in">linspace</span>(<span class="hljs-number">-1.0</span>, <span class="hljs-number">1.0</span>, cube_size_u), <span class="hljs-built_in">linspace</span>(<span class="hljs-number">-1</span>, <span class="hljs-number">1</span>, cube_size_v));
+
+<span class="hljs-comment">% the common divisor &quot;1/(cube_size_u*cube_size_v)&quot; can be reduced, and thus is NOT calculated in the &quot;fWt = 4/(sqrt(fTmp)*fTmp)&quot;.</span>
+d_a = (<span class="hljs-number">1.0</span> - (<span class="hljs-number">-1.0</span>)) .* (<span class="hljs-number">1.0</span> - (<span class="hljs-number">-1.0</span>)) ./ cube_size_u ./ cube_size_v;
+r_2 = <span class="hljs-number">1.0</span> .* <span class="hljs-number">1.0</span> + u .* u + v .* v;
+cos_theta = <span class="hljs-number">1.0</span> ./ <span class="hljs-built_in">sqrt</span>(r_2);
+d_omega = d_a .* cos_theta ./ r_2;
+
+<span class="hljs-comment">% &quot;numerical_omega&quot; and &quot;groundtruth_omega&quot; are expected to be the same.</span>
+numerical_omega = sum(sum(d_omega));
+groundtruth_omega = <span class="hljs-number">4.0</span> .* <span class="hljs-built_in">pi</span> .* <span class="hljs-number">1.0</span> .* <span class="hljs-number">1.0</span> / <span class="hljs-number">6.0</span>;
+
+<span class="hljs-comment">% output: &quot;numerical:2.093936 groundtruth:2.094395&quot;.</span>
+printf(<span class="hljs-string">&quot;numerical:%f groundtruth:%f\n&quot;</span>, numerical_omega, groundtruth_omega);
+</div></code></pre>
     <h3 dir="auto" id="specular-environment-lighting">Specular Environment Lighting</h3>
     <p dir="auto">Let <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">

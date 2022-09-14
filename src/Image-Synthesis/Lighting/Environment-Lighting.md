@@ -45,6 +45,30 @@ And since the value reconstructed from SH basis is form factor rather than irrad
  0.3 * fc3 | $\displaystyle \frac{1}{\pi} P_2^{0} A_2 = \frac{1}{\pi} \frac{3 \sqrt{5}}{4 \sqrt{\pi}} \frac{\pi}{4} = \frac{3 \sqrt{5}}{16 \sqrt{\pi}}$  
  fc4 | $\displaystyle \frac{1}{\pi} P_2^{2} A_2 = \frac{1}{\pi} \frac{\sqrt{15}}{4 \sqrt{\pi}} \frac{\pi}{4} = \frac{\sqrt{15}}{16 \sqrt{\pi}}$  
 
+It should be noted that the solid angle subtended by each texel of the cubemap is NOT the same. Let u and v be the texcoord of the cubemap. By "Equation (5.6)" of [PBR Book](https://pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#IntegralsoverArea), we have $\displaystyle d\omega = \frac{dA \cos \theta}{r^2} = dA \cdot \cos \theta \cdot \frac{1}{r^2} = \frac{(1 - (-1))*(1 - (-1))}{\text{cubesize.u}*\text{cubesize.v}} \cdot \frac{1}{\sqrt{1^2 + u^2 +v^2}} \cdot \frac{1}{1^2 + u^2 +v^2} = \frac{1}{\text{cubesize.u}*\text{cubesize.v}} \cdot \frac{4}{\sqrt{1^2 + u^2 +v^2} \cdot (1^2 + u^2 +v^2)}$. Actually the "fWt = 4/(sqrt(fTmp)*fTmp)" by the pseudo code of \[Sloan 2008\] is exactly the $\displaystyle \frac{4}{\sqrt{1^2 + u^2 +v^2} \cdot (1^2 + u^2 +v^2)}$. The common divisor $\displaystyle \frac{1}{\text{cubesize.u}*\text{cubesize.v}}$ can be reduced, and thus is NOT calculated by \[Sloan 2008\].  
+
+```MATLAB
+% here is the MATLAB code which verifies the meaning of "fWt = 4/(sqrt(fTmp)*fTmp)".
+
+% retrieved by "textureSize(GLSL)" or "GetDimensions(HLSL)".
+cube_size_u = 4096.0;
+cube_size_v = 4096.0;
+
+[ u, v ] = meshgrid(linspace(-1.0, 1.0, cube_size_u), linspace(-1, 1, cube_size_v));
+
+% the common divisor "1/(cube_size_u*cube_size_v)" can be reduced, and thus is NOT calculated in the "fWt = 4/(sqrt(fTmp)*fTmp)".
+d_a = (1.0 - (-1.0)) .* (1.0 - (-1.0)) ./ cube_size_u ./ cube_size_v;
+r_2 = 1.0 .* 1.0 + u .* u + v .* v;
+cos_theta = 1.0 ./ sqrt(r_2);
+d_omega = d_a .* cos_theta ./ r_2;
+
+% "numerical_omega" and "groundtruth_omega" are expected to be the same.
+numerical_omega = sum(sum(d_omega));
+groundtruth_omega = 4.0 .* pi .* 1.0 .* 1.0 / 6.0;
+
+% output: "numerical:2.093936 groundtruth:2.094395".
+printf("numerical:%f groundtruth:%f\n", numerical_omega, groundtruth_omega);
+```  
 
 ### Specular Environment Lighting
 
