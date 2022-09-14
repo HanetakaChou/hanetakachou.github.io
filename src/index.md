@@ -32,7 +32,6 @@ You should have received a copy of the GNU Lesser General Public License along w
 
 ### Lighting  
 - Radiometric and Photometric quantities [Documentation](Image-Synthesis/Lighting/Radiometric-and-Photometric-quantities.html)  
-- Spherical Functions [Documentation](Image-Synthesis/Lighting/Spherical-Functions.html)  
 - BRDF [Documentation](Image-Synthesis/Lighting/BRDF.html)  
 - Environment Lighting [Documentation](Image-Synthesis/Lighting/Environment-Lighting.html)  
 - LTC [Documentation](Image-Synthesis/Lighting/LTC.html) [Code](https://github.com/YuqiaoZhang/LTC)  
