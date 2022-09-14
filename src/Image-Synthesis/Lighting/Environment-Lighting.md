@@ -54,7 +54,7 @@ It should be noted that the solid angle subtended by each texel of the cubemap i
 cube_size_u = 4096.0;
 cube_size_v = 4096.0;
 
-[ u, v ] = meshgrid(linspace(-1.0, 1.0, cube_size_u), linspace(-1, 1, cube_size_v));
+[ u, v ] = meshgrid(linspace(-1.0, 1.0, cube_size_u), linspace(-1.0, 1.0, cube_size_v));
 
 % the common divisor "1/(cube_size_u*cube_size_v)" can be reduced, and thus is NOT calculated in the "fWt = 4/(sqrt(fTmp)*fTmp)".
 d_a = (1.0 - (-1.0)) .* (1.0 - (-1.0)) ./ cube_size_u ./ cube_size_v;

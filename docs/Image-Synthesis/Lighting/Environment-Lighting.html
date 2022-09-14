@@ -8039,7 +8039,7 @@ M834 80h400000v40h-400000z' />
 cube_size_u = <span class="hljs-number">4096.0</span>;
 cube_size_v = <span class="hljs-number">4096.0</span>;
 
-[ u, v ] = <span class="hljs-built_in">meshgrid</span>(<span class="hljs-built_in">linspace</span>(<span class="hljs-number">-1.0</span>, <span class="hljs-number">1.0</span>, cube_size_u), <span class="hljs-built_in">linspace</span>(<span class="hljs-number">-1</span>, <span class="hljs-number">1</span>, cube_size_v));
+[ u, v ] = <span class="hljs-built_in">meshgrid</span>(<span class="hljs-built_in">linspace</span>(<span class="hljs-number">-1.0</span>, <span class="hljs-number">1.0</span>, cube_size_u), <span class="hljs-built_in">linspace</span>(<span class="hljs-number">-1.0</span>, <span class="hljs-number">1.0</span>, cube_size_v));
 
 <span class="hljs-comment">% the common divisor &quot;1/(cube_size_u*cube_size_v)&quot; can be reduced, and thus is NOT calculated in the &quot;fWt = 4/(sqrt(fTmp)*fTmp)&quot;.</span>
 d_a = (<span class="hljs-number">1.0</span> - (<span class="hljs-number">-1.0</span>)) .* (<span class="hljs-number">1.0</span> - (<span class="hljs-number">-1.0</span>)) ./ cube_size_u ./ cube_size_v;
