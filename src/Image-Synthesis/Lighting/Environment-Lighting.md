@@ -104,7 +104,9 @@ The sampling is caculated by [TrowbridgeReitzDistribution::Sample_wh](https://gi
 
 #### 2-1-3\. Low-Discrepancy  
 
-Actually, **Quasi Monte Carlo** ("13.8.2 Quasi Monte Carlo" of [PBR Book](https://pbr-book.org/3ed-2018/Monte_Carlo_Integration/Careful_Sample_Placement#QuasiMonteCarlo)) is used. The pseudo-random numbers is replaced by low-discrepancy point sets. The **Hammersley sequence** ("7.4.1 Hammersley and Halton Sequences" of [PBR Book](https://pbr-book.org/3ed-2018/Sampling_and_Reconstruction/The_Halton_Sampler#HammersleyandHaltonSequences)) is used by UE4 and Unity3D. And the **Fibonacci sequence** is used by Unity3D.  
+Actually, **Quasi Monte Carlo** ("13.8.2 Quasi Monte Carlo" of [PBR Book](https://pbr-book.org/3ed-2018/Monte_Carlo_Integration/Careful_Sample_Placement#QuasiMonteCarlo)) is used. The pseudo-random numbers is replaced by low-discrepancy point sets. The **Hammersley sequence** ("7.4.1 Hammersley and Halton Sequences" of [PBR Book](https://pbr-book.org/3ed-2018/Sampling_and_Reconstruction/The_Halton_Sampler#HammersleyandHaltonSequences)) and **Fibonacci sequence** are used by UE4 and Unity3D.  
+
+The **Hammersley sequence** is calcuated by [Hammersley](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/MonteCarlo.ush#L34) in UE4 and [Hammersley2d](https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.core/ShaderLibrary/Sampling/Hammersley.hlsl#L415) in Unity3D. And the **Fibonacci sequence** is calculated by [FIBONACCI_SEQUENCE_ANGLE](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/SubsurfaceBurleyNormalized.ush#L332) in UE4 and [Fibonacci2d](https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.core/ShaderLibrary/Sampling/Fibonacci.hlsl#L248) in Unity3D.  
 
 ### 2-2\. DFG Term
 

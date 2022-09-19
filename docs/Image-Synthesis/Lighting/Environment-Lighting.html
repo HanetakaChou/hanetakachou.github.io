@@ -14773,7 +14773,16 @@ s76,-153,76,-153s77,-151,77,-151c0.7,0.7,35.7,202,105,604c67.3,400.7,102,602.7,1
             Book</a>) is used. The pseudo-random numbers is replaced by low-discrepancy point sets. The
         <strong>Hammersley sequence</strong> (&quot;7.4.1 Hammersley and Halton Sequences&quot; of <a
             href="https://pbr-book.org/3ed-2018/Sampling_and_Reconstruction/The_Halton_Sampler#HammersleyandHaltonSequences">PBR
-            Book</a>) is used by UE4 and Unity3D. And the <strong>Fibonacci sequence</strong> is used by Unity3D.</p>
+            Book</a>) and <strong>Fibonacci sequence</strong> are used by UE4 and Unity3D.</p>
+    <p dir="auto">The <strong>Hammersley sequence</strong> is calcuated by <a
+            href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/MonteCarlo.ush#L34">Hammersley</a>
+        in UE4 and <a
+            href="https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.core/ShaderLibrary/Sampling/Hammersley.hlsl#L415">Hammersley2d</a>
+        in Unity3D. And the <strong>Fibonacci sequence</strong> is calculated by <a
+            href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/SubsurfaceBurleyNormalized.ush#L332">FIBONACCI_SEQUENCE_ANGLE</a>
+        in UE4 and <a
+            href="https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.core/ShaderLibrary/Sampling/Fibonacci.hlsl#L248">Fibonacci2d</a>
+        in Unity3D.</p>
     <h3 dir="auto" id="2-2-dfg-term">2-2. DFG Term</h3>
     <p dir="auto">Actually, by &quot;Equation (9.9)&quot; of <a href="https://www.realtimerendering.com/">Real-Time
             Rendering Fourth Edition</a>, the DFG term is the HDR (Hemispherical Directional Reflectance) <eq><span
