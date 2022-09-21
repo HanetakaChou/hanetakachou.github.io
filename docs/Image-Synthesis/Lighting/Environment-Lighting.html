@@ -12567,9 +12567,9 @@ M834 80h400000v40h-400000z' />
                                                         class="mord">1</span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:1.09256em;"><span></span></span></span></span></span><span
-                                class="mclose nulldelimiter"></span></span></span></span></span></eq>. <strong>Although
-            this is literally the PDF used by UE4, the VNDF by [Heitz 2018] is a better alternative to be used as the
-            PDF.</strong></p>
+                                class="mclose nulldelimiter"></span></span></span></span></span></eq>.</p>
+    <p dir="auto"><strong>TODO: Although this is literally the PDF used by UE4, the VNDF by [Heitz 2018] is a better
+            alternative to be used as the PDF.</strong></p>
     <p dir="auto">By &quot;Equation (13.3)&quot; of <a
             href="https://pbr-book.org/3ed-2018/Monte_Carlo_Integration/The_Monte_Carlo_Estimator">PBR Book</a>, we have
         <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -19681,73 +19681,34 @@ s76,-153,76,-153s77,-151,77,-151c0.7,0.7,35.7,202,105,604c67.3,400.7,102,602.7,1
         in UE4 and <a
             href="https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.high-definition/Runtime/Lighting/LightEvaluation.hlsl#L600">SampleEnvWithDistanceBaseRoughness</a>
         in Unity3D.</p>
-    <h4 dir="auto" id="2-3-2-mipmap">2-3-2. Mipmap</h4>
-    <p dir="auto">TODO</p>
-    <h4 dir="auto" id="2-3-3-reflection-direction-deviation">2-3-3. Reflection Direction Deviation</h4>
-    <p dir="auto">But the PDF <eq><span class="katex"><span class="katex-mathml"><math
-                        xmlns="http://www.w3.org/1998/Math/MathML">
-                        <semantics>
-                            <mrow>
-                                <mstyle scriptlevel="0" displaystyle="true">
-                                    <mtext>D</mtext>
-                                    <mo stretchy="false">(</mo>
-                                    <mtext>NdotH</mtext>
-                                    <msup>
-                                        <mo stretchy="false">)</mo>
-                                        <mo>+</mo>
-                                    </msup>
-                                    <mfrac>
-                                        <mn>1</mn>
-                                        <mrow>
-                                            <mn>4</mn>
-                                            <mo>⋅</mo>
-                                            <mtext>LdotH</mtext>
-                                        </mrow>
-                                    </mfrac>
-                                </mstyle>
-                            </mrow>
-                            <annotation encoding="application/x-tex">\displaystyle \text{D} ( \text{NdotH} )^+
-                                \frac{1}{4 \cdot \text{LdotH}}</annotation>
-                        </semantics>
-                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
-                            style="height:2.00744em;vertical-align:-0.686em;"></span><span class="mord text"><span
-                                class="mord">D</span></span><span class="mopen">(</span><span class="mord text"><span
-                                class="mord">NdotH</span></span><span class="mclose"><span class="mclose">)</span><span
-                                class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist"
-                                            style="height:0.821331em;"><span
-                                                style="top:-3.113em;margin-right:0.05em;"><span class="pstrut"
-                                                    style="height:2.7em;"></span><span
-                                                    class="sizing reset-size6 size3 mtight"><span
-                                                        class="mbin mtight">+</span></span></span></span></span></span></span></span><span
-                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
-                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                            style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut"
-                                                    style="height:3em;"></span><span class="mord"><span
-                                                        class="mord">4</span><span class="mspace"
-                                                        style="margin-right:0.2222222222222222em;"></span><span
-                                                        class="mbin">⋅</span><span class="mspace"
-                                                        style="margin-right:0.2222222222222222em;"></span><span
-                                                        class="mord text"><span
-                                                            class="mord">LdotH</span></span></span></span><span
-                                                style="top:-3.23em;"><span class="pstrut"
-                                                    style="height:3em;"></span><span class="frac-line"
-                                                    style="border-bottom-width:0.04em;"></span></span><span
-                                                style="top:-3.677em;"><span class="pstrut"
-                                                    style="height:3em;"></span><span class="mord"><span
-                                                        class="mord">1</span></span></span></span><span
-                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:0.686em;"><span></span></span></span></span></span><span
-                                class="mclose nulldelimiter"></span></span></span></span></span></eq> depends on the
-        view direction V which can NOT be known when pre-integrating the LD term. By [Karis 2013], &quot;V = N&quot; is
-        assumed when pre-integrating the LD term, while the reflection direction V is used to look up the LD term when
-        rendering. By &quot;Figure 10.37&quot; of <a href="https://www.realtimerendering.com/">Real-Time Rendering
-            Fourth Edition</a>, [Lagarde 2014] deviates the reflection direction to the normal direction to reduce the
-        error generated by the non-clipped specular lobe.</p>
+    <h4 dir="auto" id="2-3-2-dimensions">2-3-2. Dimensions</h4>
+    <p dir="auto">Ideally, we should use three dimensions: N(world space), NdotV and roughness to look up the
+        pre-integrated LD term.</p>
+    <p dir="auto">By [Karis 2013], roughness is mapped to mip level. The mapping between roughness and mip level is
+        calculated by <a
+            href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/ReflectionEnvironmentShared.ush#L21">ComputeReflectionCaptureMipFromRoughness</a>
+        and <a
+            href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/ReflectionEnvironmentShared.ush#L30">ComputeReflectionCaptureRoughnessFromMip</a>
+        in UE4, and <a
+            href="https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.core/ShaderLibrary/ImageBasedLighting.hlsl#L44">PerceptualRoughnessToMipmapLevel</a>
+        and <a
+            href="https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.core/ShaderLibrary/ImageBasedLighting.hlsl#L61">MipmapLevelToPerceptualRoughness</a>
+        by Unity3D.</p>
+    <p dir="auto">However, we do NOT have enough remaining dimensions to store both N(world space) and NdotV. By [Karis
+        2013], we assume &quot;V = N&quot; when pre-integrating the LD term, while the reflection direction R is used to
+        look up the LD term when rendering. By &quot;Figure 10.37&quot; of <a
+            href="https://www.realtimerendering.com/">Real-Time Rendering Fourth Edition</a>, [Lagarde 2014] deviates
+        the reflection direction to the normal direction to reduce the error generated by the non-clipped specular lobe.
+    </p>
     <p dir="auto">The deviation is calculated by <a
             href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/ReflectionEnvironmentShared.ush#L120">GetOffSpecularPeakReflectionDir</a>
         in UE4 and <a
             href="https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.core/ShaderLibrary/ImageBasedLighting.hlsl#L105">GetSpecularDominantDir</a>
         in Unity3D.</p>
+    <p dir="auto"><strong>TODO: If we use the Paraboloid Map, perhaps we can use the 3D texture and provide one
+            dimension for the NdotV. Thus, we can use both N and NdotV to look up the LD term.</strong></p>
+    <h4 dir="auto" id="2-3-3-mipmap-filtered-samples">2-3-3. Mipmap Filtered Samples</h4>
+    <p dir="auto">TODO</p>
     <h2 dir="auto" id="references">References</h2>
     <p dir="auto">[Ramamoorthi 2001 A] <a href="https://graphics.stanford.edu/papers/invlamb/">Ravi Ramamoorthi, Pat
             Hanrahan. &quot;On the Relationship between Radiance and Irradiance: Determining the illumination from
