@@ -92,7 +92,7 @@ By "Figure 8.15" of [PBR Book](https://pbr-book.org/3ed-2018/Reflection_Models/M
 
 By "Equation \(13.3\)" of [PBR Book](https://pbr-book.org/3ed-2018/Monte_Carlo_Integration/The_Monte_Carlo_Estimator), we have $\displaystyle \operatorname{R}(\overrightarrow{\omega_V}) = \int_\Omega \operatorname{f}(\overrightarrow{\omega_L}, \overrightarrow{\omega_V}) (\cos \theta_L)^+ \, d \overrightarrow{\omega_L} = \frac{1}{N} \sum_{i=1}^N \frac{\operatorname{f}(\overrightarrow{\omega_L}, \overrightarrow{\omega_V}) (\cos \theta_L)^+}{\displaystyle \operatorname{p}(\overrightarrow{\omega_L}, \overrightarrow{\omega_V})}$. Evidently, $\displaystyle \operatorname{D}(\overrightarrow{\omega_H})$ exists in both $\displaystyle \operatorname{f}(\overrightarrow{\omega_L}, \overrightarrow{\omega_V})$ and $\displaystyle \operatorname{p}(\overrightarrow{\omega_L}, \overrightarrow{\omega_V})$, and thus $\displaystyle \operatorname{D}(\overrightarrow{\omega_H})$ can be omitted when calculating the integral.  
 
-#### 2-1-1\. Sampling
+#### 2-1-2\. Sampling Trowbridge-Reitz Distribution
 
 When $\displaystyle \operatorname{D}(\overrightarrow{\omega_H})$ is **Beckmann–Spizzichino** ("Equation \(8.9\)" of [PBR Book](https://pbr-book.org/3ed-2018/Reflection_Models/Microfacet_Models#MicrofacetDistributionFunctions)) distribution, the derivation of the sampling is provided by "Equation \(14.1\)" of [PBR Book](https://pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/Sampling_Reflection_Functions#MicrofacetBxDFs).  
 
@@ -104,9 +104,13 @@ The sampling is caculated by [TrowbridgeReitzDistribution::Sample_wh](https://gi
 
 #### 2-1-3\. Low-Discrepancy  
 
-Actually, **Quasi Monte Carlo** ("13.8.2 Quasi Monte Carlo" of [PBR Book](https://pbr-book.org/3ed-2018/Monte_Carlo_Integration/Careful_Sample_Placement#QuasiMonteCarlo)) is used. The pseudo-random numbers is replaced by low-discrepancy point sets. The **Hammersley sequence** ("7.4.1 Hammersley and Halton Sequences" of [PBR Book](https://pbr-book.org/3ed-2018/Sampling_and_Reconstruction/The_Halton_Sampler#HammersleyandHaltonSequences)) and **Fibonacci sequence** are used by UE4 and Unity3D.  
+By "20.3 Quasirandom Low-Discrepancy Sequences" of \[Colbert 2007\], **Quasi Monte Carlo** ("13.8.2 Quasi Monte Carlo" of [PBR Book](https://pbr-book.org/3ed-2018/Monte_Carlo_Integration/Careful_Sample_Placement#QuasiMonteCarlo)) is used and the pseudo-random sequence is replaced by the low-discrepancy **Hammersley sequence** ("7.4.1 Hammersley and Halton Sequences" of [PBR Book](https://pbr-book.org/3ed-2018/Sampling_and_Reconstruction/The_Halton_Sampler#HammersleyandHaltonSequences)).  
 
 The **Hammersley sequence** is calcuated by [Hammersley](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/MonteCarlo.ush#L34) in UE4 and [Hammersley2d](https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.core/ShaderLibrary/Sampling/Hammersley.hlsl#L415) in Unity3D. And the **Fibonacci sequence** is calculated by [FIBONACCI_SEQUENCE_ANGLE](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/SubsurfaceBurleyNormalized.ush#L332) in UE4 and [Fibonacci2d](https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.core/ShaderLibrary/Sampling/Fibonacci.hlsl#L248) in Unity3D.  
+
+#### 2-1-4\. Mipmap  
+
+
 
 ### 2-2\. DFG Term
 
@@ -114,7 +118,7 @@ Actually, by "Equation \(9.9\)" of [Real-Time Rendering Fourth Edition](https://
 
 Actually, by "Equation \(9\)" of \[Karis 2013\], the Fresnel term can be treated separately, and we have $\displaystyle \operatorname{R}(\overrightarrow{\omega_V}) = \int_\Omega [F_0 + (F_{90} - F_0) {(1.0 - \overrightarrow{\omega_V} \cdot \overrightarrow{\omega_H})}^5] \operatorname{DV}(\overrightarrow{\omega_L}, \overrightarrow{\omega_V}) \, d \omega_L = F_0 \cdot \operatorname{n_R}(\overrightarrow{\omega_V}) + F_{90} \cdot \operatorname{n_G}(\overrightarrow{\omega_V})$ where $\displaystyle \operatorname{n_R}(\overrightarrow{\omega_V}) = \int_\Omega [1.0 - {(1.0 - \overrightarrow{\omega_V} \cdot \overrightarrow{\omega_H})}^5] \operatorname{DV}(\overrightarrow{\omega_L}, \overrightarrow{\omega_V}) \, d \omega_L$ and $\displaystyle \operatorname{n_G}(\overrightarrow{\omega_V}) = \int_\Omega {(1.0 - \overrightarrow{\omega_V} \cdot \overrightarrow{\omega_H})}^5 \operatorname{DV}(\overrightarrow{\omega_L}, \overrightarrow{\omega_V}) \, d \omega_L$. Evidently, $\displaystyle \operatorname{n_R}(\overrightarrow{\omega_V})$ and $\displaystyle \operatorname{n_G}(\overrightarrow{\omega_V})$ can be stored in the LUT.  
 
-The DFG term is preintegrated by [InitializeFeatureLevelDependentTextures](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Source/Runtime/Renderer/Private/SystemTextures.cpp#L278) in UE4 and [IntegrateGGXAndDisneyDiffuseFGD](https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.core/ShaderLibrary/ImageBasedLighting.hlsl#L340) in Unity3D, and used by [EnvBRDF](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/ReflectionEnvironmentPixelShader.usf#L334) in UE4 and [GetPreIntegratedFGDGGXAndDisneyDiffuse](https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.high-definition/Runtime/Material/Lit/Lit.hlsl#L1120) in Unity3D.
+The DFG term is preintegrated by [InitializeFeatureLevelDependentTextures](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Source/Runtime/Renderer/Private/SystemTextures.cpp#L278) in UE4 and [IntegrateGGXAndDisneyDiffuseFGD](https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.core/ShaderLibrary/ImageBasedLighting.hlsl#L340) in Unity3D, and used by [EnvBRDF](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/ReflectionEnvironmentPixelShader.usf#L334) in UE4 and [GetPreIntegratedFGDGGXAndDisneyDiffuse](https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.high-definition/Runtime/Material/Lit/Lit.hlsl#L1120) in Unity3D.  
 
 ### 2-3\. LD Term
 
@@ -124,12 +128,13 @@ By "Equation \(53\)" of \[Lagarde 2014\], when $\displaystyle \operatorname{L_L}
    
 By \[Karis 2013\], assuming that the Weight term equals $\displaystyle (\cos \theta_L)^+$, we have the **split integral approximation** $\displaystyle \operatorname{LD}(\overrightarrow{\omega_V}) = \frac{\sum_{i=1}^N \text{L} \cdot \text{Weight}}{\sum_{i=1}^N \text{Weight}} \approx \frac{\sum_{i=1}^N \text{L} \cdot (\text{NdotL})^+}{\sum_{i=1}^N (\text{NdotL})^+}$.  
 
-The LD term is preintegrated by [FilterCS](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/ReflectionEnvironmentShaders.usf#L319) in UE4 and [IntegrateLD](https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.core/ShaderLibrary/ImageBasedLighting.hlsl#L532) in Unity3D.  
+The LD term is preintegrated by [FilterCS](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/ReflectionEnvironmentShaders.usf#L319) in UE4 and [IntegrateLD](https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.core/ShaderLibrary/ImageBasedLighting.hlsl#L532) in Unity3D, and used by [GetSkyLightReflection](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/ReflectionEnvironmentShared.ush#L38) in UE4 and [SampleEnvWithDistanceBaseRoughness](https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.high-definition/Runtime/Lighting/LightEvaluation.hlsl#L600) in Unity3D.  
 
 ## References  
 \[Ramamoorthi 2001 A\] [Ravi Ramamoorthi, Pat Hanrahan. "On the Relationship between Radiance and Irradiance: Determining the illumination from images of a convex Lambertian object." JOSA 2001.](https://graphics.stanford.edu/papers/invlamb/)  
 \[Ramamoorthi 2001 B\] [Ravi Ramamoorthi, Pat Hanrahan. "An Efficient Representation for Irradiance Environment Maps." SIGGRAPH 2001.](https://graphics.stanford.edu/papers/envmap/)  
 \[Walter 2007\] [Bruce Walter, Stephen Marschner, Hongsong Li, Kenneth Torrance. "Microfacet Models for Refraction through Rough Surfaces." EGSR 2007.](https://www.cs.cornell.edu/~srm/publications/EGSR07-btdf.html)  
+\[Colbert 2007\] [Mark Colbert, Jaroslav Krivanek. "GPU-Based Importance Sampling." GPU Gems 3.](https://developer.nvidia.com/gpugems/gpugems3/part-iii-rendering/chapter-20-gpu-based-importance-sampling)  
 \[Sloan 2008\] [Peter-Pike Sloan. "Stupid Spherical Harmonics (SH)." Tricks GDC 2008.](http://www.ppsloan.org/publications/StupidSH36.pdf)  
 \[Karis 2013\] [Brian Karis. "Real Shading in Unreal Engine 4." SIGGRAPH 2013.](https://cdn2.unrealengine.com/Resources/files/2013SiggraphPresentationsNotes-26915738.pdf)  
 \[Lagarde 2014\] [Sebastian Lagarde, Charles Rousiers. "Moving Frostbite to PBR." SIGGRAPH 2014.](https://www.ea.com/frostbite/news/moving-frostbite-to-pb)  
