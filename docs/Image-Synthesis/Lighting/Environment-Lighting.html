@@ -29,16 +29,19 @@
                                     </mi>
                                     <mo>⁡</mo>
                                     <mo stretchy="false">(</mo>
-                                    <mi>ω</mi>
+                                    <mover accent="true">
+                                        <mi>ω</mi>
+                                        <mo stretchy="true">→</mo>
+                                    </mover>
                                     <mo stretchy="false">)</mo>
                                 </mstyle>
                             </mrow>
-                            <annotation encoding="application/x-tex">\displaystyle \operatorname{L_L}(\omega)
-                            </annotation>
+                            <annotation encoding="application/x-tex">\displaystyle
+                                \operatorname{L_L}(\overrightarrow{\omega})</annotation>
                         </semantics>
                     </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
-                            style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span class="mord"><span
-                                    class="mord mathrm">L</span><span class="msupsub"><span
+                            style="height:1.20256em;vertical-align:-0.25em;"></span><span class="mop"><span
+                                class="mord"><span class="mord mathrm">L</span><span class="msupsub"><span
                                         class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
                                                 style="height:0.32833099999999993em;"><span
                                                     style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
@@ -47,10 +50,27 @@
                                                             class="mord mathrm mtight">L</span></span></span></span><span
                                                 class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                                 style="height:0.15em;"><span></span></span></span></span></span></span></span><span
-                            class="mopen">(</span><span class="mord mathnormal"
-                            style="margin-right:0.03588em;">ω</span><span class="mclose">)</span></span></span></span>
-        </eq> be the infinitely distant radiance distribution. Since the Lambert BRDF <eq><span class="katex"><span
-                    class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            class="mopen">(</span><span class="mord accent"><span class="vlist-t"><span
+                                    class="vlist-r"><span class="vlist" style="height:0.9525600000000001em;"><span
+                                            style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span
+                                                class="mord mathnormal"
+                                                style="margin-right:0.03588em;">ω</span></span><span class="svg-align"
+                                            style="top:-3.43056em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="hide-tail"
+                                                style="height:0.522em;min-width:0.888em;"><svg width='400em'
+                                                    height='0.522em' viewBox='0 0 400000 522'
+                                                    preserveAspectRatio='xMaxYMin slice'>
+                                                    <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
+-16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
+ 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
+ 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
+-40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
+-12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
+ 151.7 139 205zm0 0v40h399900v-40z' />
+                                                </svg></span></span></span></span></span></span><span
+                            class="mclose">)</span></span></span></span></eq> be the distant radiance distribution.
+        Since the Lambert BRDF <eq><span class="katex"><span class="katex-mathml"><math
+                        xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
                                 <mstyle scriptlevel="0" displaystyle="true">
@@ -2425,7 +2445,7 @@ h400000v40h-400000z' />
                                             <mn>1</mn>
                                             <mo stretchy="false">)</mo>
                                             <mo stretchy="false">)</mo>
-                                            <mo>∗</mo>
+                                            <mo>⋅</mo>
                                             <mo stretchy="false">(</mo>
                                             <mn>1</mn>
                                             <mo>−</mo>
@@ -2436,9 +2456,9 @@ h400000v40h-400000z' />
                                             <mo stretchy="false">)</mo>
                                         </mrow>
                                         <mrow>
-                                            <mtext>cubesize.u</mtext>
-                                            <mo>∗</mo>
-                                            <mtext>cubesize.v</mtext>
+                                            <mtext>cubesize_u</mtext>
+                                            <mo>⋅</mo>
+                                            <mtext>cubesize_v</mtext>
                                         </mrow>
                                     </mfrac>
                                     <mo>⋅</mo>
@@ -2487,9 +2507,9 @@ h400000v40h-400000z' />
                                     <mfrac>
                                         <mn>1</mn>
                                         <mrow>
-                                            <mtext>cubesize.u</mtext>
-                                            <mo>∗</mo>
-                                            <mtext>cubesize.v</mtext>
+                                            <mtext>cubesize_u</mtext>
+                                            <mo>⋅</mo>
+                                            <mtext>cubesize_v</mtext>
                                         </mrow>
                                     </mfrac>
                                     <mo>⋅</mo>
@@ -2536,10 +2556,11 @@ h400000v40h-400000z' />
                                 </mstyle>
                             </mrow>
                             <annotation encoding="application/x-tex">\displaystyle d\omega = \frac{dA \cos \theta}{r^2}
-                                = dA \cdot \cos \theta \cdot \frac{1}{r^2} = \frac{(1 - (-1))*(1 -
-                                (-1))}{\text{cubesize.u}*\text{cubesize.v}} \cdot \frac{1}{\sqrt{1^2 + u^2 +v^2}} \cdot
-                                \frac{1}{1^2 + u^2 +v^2} = \frac{1}{\text{cubesize.u}*\text{cubesize.v}} \cdot
-                                \frac{4}{\sqrt{1^2 + u^2 +v^2} \cdot (1^2 + u^2 +v^2)}</annotation>
+                                = dA \cdot \cos \theta \cdot \frac{1}{r^2} = \frac{(1 - (-1)) \cdot (1 -
+                                (-1))}{\text{cubesize\_u} \cdot \text{cubesize\_v}} \cdot \frac{1}{\sqrt{1^2 + u^2
+                                +v^2}} \cdot \frac{1}{1^2 + u^2 +v^2} = \frac{1}{\text{cubesize\_u} \cdot
+                                \text{cubesize\_v}} \cdot \frac{4}{\sqrt{1^2 + u^2 +v^2} \cdot (1^2 + u^2 +v^2)}
+                            </annotation>
                         </semantics>
                     </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
                             style="height:0.69444em;vertical-align:0em;"></span><span
@@ -2615,18 +2636,18 @@ h400000v40h-400000z' />
                                 class="mclose nulldelimiter"></span></span><span class="mspace"
                             style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
                             class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-                        class="base"><span class="strut" style="height:2.113em;vertical-align:-0.686em;"></span><span
+                        class="base"><span class="strut" style="height:2.423em;vertical-align:-0.996em;"></span><span
                             class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
                                     class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
                                             style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut"
                                                     style="height:3em;"></span><span class="mord"><span
                                                         class="mord text"><span
-                                                            class="mord">cubesize.u</span></span><span class="mspace"
+                                                            class="mord">cubesize_u</span></span><span class="mspace"
                                                         style="margin-right:0.2222222222222222em;"></span><span
-                                                        class="mbin">∗</span><span class="mspace"
+                                                        class="mbin">⋅</span><span class="mspace"
                                                         style="margin-right:0.2222222222222222em;"></span><span
                                                         class="mord text"><span
-                                                            class="mord">cubesize.v</span></span></span></span><span
+                                                            class="mord">cubesize_v</span></span></span></span><span
                                                 style="top:-3.23em;"><span class="pstrut"
                                                     style="height:3em;"></span><span class="frac-line"
                                                     style="border-bottom-width:0.04em;"></span></span><span
@@ -2641,7 +2662,7 @@ h400000v40h-400000z' />
                                                         class="mord">1</span><span class="mclose">))</span><span
                                                         class="mspace"
                                                         style="margin-right:0.2222222222222222em;"></span><span
-                                                        class="mbin">∗</span><span class="mspace"
+                                                        class="mbin">⋅</span><span class="mspace"
                                                         style="margin-right:0.2222222222222222em;"></span><span
                                                         class="mopen">(</span><span class="mord">1</span><span
                                                         class="mspace"
@@ -2652,7 +2673,7 @@ h400000v40h-400000z' />
                                                         class="mord">1</span><span
                                                         class="mclose">))</span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                            style="height:0.996em;"><span></span></span></span></span></span><span
                                 class="mclose nulldelimiter"></span></span><span class="mspace"
                             style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span
                             class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
@@ -2802,18 +2823,18 @@ M834 80h400000v40h-400000z' />
                                 class="mclose nulldelimiter"></span></span><span class="mspace"
                             style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
                             class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-                        class="base"><span class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span
+                        class="base"><span class="strut" style="height:2.31744em;vertical-align:-0.996em;"></span><span
                             class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
                                     class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
                                             style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut"
                                                     style="height:3em;"></span><span class="mord"><span
                                                         class="mord text"><span
-                                                            class="mord">cubesize.u</span></span><span class="mspace"
+                                                            class="mord">cubesize_u</span></span><span class="mspace"
                                                         style="margin-right:0.2222222222222222em;"></span><span
-                                                        class="mbin">∗</span><span class="mspace"
+                                                        class="mbin">⋅</span><span class="mspace"
                                                         style="margin-right:0.2222222222222222em;"></span><span
                                                         class="mord text"><span
-                                                            class="mord">cubesize.v</span></span></span></span><span
+                                                            class="mord">cubesize_v</span></span></span></span><span
                                                 style="top:-3.23em;"><span class="pstrut"
                                                     style="height:3em;"></span><span class="frac-line"
                                                     style="border-bottom-width:0.04em;"></span></span><span
@@ -2821,7 +2842,7 @@ M834 80h400000v40h-400000z' />
                                                     style="height:3em;"></span><span class="mord"><span
                                                         class="mord">1</span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                            style="height:0.996em;"><span></span></span></span></span></span><span
                                 class="mclose nulldelimiter"></span></span><span class="mspace"
                             style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span
                             class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
@@ -3148,29 +3169,29 @@ M834 80h400000v40h-400000z' />
                                     <mfrac>
                                         <mn>1</mn>
                                         <mrow>
-                                            <mtext>cubesize.u</mtext>
-                                            <mo>∗</mo>
-                                            <mtext>cubesize.v</mtext>
+                                            <mtext>cubesize_u</mtext>
+                                            <mo>⋅</mo>
+                                            <mtext>cubesize_v</mtext>
                                         </mrow>
                                     </mfrac>
                                 </mstyle>
                             </mrow>
-                            <annotation encoding="application/x-tex">\displaystyle
-                                \frac{1}{\text{cubesize.u}*\text{cubesize.v}}</annotation>
+                            <annotation encoding="application/x-tex">\displaystyle \frac{1}{\text{cubesize\_u} \cdot
+                                \text{cubesize\_v}}</annotation>
                         </semantics>
                     </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
-                            style="height:2.00744em;vertical-align:-0.686em;"></span><span class="mord"><span
+                            style="height:2.31744em;vertical-align:-0.996em;"></span><span class="mord"><span
                                 class="mopen nulldelimiter"></span><span class="mfrac"><span
                                     class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
                                             style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut"
                                                     style="height:3em;"></span><span class="mord"><span
                                                         class="mord text"><span
-                                                            class="mord">cubesize.u</span></span><span class="mspace"
+                                                            class="mord">cubesize_u</span></span><span class="mspace"
                                                         style="margin-right:0.2222222222222222em;"></span><span
-                                                        class="mbin">∗</span><span class="mspace"
+                                                        class="mbin">⋅</span><span class="mspace"
                                                         style="margin-right:0.2222222222222222em;"></span><span
                                                         class="mord text"><span
-                                                            class="mord">cubesize.v</span></span></span></span><span
+                                                            class="mord">cubesize_v</span></span></span></span><span
                                                 style="top:-3.23em;"><span class="pstrut"
                                                     style="height:3em;"></span><span class="frac-line"
                                                     style="border-bottom-width:0.04em;"></span></span><span
@@ -3178,7 +3199,7 @@ M834 80h400000v40h-400000z' />
                                                     style="height:3em;"></span><span class="mord"><span
                                                         class="mord">1</span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                            style="height:0.996em;"><span></span></span></span></span></span><span
                                 class="mclose nulldelimiter"></span></span></span></span></span></eq> can be reduced,
         and thus is NOT calculated by [Sloan 2008]. The solid angle is calculated by <a
             href="https://github.com/microsoft/DirectXMath/blob/jul2018b/SHMath/DirectXSHD3D11.cpp#L341">SHProjectCubeMap</a>
@@ -8177,18 +8198,38 @@ M834 80h400000v40h-400000z' />
                                     <mi mathvariant="normal">L</mi>
                                     <mo>⁡</mo>
                                     <mo stretchy="false">(</mo>
-                                    <mi>ω</mi>
+                                    <mover accent="true">
+                                        <mi>ω</mi>
+                                        <mo stretchy="true">→</mo>
+                                    </mover>
                                     <mo stretchy="false">)</mo>
                                 </mstyle>
                             </mrow>
-                            <annotation encoding="application/x-tex">\displaystyle \operatorname{L}(\omega)</annotation>
+                            <annotation encoding="application/x-tex">\displaystyle
+                                \operatorname{L}(\overrightarrow{\omega})</annotation>
                         </semantics>
                     </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
-                            style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span
+                            style="height:1.20256em;vertical-align:-0.25em;"></span><span class="mop"><span
                                 class="mord mathrm">L</span></span><span class="mopen">(</span><span
-                            class="mord mathnormal" style="margin-right:0.03588em;">ω</span><span
-                            class="mclose">)</span></span></span></span></eq> denote the infinitely distant radiance
-        distribution. Evidently, we have <eq><span class="katex"><span class="katex-mathml"><math
+                            class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist"
+                                        style="height:0.9525600000000001em;"><span style="top:-3em;"><span
+                                                class="pstrut" style="height:3em;"></span><span class="mord mathnormal"
+                                                style="margin-right:0.03588em;">ω</span></span><span class="svg-align"
+                                            style="top:-3.43056em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="hide-tail"
+                                                style="height:0.522em;min-width:0.888em;"><svg width='400em'
+                                                    height='0.522em' viewBox='0 0 400000 522'
+                                                    preserveAspectRatio='xMaxYMin slice'>
+                                                    <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
+-16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
+ 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
+ 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
+-40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
+-12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
+ 151.7 139 205zm0 0v40h399900v-40z' />
+                                                </svg></span></span></span></span></span></span><span
+                            class="mclose">)</span></span></span></span></eq> be the distant radiance distribution.
+        Evidently, we have <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
@@ -19682,10 +19723,10 @@ s76,-153,76,-153s77,-151,77,-151c0.7,0.7,35.7,202,105,604c67.3,400.7,102,602.7,1
             href="https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.high-definition/Runtime/Lighting/LightEvaluation.hlsl#L600">SampleEnvWithDistanceBaseRoughness</a>
         in Unity3D.</p>
     <h4 dir="auto" id="2-3-2-dimensions">2-3-2. Dimensions</h4>
-    <p dir="auto">Ideally, we should use three dimensions: N(world space), NdotV and roughness to look up the
+    <p dir="auto">Ideally, we should use three dimensions: N (world space), NdotV and roughness to look up the
         pre-integrated LD term.</p>
-    <p dir="auto">By [Karis 2013], roughness is mapped to mip level. The mapping between roughness and mip level is
-        calculated by <a
+    <p dir="auto">By [Karis 2013], roughness is mapped to mip-level.</p>
+    <p dir="auto">The mapping between roughness and mip-level is calculated by <a
             href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/ReflectionEnvironmentShared.ush#L21">ComputeReflectionCaptureMipFromRoughness</a>
         and <a
             href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/ReflectionEnvironmentShared.ush#L30">ComputeReflectionCaptureRoughnessFromMip</a>
@@ -19694,7 +19735,7 @@ s76,-153,76,-153s77,-151,77,-151c0.7,0.7,35.7,202,105,604c67.3,400.7,102,602.7,1
         and <a
             href="https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.core/ShaderLibrary/ImageBasedLighting.hlsl#L61">MipmapLevelToPerceptualRoughness</a>
         by Unity3D.</p>
-    <p dir="auto">However, we do NOT have enough remaining dimensions to store both N(world space) and NdotV. By [Karis
+    <p dir="auto">However, we do NOT have enough remaining dimensions to store both N (world space) and NdotV. By [Karis
         2013], we assume &quot;V = N&quot; when pre-integrating the LD term, while the reflection direction R is used to
         look up the LD term when rendering. By &quot;Figure 10.37&quot; of <a
             href="https://www.realtimerendering.com/">Real-Time Rendering Fourth Edition</a>, [Lagarde 2014] deviates
@@ -19706,9 +19747,786 @@ s76,-153,76,-153s77,-151,77,-151c0.7,0.7,35.7,202,105,604c67.3,400.7,102,602.7,1
             href="https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.core/ShaderLibrary/ImageBasedLighting.hlsl#L105">GetSpecularDominantDir</a>
         in Unity3D.</p>
     <p dir="auto"><strong>TODO: If we use the Paraboloid Map, perhaps we can use the 3D texture and provide one
-            dimension for the NdotV. Thus, we can use both N and NdotV to look up the LD term.</strong></p>
-    <h4 dir="auto" id="2-3-3-mipmap-filtered-samples">2-3-3. Mipmap Filtered Samples</h4>
-    <p dir="auto">TODO</p>
+            dimension for the NdotV. Thus, we can use both N (world space) and NdotV to look up the LD term.</strong>
+    </p>
+    <h4 dir="auto" id="2-3-3-variance-reduction">2-3-3. Variance Reduction</h4>
+    <p dir="auto">By &quot;20.4 Mipmap Filtered Samples&quot; of [Colbert 2007], we use the mip-level <eq><span
+                class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mtext>sample_mip_level</mtext>
+                                <mo>=</mo>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mi>max</mi>
+                                    <mo>⁡</mo>
+                                    <mo stretchy="false">(</mo>
+                                    <mn>0</mn>
+                                    <mo separator="true">,</mo>
+                                    <mi>log</mi>
+                                    <mo>⁡</mo>
+                                    <mo stretchy="false">(</mo>
+                                    <msqrt>
+                                        <mfrac>
+                                            <mrow>
+                                                <mi>d</mi>
+                                                <mover accent="true">
+                                                    <msub>
+                                                        <mi>ω</mi>
+                                                        <mi>S</mi>
+                                                    </msub>
+                                                    <mo stretchy="true">→</mo>
+                                                </mover>
+                                            </mrow>
+                                            <mrow>
+                                                <mi>d</mi>
+                                                <mover accent="true">
+                                                    <msub>
+                                                        <mi>ω</mi>
+                                                        <mi>P</mi>
+                                                    </msub>
+                                                    <mo stretchy="true">→</mo>
+                                                </mover>
+                                            </mrow>
+                                        </mfrac>
+                                    </msqrt>
+                                    <mo stretchy="false">)</mo>
+                                    <mo stretchy="false">)</mo>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\text{sample\_mip\_level} = \displaystyle \max(0,
+                                \log(\sqrt{\frac{d\overrightarrow{\omega_S}}{d\overrightarrow{\omega_P}}}))</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1.00444em;vertical-align:-0.31em;"></span><span class="mord text"><span
+                                class="mord">sample_mip_level</span></span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                        class="base"><span class="strut" style="height:3.04em;vertical-align:-1.087625em;"></span><span
+                            class="mop">max</span><span class="mopen">(</span><span class="mord">0</span><span
+                            class="mpunct">,</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span
+                                style="margin-right:0.01389em;">g</span></span><span class="mopen">(</span><span
+                            class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                        style="height:1.952375em;"><span class="svg-align" style="top:-5em;"><span
+                                                class="pstrut" style="height:5em;"></span><span class="mord"
+                                                style="padding-left:1em;"><span class="mord"><span
+                                                        class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                                            class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                                    class="vlist"
+                                                                    style="height:1.6295600000000001em;"><span
+                                                                        style="top:-2.15744em;"><span class="pstrut"
+                                                                            style="height:3em;"></span><span
+                                                                            class="mord"><span
+                                                                                class="mord mathnormal">d</span><span
+                                                                                class="mord accent"><span
+                                                                                    class="vlist-t vlist-t2"><span
+                                                                                        class="vlist-r"><span
+                                                                                            class="vlist"
+                                                                                            style="height:0.95256em;"><span
+                                                                                                style="top:-3em;"><span
+                                                                                                    class="pstrut"
+                                                                                                    style="height:3em;"></span><span
+                                                                                                    class="mord"><span
+                                                                                                        class="mord mathnormal"
+                                                                                                        style="margin-right:0.03588em;">ω</span><span
+                                                                                                        class="msupsub"><span
+                                                                                                            class="vlist-t vlist-t2"><span
+                                                                                                                class="vlist-r"><span
+                                                                                                                    class="vlist"
+                                                                                                                    style="height:0.32833099999999993em;"><span
+                                                                                                                        style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
+                                                                                                                            class="pstrut"
+                                                                                                                            style="height:2.7em;"></span><span
+                                                                                                                            class="sizing reset-size6 size3 mtight"><span
+                                                                                                                                class="mord mathnormal mtight"
+                                                                                                                                style="margin-right:0.13889em;">P</span></span></span></span><span
+                                                                                                                    class="vlist-s">​</span></span><span
+                                                                                                                class="vlist-r"><span
+                                                                                                                    class="vlist"
+                                                                                                                    style="height:0.15em;"><span></span></span></span></span></span></span></span><span
+                                                                                                class="svg-align"
+                                                                                                style="top:-3.43056em;"><span
+                                                                                                    class="pstrut"
+                                                                                                    style="height:3em;"></span><span
+                                                                                                    class="hide-tail"
+                                                                                                    style="height:0.522em;min-width:0.888em;"><svg
+                                                                                                        width='400em'
+                                                                                                        height='0.522em'
+                                                                                                        viewBox='0 0 400000 522'
+                                                                                                        preserveAspectRatio='xMaxYMin slice'>
+                                                                                                        <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
+-16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
+ 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
+ 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
+-40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
+-12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
+ 151.7 139 205zm0 0v40h399900v-40z' />
+                                                                                                    </svg></span></span></span><span
+                                                                                            class="vlist-s">​</span></span><span
+                                                                                        class="vlist-r"><span
+                                                                                            class="vlist"
+                                                                                            style="height:0.15em;"><span></span></span></span></span></span></span></span><span
+                                                                        style="top:-3.23em;"><span class="pstrut"
+                                                                            style="height:3em;"></span><span
+                                                                            class="frac-line"
+                                                                            style="border-bottom-width:0.04em;"></span></span><span
+                                                                        style="top:-3.677em;"><span class="pstrut"
+                                                                            style="height:3em;"></span><span
+                                                                            class="mord"><span
+                                                                                class="mord mathnormal">d</span><span
+                                                                                class="mord accent"><span
+                                                                                    class="vlist-t vlist-t2"><span
+                                                                                        class="vlist-r"><span
+                                                                                            class="vlist"
+                                                                                            style="height:0.95256em;"><span
+                                                                                                style="top:-3em;"><span
+                                                                                                    class="pstrut"
+                                                                                                    style="height:3em;"></span><span
+                                                                                                    class="mord"><span
+                                                                                                        class="mord mathnormal"
+                                                                                                        style="margin-right:0.03588em;">ω</span><span
+                                                                                                        class="msupsub"><span
+                                                                                                            class="vlist-t vlist-t2"><span
+                                                                                                                class="vlist-r"><span
+                                                                                                                    class="vlist"
+                                                                                                                    style="height:0.32833099999999993em;"><span
+                                                                                                                        style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
+                                                                                                                            class="pstrut"
+                                                                                                                            style="height:2.7em;"></span><span
+                                                                                                                            class="sizing reset-size6 size3 mtight"><span
+                                                                                                                                class="mord mathnormal mtight"
+                                                                                                                                style="margin-right:0.05764em;">S</span></span></span></span><span
+                                                                                                                    class="vlist-s">​</span></span><span
+                                                                                                                class="vlist-r"><span
+                                                                                                                    class="vlist"
+                                                                                                                    style="height:0.15em;"><span></span></span></span></span></span></span></span><span
+                                                                                                class="svg-align"
+                                                                                                style="top:-3.43056em;"><span
+                                                                                                    class="pstrut"
+                                                                                                    style="height:3em;"></span><span
+                                                                                                    class="hide-tail"
+                                                                                                    style="height:0.522em;min-width:0.888em;"><svg
+                                                                                                        width='400em'
+                                                                                                        height='0.522em'
+                                                                                                        viewBox='0 0 400000 522'
+                                                                                                        preserveAspectRatio='xMaxYMin slice'>
+                                                                                                        <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
+-16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
+ 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
+ 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
+-40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
+-12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
+ 151.7 139 205zm0 0v40h399900v-40z' />
+                                                                                                    </svg></span></span></span><span
+                                                                                            class="vlist-s">​</span></span><span
+                                                                                        class="vlist-r"><span
+                                                                                            class="vlist"
+                                                                                            style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span
+                                                                    class="vlist-s">​</span></span><span
+                                                                class="vlist-r"><span class="vlist"
+                                                                    style="height:0.99256em;"><span></span></span></span></span></span><span
+                                                        class="mclose nulldelimiter"></span></span></span></span><span
+                                            style="top:-3.912375em;"><span class="pstrut"
+                                                style="height:5em;"></span><span class="hide-tail"
+                                                style="min-width:1.02em;height:3.08em;"><svg width='400em'
+                                                    height='3.08em' viewBox='0 0 400000 3240'
+                                                    preserveAspectRatio='xMinYMin slice'>
+                                                    <path d='M473,2793
+c339.3,-1799.3,509.3,-2700,510,-2702 l0 -0
+c3.3,-7.3,9.3,-11,18,-11 H400000v40H1017.7
+s-90.5,478,-276.2,1466c-185.7,988,-279.5,1483,-281.5,1485c-2,6,-10,9,-24,9
+c-8,0,-12,-0.7,-12,-2c0,-1.3,-5.3,-32,-16,-92c-50.7,-293.3,-119.7,-693.3,-207,-1200
+c0,-1.3,-5.3,8.7,-16,30c-10.7,21.3,-21.3,42.7,-32,64s-16,33,-16,33s-26,-26,-26,-26
+s76,-153,76,-153s77,-151,77,-151c0.7,0.7,35.7,202,105,604c67.3,400.7,102,602.7,104,
+606zM1001 80h400000v40H1017.7z' />
+                                                </svg></span></span></span><span class="vlist-s">​</span></span><span
+                                    class="vlist-r"><span class="vlist"
+                                        style="height:1.087625em;"><span></span></span></span></span></span><span
+                            class="mclose">))</span></span></span></span></eq> to sample the filtered L value from the
+        distant radiance distribution to reduce the variance. The <eq><span class="katex"><span
+                    class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mi>d</mi>
+                                    <mover accent="true">
+                                        <msub>
+                                            <mi>ω</mi>
+                                            <mi>S</mi>
+                                        </msub>
+                                        <mo stretchy="true">→</mo>
+                                    </mover>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle d\overrightarrow{\omega_S}
+                            </annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1.10256em;vertical-align:-0.15em;"></span><span
+                            class="mord mathnormal">d</span><span class="mord accent"><span
+                                class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                        style="height:0.95256em;"><span style="top:-3em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="mord"><span
+                                                    class="mord mathnormal"
+                                                    style="margin-right:0.03588em;">ω</span><span class="msupsub"><span
+                                                        class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                                class="vlist"
+                                                                style="height:0.32833099999999993em;"><span
+                                                                    style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
+                                                                        class="pstrut"
+                                                                        style="height:2.7em;"></span><span
+                                                                        class="sizing reset-size6 size3 mtight"><span
+                                                                            class="mord mathnormal mtight"
+                                                                            style="margin-right:0.05764em;">S</span></span></span></span><span
+                                                                class="vlist-s">​</span></span><span
+                                                            class="vlist-r"><span class="vlist"
+                                                                style="height:0.15em;"><span></span></span></span></span></span></span></span><span
+                                            class="svg-align" style="top:-3.43056em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="hide-tail"
+                                                style="height:0.522em;min-width:0.888em;"><svg width='400em'
+                                                    height='0.522em' viewBox='0 0 400000 522'
+                                                    preserveAspectRatio='xMaxYMin slice'>
+                                                    <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
+-16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
+ 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
+ 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
+-40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
+-12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
+ 151.7 139 205zm0 0v40h399900v-40z' />
+                                                </svg></span></span></span><span class="vlist-s">​</span></span><span
+                                    class="vlist-r"><span class="vlist"
+                                        style="height:0.15em;"><span></span></span></span></span></span></span></span></span>
+        </eq> is the solid angle subtended by the sample, and we have <eq><span class="katex"><span
+                    class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mi>d</mi>
+                                    <mover accent="true">
+                                        <msub>
+                                            <mi>ω</mi>
+                                            <mi>S</mi>
+                                        </msub>
+                                        <mo stretchy="true">→</mo>
+                                    </mover>
+                                    <mo>=</mo>
+                                    <mfrac>
+                                        <mn>1</mn>
+                                        <mtext>N</mtext>
+                                    </mfrac>
+                                    <mo>⋅</mo>
+                                    <mfrac>
+                                        <mn>1</mn>
+                                        <mtext>PDF</mtext>
+                                    </mfrac>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle d\overrightarrow{\omega_S} =
+                                \frac{1}{\text{N}} \cdot \frac{1}{\text{PDF}}</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1.10256em;vertical-align:-0.15em;"></span><span
+                            class="mord mathnormal">d</span><span class="mord accent"><span
+                                class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                        style="height:0.95256em;"><span style="top:-3em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="mord"><span
+                                                    class="mord mathnormal"
+                                                    style="margin-right:0.03588em;">ω</span><span class="msupsub"><span
+                                                        class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                                class="vlist"
+                                                                style="height:0.32833099999999993em;"><span
+                                                                    style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
+                                                                        class="pstrut"
+                                                                        style="height:2.7em;"></span><span
+                                                                        class="sizing reset-size6 size3 mtight"><span
+                                                                            class="mord mathnormal mtight"
+                                                                            style="margin-right:0.05764em;">S</span></span></span></span><span
+                                                                class="vlist-s">​</span></span><span
+                                                            class="vlist-r"><span class="vlist"
+                                                                style="height:0.15em;"><span></span></span></span></span></span></span></span><span
+                                            class="svg-align" style="top:-3.43056em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="hide-tail"
+                                                style="height:0.522em;min-width:0.888em;"><svg width='400em'
+                                                    height='0.522em' viewBox='0 0 400000 522'
+                                                    preserveAspectRatio='xMaxYMin slice'>
+                                                    <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
+-16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
+ 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
+ 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
+-40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
+-12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
+ 151.7 139 205zm0 0v40h399900v-40z' />
+                                                </svg></span></span></span><span class="vlist-s">​</span></span><span
+                                    class="vlist-r"><span class="vlist"
+                                        style="height:0.15em;"><span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span><span
+                            class="mrel">=</span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+                            class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span
+                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord text"><span
+                                                            class="mord">N</span></span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">1</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span
+                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord text"><span
+                                                            class="mord">PDF</span></span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">1</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span></span></span></span></eq>. The <eq><span
+                class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mi>d</mi>
+                                    <mover accent="true">
+                                        <msub>
+                                            <mi>ω</mi>
+                                            <mi>P</mi>
+                                        </msub>
+                                        <mo stretchy="true">→</mo>
+                                    </mover>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle d\overrightarrow{\omega_P}
+                            </annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1.10256em;vertical-align:-0.15em;"></span><span
+                            class="mord mathnormal">d</span><span class="mord accent"><span
+                                class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                        style="height:0.95256em;"><span style="top:-3em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="mord"><span
+                                                    class="mord mathnormal"
+                                                    style="margin-right:0.03588em;">ω</span><span class="msupsub"><span
+                                                        class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                                class="vlist"
+                                                                style="height:0.32833099999999993em;"><span
+                                                                    style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
+                                                                        class="pstrut"
+                                                                        style="height:2.7em;"></span><span
+                                                                        class="sizing reset-size6 size3 mtight"><span
+                                                                            class="mord mathnormal mtight"
+                                                                            style="margin-right:0.13889em;">P</span></span></span></span><span
+                                                                class="vlist-s">​</span></span><span
+                                                            class="vlist-r"><span class="vlist"
+                                                                style="height:0.15em;"><span></span></span></span></span></span></span></span><span
+                                            class="svg-align" style="top:-3.43056em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="hide-tail"
+                                                style="height:0.522em;min-width:0.888em;"><svg width='400em'
+                                                    height='0.522em' viewBox='0 0 400000 522'
+                                                    preserveAspectRatio='xMaxYMin slice'>
+                                                    <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
+-16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
+ 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
+ 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
+-40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
+-12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
+ 151.7 139 205zm0 0v40h399900v-40z' />
+                                                </svg></span></span></span><span class="vlist-s">​</span></span><span
+                                    class="vlist-r"><span class="vlist"
+                                        style="height:0.15em;"><span></span></span></span></span></span></span></span></span>
+        </eq> is the solid angle subtended by a single texel of the zeroth mip-level of the texture, and by
+        &quot;Projection from Cube Maps&quot; of [Sloan 2008], we have <eq><span class="katex"><span
+                    class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mi>d</mi>
+                                    <mover accent="true">
+                                        <msub>
+                                            <mi>ω</mi>
+                                            <mi>P</mi>
+                                        </msub>
+                                        <mo stretchy="true">→</mo>
+                                    </mover>
+                                    <mo>=</mo>
+                                    <mfrac>
+                                        <mn>1</mn>
+                                        <mrow>
+                                            <mtext>cubesize_u</mtext>
+                                            <mo>⋅</mo>
+                                            <mtext>cubesize_v</mtext>
+                                        </mrow>
+                                    </mfrac>
+                                    <mo>⋅</mo>
+                                    <mfrac>
+                                        <mn>4</mn>
+                                        <mrow>
+                                            <msqrt>
+                                                <mrow>
+                                                    <msup>
+                                                        <mn>1</mn>
+                                                        <mn>2</mn>
+                                                    </msup>
+                                                    <mo>+</mo>
+                                                    <msup>
+                                                        <mi>u</mi>
+                                                        <mn>2</mn>
+                                                    </msup>
+                                                    <mo>+</mo>
+                                                    <msup>
+                                                        <mi>v</mi>
+                                                        <mn>2</mn>
+                                                    </msup>
+                                                </mrow>
+                                            </msqrt>
+                                            <mo>⋅</mo>
+                                            <mo stretchy="false">(</mo>
+                                            <msup>
+                                                <mn>1</mn>
+                                                <mn>2</mn>
+                                            </msup>
+                                            <mo>+</mo>
+                                            <msup>
+                                                <mi>u</mi>
+                                                <mn>2</mn>
+                                            </msup>
+                                            <mo>+</mo>
+                                            <msup>
+                                                <mi>v</mi>
+                                                <mn>2</mn>
+                                            </msup>
+                                            <mo stretchy="false">)</mo>
+                                        </mrow>
+                                    </mfrac>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle d\overrightarrow{\omega_P} =
+                                \frac{1}{\text{cubesize\_u} \cdot \text{cubesize\_v}} \cdot \frac{4}{\sqrt{1^2 + u^2
+                                +v^2} \cdot (1^2 + u^2 +v^2)}</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1.10256em;vertical-align:-0.15em;"></span><span
+                            class="mord mathnormal">d</span><span class="mord accent"><span
+                                class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                        style="height:0.95256em;"><span style="top:-3em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="mord"><span
+                                                    class="mord mathnormal"
+                                                    style="margin-right:0.03588em;">ω</span><span class="msupsub"><span
+                                                        class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                                class="vlist"
+                                                                style="height:0.32833099999999993em;"><span
+                                                                    style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
+                                                                        class="pstrut"
+                                                                        style="height:2.7em;"></span><span
+                                                                        class="sizing reset-size6 size3 mtight"><span
+                                                                            class="mord mathnormal mtight"
+                                                                            style="margin-right:0.13889em;">P</span></span></span></span><span
+                                                                class="vlist-s">​</span></span><span
+                                                            class="vlist-r"><span class="vlist"
+                                                                style="height:0.15em;"><span></span></span></span></span></span></span></span><span
+                                            class="svg-align" style="top:-3.43056em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="hide-tail"
+                                                style="height:0.522em;min-width:0.888em;"><svg width='400em'
+                                                    height='0.522em' viewBox='0 0 400000 522'
+                                                    preserveAspectRatio='xMaxYMin slice'>
+                                                    <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
+-16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
+ 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
+ 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
+-40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
+-12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
+ 151.7 139 205zm0 0v40h399900v-40z' />
+                                                </svg></span></span></span><span class="vlist-s">​</span></span><span
+                                    class="vlist-r"><span class="vlist"
+                                        style="height:0.15em;"><span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span><span
+                            class="mrel">=</span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+                            class="strut" style="height:2.31744em;vertical-align:-0.996em;"></span><span
+                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord text"><span
+                                                            class="mord">cubesize_u</span></span><span class="mspace"
+                                                        style="margin-right:0.2222222222222222em;"></span><span
+                                                        class="mbin">⋅</span><span class="mspace"
+                                                        style="margin-right:0.2222222222222222em;"></span><span
+                                                        class="mord text"><span
+                                                            class="mord">cubesize_v</span></span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">1</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.996em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut"
+                            style="height:2.374829em;vertical-align:-1.0533890000000001em;"></span><span
+                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.32144em;"><span style="top:-2.196611em;"><span
+                                                    class="pstrut" style="height:3em;"></span><span class="mord"><span
+                                                        class="mord sqrt"><span class="vlist-t vlist-t2"><span
+                                                                class="vlist-r"><span class="vlist"
+                                                                    style="height:0.913389em;"><span class="svg-align"
+                                                                        style="top:-3em;"><span class="pstrut"
+                                                                            style="height:3em;"></span><span
+                                                                            class="mord"
+                                                                            style="padding-left:0.833em;"><span
+                                                                                class="mord"><span
+                                                                                    class="mord">1</span><span
+                                                                                    class="msupsub"><span
+                                                                                        class="vlist-t"><span
+                                                                                            class="vlist-r"><span
+                                                                                                class="vlist"
+                                                                                                style="height:0.740108em;"><span
+                                                                                                    style="top:-2.9890000000000003em;margin-right:0.05em;"><span
+                                                                                                        class="pstrut"
+                                                                                                        style="height:2.7em;"></span><span
+                                                                                                        class="sizing reset-size6 size3 mtight"><span
+                                                                                                            class="mord mtight">2</span></span></span></span></span></span></span></span><span
+                                                                                class="mspace"
+                                                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                                                class="mbin">+</span><span
+                                                                                class="mspace"
+                                                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                                                class="mord"><span
+                                                                                    class="mord mathnormal">u</span><span
+                                                                                    class="msupsub"><span
+                                                                                        class="vlist-t"><span
+                                                                                            class="vlist-r"><span
+                                                                                                class="vlist"
+                                                                                                style="height:0.740108em;"><span
+                                                                                                    style="top:-2.9890000000000003em;margin-right:0.05em;"><span
+                                                                                                        class="pstrut"
+                                                                                                        style="height:2.7em;"></span><span
+                                                                                                        class="sizing reset-size6 size3 mtight"><span
+                                                                                                            class="mord mtight">2</span></span></span></span></span></span></span></span><span
+                                                                                class="mspace"
+                                                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                                                class="mbin">+</span><span
+                                                                                class="mspace"
+                                                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                                                class="mord"><span
+                                                                                    class="mord mathnormal"
+                                                                                    style="margin-right:0.03588em;">v</span><span
+                                                                                    class="msupsub"><span
+                                                                                        class="vlist-t"><span
+                                                                                            class="vlist-r"><span
+                                                                                                class="vlist"
+                                                                                                style="height:0.740108em;"><span
+                                                                                                    style="top:-2.9890000000000003em;margin-right:0.05em;"><span
+                                                                                                        class="pstrut"
+                                                                                                        style="height:2.7em;"></span><span
+                                                                                                        class="sizing reset-size6 size3 mtight"><span
+                                                                                                            class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span
+                                                                        style="top:-2.873389em;"><span class="pstrut"
+                                                                            style="height:3em;"></span><span
+                                                                            class="hide-tail"
+                                                                            style="min-width:0.853em;height:1.08em;"><svg
+                                                                                width='400em' height='1.08em'
+                                                                                viewBox='0 0 400000 1080'
+                                                                                preserveAspectRatio='xMinYMin slice'>
+                                                                                <path d='M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z' />
+                                                                            </svg></span></span></span><span
+                                                                    class="vlist-s">​</span></span><span
+                                                                class="vlist-r"><span class="vlist"
+                                                                    style="height:0.12661100000000003em;"><span></span></span></span></span></span><span
+                                                        class="mspace"
+                                                        style="margin-right:0.2222222222222222em;"></span><span
+                                                        class="mbin">⋅</span><span class="mspace"
+                                                        style="margin-right:0.2222222222222222em;"></span><span
+                                                        class="mopen">(</span><span class="mord"><span
+                                                            class="mord">1</span><span class="msupsub"><span
+                                                                class="vlist-t"><span class="vlist-r"><span
+                                                                        class="vlist" style="height:0.740108em;"><span
+                                                                            style="top:-2.9890000000000003em;margin-right:0.05em;"><span
+                                                                                class="pstrut"
+                                                                                style="height:2.7em;"></span><span
+                                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                                    class="mord mtight">2</span></span></span></span></span></span></span></span><span
+                                                        class="mspace"
+                                                        style="margin-right:0.2222222222222222em;"></span><span
+                                                        class="mbin">+</span><span class="mspace"
+                                                        style="margin-right:0.2222222222222222em;"></span><span
+                                                        class="mord"><span class="mord mathnormal">u</span><span
+                                                            class="msupsub"><span class="vlist-t"><span
+                                                                    class="vlist-r"><span class="vlist"
+                                                                        style="height:0.740108em;"><span
+                                                                            style="top:-2.9890000000000003em;margin-right:0.05em;"><span
+                                                                                class="pstrut"
+                                                                                style="height:2.7em;"></span><span
+                                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                                    class="mord mtight">2</span></span></span></span></span></span></span></span><span
+                                                        class="mspace"
+                                                        style="margin-right:0.2222222222222222em;"></span><span
+                                                        class="mbin">+</span><span class="mspace"
+                                                        style="margin-right:0.2222222222222222em;"></span><span
+                                                        class="mord"><span class="mord mathnormal"
+                                                            style="margin-right:0.03588em;">v</span><span
+                                                            class="msupsub"><span class="vlist-t"><span
+                                                                    class="vlist-r"><span class="vlist"
+                                                                        style="height:0.740108em;"><span
+                                                                            style="top:-2.9890000000000003em;margin-right:0.05em;"><span
+                                                                                class="pstrut"
+                                                                                style="height:2.7em;"></span><span
+                                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                                    class="mord mtight">2</span></span></span></span></span></span></span></span><span
+                                                        class="mclose">)</span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">4</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:1.0533890000000001em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span></span></span></span></eq>.</p>
+    <p dir="auto">The <eq><span class="katex"><span class="katex-mathml"><math
+                        xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mi>d</mi>
+                                    <mover accent="true">
+                                        <msub>
+                                            <mi>ω</mi>
+                                            <mi>S</mi>
+                                        </msub>
+                                        <mo stretchy="true">→</mo>
+                                    </mover>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle d\overrightarrow{\omega_S}
+                            </annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1.10256em;vertical-align:-0.15em;"></span><span
+                            class="mord mathnormal">d</span><span class="mord accent"><span
+                                class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                        style="height:0.95256em;"><span style="top:-3em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="mord"><span
+                                                    class="mord mathnormal"
+                                                    style="margin-right:0.03588em;">ω</span><span class="msupsub"><span
+                                                        class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                                class="vlist"
+                                                                style="height:0.32833099999999993em;"><span
+                                                                    style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
+                                                                        class="pstrut"
+                                                                        style="height:2.7em;"></span><span
+                                                                        class="sizing reset-size6 size3 mtight"><span
+                                                                            class="mord mathnormal mtight"
+                                                                            style="margin-right:0.05764em;">S</span></span></span></span><span
+                                                                class="vlist-s">​</span></span><span
+                                                            class="vlist-r"><span class="vlist"
+                                                                style="height:0.15em;"><span></span></span></span></span></span></span></span><span
+                                            class="svg-align" style="top:-3.43056em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="hide-tail"
+                                                style="height:0.522em;min-width:0.888em;"><svg width='400em'
+                                                    height='0.522em' viewBox='0 0 400000 522'
+                                                    preserveAspectRatio='xMaxYMin slice'>
+                                                    <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
+-16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
+ 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
+ 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
+-40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
+-12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
+ 151.7 139 205zm0 0v40h399900v-40z' />
+                                                </svg></span></span></span><span class="vlist-s">​</span></span><span
+                                    class="vlist-r"><span class="vlist"
+                                        style="height:0.15em;"><span></span></span></span></span></span></span></span></span>
+        </eq> is calculated by <a
+            href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/ReflectionEnvironmentShaders.usf#L414">SolidAngleSample</a>
+        in UE4 and <a
+            href="https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.core/ShaderLibrary/ImageBasedLighting.hlsl#L500">omegaS</a>
+        in Unity3D. And the <eq><span class="katex"><span class="katex-mathml"><math
+                        xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mi>d</mi>
+                                    <mover accent="true">
+                                        <msub>
+                                            <mi>ω</mi>
+                                            <mi>P</mi>
+                                        </msub>
+                                        <mo stretchy="true">→</mo>
+                                    </mover>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle d\overrightarrow{\omega_P}
+                            </annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1.10256em;vertical-align:-0.15em;"></span><span
+                            class="mord mathnormal">d</span><span class="mord accent"><span
+                                class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                        style="height:0.95256em;"><span style="top:-3em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="mord"><span
+                                                    class="mord mathnormal"
+                                                    style="margin-right:0.03588em;">ω</span><span class="msupsub"><span
+                                                        class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                                class="vlist"
+                                                                style="height:0.32833099999999993em;"><span
+                                                                    style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
+                                                                        class="pstrut"
+                                                                        style="height:2.7em;"></span><span
+                                                                        class="sizing reset-size6 size3 mtight"><span
+                                                                            class="mord mathnormal mtight"
+                                                                            style="margin-right:0.13889em;">P</span></span></span></span><span
+                                                                class="vlist-s">​</span></span><span
+                                                            class="vlist-r"><span class="vlist"
+                                                                style="height:0.15em;"><span></span></span></span></span></span></span></span><span
+                                            class="svg-align" style="top:-3.43056em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="hide-tail"
+                                                style="height:0.522em;min-width:0.888em;"><svg width='400em'
+                                                    height='0.522em' viewBox='0 0 400000 522'
+                                                    preserveAspectRatio='xMaxYMin slice'>
+                                                    <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
+-16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
+ 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
+ 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
+-40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
+-12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
+ 151.7 139 205zm0 0v40h399900v-40z' />
+                                                </svg></span></span></span><span class="vlist-s">​</span></span><span
+                                    class="vlist-r"><span class="vlist"
+                                        style="height:0.15em;"><span></span></span></span></span></span></span></span></span>
+        </eq> is calculated by <a
+            href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/ReflectionEnvironmentShaders.usf#L355">SolidAngleTexel</a>
+        in UE4 and <a
+            href="https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.core/ShaderLibrary/ImageBasedLighting.hlsl#L506">invOmegaP</a>
+        in Unity3D.</p>
     <h2 dir="auto" id="references">References</h2>
     <p dir="auto">[Ramamoorthi 2001 A] <a href="https://graphics.stanford.edu/papers/invlamb/">Ravi Ramamoorthi, Pat
             Hanrahan. &quot;On the Relationship between Radiance and Irradiance: Determining the illumination from
