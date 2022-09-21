@@ -12,7 +12,7 @@
 <body class="markdown-body">
     <h1 dir="auto" id="projector-functions">Projector Functions</h1>
     <p dir="auto">Since the sphere is a 2-manifold rather than a 3-manifold, a bijection can be formed between the
-        points on the sphere and the coordinates of the 2D texture.</p>
+        points on the sphere and the 2D texture coordinates.</p>
     <h2 dir="auto" id="1-cube-map">1. Cube Map</h2>
     <p dir="auto">Actually, the texel of the cube map is NOT uniform. This means that the solid angle subtended by each
         texel of the cube map is NOT the same. Let u and v be the texcoord of the cube map. By &quot;Equation
@@ -829,9 +829,6 @@ M834 80h400000v40h-400000z' />
     <p dir="auto">Real-Time Rendering Fourth Edition / 10.4.2 Sphere Map</p>
     <p dir="auto">// Cons: NOT <strong>uniform</strong> ???</p>
     <h2 dir="auto" id="3-dual-paraboloid-map">3. Dual Paraboloid Map</h2>
-    <p dir="auto">By &quot;10.4.4 Other Projections&quot; of Real-Time Rendering Fourth Edition, the texel of the dual
-        paraboloid map is more uniform than the cube map. By &quot;20.4.1 Mapping and Distortion&quot; of [Colbert
-        2007], the solid angle subtended by the texel of the dual paraboloid map is TODO</p>
     <h3 dir="auto" id="3-1-definition">3-1. Definition</h3>
     <p dir="auto">Let the equation of the <strong>(elliptic) paraboloid</strong> be <eq><span class="katex"><span
                     class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -1866,7 +1863,7 @@ M834 80h400000v40h-400000z' />
                                     class="vlist-r"><span class="vlist"
                                         style="height:0.31em;"><span></span></span></span></span></span></span></span></span>
         </eq> be one of the directions in the domain of the spherical function. The goal of the paraboloid mapping is to
-        transform this direction to the coordinate <eq><span class="katex"><span class="katex-mathml"><math
+        transform this direction to the 2D texture coordinate <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
@@ -1886,7 +1883,7 @@ M834 80h400000v40h-400000z' />
                             class="mord text"><span class="mord">x_2d</span></span><span class="mpunct">,</span><span
                             class="mspace" style="margin-right:0.16666666666666666em;"></span><span
                             class="mord text"><span class="mord">y_2d</span></span><span
-                            class="mclose">)</span></span></span></span></eq> of the 2D texture.<br>
+                            class="mclose">)</span></span></span></span></eq>.<br>
         Proof:<br>
         <img src="Projector-Functions-Dual-Paraboloid-Map-1.png" alt=""
             data-src="Projector-Functions-Dual-Paraboloid-Map-1.png"><br>
@@ -3045,7 +3042,126 @@ M834 80h400000v40h-400000z' />
                             class="mord text"><span class="mord">y_norm</span></span><span
                             class="mclose">)</span></span></span></span></eq>.
     </p>
-    <h3 dir="auto" id="3-2-perspective-correct-interpolation">3-2. Perspective-Correct Interpolation</h3>
+    <p dir="auto">// z &lt; 0</p>
+    <h3 dir="auto" id="3-2-texel-solid-angle">3-2. Texel Solid Angle</h3>
+    <p dir="auto">By &quot;10.4.4 Other Projections&quot; of Real-Time Rendering Fourth Edition, the texel of the dual
+        paraboloid map is more uniform than the cube map. By &quot;20.4.1 Mapping and Distortion&quot; of [Colbert
+        2007], the solid angle subtended by the texel of the dual paraboloid map is <eq><span class="katex"><span
+                    class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mi>d</mi>
+                                    <mi>ω</mi>
+                                    <mo>=</mo>
+                                    <mi>π</mi>
+                                    <msup>
+                                        <mrow>
+                                            <mo stretchy="false">(</mo>
+                                            <mi mathvariant="normal">∣</mi>
+                                            <mi>z</mi>
+                                            <mi mathvariant="normal">∣</mi>
+                                            <mo>+</mo>
+                                            <mn>1</mn>
+                                            <mo stretchy="false">)</mo>
+                                        </mrow>
+                                        <mn>2</mn>
+                                    </msup>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle d\omega = \pi{(|z| + 1)}^2
+                            </annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.69444em;vertical-align:0em;"></span><span
+                            class="mord mathnormal">d</span><span class="mord mathnormal"
+                            style="margin-right:0.03588em;">ω</span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                        class="base"><span class="strut" style="height:1.204008em;vertical-align:-0.25em;"></span><span
+                            class="mord mathnormal" style="margin-right:0.03588em;">π</span><span class="mord"><span
+                                class="mord"><span class="mopen">(</span><span class="mord">∣</span><span
+                                    class="mord mathnormal" style="margin-right:0.04398em;">z</span><span
+                                    class="mord">∣</span><span class="mspace"
+                                    style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span
+                                    class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+                                    class="mord">1</span><span class="mclose">)</span></span><span class="msupsub"><span
+                                    class="vlist-t"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.954008em;"><span
+                                                style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut"
+                                                    style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span>
+        </eq>.</p>
+    <pre><code class="code-line language-MATLAB" dir="auto"><div><span class="hljs-comment">% here is the MATLAB code which verifies the meaning of &quot;d_omega = (abs(z) + 1)*(abs(z) + 1)&quot;.</span>
+
+<span class="hljs-comment">% &quot;13.6.2 Sampling a Unit Disk&quot; of [PBR Book](https://pbr-book.org/).</span>
+xi_1_size = <span class="hljs-number">4096.0</span>;
+xi_2_size = <span class="hljs-number">4096.0</span>;
+[ xi_1, xi_2 ] = <span class="hljs-built_in">meshgrid</span>(<span class="hljs-built_in">linspace</span>(<span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>, xi_1_size), <span class="hljs-built_in">linspace</span>(<span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>, xi_2_size));
+r = <span class="hljs-built_in">sqrt</span>(xi_1);
+theta = <span class="hljs-number">2.0</span> .* <span class="hljs-built_in">pi</span> .* xi_2;
+u = r .* <span class="hljs-built_in">cos</span>(theta);
+v = r .* <span class="hljs-built_in">sin</span>(theta);
+
+<span class="hljs-comment">% paraboloid</span>
+x = u;
+y = v;
+z = <span class="hljs-number">0.5</span> - <span class="hljs-number">0.5</span> .* (x .* x + y .* y);
+
+<span class="hljs-comment">% sphere</span>
+<span class="hljs-built_in">length</span> = <span class="hljs-built_in">sqrt</span>(x .* x + y .* y + z .* z);
+x = x ./ <span class="hljs-built_in">length</span>;
+y = y ./ <span class="hljs-built_in">length</span>;
+z = z ./ <span class="hljs-built_in">length</span>;
+
+<span class="hljs-comment">% &quot;20.4.1 Mapping and Distortion&quot; of [GPU Gems 3](https://developer.nvidia.com/gpugems/gpugems3).</span>
+d_omega = <span class="hljs-built_in">pi</span> .* (z + <span class="hljs-number">1.0</span>) .* (z + <span class="hljs-number">1.0</span>);
+
+<span class="hljs-comment">% &quot;numerical_omega&quot; and &quot;groundtruth_omega&quot; are expected to be the same.</span>
+sum_numerator = sum(sum(d_omega));
+sum_denominator = xi_1_size .* xi_2_size;
+numerical_omega = sum_numerator ./ sum_denominator;
+
+groundtruth_omega = <span class="hljs-number">2.0</span> .* <span class="hljs-built_in">pi</span>;
+
+<span class="hljs-comment">% output: &quot;numerical:6.283569 groundtruth:6.283185&quot;.</span>
+printf(<span class="hljs-string">&quot;numerical:%f groundtruth:%f\n&quot;</span>, numerical_omega, groundtruth_omega);
+</div></code></pre>
+    <pre><code class="code-line language-MATLAB" dir="auto"><div><span class="hljs-comment">% here is the MATLAB code which verifies the meaning of &quot;fWt = 4/(sqrt(fTmp)*fTmp)&quot;.</span>
+
+<span class="hljs-comment">% &quot;13.3.2 The Rejection Method&quot; of [PBR Book](https://pbr-book.org/)</span>
+u_size = <span class="hljs-number">4096.0</span>;
+v_size = <span class="hljs-number">4096.0</span>;
+[ u, v ] = <span class="hljs-built_in">meshgrid</span>(<span class="hljs-built_in">linspace</span>(<span class="hljs-number">-1.0</span>, <span class="hljs-number">1.0</span>, u_size), <span class="hljs-built_in">linspace</span>(<span class="hljs-number">-1.0</span>, <span class="hljs-number">1.0</span>, v_size));
+r_2 = u .* u + v.* v;
+chi = cast (r_2 &lt; <span class="hljs-number">1.0</span>, class (r_2));
+
+<span class="hljs-comment">% paraboloid</span>
+x = u;
+y = v;
+z = <span class="hljs-number">0.5</span> - <span class="hljs-number">0.5</span> .* (x .* x + y .* y);
+
+<span class="hljs-comment">% sphere</span>
+<span class="hljs-built_in">length</span> = <span class="hljs-built_in">sqrt</span>(x .* x + y .* y + z .* z);
+x = x ./ <span class="hljs-built_in">length</span>;
+y = y ./ <span class="hljs-built_in">length</span>;
+z = z ./ <span class="hljs-built_in">length</span>;
+
+<span class="hljs-comment">% &quot;20.4.1 Mapping and Distortion&quot; of [GPU Gems 3](https://developer.nvidia.com/gpugems/gpugems3)  </span>
+d_omega = <span class="hljs-built_in">pi</span> * (z + <span class="hljs-number">1.0</span>) .* (z + <span class="hljs-number">1.0</span>);
+
+<span class="hljs-comment">% &quot;numerical_omega&quot; and &quot;groundtruth_omega&quot; are expected to be the same.</span>
+sum_numerator = sum(sum(chi .* d_omega));
+sum_denominator = sum(sum(chi .* <span class="hljs-number">1.0</span>));
+numerical_omega = sum_numerator ./ sum_denominator;
+
+groundtruth_omega = <span class="hljs-number">2.0</span> .* <span class="hljs-built_in">pi</span>;
+
+<span class="hljs-comment">% output: &quot;numerical:6.283235 groundtruth:6.283185&quot;.</span>
+printf(<span class="hljs-string">&quot;numerical:%f groundtruth:%f\n&quot;</span>, numerical_omega, groundtruth_omega);
+</div></code></pre>
+    <h3 dir="auto" id="3-3-perspective-correct-interpolation">3-3. Perspective-Correct Interpolation</h3>
     <p dir="auto"><img src="Projector-Functions-Dual-Paraboloid-Map-2.png" alt=""
             data-src="Projector-Functions-Dual-Paraboloid-Map-2.png"><br>
         <img src="Projector-Functions-Dual-Paraboloid-Map-3.png" alt=""
