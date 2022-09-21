@@ -24,7 +24,7 @@ For example, let $\displaystyle y = 0$, we have the intersection of the parabolo
 And the parabola $\displaystyle z = - \frac{1}{2} x^2$ can be written as $\displaystyle x^2 = -2z$. Compared to the standard equation $\displaystyle x^2 = -2pz$, we have **semi-latus rectum** $\displaystyle p = 1$. This means that $\displaystyle z = - \frac{1}{2} x^2$ is the parabola of which the focus is the $\displaystyle (0, 0, -\frac{p}{2}) = (0, 0, -\frac{1}{2})$, the vertex is the origin and the directrix is $\displaystyle z = \frac{p}{2} = \frac{1}{2}$.  
 And we translate parabola $\displaystyle z = - \frac{1}{2} x^2$ by $\displaystyle \frac{1}{2}$ units in the positive Z direction to obtain $\displaystyle z = \frac{1}{2} - \frac{1}{2} x^2$ of which the focus is the origin $\displaystyle (0, 0, -\frac{p}{2} + \frac{1}{2}) = (0, 0, 0)$, the vertex is $\displaystyle (0, 0, 0 + \frac{1}{2}) = (0, 0, \frac{1}{2})$ and the directrix is $\displaystyle z = \frac{1}{2} + \frac{1}{2} = 1$.  
 
-Let $\displaystyle \overrightarrow{(\text{x\_norm}, \text{y\_norm}, \text{z\_norm})}$ be one of the directions in the domain of the spherical function. The goal of the paraboloid mapping is to transform this direction to the coordinate of the 2D texture.  
+Let $\displaystyle \overrightarrow{(\text{x\_norm}, \text{y\_norm}, \text{z\_norm})}$ be one of the directions in the domain of the spherical function. The goal of the paraboloid mapping is to transform this direction to the coordinate $\displaystyle (\text{x\_2d}, \text{y\_2d})$ of the 2D texture.  
 Proof:  
 ![](Projector-Functions-Dual-Paraboloid-Map-1.png)  
 Let the ray from focus F with direction $\displaystyle \overrightarrow{(\text{x\_norm}, \text{y\_norm}, \text{z\_norm})}$ intersect the paraboloid at point P. Evidently, the unit vector in the direction of $\displaystyle \overrightarrow{FP}$ is $\displaystyle \overrightarrow{(\text{x\_norm}, \text{y\_norm}, \text{z\_norm})}$.  
@@ -49,6 +49,8 @@ Real-Time Rendering Fourth Edition / 10.4.4 Other Projections
 ## 4\. Applications  
 
 ### 4-1\. Point Light Shadow Mapping  
+
+// TODO  
 
 ### 4-2\. Normal Representation  
 
