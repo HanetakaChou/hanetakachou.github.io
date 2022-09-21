@@ -825,6 +825,27 @@ M834 80h400000v40h-400000z' />
         in DirectXMath and <a
             href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/ReflectionEnvironmentShaders.usf#L448">DiffuseIrradianceCopyPS</a>
         in UE4.</p>
+    <pre><code class="code-line language-MATLAB" dir="auto"><div><span class="hljs-comment">% here is the MATLAB code which verifies the meaning of &quot;fWt = 4/(sqrt(fTmp)*fTmp)&quot;.</span>
+
+<span class="hljs-comment">% retrieved by &quot;textureSize(GLSL)&quot; or &quot;GetDimensions(HLSL)&quot;.</span>
+cube_size_u = <span class="hljs-number">4096.0</span>;
+cube_size_v = <span class="hljs-number">4096.0</span>;
+
+[ u, v ] = <span class="hljs-built_in">meshgrid</span>(<span class="hljs-built_in">linspace</span>(<span class="hljs-number">-1.0</span>, <span class="hljs-number">1.0</span>, cube_size_u), <span class="hljs-built_in">linspace</span>(<span class="hljs-number">-1.0</span>, <span class="hljs-number">1.0</span>, cube_size_v));
+
+<span class="hljs-comment">% the common divisor &quot;1/(cube_size_u*cube_size_v)&quot; can be reduced, and thus is NOT calculated in the &quot;fWt = 4/(sqrt(fTmp)*fTmp)&quot;.</span>
+d_a = (<span class="hljs-number">1.0</span> - (<span class="hljs-number">-1.0</span>)) .* (<span class="hljs-number">1.0</span> - (<span class="hljs-number">-1.0</span>)) ./ cube_size_u ./ cube_size_v;
+r_2 = <span class="hljs-number">1.0</span> .* <span class="hljs-number">1.0</span> + u .* u + v .* v;
+cos_theta = <span class="hljs-number">1.0</span> ./ <span class="hljs-built_in">sqrt</span>(r_2);
+d_omega = d_a .* cos_theta ./ r_2;
+
+<span class="hljs-comment">% &quot;numerical_omega&quot; and &quot;groundtruth_omega&quot; are expected to be the same.</span>
+numerical_omega = sum(sum(d_omega));
+groundtruth_omega = <span class="hljs-number">4.0</span> .* <span class="hljs-built_in">pi</span> .* <span class="hljs-number">1.0</span> .* <span class="hljs-number">1.0</span> / <span class="hljs-number">6.0</span>;
+
+<span class="hljs-comment">% output: &quot;numerical:2.093936 groundtruth:2.094395&quot;.</span>
+printf(<span class="hljs-string">&quot;numerical:%f groundtruth:%f\n&quot;</span>, numerical_omega, groundtruth_omega);
+</div></code></pre>
     <h2 dir="auto" id="2-sphere-map">2. Sphere Map</h2>
     <p dir="auto">Real-Time Rendering Fourth Edition / 10.4.2 Sphere Map</p>
     <p dir="auto">// Cons: NOT <strong>uniform</strong> ???</p>
