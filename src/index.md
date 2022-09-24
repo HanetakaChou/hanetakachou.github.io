@@ -33,7 +33,7 @@ You should have received a copy of the GNU Lesser General Public License along w
 ### Lighting  
 - Radiometric and Photometric quantities [Documentation](Image-Synthesis/Lighting/Radiometric-and-Photometric-quantities.html)  
 - BRDF [Documentation](Image-Synthesis/Lighting/BRDF.html)  
-- Environment Lighting [Documentation](Image-Synthesis/Lighting/Environment-Lighting.html)  
+- Environment Lighting [Documentation](Image-Synthesis/Lighting/Environment-Lighting.html) [Code](https://github.com/YuqiaoZhang/Environment-Lighting)  
 - LTC [Documentation](Image-Synthesis/Lighting/LTC.html) [Code](https://github.com/YuqiaoZhang/LTC)  
 - Skin [Documentation](Image-Synthesis/Lighting/Skin.html) [Code](https://github.com/YuqiaoZhang/Burley-SSS)  
 - OIT [Documentation](Image-Synthesis/Lighting/OIT.html) [Code-Stochastic-Transparency](https://github.com/YuqiaoZhang/StochasticTransparency) [Code-MLAB](https://github.com/YuqiaoZhang/MultiLayerAlphaBlending) [Code-WBOIT](https://github.com/YuqiaoZhang/WeightedBlendedOIT)  
