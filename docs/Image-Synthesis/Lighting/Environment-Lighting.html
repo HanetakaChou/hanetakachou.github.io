@@ -10144,7 +10144,7 @@ M834 80h400000v40h-400000z' />
                                         style="height:0.15em;"><span></span></span></span></span></span></span></span></span>
         </eq>.</p>
     <h3 dir="auto" id="2-1-monte-carlo-integration">2-1. Monte Carlo Integration</h3>
-    <h4 dir="auto" id="2-1-1-pdf">2-1-1. PDF</h4>
+    <h4 dir="auto" id="2-1-1-pdf---ndf">2-1-1. PDF - NDF</h4>
     <p dir="auto">By &quot;Figure 6&quot; of [Walter 2007] and &quot;Figure 14.4&quot; of <a
             href="https://pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/Sampling_Reflection_Functions#MicrofacetBxDFs">PBR
             Book</a>, we have the relationship between <eq><span class="katex"><span class="katex-mathml"><math
@@ -11678,7 +11678,7 @@ M834 80h400000v40h-400000z' />
                                     class="vlist-r"><span class="vlist"
                                         style="height:0.15em;"><span></span></span></span></span></span></span></span></span>
         </eq> is NOT normalized.</p>
-    <p dir="auto">By &quot;Figure 8.15&quot; of <a
+    <p dir="auto">By &quot;Equation (9)&quot; of [Heitz 2014] and &quot;Figure 8.15&quot; of <a
             href="https://pbr-book.org/3ed-2018/Reflection_Models/Microfacet_Models#MicrofacetDistributionFunctions">PBR
             Book</a>, we have <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
@@ -12609,37 +12609,31 @@ M834 80h400000v40h-400000z' />
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:1.09256em;"><span></span></span></span></span></span><span
                                 class="mclose nulldelimiter"></span></span></span></span></span></eq>.</p>
-    <p dir="auto"><strong>TODO: Although this is literally the PDF used by UE4, the VNDF by [Heitz 2018] is a better
-            alternative to be used as the PDF.</strong></p>
-    <p dir="auto">By &quot;Equation (13.3)&quot; of <a
-            href="https://pbr-book.org/3ed-2018/Monte_Carlo_Integration/The_Monte_Carlo_Estimator">PBR Book</a>, we have
-        <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <h4 dir="auto" id="2-1-2-pdf---vndf">2-1-2. PDF - VNDF</h4>
+    <p dir="auto">Genuinely, although the NDF is the PDF used by UE4, the VNDF by [Heitz 2018] is the better
+        alternative.</p>
+    <p dir="auto">By &quot;Equation (14)&quot; of [Heitz 2014] and &quot;Equation (8.12)&quot; of <a
+            href="https://pbr-book.org/3ed-2018/Reflection_Models/Microfacet_Models#MaskingandShadowing">PBR Book</a>,
+        we have <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
                                 <mstyle scriptlevel="0" displaystyle="true">
-                                    <mi mathvariant="normal">R</mi>
+                                    <msub>
+                                        <mo>∫</mo>
+                                        <mi mathvariant="normal">Ω</mi>
+                                    </msub>
+                                    <mi mathvariant="normal">
+                                        <msub>
+                                            <mi mathvariant="normal">G</mi>
+                                            <mn>1</mn>
+                                        </msub>
+                                    </mi>
                                     <mo>⁡</mo>
                                     <mo stretchy="false">(</mo>
                                     <mover accent="true">
                                         <msub>
                                             <mi>ω</mi>
                                             <mi>V</mi>
-                                        </msub>
-                                        <mo stretchy="true">→</mo>
-                                    </mover>
-                                    <mo stretchy="false">)</mo>
-                                    <mo>=</mo>
-                                    <msub>
-                                        <mo>∫</mo>
-                                        <mi mathvariant="normal">Ω</mi>
-                                    </msub>
-                                    <mi mathvariant="normal">f</mi>
-                                    <mo>⁡</mo>
-                                    <mo stretchy="false">(</mo>
-                                    <mover accent="true">
-                                        <msub>
-                                            <mi>ω</mi>
-                                            <mi>L</mi>
                                         </msub>
                                         <mo stretchy="true">→</mo>
                                     </mover>
@@ -12647,149 +12641,67 @@ M834 80h400000v40h-400000z' />
                                     <mover accent="true">
                                         <msub>
                                             <mi>ω</mi>
-                                            <mi>V</mi>
+                                            <mi>H</mi>
                                         </msub>
                                         <mo stretchy="true">→</mo>
                                     </mover>
                                     <mo stretchy="false">)</mo>
                                     <mo stretchy="false">(</mo>
-                                    <mi>cos</mi>
-                                    <mo>⁡</mo>
-                                    <msub>
-                                        <mi>θ</mi>
-                                        <mi>L</mi>
-                                    </msub>
+                                    <mover accent="true">
+                                        <msub>
+                                            <mi>ω</mi>
+                                            <mi>V</mi>
+                                        </msub>
+                                        <mo stretchy="true">→</mo>
+                                    </mover>
+                                    <mo>⋅</mo>
+                                    <mover accent="true">
+                                        <msub>
+                                            <mi>ω</mi>
+                                            <mi>H</mi>
+                                        </msub>
+                                        <mo stretchy="true">→</mo>
+                                    </mover>
                                     <msup>
                                         <mo stretchy="false">)</mo>
                                         <mo>+</mo>
                                     </msup>
+                                    <mi mathvariant="normal">D</mi>
+                                    <mo>⁡</mo>
+                                    <mo stretchy="false">(</mo>
+                                    <mover accent="true">
+                                        <msub>
+                                            <mi>ω</mi>
+                                            <mi>H</mi>
+                                        </msub>
+                                        <mo stretchy="true">→</mo>
+                                    </mover>
+                                    <mo stretchy="false">)</mo>
                                     <mtext> </mtext>
                                     <mi>d</mi>
                                     <mover accent="true">
                                         <msub>
                                             <mi>ω</mi>
-                                            <mi>L</mi>
+                                            <mi>H</mi>
                                         </msub>
                                         <mo stretchy="true">→</mo>
                                     </mover>
                                     <mo>=</mo>
-                                    <mfrac>
-                                        <mn>1</mn>
-                                        <mi>N</mi>
-                                    </mfrac>
-                                    <munderover>
-                                        <mo>∑</mo>
-                                        <mrow>
-                                            <mi>i</mi>
-                                            <mo>=</mo>
-                                            <mn>1</mn>
-                                        </mrow>
-                                        <mi>N</mi>
-                                    </munderover>
-                                    <mfrac>
-                                        <mrow>
-                                            <mi mathvariant="normal">f</mi>
-                                            <mo>⁡</mo>
-                                            <mo stretchy="false">(</mo>
-                                            <mover accent="true">
-                                                <msub>
-                                                    <mi>ω</mi>
-                                                    <mi>L</mi>
-                                                </msub>
-                                                <mo stretchy="true">→</mo>
-                                            </mover>
-                                            <mo separator="true">,</mo>
-                                            <mover accent="true">
-                                                <msub>
-                                                    <mi>ω</mi>
-                                                    <mi>V</mi>
-                                                </msub>
-                                                <mo stretchy="true">→</mo>
-                                            </mover>
-                                            <mo stretchy="false">)</mo>
-                                            <mo stretchy="false">(</mo>
-                                            <mi>cos</mi>
-                                            <mo>⁡</mo>
-                                            <msub>
-                                                <mi>θ</mi>
-                                                <mi>L</mi>
-                                            </msub>
-                                            <msup>
-                                                <mo stretchy="false">)</mo>
-                                                <mo>+</mo>
-                                            </msup>
-                                        </mrow>
-                                        <mstyle scriptlevel="0" displaystyle="true">
-                                            <mi mathvariant="normal">p</mi>
-                                            <mo>⁡</mo>
-                                            <mo stretchy="false">(</mo>
-                                            <mover accent="true">
-                                                <msub>
-                                                    <mi>ω</mi>
-                                                    <mi>L</mi>
-                                                </msub>
-                                                <mo stretchy="true">→</mo>
-                                            </mover>
-                                            <mo separator="true">,</mo>
-                                            <mover accent="true">
-                                                <msub>
-                                                    <mi>ω</mi>
-                                                    <mi>V</mi>
-                                                </msub>
-                                                <mo stretchy="true">→</mo>
-                                            </mover>
-                                            <mo stretchy="false">)</mo>
-                                        </mstyle>
-                                    </mfrac>
+                                    <mi>cos</mi>
+                                    <mo>⁡</mo>
+                                    <msub>
+                                        <mi>θ</mi>
+                                        <mi>V</mi>
+                                    </msub>
                                 </mstyle>
                             </mrow>
-                            <annotation encoding="application/x-tex">\displaystyle
-                                \operatorname{R}(\overrightarrow{\omega_V}) = \int_\Omega
-                                \operatorname{f}(\overrightarrow{\omega_L}, \overrightarrow{\omega_V}) (\cos \theta_L)^+
-                                \, d \overrightarrow{\omega_L} = \frac{1}{N} \sum_{i=1}^N
-                                \frac{\operatorname{f}(\overrightarrow{\omega_L}, \overrightarrow{\omega_V}) (\cos
-                                \theta_L)^+}{\displaystyle \operatorname{p}(\overrightarrow{\omega_L},
-                                \overrightarrow{\omega_V})}</annotation>
+                            <annotation encoding="application/x-tex">\displaystyle \int_{\Omega}
+                                \operatorname{G_1}(\overrightarrow{\omega_V}, \overrightarrow{\omega_H}) (
+                                \overrightarrow{\omega_V} \cdot \overrightarrow{\omega_H} )^+
+                                \operatorname{D}(\overrightarrow{\omega_H}) \, d \overrightarrow{\omega_H} = \cos
+                                \theta_V</annotation>
                         </semantics>
                     </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
-                            style="height:1.20256em;vertical-align:-0.25em;"></span><span class="mop"><span
-                                class="mord mathrm">R</span></span><span class="mopen">(</span><span
-                            class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                        style="height:0.95256em;"><span style="top:-3em;"><span class="pstrut"
-                                                style="height:3em;"></span><span class="mord"><span
-                                                    class="mord mathnormal"
-                                                    style="margin-right:0.03588em;">ω</span><span class="msupsub"><span
-                                                        class="vlist-t vlist-t2"><span class="vlist-r"><span
-                                                                class="vlist"
-                                                                style="height:0.32833099999999993em;"><span
-                                                                    style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
-                                                                        class="pstrut"
-                                                                        style="height:2.7em;"></span><span
-                                                                        class="sizing reset-size6 size3 mtight"><span
-                                                                            class="mord mathnormal mtight"
-                                                                            style="margin-right:0.22222em;">V</span></span></span></span><span
-                                                                class="vlist-s">​</span></span><span
-                                                            class="vlist-r"><span class="vlist"
-                                                                style="height:0.15em;"><span></span></span></span></span></span></span></span><span
-                                            class="svg-align" style="top:-3.43056em;"><span class="pstrut"
-                                                style="height:3em;"></span><span class="hide-tail"
-                                                style="height:0.522em;min-width:0.888em;"><svg width='400em'
-                                                    height='0.522em' viewBox='0 0 400000 522'
-                                                    preserveAspectRatio='xMaxYMin slice'>
-                                                    <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
--16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
- 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
- 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
--40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
--12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
- 151.7 139 205zm0 0v40h399900v-40z' />
-                                                </svg></span></span></span><span class="vlist-s">​</span></span><span
-                                    class="vlist-r"><span class="vlist"
-                                        style="height:0.15em;"><span></span></span></span></span></span><span
-                            class="mclose">)</span><span class="mspace"
-                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-                        class="base"><span class="strut"
                             style="height:2.27195em;vertical-align:-0.9119499999999999em;"></span><span
                             class="mop"><span class="mop op-symbol large-op"
                                 style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span
@@ -12798,11 +12710,20 @@ M834 80h400000v40h-400000z' />
                                                 style="top:-1.7880500000000001em;margin-left:-0.44445em;margin-right:0.05em;"><span
                                                     class="pstrut" style="height:2.7em;"></span><span
                                                     class="sizing reset-size6 size3 mtight"><span
-                                                        class="mord mtight">Ω</span></span></span></span><span
+                                                        class="mord mtight"><span
+                                                            class="mord mtight">Ω</span></span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.9119499999999999em;"><span></span></span></span></span></span></span><span
                             class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop"><span
-                                class="mord mathrm" style="margin-right:0.07778em;">f</span></span><span
+                                class="mord"><span class="mord mathrm">G</span><span class="msupsub"><span
+                                        class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                style="height:0.30110799999999993em;"><span
+                                                    style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                        class="pstrut" style="height:2.7em;"></span><span
+                                                        class="sizing reset-size6 size3 mtight"><span
+                                                            class="mord mathrm mtight">1</span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:0.15em;"><span></span></span></span></span></span></span></span><span
                             class="mopen">(</span><span class="mord accent"><span class="vlist-t vlist-t2"><span
                                     class="vlist-r"><span class="vlist" style="height:0.95256em;"><span
                                             style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span
@@ -12815,7 +12736,8 @@ M834 80h400000v40h-400000z' />
                                                                         class="pstrut"
                                                                         style="height:2.7em;"></span><span
                                                                         class="sizing reset-size6 size3 mtight"><span
-                                                                            class="mord mathnormal mtight">L</span></span></span></span><span
+                                                                            class="mord mathnormal mtight"
+                                                                            style="margin-right:0.22222em;">V</span></span></span></span><span
                                                                 class="vlist-s">​</span></span><span
                                                             class="vlist-r"><span class="vlist"
                                                                 style="height:0.15em;"><span></span></span></span></span></span></span></span><span
@@ -12849,6 +12771,39 @@ M834 80h400000v40h-400000z' />
                                                                         style="height:2.7em;"></span><span
                                                                         class="sizing reset-size6 size3 mtight"><span
                                                                             class="mord mathnormal mtight"
+                                                                            style="margin-right:0.08125em;">H</span></span></span></span><span
+                                                                class="vlist-s">​</span></span><span
+                                                            class="vlist-r"><span class="vlist"
+                                                                style="height:0.15em;"><span></span></span></span></span></span></span></span><span
+                                            class="svg-align" style="top:-3.43056em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="hide-tail"
+                                                style="height:0.522em;min-width:0.888em;"><svg width='400em'
+                                                    height='0.522em' viewBox='0 0 400000 522'
+                                                    preserveAspectRatio='xMaxYMin slice'>
+                                                    <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
+-16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
+ 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
+ 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
+-40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
+-12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
+ 151.7 139 205zm0 0v40h399900v-40z' />
+                                                </svg></span></span></span><span class="vlist-s">​</span></span><span
+                                    class="vlist-r"><span class="vlist"
+                                        style="height:0.15em;"><span></span></span></span></span></span><span
+                            class="mclose">)</span><span class="mopen">(</span><span class="mord accent"><span
+                                class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                        style="height:0.95256em;"><span style="top:-3em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="mord"><span
+                                                    class="mord mathnormal"
+                                                    style="margin-right:0.03588em;">ω</span><span class="msupsub"><span
+                                                        class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                                class="vlist"
+                                                                style="height:0.32833099999999993em;"><span
+                                                                    style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
+                                                                        class="pstrut"
+                                                                        style="height:2.7em;"></span><span
+                                                                        class="sizing reset-size6 size3 mtight"><span
+                                                                            class="mord mathnormal mtight"
                                                                             style="margin-right:0.22222em;">V</span></span></span></span><span
                                                                 class="vlist-s">​</span></span><span
                                                             class="vlist-r"><span class="vlist"
@@ -12868,17 +12823,42 @@ M834 80h400000v40h-400000z' />
                                                 </svg></span></span></span><span class="vlist-s">​</span></span><span
                                     class="vlist-r"><span class="vlist"
                                         style="height:0.15em;"><span></span></span></span></span></span><span
-                            class="mclose">)</span><span class="mopen">(</span><span class="mop">cos</span><span
-                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span
-                                class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span
-                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                            style="height:0.32833099999999993em;"><span
-                                                style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span
-                                                    class="pstrut" style="height:2.7em;"></span><span
-                                                    class="sizing reset-size6 size3 mtight"><span
-                                                        class="mord mathnormal mtight">L</span></span></span></span><span
-                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+                            class="mbin">⋅</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span
+                            class="strut" style="height:1.20256em;vertical-align:-0.25em;"></span><span
+                            class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                        style="height:0.95256em;"><span style="top:-3em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="mord"><span
+                                                    class="mord mathnormal"
+                                                    style="margin-right:0.03588em;">ω</span><span class="msupsub"><span
+                                                        class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                                class="vlist"
+                                                                style="height:0.32833099999999993em;"><span
+                                                                    style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
+                                                                        class="pstrut"
+                                                                        style="height:2.7em;"></span><span
+                                                                        class="sizing reset-size6 size3 mtight"><span
+                                                                            class="mord mathnormal mtight"
+                                                                            style="margin-right:0.08125em;">H</span></span></span></span><span
+                                                                class="vlist-s">​</span></span><span
+                                                            class="vlist-r"><span class="vlist"
+                                                                style="height:0.15em;"><span></span></span></span></span></span></span></span><span
+                                            class="svg-align" style="top:-3.43056em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="hide-tail"
+                                                style="height:0.522em;min-width:0.888em;"><svg width='400em'
+                                                    height='0.522em' viewBox='0 0 400000 522'
+                                                    preserveAspectRatio='xMaxYMin slice'>
+                                                    <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
+-16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
+ 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
+ 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
+-40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
+-12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
+ 151.7 139 205zm0 0v40h399900v-40z' />
+                                                </svg></span></span></span><span class="vlist-s">​</span></span><span
+                                    class="vlist-r"><span class="vlist"
+                                        style="height:0.15em;"><span></span></span></span></span></span><span
                             class="mclose"><span class="mclose">)</span><span class="msupsub"><span
                                     class="vlist-t"><span class="vlist-r"><span class="vlist"
                                             style="height:0.821331em;"><span
@@ -12886,7 +12866,42 @@ M834 80h400000v40h-400000z' />
                                                     style="height:2.7em;"></span><span
                                                     class="sizing reset-size6 size3 mtight"><span
                                                         class="mbin mtight">+</span></span></span></span></span></span></span></span><span
-                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop"><span
+                                class="mord mathrm">D</span></span><span class="mopen">(</span><span
+                            class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                        style="height:0.95256em;"><span style="top:-3em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="mord"><span
+                                                    class="mord mathnormal"
+                                                    style="margin-right:0.03588em;">ω</span><span class="msupsub"><span
+                                                        class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                                class="vlist"
+                                                                style="height:0.32833099999999993em;"><span
+                                                                    style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
+                                                                        class="pstrut"
+                                                                        style="height:2.7em;"></span><span
+                                                                        class="sizing reset-size6 size3 mtight"><span
+                                                                            class="mord mathnormal mtight"
+                                                                            style="margin-right:0.08125em;">H</span></span></span></span><span
+                                                                class="vlist-s">​</span></span><span
+                                                            class="vlist-r"><span class="vlist"
+                                                                style="height:0.15em;"><span></span></span></span></span></span></span></span><span
+                                            class="svg-align" style="top:-3.43056em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="hide-tail"
+                                                style="height:0.522em;min-width:0.888em;"><svg width='400em'
+                                                    height='0.522em' viewBox='0 0 400000 522'
+                                                    preserveAspectRatio='xMaxYMin slice'>
+                                                    <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
+-16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
+ 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
+ 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
+-40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
+-12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
+ 151.7 139 205zm0 0v40h399900v-40z' />
+                                                </svg></span></span></span><span class="vlist-s">​</span></span><span
+                                    class="vlist-r"><span class="vlist"
+                                        style="height:0.15em;"><span></span></span></span></span></span><span
+                            class="mclose">)</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span
                             class="mord mathnormal">d</span><span class="mord accent"><span
                                 class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
                                         style="height:0.95256em;"><span style="top:-3em;"><span class="pstrut"
@@ -12900,7 +12915,8 @@ M834 80h400000v40h-400000z' />
                                                                         class="pstrut"
                                                                         style="height:2.7em;"></span><span
                                                                         class="sizing reset-size6 size3 mtight"><span
-                                                                            class="mord mathnormal mtight">L</span></span></span></span><span
+                                                                            class="mord mathnormal mtight"
+                                                                            style="margin-right:0.08125em;">H</span></span></span></span><span
                                                                 class="vlist-s">​</span></span><span
                                                             class="vlist-r"><span class="vlist"
                                                                 style="height:0.15em;"><span></span></span></span></span></span></span></span><span
@@ -12922,568 +12938,32 @@ M834 80h400000v40h-400000z' />
                             class="mspace" style="margin-right:0.2777777777777778em;"></span><span
                             class="mrel">=</span><span class="mspace"
                             style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-                            class="strut" style="height:3.106005em;vertical-align:-1.277669em;"></span><span
-                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
-                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                            style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut"
-                                                    style="height:3em;"></span><span class="mord"><span
-                                                        class="mord mathnormal"
-                                                        style="margin-right:0.10903em;">N</span></span></span><span
-                                                style="top:-3.23em;"><span class="pstrut"
-                                                    style="height:3em;"></span><span class="frac-line"
-                                                    style="border-bottom-width:0.04em;"></span></span><span
-                                                style="top:-3.677em;"><span class="pstrut"
-                                                    style="height:3em;"></span><span class="mord"><span
-                                                        class="mord">1</span></span></span></span><span
+                            class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span
+                            class="mop">cos</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mord"><span
+                                class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span
+                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.32833099999999993em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathnormal mtight"
+                                                        style="margin-right:0.22222em;">V</span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:0.686em;"><span></span></span></span></span></span><span
-                                class="mclose nulldelimiter"></span></span><span class="mspace"
-                            style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span
-                                class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                        style="height:1.8283360000000002em;"><span
-                                            style="top:-1.872331em;margin-left:0em;"><span class="pstrut"
-                                                style="height:3.05em;"></span><span
-                                                class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span
-                                                        class="mord mathnormal mtight">i</span><span
-                                                        class="mrel mtight">=</span><span
-                                                        class="mord mtight">1</span></span></span></span><span
-                                            style="top:-3.050005em;"><span class="pstrut"
-                                                style="height:3.05em;"></span><span><span
-                                                    class="mop op-symbol large-op">∑</span></span></span><span
-                                            style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut"
-                                                style="height:3.05em;"></span><span
-                                                class="sizing reset-size6 size3 mtight"><span
-                                                    class="mord mathnormal mtight"
-                                                    style="margin-right:0.10903em;">N</span></span></span></span><span
-                                        class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                        style="height:1.277669em;"><span></span></span></span></span></span><span
-                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span
-                                class="mopen nulldelimiter"></span><span class="mfrac"><span
-                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                            style="height:1.6295600000000001em;"><span
-                                                style="top:-2.1574400000000002em;"><span class="pstrut"
-                                                    style="height:3em;"></span><span class="mord"><span
-                                                        class="mop"><span class="mord mathrm">p</span></span><span
-                                                        class="mopen">(</span><span class="mord accent"><span
-                                                            class="vlist-t vlist-t2"><span class="vlist-r"><span
-                                                                    class="vlist" style="height:0.95256em;"><span
-                                                                        style="top:-3em;"><span class="pstrut"
-                                                                            style="height:3em;"></span><span
-                                                                            class="mord"><span class="mord mathnormal"
-                                                                                style="margin-right:0.03588em;">ω</span><span
-                                                                                class="msupsub"><span
-                                                                                    class="vlist-t vlist-t2"><span
-                                                                                        class="vlist-r"><span
-                                                                                            class="vlist"
-                                                                                            style="height:0.32833099999999993em;"><span
-                                                                                                style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
-                                                                                                    class="pstrut"
-                                                                                                    style="height:2.7em;"></span><span
-                                                                                                    class="sizing reset-size6 size3 mtight"><span
-                                                                                                        class="mord mathnormal mtight">L</span></span></span></span><span
-                                                                                            class="vlist-s">​</span></span><span
-                                                                                        class="vlist-r"><span
-                                                                                            class="vlist"
-                                                                                            style="height:0.15em;"><span></span></span></span></span></span></span></span><span
-                                                                        class="svg-align" style="top:-3.43056em;"><span
-                                                                            class="pstrut"
-                                                                            style="height:3em;"></span><span
-                                                                            class="hide-tail"
-                                                                            style="height:0.522em;min-width:0.888em;"><svg
-                                                                                width='400em' height='0.522em'
-                                                                                viewBox='0 0 400000 522'
-                                                                                preserveAspectRatio='xMaxYMin slice'>
-                                                                                <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
--16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
- 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
- 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
--40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
--12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
- 151.7 139 205zm0 0v40h399900v-40z' />
-                                                                            </svg></span></span></span><span
-                                                                    class="vlist-s">​</span></span><span
-                                                                class="vlist-r"><span class="vlist"
-                                                                    style="height:0.15em;"><span></span></span></span></span></span><span
-                                                        class="mpunct">,</span><span class="mspace"
-                                                        style="margin-right:0.16666666666666666em;"></span><span
-                                                        class="mord accent"><span class="vlist-t vlist-t2"><span
-                                                                class="vlist-r"><span class="vlist"
-                                                                    style="height:0.95256em;"><span
-                                                                        style="top:-3em;"><span class="pstrut"
-                                                                            style="height:3em;"></span><span
-                                                                            class="mord"><span class="mord mathnormal"
-                                                                                style="margin-right:0.03588em;">ω</span><span
-                                                                                class="msupsub"><span
-                                                                                    class="vlist-t vlist-t2"><span
-                                                                                        class="vlist-r"><span
-                                                                                            class="vlist"
-                                                                                            style="height:0.32833099999999993em;"><span
-                                                                                                style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
-                                                                                                    class="pstrut"
-                                                                                                    style="height:2.7em;"></span><span
-                                                                                                    class="sizing reset-size6 size3 mtight"><span
-                                                                                                        class="mord mathnormal mtight"
-                                                                                                        style="margin-right:0.22222em;">V</span></span></span></span><span
-                                                                                            class="vlist-s">​</span></span><span
-                                                                                        class="vlist-r"><span
-                                                                                            class="vlist"
-                                                                                            style="height:0.15em;"><span></span></span></span></span></span></span></span><span
-                                                                        class="svg-align" style="top:-3.43056em;"><span
-                                                                            class="pstrut"
-                                                                            style="height:3em;"></span><span
-                                                                            class="hide-tail"
-                                                                            style="height:0.522em;min-width:0.888em;"><svg
-                                                                                width='400em' height='0.522em'
-                                                                                viewBox='0 0 400000 522'
-                                                                                preserveAspectRatio='xMaxYMin slice'>
-                                                                                <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
--16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
- 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
- 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
--40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
--12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
- 151.7 139 205zm0 0v40h399900v-40z' />
-                                                                            </svg></span></span></span><span
-                                                                    class="vlist-s">​</span></span><span
-                                                                class="vlist-r"><span class="vlist"
-                                                                    style="height:0.15em;"><span></span></span></span></span></span><span
-                                                        class="mclose">)</span></span></span><span
-                                                style="top:-3.23em;"><span class="pstrut"
-                                                    style="height:3em;"></span><span class="frac-line"
-                                                    style="border-bottom-width:0.04em;"></span></span><span
-                                                style="top:-3.677em;"><span class="pstrut"
-                                                    style="height:3em;"></span><span class="mord"><span
-                                                        class="mop"><span class="mord mathrm"
-                                                            style="margin-right:0.07778em;">f</span></span><span
-                                                        class="mopen">(</span><span class="mord accent"><span
-                                                            class="vlist-t vlist-t2"><span class="vlist-r"><span
-                                                                    class="vlist" style="height:0.95256em;"><span
-                                                                        style="top:-3em;"><span class="pstrut"
-                                                                            style="height:3em;"></span><span
-                                                                            class="mord"><span class="mord mathnormal"
-                                                                                style="margin-right:0.03588em;">ω</span><span
-                                                                                class="msupsub"><span
-                                                                                    class="vlist-t vlist-t2"><span
-                                                                                        class="vlist-r"><span
-                                                                                            class="vlist"
-                                                                                            style="height:0.32833099999999993em;"><span
-                                                                                                style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
-                                                                                                    class="pstrut"
-                                                                                                    style="height:2.7em;"></span><span
-                                                                                                    class="sizing reset-size6 size3 mtight"><span
-                                                                                                        class="mord mathnormal mtight">L</span></span></span></span><span
-                                                                                            class="vlist-s">​</span></span><span
-                                                                                        class="vlist-r"><span
-                                                                                            class="vlist"
-                                                                                            style="height:0.15em;"><span></span></span></span></span></span></span></span><span
-                                                                        class="svg-align" style="top:-3.43056em;"><span
-                                                                            class="pstrut"
-                                                                            style="height:3em;"></span><span
-                                                                            class="hide-tail"
-                                                                            style="height:0.522em;min-width:0.888em;"><svg
-                                                                                width='400em' height='0.522em'
-                                                                                viewBox='0 0 400000 522'
-                                                                                preserveAspectRatio='xMaxYMin slice'>
-                                                                                <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
--16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
- 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
- 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
--40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
--12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
- 151.7 139 205zm0 0v40h399900v-40z' />
-                                                                            </svg></span></span></span><span
-                                                                    class="vlist-s">​</span></span><span
-                                                                class="vlist-r"><span class="vlist"
-                                                                    style="height:0.15em;"><span></span></span></span></span></span><span
-                                                        class="mpunct">,</span><span class="mspace"
-                                                        style="margin-right:0.16666666666666666em;"></span><span
-                                                        class="mord accent"><span class="vlist-t vlist-t2"><span
-                                                                class="vlist-r"><span class="vlist"
-                                                                    style="height:0.95256em;"><span
-                                                                        style="top:-3em;"><span class="pstrut"
-                                                                            style="height:3em;"></span><span
-                                                                            class="mord"><span class="mord mathnormal"
-                                                                                style="margin-right:0.03588em;">ω</span><span
-                                                                                class="msupsub"><span
-                                                                                    class="vlist-t vlist-t2"><span
-                                                                                        class="vlist-r"><span
-                                                                                            class="vlist"
-                                                                                            style="height:0.32833099999999993em;"><span
-                                                                                                style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
-                                                                                                    class="pstrut"
-                                                                                                    style="height:2.7em;"></span><span
-                                                                                                    class="sizing reset-size6 size3 mtight"><span
-                                                                                                        class="mord mathnormal mtight"
-                                                                                                        style="margin-right:0.22222em;">V</span></span></span></span><span
-                                                                                            class="vlist-s">​</span></span><span
-                                                                                        class="vlist-r"><span
-                                                                                            class="vlist"
-                                                                                            style="height:0.15em;"><span></span></span></span></span></span></span></span><span
-                                                                        class="svg-align" style="top:-3.43056em;"><span
-                                                                            class="pstrut"
-                                                                            style="height:3em;"></span><span
-                                                                            class="hide-tail"
-                                                                            style="height:0.522em;min-width:0.888em;"><svg
-                                                                                width='400em' height='0.522em'
-                                                                                viewBox='0 0 400000 522'
-                                                                                preserveAspectRatio='xMaxYMin slice'>
-                                                                                <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
--16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
- 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
- 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
--40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
--12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
- 151.7 139 205zm0 0v40h399900v-40z' />
-                                                                            </svg></span></span></span><span
-                                                                    class="vlist-s">​</span></span><span
-                                                                class="vlist-r"><span class="vlist"
-                                                                    style="height:0.15em;"><span></span></span></span></span></span><span
-                                                        class="mclose">)</span><span class="mopen">(</span><span
-                                                        class="mop">cos</span><span class="mspace"
-                                                        style="margin-right:0.16666666666666666em;"></span><span
-                                                        class="mord"><span class="mord mathnormal"
-                                                            style="margin-right:0.02778em;">θ</span><span
-                                                            class="msupsub"><span class="vlist-t vlist-t2"><span
-                                                                    class="vlist-r"><span class="vlist"
-                                                                        style="height:0.32833099999999993em;"><span
-                                                                            style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span
-                                                                                class="pstrut"
-                                                                                style="height:2.7em;"></span><span
-                                                                                class="sizing reset-size6 size3 mtight"><span
-                                                                                    class="mord mathnormal mtight">L</span></span></span></span><span
-                                                                        class="vlist-s">​</span></span><span
-                                                                    class="vlist-r"><span class="vlist"
-                                                                        style="height:0.15em;"><span></span></span></span></span></span></span><span
-                                                        class="mclose"><span class="mclose">)</span><span
-                                                            class="msupsub"><span class="vlist-t"><span
-                                                                    class="vlist-r"><span class="vlist"
-                                                                        style="height:0.771331em;"><span
-                                                                            style="top:-3.063em;margin-right:0.05em;"><span
-                                                                                class="pstrut"
-                                                                                style="height:2.7em;"></span><span
-                                                                                class="sizing reset-size6 size3 mtight"><span
-                                                                                    class="mbin mtight">+</span></span></span></span></span></span></span></span></span></span></span><span
-                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:1.09256em;"><span></span></span></span></span></span><span
-                                class="mclose nulldelimiter"></span></span></span></span></span></eq>. Evidently, <eq>
-            <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
-                        <semantics>
-                            <mrow>
-                                <mstyle scriptlevel="0" displaystyle="true">
-                                    <mi mathvariant="normal">D</mi>
-                                    <mo>⁡</mo>
-                                    <mo stretchy="false">(</mo>
-                                    <mover accent="true">
-                                        <msub>
-                                            <mi>ω</mi>
-                                            <mi>H</mi>
-                                        </msub>
-                                        <mo stretchy="true">→</mo>
-                                    </mover>
-                                    <mo stretchy="false">)</mo>
-                                </mstyle>
-                            </mrow>
-                            <annotation encoding="application/x-tex">\displaystyle
-                                \operatorname{D}(\overrightarrow{\omega_H})</annotation>
-                        </semantics>
-                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
-                            style="height:1.20256em;vertical-align:-0.25em;"></span><span class="mop"><span
-                                class="mord mathrm">D</span></span><span class="mopen">(</span><span
-                            class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                        style="height:0.95256em;"><span style="top:-3em;"><span class="pstrut"
-                                                style="height:3em;"></span><span class="mord"><span
-                                                    class="mord mathnormal"
-                                                    style="margin-right:0.03588em;">ω</span><span class="msupsub"><span
-                                                        class="vlist-t vlist-t2"><span class="vlist-r"><span
-                                                                class="vlist"
-                                                                style="height:0.32833099999999993em;"><span
-                                                                    style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
-                                                                        class="pstrut"
-                                                                        style="height:2.7em;"></span><span
-                                                                        class="sizing reset-size6 size3 mtight"><span
-                                                                            class="mord mathnormal mtight"
-                                                                            style="margin-right:0.08125em;">H</span></span></span></span><span
-                                                                class="vlist-s">​</span></span><span
-                                                            class="vlist-r"><span class="vlist"
-                                                                style="height:0.15em;"><span></span></span></span></span></span></span></span><span
-                                            class="svg-align" style="top:-3.43056em;"><span class="pstrut"
-                                                style="height:3em;"></span><span class="hide-tail"
-                                                style="height:0.522em;min-width:0.888em;"><svg width='400em'
-                                                    height='0.522em' viewBox='0 0 400000 522'
-                                                    preserveAspectRatio='xMaxYMin slice'>
-                                                    <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
--16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
- 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
- 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
--40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
--12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
- 151.7 139 205zm0 0v40h399900v-40z' />
-                                                </svg></span></span></span><span class="vlist-s">​</span></span><span
-                                    class="vlist-r"><span class="vlist"
-                                        style="height:0.15em;"><span></span></span></span></span></span><span
-                            class="mclose">)</span></span></span></span></eq> exists in both <eq><span
-                class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
-                        <semantics>
-                            <mrow>
-                                <mstyle scriptlevel="0" displaystyle="true">
-                                    <mi mathvariant="normal">f</mi>
-                                    <mo>⁡</mo>
-                                    <mo stretchy="false">(</mo>
-                                    <mover accent="true">
-                                        <msub>
-                                            <mi>ω</mi>
-                                            <mi>L</mi>
-                                        </msub>
-                                        <mo stretchy="true">→</mo>
-                                    </mover>
-                                    <mo separator="true">,</mo>
-                                    <mover accent="true">
-                                        <msub>
-                                            <mi>ω</mi>
-                                            <mi>V</mi>
-                                        </msub>
-                                        <mo stretchy="true">→</mo>
-                                    </mover>
-                                    <mo stretchy="false">)</mo>
-                                </mstyle>
-                            </mrow>
-                            <annotation encoding="application/x-tex">\displaystyle
-                                \operatorname{f}(\overrightarrow{\omega_L}, \overrightarrow{\omega_V})</annotation>
-                        </semantics>
-                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
-                            style="height:1.20256em;vertical-align:-0.25em;"></span><span class="mop"><span
-                                class="mord mathrm" style="margin-right:0.07778em;">f</span></span><span
-                            class="mopen">(</span><span class="mord accent"><span class="vlist-t vlist-t2"><span
-                                    class="vlist-r"><span class="vlist" style="height:0.95256em;"><span
-                                            style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span
-                                                class="mord"><span class="mord mathnormal"
-                                                    style="margin-right:0.03588em;">ω</span><span class="msupsub"><span
-                                                        class="vlist-t vlist-t2"><span class="vlist-r"><span
-                                                                class="vlist"
-                                                                style="height:0.32833099999999993em;"><span
-                                                                    style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
-                                                                        class="pstrut"
-                                                                        style="height:2.7em;"></span><span
-                                                                        class="sizing reset-size6 size3 mtight"><span
-                                                                            class="mord mathnormal mtight">L</span></span></span></span><span
-                                                                class="vlist-s">​</span></span><span
-                                                            class="vlist-r"><span class="vlist"
-                                                                style="height:0.15em;"><span></span></span></span></span></span></span></span><span
-                                            class="svg-align" style="top:-3.43056em;"><span class="pstrut"
-                                                style="height:3em;"></span><span class="hide-tail"
-                                                style="height:0.522em;min-width:0.888em;"><svg width='400em'
-                                                    height='0.522em' viewBox='0 0 400000 522'
-                                                    preserveAspectRatio='xMaxYMin slice'>
-                                                    <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
--16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
- 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
- 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
--40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
--12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
- 151.7 139 205zm0 0v40h399900v-40z' />
-                                                </svg></span></span></span><span class="vlist-s">​</span></span><span
-                                    class="vlist-r"><span class="vlist"
-                                        style="height:0.15em;"><span></span></span></span></span></span><span
-                            class="mpunct">,</span><span class="mspace"
-                            style="margin-right:0.16666666666666666em;"></span><span class="mord accent"><span
-                                class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                        style="height:0.95256em;"><span style="top:-3em;"><span class="pstrut"
-                                                style="height:3em;"></span><span class="mord"><span
-                                                    class="mord mathnormal"
-                                                    style="margin-right:0.03588em;">ω</span><span class="msupsub"><span
-                                                        class="vlist-t vlist-t2"><span class="vlist-r"><span
-                                                                class="vlist"
-                                                                style="height:0.32833099999999993em;"><span
-                                                                    style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
-                                                                        class="pstrut"
-                                                                        style="height:2.7em;"></span><span
-                                                                        class="sizing reset-size6 size3 mtight"><span
-                                                                            class="mord mathnormal mtight"
-                                                                            style="margin-right:0.22222em;">V</span></span></span></span><span
-                                                                class="vlist-s">​</span></span><span
-                                                            class="vlist-r"><span class="vlist"
-                                                                style="height:0.15em;"><span></span></span></span></span></span></span></span><span
-                                            class="svg-align" style="top:-3.43056em;"><span class="pstrut"
-                                                style="height:3em;"></span><span class="hide-tail"
-                                                style="height:0.522em;min-width:0.888em;"><svg width='400em'
-                                                    height='0.522em' viewBox='0 0 400000 522'
-                                                    preserveAspectRatio='xMaxYMin slice'>
-                                                    <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
--16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
- 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
- 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
--40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
--12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
- 151.7 139 205zm0 0v40h399900v-40z' />
-                                                </svg></span></span></span><span class="vlist-s">​</span></span><span
-                                    class="vlist-r"><span class="vlist"
-                                        style="height:0.15em;"><span></span></span></span></span></span><span
-                            class="mclose">)</span></span></span></span></eq> and <eq><span class="katex"><span
-                    class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
-                        <semantics>
-                            <mrow>
-                                <mstyle scriptlevel="0" displaystyle="true">
-                                    <mi mathvariant="normal">p</mi>
-                                    <mo>⁡</mo>
-                                    <mo stretchy="false">(</mo>
-                                    <mover accent="true">
-                                        <msub>
-                                            <mi>ω</mi>
-                                            <mi>L</mi>
-                                        </msub>
-                                        <mo stretchy="true">→</mo>
-                                    </mover>
-                                    <mo separator="true">,</mo>
-                                    <mover accent="true">
-                                        <msub>
-                                            <mi>ω</mi>
-                                            <mi>V</mi>
-                                        </msub>
-                                        <mo stretchy="true">→</mo>
-                                    </mover>
-                                    <mo stretchy="false">)</mo>
-                                </mstyle>
-                            </mrow>
-                            <annotation encoding="application/x-tex">\displaystyle
-                                \operatorname{p}(\overrightarrow{\omega_L}, \overrightarrow{\omega_V})</annotation>
-                        </semantics>
-                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
-                            style="height:1.20256em;vertical-align:-0.25em;"></span><span class="mop"><span
-                                class="mord mathrm">p</span></span><span class="mopen">(</span><span
-                            class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                        style="height:0.95256em;"><span style="top:-3em;"><span class="pstrut"
-                                                style="height:3em;"></span><span class="mord"><span
-                                                    class="mord mathnormal"
-                                                    style="margin-right:0.03588em;">ω</span><span class="msupsub"><span
-                                                        class="vlist-t vlist-t2"><span class="vlist-r"><span
-                                                                class="vlist"
-                                                                style="height:0.32833099999999993em;"><span
-                                                                    style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
-                                                                        class="pstrut"
-                                                                        style="height:2.7em;"></span><span
-                                                                        class="sizing reset-size6 size3 mtight"><span
-                                                                            class="mord mathnormal mtight">L</span></span></span></span><span
-                                                                class="vlist-s">​</span></span><span
-                                                            class="vlist-r"><span class="vlist"
-                                                                style="height:0.15em;"><span></span></span></span></span></span></span></span><span
-                                            class="svg-align" style="top:-3.43056em;"><span class="pstrut"
-                                                style="height:3em;"></span><span class="hide-tail"
-                                                style="height:0.522em;min-width:0.888em;"><svg width='400em'
-                                                    height='0.522em' viewBox='0 0 400000 522'
-                                                    preserveAspectRatio='xMaxYMin slice'>
-                                                    <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
--16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
- 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
- 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
--40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
--12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
- 151.7 139 205zm0 0v40h399900v-40z' />
-                                                </svg></span></span></span><span class="vlist-s">​</span></span><span
-                                    class="vlist-r"><span class="vlist"
-                                        style="height:0.15em;"><span></span></span></span></span></span><span
-                            class="mpunct">,</span><span class="mspace"
-                            style="margin-right:0.16666666666666666em;"></span><span class="mord accent"><span
-                                class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                        style="height:0.95256em;"><span style="top:-3em;"><span class="pstrut"
-                                                style="height:3em;"></span><span class="mord"><span
-                                                    class="mord mathnormal"
-                                                    style="margin-right:0.03588em;">ω</span><span class="msupsub"><span
-                                                        class="vlist-t vlist-t2"><span class="vlist-r"><span
-                                                                class="vlist"
-                                                                style="height:0.32833099999999993em;"><span
-                                                                    style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
-                                                                        class="pstrut"
-                                                                        style="height:2.7em;"></span><span
-                                                                        class="sizing reset-size6 size3 mtight"><span
-                                                                            class="mord mathnormal mtight"
-                                                                            style="margin-right:0.22222em;">V</span></span></span></span><span
-                                                                class="vlist-s">​</span></span><span
-                                                            class="vlist-r"><span class="vlist"
-                                                                style="height:0.15em;"><span></span></span></span></span></span></span></span><span
-                                            class="svg-align" style="top:-3.43056em;"><span class="pstrut"
-                                                style="height:3em;"></span><span class="hide-tail"
-                                                style="height:0.522em;min-width:0.888em;"><svg width='400em'
-                                                    height='0.522em' viewBox='0 0 400000 522'
-                                                    preserveAspectRatio='xMaxYMin slice'>
-                                                    <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
--16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
- 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
- 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
--40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
--12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
- 151.7 139 205zm0 0v40h399900v-40z' />
-                                                </svg></span></span></span><span class="vlist-s">​</span></span><span
-                                    class="vlist-r"><span class="vlist"
-                                        style="height:0.15em;"><span></span></span></span></span></span><span
-                            class="mclose">)</span></span></span></span></eq>, and thus <eq><span class="katex"><span
-                    class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
-                        <semantics>
-                            <mrow>
-                                <mstyle scriptlevel="0" displaystyle="true">
-                                    <mi mathvariant="normal">D</mi>
-                                    <mo>⁡</mo>
-                                    <mo stretchy="false">(</mo>
-                                    <mover accent="true">
-                                        <msub>
-                                            <mi>ω</mi>
-                                            <mi>H</mi>
-                                        </msub>
-                                        <mo stretchy="true">→</mo>
-                                    </mover>
-                                    <mo stretchy="false">)</mo>
-                                </mstyle>
-                            </mrow>
-                            <annotation encoding="application/x-tex">\displaystyle
-                                \operatorname{D}(\overrightarrow{\omega_H})</annotation>
-                        </semantics>
-                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
-                            style="height:1.20256em;vertical-align:-0.25em;"></span><span class="mop"><span
-                                class="mord mathrm">D</span></span><span class="mopen">(</span><span
-                            class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                        style="height:0.95256em;"><span style="top:-3em;"><span class="pstrut"
-                                                style="height:3em;"></span><span class="mord"><span
-                                                    class="mord mathnormal"
-                                                    style="margin-right:0.03588em;">ω</span><span class="msupsub"><span
-                                                        class="vlist-t vlist-t2"><span class="vlist-r"><span
-                                                                class="vlist"
-                                                                style="height:0.32833099999999993em;"><span
-                                                                    style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
-                                                                        class="pstrut"
-                                                                        style="height:2.7em;"></span><span
-                                                                        class="sizing reset-size6 size3 mtight"><span
-                                                                            class="mord mathnormal mtight"
-                                                                            style="margin-right:0.08125em;">H</span></span></span></span><span
-                                                                class="vlist-s">​</span></span><span
-                                                            class="vlist-r"><span class="vlist"
-                                                                style="height:0.15em;"><span></span></span></span></span></span></span></span><span
-                                            class="svg-align" style="top:-3.43056em;"><span class="pstrut"
-                                                style="height:3em;"></span><span class="hide-tail"
-                                                style="height:0.522em;min-width:0.888em;"><svg width='400em'
-                                                    height='0.522em' viewBox='0 0 400000 522'
-                                                    preserveAspectRatio='xMaxYMin slice'>
-                                                    <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
--16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
- 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
- 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
--40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
--12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
- 151.7 139 205zm0 0v40h399900v-40z' />
-                                                </svg></span></span></span><span class="vlist-s">​</span></span><span
-                                    class="vlist-r"><span class="vlist"
-                                        style="height:0.15em;"><span></span></span></span></span></span><span
-                            class="mclose">)</span></span></span></span></eq> can be omitted when calculating the
-        integral.</p>
-    <h4 dir="auto" id="2-1-2-sampling-trowbridge-reitz-distribution">2-1-2. Sampling Trowbridge-Reitz Distribution</h4>
+                                            style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
+        </eq>.</p>
+    <h4 dir="auto" id="2-1-3-sampling-trowbridge-reitz-distribution---ndf">2-1-3. Sampling Trowbridge-Reitz Distribution
+        - NDF</h4>
     <p dir="auto">For <strong>Beckmann–Spizzichino</strong> (&quot;Equation (8.9)&quot; of <a
             href="https://pbr-book.org/3ed-2018/Reflection_Models/Microfacet_Models#MicrofacetDistributionFunctions">PBR
-            Book</a>) distribution, the derivation of the sampling is provided by &quot;Equation (14.1)&quot; of <a
+            Book</a>) distribution, the derivation of the NDF sampling is provided by &quot;Equation (14.1)&quot; of <a
             href="https://pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/Sampling_Reflection_Functions#MicrofacetBxDFs">PBR
             Book</a>.</p>
-    <p dir="auto">Analogously, the sampling can be derived for isotropic <strong>Trowbridge-Reitz</strong>
-        (&quot;Equation (8.11)&quot; of <a
+    <p dir="auto">For isotropic <strong>Trowbridge-Reitz</strong> (&quot;Equation (8.11)&quot; of <a
             href="https://pbr-book.org/3ed-2018/Reflection_Models/Microfacet_Models#MicrofacetDistributionFunctions">PBR
-            Book</a>) distribution, namely, <strong>GGX</strong> distribution. Since the distribution is isotropic, we
-        have <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+            Book</a>) distribution, namely, <strong>GGX</strong> distribution, the NDF sampling can be analogously
+        derived. Since the distribution is isotropic, we have <eq><span class="katex"><span class="katex-mathml"><math
+                        xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
                                 <mstyle scriptlevel="0" displaystyle="true">
@@ -14667,18 +14147,21 @@ s76,-153,76,-153s77,-151,77,-151c0.7,0.7,35.7,202,105,604c67.3,400.7,102,602.7,1
                                     class="vlist-r"><span class="vlist"
                                         style="height:1.1884050000000004em;"><span></span></span></span></span></span></span></span></span>
         </eq>.</p>
-    <p dir="auto">Actually, when the PDF is the VNDF by [Heitz 2018], the derivation of the sampling is provided by
-        &quot;Equation (14.2)&quot; of <a
-            href="https://pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/Sampling_Reflection_Functions#MicrofacetBxDFs">PBR
-            Book</a>.</p>
-    <p dir="auto">The sampling is caculated by <a
+    <p dir="auto">The NDF sampling is caculated by <a
             href="https://github.com/mmp/pbrt-v3/blob/book/src/core/microfacet.cpp#L308">TrowbridgeReitzDistribution::Sample_wh</a>
         in PBRT-V3, <a
             href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/MonteCarlo.ush#L331">ImportanceSampleGGX</a>
         in UE4 and <a
             href="https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.core/ShaderLibrary/ImageBasedLighting.hlsl#L127">SampleGGXDir</a>
         in Unity3D.</p>
-    <h4 dir="auto" id="2-1-3-low-discrepancy">2-1-3. Low-Discrepancy</h4>
+    <h4 dir="auto" id="2-1-4-sampling-trowbridge-reitz-distribution---vndf">2-1-4. Sampling Trowbridge-Reitz
+        Distribution - VNDF</h4>
+    <p dir="auto">For <strong>Beckmann–Spizzichino</strong> (&quot;Equation (8.9)&quot; of <a
+            href="https://pbr-book.org/3ed-2018/Reflection_Models/Microfacet_Models#MicrofacetDistributionFunctions">PBR
+            Book</a>) distribution, the derivation of the VNDF sampling is provided by &quot;Equation (14.2)&quot; of <a
+            href="https://pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/Sampling_Reflection_Functions#MicrofacetBxDFs">PBR
+            Book</a>.</p>
+    <h4 dir="auto" id="2-1-5-low-discrepancy">2-1-5. Low-Discrepancy</h4>
     <p dir="auto">By &quot;20.3 Quasirandom Low-Discrepancy Sequences&quot; of [Colbert 2007], <strong>Quasi Monte
             Carlo</strong> (&quot;13.8.2 Quasi Monte Carlo&quot; of <a
             href="https://pbr-book.org/3ed-2018/Monte_Carlo_Integration/Careful_Sample_Placement#QuasiMonteCarlo">PBR
@@ -14696,8 +14179,8 @@ s76,-153,76,-153s77,-151,77,-151c0.7,0.7,35.7,202,105,604c67.3,400.7,102,602.7,1
             href="https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.core/ShaderLibrary/Sampling/Fibonacci.hlsl#L248">Fibonacci2d</a>
         in Unity3D.</p>
     <h3 dir="auto" id="2-2-dfg-term">2-2. DFG Term</h3>
-    <p dir="auto">Actually, by &quot;Equation (9.9)&quot; of <a href="https://www.realtimerendering.com/">Real-Time
-            Rendering Fourth Edition</a>, the DFG term is the HDR (Hemispherical Directional Reflectance) <eq><span
+    <p dir="auto">By &quot;Equation (9.9)&quot; of <a href="https://www.realtimerendering.com/">Real-Time Rendering
+            Fourth Edition</a>, the DFG term is the HDR (Hemispherical Directional Reflectance) <eq><span
                 class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
@@ -15127,6 +14610,868 @@ s76,-153,76,-153s77,-151,77,-151c0.7,0.7,35.7,202,105,604c67.3,400.7,102,602.7,1
         </eq>. Since this integral can be calculated in the tangent space where the normal direction is (0, 0, 1), this
         integral is independent of the normal direction and can be determined by the view direction in tangent space
         alone.</p>
+    <p dir="auto">And by &quot;Equation (13.3)&quot; of <a
+            href="https://pbr-book.org/3ed-2018/Monte_Carlo_Integration/The_Monte_Carlo_Estimator">PBR Book</a>, we have
+        <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mi mathvariant="normal">R</mi>
+                                    <mo>⁡</mo>
+                                    <mo stretchy="false">(</mo>
+                                    <mover accent="true">
+                                        <msub>
+                                            <mi>ω</mi>
+                                            <mi>V</mi>
+                                        </msub>
+                                        <mo stretchy="true">→</mo>
+                                    </mover>
+                                    <mo stretchy="false">)</mo>
+                                    <mo>=</mo>
+                                    <msub>
+                                        <mo>∫</mo>
+                                        <mi mathvariant="normal">Ω</mi>
+                                    </msub>
+                                    <mi mathvariant="normal">f</mi>
+                                    <mo>⁡</mo>
+                                    <mo stretchy="false">(</mo>
+                                    <mover accent="true">
+                                        <msub>
+                                            <mi>ω</mi>
+                                            <mi>L</mi>
+                                        </msub>
+                                        <mo stretchy="true">→</mo>
+                                    </mover>
+                                    <mo separator="true">,</mo>
+                                    <mover accent="true">
+                                        <msub>
+                                            <mi>ω</mi>
+                                            <mi>V</mi>
+                                        </msub>
+                                        <mo stretchy="true">→</mo>
+                                    </mover>
+                                    <mo stretchy="false">)</mo>
+                                    <mo stretchy="false">(</mo>
+                                    <mi>cos</mi>
+                                    <mo>⁡</mo>
+                                    <msub>
+                                        <mi>θ</mi>
+                                        <mi>L</mi>
+                                    </msub>
+                                    <msup>
+                                        <mo stretchy="false">)</mo>
+                                        <mo>+</mo>
+                                    </msup>
+                                    <mtext> </mtext>
+                                    <mi>d</mi>
+                                    <mover accent="true">
+                                        <msub>
+                                            <mi>ω</mi>
+                                            <mi>L</mi>
+                                        </msub>
+                                        <mo stretchy="true">→</mo>
+                                    </mover>
+                                    <mo>=</mo>
+                                    <mfrac>
+                                        <mn>1</mn>
+                                        <mi>N</mi>
+                                    </mfrac>
+                                    <munderover>
+                                        <mo>∑</mo>
+                                        <mrow>
+                                            <mi>i</mi>
+                                            <mo>=</mo>
+                                            <mn>1</mn>
+                                        </mrow>
+                                        <mi>N</mi>
+                                    </munderover>
+                                    <mfrac>
+                                        <mrow>
+                                            <mi mathvariant="normal">f</mi>
+                                            <mo>⁡</mo>
+                                            <mo stretchy="false">(</mo>
+                                            <mover accent="true">
+                                                <msub>
+                                                    <mi>ω</mi>
+                                                    <mi>L</mi>
+                                                </msub>
+                                                <mo stretchy="true">→</mo>
+                                            </mover>
+                                            <mo separator="true">,</mo>
+                                            <mover accent="true">
+                                                <msub>
+                                                    <mi>ω</mi>
+                                                    <mi>V</mi>
+                                                </msub>
+                                                <mo stretchy="true">→</mo>
+                                            </mover>
+                                            <mo stretchy="false">)</mo>
+                                            <mo stretchy="false">(</mo>
+                                            <mi>cos</mi>
+                                            <mo>⁡</mo>
+                                            <msub>
+                                                <mi>θ</mi>
+                                                <mi>L</mi>
+                                            </msub>
+                                            <msup>
+                                                <mo stretchy="false">)</mo>
+                                                <mo>+</mo>
+                                            </msup>
+                                        </mrow>
+                                        <mstyle scriptlevel="0" displaystyle="true">
+                                            <mi mathvariant="normal">p</mi>
+                                            <mo>⁡</mo>
+                                            <mo stretchy="false">(</mo>
+                                            <mover accent="true">
+                                                <msub>
+                                                    <mi>ω</mi>
+                                                    <mi>L</mi>
+                                                </msub>
+                                                <mo stretchy="true">→</mo>
+                                            </mover>
+                                            <mo separator="true">,</mo>
+                                            <mover accent="true">
+                                                <msub>
+                                                    <mi>ω</mi>
+                                                    <mi>V</mi>
+                                                </msub>
+                                                <mo stretchy="true">→</mo>
+                                            </mover>
+                                            <mo stretchy="false">)</mo>
+                                        </mstyle>
+                                    </mfrac>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle
+                                \operatorname{R}(\overrightarrow{\omega_V}) = \int_\Omega
+                                \operatorname{f}(\overrightarrow{\omega_L}, \overrightarrow{\omega_V}) (\cos \theta_L)^+
+                                \, d \overrightarrow{\omega_L} = \frac{1}{N} \sum_{i=1}^N
+                                \frac{\operatorname{f}(\overrightarrow{\omega_L}, \overrightarrow{\omega_V}) (\cos
+                                \theta_L)^+}{\displaystyle \operatorname{p}(\overrightarrow{\omega_L},
+                                \overrightarrow{\omega_V})}</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1.20256em;vertical-align:-0.25em;"></span><span class="mop"><span
+                                class="mord mathrm">R</span></span><span class="mopen">(</span><span
+                            class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                        style="height:0.95256em;"><span style="top:-3em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="mord"><span
+                                                    class="mord mathnormal"
+                                                    style="margin-right:0.03588em;">ω</span><span class="msupsub"><span
+                                                        class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                                class="vlist"
+                                                                style="height:0.32833099999999993em;"><span
+                                                                    style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
+                                                                        class="pstrut"
+                                                                        style="height:2.7em;"></span><span
+                                                                        class="sizing reset-size6 size3 mtight"><span
+                                                                            class="mord mathnormal mtight"
+                                                                            style="margin-right:0.22222em;">V</span></span></span></span><span
+                                                                class="vlist-s">​</span></span><span
+                                                            class="vlist-r"><span class="vlist"
+                                                                style="height:0.15em;"><span></span></span></span></span></span></span></span><span
+                                            class="svg-align" style="top:-3.43056em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="hide-tail"
+                                                style="height:0.522em;min-width:0.888em;"><svg width='400em'
+                                                    height='0.522em' viewBox='0 0 400000 522'
+                                                    preserveAspectRatio='xMaxYMin slice'>
+                                                    <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
+-16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
+ 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
+ 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
+-40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
+-12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
+ 151.7 139 205zm0 0v40h399900v-40z' />
+                                                </svg></span></span></span><span class="vlist-s">​</span></span><span
+                                    class="vlist-r"><span class="vlist"
+                                        style="height:0.15em;"><span></span></span></span></span></span><span
+                            class="mclose">)</span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                        class="base"><span class="strut"
+                            style="height:2.27195em;vertical-align:-0.9119499999999999em;"></span><span
+                            class="mop"><span class="mop op-symbol large-op"
+                                style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span
+                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:-0.433619em;"><span
+                                                style="top:-1.7880500000000001em;margin-left:-0.44445em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight">Ω</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.9119499999999999em;"><span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop"><span
+                                class="mord mathrm" style="margin-right:0.07778em;">f</span></span><span
+                            class="mopen">(</span><span class="mord accent"><span class="vlist-t vlist-t2"><span
+                                    class="vlist-r"><span class="vlist" style="height:0.95256em;"><span
+                                            style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span
+                                                class="mord"><span class="mord mathnormal"
+                                                    style="margin-right:0.03588em;">ω</span><span class="msupsub"><span
+                                                        class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                                class="vlist"
+                                                                style="height:0.32833099999999993em;"><span
+                                                                    style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
+                                                                        class="pstrut"
+                                                                        style="height:2.7em;"></span><span
+                                                                        class="sizing reset-size6 size3 mtight"><span
+                                                                            class="mord mathnormal mtight">L</span></span></span></span><span
+                                                                class="vlist-s">​</span></span><span
+                                                            class="vlist-r"><span class="vlist"
+                                                                style="height:0.15em;"><span></span></span></span></span></span></span></span><span
+                                            class="svg-align" style="top:-3.43056em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="hide-tail"
+                                                style="height:0.522em;min-width:0.888em;"><svg width='400em'
+                                                    height='0.522em' viewBox='0 0 400000 522'
+                                                    preserveAspectRatio='xMaxYMin slice'>
+                                                    <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
+-16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
+ 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
+ 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
+-40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
+-12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
+ 151.7 139 205zm0 0v40h399900v-40z' />
+                                                </svg></span></span></span><span class="vlist-s">​</span></span><span
+                                    class="vlist-r"><span class="vlist"
+                                        style="height:0.15em;"><span></span></span></span></span></span><span
+                            class="mpunct">,</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mord accent"><span
+                                class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                        style="height:0.95256em;"><span style="top:-3em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="mord"><span
+                                                    class="mord mathnormal"
+                                                    style="margin-right:0.03588em;">ω</span><span class="msupsub"><span
+                                                        class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                                class="vlist"
+                                                                style="height:0.32833099999999993em;"><span
+                                                                    style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
+                                                                        class="pstrut"
+                                                                        style="height:2.7em;"></span><span
+                                                                        class="sizing reset-size6 size3 mtight"><span
+                                                                            class="mord mathnormal mtight"
+                                                                            style="margin-right:0.22222em;">V</span></span></span></span><span
+                                                                class="vlist-s">​</span></span><span
+                                                            class="vlist-r"><span class="vlist"
+                                                                style="height:0.15em;"><span></span></span></span></span></span></span></span><span
+                                            class="svg-align" style="top:-3.43056em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="hide-tail"
+                                                style="height:0.522em;min-width:0.888em;"><svg width='400em'
+                                                    height='0.522em' viewBox='0 0 400000 522'
+                                                    preserveAspectRatio='xMaxYMin slice'>
+                                                    <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
+-16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
+ 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
+ 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
+-40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
+-12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
+ 151.7 139 205zm0 0v40h399900v-40z' />
+                                                </svg></span></span></span><span class="vlist-s">​</span></span><span
+                                    class="vlist-r"><span class="vlist"
+                                        style="height:0.15em;"><span></span></span></span></span></span><span
+                            class="mclose">)</span><span class="mopen">(</span><span class="mop">cos</span><span
+                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span
+                                class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span
+                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.32833099999999993em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathnormal mtight">L</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
+                            class="mclose"><span class="mclose">)</span><span class="msupsub"><span
+                                    class="vlist-t"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.821331em;"><span
+                                                style="top:-3.113em;margin-right:0.05em;"><span class="pstrut"
+                                                    style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mbin mtight">+</span></span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                            class="mord mathnormal">d</span><span class="mord accent"><span
+                                class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                        style="height:0.95256em;"><span style="top:-3em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="mord"><span
+                                                    class="mord mathnormal"
+                                                    style="margin-right:0.03588em;">ω</span><span class="msupsub"><span
+                                                        class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                                class="vlist"
+                                                                style="height:0.32833099999999993em;"><span
+                                                                    style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
+                                                                        class="pstrut"
+                                                                        style="height:2.7em;"></span><span
+                                                                        class="sizing reset-size6 size3 mtight"><span
+                                                                            class="mord mathnormal mtight">L</span></span></span></span><span
+                                                                class="vlist-s">​</span></span><span
+                                                            class="vlist-r"><span class="vlist"
+                                                                style="height:0.15em;"><span></span></span></span></span></span></span></span><span
+                                            class="svg-align" style="top:-3.43056em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="hide-tail"
+                                                style="height:0.522em;min-width:0.888em;"><svg width='400em'
+                                                    height='0.522em' viewBox='0 0 400000 522'
+                                                    preserveAspectRatio='xMaxYMin slice'>
+                                                    <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
+-16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
+ 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
+ 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
+-40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
+-12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
+ 151.7 139 205zm0 0v40h399900v-40z' />
+                                                </svg></span></span></span><span class="vlist-s">​</span></span><span
+                                    class="vlist-r"><span class="vlist"
+                                        style="height:0.15em;"><span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span><span
+                            class="mrel">=</span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+                            class="strut" style="height:3.106005em;vertical-align:-1.277669em;"></span><span
+                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord mathnormal"
+                                                        style="margin-right:0.10903em;">N</span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">1</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span
+                                class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                        style="height:1.8283360000000002em;"><span
+                                            style="top:-1.872331em;margin-left:0em;"><span class="pstrut"
+                                                style="height:3.05em;"></span><span
+                                                class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span
+                                                        class="mord mathnormal mtight">i</span><span
+                                                        class="mrel mtight">=</span><span
+                                                        class="mord mtight">1</span></span></span></span><span
+                                            style="top:-3.050005em;"><span class="pstrut"
+                                                style="height:3.05em;"></span><span><span
+                                                    class="mop op-symbol large-op">∑</span></span></span><span
+                                            style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut"
+                                                style="height:3.05em;"></span><span
+                                                class="sizing reset-size6 size3 mtight"><span
+                                                    class="mord mathnormal mtight"
+                                                    style="margin-right:0.10903em;">N</span></span></span></span><span
+                                        class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                        style="height:1.277669em;"><span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span
+                                class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.6295600000000001em;"><span
+                                                style="top:-2.1574400000000002em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mop"><span class="mord mathrm">p</span></span><span
+                                                        class="mopen">(</span><span class="mord accent"><span
+                                                            class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                                    class="vlist" style="height:0.95256em;"><span
+                                                                        style="top:-3em;"><span class="pstrut"
+                                                                            style="height:3em;"></span><span
+                                                                            class="mord"><span class="mord mathnormal"
+                                                                                style="margin-right:0.03588em;">ω</span><span
+                                                                                class="msupsub"><span
+                                                                                    class="vlist-t vlist-t2"><span
+                                                                                        class="vlist-r"><span
+                                                                                            class="vlist"
+                                                                                            style="height:0.32833099999999993em;"><span
+                                                                                                style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
+                                                                                                    class="pstrut"
+                                                                                                    style="height:2.7em;"></span><span
+                                                                                                    class="sizing reset-size6 size3 mtight"><span
+                                                                                                        class="mord mathnormal mtight">L</span></span></span></span><span
+                                                                                            class="vlist-s">​</span></span><span
+                                                                                        class="vlist-r"><span
+                                                                                            class="vlist"
+                                                                                            style="height:0.15em;"><span></span></span></span></span></span></span></span><span
+                                                                        class="svg-align" style="top:-3.43056em;"><span
+                                                                            class="pstrut"
+                                                                            style="height:3em;"></span><span
+                                                                            class="hide-tail"
+                                                                            style="height:0.522em;min-width:0.888em;"><svg
+                                                                                width='400em' height='0.522em'
+                                                                                viewBox='0 0 400000 522'
+                                                                                preserveAspectRatio='xMaxYMin slice'>
+                                                                                <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
+-16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
+ 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
+ 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
+-40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
+-12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
+ 151.7 139 205zm0 0v40h399900v-40z' />
+                                                                            </svg></span></span></span><span
+                                                                    class="vlist-s">​</span></span><span
+                                                                class="vlist-r"><span class="vlist"
+                                                                    style="height:0.15em;"><span></span></span></span></span></span><span
+                                                        class="mpunct">,</span><span class="mspace"
+                                                        style="margin-right:0.16666666666666666em;"></span><span
+                                                        class="mord accent"><span class="vlist-t vlist-t2"><span
+                                                                class="vlist-r"><span class="vlist"
+                                                                    style="height:0.95256em;"><span
+                                                                        style="top:-3em;"><span class="pstrut"
+                                                                            style="height:3em;"></span><span
+                                                                            class="mord"><span class="mord mathnormal"
+                                                                                style="margin-right:0.03588em;">ω</span><span
+                                                                                class="msupsub"><span
+                                                                                    class="vlist-t vlist-t2"><span
+                                                                                        class="vlist-r"><span
+                                                                                            class="vlist"
+                                                                                            style="height:0.32833099999999993em;"><span
+                                                                                                style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
+                                                                                                    class="pstrut"
+                                                                                                    style="height:2.7em;"></span><span
+                                                                                                    class="sizing reset-size6 size3 mtight"><span
+                                                                                                        class="mord mathnormal mtight"
+                                                                                                        style="margin-right:0.22222em;">V</span></span></span></span><span
+                                                                                            class="vlist-s">​</span></span><span
+                                                                                        class="vlist-r"><span
+                                                                                            class="vlist"
+                                                                                            style="height:0.15em;"><span></span></span></span></span></span></span></span><span
+                                                                        class="svg-align" style="top:-3.43056em;"><span
+                                                                            class="pstrut"
+                                                                            style="height:3em;"></span><span
+                                                                            class="hide-tail"
+                                                                            style="height:0.522em;min-width:0.888em;"><svg
+                                                                                width='400em' height='0.522em'
+                                                                                viewBox='0 0 400000 522'
+                                                                                preserveAspectRatio='xMaxYMin slice'>
+                                                                                <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
+-16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
+ 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
+ 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
+-40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
+-12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
+ 151.7 139 205zm0 0v40h399900v-40z' />
+                                                                            </svg></span></span></span><span
+                                                                    class="vlist-s">​</span></span><span
+                                                                class="vlist-r"><span class="vlist"
+                                                                    style="height:0.15em;"><span></span></span></span></span></span><span
+                                                        class="mclose">)</span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mop"><span class="mord mathrm"
+                                                            style="margin-right:0.07778em;">f</span></span><span
+                                                        class="mopen">(</span><span class="mord accent"><span
+                                                            class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                                    class="vlist" style="height:0.95256em;"><span
+                                                                        style="top:-3em;"><span class="pstrut"
+                                                                            style="height:3em;"></span><span
+                                                                            class="mord"><span class="mord mathnormal"
+                                                                                style="margin-right:0.03588em;">ω</span><span
+                                                                                class="msupsub"><span
+                                                                                    class="vlist-t vlist-t2"><span
+                                                                                        class="vlist-r"><span
+                                                                                            class="vlist"
+                                                                                            style="height:0.32833099999999993em;"><span
+                                                                                                style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
+                                                                                                    class="pstrut"
+                                                                                                    style="height:2.7em;"></span><span
+                                                                                                    class="sizing reset-size6 size3 mtight"><span
+                                                                                                        class="mord mathnormal mtight">L</span></span></span></span><span
+                                                                                            class="vlist-s">​</span></span><span
+                                                                                        class="vlist-r"><span
+                                                                                            class="vlist"
+                                                                                            style="height:0.15em;"><span></span></span></span></span></span></span></span><span
+                                                                        class="svg-align" style="top:-3.43056em;"><span
+                                                                            class="pstrut"
+                                                                            style="height:3em;"></span><span
+                                                                            class="hide-tail"
+                                                                            style="height:0.522em;min-width:0.888em;"><svg
+                                                                                width='400em' height='0.522em'
+                                                                                viewBox='0 0 400000 522'
+                                                                                preserveAspectRatio='xMaxYMin slice'>
+                                                                                <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
+-16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
+ 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
+ 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
+-40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
+-12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
+ 151.7 139 205zm0 0v40h399900v-40z' />
+                                                                            </svg></span></span></span><span
+                                                                    class="vlist-s">​</span></span><span
+                                                                class="vlist-r"><span class="vlist"
+                                                                    style="height:0.15em;"><span></span></span></span></span></span><span
+                                                        class="mpunct">,</span><span class="mspace"
+                                                        style="margin-right:0.16666666666666666em;"></span><span
+                                                        class="mord accent"><span class="vlist-t vlist-t2"><span
+                                                                class="vlist-r"><span class="vlist"
+                                                                    style="height:0.95256em;"><span
+                                                                        style="top:-3em;"><span class="pstrut"
+                                                                            style="height:3em;"></span><span
+                                                                            class="mord"><span class="mord mathnormal"
+                                                                                style="margin-right:0.03588em;">ω</span><span
+                                                                                class="msupsub"><span
+                                                                                    class="vlist-t vlist-t2"><span
+                                                                                        class="vlist-r"><span
+                                                                                            class="vlist"
+                                                                                            style="height:0.32833099999999993em;"><span
+                                                                                                style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
+                                                                                                    class="pstrut"
+                                                                                                    style="height:2.7em;"></span><span
+                                                                                                    class="sizing reset-size6 size3 mtight"><span
+                                                                                                        class="mord mathnormal mtight"
+                                                                                                        style="margin-right:0.22222em;">V</span></span></span></span><span
+                                                                                            class="vlist-s">​</span></span><span
+                                                                                        class="vlist-r"><span
+                                                                                            class="vlist"
+                                                                                            style="height:0.15em;"><span></span></span></span></span></span></span></span><span
+                                                                        class="svg-align" style="top:-3.43056em;"><span
+                                                                            class="pstrut"
+                                                                            style="height:3em;"></span><span
+                                                                            class="hide-tail"
+                                                                            style="height:0.522em;min-width:0.888em;"><svg
+                                                                                width='400em' height='0.522em'
+                                                                                viewBox='0 0 400000 522'
+                                                                                preserveAspectRatio='xMaxYMin slice'>
+                                                                                <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
+-16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
+ 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
+ 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
+-40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
+-12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
+ 151.7 139 205zm0 0v40h399900v-40z' />
+                                                                            </svg></span></span></span><span
+                                                                    class="vlist-s">​</span></span><span
+                                                                class="vlist-r"><span class="vlist"
+                                                                    style="height:0.15em;"><span></span></span></span></span></span><span
+                                                        class="mclose">)</span><span class="mopen">(</span><span
+                                                        class="mop">cos</span><span class="mspace"
+                                                        style="margin-right:0.16666666666666666em;"></span><span
+                                                        class="mord"><span class="mord mathnormal"
+                                                            style="margin-right:0.02778em;">θ</span><span
+                                                            class="msupsub"><span class="vlist-t vlist-t2"><span
+                                                                    class="vlist-r"><span class="vlist"
+                                                                        style="height:0.32833099999999993em;"><span
+                                                                            style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span
+                                                                                class="pstrut"
+                                                                                style="height:2.7em;"></span><span
+                                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                                    class="mord mathnormal mtight">L</span></span></span></span><span
+                                                                        class="vlist-s">​</span></span><span
+                                                                    class="vlist-r"><span class="vlist"
+                                                                        style="height:0.15em;"><span></span></span></span></span></span></span><span
+                                                        class="mclose"><span class="mclose">)</span><span
+                                                            class="msupsub"><span class="vlist-t"><span
+                                                                    class="vlist-r"><span class="vlist"
+                                                                        style="height:0.771331em;"><span
+                                                                            style="top:-3.063em;margin-right:0.05em;"><span
+                                                                                class="pstrut"
+                                                                                style="height:2.7em;"></span><span
+                                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                                    class="mbin mtight">+</span></span></span></span></span></span></span></span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:1.09256em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span></span></span></span></eq>. Evidently, <eq>
+            <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mi mathvariant="normal">D</mi>
+                                    <mo>⁡</mo>
+                                    <mo stretchy="false">(</mo>
+                                    <mover accent="true">
+                                        <msub>
+                                            <mi>ω</mi>
+                                            <mi>H</mi>
+                                        </msub>
+                                        <mo stretchy="true">→</mo>
+                                    </mover>
+                                    <mo stretchy="false">)</mo>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle
+                                \operatorname{D}(\overrightarrow{\omega_H})</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1.20256em;vertical-align:-0.25em;"></span><span class="mop"><span
+                                class="mord mathrm">D</span></span><span class="mopen">(</span><span
+                            class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                        style="height:0.95256em;"><span style="top:-3em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="mord"><span
+                                                    class="mord mathnormal"
+                                                    style="margin-right:0.03588em;">ω</span><span class="msupsub"><span
+                                                        class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                                class="vlist"
+                                                                style="height:0.32833099999999993em;"><span
+                                                                    style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
+                                                                        class="pstrut"
+                                                                        style="height:2.7em;"></span><span
+                                                                        class="sizing reset-size6 size3 mtight"><span
+                                                                            class="mord mathnormal mtight"
+                                                                            style="margin-right:0.08125em;">H</span></span></span></span><span
+                                                                class="vlist-s">​</span></span><span
+                                                            class="vlist-r"><span class="vlist"
+                                                                style="height:0.15em;"><span></span></span></span></span></span></span></span><span
+                                            class="svg-align" style="top:-3.43056em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="hide-tail"
+                                                style="height:0.522em;min-width:0.888em;"><svg width='400em'
+                                                    height='0.522em' viewBox='0 0 400000 522'
+                                                    preserveAspectRatio='xMaxYMin slice'>
+                                                    <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
+-16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
+ 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
+ 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
+-40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
+-12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
+ 151.7 139 205zm0 0v40h399900v-40z' />
+                                                </svg></span></span></span><span class="vlist-s">​</span></span><span
+                                    class="vlist-r"><span class="vlist"
+                                        style="height:0.15em;"><span></span></span></span></span></span><span
+                            class="mclose">)</span></span></span></span></eq> exists in both <eq><span
+                class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mi mathvariant="normal">f</mi>
+                                    <mo>⁡</mo>
+                                    <mo stretchy="false">(</mo>
+                                    <mover accent="true">
+                                        <msub>
+                                            <mi>ω</mi>
+                                            <mi>L</mi>
+                                        </msub>
+                                        <mo stretchy="true">→</mo>
+                                    </mover>
+                                    <mo separator="true">,</mo>
+                                    <mover accent="true">
+                                        <msub>
+                                            <mi>ω</mi>
+                                            <mi>V</mi>
+                                        </msub>
+                                        <mo stretchy="true">→</mo>
+                                    </mover>
+                                    <mo stretchy="false">)</mo>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle
+                                \operatorname{f}(\overrightarrow{\omega_L}, \overrightarrow{\omega_V})</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1.20256em;vertical-align:-0.25em;"></span><span class="mop"><span
+                                class="mord mathrm" style="margin-right:0.07778em;">f</span></span><span
+                            class="mopen">(</span><span class="mord accent"><span class="vlist-t vlist-t2"><span
+                                    class="vlist-r"><span class="vlist" style="height:0.95256em;"><span
+                                            style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span
+                                                class="mord"><span class="mord mathnormal"
+                                                    style="margin-right:0.03588em;">ω</span><span class="msupsub"><span
+                                                        class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                                class="vlist"
+                                                                style="height:0.32833099999999993em;"><span
+                                                                    style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
+                                                                        class="pstrut"
+                                                                        style="height:2.7em;"></span><span
+                                                                        class="sizing reset-size6 size3 mtight"><span
+                                                                            class="mord mathnormal mtight">L</span></span></span></span><span
+                                                                class="vlist-s">​</span></span><span
+                                                            class="vlist-r"><span class="vlist"
+                                                                style="height:0.15em;"><span></span></span></span></span></span></span></span><span
+                                            class="svg-align" style="top:-3.43056em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="hide-tail"
+                                                style="height:0.522em;min-width:0.888em;"><svg width='400em'
+                                                    height='0.522em' viewBox='0 0 400000 522'
+                                                    preserveAspectRatio='xMaxYMin slice'>
+                                                    <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
+-16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
+ 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
+ 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
+-40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
+-12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
+ 151.7 139 205zm0 0v40h399900v-40z' />
+                                                </svg></span></span></span><span class="vlist-s">​</span></span><span
+                                    class="vlist-r"><span class="vlist"
+                                        style="height:0.15em;"><span></span></span></span></span></span><span
+                            class="mpunct">,</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mord accent"><span
+                                class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                        style="height:0.95256em;"><span style="top:-3em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="mord"><span
+                                                    class="mord mathnormal"
+                                                    style="margin-right:0.03588em;">ω</span><span class="msupsub"><span
+                                                        class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                                class="vlist"
+                                                                style="height:0.32833099999999993em;"><span
+                                                                    style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
+                                                                        class="pstrut"
+                                                                        style="height:2.7em;"></span><span
+                                                                        class="sizing reset-size6 size3 mtight"><span
+                                                                            class="mord mathnormal mtight"
+                                                                            style="margin-right:0.22222em;">V</span></span></span></span><span
+                                                                class="vlist-s">​</span></span><span
+                                                            class="vlist-r"><span class="vlist"
+                                                                style="height:0.15em;"><span></span></span></span></span></span></span></span><span
+                                            class="svg-align" style="top:-3.43056em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="hide-tail"
+                                                style="height:0.522em;min-width:0.888em;"><svg width='400em'
+                                                    height='0.522em' viewBox='0 0 400000 522'
+                                                    preserveAspectRatio='xMaxYMin slice'>
+                                                    <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
+-16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
+ 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
+ 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
+-40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
+-12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
+ 151.7 139 205zm0 0v40h399900v-40z' />
+                                                </svg></span></span></span><span class="vlist-s">​</span></span><span
+                                    class="vlist-r"><span class="vlist"
+                                        style="height:0.15em;"><span></span></span></span></span></span><span
+                            class="mclose">)</span></span></span></span></eq> and <eq><span class="katex"><span
+                    class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mi mathvariant="normal">p</mi>
+                                    <mo>⁡</mo>
+                                    <mo stretchy="false">(</mo>
+                                    <mover accent="true">
+                                        <msub>
+                                            <mi>ω</mi>
+                                            <mi>L</mi>
+                                        </msub>
+                                        <mo stretchy="true">→</mo>
+                                    </mover>
+                                    <mo separator="true">,</mo>
+                                    <mover accent="true">
+                                        <msub>
+                                            <mi>ω</mi>
+                                            <mi>V</mi>
+                                        </msub>
+                                        <mo stretchy="true">→</mo>
+                                    </mover>
+                                    <mo stretchy="false">)</mo>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle
+                                \operatorname{p}(\overrightarrow{\omega_L}, \overrightarrow{\omega_V})</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1.20256em;vertical-align:-0.25em;"></span><span class="mop"><span
+                                class="mord mathrm">p</span></span><span class="mopen">(</span><span
+                            class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                        style="height:0.95256em;"><span style="top:-3em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="mord"><span
+                                                    class="mord mathnormal"
+                                                    style="margin-right:0.03588em;">ω</span><span class="msupsub"><span
+                                                        class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                                class="vlist"
+                                                                style="height:0.32833099999999993em;"><span
+                                                                    style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
+                                                                        class="pstrut"
+                                                                        style="height:2.7em;"></span><span
+                                                                        class="sizing reset-size6 size3 mtight"><span
+                                                                            class="mord mathnormal mtight">L</span></span></span></span><span
+                                                                class="vlist-s">​</span></span><span
+                                                            class="vlist-r"><span class="vlist"
+                                                                style="height:0.15em;"><span></span></span></span></span></span></span></span><span
+                                            class="svg-align" style="top:-3.43056em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="hide-tail"
+                                                style="height:0.522em;min-width:0.888em;"><svg width='400em'
+                                                    height='0.522em' viewBox='0 0 400000 522'
+                                                    preserveAspectRatio='xMaxYMin slice'>
+                                                    <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
+-16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
+ 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
+ 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
+-40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
+-12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
+ 151.7 139 205zm0 0v40h399900v-40z' />
+                                                </svg></span></span></span><span class="vlist-s">​</span></span><span
+                                    class="vlist-r"><span class="vlist"
+                                        style="height:0.15em;"><span></span></span></span></span></span><span
+                            class="mpunct">,</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mord accent"><span
+                                class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                        style="height:0.95256em;"><span style="top:-3em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="mord"><span
+                                                    class="mord mathnormal"
+                                                    style="margin-right:0.03588em;">ω</span><span class="msupsub"><span
+                                                        class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                                class="vlist"
+                                                                style="height:0.32833099999999993em;"><span
+                                                                    style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
+                                                                        class="pstrut"
+                                                                        style="height:2.7em;"></span><span
+                                                                        class="sizing reset-size6 size3 mtight"><span
+                                                                            class="mord mathnormal mtight"
+                                                                            style="margin-right:0.22222em;">V</span></span></span></span><span
+                                                                class="vlist-s">​</span></span><span
+                                                            class="vlist-r"><span class="vlist"
+                                                                style="height:0.15em;"><span></span></span></span></span></span></span></span><span
+                                            class="svg-align" style="top:-3.43056em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="hide-tail"
+                                                style="height:0.522em;min-width:0.888em;"><svg width='400em'
+                                                    height='0.522em' viewBox='0 0 400000 522'
+                                                    preserveAspectRatio='xMaxYMin slice'>
+                                                    <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
+-16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
+ 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
+ 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
+-40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
+-12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
+ 151.7 139 205zm0 0v40h399900v-40z' />
+                                                </svg></span></span></span><span class="vlist-s">​</span></span><span
+                                    class="vlist-r"><span class="vlist"
+                                        style="height:0.15em;"><span></span></span></span></span></span><span
+                            class="mclose">)</span></span></span></span></eq>, and thus <eq><span class="katex"><span
+                    class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mi mathvariant="normal">D</mi>
+                                    <mo>⁡</mo>
+                                    <mo stretchy="false">(</mo>
+                                    <mover accent="true">
+                                        <msub>
+                                            <mi>ω</mi>
+                                            <mi>H</mi>
+                                        </msub>
+                                        <mo stretchy="true">→</mo>
+                                    </mover>
+                                    <mo stretchy="false">)</mo>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle
+                                \operatorname{D}(\overrightarrow{\omega_H})</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1.20256em;vertical-align:-0.25em;"></span><span class="mop"><span
+                                class="mord mathrm">D</span></span><span class="mopen">(</span><span
+                            class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                        style="height:0.95256em;"><span style="top:-3em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="mord"><span
+                                                    class="mord mathnormal"
+                                                    style="margin-right:0.03588em;">ω</span><span class="msupsub"><span
+                                                        class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                                class="vlist"
+                                                                style="height:0.32833099999999993em;"><span
+                                                                    style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
+                                                                        class="pstrut"
+                                                                        style="height:2.7em;"></span><span
+                                                                        class="sizing reset-size6 size3 mtight"><span
+                                                                            class="mord mathnormal mtight"
+                                                                            style="margin-right:0.08125em;">H</span></span></span></span><span
+                                                                class="vlist-s">​</span></span><span
+                                                            class="vlist-r"><span class="vlist"
+                                                                style="height:0.15em;"><span></span></span></span></span></span></span></span><span
+                                            class="svg-align" style="top:-3.43056em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="hide-tail"
+                                                style="height:0.522em;min-width:0.888em;"><svg width='400em'
+                                                    height='0.522em' viewBox='0 0 400000 522'
+                                                    preserveAspectRatio='xMaxYMin slice'>
+                                                    <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
+-16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
+ 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
+ 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
+-40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
+-12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
+ 151.7 139 205zm0 0v40h399900v-40z' />
+                                                </svg></span></span></span><span class="vlist-s">​</span></span><span
+                                    class="vlist-r"><span class="vlist"
+                                        style="height:0.15em;"><span></span></span></span></span></span><span
+                            class="mclose">)</span></span></span></span></eq> can be omitted when calculating the
+        integral.</p>
     <p dir="auto">Actually, by &quot;Equation (9)&quot; of [Karis 2013], the Fresnel term can be treated separately, and
         we have <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
@@ -20433,6 +20778,8 @@ M834 80h400000v40h-400000z' />
             Karis. &quot;Real Shading in Unreal Engine 4.&quot; SIGGRAPH 2013.</a><br>
         [Lagarde 2014] <a href="https://www.ea.com/frostbite/news/moving-frostbite-to-pb">Sebastian Lagarde, Charles
             Rousiers. &quot;Moving Frostbite to PBR.&quot; SIGGRAPH 2014.</a><br>
+        [Heitz 2014] <a href="https://jcgt.org/published/0003/02/03/">Eric Heitz. &quot;Understanding the
+            Masking-Shadowing Function in Microfacet-Based BRDFs.&quot; JCGT 2014.</a><br>
         [Heitz 2018] <a href="https://jcgt.org/published/0007/04/01/">Eric Heitz. &quot;Sampling the GGX Distribution of
             Visible Normals.&quot; JCGT 2018.</a></p>
 
