@@ -1,6 +1,6 @@
 # Environment Lighting
 
-The name **environment lighting** is from "10.2 Environment Lighting" of [Real-Time Rendering Fourth Edition](https://www.realtimerendering.com/). By "10.2 Environment Lighting" of [Real-Time Rendering Fourth Edition](https://www.realtimerendering.com/) and "14.4 The Light Transport Equation" of [PBR Book](https://pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/The_Light_Transport_Equation), the most important difference between environment lighting (global illumination) and global illumination is that the shading algorithm of the environment lighting (global illumination) is independent of the other positions on the surface except the shading position.  
+The name **environment lighting** is from "10.2 Environment Lighting" of [Real-Time Rendering Fourth Edition](https://www.realtimerendering.com/). By "10.2 Environment Lighting" of [Real-Time Rendering Fourth Edition](https://www.realtimerendering.com/) and "14.4 The Light Transport Equation" of [PBR Book](https://pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/The_Light_Transport_Equation), the most important difference between environment lighting (local illumination) and global illumination is that the shading algorithm of the environment lighting (local illumination) is independent of the other positions on the surface except the shading position.  
 
 
 ## 1\. Diffuse Environment Lighting  
