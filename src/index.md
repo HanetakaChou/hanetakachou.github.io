@@ -60,6 +60,7 @@ You should have received a copy of the GNU Lesser General Public License along w
 [Linux/Linux-Bluetooth.html](Linux/Linux-Bluetooth.html)  
 [Linux/Linux-NVIDIA.html](Linux/Linux-NVIDIA.html)  
 [Linux/Linux-CPU-Frequency-Scaling.html](Linux/Linux-CPU-Frequency-Scaling.html)  
+[Linux/Linux-KDE.html](Linux/Linux-KDE.html)  
 [Linux/Linux-Steam.html](Linux/Linux-Steam.html)  
 
 ## Music  
