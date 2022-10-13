@@ -38,6 +38,7 @@ You should have received a copy of the GNU Lesser General Public License along w
 - Skin [Documentation](Image-Synthesis/Lighting/Skin.html) [Code](https://github.com/YuqiaoZhang/Burley-SSS)  
 - OIT [Documentation](Image-Synthesis/Lighting/OIT.html) [Code-Stochastic-Transparency](https://github.com/YuqiaoZhang/StochasticTransparency) [Code-MLAB](https://github.com/YuqiaoZhang/MultiLayerAlphaBlending) [Code-WBOIT](https://github.com/YuqiaoZhang/WeightedBlendedOIT)  
 - VXGI [Documentation](Image-Synthesis/Lighting/VXGI.html)  
+- ReSTIR [Documentation](Image-Synthesis/Lighting/ReSTIR.html)  
 - Volumetric-Rendering [Documentation](Image-Synthesis/Lighting/Volumetric-Rendering.html)  
 
 ## PatriotEngine
