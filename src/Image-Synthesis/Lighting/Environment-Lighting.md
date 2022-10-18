@@ -2,7 +2,6 @@
 
 The name **environment lighting** is from "10.2 Environment Lighting" of [Real-Time Rendering Fourth Edition](https://www.realtimerendering.com/). By "10.2 Environment Lighting" of [Real-Time Rendering Fourth Edition](https://www.realtimerendering.com/) and "14.4 The Light Transport Equation" of [PBR Book](https://pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/The_Light_Transport_Equation), the most important difference between environment lighting (local illumination) and global illumination is that the shading algorithm of the environment lighting (local illumination) is independent of the other positions on the surface except the shading position.  
 
-
 ## 1\. Diffuse Environment Lighting  
 
 Let $\displaystyle \operatorname{L_L}(\overrightarrow{\omega})$ be the distant radiance distribution. Since the Lambert BRDF $\displaystyle \operatorname{f}(\overrightarrow{\omega_L}, \overrightarrow{\omega_V}) = \frac{1}{\pi} \rho_{ss}$ is constant, we have $\displaystyle \operatorname{L_V}(\overrightarrow{\omega_V}) = \int_\Omega \operatorname{f}(\overrightarrow{\omega_L}, \overrightarrow{\omega_V}) \operatorname{L_L}(\overrightarrow{\omega_L}) (\cos \theta_L)^+ \, d \overrightarrow{\omega_L} = \frac{1}{\pi} \rho_{ss} \cdot E$ where $\displaystyle \operatorname{E}(\overrightarrow{n}) = \int_\Omega \operatorname{L_L}(\overrightarrow{\omega_L}) (\cos \theta_L)^+ \, d \overrightarrow{\omega_L} = \int_\Omega \operatorname{L_L}(\overrightarrow{\omega_L}) |\overrightarrow{n} \cdot \overrightarrow{\omega_L}| \, d \overrightarrow{\omega_L}$.  
@@ -71,7 +70,7 @@ And since the value reconstructed from SH basis is form factor rather than irrad
 
   fc | value  
  :-: | :-:  
- fC0 | $\displaystyle \frac{1}{\pi} P_0^0 A_0 = \frac{1}{\pi} \frac{1}{2 \sqrt{\pi}} \pi = \frac{1}{2 \sqrt{\pi}}$  
+ fc0 | $\displaystyle \frac{1}{\pi} P_0^0 A_0 = \frac{1}{\pi} \frac{1}{2 \sqrt{\pi}} \pi = \frac{1}{2 \sqrt{\pi}}$  
  fc1 | $\displaystyle \frac{1}{\pi} P_1^0 A_1 = \frac{1}{\pi} \frac{\sqrt{3}}{2 \sqrt{\pi}} \frac{2 \pi}{3} = \frac{\sqrt{3}}{3 \sqrt{\pi}}$  
  fc2 | $\displaystyle \frac{1}{\pi} P_2^{-2} A_2 = \frac{1}{\pi} \frac{\sqrt{15}}{2 \sqrt{\pi}} \frac{\pi}{4} = \frac{\sqrt{15}}{8 \sqrt{\pi}}$  
  fc3 | $\displaystyle \frac{1}{\pi} (-P_2^{0}) A_2 = \frac{1}{\pi} \frac{\sqrt{5}}{4 \sqrt{\pi}} \frac{\pi}{4} = \frac{\sqrt{5}}{16 \sqrt{\pi}}$  
@@ -102,7 +101,7 @@ For **Beckmann–Spizzichino** ("Equation \(8.9\)" of [PBR Book](https://pbr-boo
 
 For isotropic **Trowbridge-Reitz** ("Equation \(8.11\)" of [PBR Book](https://pbr-book.org/3ed-2018/Reflection_Models/Microfacet_Models#MicrofacetDistributionFunctions)) distribution, namely, **GGX** distribution, the NDF sampling can be analogously derived. Since the distribution is isotropic, we have $\displaystyle \displaystyle \operatorname{p}(\phi | \theta_H) = \frac{1}{2 \pi} \Rightarrow \phi = 2 \pi \xi_2$. Since the PDF is $\displaystyle \operatorname{p}(\overrightarrow{\omega_H}) = \operatorname{D}(\overrightarrow{\omega_H}) ( \cos \theta_H )^+$, we have the marginal PDF $\displaystyle \operatorname{p}(\theta_H) = \int_0^{2 \pi} \operatorname{p}(\theta_H, \phi) \, d \phi =  \int_0^{2 \pi} \operatorname{p}(\overrightarrow{\omega_H}) \sin \omega_H \, d \phi = \int_0^{2 \pi} \operatorname{D}(\overrightarrow{\omega_H}) ( \cos \theta_H )^+ \sin \omega_H \, d \phi = 2 \pi \operatorname{D}(\overrightarrow{\omega_H}) ( \cos \theta_H )^+ \sin \omega_H$ and the CDF $\displaystyle \operatorname{P}(\theta_H) = \int_0^{\theta'_H} \operatorname{p}(\theta'_H) \, d \theta'_H = \xi_1$. Fortunately, this CDF is closed-form and we have $\displaystyle \tan^2 \theta_H = \frac{\alpha^2 \xi_1}{1 - \xi_1} \Rightarrow \cos \theta_H = \frac{1}{\sqrt{1 + \tan^2 \theta_H}} = \sqrt{\frac{1 - \xi_1}{1 + (\alpha^2 - 1) \xi_1}}$.  
 
-The NDF sampling is caculated by [TrowbridgeReitzDistribution::Sample_wh](https://github.com/mmp/pbrt-v3/blob/book/src/core/microfacet.cpp#L308) in PBRT-V3, [ImportanceSampleGGX](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/MonteCarlo.ush#L331) in UE4 and [SampleGGXDir](https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.core/ShaderLibrary/ImageBasedLighting.hlsl#L127) in Unity3D.  
+The NDF sampling is calculated by [TrowbridgeReitzDistribution::Sample_wh](https://github.com/mmp/pbrt-v3/blob/book/src/core/microfacet.cpp#L308) in PBRT-V3, [ImportanceSampleGGX](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/MonteCarlo.ush#L331) in UE4 and [SampleGGXDir](https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.core/ShaderLibrary/ImageBasedLighting.hlsl#L127) in Unity3D.  
 
 
 #### 2-1-4\. Sampling Trowbridge-Reitz Distribution - VNDF
@@ -113,7 +112,7 @@ For **Beckmann–Spizzichino** ("Equation \(8.9\)" of [PBR Book](https://pbr-boo
 
 By "20.3 Quasirandom Low-Discrepancy Sequences" of \[Colbert 2007\], **Quasi Monte Carlo** ("13.8.2 Quasi Monte Carlo" of [PBR Book](https://pbr-book.org/3ed-2018/Monte_Carlo_Integration/Careful_Sample_Placement#QuasiMonteCarlo)) is used and the pseudo-random sequence is replaced by the low-discrepancy **Hammersley sequence** ("7.4.1 Hammersley and Halton Sequences" of [PBR Book](https://pbr-book.org/3ed-2018/Sampling_and_Reconstruction/The_Halton_Sampler#HammersleyandHaltonSequences)).  
 
-The **Hammersley sequence** is calcuated by [Hammersley](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/MonteCarlo.ush#L34) in UE4 and [Hammersley2d](https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.core/ShaderLibrary/Sampling/Hammersley.hlsl#L415) in Unity3D. And the **Fibonacci sequence** is calculated by [FIBONACCI_SEQUENCE_ANGLE](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/SubsurfaceBurleyNormalized.ush#L332) in UE4 and [Fibonacci2d](https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.core/ShaderLibrary/Sampling/Fibonacci.hlsl#L248) in Unity3D.  
+The **Hammersley sequence** is calculated by [Hammersley](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/MonteCarlo.ush#L34) in UE4 and [Hammersley2d](https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.core/ShaderLibrary/Sampling/Hammersley.hlsl#L415) in Unity3D. And the **Fibonacci sequence** is calculated by [FIBONACCI_SEQUENCE_ANGLE](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/SubsurfaceBurleyNormalized.ush#L332) in UE4 and [Fibonacci2d](https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.core/ShaderLibrary/Sampling/Fibonacci.hlsl#L248) in Unity3D.  
 
 ### 2-2\. DFG Term
 
