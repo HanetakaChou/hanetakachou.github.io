@@ -1,6 +1,12 @@
 # LTC (Linearly Transformed Cosine)  
 
-In real time rendering, the area light is approximated by the punctual light. The [Delta Distribution](https://www.pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/Sampling_Light_Sources#LightswithSingularities) is applied, and the reflectance equation is simplified to $\displaystyle \operatorname{L_o}(\omega_o) = \int_\Omega \operatorname{f}(\omega_o, \omega_i) \cdot \operatorname{L_i}(\omega_i) \cdot (\cos(\theta_i))^+ \, d\omega_i \approx \operatorname{f}(\omega_o, \omega_i) \otimes \operatorname{E_L}(p) \otimes (\cos(\theta))^+$ where the $\displaystyle \operatorname{E_L}(p)$ is the irradiance perpendicular to the light direction.
+By "Equation \(5.9\)" of [PBR Book](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Surface_Reflection#TheBRDF), we have the reflectance equation $\displaystyle \operatorname{L_V}(\overrightarrow{\omega_V}) = \int_\Omega \operatorname{f}(\overrightarrow{\omega_V}, \overrightarrow{\omega_L}) \cdot \operatorname{L_L}(\overrightarrow{\omega_L}) \cdot (\cos(\theta_i))^+ \, d\overrightarrow{\omega_L}$.  
+
+By "Figure 14.13" of [PBR Book](https://pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/Direct_Lighting#EstimatingtheDirectLightingIntegral), the **MIS** ("13.10.1 Multiple Importance Sampling" of [PBR Book](https://pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling#MultipleImportanceSampling)) is applied and a large number of incident directions are sampled to calculate the reflectance equation.  
+
+Evidently, the **MIS** is NOT efficient in real time rendering. The area light is usually approximated by the punctual light by the **Delta Distribution** ("14.2.1 Lights with Singularities" of [PBR Book](https://www.pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/Sampling_Light_Sources#LightswithSingularities)). This means that the reflectance equation is simplified to $\displaystyle \operatorname{L_o}(\omega_o) = \int_\Omega \operatorname{f}(\omega_o, \omega_i) \cdot \operatorname{L_i}(\omega_i) \cdot (\cos(\theta_i))^+ \, d\omega_i \approx \operatorname{f}(\omega_o, \omega_i) \otimes \operatorname{E_L}(p) \otimes (\cos(\theta))^+$ where the $\displaystyle \operatorname{E_L}(p)$ is the irradiance perpendicular to the light direction.  
+
+However, by \[Lagarde 2014\], the material roughness should be modified to hide the infinitesimal specular highlight of the punctual light. This means that the material and lighting can NOT be decoupled. And thus, the area light, which can reduce specular aliasing, is still important in real time rendering.  
 
 ## 1\. Clamped Cosine Integral  
 ### 1-1\. Clamped Cosine  
@@ -8,7 +14,7 @@ We assume that the normal direction in the tangent space is (0, 0, 1), which is 
 
 ### 1-2\. Integral over the Polygon  
 We assume that the vertices $\displaystyle \overrightarrow{p_1}, \overrightarrow{p_2}, \ldots, \overrightarrow{p_n}$ of the polygon $\displaystyle P_o$ are in the tangent space, normalized, and located in the upper hemisphere. By \[Heitz 2017\], the clamped cosine integral over the polygon $\displaystyle \operatorname{F}(P_o) = \int_{P_o} \operatorname{D_o} \, d\omega_o$ is closed-form $\displaystyle \operatorname{F}(P_o) = \frac{1}{2\pi} \sum_{i \, j}^n \arccos(\overrightarrow{p_i} \cdot \overrightarrow{p_j}) (\operatorname{normalize}(\overrightarrow{p_i} \times \overrightarrow{p_j}) \cdot \overrightarrow{(0, 0, 1)})$. Note that the **winding order** of the vertices implies the direction of the resulting vector $\displaystyle \overrightarrow{p_i} \times \overrightarrow{p_j}$ and thus the facing of the polygon.  
-Actually, the clamped cosine integral over the polygon $\displaystyle \operatorname{F}(P_o)$ is called the **form factor**. The terms **irradiance** and **form factor** may be interchangeably used. But technically, the **irradiance** should NOT be divided by $\displaystyle \pi$. This means that $\displaystyle \operatorname{E}(P_o) = \pi \operatorname{F}(P_o)$.  
+Actually, the clamped cosine integral over the polygon $\displaystyle \operatorname{F}(P_o)$ is called the **form factor**. The terms **irradiance** and **form factor** may be interchangeably used. But, technically, by \[Lagarde 2014\], the **irradiance** should NOT be divided by $\displaystyle \pi$. This means that $\displaystyle \operatorname{E}(P_o) = \pi \operatorname{F}(P_o)$.  
 
 However, the assumption, that the vertices are in the upper hemisphere, forces us to clip the polygon. This introduces [divergent branches](https://docs.nvidia.com/gameworks/content/developertools/desktop/analysis/report/cudaexperiments/sourcelevel/divergentbranch.htm) which should ideally be avoided.  
 
@@ -60,6 +66,7 @@ And by **3-1\. Integration over Polygons**, we have $\displaystyle  L_l \cdot \m
 ## References  
 \[Snyder 1996\] [John Snyder. "Area Light Sources for Real-Time Graphics." Technical Report 1996](https://www.microsoft.com/en-us/research/publication/area-light-sources-for-real-time-graphics/)  
 \[Karis 2013\] [Brian Karis. "Real Shading in Unreal Engine 4." SIGGRAPH 2013.](https://cdn2.unrealengine.com/Resources/files/2013SiggraphPresentationsNotes-26915738.pdf)  
+\[Lagarde 2014\] [Sebastian Lagarde, Charles Rousiers. "Moving Frostbite to PBR." SIGGRAPH 2014.](https://www.ea.com/frostbite/news/moving-frostbite-to-pb)  
 \[Heitz 2016\] [Eric Heitz, Jonathan Dupuy, Stephen Hill, David Neubelt. "Real-Time Polygonal-Light Shading with Linearly Transformed Cosines." SIGGRAPH 2016.](https://eheitzresearch.wordpress.com/415-2/)  
 \[Stephen 2016\] [Stephen Hill, Eric Heitz. "Real-Time Area Lighting: a Journey from Research to Production." SIGGRAPH 2016.](https://blog.selfshadow.com/publications/s2016-advances/)  
 \[Heitz 2017\] [Eric Heitz. "Geometric Derivation of the Irradiance of Polygonal Lights." Technical report 2017.](https://hal.archives-ouvertes.fr/hal-01458129)  
