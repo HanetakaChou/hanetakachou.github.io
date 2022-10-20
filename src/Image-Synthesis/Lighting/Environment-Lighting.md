@@ -95,6 +95,8 @@ Genuinely, although the NDF is the PDF used by UE4, the VNDF by \[Heitz 2018\] i
 
 By "Equation (14)" of \[Heitz 2014\] and "Equation \(8.12\)" of [PBR Book](https://pbr-book.org/3ed-2018/Reflection_Models/Microfacet_Models#MaskingandShadowing), we have $\displaystyle \int_{\Omega} \operatorname{G_1}(\overrightarrow{\omega_V},  \overrightarrow{\omega_H}) ( \overrightarrow{\omega_V} \cdot  \overrightarrow{\omega_H} )^+ \operatorname{D}(\overrightarrow{\omega_H}) \, d \overrightarrow{\omega_H} = \cos \theta_V$.  
 
+**TODO:**  
+
 #### 2-1-3\. Sampling Trowbridge-Reitz Distribution - NDF
 
 For **Beckmann–Spizzichino** ("Equation \(8.9\)" of [PBR Book](https://pbr-book.org/3ed-2018/Reflection_Models/Microfacet_Models#MicrofacetDistributionFunctions)) distribution, the derivation of the NDF sampling is provided by "Equation \(14.1\)" of [PBR Book](https://pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/Sampling_Reflection_Functions#MicrofacetBxDFs).  
@@ -107,6 +109,8 @@ The NDF sampling is calculated by [TrowbridgeReitzDistribution::Sample_wh](https
 #### 2-1-4\. Sampling Trowbridge-Reitz Distribution - VNDF
 
 For **Beckmann–Spizzichino** ("Equation \(8.9\)" of [PBR Book](https://pbr-book.org/3ed-2018/Reflection_Models/Microfacet_Models#MicrofacetDistributionFunctions)) distribution, the derivation of the VNDF sampling is provided by "Equation \(14.2\)" of [PBR Book](https://pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/Sampling_Reflection_Functions#MicrofacetBxDFs).  
+
+**TODO:**  
 
 #### 2-1-5\. Low-Discrepancy  
 
