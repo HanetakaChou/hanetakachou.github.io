@@ -63,6 +63,12 @@ By [Integration by Substitution](https://en.wikipedia.org/wiki/Integration_by_su
 By **2\. Approximation**, we have $L_l \int_{P} \operatorname{BRDF}(\omega_v, \omega_l) |\cos \theta_l| \, d\omega_l \approx L_l \int_{P} \mathrm{NormBRDFCosine} \cdot \operatorname{D}(\omega_l) \, d\omega_l = L_l \cdot \mathrm{NormBRDFCosine} \cdot \int_{P} \operatorname{D}(\omega_l) \, d\omega_l$. Note that the polygon P should be transformed to the tangent space before the approximation is applied.  
 And by **3-1\. Integration over Polygons**, we have $\displaystyle  L_l \cdot \mathrm{NormBRDFCosine} \cdot \int_{P} \operatorname{D}(\omega_l) \, d\omega_l = L_l \cdot \mathrm{NormBRDFCosine} \cdot \int_{P_o} \operatorname{D_o}(\omega_o) \, d\omega_o = L_l \cdot \mathrm{NormBRDFCosine} \cdot \operatorname{E}(P_o)$ where $\displaystyle P_o = M^{-1} P$ and $\displaystyle \operatorname{E}(P_o) = \int_{P_o} \operatorname{D_o}(\omega_o) \, d\omega_o = \int_{P_o} \frac{1}{\pi}|\cos \theta_o| \, d\omega_o$.  
 
+## Attenuation  
+
+"windowing function" from \[Lagarde 2014\]  
+
+[BoxDistanceAttenuation](https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.high-definition/Runtime/Material/Lit/Lit.hlsl#L1597)  
+
 ## References  
 \[Snyder 1996\] [John Snyder. "Area Light Sources for Real-Time Graphics." Technical Report 1996](https://www.microsoft.com/en-us/research/publication/area-light-sources-for-real-time-graphics/)  
 \[Karis 2013\] [Brian Karis. "Real Shading in Unreal Engine 4." SIGGRAPH 2013.](https://cdn2.unrealengine.com/Resources/files/2013SiggraphPresentationsNotes-26915738.pdf)  
