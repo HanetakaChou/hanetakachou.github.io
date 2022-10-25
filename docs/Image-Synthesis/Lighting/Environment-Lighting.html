@@ -13770,8 +13770,8 @@ M834 80h400000v40h-400000z' />
                                                         class="mord mtight">1</span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
-        </eq>. Fortunately, this CDF is closed-form and we have <eq><span class="katex"><span class="katex-mathml"><math
-                        xmlns="http://www.w3.org/1998/Math/MathML">
+        </eq>. Fortunately, the inverse of the CDF is closed-form and we have <eq><span class="katex"><span
+                    class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
                                 <mstyle scriptlevel="0" displaystyle="true">
@@ -14173,18 +14173,61 @@ s76,-153,76,-153s77,-151,77,-151c0.7,0.7,35.7,202,105,604c67.3,400.7,102,602.7,1
     <p dir="auto">By &quot;20.3 Quasirandom Low-Discrepancy Sequences&quot; of [Colbert 2007], <strong>Quasi Monte
             Carlo</strong> (&quot;13.8.2 Quasi Monte Carlo&quot; of <a
             href="https://pbr-book.org/3ed-2018/Monte_Carlo_Integration/Careful_Sample_Placement#QuasiMonteCarlo">PBR
-            Book</a>) is used and the pseudo-random sequence is replaced by the low-discrepancy <strong>Hammersley
-            sequence</strong> (&quot;7.4.1 Hammersley and Halton Sequences&quot; of <a
+            Book</a>) is preferred and the pseudo-random sequence is replaced by the low-discrepancy <strong>Hammersley
+            Sequence</strong> (&quot;7.4.1 Hammersley and Halton Sequences&quot; of <a
             href="https://pbr-book.org/3ed-2018/Sampling_and_Reconstruction/The_Halton_Sampler#HammersleyandHaltonSequences">PBR
-            Book</a>).</p>
-    <p dir="auto">The <strong>Hammersley sequence</strong> is calculated by <a
+            Book</a>) to generate the <eq><span class="katex"><span class="katex-mathml"><math
+                        xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <msub>
+                                        <mi>ξ</mi>
+                                        <mn>1</mn>
+                                    </msub>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle \xi_1</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span
+                            class="mord"><span class="mord mathnormal" style="margin-right:0.04601em;">ξ</span><span
+                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.30110799999999993em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:-0.04601em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight">1</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
+        </eq> and <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <msub>
+                                        <mi>ξ</mi>
+                                        <mn>2</mn>
+                                    </msub>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle \xi_2</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span
+                            class="mord"><span class="mord mathnormal" style="margin-right:0.04601em;">ξ</span><span
+                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.30110799999999993em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:-0.04601em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight">2</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
+        </eq>.</p>
+    <p dir="auto">The <strong>Hammersley Sequence</strong> is calculated by <a
             href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/MonteCarlo.ush#L34">Hammersley</a>
         in UE4 and <a
             href="https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.core/ShaderLibrary/Sampling/Hammersley.hlsl#L415">Hammersley2d</a>
-        in Unity3D. And the <strong>Fibonacci sequence</strong> is calculated by <a
-            href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/SubsurfaceBurleyNormalized.ush#L332">FIBONACCI_SEQUENCE_ANGLE</a>
-        in UE4 and <a
-            href="https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.core/ShaderLibrary/Sampling/Fibonacci.hlsl#L248">Fibonacci2d</a>
         in Unity3D.</p>
     <h3 dir="auto" id="2-2-dfg-term">2-2. DFG Term</h3>
     <p dir="auto">By &quot;Equation (9.9)&quot; of <a href="https://www.realtimerendering.com/">Real-Time Rendering
