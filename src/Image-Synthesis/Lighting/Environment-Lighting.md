@@ -114,9 +114,9 @@ For **Beckmann–Spizzichino** ("Equation \(8.9\)" of [PBR Book](https://pbr-boo
 
 #### 2-1-5\. Low-Discrepancy  
 
-By "20.3 Quasirandom Low-Discrepancy Sequences" of \[Colbert 2007\], **Quasi Monte Carlo** ("13.8.2 Quasi Monte Carlo" of [PBR Book](https://pbr-book.org/3ed-2018/Monte_Carlo_Integration/Careful_Sample_Placement#QuasiMonteCarlo)) is preferred and the pseudo-random sequence is replaced by the low-discrepancy **Hammersley Sequence** ("7.4.1 Hammersley and Halton Sequences" of [PBR Book](https://pbr-book.org/3ed-2018/Sampling_and_Reconstruction/The_Halton_Sampler#HammersleyandHaltonSequences)) to generate the $\displaystyle \xi_1$ and $\displaystyle \xi_2$.  
+By "20.3 Quasirandom Low-Discrepancy Sequences" of \[Colbert 2007\], **Quasi Monte Carlo** ("13.8.2 Quasi Monte Carlo" of [PBR Book](https://pbr-book.org/3ed-2018/Monte_Carlo_Integration/Careful_Sample_Placement#QuasiMonteCarlo)) is preferred and the pseudo-random sequence is replaced by the low-discrepancy **Hammersley sequence** ("7.4.1 Hammersley and Halton Sequences" of [PBR Book](https://pbr-book.org/3ed-2018/Sampling_and_Reconstruction/The_Halton_Sampler#HammersleyandHaltonSequences)) to generate the $\displaystyle \xi_1$ and $\displaystyle \xi_2$.  
 
-The **Hammersley Sequence** is calculated by [Hammersley](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/MonteCarlo.ush#L34) in UE4 and [Hammersley2d](https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.core/ShaderLibrary/Sampling/Hammersley.hlsl#L415) in Unity3D.  
+The **Hammersley sequence** is calculated by [Hammersley](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/MonteCarlo.ush#L34) in UE4 and [Hammersley2d](https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.core/ShaderLibrary/Sampling/Hammersley.hlsl#L415) in Unity3D.  
    
 ### 2-2\. DFG Term
 
