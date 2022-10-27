@@ -67,6 +67,7 @@ And by **3-1\. Integration over Polygons**, we have $\displaystyle  L_l \cdot \m
 
 "windowing function" from \[Lagarde 2014\]  
 
+[EllipsoidalDistanceAttenuation](https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.high-definition/Runtime/Material/Lit/Lit.hlsl#L1591)  
 [BoxDistanceAttenuation](https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.high-definition/Runtime/Material/Lit/Lit.hlsl#L1597)  
 
 ## References  
