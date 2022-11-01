@@ -17,23 +17,25 @@ We merely use **numerical quadrature** rather than **Monte Carlo integration** t
 % here is the MATLAB code which verifies the meaning of "fWt = 4/(sqrt(fTmp)*fTmp)".
 
 % retrieved by "textureSize(GLSL)" or "GetDimensions(HLSL)".
-cube_size_u = 4096.0;
-cube_size_v = 4096.0;
+cube_size_u = single(4096.0);
+cube_size_v = single(4096.0);
 
-[ u, v ] = meshgrid(linspace(-1.0, 1.0, cube_size_u), linspace(-1.0, 1.0, cube_size_v));
+[ index_u, index_v ] = meshgrid((single(0.0) : (cube_size_u - single(1.0))), (single(0.0) : (cube_size_v - single(1.0))));
+u = (index_u + single(0.5)) ./ cube_size_u .* single(2.0) - single(1.0);
+v = (index_v + single(0.5)) ./ cube_size_u .* single(2.0) - single(1.0);
 
 % the common divisor "1/(cube_size_u*cube_size_v)" can be reduced, and thus is NOT calculated in the "fWt = 4/(sqrt(fTmp)*fTmp)".
-d_a = (1.0 - (-1.0)) .* (1.0 - (-1.0)) ./ cube_size_u ./ cube_size_v;
-r_2 = 1.0 .* 1.0 + u .* u + v .* v;
-cos_theta = 1.0 ./ sqrt(r_2);
-d_omega = d_a .* cos_theta ./ r_2;
+d_a = (single(1.0) - single(-1.0)) .* (single(1.0) - single(-1.0)) ./ cube_size_u ./ cube_size_v;
+r_2 = single(1.0) .* single(1.0) + single(u) .* single(u) + single(v) .* single(v);
+cos_theta = single(1.0) ./ sqrt(r_2);
+d_omega = single(d_a) .* single(cos_theta) ./ single(r_2);
 
-% "numerical_omega" and "groundtruth_omega" are expected to be the same.
+% "numerical_omega" and "analytic_omega" are expected to be the same.
 numerical_omega = sum(sum(d_omega));
-groundtruth_omega = 4.0 .* pi .* 1.0 .* 1.0 / 6.0;
+analytical_omega = single(4.0) .* single(pi) .* single(1.0) .* single(1.0) / single(6.0);
 
-% output: "numerical:2.093936 groundtruth:2.094395".
-printf("numerical:%f groundtruth:%f\n", numerical_omega, groundtruth_omega);
+% output: "numerical:2.094395 analytic_omega:2.094395".
+printf("numerical:%f analytical:%f\n", numerical_omega, analytical_omega);
 ```  
 
 ### 1-2\. Polynomial Forms of SH Basis
