@@ -11,32 +11,54 @@
 
 <body class="markdown-body">
     <p dir="auto"><a
-            href="https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#package-manager-installation">Package
-            Manager Installation</a></p>
-    <pre><code class="code-line language-bash" dir="auto"><div>yum install http://developer.download.nvidia.com/compute/cuda/repos/rhel8/x86_64/cuda-repo-rhel8-10.2.89-1.x86_64.rpm 
-</div></code></pre>
-    <p dir="auto"><a
             href="https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#runfile-nouveau">Disabling
             Nouveau</a></p>
-    <pre><code class="code-line language-bash" dir="auto"><div><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;blacklist nouveau
-options nouveau modeset=0&#x27;</span> &gt; /etc/modprobe.d/blacklist-nouveau.conf  
+    <pre><code class="code-line language-bash" dir="auto"><div><span class="hljs-comment"># CentOS</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;blacklist nouveau&#x27;</span> &gt; /etc/modprobe.d/blacklist-nouveau.conf
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;options nouveau modeset=0&#x27;</span> &gt;&gt; /etc/modprobe.d/blacklist-nouveau.conf  
 dracut --force
-<span class="hljs-comment">#lsmod | grep nouveau</span>
+grub2-mkconfig -o /boot/efi/EFI/centos/grub.cfg  
 
-grub2-mkconfig -o /boot/efi/EFI/centos/grub.cfg
+<span class="hljs-comment"># Debian</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;blacklist nouveau&#x27;</span> &gt; /etc/modprobe.d/blacklist-nouveau.conf
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;options nouveau modeset=0&#x27;</span> &gt;&gt; /etc/modprobe.d/blacklist-nouveau.conf
+update-initramfs -u
+update-grub
+
+<span class="hljs-comment"># Ubuntu</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;blacklist nouveau&#x27;</span> &gt; /etc/modprobe.d/blacklist-nouveau.conf
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;options nouveau modeset=0&#x27;</span> &gt;&gt; /etc/modprobe.d/blacklist-nouveau.conf
+update-initramfs -u
+update-grub
+
+<span class="hljs-comment"># lsmod | grep nouveau</span>
 </div></code></pre>
     <p dir="auto"><a
-            href="https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#runfile-verifications">Device
-            Node Verification</a></p>
-    <pre><code class="code-line language-bash" dir="auto"><div>yum install nvidia-driver
-<span class="hljs-comment"># cd /usr/src/460.32.03</span>
-<span class="hljs-comment"># dkms install nvidia/460.32.03</span>
-<span class="hljs-built_in">rm</span> /etc/X11/xorg.conf.d/10-nvidia.conf <span class="hljs-comment"># We should delete this file otherwise the X server can&#x27;t start up</span>
+            href="https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#package-manager-installation">Package
+            Manager Installation</a></p>
+    <pre><code class="code-line language-bash" dir="auto"><div><span class="hljs-comment"># CentOS</span>
+yum install http://developer.download.nvidia.com/compute/cuda/repos/rhel8/x86_64/cuda-repo-rhel8-10.2.89-1.x86_64.rpm 
 
-yum install nvidia-modprobe
-modprobe nvidia
-modprobe nvidia-uvm
-nvidia-modprobe
+<span class="hljs-comment"># Debian</span>
+apt install https://developer.download.nvidia.com/compute/cuda/repos/debian11/x86_64/cuda-keyring_1.0-1_all.deb
+
+<span class="hljs-comment"># Ubuntu</span>
+apt install https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.0-1_all.deb
+
+</div></code></pre>
+    <pre><code class="code-line language-bash" dir="auto"><div><span class="hljs-comment"># CentOS</span>
+yum install nvidia-driver
+<span class="hljs-comment"># cd /usr/src/520.61.05</span>
+<span class="hljs-comment"># dkms install nvidia/520.61.05</span>
+
+<span class="hljs-comment"># Debian</span>
+apt install libgl1-nvidia-glvnd-glx
+apt install libgl1-nvidia-glvnd-glx:i386  
+
+<span class="hljs-comment"># Ubuntu</span>
+apt install nvidia-driver-520
+apt install libnvidia-gl-520
+apt install libnvidia-gl-520:i386
 </div></code></pre>
     <p dir="auto"><a
             href="http://download.nvidia.com/XFree86/Linux-x86_64/460.32.03/README/primerenderoffload.html">PRIME Render
@@ -46,26 +68,28 @@ nvidia-modprobe
         <a href="https://github.com/archlinux/svntogit-packages/tree/packages/nvidia-prime/trunk">nvidia-prime</a><br>
         <a href="https://github.com/archlinux/svntogit-packages/tree/packages/nvidia-utils/trunk">nvidia-utils</a>
     </p>
-    <pre><code class="code-line language-bash" dir="auto"><div><span class="hljs-built_in">rm</span> /etc/X11/xorg.conf.d/10-nvidia.conf <span class="hljs-comment"># We should delete this file otherwise the X server can&#x27;t start up</span>
+    <pre><code class="code-line language-bash" dir="auto"><div><span class="hljs-comment"># CentOS</span>
 
-<span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;Section &quot;OutputClass&quot;
-    Identifier &quot;nvidia&quot;
-    MatchDriver &quot;nvidia-drm&quot;
-    Driver &quot;nvidia&quot;
-    Option &quot;AllowEmptyInitialConfiguration&quot;
-EndSection&#x27;</span> &gt; /etc/X11/xorg.conf.d/10-nvidia.conf  
+<span class="hljs-comment"># We should replace this file otherwise the X can NOT start up.  </span>
+<span class="hljs-comment"># rm /etc/X11/xorg.conf.d/10-nvidia.conf </span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;Section &quot;OutputClass&quot;&#x27;</span> &gt; /etc/X11/xorg.conf.d/10-nvidia.conf 
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;    Identifier &quot;nvidia&quot;&#x27;</span> &gt;&gt; /etc/X11/xorg.conf.d/10-nvidia.conf
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;    MatchDriver &quot;nvidia-drm&quot;&#x27;</span> &gt;&gt; /etc/X11/xorg.conf.d/10-nvidia.conf
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;    Driver &quot;nvidia&quot; &gt;&gt; /etc/X11/xorg.conf.d/10-nvidia.conf
+echo &#x27;</span>    Option <span class="hljs-string">&quot;AllowEmptyInitialConfiguration&quot;</span> &gt;&gt; /etc/X11/xorg.conf.d/10-nvidia.conf
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;EndSection&#x27;</span> &gt;&gt; /etc/X11/xorg.conf.d/10-nvidia.conf  
 
-<span class="hljs-comment"># restart X server</span>
-<span class="hljs-comment"># xrandr --listproviders # &quot;NVIDIA-G0&quot; should be listed</span>
+<span class="hljs-comment"># reboot</span>
+<span class="hljs-comment"># xrandr --listproviders | grep &#x27;NVIDIA-G0&#x27;</span>
 
 <span class="hljs-built_in">export</span> __NV_PRIME_RENDER_OFFLOAD=1
 <span class="hljs-comment"># export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0</span>
 <span class="hljs-built_in">export</span> __GLX_VENDOR_LIBRARY_NAME=nvidia
 <span class="hljs-comment"># export __VK_LAYER_NV_optimus=NVIDIA_only</span>
 glxinfo | grep NVIDIA
-glxgears
-vkcube
-steam.sh
+<span class="hljs-comment"># glxgears</span>
+<span class="hljs-comment"># vkcube</span>
+<span class="hljs-comment"># steam.sh</span>
 
 <span class="hljs-comment"># yum install nvidia-driver-cuda</span>
 <span class="hljs-comment"># nvidia-smi</span>

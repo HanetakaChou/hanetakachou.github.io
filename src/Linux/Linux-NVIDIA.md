@@ -1,29 +1,53 @@
-[Package Manager Installation](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#package-manager-installation)  
-```bash
-yum install http://developer.download.nvidia.com/compute/cuda/repos/rhel8/x86_64/cuda-repo-rhel8-10.2.89-1.x86_64.rpm 
-```
-
 [Disabling Nouveau](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#runfile-nouveau)
 ```bash
-echo 'blacklist nouveau
-options nouveau modeset=0' > /etc/modprobe.d/blacklist-nouveau.conf  
+# CentOS
+echo 'blacklist nouveau' > /etc/modprobe.d/blacklist-nouveau.conf
+echo 'options nouveau modeset=0' >> /etc/modprobe.d/blacklist-nouveau.conf  
 dracut --force
-#lsmod | grep nouveau
+grub2-mkconfig -o /boot/efi/EFI/centos/grub.cfg  
 
-grub2-mkconfig -o /boot/efi/EFI/centos/grub.cfg
+# Debian
+echo 'blacklist nouveau' > /etc/modprobe.d/blacklist-nouveau.conf
+echo 'options nouveau modeset=0' >> /etc/modprobe.d/blacklist-nouveau.conf
+update-initramfs -u
+update-grub
+
+# Ubuntu
+echo 'blacklist nouveau' > /etc/modprobe.d/blacklist-nouveau.conf
+echo 'options nouveau modeset=0' >> /etc/modprobe.d/blacklist-nouveau.conf
+update-initramfs -u
+update-grub
+
+# lsmod | grep nouveau
 ```  
 
-[Device Node Verification](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#runfile-verifications)  
+[Package Manager Installation](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#package-manager-installation)  
 ```bash
-yum install nvidia-driver
-# cd /usr/src/460.32.03
-# dkms install nvidia/460.32.03
-rm /etc/X11/xorg.conf.d/10-nvidia.conf # We should delete this file otherwise the X server can't start up
+# CentOS
+yum install http://developer.download.nvidia.com/compute/cuda/repos/rhel8/x86_64/cuda-repo-rhel8-10.2.89-1.x86_64.rpm 
 
-yum install nvidia-modprobe
-modprobe nvidia
-modprobe nvidia-uvm
-nvidia-modprobe
+# Debian
+apt install https://developer.download.nvidia.com/compute/cuda/repos/debian11/x86_64/cuda-keyring_1.0-1_all.deb
+
+# Ubuntu
+apt install https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.0-1_all.deb
+
+```  
+
+```bash
+# CentOS
+yum install nvidia-driver
+# cd /usr/src/520.61.05
+# dkms install nvidia/520.61.05
+
+# Debian
+apt install libgl1-nvidia-glvnd-glx
+apt install libgl1-nvidia-glvnd-glx:i386  
+
+# Ubuntu
+apt install nvidia-driver-520
+apt install libnvidia-gl-520
+apt install libnvidia-gl-520:i386
 ```
 
 [PRIME Render Offload](http://download.nvidia.com/XFree86/Linux-x86_64/460.32.03/README/primerenderoffload.html)  
@@ -31,26 +55,28 @@ nvidia-modprobe
 [nvidia-prime](https://github.com/archlinux/svntogit-packages/tree/packages/nvidia-prime/trunk)  
 [nvidia-utils](https://github.com/archlinux/svntogit-packages/tree/packages/nvidia-utils/trunk)  
 ```bash
-rm /etc/X11/xorg.conf.d/10-nvidia.conf # We should delete this file otherwise the X server can't start up
+# CentOS
 
-echo 'Section "OutputClass"
-    Identifier "nvidia"
-    MatchDriver "nvidia-drm"
-    Driver "nvidia"
-    Option "AllowEmptyInitialConfiguration"
-EndSection' > /etc/X11/xorg.conf.d/10-nvidia.conf  
+# We should replace this file otherwise the X can NOT start up.  
+# rm /etc/X11/xorg.conf.d/10-nvidia.conf 
+echo 'Section "OutputClass"' > /etc/X11/xorg.conf.d/10-nvidia.conf 
+echo '    Identifier "nvidia"' >> /etc/X11/xorg.conf.d/10-nvidia.conf
+echo '    MatchDriver "nvidia-drm"' >> /etc/X11/xorg.conf.d/10-nvidia.conf
+echo '    Driver "nvidia" >> /etc/X11/xorg.conf.d/10-nvidia.conf
+echo '    Option "AllowEmptyInitialConfiguration" >> /etc/X11/xorg.conf.d/10-nvidia.conf
+echo 'EndSection' >> /etc/X11/xorg.conf.d/10-nvidia.conf  
 
-# restart X server
-# xrandr --listproviders # "NVIDIA-G0" should be listed
+# reboot
+# xrandr --listproviders | grep 'NVIDIA-G0'
 
 export __NV_PRIME_RENDER_OFFLOAD=1
 # export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
 export __GLX_VENDOR_LIBRARY_NAME=nvidia
 # export __VK_LAYER_NV_optimus=NVIDIA_only
 glxinfo | grep NVIDIA
-glxgears
-vkcube
-steam.sh
+# glxgears
+# vkcube
+# steam.sh
 
 # yum install nvidia-driver-cuda
 # nvidia-smi
