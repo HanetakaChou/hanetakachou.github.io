@@ -97,7 +97,7 @@ By appealing $\displaystyle \operatorname{p}(r, \theta) = \frac{\operatorname{R}
 
 And by "Equation \(13.3\)" of [PBR Book](https://pbr-book.org/3ed-2018/Monte_Carlo_Integration/The_Monte_Carlo_Estimator), we have the **Monte Carlo estimator** $\displaystyle \operatorname{L_v}(p_o) = \int_0^\infin \int_0^{2\pi} A \cdot \operatorname{p}(r, \theta) \cdot \operatorname{F}(p) \, d \theta dr = \frac{1}{N} \frac{A \cdot \operatorname{p}(r, \theta) \cdot \operatorname{F}(p)}{\operatorname{p}(r, \theta)}$.  
 
-Technically, $\displaystyle \operatorname{p}(r, \theta)$ is "wavelengh dependent". This means that $\displaystyle \operatorname{p}(r, \theta)$ should be represented by the vector "RGB" instead of the scalar "float". However, we need a scalar PDF to calcuate the sampling of the **Monte Carlo estimator**. And ususally, the maximum of "RGB" of the **scattering distance** is used.  
+Technically, $\displaystyle \operatorname{p}(r, \theta)$ is "wavelengh dependent". This means that $\displaystyle \operatorname{p}(r, \theta)$ should be represented by the vector "RGB" instead of the scalar "float". However, we need a scalar PDF to calcuate the sampling of diffusion profile. And ususally, the maximum of "RGB" of the **scattering distance** is used.  
 
 However, the A depends on the position. This means that the formula should be technically written as $\displaystyle \operatorname{L_v}(p_o) = \int_0^\infin \int_0^{2\pi} A \cdot \operatorname{p}(r, \theta) \cdot \operatorname{F}(p) \, d \theta dr = \int_0^\infin \int_0^{2\pi} \operatorname{A}(p) \cdot \operatorname{p}(r, \theta) \cdot \operatorname{F}(p) \, d \theta dr$.
 
