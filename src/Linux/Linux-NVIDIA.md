@@ -50,10 +50,10 @@ apt install libnvidia-gl-520
 apt install libnvidia-gl-520:i386
 ```
 
-[PRIME Render Offload](http://download.nvidia.com/XFree86/Linux-x86_64/460.32.03/README/primerenderoffload.html)  
-[Using PRIME render offload](https://wiki.archlinux.org/index.php/NVIDIA_Optimus#Using_PRIME_render_offload)  
-[nvidia-prime](https://github.com/archlinux/svntogit-packages/tree/packages/nvidia-prime/trunk)  
-[nvidia-utils](https://github.com/archlinux/svntogit-packages/tree/packages/nvidia-utils/trunk)  
+[Arch Linux - NVIDIA Optimus](https://wiki.archlinux.org/index.php/NVIDIA_Optimus#Using_PRIME_render_offload)  
+[Arch Linux - PRIME](https://wiki.archlinux.org/title/PRIME#PRIME_render_offload)  
+[NVIDIA - PRIME Render Offload](https://download.nvidia.com/XFree86/Linux-x86_64/435.17/README/primerenderoffload.html)  
+[Arch Linux - prime run](https://github.com/archlinux/svntogit-packages/blob/packages/nvidia-prime/trunk/prime-run)  
 ```bash
 # CentOS
 
@@ -69,17 +69,79 @@ echo 'EndSection' >> /etc/X11/xorg.conf.d/10-nvidia.conf
 # reboot
 # xrandr --listproviders | grep 'NVIDIA-G0'
 
-export __NV_PRIME_RENDER_OFFLOAD=1
-# export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
-export __GLX_VENDOR_LIBRARY_NAME=nvidia
-# export __VK_LAYER_NV_optimus=NVIDIA_only
-glxinfo | grep NVIDIA
-# glxgears
-# vkcube
-# steam.sh
+env __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia glxinfo
+env __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia steam & disown
 
 # yum install nvidia-driver-cuda
 # nvidia-smi
+```
+
+[Arch Linux - Hardware Video Acceleration](https://wiki.archlinux.org/title/Hardware_video_acceleration#Translation_layers)  
+[Arch Linux - NVIDIA](https://wiki.archlinux.org/title/NVIDIA#DRM_kernel_mode_setting)  
+[Debian - Hardware Video Acceleration](https://wiki.debian.org/HardwareVideoAcceleration#NVENC.2FNVDEC)  
+[Chromium - VA-API](https://chromium.googlesource.com/chromium/src/+/master/docs/gpu/vaapi.md#VaAPI-on-Linux)  
+```bash
+
+# A VDPAU-based backend for VA-API 
+
+# CentOS
+# yum install libva-vdpau-driver
+# yum install nvidia-driver-libs
+
+# Debian
+# apt install vdpau-va-driver
+# apt install vdpau-va-driver:i386
+# apt install libvdpau-va-gl1
+# apt install libvdpau-va-gl1:i386
+# apt install nvidia-vdpau-driver
+# apt install nvidia-vdpau-driver:i386
+
+# Ubuntu
+# apt install vdpau-va-driver
+# apt install vdpau-va-driver:i386
+# apt install nvidia-driver-520
+
+# A CUDA NVDECODE based backend for VA-API
+
+# CentOS
+yum install nvidia-vaapi-driver 
+
+# Debian
+apt install nvidia-vaapi-driver
+apt install libcuda1
+apt install libcuda1:i386
+apt install libnvcuvid1
+apt install libnvcuvid1:i386
+apt install libnvidia-encode1
+apt install libnvidia-encode1:i386
+apt install libavcodec-extra58
+
+# Ubuntu
+apt install nvidia-vaapi-driver
+
+# DRM kernel mode setting
+
+vi /etc/default/grub
+-- GRUB_CMDLINE_LINUX_DEFAULT=""
+++ GRUB_CMDLINE_LINUX_DEFAULT="nvidia-drm.modeset=1"
+
+## Debian
+update-grub
+
+## CentOS
+grub2-mkconfig -o /boot/efi/EFI/centos/grub.cfg
+
+## reboot
+
+# Verify VA-API
+
+# yum install libva-utils
+# apt install vainfo
+env __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia LIBVA_DRIVER_NAME=nvidia NVD_LOG=1 vainfo
+
+env __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia LIBVA_DRIVER_NAME=nvidia NVD_LOG=1 mpv --hwdec=vaapi --player-operation-mode=pseudo-gui & disown
+
+env __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia LIBVA_DRIVER_NAME=nvidia google-chrome-stable --enable-features=VaapiVideoDecoder --ignore-gpu-blocklist --use-gl=egl & disown
 ```
 
 [Install plugins using Eclipse IDE](https://docs.nvidia.com/cuda/nsightee-plugins-install-guide/index.html#install-steps)  

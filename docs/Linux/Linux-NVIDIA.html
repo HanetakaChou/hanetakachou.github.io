@@ -60,13 +60,13 @@ apt install nvidia-driver-520
 apt install libnvidia-gl-520
 apt install libnvidia-gl-520:i386
 </div></code></pre>
-    <p dir="auto"><a
-            href="http://download.nvidia.com/XFree86/Linux-x86_64/460.32.03/README/primerenderoffload.html">PRIME Render
-            Offload</a><br>
-        <a href="https://wiki.archlinux.org/index.php/NVIDIA_Optimus#Using_PRIME_render_offload">Using PRIME render
-            offload</a><br>
-        <a href="https://github.com/archlinux/svntogit-packages/tree/packages/nvidia-prime/trunk">nvidia-prime</a><br>
-        <a href="https://github.com/archlinux/svntogit-packages/tree/packages/nvidia-utils/trunk">nvidia-utils</a>
+    <p dir="auto"><a href="https://wiki.archlinux.org/index.php/NVIDIA_Optimus#Using_PRIME_render_offload">Arch Linux -
+            NVIDIA Optimus</a><br>
+        <a href="https://wiki.archlinux.org/title/PRIME#PRIME_render_offload">Arch Linux - PRIME</a><br>
+        <a href="https://download.nvidia.com/XFree86/Linux-x86_64/435.17/README/primerenderoffload.html">NVIDIA - PRIME
+            Render Offload</a><br>
+        <a href="https://github.com/archlinux/svntogit-packages/blob/packages/nvidia-prime/trunk/prime-run">Arch Linux -
+            prime run</a>
     </p>
     <pre><code class="code-line language-bash" dir="auto"><div><span class="hljs-comment"># CentOS</span>
 
@@ -82,17 +82,81 @@ echo &#x27;</span>    Option <span class="hljs-string">&quot;AllowEmptyInitialCo
 <span class="hljs-comment"># reboot</span>
 <span class="hljs-comment"># xrandr --listproviders | grep &#x27;NVIDIA-G0&#x27;</span>
 
-<span class="hljs-built_in">export</span> __NV_PRIME_RENDER_OFFLOAD=1
-<span class="hljs-comment"># export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0</span>
-<span class="hljs-built_in">export</span> __GLX_VENDOR_LIBRARY_NAME=nvidia
-<span class="hljs-comment"># export __VK_LAYER_NV_optimus=NVIDIA_only</span>
-glxinfo | grep NVIDIA
-<span class="hljs-comment"># glxgears</span>
-<span class="hljs-comment"># vkcube</span>
-<span class="hljs-comment"># steam.sh</span>
+<span class="hljs-built_in">env</span> __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia glxinfo
+<span class="hljs-built_in">env</span> __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia steam &amp; <span class="hljs-built_in">disown</span>
 
 <span class="hljs-comment"># yum install nvidia-driver-cuda</span>
 <span class="hljs-comment"># nvidia-smi</span>
+</div></code></pre>
+    <p dir="auto"><a href="https://wiki.archlinux.org/title/Hardware_video_acceleration#Translation_layers">Arch Linux -
+            Hardware Video Acceleration</a><br>
+        <a href="https://wiki.archlinux.org/title/NVIDIA#DRM_kernel_mode_setting">Arch Linux - NVIDIA</a><br>
+        <a href="https://wiki.debian.org/HardwareVideoAcceleration#NVENC.2FNVDEC">Debian - Hardware Video
+            Acceleration</a><br>
+        <a href="https://chromium.googlesource.com/chromium/src/+/master/docs/gpu/vaapi.md#VaAPI-on-Linux">Chromium -
+            VA-API</a>
+    </p>
+    <pre><code class="code-line language-bash" dir="auto"><div>
+<span class="hljs-comment"># A VDPAU-based backend for VA-API </span>
+
+<span class="hljs-comment"># CentOS</span>
+<span class="hljs-comment"># yum install libva-vdpau-driver</span>
+<span class="hljs-comment"># yum install nvidia-driver-libs</span>
+
+<span class="hljs-comment"># Debian</span>
+<span class="hljs-comment"># apt install vdpau-va-driver</span>
+<span class="hljs-comment"># apt install vdpau-va-driver:i386</span>
+<span class="hljs-comment"># apt install libvdpau-va-gl1</span>
+<span class="hljs-comment"># apt install libvdpau-va-gl1:i386</span>
+<span class="hljs-comment"># apt install nvidia-vdpau-driver</span>
+<span class="hljs-comment"># apt install nvidia-vdpau-driver:i386</span>
+
+<span class="hljs-comment"># Ubuntu</span>
+<span class="hljs-comment"># apt install vdpau-va-driver</span>
+<span class="hljs-comment"># apt install vdpau-va-driver:i386</span>
+<span class="hljs-comment"># apt install nvidia-driver-520</span>
+
+<span class="hljs-comment"># A CUDA NVDECODE based backend for VA-API</span>
+
+<span class="hljs-comment"># CentOS</span>
+yum install nvidia-vaapi-driver 
+
+<span class="hljs-comment"># Debian</span>
+apt install nvidia-vaapi-driver
+apt install libcuda1
+apt install libcuda1:i386
+apt install libnvcuvid1
+apt install libnvcuvid1:i386
+apt install libnvidia-encode1
+apt install libnvidia-encode1:i386
+apt install libavcodec-extra58
+
+<span class="hljs-comment"># Ubuntu</span>
+apt install nvidia-vaapi-driver
+
+<span class="hljs-comment"># DRM kernel mode setting</span>
+
+vi /etc/default/grub
+-- GRUB_CMDLINE_LINUX_DEFAULT=<span class="hljs-string">&quot;&quot;</span>
+++ GRUB_CMDLINE_LINUX_DEFAULT=<span class="hljs-string">&quot;nvidia-drm.modeset=1&quot;</span>
+
+<span class="hljs-comment">## Debian</span>
+update-grub
+
+<span class="hljs-comment">## CentOS</span>
+grub2-mkconfig -o /boot/efi/EFI/centos/grub.cfg
+
+<span class="hljs-comment">## reboot</span>
+
+<span class="hljs-comment"># Verify VA-API</span>
+
+<span class="hljs-comment"># yum install libva-utils</span>
+<span class="hljs-comment"># apt install vainfo</span>
+<span class="hljs-built_in">env</span> __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia LIBVA_DRIVER_NAME=nvidia NVD_LOG=1 vainfo
+
+<span class="hljs-built_in">env</span> __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia LIBVA_DRIVER_NAME=nvidia NVD_LOG=1 mpv --hwdec=vaapi --player-operation-mode=pseudo-gui &amp; <span class="hljs-built_in">disown</span>
+
+<span class="hljs-built_in">env</span> __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia LIBVA_DRIVER_NAME=nvidia google-chrome-stable --enable-features=VaapiVideoDecoder --ignore-gpu-blocklist --use-gl=egl &amp; <span class="hljs-built_in">disown</span>
 </div></code></pre>
     <p dir="auto"><a href="https://docs.nvidia.com/cuda/nsightee-plugins-install-guide/index.html#install-steps">Install
             plugins using Eclipse IDE</a><br>
