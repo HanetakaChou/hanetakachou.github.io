@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/default.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+</head>
+
+<body class="markdown-body">
+    <h1 dir="auto" id="path-tracing">Path Tracing</h1>
+    <h2 dir="auto" id="rendering-equation">Rendering Equation</h2>
+    <p dir="auto">By &quot;14.4 The Light Transport Equation&quot; of <a
+            href="https://www.pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/The_Light_Transport_Equation">PBR
+            Book</a>, the <strong>Rendering Equation</strong> is also called the <strong>LTE</strong> (<strong>Light
+            Transport Equation</strong>).</p>
+    <p dir="auto">And by &quot;Light transport and the rendering equation&quot; of <a
+            href="http://www-graphics.stanford.edu/courses/cs348b-96/transport/transport.html">CS 348B - Computer
+            Graphics: Image Synthesis Techniques</a> and &quot;Global Illumination and Rendering Equation&quot; of <a
+            href="https://inst.eecs.berkeley.edu/~cs294-13/fa09/">CS 294-13 Advanced Computer Graphics</a>, the LTE
+        (Light Transport Equation) is actually the <a
+            href="https://en.wikipedia.org/wiki/Fredholm_integral_equation">Fredholm Integral Equation</a> of which the
+        solution is the <a href="https://en.wikipedia.org/wiki/Liouville%E2%80%93Neumann_series">Liouville–Neumann
+            Series</a>. And thus, the solution of the LTE can be written as the recursive form <eq><span
+                class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mtext>L</mtext>
+                                <mo>=</mo>
+                                <mtext>E</mtext>
+                                <mo>+</mo>
+                                <mtext>KE</mtext>
+                                <mo>+</mo>
+                                <msup>
+                                    <mtext>K</mtext>
+                                    <mn>2</mn>
+                                </msup>
+                                <mtext>E</mtext>
+                                <mo>+</mo>
+                                <msup>
+                                    <mtext>K</mtext>
+                                    <mn>3</mn>
+                                </msup>
+                                <mtext>E</mtext>
+                                <mo>+</mo>
+                                <mo>…</mo>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\text{L} = \text{E} + \text{K}\text{E} +
+                                {\text{K}}^2\text{E} + {\text{K}}^3\text{E} + \ldots</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.68333em;vertical-align:0em;"></span><span class="mord text"><span
+                                class="mord">L</span></span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                        class="base"><span class="strut"
+                            style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord text"><span
+                                class="mord">E</span></span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut"
+                            style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord text"><span
+                                class="mord">K</span></span><span class="mord text"><span
+                                class="mord">E</span></span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut"
+                            style="height:0.970668em;vertical-align:-0.08333em;"></span><span class="mord"><span
+                                class="mord"><span class="mord text"><span class="mord">K</span></span></span><span
+                                class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.887338em;"><span
+                                                style="top:-3.1362300000000003em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight">2</span></span></span></span></span></span></span></span><span
+                            class="mord text"><span class="mord">E</span></span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut"
+                            style="height:0.970668em;vertical-align:-0.08333em;"></span><span class="mord"><span
+                                class="mord"><span class="mord text"><span class="mord">K</span></span></span><span
+                                class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.887338em;"><span
+                                                style="top:-3.1362300000000003em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight">3</span></span></span></span></span></span></span></span><span
+                            class="mord text"><span class="mord">E</span></span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:0.12em;vertical-align:0em;"></span><span
+                            class="minner">…</span></span></span></span></eq>.</p>
+    <p dir="auto">Actually, by <a href="https://github.com/AcademySoftwareFoundation/OpenShadingLanguage">OSL</a>, light
+        and surface are the same thing since light is merely the surface which is emissive.</p>
+
+</body>
+
+</html>
