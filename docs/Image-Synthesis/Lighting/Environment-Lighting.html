@@ -14171,14 +14171,12 @@ s76,-153,76,-153s77,-151,77,-151c0.7,0.7,35.7,202,105,604c67.3,400.7,102,602.7,1
             href="https://pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/Sampling_Reflection_Functions#MicrofacetBxDFs">PBR
             Book</a>.</p>
     <p dir="auto"><strong>TODO:</strong></p>
-    <h4 dir="auto" id="2-1-5-low-discrepancy">2-1-5. Low-Discrepancy</h4>
-    <p dir="auto">By &quot;20.3 Quasirandom Low-Discrepancy Sequences&quot; of [Colbert 2007], <strong>Quasi Monte
-            Carlo</strong> (&quot;13.8.2 Quasi Monte Carlo&quot; of <a
+    <h4 dir="auto" id="2-1-5-low-discrepancy-sequence">2-1-5. Low-Discrepancy Sequence</h4>
+    <p dir="auto">By &quot;20.3 Quasirandom Low-Discrepancy Sequences&quot; of [Colbert 2007] and &quot;13.8.2 Quasi
+        Monte Carlo&quot; of <a
             href="https://pbr-book.org/3ed-2018/Monte_Carlo_Integration/Careful_Sample_Placement#QuasiMonteCarlo">PBR
-            Book</a>) is preferred and the pseudo-random sequence is replaced by the low-discrepancy <strong>Hammersley
-            sequence</strong> (&quot;7.4.1 Hammersley and Halton Sequences&quot; of <a
-            href="https://pbr-book.org/3ed-2018/Sampling_and_Reconstruction/The_Halton_Sampler#HammersleyandHaltonSequences">PBR
-            Book</a>) to generate the <eq><span class="katex"><span class="katex-mathml"><math
+            Book</a>, the <strong>low-discrepancy sequence</strong> is the better alternative than <strong>pseudo-random
+            sequence</strong> to generate the <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
@@ -14226,6 +14224,10 @@ s76,-153,76,-153s77,-151,77,-151c0.7,0.7,35.7,202,105,604c67.3,400.7,102,602.7,1
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
         </eq>.</p>
+    <p dir="auto">For example, the <strong>Hammersley sequence</strong> (&quot;7.4.1 Hammersley and Halton
+        Sequences&quot; of <a
+            href="https://pbr-book.org/3ed-2018/Sampling_and_Reconstruction/The_Halton_Sampler#HammersleyandHaltonSequences">PBR
+            Book</a>) is a typical <strong>low-discrepancy sequence</strong>.</p>
     <p dir="auto">The <strong>Hammersley sequence</strong> is calculated by <a
             href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/MonteCarlo.ush#L34">Hammersley</a>
         in UE4 and <a
