@@ -437,8 +437,7 @@
 -12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
  151.7 139 205zm0 0v40h399900v-40z' />
                                                 </svg></span></span></span></span></span></span><span
-                            class="mclose">)</span></span></span></span>
-        </eq>.<br>
+                            class="mclose">)</span></span></span></span></eq>.<br>
         And, currently, all real time approaches assume that the material is homogeneous. This means that the diffusion
         profile <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
@@ -612,8 +611,7 @@ M1001 80h400000v40h-400000z' />
                                                         class="mord mathnormal mtight">o</span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.15em;"><span></span></span></span></span></span></span><span
-                            class="mord">∥</span><span class="mclose">)</span></span></span></span></eq>.
-    </p>
+                            class="mord">∥</span><span class="mclose">)</span></span></span></span></eq>.</p>
     <p dir="auto">However, things are far from simple. Although the proposals based on the diffusion profile are much
         simpler than the BSSRDF, a general 2D convolution is still too expensive for real time rendering. Actually,
         according to [dEon 2007], if the width (technically, the range of the significant contribution domain) of the
@@ -1521,8 +1519,7 @@ M1001 80h400000v40h-400000z' />
                             class="mord">∣</span><span class="mspace"
                             style="margin-right:0.16666666666666666em;"></span><span
                             class="mord mathnormal">d</span><span class="mord mathnormal">p</span></span></span></span>
-        </eq>.
-    </p>
+        </eq>.</p>
     <p dir="auto">The main idea of [Penner 2011] is that the <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
@@ -2113,8 +2110,7 @@ M1001 80h400000v40h-400000z' />
                                                 class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                                 style="height:0.15em;"><span></span></span></span></span></span></span></span><span
                             class="mopen">(</span><span class="mord mathnormal">p</span><span
-                            class="mclose">)</span></span></span></span></eq>.
-    </p>
+                            class="mclose">)</span></span></span></span></eq>.</p>
     <p dir="auto">Usually, the diffusion profile is normalized which indicates the energy conservation. This means that
         <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
@@ -2448,10 +2444,8 @@ M1001 80h400000v40h-400000z' />
                                                         class="mord mathnormal">x</span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:1.163443em;"><span></span></span></span></span></span><span
-                                class="mclose nulldelimiter"></span></span></span></span></span>
-        </eq> where denominator
-        is added to make sure the diffusion profile is normalized.
-    </p>
+                                class="mclose nulldelimiter"></span></span></span></span></span></eq> where denominator
+        is added to make sure the diffusion profile is normalized.</p>
     <p dir="auto">In the GPU Pro 2, the <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
@@ -2494,8 +2488,7 @@ M1001 80h400000v40h-400000z' />
                                             style="height:0.686em;"><span></span></span></span></span></span><span
                                 class="mclose nulldelimiter"></span></span><span
                             class="mclose">)</span></span></span></span></eq> is calculated by
-        <strong>integrateDiffuseScatteringOnRing</strong>. And there are some points to note.
-    </p>
+        <strong>integrateDiffuseScatteringOnRing</strong>. And there are some points to note.</p>
     <ol dir="auto">
         <li dir="auto">[Penner 2011] merely follows [dEon 2007] and the diffusion profile is approximated by the
             Gaussians (the <strong>Scatter</strong> in the code). However, the motivation of [dEon 2007] is that the <a
@@ -2523,8 +2516,7 @@ M1001 80h400000v40h-400000z' />
                                 style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span
                                     class="mord mathrm" style="margin-right:0.07778em;">f</span></span><span
                                 class="mopen">(</span><span class="mord mathnormal">x</span><span
-                                class="mclose">)</span></span></span></span>
-            </eq> is multiplied by the difference of the
+                                class="mclose">)</span></span></span></span></eq> is multiplied by the difference of the
             domain <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                             <semantics>
                                 <mrow>
@@ -2640,8 +2632,7 @@ M1001 80h400000v40h-400000z' />
                                             style="height:0.686em;"><span></span></span></span></span></span><span
                                 class="mclose nulldelimiter"></span></span><span
                             class="mclose">)</span></span></span></span></eq> is calculated by
-        <strong>GFSDK_FaceWorks_GenerateCurvatureLUT</strong>. However, there is some subtle modification.
-    </p>
+        <strong>GFSDK_FaceWorks_GenerateCurvatureLUT</strong>. However, there is some subtle modification.</p>
     <ol dir="auto">
         <li dir="auto">The <eq><span class="katex"><span class="katex-mathml"><math
                             xmlns="http://www.w3.org/1998/Math/MathML">
@@ -2989,8 +2980,7 @@ M1001 80h400000v40h-400000z' />
                                 class="mpunct">,</span><span class="mspace"
                                 style="margin-right:0.16666666666666666em;"></span><span
                                 class="mord mathnormal">L</span><span class="mclose">)</span></span></span></span></eq>
-            which is detached from the total integral.
-        </li>
+            which is detached from the total integral.</li>
     </ol>
     <h3 dir="auto" id="1-3-separable-sss">1-3. Separable SSS</h3>
     <p dir="auto">The <strong>diffuse reflectance</strong> term of the <strong>Subsurface Profile</strong> <a
@@ -3450,8 +3440,7 @@ M1001 80h400000v40h-400000z' />
                             class="mord">Δ</span><span class="mord mathnormal">x</span><span
                             class="mclose">)</span></span></span></span></eq> is calculated by the
         <strong>calculateKernel</strong> in the demo source code provided by [Jimenez 2015] and the
-        <strong>ComputeMirroredSSSKernel</strong> in the UE4. And there are some points to note.
-    </p>
+        <strong>ComputeMirroredSSSKernel</strong> in the UE4. And there are some points to note.</p>
     <ol dir="auto">
         <li dir="auto">The <strong>strength</strong>, which is the <strong>SubsurfaceColor</strong> in the UE4, is to
             lerp between the SSS diffuse term <eq><span class="katex"><span class="katex-mathml"><math
@@ -3529,8 +3518,7 @@ M1001 80h400000v40h-400000z' />
                                 style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span
                                     class="mord">δ</span></span><span class="mopen">(</span><span
                                 class="mord">Δ</span><span class="mord mathnormal">x</span><span
-                                class="mclose">)</span></span></span></span>
-            </eq>. Evidently, when the
+                                class="mclose">)</span></span></span></span></eq>. Evidently, when the
             <strong>strength</strong> equals 0, since <eq><span class="katex"><span class="katex-mathml"><math
                             xmlns="http://www.w3.org/1998/Math/MathML">
                             <semantics>
@@ -3930,14 +3918,12 @@ M1001 80h400000v40h-400000z' />
                                                 class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                                 style="height:0.15em;"><span></span></span></span></span></span></span><span
                                 class="mclose">)</span></span></span></span></eq>. The default of the
-            <strong>strength</strong> in the demo source code is (0.48, 0.41, 0.28).
-        </li>
+            <strong>strength</strong> in the demo source code is (0.48, 0.41, 0.28).</li>
         <li dir="auto">According to [dEon 2007], the width of the diffusion profile is about 16 mm. The
             <strong>falloff</strong>, which is the <strong>FalloffColor</strong> in the UE4, is to make the diffusion
             profile narrower, and thus the width of the diffusion profile in the demo source code is reduced to 6(3x2)
             mm (the <strong>RANGE</strong> in the <strong>calculateKernel</strong> in the code). The default of the
-            <strong>falloff</strong> in the demo source code is (1.0, 0.37, 0.3).
-        </li>
+            <strong>falloff</strong> in the demo source code is (1.0, 0.37, 0.3).</li>
         <li dir="auto">Actually, the demo source code demonstrates that the <eq><span class="katex"><span
                         class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                             <semantics>
@@ -4001,8 +3987,7 @@ M1001 80h400000v40h-400000z' />
                                 class="mord mathnormal" style="margin-right:0.02778em;">r</span><span
                                 class="mclose">)</span></span></span></span></eq> directly without the
             <strong>width</strong> in the formula. This implies the <strong>width</strong> in the formula is actually
-            fixed at 1.
-        </li>
+            fixed at 1.</li>
         <li dir="auto">According to the <strong>numerical quadrature</strong>, the function value sampled from the
             irradiance texture should be multiplied by the difference of the domain the <eq><span class="katex"><span
                         class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -4502,8 +4487,7 @@ M1001 80h400000v40h-400000z' />
                                                 style="height:0.686em;"><span></span></span></span></span></span><span
                                     class="mclose nulldelimiter"></span></span></span></span></span></eq>. Actually, I
             check the vertex data of the head mesh in the demo, and fortunately, I find the vertex data is consistent
-            with this result.
-        </li>
+            with this result.</li>
         <li dir="auto">The <strong>SSSS_STRENGTH_SOURCE</strong> in the shader code has nothing to do with the
             <strong>strength</strong> in the paper at all. In the demo source code, the
             <strong>SSSS_STREGTH_SOURCE</strong> is the alpha channel of the albedo texture, and is used to skip the
@@ -4512,8 +4496,7 @@ M1001 80h400000v40h-400000z' />
                 href="https://docs.unrealengine.com/4.26/en-US/RenderingAndGraphics/Materials/LightingModels/SubSurfaceProfile/#materialinputchannels">Opacity
                 Map</a>, and the equivalent in Unity3D is called <a
                 href="https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@10.8/manual/Material-Type.html">Subsurface
-                Mask Map</a>.
-        </li>
+                Mask Map</a>.</li>
     </ol>
     <p dir="auto">Canonically, we should <strong>NOT</strong> blur the specular lighting. Thus, a dedicated <a
             href="https://github.com/iryoku/separable-sss/blob/master/Demo/Shaders/Main.fx#L272">specularRT</a> is added
@@ -4531,7 +4514,7 @@ M1001 80h400000v40h-400000z' />
             Model</a> with <a
             href="https://docs.unrealengine.com/4.27/en-US/RenderingAndGraphics/Materials/LightingModels/SubSurfaceProfile/">Enable
             Burley</a> of UE4 is based on the <strong>Disney SSS</strong> [Golubev 2018].</p>
-    <h4 dir="auto" id="1-4-1-importance-sampling">1-4-1. Importance Sampling</h4>
+    <h4 dir="auto" id="1-4-1-monte-carlo-integration">1-4-1. Monte Carlo Integration</h4>
     <h5 dir="auto" id="1-4-1-1-pdf">1-4-1-1. PDF</h5>
     <p dir="auto">The diffusion profile <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
@@ -5034,6 +5017,7 @@ M1001 80h400000v40h-400000z' />
                                                                             style="height:0.344em;"><span></span></span></span></span></span><span
                                                                 class="mclose nulldelimiter sizing reset-size3 size6"></span></span></span></span></span></span></span></span></span></span><span
                             class="mclose">)</span></span></span></span></eq>.</p>
+    <h5 dir="auto" id="1-4-1-2-sampling-diffusion-profile">1-4-1-2. Sampling Diffusion Profile</h5>
     <p dir="auto">Analogously to &quot;Equation (14.1)&quot; of <a
             href="https://pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/Sampling_Reflection_Functions#MicrofacetBxDFs">PBR
             Book</a>, we can derive the sampling of diffusion profile. Since the diffusion profile is isotropic
@@ -5665,21 +5649,81 @@ M1001 80h400000v40h-400000z' />
                                                         class="mord mtight">1</span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
-        </eq>.
-    </p>
+        </eq>.</p>
     <p dir="auto">The sampling of diffusion profile is calculated by <a
             href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/SubsurfaceBurleyNormalized.ush#L347">RadiusRootFindAnalytic</a>
         in UE4 and <a
             href="https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.high-definition/Runtime/Material/SubsurfaceScattering/SubsurfaceScattering.compute#L182">SampleBurleyDiffusionProfile</a>
         in Unity3D.</p>
-    <h5 dir="auto" id="1-4-1-2-low-discrepancy">1-4-1-2. Low-Discrepancy</h5>
-    <p dir="auto">By &quot;20.3 Quasirandom Low-Discrepancy Sequences&quot; of [Colbert 2007], <strong>Quasi Monte
-            Carlo</strong> (&quot;13.8.2 Quasi Monte Carlo&quot; of <a
+    <h5 dir="auto" id="1-4-1-3-pseudo-random-sequence">1-4-1-3. Pseudo-Random Sequence</h5>
+    <p dir="auto">The <eq><span class="katex"><span class="katex-mathml"><math
+                        xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <msub>
+                                        <mi>ξ</mi>
+                                        <mn>1</mn>
+                                    </msub>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle \xi_1</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span
+                            class="mord"><span class="mord mathnormal" style="margin-right:0.04601em;">ξ</span><span
+                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.30110799999999993em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:-0.04601em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight">1</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
+        </eq> is generated by pseudo-random sequence in UE4 and by evenly spaced sequence in Unity3D.</p>
+    <p dir="auto">The <strong>pseudo-random sequence</strong> is calculated by <a
+            href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/SubsurfaceBurleyNormalized.ush#L935">Generate2DRandomNumber</a>
+        in UE4 and the <strong>evenly spaced sequence</strong> is calculated by <a
+            href="https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.high-definition/Runtime/Material/SubsurfaceScattering/SubsurfaceScattering.compute#L182">i
+            * scale + offset</a> in Unity3D.</p>
+    <p dir="auto">And the <eq><span class="katex"><span class="katex-mathml"><math
+                        xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <msub>
+                                        <mi>ξ</mi>
+                                        <mn>2</mn>
+                                    </msub>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle \xi_2</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span
+                            class="mord"><span class="mord mathnormal" style="margin-right:0.04601em;">ξ</span><span
+                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.30110799999999993em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:-0.04601em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight">2</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
+        </eq> is generated by <strong>Fibonacci sequence</strong>, which is related to the <a
+            href="https://en.wikipedia.org/wiki/Golden_ratio#Relationship_to_Fibonacci_sequence">Golden Ratio</a>, in
+        both UE4 and Unity3D.</p>
+    <p dir="auto">The <strong>Fibonacci sequence</strong> is calculated by <a
+            href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/SubsurfaceBurleyNormalized.ush#L332">FIBONACCI_SEQUENCE_ANGLE</a>
+        in UE4 and <a
+            href="https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.core/ShaderLibrary/Sampling/Fibonacci.hlsl#L248">Fibonacci2d</a>
+        in Unity3D.</p>
+    <h5 dir="auto" id="1-4-1-4-low-discrepancy-sequence">1-4-1-4. Low-Discrepancy Sequence</h5>
+    <p dir="auto">By &quot;20.3 Quasirandom Low-Discrepancy Sequences&quot; of [Colbert 2007] and &quot;13.8.2 Quasi
+        Monte Carlo&quot; of <a
             href="https://pbr-book.org/3ed-2018/Monte_Carlo_Integration/Careful_Sample_Placement#QuasiMonteCarlo">PBR
-            Book</a>) is preferred and the pseudo-random sequence is replaced by the low-discrepancy <strong>Hammersley
-            sequence</strong> (&quot;7.4.1 Hammersley and Halton Sequences&quot; of <a
-            href="https://pbr-book.org/3ed-2018/Sampling_and_Reconstruction/The_Halton_Sampler#HammersleyandHaltonSequences">PBR
-            Book</a>) to generate the <eq><span class="katex"><span class="katex-mathml"><math
+            Book</a>, the <strong>low-discrepancy sequence</strong> is the better alternative than <strong>pseudo-random
+            sequence</strong> to generate the <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
@@ -5727,103 +5771,20 @@ M1001 80h400000v40h-400000z' />
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
         </eq>.</p>
+    <p dir="auto">For example, the <strong>Hammersley sequence</strong> (&quot;7.4.1 Hammersley and Halton
+        Sequences&quot; of <a
+            href="https://pbr-book.org/3ed-2018/Sampling_and_Reconstruction/The_Halton_Sampler#HammersleyandHaltonSequences">PBR
+            Book</a>) is a typical <strong>low-discrepancy sequence</strong>.</p>
     <p dir="auto">The <strong>Hammersley sequence</strong> is calculated by <a
             href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/MonteCarlo.ush#L34">Hammersley</a>
         in UE4 and <a
             href="https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.core/ShaderLibrary/Sampling/Hammersley.hlsl#L415">Hammersley2d</a>
         in Unity3D.</p>
-    <p dir="auto">However, the <eq><span class="katex"><span class="katex-mathml"><math
-                        xmlns="http://www.w3.org/1998/Math/MathML">
-                        <semantics>
-                            <mrow>
-                                <mstyle scriptlevel="0" displaystyle="true">
-                                    <msub>
-                                        <mi>ξ</mi>
-                                        <mn>1</mn>
-                                    </msub>
-                                </mstyle>
-                            </mrow>
-                            <annotation encoding="application/x-tex">\displaystyle \xi_1</annotation>
-                        </semantics>
-                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
-                            style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span
-                            class="mord"><span class="mord mathnormal" style="margin-right:0.04601em;">ξ</span><span
-                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                            style="height:0.30110799999999993em;"><span
-                                                style="top:-2.5500000000000003em;margin-left:-0.04601em;margin-right:0.05em;"><span
-                                                    class="pstrut" style="height:2.7em;"></span><span
-                                                    class="sizing reset-size6 size3 mtight"><span
-                                                        class="mord mtight">1</span></span></span></span><span
-                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
-        </eq> is generated by pseudo-random sequence in UE4 and by evenly spaced sequence in Unity3D.</p>
-    <p dir="auto">The <eq><span class="katex"><span class="katex-mathml"><math
-                        xmlns="http://www.w3.org/1998/Math/MathML">
-                        <semantics>
-                            <mrow>
-                                <mstyle scriptlevel="0" displaystyle="true">
-                                    <msub>
-                                        <mi>ξ</mi>
-                                        <mn>1</mn>
-                                    </msub>
-                                </mstyle>
-                            </mrow>
-                            <annotation encoding="application/x-tex">\displaystyle \xi_1</annotation>
-                        </semantics>
-                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
-                            style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span
-                            class="mord"><span class="mord mathnormal" style="margin-right:0.04601em;">ξ</span><span
-                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                            style="height:0.30110799999999993em;"><span
-                                                style="top:-2.5500000000000003em;margin-left:-0.04601em;margin-right:0.05em;"><span
-                                                    class="pstrut" style="height:2.7em;"></span><span
-                                                    class="sizing reset-size6 size3 mtight"><span
-                                                        class="mord mtight">1</span></span></span></span><span
-                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
-        </eq> is calculated by <a
-            href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/SubsurfaceBurleyNormalized.ush#L935">Generate2DRandomNumber</a>
-        in UE4 and <a
-            href="https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.high-definition/Runtime/Material/SubsurfaceScattering/SubsurfaceScattering.compute#L182">i
-            * scale + offset</a> in Unity3D.</p>
-    <p dir="auto">And the <eq><span class="katex"><span class="katex-mathml"><math
-                        xmlns="http://www.w3.org/1998/Math/MathML">
-                        <semantics>
-                            <mrow>
-                                <mstyle scriptlevel="0" displaystyle="true">
-                                    <msub>
-                                        <mi>ξ</mi>
-                                        <mn>2</mn>
-                                    </msub>
-                                </mstyle>
-                            </mrow>
-                            <annotation encoding="application/x-tex">\displaystyle \xi_2</annotation>
-                        </semantics>
-                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
-                            style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span
-                            class="mord"><span class="mord mathnormal" style="margin-right:0.04601em;">ξ</span><span
-                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                            style="height:0.30110799999999993em;"><span
-                                                style="top:-2.5500000000000003em;margin-left:-0.04601em;margin-right:0.05em;"><span
-                                                    class="pstrut" style="height:2.7em;"></span><span
-                                                    class="sizing reset-size6 size3 mtight"><span
-                                                        class="mord mtight">2</span></span></span></span><span
-                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
-        </eq> is generated by <strong>Fibonacci sequence</strong>, which is related to the <a
-            href="https://en.wikipedia.org/wiki/Golden_ratio#Relationship_to_Fibonacci_sequence">Golden Ratio</a>, in
-        both UE4 and Unity3D.</p>
-    <p dir="auto">The <strong>Fibonacci sequence</strong> is calculated by <a
-            href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/SubsurfaceBurleyNormalized.ush#L332">FIBONACCI_SEQUENCE_ANGLE</a>
-        in UE4 and <a
-            href="https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.core/ShaderLibrary/Sampling/Fibonacci.hlsl#L248">Fibonacci2d</a>
-        in Unity3D.</p>
-    <h5 dir="auto" id="1-4-1-3-stratified-sampling">1-4-1-3. Stratified Sampling</h5>
+    <h5 dir="auto" id="1-4-1-5-stratified-sampling">1-4-1-5. Stratified Sampling</h5>
     <p dir="auto">In UE4, the <strong>Center Sample Reweighting</strong>, which is controlled by the macro
         <strong>REWEIGHT_CENTER_SAMPLE</strong>, is used, and the <strong>CDF</strong> of the center sample is
-        calculated and removed from the vicinal samples. The UE4 claims that the result of this approach is still
-        unbiased.
-    </p>
+        calculated and removed from the vicinal samples. And UE4 claims that the result of this approach is still
+        unbiased.</p>
     <h4 dir="auto" id="1-4-2-albedo">1-4-2. Albedo</h4>
     <p dir="auto">By appealing <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
@@ -6597,12 +6558,47 @@ M1001 80h400000v40h-400000z' />
                                             <mo stretchy="false">)</mo>
                                         </mrow>
                                     </mfrac>
+                                    <mo>=</mo>
+                                    <mfrac>
+                                        <mn>1</mn>
+                                        <mi>N</mi>
+                                    </mfrac>
+                                    <mfrac>
+                                        <mrow>
+                                            <mi>A</mi>
+                                            <mo>⋅</mo>
+                                            <mi mathvariant="normal">p_vector_rgb</mi>
+                                            <mo>⁡</mo>
+                                            <mo stretchy="false">(</mo>
+                                            <mi>r</mi>
+                                            <mo separator="true">,</mo>
+                                            <mi>θ</mi>
+                                            <mo stretchy="false">)</mo>
+                                            <mo>⋅</mo>
+                                            <mi mathvariant="normal">F</mi>
+                                            <mo>⁡</mo>
+                                            <mo stretchy="false">(</mo>
+                                            <mi>p</mi>
+                                            <mo stretchy="false">)</mo>
+                                        </mrow>
+                                        <mrow>
+                                            <mi mathvariant="normal">p_scalar_float</mi>
+                                            <mo>⁡</mo>
+                                            <mo stretchy="false">(</mo>
+                                            <mi>r</mi>
+                                            <mo separator="true">,</mo>
+                                            <mi>θ</mi>
+                                            <mo stretchy="false">)</mo>
+                                        </mrow>
+                                    </mfrac>
                                 </mstyle>
                             </mrow>
                             <annotation encoding="application/x-tex">\displaystyle \operatorname{L_v}(p_o) =
                                 \int_0^\infin \int_0^{2\pi} A \cdot \operatorname{p}(r, \theta) \cdot
                                 \operatorname{F}(p) \, d \theta dr = \frac{1}{N} \frac{A \cdot \operatorname{p}(r,
-                                \theta) \cdot \operatorname{F}(p)}{\operatorname{p}(r, \theta)}</annotation>
+                                \theta) \cdot \operatorname{F}(p)}{\operatorname{p}(r, \theta)} = \frac{1}{N} \frac{A
+                                \cdot \operatorname{p\_vector\_rgb}(r, \theta) \cdot
+                                \operatorname{F}(p)}{\operatorname{p\_scalar\_float}(r, \theta)}</annotation>
                         </semantics>
                     </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
                             style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span class="mord"><span
@@ -6736,6 +6732,66 @@ M1001 80h400000v40h-400000z' />
                                                         class="mclose">)</span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.936em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                        class="base"><span class="strut"
+                            style="height:2.4459999999999997em;vertical-align:-0.996em;"></span><span class="mord"><span
+                                class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord mathnormal"
+                                                        style="margin-right:0.10903em;">N</span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">1</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span><span class="mord"><span
+                                class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.45em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mop"><span
+                                                            class="mord mathrm">p_scalar_float</span></span><span
+                                                        class="mopen">(</span><span class="mord mathnormal"
+                                                        style="margin-right:0.02778em;">r</span><span
+                                                        class="mpunct">,</span><span class="mspace"
+                                                        style="margin-right:0.16666666666666666em;"></span><span
+                                                        class="mord mathnormal"
+                                                        style="margin-right:0.02778em;">θ</span><span
+                                                        class="mclose">)</span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.6999999999999997em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord mathnormal">A</span><span class="mspace"
+                                                        style="margin-right:0.2222222222222222em;"></span><span
+                                                        class="mbin">⋅</span><span class="mspace"
+                                                        style="margin-right:0.2222222222222222em;"></span><span
+                                                        class="mop"><span
+                                                            class="mord mathrm">p_vector_rgb</span></span><span
+                                                        class="mopen">(</span><span class="mord mathnormal"
+                                                        style="margin-right:0.02778em;">r</span><span
+                                                        class="mpunct">,</span><span class="mspace"
+                                                        style="margin-right:0.16666666666666666em;"></span><span
+                                                        class="mord mathnormal"
+                                                        style="margin-right:0.02778em;">θ</span><span
+                                                        class="mclose">)</span><span class="mspace"
+                                                        style="margin-right:0.2222222222222222em;"></span><span
+                                                        class="mbin">⋅</span><span class="mspace"
+                                                        style="margin-right:0.2222222222222222em;"></span><span
+                                                        class="mop"><span class="mord mathrm">F</span></span><span
+                                                        class="mopen">(</span><span
+                                                        class="mord mathnormal">p</span><span
+                                                        class="mclose">)</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.996em;"><span></span></span></span></span></span><span
                                 class="mclose nulldelimiter"></span></span></span></span></span></eq>.
     </p>
     <p dir="auto">Technically, <eq><span class="katex"><span class="katex-mathml"><math
@@ -6762,7 +6818,7 @@ M1001 80h400000v40h-400000z' />
                             class="mpunct">,</span><span class="mspace"
                             style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal"
                             style="margin-right:0.02778em;">θ</span><span class="mclose">)</span></span></span></span>
-        </eq> is &quot;wavelengh dependent&quot;. This means that <eq><span class="katex"><span
+        </eq> is &quot;wavelengh dependent&quot;. This means that the <eq><span class="katex"><span
                     class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
@@ -6786,9 +6842,56 @@ M1001 80h400000v40h-400000z' />
                             class="mpunct">,</span><span class="mspace"
                             style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal"
                             style="margin-right:0.02778em;">θ</span><span class="mclose">)</span></span></span></span>
-        </eq> should be represented by the vector &quot;RGB&quot; instead of the scalar &quot;float&quot;. However, we
-        need a scalar PDF to calcuate the sampling of diffusion profile. And ususally, the maximum of &quot;RGB&quot; of
-        the <strong>scattering distance</strong> is used.</p>
+        </eq> is a vector &quot;RGB&quot; rather than a scalar &quot;float&quot;. However, the PDF, which is used to
+        calculate the sampling of the diffusion profile, should be a scalar. This means that the <eq><span
+                class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mi mathvariant="normal">p</mi>
+                                    <mo>⁡</mo>
+                                    <mo stretchy="false">(</mo>
+                                    <mi>r</mi>
+                                    <mo separator="true">,</mo>
+                                    <mi>θ</mi>
+                                    <mo stretchy="false">)</mo>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle \operatorname{p}(r, \theta)
+                            </annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span
+                                class="mord mathrm">p</span></span><span class="mopen">(</span><span
+                            class="mord mathnormal" style="margin-right:0.02778em;">r</span><span
+                            class="mpunct">,</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal"
+                            style="margin-right:0.02778em;">θ</span><span class="mclose">)</span></span></span></span>
+        </eq> in the numerator is a vector &quot;RGB&quot; while the <eq><span class="katex"><span
+                    class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mi mathvariant="normal">p</mi>
+                                    <mo>⁡</mo>
+                                    <mo stretchy="false">(</mo>
+                                    <mi>r</mi>
+                                    <mo separator="true">,</mo>
+                                    <mi>θ</mi>
+                                    <mo stretchy="false">)</mo>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle \operatorname{p}(r, \theta)
+                            </annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span
+                                class="mord mathrm">p</span></span><span class="mopen">(</span><span
+                            class="mord mathnormal" style="margin-right:0.02778em;">r</span><span
+                            class="mpunct">,</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal"
+                            style="margin-right:0.02778em;">θ</span><span class="mclose">)</span></span></span></span>
+        </eq> in the denominator is a scalar &quot;float&quot;.</p>
     <p dir="auto">However, the A depends on the position. This means that the formula should be technically written as
         <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
@@ -7018,11 +7121,8 @@ M1001 80h400000v40h-400000z' />
                             style="margin-right:0.02778em;">θ</span><span class="mord mathnormal">d</span><span
                             class="mord mathnormal" style="margin-right:0.02778em;">r</span></span></span></span></eq>.
     </p>
-    <p dir="auto">There are two <a
-            href="https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@10.8/manual/Diffusion-Profile.html">Texturing
-            Mode</a>s in Unity3D: <strong>Post-Scatter</strong> and <strong>Pre- and Post-Scatter</strong>. The
-        <strong>Post-Scatter</strong> mode assumes that the <eq><span class="katex"><span class="katex-mathml"><math
-                        xmlns="http://www.w3.org/1998/Math/MathML">
+    <p dir="auto">The <strong>Post-Scatter</strong> <strong>Texturing Mode</strong> assumes that the <eq><span
+                class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
                                 <mstyle scriptlevel="0" displaystyle="true">
@@ -7224,7 +7324,8 @@ M1001 80h400000v40h-400000z' />
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.936em;"><span></span></span></span></span></span><span
                                 class="mclose nulldelimiter"></span></span></span></span></span></eq> where the A is
-        applied after the blur pass. However, the <strong>Pre- and Post-Scatter</strong> mode assumes that the
+        applied after the blur pass.</p>
+    <p dir="auto">The <strong>Pre- and Post-Scatter</strong> <strong>Texturing Mode</strong> assumes that the
         &quot;square root&quot; <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
@@ -7578,9 +7679,11 @@ M1001 80h400000v40h-400000z' />
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.936em;"><span></span></span></span></span></span><span
                                 class="mclose nulldelimiter"></span></span></span></span></span></eq> where the albedo
-        is applied before and after the blur pass.
-    </p>
-    <p dir="auto">However, in UE4, only the <strong>Post-Scatter</strong> mode is supported.</p>
+        is applied before and after the blur pass.</p>
+    <p dir="auto">Both <strong>Post-Scatter</strong> and <strong>Pre- and Post-Scatter</strong> <a
+            href="https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@10.8/manual/Diffusion-Profile.html">Texturing
+            Mode</a>s are supported in Unity3D. However, only the <strong>Post-Scatter</strong> <strong>Texturing
+            Mode</strong> is supported in UE4.</p>
     <p dir="auto">The <strong>Texturing Mode</strong> is controlled by <a
             href="https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.high-definition/Runtime/Material/Lit/Lit.hlsl#L2023">GetModifiedDiffuseColorForSSS</a>
         and <a
@@ -8933,8 +9036,7 @@ M1001 80h400000v40h-400000z' />
         applied to calculate the transmittance coefficient.</p>
     <p dir="auto">In the FaceWorks, the <strong>thickness</strong> is calculated by
         <strong>GFSDK_FaceWorks_EstimateThicknessFromParallelShadowPoisson32</strong> and the <strong>transmittance
-            coefficient</strong> is calculated by <strong>GFSDK_FaceWorks_EvaluateDeepScatterDirectLight</strong>.
-    </p>
+            coefficient</strong> is calculated by <strong>GFSDK_FaceWorks_EvaluateDeepScatterDirectLight</strong>.</p>
     <h3 dir="auto" id="2-2-analytically-integrated-translucency">2-2. Analytically-Integrated Translucency</h3>
     <p dir="auto">The <strong>diffuse transmittance</strong> term of demo source code provided by [Jimenez 2015] is
         based on [Jimenez 2010].</p>
@@ -9201,8 +9303,7 @@ M1001 80h400000v40h-400000z' />
                                                                         class="vlist-r"><span class="vlist"
                                                                             style="height:0.5688em;"><span></span></span></span></span></span><span
                                                                 class="mclose nulldelimiter sizing reset-size3 size6"></span></span></span></span></span></span></span></span></span></span></span></span></span>
-        </eq>.
-    </p>
+        </eq>.</p>
     <p dir="auto">The <strong>transmittance coefficient</strong> is calculated by the <strong>SSSSTransmittance</strong>
         in the demo source code provided by [Jimenez 2015]. And there are some points to note.</p>
     <ol dir="auto">
@@ -9488,8 +9589,7 @@ M1001 80h400000v40h-400000z' />
                                                             class="mord">2</span></span></span></span><span
                                                 class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                                 style="height:0.686em;"><span></span></span></span></span></span><span
-                                    class="mclose nulldelimiter"></span></span></span></span></span>
-            </eq> is 0.935 which
+                                    class="mclose nulldelimiter"></span></span></span></span></span></eq> is 0.935 which
             is really close to 1. This implies that the <strong>scale</strong> is actually calculated as <eq><span
                     class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                             <semantics>
@@ -9512,8 +9612,7 @@ M1001 80h400000v40h-400000z' />
                                 style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span
                                 class="mord text"><span
                                     class="mord">MetersPerWorldSpaceUnit</span></span></span></span></span></eq> which
-            is exactly the transformation from world space unit to mm.
-        </li>
+            is exactly the transformation from world space unit to mm.</li>
     </ol>
     <h3 dir="auto" id="2-3-baked-textured-thickness">2-3. Baked Textured Thickness</h3>
     <p dir="auto">The <strong>diffuse transmittance</strong> term of Unity3D is based on [Golubev 2018].</p>
