@@ -41,8 +41,11 @@ yum install nvidia-driver
 # dkms install nvidia/520.61.05
 
 # Debian
+apt install nvidia-driver
 apt install libgl1-nvidia-glvnd-glx
 apt install libgl1-nvidia-glvnd-glx:i386  
+apt install nvidia-vulkan-icd
+apt install nvidia-vulkan-icd:i386  
 
 # Ubuntu
 apt install nvidia-driver-520
