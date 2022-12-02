@@ -76,8 +76,8 @@
     <p dir="auto">By using the diffusion profile, the subsurface scattering, which was described by the BSSRDF, is
         simplified by scattering the <strong>amount</strong> of light (technically, the <strong>irradiance E</strong>)
         of each location to the vicinal locations according to the weights indicated by the diffusion profile. The
-        <strong>outgoing</strong> irradiance E can also be called <strong>radiant exitance M</strong> and might be
-        called <strong>radiosity B</strong> in the last century.<br>
+        <strong>outgoing</strong> <strong>irradiance E</strong> can also be called <strong>radiant exitance M</strong>
+        and might be called <strong>radiosity B</strong> in the last century.<br>
         Evidently, an equivalent gather operation can be used to replace the scatter operation, and the total
         <strong>radiant exitance</strong> can be considered as <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
@@ -352,8 +352,8 @@
                     </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
                             style="height:0.625em;vertical-align:-0.19444em;"></span><span
                             class="mord mathnormal">p</span></span></span></span></eq>. Although the terms
-        <strong>irradiance</strong> and <strong>form factor</strong> may be interchangeably used, technically
-        <strong>irradiance</strong> should NOT be divided by <eq><span class="katex"><span class="katex-mathml"><math
+        <strong>irradiance E</strong> and <strong>form factor F</strong> may be interchangeably used, technically
+        <strong>irradiance E</strong> should NOT be divided by <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
@@ -372,72 +372,24 @@
                                 <mstyle scriptlevel="0" displaystyle="true">
                                     <mi mathvariant="normal">E</mi>
                                     <mo>⁡</mo>
-                                    <mo stretchy="false">(</mo>
-                                    <mover accent="true">
-                                        <mi>n</mi>
-                                        <mo stretchy="true">→</mo>
-                                    </mover>
-                                    <mo stretchy="false">)</mo>
                                     <mo>=</mo>
                                     <mi>π</mi>
                                     <mi mathvariant="normal">F</mi>
                                     <mo>⁡</mo>
-                                    <mo stretchy="false">(</mo>
-                                    <mover accent="true">
-                                        <mi>n</mi>
-                                        <mo stretchy="true">→</mo>
-                                    </mover>
-                                    <mo stretchy="false">)</mo>
                                 </mstyle>
                             </mrow>
-                            <annotation encoding="application/x-tex">\displaystyle \operatorname{E}(\overrightarrow{n})
-                                = \pi \operatorname{F}(\overrightarrow{n})</annotation>
+                            <annotation encoding="application/x-tex">\displaystyle \operatorname{E} = \pi
+                                \operatorname{F}</annotation>
                         </semantics>
                     </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
-                            style="height:1.20256em;vertical-align:-0.25em;"></span><span class="mop"><span
-                                class="mord mathrm">E</span></span><span class="mopen">(</span><span
-                            class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist"
-                                        style="height:0.9525600000000001em;"><span style="top:-3em;"><span
-                                                class="pstrut" style="height:3em;"></span><span
-                                                class="mord mathnormal">n</span></span><span class="svg-align"
-                                            style="top:-3.43056em;"><span class="pstrut"
-                                                style="height:3em;"></span><span class="hide-tail"
-                                                style="height:0.522em;min-width:0.888em;"><svg width='400em'
-                                                    height='0.522em' viewBox='0 0 400000 522'
-                                                    preserveAspectRatio='xMaxYMin slice'>
-                                                    <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
--16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
- 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
- 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
--40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
--12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
- 151.7 139 205zm0 0v40h399900v-40z' />
-                                                </svg></span></span></span></span></span></span><span
-                            class="mclose">)</span><span class="mspace"
+                            style="height:0.68333em;vertical-align:0em;"></span><span class="mop"><span
+                                class="mord mathrm">E</span></span><span class="mspace"
                             style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
                             class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-                        class="base"><span class="strut" style="height:1.20256em;vertical-align:-0.25em;"></span><span
+                        class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span
                             class="mord mathnormal" style="margin-right:0.03588em;">π</span><span class="mspace"
                             style="margin-right:0.16666666666666666em;"></span><span class="mop"><span
-                                class="mord mathrm">F</span></span><span class="mopen">(</span><span
-                            class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist"
-                                        style="height:0.9525600000000001em;"><span style="top:-3em;"><span
-                                                class="pstrut" style="height:3em;"></span><span
-                                                class="mord mathnormal">n</span></span><span class="svg-align"
-                                            style="top:-3.43056em;"><span class="pstrut"
-                                                style="height:3em;"></span><span class="hide-tail"
-                                                style="height:0.522em;min-width:0.888em;"><svg width='400em'
-                                                    height='0.522em' viewBox='0 0 400000 522'
-                                                    preserveAspectRatio='xMaxYMin slice'>
-                                                    <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
--16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
- 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
- 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
--40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
--12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
- 151.7 139 205zm0 0v40h399900v-40z' />
-                                                </svg></span></span></span></span></span></span><span
-                            class="mclose">)</span></span></span></span></eq>.<br>
+                                class="mord mathrm">F</span></span></span></span></span></eq>.<br>
         And, currently, all real time approaches assume that the material is homogeneous. This means that the diffusion
         profile <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
