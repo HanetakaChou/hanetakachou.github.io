@@ -11,6 +11,9 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 You should have received a copy of the GNU Lesser General Public License along with this program.  If not, see <https://www.gnu.org/licenses/>
 ```  
 
+## Credit
+If you find there are any mistakes or improvements, please don't hesitate to contact me by [email](mailto:HanetakaChou@outlook.com).  
+
 ## C Plus Plus
 [C-Plus-Plus/Perfect-Forwarding.html](C-Plus-Plus/Perfect-Forwarding.html)  
 
@@ -37,9 +40,11 @@ You should have received a copy of the GNU Lesser General Public License along w
 - LTC [Documentation](Image-Synthesis/Lighting/LTC.html) [Code](https://github.com/YuqiaoZhang/LTC)  
 - Skin [Documentation](Image-Synthesis/Lighting/Skin.html) [Code](https://github.com/YuqiaoZhang/Burley-SSS)  
 - OIT [Documentation](Image-Synthesis/Lighting/OIT.html) [Code-Stochastic-Transparency](https://github.com/YuqiaoZhang/StochasticTransparency) [Code-MLAB](https://github.com/YuqiaoZhang/MultiLayerAlphaBlending) [Code-WBOIT](https://github.com/YuqiaoZhang/WeightedBlendedOIT)  
-- VXGI [Documentation](Image-Synthesis/Lighting/VXGI.html)  
-- Path-Tracing [Documentation](Image-Synthesis/Lighting/Path-Tracing.html)  
 - Volumetric-Rendering [Documentation](Image-Synthesis/Lighting/Volumetric-Rendering.html)  
+- VXGI [Documentation](Image-Synthesis/Lighting/VXGI.html)  
+- Radiosity [Documentation](Image-Synthesis/Lighting/Radiosity.html)  
+- Path-Tracing [Documentation](Image-Synthesis/Lighting/Path-Tracing.html)  
+
 
 ## PatriotEngine
 [PatriotEngine/index.html](PatriotEngine/index.html)  
