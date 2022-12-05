@@ -13,7 +13,7 @@
     <p dir="auto">The following typical spherical distributions are plotted by the <a href="http://www.octave.org">GNU
             Octave</a> which is an open source alternative to <a
             href="https://www.mathworks.com/help/matlab/index.html">MATLAB</a>.</p>
-    <h2 dir="auto" id="ndf-ggx">NDF GGX</h2>
+    <h2 dir="auto" id="ndf-trowbridge-reitz">NDF Trowbridge-Reitz</h2>
     <pre><code class="code-line language-MATLAB" dir="auto"><div><span class="hljs-comment">% user-interface roughness parameter</span>
 r = <span class="hljs-number">0.5</span>;
 
@@ -47,8 +47,8 @@ mesh(D .* H_x, D .* H_y, D.* H_z);
 axis equal;
 title (<span class="hljs-string">&quot;NDF GGX&quot;</span>);
 </div></code></pre>
-    <p dir="auto"><img src="NDF-GGX.png" alt="" class="loading" id="image-hash--598837267" data-src="NDF-GGX.png"></p>
-    <h2 dir="auto" id="g1-ggx">G1 GGX</h2>
+    <p dir="auto"><img src="NDF-GGX.png" alt="" data-src="NDF-GGX.png"></p>
+    <h2 dir="auto" id="g1-trowbridge-reitz">G1 Trowbridge-Reitz</h2>
     <pre><code class="code-line language-MATLAB" dir="auto"><div><span class="hljs-comment">% user-interface roughness parameter</span>
 r = <span class="hljs-number">0.5</span>;
 
@@ -90,8 +90,8 @@ mesh(G1 .* V_x, G1 .* V_y, G1 .* V_z);
 axis equal;
 title (<span class="hljs-string">&quot;G1 GGX&quot;</span>);
 </div></code></pre>
-    <p dir="auto"><img src="G1-GGX.png" alt="" class="loading" id="image-hash--1408418535" data-src="G1-GGX.png"></p>
-    <h2 dir="auto" id="weak-white-furnace-test-ggx">Weak White Furnace Test GGX</h2>
+    <p dir="auto"><img src="G1-GGX.png" alt="" data-src="G1-GGX.png"></p>
+    <h2 dir="auto" id="weak-white-furnace-test-trowbridge-reitz">Weak White Furnace Test Trowbridge-Reitz</h2>
     <pre><code class="code-line language-MATLAB" dir="auto"><div><span class="hljs-comment">% user-interface roughness parameter</span>
 r = <span class="hljs-number">0.5</span>;
 
@@ -189,9 +189,8 @@ mesh(Int .* P_x, Int .* P_y, Int .* P_z);
 axis equal;
 title (<span class="hljs-string">&quot;Weak White Furnace Test GGX&quot;</span>);
 </div></code></pre>
-    <p dir="auto"><img src="Weak-White-Furnace-Test-GGX.png" alt="" class="loading" id="image-hash--1989020451"
-            data-src="Weak-White-Furnace-Test-GGX.png"></p>
-    <h2 dir="auto" id="brdf-ggx">BRDF GGX</h2>
+    <p dir="auto"><img src="Weak-White-Furnace-Test-GGX.png" alt="" data-src="Weak-White-Furnace-Test-GGX.png"></p>
+    <h2 dir="auto" id="brdf-trowbridge-reitz">BRDF Trowbridge-Reitz</h2>
     <pre><code class="code-line language-MATLAB" dir="auto"><div><span class="hljs-comment">% user-interface roughness parameter</span>
 r = <span class="hljs-number">0.83666</span>;
 
@@ -299,7 +298,59 @@ mesh(polynomial.*dir_x, polynomial.*dir_y, polynomial.*dir_z);
 axis equal;
 title(<span class="hljs-string">&quot;SH 2 0&quot;</span>);
 </div></code></pre>
-    <p dir="auto"><img src="SH-2-0.png" alt="" class="loading" id="image-hash--332399871" data-src="SH-2-0.png"></p>
+    <p dir="auto"><img src="SH-2-0.png" alt="" data-src="SH-2-0.png"></p>
+    <h2 dir="auto" id="phase-function-henyey-greenstein">Phase Function Henyey-Greenstein</h2>
+    <pre><code dir="auto"><code><div>% asymmetry parameter
+g = -0.35;
+% g = 0.67;
+
+theta = 0.0 : (2.0 .* pi ./ (1024.0 - 1.0)) : (2.0 .* pi);
+
+% Figure 11.11 of [PBR Book](https://pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions)
+% the theta in PBRT is different from the convention in the scattering literature
+% tmp = (1.0 + g .* cos(pi - theta)) = (1.0 - g .* cos(theta));
+
+% Figure 11.12 of [PBR Book](https://pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions)
+% [ApproximateHG](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/ShadingModels.ush#L533)
+tmp = (1.0 - g .* cos(theta));
+p_hg = (1.0 ./ (4.0 .*pi)) .* (1.0 - g .* g) ./ (tmp .* tmp .* tmp);
+
+polar (theta, p_hg);\
+title (&quot;Henyey-Greenstein Phase Function for Asymmetry g Parameter -0.35&quot;);
+% title (&quot;Henyey-Greenstein Phase Function for Asymmetry g Parameter 0.67&quot;);
+</div></code></code></pre>
+    <p dir="auto"><img src="P-HG-Polar-1.png" alt="" data-src="P-HG-Polar-1.png"><br>
+        <img src="P-HG-Polar-2.png" alt="" data-src="P-HG-Polar-2.png">
+    </p>
+    <pre><code dir="auto"><code><div>% asymmetry parameter
+g = -0.35;
+% g = 0.67;
+
+% 'omega_o' is treated as the domain of the spherical distribution
+[omega_o_x, omega_o_y, omega_o_z] = sphere(256 - 1);
+
+% 'omega_i' is (0.0, 0.0, 1.0)
+cos_theta = omega_o_z;
+
+% Figure 11.11 of [PBR Book](https://pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions)
+% the theta in PBRT is different from the convention in the scattering literature
+% tmp = (1.0 + g .* cos(pi - theta)) = (1.0 - g .* cos(theta));
+
+% Figure 11.12 of [PBR Book](https://pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions)
+% [ApproximateHG](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/ShadingModels.ush#L533)
+tmp = (1.0 - g .* cos_theta);
+p_hg = (1.0 ./ (4.0 .*pi)) .* (1.0 - g .* g) ./ (tmp .* tmp .* tmp);
+
+% plot
+% surf(p_hg .* omega_o_x, p_hg .* omega_o_y, p_hg .* omega_o_z);
+mesh(p_hg .* omega_o_x, p_hg .* omega_o_y, p_hg .* omega_o_z);
+axis equal;
+title (&quot;Henyey-Greenstein Phase Function for Asymmetry g Parameter -0.35&quot;);
+% title (&quot;Henyey-Greenstein Phase Function for Asymmetry g Parameter 0.67&quot;);
+</div></code></code></pre>
+    <p dir="auto"><img src="P-HG-3D-1.png" alt="" data-src="P-HG-3D-1.png"><br>
+        <img src="P-HG-3D-2.png" alt="" data-src="P-HG-3D-2.png">
+    </p>
 
 </body>
 

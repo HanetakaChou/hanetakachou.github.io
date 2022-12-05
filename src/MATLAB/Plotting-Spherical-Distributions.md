@@ -1,6 +1,6 @@
 The following typical spherical distributions are plotted by the [GNU Octave](http://www.octave.org) which is an open source alternative to [MATLAB](https://www.mathworks.com/help/matlab/index.html).  
 
-## NDF GGX  
+## NDF Trowbridge-Reitz  
 
 ```MATLAB
 % user-interface roughness parameter
@@ -39,7 +39,7 @@ title ("NDF GGX");
 
 ![](NDF-GGX.png)  
 
-## G1 GGX  
+## G1 Trowbridge-Reitz  
 
 ```MATLAB
 % user-interface roughness parameter
@@ -86,7 +86,7 @@ title ("G1 GGX");
 
 ![](G1-GGX.png)  
 
-## Weak White Furnace Test GGX  
+## Weak White Furnace Test Trowbridge-Reitz  
 
 ```MATLAB
 % user-interface roughness parameter
@@ -189,7 +189,7 @@ title ("Weak White Furnace Test GGX");
 
 ![](Weak-White-Furnace-Test-GGX.png)  
 
-## BRDF GGX  
+## BRDF Trowbridge-Reitz  
 
 ```MATLAB
 % user-interface roughness parameter
@@ -303,3 +303,58 @@ axis equal;
 title("SH 2 0");
 ```
 ![](SH-2-0.png)  
+
+## Phase Function Henyey-Greenstein
+
+```
+% asymmetry parameter
+g = -0.35;
+% g = 0.67;
+
+theta = 0.0 : (2.0 .* pi ./ (1024.0 - 1.0)) : (2.0 .* pi);
+
+% Figure 11.11 of [PBR Book](https://pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions)
+% the theta in PBRT is different from the convention in the scattering literature
+% tmp = (1.0 + g .* cos(pi - theta)) = (1.0 - g .* cos(theta));
+
+% Figure 11.12 of [PBR Book](https://pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions)
+% [ApproximateHG](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/ShadingModels.ush#L533)
+tmp = (1.0 - g .* cos(theta));
+p_hg = (1.0 ./ (4.0 .*pi)) .* (1.0 - g .* g) ./ (tmp .* tmp .* tmp);
+
+polar (theta, p_hg);\
+title ("Henyey-Greenstein Phase Function for Asymmetry g Parameter -0.35");
+% title ("Henyey-Greenstein Phase Function for Asymmetry g Parameter 0.67");
+```  
+![](P-HG-Polar-1.png)  
+![](P-HG-Polar-2.png)  
+
+```
+% asymmetry parameter
+g = -0.35;
+% g = 0.67;
+
+% 'omega_o' is treated as the domain of the spherical distribution
+[omega_o_x, omega_o_y, omega_o_z] = sphere(256 - 1);
+
+% 'omega_i' is (0.0, 0.0, 1.0)
+cos_theta = omega_o_z;
+
+% Figure 11.11 of [PBR Book](https://pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions)
+% the theta in PBRT is different from the convention in the scattering literature
+% tmp = (1.0 + g .* cos(pi - theta)) = (1.0 - g .* cos(theta));
+
+% Figure 11.12 of [PBR Book](https://pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions)
+% [ApproximateHG](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/ShadingModels.ush#L533)
+tmp = (1.0 - g .* cos_theta);
+p_hg = (1.0 ./ (4.0 .*pi)) .* (1.0 - g .* g) ./ (tmp .* tmp .* tmp);
+
+% plot
+% surf(p_hg .* omega_o_x, p_hg .* omega_o_y, p_hg .* omega_o_z);
+mesh(p_hg .* omega_o_x, p_hg .* omega_o_y, p_hg .* omega_o_z);
+axis equal;
+title ("Henyey-Greenstein Phase Function for Asymmetry g Parameter -0.35");
+% title ("Henyey-Greenstein Phase Function for Asymmetry g Parameter 0.67");
+```  
+![](P-HG-3D-1.png)  
+![](P-HG-3D-2.png)  
