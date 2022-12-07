@@ -6502,6 +6502,7 @@ M1001 80h400000v40h-400000z' />
                                     <mi>d</mi>
                                     <mi>r</mi>
                                     <mo>=</mo>
+                                    <mo>∑</mo>
                                     <mfrac>
                                         <mn>1</mn>
                                         <mi>N</mi>
@@ -6535,6 +6536,7 @@ M1001 80h400000v40h-400000z' />
                                         </mrow>
                                     </mfrac>
                                     <mo>=</mo>
+                                    <mo>∑</mo>
                                     <mfrac>
                                         <mn>1</mn>
                                         <mi>N</mi>
@@ -6571,9 +6573,9 @@ M1001 80h400000v40h-400000z' />
                             </mrow>
                             <annotation encoding="application/x-tex">\displaystyle \operatorname{L_v}(p_o) =
                                 \int_0^\infin \int_0^{2\pi} A \cdot \operatorname{p}(r, \theta) \cdot
-                                \operatorname{F}(p) \, d \theta dr = \frac{1}{N} \frac{A \cdot \operatorname{p}(r,
-                                \theta) \cdot \operatorname{F}(p)}{\operatorname{p}(r, \theta)} = \frac{1}{N} \frac{A
-                                \cdot \operatorname{p\_vector\_rgb}(r, \theta) \cdot
+                                \operatorname{F}(p) \, d \theta dr = \sum \frac{1}{N} \frac{A \cdot \operatorname{p}(r,
+                                \theta) \cdot \operatorname{F}(p)}{\operatorname{p}(r, \theta)} = \sum \frac{1}{N}
+                                \frac{A \cdot \operatorname{p\_vector\_rgb}(r, \theta) \cdot
                                 \operatorname{F}(p)}{\operatorname{p\_scalar\_float}(r, \theta)}</annotation>
                         </semantics>
                     </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
@@ -6655,7 +6657,10 @@ M1001 80h400000v40h-400000z' />
                             style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
                             class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
                         class="base"><span class="strut" style="height:2.363em;vertical-align:-0.936em;"></span><span
-                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                            class="mop op-symbol large-op"
+                            style="position:relative;top:-0.000004999999999977245em;">∑</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mord"><span
+                                class="mopen nulldelimiter"></span><span class="mfrac"><span
                                     class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
                                             style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut"
                                                     style="height:3em;"></span><span class="mord"><span
@@ -6712,7 +6717,10 @@ M1001 80h400000v40h-400000z' />
                             style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
                             class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
                         class="base"><span class="strut"
-                            style="height:2.4459999999999997em;vertical-align:-0.996em;"></span><span class="mord"><span
+                            style="height:2.4459999999999997em;vertical-align:-0.996em;"></span><span
+                            class="mop op-symbol large-op"
+                            style="position:relative;top:-0.000004999999999977245em;">∑</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mord"><span
                                 class="mopen nulldelimiter"></span><span class="mfrac"><span
                                     class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
                                             style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut"
@@ -6775,27 +6783,21 @@ M1001 80h400000v40h-400000z' />
                         <semantics>
                             <mrow>
                                 <mstyle scriptlevel="0" displaystyle="true">
-                                    <mi mathvariant="normal">p</mi>
+                                    <mi mathvariant="normal">R</mi>
                                     <mo>⁡</mo>
                                     <mo stretchy="false">(</mo>
                                     <mi>r</mi>
-                                    <mo separator="true">,</mo>
-                                    <mi>θ</mi>
                                     <mo stretchy="false">)</mo>
                                 </mstyle>
                             </mrow>
-                            <annotation encoding="application/x-tex">\displaystyle \operatorname{p}(r, \theta)
-                            </annotation>
+                            <annotation encoding="application/x-tex">\displaystyle \operatorname{R}(r)</annotation>
                         </semantics>
                     </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
                             style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span
-                                class="mord mathrm">p</span></span><span class="mopen">(</span><span
+                                class="mord mathrm">R</span></span><span class="mopen">(</span><span
                             class="mord mathnormal" style="margin-right:0.02778em;">r</span><span
-                            class="mpunct">,</span><span class="mspace"
-                            style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal"
-                            style="margin-right:0.02778em;">θ</span><span class="mclose">)</span></span></span></span>
-        </eq> is &quot;wavelengh dependent&quot;. This means that the <eq><span class="katex"><span
-                    class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            class="mclose">)</span></span></span></span></eq> is spectrally varying. This means that the
+        <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
                                 <mstyle scriptlevel="0" displaystyle="true">
@@ -6806,10 +6808,22 @@ M1001 80h400000v40h-400000z' />
                                     <mo separator="true">,</mo>
                                     <mi>θ</mi>
                                     <mo stretchy="false">)</mo>
+                                    <mo>=</mo>
+                                    <mfrac>
+                                        <mrow>
+                                            <mi mathvariant="normal">R</mi>
+                                            <mo>⁡</mo>
+                                            <mo stretchy="false">(</mo>
+                                            <mi>r</mi>
+                                            <mo stretchy="false">)</mo>
+                                        </mrow>
+                                        <mi>A</mi>
+                                    </mfrac>
+                                    <mi>r</mi>
                                 </mstyle>
                             </mrow>
-                            <annotation encoding="application/x-tex">\displaystyle \operatorname{p}(r, \theta)
-                            </annotation>
+                            <annotation encoding="application/x-tex">\displaystyle \operatorname{p}(r, \theta) =
+                                \frac{\operatorname{R}(r)}{A} r</annotation>
                         </semantics>
                     </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
                             style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span
@@ -6817,10 +6831,31 @@ M1001 80h400000v40h-400000z' />
                             class="mord mathnormal" style="margin-right:0.02778em;">r</span><span
                             class="mpunct">,</span><span class="mspace"
                             style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal"
-                            style="margin-right:0.02778em;">θ</span><span class="mclose">)</span></span></span></span>
-        </eq> is a vector &quot;RGB&quot; rather than a scalar &quot;float&quot;. However, the PDF, which is used to
-        calculate the sampling of the diffusion profile, should be a scalar. This means that the <eq><span
-                class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            style="margin-right:0.02778em;">θ</span><span class="mclose">)</span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                        class="base"><span class="strut" style="height:2.113em;vertical-align:-0.686em;"></span><span
+                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord mathnormal">A</span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mop"><span class="mord mathrm">R</span></span><span
+                                                        class="mopen">(</span><span class="mord mathnormal"
+                                                        style="margin-right:0.02778em;">r</span><span
+                                                        class="mclose">)</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span><span class="mord mathnormal"
+                            style="margin-right:0.02778em;">r</span></span></span></span></eq> is a vector
+        &quot;RGB&quot; rather than a scalar &quot;float&quot;. However, the PDF, which is used to calculate the
+        sampling of the diffusion profile, should be a scalar. This means that the <eq><span class="katex"><span
+                    class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
                                 <mstyle scriptlevel="0" displaystyle="true">
@@ -7163,6 +7198,7 @@ M1001 80h400000v40h-400000z' />
                                     </msub>
                                     <mo stretchy="false">)</mo>
                                     <mo>=</mo>
+                                    <mo>∑</mo>
                                     <mfrac>
                                         <mn>1</mn>
                                         <mi>N</mi>
@@ -7204,8 +7240,8 @@ M1001 80h400000v40h-400000z' />
                                     </mfrac>
                                 </mstyle>
                             </mrow>
-                            <annotation encoding="application/x-tex">\displaystyle \operatorname{L_v}(p_o) = \frac{1}{N}
-                                \frac{\operatorname{A}(p_o) \cdot \operatorname{p}(r, \theta) \cdot
+                            <annotation encoding="application/x-tex">\displaystyle \operatorname{L_v}(p_o) = \sum
+                                \frac{1}{N} \frac{\operatorname{A}(p_o) \cdot \operatorname{p}(r, \theta) \cdot
                                 \operatorname{F}(p)}{\operatorname{p}(r, \theta)}</annotation>
                         </semantics>
                     </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
@@ -7233,7 +7269,10 @@ M1001 80h400000v40h-400000z' />
                             style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
                             class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
                         class="base"><span class="strut" style="height:2.363em;vertical-align:-0.936em;"></span><span
-                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                            class="mop op-symbol large-op"
+                            style="position:relative;top:-0.000004999999999977245em;">∑</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mord"><span
+                                class="mopen nulldelimiter"></span><span class="mfrac"><span
                                     class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
                                             style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut"
                                                     style="height:3em;"></span><span class="mord"><span
@@ -7429,6 +7468,7 @@ M1001 80h400000v40h-400000z' />
                                     </msub>
                                     <mo stretchy="false">)</mo>
                                     <mo>=</mo>
+                                    <mo>∑</mo>
                                     <mfrac>
                                         <mn>1</mn>
                                         <mi>N</mi>
@@ -7484,8 +7524,8 @@ M1001 80h400000v40h-400000z' />
                                     </mfrac>
                                 </mstyle>
                             </mrow>
-                            <annotation encoding="application/x-tex">\displaystyle \operatorname{L_v}(p_o) = \frac{1}{N}
-                                \frac{\sqrt{\operatorname{A}(p_o)} \cdot \operatorname{p}(r, \theta) \cdot
+                            <annotation encoding="application/x-tex">\displaystyle \operatorname{L_v}(p_o) = \sum
+                                \frac{1}{N} \frac{\sqrt{\operatorname{A}(p_o)} \cdot \operatorname{p}(r, \theta) \cdot
                                 \sqrt{\operatorname{A}(p)} \cdot \operatorname{F}(p)}{\operatorname{p}(r, \theta)}
                             </annotation>
                         </semantics>
@@ -7514,7 +7554,10 @@ M1001 80h400000v40h-400000z' />
                             style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
                             class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
                         class="base"><span class="strut" style="height:2.566em;vertical-align:-0.936em;"></span><span
-                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                            class="mop op-symbol large-op"
+                            style="position:relative;top:-0.000004999999999977245em;">∑</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mord"><span
+                                class="mopen nulldelimiter"></span><span class="mfrac"><span
                                     class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
                                             style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut"
                                                     style="height:3em;"></span><span class="mord"><span
