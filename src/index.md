@@ -44,6 +44,7 @@ If you find there are any mistakes or improvements, please don't hesitate to con
 - VXGI [Documentation](Image-Synthesis/Lighting/VXGI.html)  
 - Radiosity [Documentation](Image-Synthesis/Lighting/Radiosity.html)  
 - Path-Tracing [Documentation](Image-Synthesis/Lighting/Path-Tracing.html)  
+- Volume-Rendering [Documentation](Image-Synthesis/Lighting/Volume-Rendering.html)  
 
 
 ## PatriotEngine
