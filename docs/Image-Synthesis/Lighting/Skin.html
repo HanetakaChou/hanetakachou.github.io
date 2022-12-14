@@ -4466,8 +4466,6 @@ M1001 80h400000v40h-400000z' />
             Model</a> with <a
             href="https://docs.unrealengine.com/4.27/en-US/RenderingAndGraphics/Materials/LightingModels/SubSurfaceProfile/">Enable
             Burley</a> of UE4 is based on the <strong>Disney SSS</strong> [Golubev 2018].</p>
-    <h4 dir="auto" id="1-4-1-monte-carlo-integration">1-4-1. Monte Carlo Integration</h4>
-    <h5 dir="auto" id="1-4-1-1-pdf">1-4-1-1. PDF</h5>
     <p dir="auto">The diffusion profile <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
@@ -4592,8 +4590,10 @@ M1001 80h400000v40h-400000z' />
                                                                 class="mclose nulldelimiter sizing reset-size3 size6"></span></span><span
                                                             class="mord mathnormal mtight"
                                                             style="margin-right:0.02778em;">sr</span></span></span></span></span></span></span></span></span><span
-                            class="mclose">)</span></span></span></span></eq>, where the A is the albedo and the s is
-        the scaling factor, proposed by [Christensen 2015] is applied.</p>
+                            class="mclose">)</span></span></span></span></eq>, where the A is the surface albedo and the
+        s is the scaling factor, proposed by [Christensen 2015] is applied.</p>
+    <h4 dir="auto" id="1-4-1-monte-carlo-integration">1-4-1. Monte Carlo Integration</h4>
+    <h5 dir="auto" id="1-4-1-1-pdf">1-4-1-1. PDF</h5>
     <p dir="auto">Analogously to &quot;Figure 13.10&quot; of <a
             href="https://pbr-book.org/3ed-2018/Monte_Carlo_Integration/2D_Sampling_with_Multidimensional_Transformations#SamplingaUnitDisk">PBR
             Book</a>, we have <eq><span class="katex"><span class="katex-mathml"><math
@@ -4683,14 +4683,12 @@ M1001 80h400000v40h-400000z' />
                                     <mtext> </mtext>
                                     <mi>d</mi>
                                     <mi>r</mi>
-                                    <mo>=</mo>
-                                    <mi>A</mi>
                                 </mstyle>
                             </mrow>
                             <annotation encoding="application/x-tex">\displaystyle \int_{-\infin}^\infin
                                 \int_{-\infin}^\infin \operatorname{R}({\Delta x}, {\Delta y}) \, d {\Delta x} d {\Delta
                                 y} = \int_0^\infin \int_0^{2\pi} \operatorname{R}(r) r \, d \theta dr = \int_o^\infin
-                                \operatorname{R} (r) 2 \pi r \, dr = A</annotation>
+                                \operatorname{R} (r) 2 \pi r \, dr</annotation>
                         </semantics>
                     </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
                             style="height:2.384573em;vertical-align:-0.970281em;"></span><span class="mop"><span
@@ -4807,13 +4805,99 @@ M1001 80h400000v40h-400000z' />
                             style="margin-right:0.02778em;">r</span><span class="mspace"
                             style="margin-right:0.16666666666666666em;"></span><span
                             class="mord mathnormal">d</span><span class="mord mathnormal"
+                            style="margin-right:0.02778em;">r</span></span></span></span></eq>. And by [Christensen
+        2015], we have <eq><span class="katex"><span class="katex-mathml"><math
+                        xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <msubsup>
+                                        <mo>∫</mo>
+                                        <mi>o</mi>
+                                        <mi mathvariant="normal">∞</mi>
+                                    </msubsup>
+                                    <mi mathvariant="normal">R</mi>
+                                    <mo>⁡</mo>
+                                    <mo stretchy="false">(</mo>
+                                    <mi>r</mi>
+                                    <mo stretchy="false">)</mo>
+                                    <mn>2</mn>
+                                    <mi>π</mi>
+                                    <mi>r</mi>
+                                    <mtext> </mtext>
+                                    <mi>d</mi>
+                                    <mi>r</mi>
+                                    <mo>=</mo>
+                                    <mi>A</mi>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle \int_o^\infin \operatorname{R} (r) 2
+                                \pi r \, dr = A</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:2.3262420000000006em;vertical-align:-0.9119499999999999em;"></span><span
+                            class="mop"><span class="mop op-symbol large-op"
+                                style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span
+                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.4142920000000005em;"><span
+                                                style="top:-1.7880500000000001em;margin-left:-0.44445em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathnormal mtight">o</span></span></span><span
+                                                style="top:-3.812900000000001em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight">∞</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.9119499999999999em;"><span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop"><span
+                                class="mord mathrm">R</span></span><span class="mopen">(</span><span
+                            class="mord mathnormal" style="margin-right:0.02778em;">r</span><span
+                            class="mclose">)</span><span class="mord">2</span><span class="mord mathnormal"
+                            style="margin-right:0.03588em;">π</span><span class="mord mathnormal"
+                            style="margin-right:0.02778em;">r</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span
+                            class="mord mathnormal">d</span><span class="mord mathnormal"
                             style="margin-right:0.02778em;">r</span><span class="mspace"
                             style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
                             class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
                         class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span
-                            class="mord mathnormal">A</span></span></span></span></eq>. Evidently, by [Golubev 2018],
-        the normalized function can be used as the PDF <eq><span class="katex"><span class="katex-mathml"><math
-                        xmlns="http://www.w3.org/1998/Math/MathML">
+                            class="mord mathnormal">A</span></span></span></span></eq>. The result is exactly the
+        surface albedo A. And actually, by &quot;Equation (11.11)&quot; of <a
+            href="https://pbr-book.org/3ed-2018/Volume_Scattering/The_BSSRDF#eq:bssrdf-effective-albedo">PBR Book</a>,
+        the surface albedo A can also be called the effective albedo <eq><span class="katex"><span
+                    class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <msub>
+                                        <mi>ρ</mi>
+                                        <mrow>
+                                            <mi>e</mi>
+                                            <mi>f</mi>
+                                            <mi>f</mi>
+                                        </mrow>
+                                    </msub>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle {\rho}_{eff}</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.716668em;vertical-align:-0.286108em;"></span><span class="mord"><span
+                                class="mord"><span class="mord mathnormal">ρ</span></span><span class="msupsub"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.3361079999999999em;"><span
+                                                style="top:-2.5500000000000003em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight"><span
+                                                            class="mord mathnormal mtight">e</span><span
+                                                            class="mord mathnormal mtight"
+                                                            style="margin-right:0.10764em;">ff</span></span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span>
+        </eq>. Evidently, by [Golubev 2018], the normalized function <eq><span class="katex"><span
+                    class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
                                 <mstyle scriptlevel="0" displaystyle="true">
@@ -4968,7 +5052,7 @@ M1001 80h400000v40h-400000z' />
                                                                         class="vlist-r"><span class="vlist"
                                                                             style="height:0.344em;"><span></span></span></span></span></span><span
                                                                 class="mclose nulldelimiter sizing reset-size3 size6"></span></span></span></span></span></span></span></span></span></span><span
-                            class="mclose">)</span></span></span></span></eq>.</p>
+                            class="mclose">)</span></span></span></span></eq> is used as the PDF .</p>
     <h5 dir="auto" id="1-4-1-2-sampling-diffusion-profile">1-4-1-2. Sampling Diffusion Profile</h5>
     <p dir="auto">Analogously to &quot;Equation (14.1)&quot; of <a
             href="https://pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/Sampling_Reflection_Functions#MicrofacetBxDFs">PBR

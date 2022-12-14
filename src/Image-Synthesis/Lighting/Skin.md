@@ -61,13 +61,13 @@ Canonically, we should **NOT** blur the specular lighting. Thus, a dedicated [sp
 ### 1-4\. Disney SSS
 The **diffuse reflectance** term of [Unity3D](https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@10.8/manual/Diffusion-Profile.html) and the **Subsurface Profile** [Shading Model](https://docs.unrealengine.com/4.27/en-US/RenderingAndGraphics/Materials/MaterialProperties/LightingModels/) with [Enable Burley](https://docs.unrealengine.com/4.27/en-US/RenderingAndGraphics/Materials/LightingModels/SubSurfaceProfile/) of UE4 is based on the **Disney SSS** \[Golubev 2018\].  
 
+The diffusion profile $\displaystyle \operatorname{R}(r) = \frac{A s}{8 \pi r}(e^{-sr}+e^{-\frac{1}{3}sr})$, where the A is the surface albedo and the s is the scaling factor, proposed by \[Christensen 2015\] is applied.  
+
+
 #### 1-4-1\. Monte Carlo Integration  
 
 ##### 1-4-1-1\. PDF
-
-The diffusion profile $\displaystyle \operatorname{R}(r) = \frac{A s}{8 \pi r}(e^{-sr}+e^{-\frac{1}{3}sr})$, where the A is the albedo and the s is the scaling factor, proposed by \[Christensen 2015\] is applied.  
-
-Analogously to "Figure 13.10" of [PBR Book](https://pbr-book.org/3ed-2018/Monte_Carlo_Integration/2D_Sampling_with_Multidimensional_Transformations#SamplingaUnitDisk), we have $\displaystyle \int_{-\infin}^\infin \int_{-\infin}^\infin \operatorname{R}({\Delta x}, {\Delta y}) \, d {\Delta x} d {\Delta y}  = \int_0^\infin \int_0^{2\pi} \operatorname{R}(r) r \, d \theta dr = \int_o^\infin \operatorname{R} (r) 2 \pi r \, dr = A$. Evidently, by \[Golubev 2018\], the normalized function can be used as the PDF $\displaystyle \operatorname{p}(r, \theta) = \frac{\operatorname{R}(r)}{A} r = \frac{s}{8 \pi}(e^{-sr}+e^{-\frac{sr}{3}})$.  
+Analogously to "Figure 13.10" of [PBR Book](https://pbr-book.org/3ed-2018/Monte_Carlo_Integration/2D_Sampling_with_Multidimensional_Transformations#SamplingaUnitDisk), we have $\displaystyle \int_{-\infin}^\infin \int_{-\infin}^\infin \operatorname{R}({\Delta x}, {\Delta y}) \, d {\Delta x} d {\Delta y}  = \int_0^\infin \int_0^{2\pi} \operatorname{R}(r) r \, d \theta dr = \int_o^\infin \operatorname{R} (r) 2 \pi r \, dr$. And by \[Christensen 2015\], we have $\displaystyle \int_o^\infin \operatorname{R} (r) 2 \pi r \, dr = A$. The result is exactly the surface albedo A. And actually, by "Equation \(11.11\)" of [PBR Book](https://pbr-book.org/3ed-2018/Volume_Scattering/The_BSSRDF#eq:bssrdf-effective-albedo), the surface albedo A can also be called the effective albedo $\displaystyle {\rho}_{eff}$. Evidently, by \[Golubev 2018\], the normalized function $\displaystyle \operatorname{p}(r, \theta) = \frac{\operatorname{R}(r)}{A} r = \frac{s}{8 \pi}(e^{-sr}+e^{-\frac{sr}{3}})$ is used as the PDF .  
 
 ##### 1-4-1-2\. Sampling Diffusion Profile  
 
