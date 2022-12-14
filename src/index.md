@@ -15,14 +15,14 @@ You should have received a copy of the GNU Lesser General Public License along w
 If you find there are any mistakes or improvements, please don't hesitate to contact me by [email](mailto:HanetakaChou@outlook.com).  
 
 ## C Plus Plus
-[C-Plus-Plus/Perfect-Forwarding.html](C-Plus-Plus/Perfect-Forwarding.html)  
+- [Perfect-Forwarding](C-Plus-Plus/Perfect-Forwarding.html)  
 
 ## MATLAB
-[MATLAB/Plotting-Spherical-Distributions.html](MATLAB/Plotting-Spherical-Distributions.html)  
+- [Plotting-Spherical-Distributions](MATLAB/Plotting-Spherical-Distributions.html)  
 
 ## Vulkan
-[Vulkan/Synchronization.html](Vulkan/Synchronization.html)  
-[Vulkan/Resource-Binding.html](Vulkan/Resource-Binding.html)  
+- [Synchronization](Vulkan/Synchronization.html)  
+- [Resource-Binding](Vulkan/Resource-Binding.html)  
 
 ## Image Synthesis  
 
@@ -40,37 +40,37 @@ If you find there are any mistakes or improvements, please don't hesitate to con
 - LTC [Documentation](Image-Synthesis/Lighting/LTC.html) [Code](https://github.com/YuqiaoZhang/LTC)  
 - Skin [Documentation](Image-Synthesis/Lighting/Skin.html) [Code](https://github.com/YuqiaoZhang/Burley-SSS)  
 - OIT [Documentation](Image-Synthesis/Lighting/OIT.html) [Code-Stochastic-Transparency](https://github.com/YuqiaoZhang/StochasticTransparency) [Code-MLAB](https://github.com/YuqiaoZhang/MultiLayerAlphaBlending) [Code-WBOIT](https://github.com/YuqiaoZhang/WeightedBlendedOIT)  
-- Volumetric-Rendering [Documentation](Image-Synthesis/Lighting/Volumetric-Rendering.html)  
-- VXGI [Documentation](Image-Synthesis/Lighting/VXGI.html)  
+- Volumetric-Lighting [Documentation](Image-Synthesis/Lighting/Volumetric-Lighting.html) [Code](https://github.com/HanetakaChou/VolumetricLighting)  
+- VXGI [Documentation](Image-Synthesis/Lighting/VXGI.html) [Code](https://github.com/HanetakaChou/VXGI)  
 - Radiosity [Documentation](Image-Synthesis/Lighting/Radiosity.html)  
 - Path-Tracing [Documentation](Image-Synthesis/Lighting/Path-Tracing.html)  
 - Volume-Rendering [Documentation](Image-Synthesis/Lighting/Volume-Rendering.html)  
 
 
 ## PatriotEngine
-[PatriotEngine/index.html](PatriotEngine/index.html)  
+- [PatriotEngine](PatriotEngine/index.html)  
 
 ## Textbook Solution
-[Textbook-Solution/Visual-Complex-Analysis.html](Textbook-Solution/Visual-Complex-Analysis.html)  
-[Textbook-Solution/Visual-Differential-Geometry-and-Forms.html](Textbook-Solution/Visual-Differential-Geometry-and-Forms.html)  
+- [Visual-Complex-Analysis](Textbook-Solution/Visual-Complex-Analysis.html)  
+- [Visual-Differential-Geometry-and-Forms](Textbook-Solution/Visual-Differential-Geometry-and-Forms.html)  
 
 ## Project Note  
-[Project-Note/Google-Filament.html](Project-Note/Google-Filament.html)  
+- [Google-Filament](Project-Note/Google-Filament.html)  
 
 ## Scientific Web Surfing
-[Scientific-Web-Surfing/Trojan.html](Scientific-Web-Surfing/Trojan.html)   
-[Scientific-Web-Surfing/Tor.html](Scientific-Web-Surfing/Tor.html)   
-[Scientific-Web-Surfing/SSH.html](Scientific-Web-Surfing/SSH.html)   
-[Scientific-Web-Surfing/OpenVPN.html](Scientific-Web-Surfing/OpenVPN.html)   
+- [Trojan](Scientific-Web-Surfing/Trojan.html)   
+- [Tor](Scientific-Web-Surfing/Tor.html)   
+- [SSH](Scientific-Web-Surfing/SSH.html)   
+- [OpenVPN](Scientific-Web-Surfing/OpenVPN.html)   
 
 ## Linux   
-[Linux/Linux-Bluetooth.html](Linux/Linux-Bluetooth.html)  
-[Linux/Linux-NVIDIA.html](Linux/Linux-NVIDIA.html)  
-[Linux/Linux-CPU-Frequency-Scaling.html](Linux/Linux-CPU-Frequency-Scaling.html)  
-[Linux/Linux-KDE.html](Linux/Linux-KDE.html)  
-[Linux/Linux-Steam.html](Linux/Linux-Steam.html)  
+- [Bluetooth](Linux/Bluetooth.html)  
+- [GPU-NVIDIA](Linux/GPU-NVIDIA.html)  
+- [CPU-Frequency](Linux/CPU-Frequency.html)  
+- [KDE](Linux/KDE.html)  
+- [Steam Controller](Linux/Steam-Controller.html)  
 
 ## Music  
-[Music/HOI4.html](Music/HOI4.html)  
+- [HOI4](Music/HOI4.html)  
 
 

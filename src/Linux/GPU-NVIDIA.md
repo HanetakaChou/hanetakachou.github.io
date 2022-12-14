@@ -1,4 +1,4 @@
-[Disabling Nouveau](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#runfile-nouveau)
+[NVIDIA - Disabling Nouveau](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#runfile-nouveau)
 ```bash
 # CentOS
 echo 'blacklist nouveau' > /etc/modprobe.d/blacklist-nouveau.conf
@@ -21,7 +21,7 @@ update-grub
 # lsmod | grep nouveau
 ```  
 
-[Package Manager Installation](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#package-manager-installation)  
+[NVIDIA - Package Manager Installation](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#package-manager-installation)  
 ```bash
 # CentOS
 yum install http://developer.download.nvidia.com/compute/cuda/repos/rhel8/x86_64/cuda-repo-rhel8-10.2.89-1.x86_64.rpm 
@@ -147,6 +147,6 @@ env __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia LIBVA_DRIVER_NA
 env __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia LIBVA_DRIVER_NAME=nvidia google-chrome-stable --enable-features=VaapiVideoDecoder --ignore-gpu-blocklist --use-gl=egl & disown
 ```
 
-[Install plugins using Eclipse IDE](https://docs.nvidia.com/cuda/nsightee-plugins-install-guide/index.html#install-steps)  
-[Importing CUDA Samples](https://docs.nvidia.com/cuda/nsight-eclipse-plugins-guide/index.html#import-sample)
+[NVIDIA - Install plugins using Eclipse IDE](https://docs.nvidia.com/cuda/nsightee-plugins-install-guide/index.html#install-steps)  
+[NVIDIA - Importing CUDA Samples](https://docs.nvidia.com/cuda/nsight-eclipse-plugins-guide/index.html#import-sample)
 

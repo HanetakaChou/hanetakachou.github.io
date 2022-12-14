@@ -7,14 +7,12 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/default.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markdown-it-texmath/css/texmath.min.css">
-
 </head>
 
 <body class="markdown-body">
-    <p><a href="https://wiki.archlinux.org/title/CPU_frequency_scaling#CPU_frequency_driver">CPU frequency driver</a>
-    </p>
-    <pre><code class="code-line language-bash"><div>vi /etc/default/grub
+    <p dir="auto"><a href="https://wiki.archlinux.org/title/CPU_frequency_scaling#CPU_frequency_driver">Arch Linux - CPU
+            frequency driver</a></p>
+    <pre><code class="code-line language-bash" dir="auto"><div>vi /etc/default/grub
 -- GRUB_CMDLINE_LINUX_DEFAULT=<span class="hljs-string">&quot;&quot;</span>
 ++ GRUB_CMDLINE_LINUX_DEFAULT=<span class="hljs-string">&quot;intel_pstate=disable&quot;</span>
 
@@ -26,8 +24,9 @@ grub2-mkconfig -o /boot/efi/EFI/centos/grub.cfg
 
 <span class="hljs-comment">## reboot</span>
 </div></code></pre>
-    <p><a href="https://wiki.archlinux.org/title/CPU_frequency_scaling#Scaling_governors">Scaling governors</a></p>
-    <pre><code class="code-line language-bash"><div><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> {0..31}; <span class="hljs-keyword">do</span> <span class="hljs-built_in">echo</span> schedutil &gt; /sys/devices/system/cpu/cpu<span class="hljs-variable">${i}</span>/cpufreq/scaling_governor; <span class="hljs-keyword">done</span>
+    <p dir="auto"><a href="https://wiki.archlinux.org/title/CPU_frequency_scaling#Scaling_governors">Arch Linux -
+            Scaling governors</a></p>
+    <pre><code class="code-line language-bash" dir="auto"><div><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> {0..31}; <span class="hljs-keyword">do</span> <span class="hljs-built_in">echo</span> schedutil &gt; /sys/devices/system/cpu/cpu<span class="hljs-variable">${i}</span>/cpufreq/scaling_governor; <span class="hljs-keyword">done</span>
 <span class="hljs-comment"># for i in {0..31}; do cat /sys/devices/system/cpu/cpu${i}/cpufreq/scaling_governor; done</span>
 </div></code></pre>
 

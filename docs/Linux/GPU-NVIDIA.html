@@ -10,9 +10,8 @@
 </head>
 
 <body class="markdown-body">
-    <p dir="auto"><a
-            href="https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#runfile-nouveau">Disabling
-            Nouveau</a></p>
+    <p dir="auto"><a href="https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#runfile-nouveau">NVIDIA
+            - Disabling Nouveau</a></p>
     <pre><code class="code-line language-bash" dir="auto"><div><span class="hljs-comment"># CentOS</span>
 <span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;blacklist nouveau&#x27;</span> &gt; /etc/modprobe.d/blacklist-nouveau.conf
 <span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;options nouveau modeset=0&#x27;</span> &gt;&gt; /etc/modprobe.d/blacklist-nouveau.conf  
@@ -34,8 +33,8 @@ update-grub
 <span class="hljs-comment"># lsmod | grep nouveau</span>
 </div></code></pre>
     <p dir="auto"><a
-            href="https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#package-manager-installation">Package
-            Manager Installation</a></p>
+            href="https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#package-manager-installation">NVIDIA
+            - Package Manager Installation</a></p>
     <pre><code class="code-line language-bash" dir="auto"><div><span class="hljs-comment"># CentOS</span>
 yum install http://developer.download.nvidia.com/compute/cuda/repos/rhel8/x86_64/cuda-repo-rhel8-10.2.89-1.x86_64.rpm 
 
@@ -161,10 +160,10 @@ grub2-mkconfig -o /boot/efi/EFI/centos/grub.cfg
 
 <span class="hljs-built_in">env</span> __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia LIBVA_DRIVER_NAME=nvidia google-chrome-stable --enable-features=VaapiVideoDecoder --ignore-gpu-blocklist --use-gl=egl &amp; <span class="hljs-built_in">disown</span>
 </div></code></pre>
-    <p dir="auto"><a href="https://docs.nvidia.com/cuda/nsightee-plugins-install-guide/index.html#install-steps">Install
-            plugins using Eclipse IDE</a><br>
-        <a href="https://docs.nvidia.com/cuda/nsight-eclipse-plugins-guide/index.html#import-sample">Importing CUDA
-            Samples</a>
+    <p dir="auto"><a href="https://docs.nvidia.com/cuda/nsightee-plugins-install-guide/index.html#install-steps">NVIDIA
+            - Install plugins using Eclipse IDE</a><br>
+        <a href="https://docs.nvidia.com/cuda/nsight-eclipse-plugins-guide/index.html#import-sample">NVIDIA - Importing
+            CUDA Samples</a>
     </p>
 
 </body>

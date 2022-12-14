@@ -1,6 +1,4 @@
-## Linux Bluetooth  
-
-### ORICO BTA-508  
+## ORICO BTA-508  
 
 dmesg output "Bluetooth: hci0: RTL: firmware file rtl_bt/rtl8761b_fw.bin not found"  
 

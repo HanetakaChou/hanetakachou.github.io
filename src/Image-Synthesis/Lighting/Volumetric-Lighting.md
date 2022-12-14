@@ -1,4 +1,4 @@
-## NVIDIA Volumetric Lighting  
+# Volumetric Lighting  
 
 ## Reference
 1.[Hoobler 2016] [Nathan Hoobler. "Fast, Flexible, Physically-Based Volumetric Light Scattering." GTC 2016.](https://developer.nvidia.com/sites/default/files/akamai/gameworks/downloads/papers/NVVL/Fast_Flexible_Physically-Based_Volumetric_Light_Scattering.pdf)  
