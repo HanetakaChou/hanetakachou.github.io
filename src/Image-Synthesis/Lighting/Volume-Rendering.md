@@ -8,6 +8,10 @@ By "Participating media" of [CS 348B - Computer Graphics: Image Synthesis Techni
 
 Evidently, the relationship that $\displaystyle \operatorname{L_i}(\overrightarrow{p}, \overrightarrow{\omega_i}) = \operatorname{L_o}(\operatorname{r}(\overrightarrow{p}, \overrightarrow{\omega_i}), -\overrightarrow{\omega_i})$ by "Figure 11.1" of [Real-Time Rendering Fourth Edition](http://www.realtimerendering.com/) and "Figure 14.14" of [PBR Book](https://pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/The_Light_Transport_Equation) is the simplified case of the **RTE** (**Radiative Transfer Equation**) by assuming no participating media.  
 
+## Delta Tracking  
+
+"filled" with additional virtual particles to reach a uniform density  
+
 ## Reference  
 
 \[Fong 2017\] [Julian Fong, Magnus Wrenninge, Christopher Kulla, Ralf Habel. "Production Volume Rendering." SIGGRAPH 2017 Course Notes.](https://graphics.pixar.com/library/)  
