@@ -1,8 +1,8 @@
-# YuqiaoZhang(HanetakaChou)'s Blog  
+# HanetakaChou(HanetakaChou)'s Blog  
 
 ## License  
 ```  
-Copyright (C) 2018-2022 YuqiaoZhang(HanetakaChou)
+Copyright (C) 2018-2022 HanetakaChou(HanetakaChou)
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
@@ -36,11 +36,12 @@ If you find there are any mistakes or improvements, please don't hesitate to con
 ### Lighting  
 - Radiometric and Photometric quantities [Documentation](Image-Synthesis/Lighting/Radiometric-and-Photometric-quantities.html)  
 - BRDF [Documentation](Image-Synthesis/Lighting/BRDF.html)  
-- Environment Lighting [Documentation](Image-Synthesis/Lighting/Environment-Lighting.html) [Code](https://github.com/YuqiaoZhang/Environment-Lighting)  
-- LTC [Documentation](Image-Synthesis/Lighting/LTC.html) [Code](https://github.com/YuqiaoZhang/LTC)  
-- Skin [Documentation](Image-Synthesis/Lighting/Skin.html) [Code](https://github.com/YuqiaoZhang/Burley-SSS)  
-- OIT [Documentation](Image-Synthesis/Lighting/OIT.html) [Code-Stochastic-Transparency](https://github.com/YuqiaoZhang/StochasticTransparency) [Code-MLAB](https://github.com/YuqiaoZhang/MultiLayerAlphaBlending) [Code-WBOIT](https://github.com/YuqiaoZhang/WeightedBlendedOIT)  
+- Environment Lighting [Documentation](Image-Synthesis/Lighting/Environment-Lighting.html) [Code](https://github.com/HanetakaChou/Environment-Lighting)  
+- LTC [Documentation](Image-Synthesis/Lighting/LTC.html) [Code](https://github.com/HanetakaChou/LTC)  
+- Skin [Documentation](Image-Synthesis/Lighting/Skin.html) [Code](https://github.com/HanetakaChou/Burley-SSS)  
+- OIT [Documentation](Image-Synthesis/Lighting/OIT.html) [Code-Stochastic-Transparency](https://github.com/HanetakaChou/StochasticTransparency) [Code-MLAB](https://github.com/HanetakaChou/MultiLayerAlphaBlending) [Code-WBOIT](https://github.com/HanetakaChou/WeightedBlendedOIT)  
 - Volumetric-Lighting [Documentation](Image-Synthesis/Lighting/Volumetric-Lighting.html) [Code](https://github.com/HanetakaChou/VolumetricLighting)  
+- HFTS [Documentation](Image-Synthesis/Lighting/HFTS.html) [Code](https://github.com/HanetakaChou/HFTS)  
 - VXGI [Documentation](Image-Synthesis/Lighting/VXGI.html) [Code](https://github.com/HanetakaChou/VXGI)  
 - Radiosity [Documentation](Image-Synthesis/Lighting/Radiosity.html)  
 - Path-Tracing [Documentation](Image-Synthesis/Lighting/Path-Tracing.html)  
