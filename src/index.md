@@ -11,7 +11,7 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 You should have received a copy of the GNU Lesser General Public License along with this program.  If not, see <https://www.gnu.org/licenses/>
 ```  
 
-## Credit
+## Acknowledgment
 If you find there are any mistakes or improvements, please don't hesitate to contact me by [email](mailto:HanetakaChou@outlook.com).  
 
 ## C Plus Plus
@@ -29,7 +29,7 @@ If you find there are any mistakes or improvements, please don't hesitate to con
 ### Geometry  
 - MOC [Documentation](Image-Synthesis/Geometry/MOC.html)  
 - Projector Functions [Documentation](Image-Synthesis/Geometry/Projector-Functions.html)  
-- Vertex Blending [Documentation](Image-Synthesis/Geometry/Vertex-Blending.html)  
+- Dual Quaternion Vertex Blending [Documentation](Image-Synthesis/Geometry/Dual-Quaternion-Vertex-Blending.html) [Code](https://github.com/HanetakaChou/Dual-Quaternion-Vertex-Blending)  
 - Grass [Documentation](Image-Synthesis/Geometry/Grass.html)  
 - Billboard [Documentation](Image-Synthesis/Geometry/Billboard.html)  
 
