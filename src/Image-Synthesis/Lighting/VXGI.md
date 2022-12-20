@@ -10,6 +10,10 @@
 
 ## Tips
 
+## Clip Map  
+
+[NVIDIA VXGI](https://developer.nvidia.com/vxgi)  
+
 ### Geometry Shader
 By \[Harris 2019\], the geometry shader is hostile to the performance for mobile GPU.  
 Besides, for Mali GPU, the geometry shader is not supported by the hardware and is emulated by the compute shader. And since the number of the vertices produced by a single geometry shader may vary, a parallel scan pass is required to perform the prefix sum.  
