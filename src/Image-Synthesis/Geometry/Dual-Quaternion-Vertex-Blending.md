@@ -68,7 +68,7 @@ Second, we would like to prove that $\displaystyle \boldsymbol{q}$ represents th
 
 > Let $\displaystyle \boldsymbol{p} = \begin{bmatrix}0, & \overrightarrow{p}\end{bmatrix}$ where $\displaystyle \overrightarrow{p}$ is the position in 3D space.  
 >  
-> Let $\displaystyle \boldsymbol{p'} = \boldsymbol{q} \boldsymbol{p} {\boldsymbol{q}}^{-1} = [s', \overrightarrow{p'}]$ where $\displaystyle \overrightarrow{p'}$ is the new position of the position $\displaystyle \overrightarrow{p}$ after the transfrom. Actually, we will later prove that $\displaystyle s' = 0$ and can be ignored.  
+> Let $\displaystyle \boldsymbol{p'} = \boldsymbol{q} \boldsymbol{p} {\boldsymbol{q}}^{-1} = \begin{bmatrix}s', \overrightarrow{p'}\end{bmatrix}$ where $\displaystyle \overrightarrow{p'}$ is the new position of the position $\displaystyle \overrightarrow{p}$ after the transfrom. Actually, we will later prove that we always have $\displaystyle s' = 0$. Thus, these variable can be ignored.  
 >  
 > The inverse of of $\displaystyle \boldsymbol{q}$ is calculated as $\displaystyle {\boldsymbol{q}}^{-1} = \frac{\begin{bmatrix}\cos \frac{\theta}{2}, & - \sin \frac{\theta}{2} \overrightarrow{n}\end{bmatrix}}{{\| \boldsymbol{q} \|}^2} = \begin{bmatrix}\cos \frac{\theta}{2}, & - \sin \frac{\theta}{2} \overrightarrow{n}\end{bmatrix}$.  
 >  
@@ -118,7 +118,7 @@ Proof
 
 ### 1-3\. Dual Quaternion  
 
-By "A.2 Dual Quaternions" of [Kavan 2008\], a dual quaternion can be deemed not only a quaternion whose elements are dual numbers, but also a dual number whose elements are quaternions. This means that we have not only $\displaystyle \hat{\boldsymbol{q}} = \hat{q_w} + \hat{q_x}i + \hat{q_y}j + \hat{q_z}k$ where $\displaystyle \hat{q_w}$, $\displaystyle \hat{q_x}$, $\displaystyle \hat{q_y}$ and $\displaystyle \hat{q_z}$ are dual numbers, but also $\displaystyle \hat{\boldsymbol{q}} = \boldsymbol{q_0} + \boldsymbol{q_\epsilon} \epsilon$ where $\displaystyle \boldsymbol{q_0}$ and $\displaystyle \boldsymbol{q_\epsilon}$ are quaternions.  
+By "A.2 Dual Quaternions" of \[Kavan 2008\], a dual quaternion can be deemed not only a quaternion whose elements are dual numbers, but also a dual number whose elements are quaternions. This means that we have not only $\displaystyle \hat{\boldsymbol{q}} = \hat{q_w} + \hat{q_x}i + \hat{q_y}j + \hat{q_z}k$ where $\displaystyle \hat{q_w}$, $\displaystyle \hat{q_x}$, $\displaystyle \hat{q_y}$ and $\displaystyle \hat{q_z}$ are dual numbers, but also $\displaystyle \hat{\boldsymbol{q}} = \boldsymbol{q_0} + \boldsymbol{q_\epsilon} \epsilon$ where $\displaystyle \boldsymbol{q_0}$ and $\displaystyle \boldsymbol{q_\epsilon}$ are quaternions.  
 
 #### 1-3-1\. Multiplication  
 Since a dual quaternion can be deemed a dual number whose elements are quaternions, by the multiplication of the dual numbers, we have the multiplication of dual quaternions $\displaystyle \hat{\boldsymbol{p}}\hat{\boldsymbol{q}} = (\boldsymbol{p_0} + \boldsymbol{p_\epsilon} \epsilon)(\boldsymbol{q_0} + \boldsymbol{q_\epsilon} \epsilon) = \boldsymbol{p_0} \boldsymbol{q_0} + (\boldsymbol{p_0} \boldsymbol{q_\epsilon} + \boldsymbol{p_\epsilon} \boldsymbol{q_0}) \epsilon$ where $\displaystyle \boldsymbol{p_0}\boldsymbol{q_0}$, $\displaystyle \boldsymbol{p_0}\boldsymbol{q_\epsilon}$ and $\displaystyle \boldsymbol{p_\epsilon}\boldsymbol{q_0}$ are calculated by the multiplication of quaternions.  
@@ -189,7 +189,7 @@ By "Lemma 12" of \[Kavan 2008\], we have that each rigid transformation can be r
 
 ##### 1-3-5-1\. Mapping from Rigid Transformations to Unit Dual Quaternions  
 
-Let $\displaystyle \hat{\boldsymbol{r}} = \boldsymbol{r_0} + \begin{bmatrix}0, & \overrightarrow{0}\end{bmatrix} \epsilon$ where $\displaystyle \boldsymbol{r_0}$ is a unit quaternion.  
+Let $\displaystyle \hat{\boldsymbol{r}} = \boldsymbol{r_0} + \begin{bmatrix}0, & \overrightarrow{0}\end{bmatrix} \epsilon$ where $\displaystyle \boldsymbol{r_0}$ is a unit quaternion, namely, $\| \boldsymbol{r_0} \| = 1$.  
 
 Let $\displaystyle \hat{\boldsymbol{t}} = \begin{bmatrix}1, & \overrightarrow{0}\end{bmatrix} + \begin{bmatrix}0, & \frac{1}{2}\overrightarrow{t}\end{bmatrix} \epsilon$ where $\displaystyle \overrightarrow{t}$ is a vector in 3D space.  
 
@@ -197,15 +197,20 @@ Let $\displaystyle \hat{\boldsymbol{q}} = \hat{\boldsymbol{t}} \hat{\boldsymbol{
 
 First, we would like to prove that $\displaystyle \boldsymbol{q}$ is a unit dual quaternion.  
 
-> Since $\displaystyle \boldsymbol{r_0}$ is a unit quaternion, we have that $\| \boldsymbol{r_0} \| = 1$. The norm of of $\displaystyle \hat{\boldsymbol{r}}$ is calculated as $\displaystyle \| \hat{\boldsymbol{r}} \| = \| \boldsymbol{r_0} \| + \frac{\langle \begin{bmatrix}0, & \overrightarrow{0}\end{bmatrix}, \boldsymbol{r_0} \rangle}{\| \boldsymbol{r_0} \|} \epsilon = 1 + 0 \epsilon = 1$.  
+> The norm of of $\displaystyle \hat{\boldsymbol{r}}$ is calculated as $\displaystyle \| \hat{\boldsymbol{r}} \| = \| \boldsymbol{r_0} \| + \frac{\langle \begin{bmatrix}0, & \overrightarrow{0}\end{bmatrix}, \boldsymbol{r_0} \rangle}{\| \boldsymbol{r_0} \|} \epsilon = 1 + \frac{0}{1} \epsilon = 1$.  
 >  
 > And the norm of $\displaystyle \hat{\boldsymbol{t}}$ is calculated as $\displaystyle \| \hat{\boldsymbol{t}} \| = \|  \begin{bmatrix}1, & \overrightarrow{0}\end{bmatrix} \| + \frac{\langle  \begin{bmatrix}1, & \overrightarrow{0}\end{bmatrix}, \begin{bmatrix}0, & \frac{1}{2}\overrightarrow{t}\end{bmatrix} \rangle}{\begin{bmatrix}1, & \overrightarrow{0}\end{bmatrix}} \epsilon = 1 + 0 \epsilon = 1$. This means that the norm of $\displaystyle \boldsymbol{r_0}$ is one.  
 >  
 > By the distributive property of the norm of the dual quaternions, we have that $\displaystyle  \| \hat{\boldsymbol{q}} \| = \| \hat{\boldsymbol{t}} \hat{\boldsymbol{r}} \| = \| \hat{\boldsymbol{t}} \|  \| \hat{\boldsymbol{r}} \| = 1$. This means that the norm of $\displaystyle \hat{\boldsymbol{q}}$ is one. And thus, $\displaystyle \hat{\boldsymbol{q}}$ is a unit dual quaternion.  
 
-Second, we would like to prove that $\displaystyle \hat{\boldsymbol{t}}$ represents the rigid transform composed of the rotation represented by the unit quaternion $\displaystyle \boldsymbol{r_0}$ and the translation transform represented by the vector $\displaystyle \overrightarrow{t}$.  
+Second, we would like to prove that $\displaystyle \hat{\boldsymbol{t}}$ represents the rigid transform composed of the rotation transform represented by the unit quaternion $\displaystyle \boldsymbol{r_0}$ and the translation transform represented by the vector $\displaystyle \overrightarrow{t}$.  
 
-> 
+> Let $\displaystyle \hat{\boldsymbol{p}} = \begin{bmatrix}1, & \overrightarrow{0}\end{bmatrix} + \begin{bmatrix}0, & \overrightarrow{p}\end{bmatrix} \epsilon$ where $\displaystyle \overrightarrow{p}$ is the position in 3D space.  
+>  
+> Let $\displaystyle \hat{\boldsymbol{p'}} = \hat{\boldsymbol{q}} \hat{\boldsymbol{p}} {\overline{\hat{\boldsymbol{q}}}}^* = \boldsymbol{{p'}_0} + \begin{bmatrix}s', \overrightarrow{p'}\end{bmatrix}$ where $\displaystyle \overrightarrow{p'}$ is the new position of the position $\displaystyle \overrightarrow{p}$ after the transfrom. Actually, we will later prove that we always have $\displaystyle \boldsymbol{{p'}_0} = \begin{bmatrix}1, & \overrightarrow{0}\end{bmatrix}$ and $\displaystyle s' = 0$. Thus, these two variables can be ignored.  
+>  
+> By the commutative property of the conjugate of the dual quaternions, we have $\displaystyle{\overline{\hat{\boldsymbol{r}}}}^* = {\boldsymbol{r_0}}^* - {{\boldsymbol{r_\epsilon}}^*} \epsilon = {\boldsymbol{r_0}}^* = \frac{{\boldsymbol{r_0}}^*}{1} = \frac{{\boldsymbol{r_0}}^*}{{\| \boldsymbol{r_0} \|}^2} = {\boldsymbol{r_0}}^{-1}$ and $\displaystyle{\overline{\hat{\boldsymbol{t}}}}^* = {\boldsymbol{t_0}}^* - {{\boldsymbol{t_\epsilon}}^*} \epsilon = \begin{bmatrix}1, & \overrightarrow{0}\end{bmatrix} - {(\begin{bmatrix}0, & \frac{1}{2}\overrightarrow{t}\end{bmatrix})}^* \epsilon = \begin{bmatrix}1, & \overrightarrow{0}\end{bmatrix} - \begin{bmatrix}0, & -\frac{1}{2}\overrightarrow{t}\end{bmatrix} \epsilon = \begin{bmatrix}1, & \overrightarrow{0}\end{bmatrix} + \begin{bmatrix}0, & \frac{1}{2}\overrightarrow{t}\end{bmatrix} \epsilon = \hat{\boldsymbol{t}}$.  
+>  
 
 
 ##### 1-3-5-2\. Mapping from Unit Dual Quaternions to Rigid Transformations  
