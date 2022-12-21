@@ -67,7 +67,14 @@ Proof
  
 ##### 1-1-7-2\. Mapping from Rotation Transformations to Unit Quaternions  
 
-By "Conversion from rotation matrix to axis–angle" of [Rotation matrix](https://en.wikipedia.org/wiki/Rotation_matrix) in Wikipedia, we can deduce the axis and the angle from the rotation matrix. The main idea is that the axis is an eigenvector of the matrix and the angle can be deduced from trace of the rotation matrix.  
+By "Conversion from rotation matrix to axis–angle" of [Rotation matrix](https://en.wikipedia.org/wiki/Rotation_matrix) in Wikipedia, we can deduce the axis and the angle from the rotation matrix.  
+
+By [Eigenvalues and eigenvectors](https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors) in Wikipedia, eigenvector is the vector of which the direction is not changed after the matrix is applied.  
+
+Evidently, the axis is an eigenvector of the rotation matrix.  
+
+
+The main idea is that the axis is an eigenvector of the matrix and the angle can be deduced from trace of the rotation matrix.  
 
 Once we have the axis and the angle, by "1-1-7-1\. Bijection between [axis, angle] and Unit Quaternion", we can have the quaternion.  
 
