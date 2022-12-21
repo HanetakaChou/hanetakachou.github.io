@@ -62,25 +62,25 @@ Let $\displaystyle \boldsymbol{q} = \begin{bmatrix}\cos \frac{\theta}{2}, & \sin
 
 First, we would like to prove that $\displaystyle \boldsymbol{q}$ is a unit quaternion.  
 
-The norm of of $\displaystyle \boldsymbol{q}$ is calculated as $\displaystyle {\| \boldsymbol{q} \|}^2 = \cos^2 \frac{\theta}{2} + \sin^2 \frac{\theta}{2} {| \overrightarrow{n} |}^2 = \cos^2 \frac{\theta}{2} + \sin^2 \frac{\theta}{2} = 1$. This means that the norm of $\displaystyle \boldsymbol{q}$ is one. And thus, $\displaystyle \boldsymbol{q}$ is a unit quaternion.  
-
+> The norm of of $\displaystyle \boldsymbol{q}$ is calculated as $\displaystyle {\| \boldsymbol{q} \|}^2 = \cos^2 \frac{\theta}{2} + \sin^2 \frac{\theta}{2} {| \overrightarrow{n} |}^2 = \cos^2 \frac{\theta}{2} + \sin^2 \frac{\theta}{2} = 1$. This means that the norm of $\displaystyle \boldsymbol{q}$ is one. And thus, $\displaystyle \boldsymbol{q}$ is a unit quaternion.  
+  
 Second, we would like to prove that $\displaystyle \boldsymbol{q}$ represents the rotation transform about the axis $\displaystyle \overrightarrow{n}$ by the angle $\displaystyle \theta$.  
 
-Let $\displaystyle \boldsymbol{p} = \begin{bmatrix}0, & \overrightarrow{p}\end{bmatrix}$ where $\displaystyle \overrightarrow{p}$ is the position in 3D space.  
-
-Let $\displaystyle \boldsymbol{p'} = \boldsymbol{q} \boldsymbol{p} {\boldsymbol{q}}^{-1} = [s', \overrightarrow{p'}]$ where $\displaystyle \overrightarrow{p'}$ is the new position of the position $\displaystyle \overrightarrow{p}$ after the transfrom. Actually, we will later prove that $\displaystyle s' = 0$ and can be ignored.  
-
-The inverse of of $\displaystyle \boldsymbol{q}$ is calculated as $\displaystyle {\boldsymbol{q}}^{-1} = \frac{\begin{bmatrix}\cos \frac{\theta}{2}, & - \sin \frac{\theta}{2} \overrightarrow{n}\end{bmatrix}}{{\| \boldsymbol{q} \|}^2} = \begin{bmatrix}\cos \frac{\theta}{2}, & - \sin \frac{\theta}{2} \overrightarrow{n}\end{bmatrix}$.  
-
-By the multiplication of quaternions, we have that $\displaystyle \boldsymbol{p'} = \boldsymbol{q} \boldsymbol{p} {\boldsymbol{q}}^{-1} = \begin{bmatrix}\cos \frac{\theta}{2}, & \sin \frac{\theta}{2} \overrightarrow{n}\end{bmatrix} \begin{bmatrix}0, & \overrightarrow{p}\end{bmatrix} \begin{bmatrix}\cos \frac{\theta}{2}, & - \sin \frac{\theta}{2} \overrightarrow{n}\end{bmatrix} = \begin{bmatrix}0, & (1 - \cos \theta) (\overrightarrow{n} \cdot \overrightarrow{p}) \overrightarrow{p} + \cos \theta \overrightarrow{p} + \sin \theta \overrightarrow{n} \times \overrightarrow{p}\end{bmatrix}$. The lengthy calculation is provided by "Equation \(7.13\)" of [Quaternions for Computer Graphics](https://link.springer.com/book/10.1007/978-1-4471-7509-4). This means that $\displaystyle s' = 0$ and $\displaystyle \overrightarrow{p'} = (1 - \cos \theta) (\overrightarrow{v} \cdot \overrightarrow{p}) \overrightarrow{p} + \cos 2 \theta \overrightarrow{p} + \sin 2 \theta \overrightarrow{v} \times \overrightarrow{p}$.  
-
-By "Fig. 6.7" and "Fig. 6.8" of [Quaternions for Computer Graphics](https://link.springer.com/book/10.1007/978-1-4471-7509-4), we have  $\displaystyle \overrightarrow{p'}$ is exactly the new position of the position $\displaystyle \overrightarrow{p}$ after the rotation about the axis $\displaystyle \overrightarrow{n}$ by the angle $\displaystyle \theta$.  
-
-Proof  
-
-> ![Fig. 6.7 A view of the geometry associated with rotating a point about an arbitrary axis](Dual-Quaternion-Vertex-Blending-1.png)  
-> ![Fig. 6.8 A cross-section and plan view of the geometry associated with rotating a point about an arbitrary axis](Dual-Quaternion-Vertex-Blending-2.png)  
-> TODO  
+> Let $\displaystyle \boldsymbol{p} = \begin{bmatrix}0, & \overrightarrow{p}\end{bmatrix}$ where $\displaystyle \overrightarrow{p}$ is the position in 3D space.  
+>  
+> Let $\displaystyle \boldsymbol{p'} = \boldsymbol{q} \boldsymbol{p} {\boldsymbol{q}}^{-1} = [s', \overrightarrow{p'}]$ where $\displaystyle \overrightarrow{p'}$ is the new position of the position $\displaystyle \overrightarrow{p}$ after the transfrom. Actually, we will later prove that $\displaystyle s' = 0$ and can be ignored.  
+>  
+> The inverse of of $\displaystyle \boldsymbol{q}$ is calculated as $\displaystyle {\boldsymbol{q}}^{-1} = \frac{\begin{bmatrix}\cos \frac{\theta}{2}, & - \sin \frac{\theta}{2} \overrightarrow{n}\end{bmatrix}}{{\| \boldsymbol{q} \|}^2} = \begin{bmatrix}\cos \frac{\theta}{2}, & - \sin \frac{\theta}{2} \overrightarrow{n}\end{bmatrix}$.  
+>  
+> By the multiplication of quaternions, we have that $\displaystyle \boldsymbol{p'} = \boldsymbol{q} \boldsymbol{p} {\boldsymbol{q}}^{-1} = \begin{bmatrix}\cos \frac{\theta}{2}, & \sin \frac{\theta}{2} \overrightarrow{n}\end{bmatrix} \begin{bmatrix}0, & \overrightarrow{p}\end{bmatrix} \begin{bmatrix}\cos \frac{\theta}{2}, & - \sin \frac{\theta}{2} \overrightarrow{n}\end{bmatrix} = \begin{bmatrix}0, & (1 - \cos \theta) (\overrightarrow{n} \cdot \overrightarrow{p}) \overrightarrow{p} + \cos \theta \overrightarrow{p} + \sin \theta \overrightarrow{n} \times \overrightarrow{p}\end{bmatrix}$. The lengthy calculation is provided by "Equation \(7.13\)" of [Quaternions for Computer Graphics](https://link.springer.com/book/10.1007/978-1-4471-7509-4). This means that $\displaystyle s' = 0$ and $\displaystyle \overrightarrow{p'} = (1 - \cos \theta) (\overrightarrow{v} \cdot \overrightarrow{p}) \overrightarrow{p} + \cos 2 \theta \overrightarrow{p} + \sin 2 \theta \overrightarrow{v} \times \overrightarrow{p}$.  
+>  
+> By "Fig. 6.7" and "Fig. 6.8" of [Quaternions for Computer Graphics](https://link.springer.com/book/10.1007/978-1-4471-7509-4), we have  $\displaystyle \overrightarrow{p'}$ is exactly the new position of the position $\displaystyle \overrightarrow{p}$ after the rotation about the axis $\displaystyle \overrightarrow{n}$ by the angle $\displaystyle \theta$.  
+>  
+> Proof  
+>  
+>> ![Fig. 6.7 A view of the geometry associated with rotating a point about an arbitrary axis](Dual-Quaternion-Vertex-Blending-1.png)  
+>> ![Fig. 6.8 A cross-section and plan view of the geometry associated with rotating a point about an arbitrary axis](Dual-Quaternion-Vertex-Blending-2.png)  
+>> TODO  
 
 ##### 1-1-7-2\. Mapping from Unit Quaternions to Rotation Transformations  
 
@@ -88,7 +88,7 @@ Let $\displaystyle \boldsymbol{q} = \begin{bmatrix}s, & \overrightarrow{v}\end{b
 
 We would like to prove that there exists the $\displaystyle \theta$ and the $\overrightarrow{n}$ such that $\displaystyle \boldsymbol{q} = \begin{bmatrix}\cos \frac{\theta}{2}, & \sin \frac{\theta}{2} \overrightarrow{n}\end{bmatrix}$ and $\displaystyle \overrightarrow{n}$ is a unit vector in 3D space.  
 
-Since $\displaystyle s^2 + {\| \overrightarrow{v} \|}^2 = 1$, we can find the $\displaystyle \theta$ such that $\displaystyle \cos \frac{\theta}{2} = s$ and $\displaystyle \sin \frac{\theta}{2} = \| \overrightarrow{v} \|$. And let $\displaystyle \overrightarrow{n} = \frac{\overrightarrow{v}}{\| \overrightarrow{v} \|}$. Thus, we have $\displaystyle \boldsymbol{q} = \begin{bmatrix}\cos \frac{\theta}{2}, & \sin \frac{\theta}{2} \overrightarrow{n}\end{bmatrix} = \begin{bmatrix}s, & \overrightarrow{v}\end{bmatrix}$.  
+Since $\displaystyle s^2 + {\| \overrightarrow{v} \|}^2 = 1$, we can find the $\displaystyle \theta$ such that $\displaystyle \cos \frac{\theta}{2} = s$ and $\displaystyle \sin \frac{\theta}{2} = \| \overrightarrow{v} \|$. And let $\displaystyle \overrightarrow{n} = \frac{\overrightarrow{v}}{\| \overrightarrow{v} \|}$. Thus, we have $\displaystyle \boldsymbol{q} = \begin{bmatrix}\cos \frac{\theta}{2}, & \sin \frac{\theta}{2} \overrightarrow{n}\end{bmatrix} = \begin{bmatrix}s, & \overrightarrow{v}\end{bmatrix}$. This means that $\displaystyle \boldsymbol{q}$ represent the rotation about the axis $\displaystyle \overrightarrow{n}$ by the angle $\displaystyle \theta$.  
 
 ### 1-2\. Dual Numbder    
 By "A.1 Dual Numbers" of \[Kavan 2008\], a dual number can be written as $\displaystyle \hat{a} = a_0 + a_\epsilon \epsilon$, where $\displaystyle a_0$ and $\displaystyle a_\epsilon$ are real numbers, and $\displaystyle \epsilon$ is a basis element such that $\displaystyle 1 \epsilon = \epsilon 1 = \epsilon$ and $\epsilon \epsilon = 0$.
@@ -151,7 +151,7 @@ Proof
 > By the distributive property of the conjugate of the quaternions, we have that $\displaystyle {(\boldsymbol{p_0}\boldsymbol{q_0})}^* + {(\boldsymbol{p_0}\boldsymbol{q_\epsilon} + \boldsymbol{p_\epsilon} \boldsymbol{q_0})}^* \epsilon = {(\boldsymbol{p_0}\boldsymbol{q_0})}^* + ({(\boldsymbol{p_0}\boldsymbol{q_\epsilon})}^* + {(\boldsymbol{p_\epsilon} \boldsymbol{q_0})}^*) \epsilon = {\boldsymbol{q_0}}^* {\boldsymbol{p_0}}^* + ({\boldsymbol{q_0}}^* {\boldsymbol{p_\epsilon}}^* + {\boldsymbol{q_\epsilon}}^* {\boldsymbol{p_0}}^*) \epsilon = (\boldsymbol{q_0} + \boldsymbol{q_\epsilon} \epsilon)(\boldsymbol{p_0} + \boldsymbol{p_\epsilon} \epsilon) = {\hat{\boldsymbol{q}}}^* {\hat{\boldsymbol{p}}}^*$.  
 
 #### 1-3-3\. Norm  
-By "Equation \(22\)" of \[Kavan 2008\], for any dual quaternion $\displaystyle \hat{\boldsymbol{q}} = \boldsymbol{q_0} + \boldsymbol{q_\epsilon} \epsilon$ such that  $\displaystyle \| \boldsymbol{q_0} \| \ne 0$, we have the norm of the dual qunternion $\displaystyle \| \hat{\boldsymbol{q}} \| = \sqrt{ \hat{\boldsymbol{q}} {\hat{\boldsymbol{q}}}^* } = \sqrt{ (\boldsymbol{q_0} + \boldsymbol{q_\epsilon} \epsilon)(\boldsymbol{q_0} - \boldsymbol{q_\epsilon} \epsilon) } = \| \boldsymbol{q_0} \| + \frac{\langle \boldsymbol{q_0}, \boldsymbol{q_e} \rangle}{\| \hat{\boldsymbol{q}} \|} \epsilon$.  
+By "Equation \(22\)" of \[Kavan 2008\], for any dual quaternion $\displaystyle \hat{\boldsymbol{q}} = \boldsymbol{q_0} + \boldsymbol{q_\epsilon} \epsilon$ such that  $\displaystyle \| \boldsymbol{q_0} \| \ne 0$, we have the norm of the dual qunternion $\displaystyle \| \hat{\boldsymbol{q}} \| = \sqrt{ \hat{\boldsymbol{q}} {\hat{\boldsymbol{q}}}^* } = \sqrt{ (\boldsymbol{q_0} + \boldsymbol{q_\epsilon} \epsilon)(\boldsymbol{q_0} - \boldsymbol{q_\epsilon} \epsilon) } = \| \boldsymbol{q_0} \| + \frac{\langle \boldsymbol{q_0}, \boldsymbol{q_e} \rangle}{\| \boldsymbol{q_0} \|} \epsilon$.  
 
 Proof  
 
@@ -159,15 +159,15 @@ Proof
 >  
 > First, we would like to prove that $\displaystyle {\boldsymbol{q_\epsilon}}^* + \boldsymbol{q_\epsilon} {\boldsymbol{q_0}}^* = s_0 s_\epsilon + \overrightarrow{v_0} \cdot \overrightarrow{v_\epsilon} = \langle \boldsymbol{q_0}, \boldsymbol{q_\epsilon} \rangle$.  
 >  
-> By the multiplication of quaternions, we have that $\displaystyle \boldsymbol{q_0} {\boldsymbol{q_\epsilon}}^* + \boldsymbol{q_\epsilon} {\boldsymbol{q_0}}^* = \begin{bmatrix}s_0, & \overrightarrow{v_0}\end{bmatrix} \begin{bmatrix}s_\epsilon, & -\overrightarrow{v_\epsilon}\end{bmatrix} + \begin{bmatrix}s_\epsilon, & \overrightarrow{v_\epsilon}\end{bmatrix} \begin{bmatrix}s_0, & -\overrightarrow{v_0}\end{bmatrix} = \begin{bmatrix}s_0 s_\epsilon - \overrightarrow{v_0} \cdot (-\overrightarrow{v_\epsilon}), & s_0 (-\overrightarrow{v_\epsilon}) + s_\epsilon \overrightarrow{v_0} + \overrightarrow{v_0} \times (-\overrightarrow{v_\epsilon})\end{bmatrix} + \begin{bmatrix}s_\epsilon s_0 - \overrightarrow{v_\epsilon} \cdot (-\overrightarrow{v_0}), & s_\epsilon (-\overrightarrow{v_0}) + s_0 \overrightarrow{v_\epsilon} + \overrightarrow{v_\epsilon} \times (-\overrightarrow{v_0})\end{bmatrix} = \begin{bmatrix} s_0 s_\epsilon - \overrightarrow{v_0} \cdot (-\overrightarrow{v_\epsilon}) + s_\epsilon s_0 - \overrightarrow{v_\epsilon} \cdot (-\overrightarrow{v_0}), & s_0 (-\overrightarrow{v_\epsilon}) + s_\epsilon \overrightarrow{v_0} + \overrightarrow{v_0} \times (-\overrightarrow{v_\epsilon}) + s_\epsilon (-\overrightarrow{v_0}) + s_0 \overrightarrow{v_\epsilon} + \overrightarrow{v_\epsilon} \times (-\overrightarrow{v_0})\end{bmatrix} = \begin{bmatrix}2 (s_0 s_\epsilon + \overrightarrow{v_0} \cdot \overrightarrow{v_\epsilon}), & \overrightarrow{0}\end{bmatrix} = 2 (s_0 s_\epsilon + \overrightarrow{v_0} \cdot \overrightarrow{v_\epsilon})$.  
->  
-> By the inner product of quaternions, we have that $\displaystyle \boldsymbol{q_0} {\boldsymbol{q_\epsilon}}^* = s_0 s_\epsilon + \overrightarrow{v_0} \cdot \overrightarrow{v_\epsilon} = \langle \boldsymbol{q_0}, \boldsymbol{q_\epsilon} \rangle$.
+>> By the multiplication of quaternions, we have that $\displaystyle \boldsymbol{q_0} {\boldsymbol{q_\epsilon}}^* + \boldsymbol{q_\epsilon} {\boldsymbol{q_0}}^* = \begin{bmatrix}s_0, & \overrightarrow{v_0}\end{bmatrix} \begin{bmatrix}s_\epsilon, & -\overrightarrow{v_\epsilon}\end{bmatrix} + \begin{bmatrix}s_\epsilon, & \overrightarrow{v_\epsilon}\end{bmatrix} \begin{bmatrix}s_0, & -\overrightarrow{v_0}\end{bmatrix} = \begin{bmatrix}s_0 s_\epsilon - \overrightarrow{v_0} \cdot (-\overrightarrow{v_\epsilon}), & s_0 (-\overrightarrow{v_\epsilon}) + s_\epsilon \overrightarrow{v_0} + \overrightarrow{v_0} \times (-\overrightarrow{v_\epsilon})\end{bmatrix} + \begin{bmatrix}s_\epsilon s_0 - \overrightarrow{v_\epsilon} \cdot (-\overrightarrow{v_0}), & s_\epsilon (-\overrightarrow{v_0}) + s_0 \overrightarrow{v_\epsilon} + \overrightarrow{v_\epsilon} \times (-\overrightarrow{v_0})\end{bmatrix} = \begin{bmatrix} s_0 s_\epsilon - \overrightarrow{v_0} \cdot (-\overrightarrow{v_\epsilon}) + s_\epsilon s_0 - \overrightarrow{v_\epsilon} \cdot (-\overrightarrow{v_0}), & s_0 (-\overrightarrow{v_\epsilon}) + s_\epsilon \overrightarrow{v_0} + \overrightarrow{v_0} \times (-\overrightarrow{v_\epsilon}) + s_\epsilon (-\overrightarrow{v_0}) + s_0 \overrightarrow{v_\epsilon} + \overrightarrow{v_\epsilon} \times (-\overrightarrow{v_0})\end{bmatrix} = \begin{bmatrix}2 (s_0 s_\epsilon + \overrightarrow{v_0} \cdot \overrightarrow{v_\epsilon}), & \overrightarrow{0}\end{bmatrix} = 2 (s_0 s_\epsilon + \overrightarrow{v_0} \cdot \overrightarrow{v_\epsilon})$.  
+>>  
+>> By the inner product of quaternions, we have that $\displaystyle \boldsymbol{q_0} {\boldsymbol{q_\epsilon}}^* + \boldsymbol{q_\epsilon} {\boldsymbol{q_0}}^* = s_0 s_\epsilon + \overrightarrow{v_0} \cdot \overrightarrow{v_\epsilon} = \langle \boldsymbol{q_0}, \boldsymbol{q_\epsilon} \rangle$.
 >  
 > Second, we would like to prove that $\displaystyle \sqrt{{\| \boldsymbol{q_0} \|}^2 + (\boldsymbol{q_0} {\boldsymbol{q_\epsilon}}^* + \boldsymbol{q_\epsilon} {\boldsymbol{q_0}}^*) \epsilon} = \| \boldsymbol{q_0} \| + \frac{\langle \boldsymbol{q_0}, \boldsymbol{q_e} \rangle}{\| \hat{\boldsymbol{q}} \|} \epsilon$.  
 >  
-> Evidently, the real part of $\displaystyle {\| \boldsymbol{q_0} \|}^2 + (\boldsymbol{q_0} {\boldsymbol{q_\epsilon}}^* + \boldsymbol{q_\epsilon} {\boldsymbol{q_0}}^*) \epsilon$ is a real number. And since $\displaystyle \boldsymbol{q_0} {\boldsymbol{q_\epsilon}}^* + \boldsymbol{q_\epsilon} {\boldsymbol{q_0}}^* = 2 \langle \boldsymbol{q_0}, \boldsymbol{q_\epsilon} \rangle$, the dual part of $\displaystyle {\| \boldsymbol{q_0} \|}^2 + (\boldsymbol{q_0} {\boldsymbol{q_\epsilon}}^* + \boldsymbol{q_\epsilon} {\boldsymbol{q_0}}^*) \epsilon$ is a real number. This means that $\displaystyle {\| \boldsymbol{q_0} \|}^2 + (\boldsymbol{q_0} {\boldsymbol{q_\epsilon}}^* + \boldsymbol{q_\epsilon} {\boldsymbol{q_0}}^*) \epsilon$ is a dual number.  
->  
-> By the square root of the dual number, since $\displaystyle \| \boldsymbol{q_0} \| \ne 0$, we have that $\displaystyle \sqrt{{\| \boldsymbol{q_0} \|}^2 + (\boldsymbol{q_0} {\boldsymbol{q_\epsilon}}^* + \boldsymbol{q_\epsilon} {\boldsymbol{q_0}}^*) \epsilon} = \sqrt{{\| \boldsymbol{q_0} \|}^2 + 2 \langle \boldsymbol{q_0}, \boldsymbol{q_\epsilon} \rangle \epsilon} = \| \boldsymbol{q_0} \| + \frac{2 \langle \boldsymbol{q_0}, \boldsymbol{q_\epsilon} \rangle}{2 \sqrt{{\| \boldsymbol{q_0} \|}^2}} \epsilon = \| \boldsymbol{q_0} \| + \frac{\langle \boldsymbol{q_0}, \boldsymbol{q_\epsilon} \rangle}{\| \boldsymbol{q_0} \|} \epsilon$.  
+>> Evidently, the real part of $\displaystyle {\| \boldsymbol{q_0} \|}^2 + (\boldsymbol{q_0} {\boldsymbol{q_\epsilon}}^* + \boldsymbol{q_\epsilon} {\boldsymbol{q_0}}^*) \epsilon$ is a real number. And since $\displaystyle \boldsymbol{q_0} {\boldsymbol{q_\epsilon}}^* + \boldsymbol{q_\epsilon} {\boldsymbol{q_0}}^* = 2 \langle \boldsymbol{q_0}, \boldsymbol{q_\epsilon} \rangle$, the dual part of $\displaystyle {\| \boldsymbol{q_0} \|}^2 + (\boldsymbol{q_0} {\boldsymbol{q_\epsilon}}^* + \boldsymbol{q_\epsilon} {\boldsymbol{q_0}}^*) \epsilon$ is a real number. This means that $\displaystyle {\| \boldsymbol{q_0} \|}^2 + (\boldsymbol{q_0} {\boldsymbol{q_\epsilon}}^* + \boldsymbol{q_\epsilon} {\boldsymbol{q_0}}^*) \epsilon$ is a dual number.  
+>>  
+>> By the square root of the dual number, since $\displaystyle \| \boldsymbol{q_0} \| \ne 0$, we have that $\displaystyle \sqrt{{\| \boldsymbol{q_0} \|}^2 + (\boldsymbol{q_0} {\boldsymbol{q_\epsilon}}^* + \boldsymbol{q_\epsilon} {\boldsymbol{q_0}}^*) \epsilon} = \sqrt{{\| \boldsymbol{q_0} \|}^2 + 2 \langle \boldsymbol{q_0}, \boldsymbol{q_\epsilon} \rangle \epsilon} = \| \boldsymbol{q_0} \| + \frac{2 \langle \boldsymbol{q_0}, \boldsymbol{q_\epsilon} \rangle}{2 \sqrt{{\| \boldsymbol{q_0} \|}^2}} \epsilon = \| \boldsymbol{q_0} \| + \frac{\langle \boldsymbol{q_0}, \boldsymbol{q_\epsilon} \rangle}{\| \boldsymbol{q_0} \|} \epsilon$.  
 
 ##### 1-3-3-4\. Distributive Property  
 
@@ -193,11 +193,20 @@ Let $\displaystyle \hat{\boldsymbol{r}} = \boldsymbol{r_0} + \begin{bmatrix}0, &
 
 Let $\displaystyle \hat{\boldsymbol{t}} = \begin{bmatrix}1, & \overrightarrow{0}\end{bmatrix} + \begin{bmatrix}0, & \frac{1}{2}\overrightarrow{t}\end{bmatrix} \epsilon$ where $\displaystyle \overrightarrow{t}$ is a vector in 3D space.  
 
-First, we would like to prove that $\displaystyle \boldsymbol{q}$ is a unit quaternion.  
+Let $\displaystyle \hat{\boldsymbol{q}} = \hat{\boldsymbol{t}} \hat{\boldsymbol{r}}$.  
 
-The norm of of $\displaystyle \boldsymbol{q}$ is calculated as $\displaystyle {\| \boldsymbol{q} \|}^2 = \cos^2 \frac{\theta}{2} + \sin^2 \frac{\theta}{2} {| \overrightarrow{n} |}^2 = \cos^2 \frac{\theta}{2} + \sin^2 \frac{\theta}{2} = 1$. This means that the norm of $\displaystyle \boldsymbol{q}$ is one. And thus, $\displaystyle \boldsymbol{q}$ is a unit quaternion.  
+First, we would like to prove that $\displaystyle \boldsymbol{q}$ is a unit dual quaternion.  
 
-\[Kavan 2008\] / A.2 Dual Quaternions / Lemma 12  
+> Since $\displaystyle \boldsymbol{r_0}$ is a unit quaternion, we have that $\| \boldsymbol{r_0} \| = 1$. The norm of of $\displaystyle \hat{\boldsymbol{r}}$ is calculated as $\displaystyle \| \hat{\boldsymbol{r}} \| = \| \boldsymbol{r_0} \| + \frac{\langle \begin{bmatrix}0, & \overrightarrow{0}\end{bmatrix}, \boldsymbol{r_0} \rangle}{\| \boldsymbol{r_0} \|} \epsilon = 1 + 0 \epsilon = 1$.  
+>  
+> And the norm of $\displaystyle \hat{\boldsymbol{t}}$ is calculated as $\displaystyle \| \hat{\boldsymbol{t}} \| = \|  \begin{bmatrix}1, & \overrightarrow{0}\end{bmatrix} \| + \frac{\langle  \begin{bmatrix}1, & \overrightarrow{0}\end{bmatrix}, \begin{bmatrix}0, & \frac{1}{2}\overrightarrow{t}\end{bmatrix} \rangle}{\begin{bmatrix}1, & \overrightarrow{0}\end{bmatrix}} \epsilon = 1 + 0 \epsilon = 1$. This means that the norm of $\displaystyle \boldsymbol{r_0}$ is one.  
+>  
+> By the distributive property of the norm of the dual quaternions, we have that $\displaystyle  \| \hat{\boldsymbol{q}} \| = \| \hat{\boldsymbol{t}} \hat{\boldsymbol{r}} \| = \| \hat{\boldsymbol{t}} \|  \| \hat{\boldsymbol{r}} \| = 1$. This means that the norm of $\displaystyle \hat{\boldsymbol{q}}$ is one. And thus, $\displaystyle \hat{\boldsymbol{q}}$ is a unit dual quaternion.  
+
+Second, we would like to prove that $\displaystyle \hat{\boldsymbol{t}}$ represents the rigid transform composed of the rotation represented by the unit quaternion $\displaystyle \boldsymbol{r_0}$ and the translation transform represented by the vector $\displaystyle \overrightarrow{t}$.  
+
+> 
+
 
 ##### 1-3-5-2\. Mapping from Unit Dual Quaternions to Rigid Transformations  
 
