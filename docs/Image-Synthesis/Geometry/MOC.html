@@ -50,7 +50,7 @@
         &quot;z_layer_farthest&quot; is conservatively updated as &quot;z_layer_farthest = farthest(z_tri_farthest,
         z_layer_farthest)&quot; for each layer, the precision is acceptable since both &quot;z_tri_farthest&quot; and
         &quot;z_layer_farthest&quot; represent the same surface.</p>
-    <pre><code class="code-line language-c++" dir="auto"><div><span class="hljs-built_in">masked_coarse_depth_test</span>()
+    <pre><code class="code-line language-cpp" dir="auto"><div><span class="hljs-built_in">masked_coarse_depth_test</span>()
 {
     tri_pass_mask = <span class="hljs-built_in">nearer</span>(z_tri_nearerest, z_layer_nearerest);
 
@@ -61,7 +61,7 @@
     <span class="hljs-keyword">return</span> {tri_pass_mask, tri_fail_mask};
 }
 </div></code></pre>
-    <pre><code class="code-line language-c++" dir="auto"><div><span class="hljs-built_in">masked_hiz_update</span>()
+    <pre><code class="code-line language-cpp" dir="auto"><div><span class="hljs-built_in">masked_hiz_update</span>()
 {
     <span class="hljs-comment">// The &quot;z_tile_nearest&quot; can always be efficiently updated</span>
     <span class="hljs-comment">// z_tile_nearest = nearest(z_tri_nearest, z_tile_nearest)</span>

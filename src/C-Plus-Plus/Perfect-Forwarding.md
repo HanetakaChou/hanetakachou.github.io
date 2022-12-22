@@ -7,7 +7,7 @@ Note that the value which can be identified must be a lvalue(\[Stroustrup 2013\]
 
 For example, the following code will fail when compiled.  
 
-```cxx
+```cpp
 #include <utility>
 
 void foo(int &&i)
@@ -26,7 +26,7 @@ int main()
 }
 ```
 
-```cxx
+```  
 main.cpp: In function ‘int main()’:
 main.cpp:13:9: error: cannot bind rvalue reference of type ‘int&&’ to lvalue of type ‘int’
      foo(r);
@@ -39,7 +39,7 @@ main.cpp:3:6: note:   initializing argument 1 of ‘void foo(int&&)’
 
 The "std::forward" can be used to fix the compilation error.
 
-```cxx
+```cpp
 #include <utility>
 
 void foo(int &&i)

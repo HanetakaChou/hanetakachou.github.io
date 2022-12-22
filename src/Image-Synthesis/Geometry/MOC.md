@@ -14,7 +14,7 @@ Evidently, for a single sample, there is no "ambiguous" outcome, only "pass" or 
 
 The underlying assumption of the "two" layers is that the same layer is expected to represent the same surface. For example, the Z buffer may represent a "roof" before the "sky". And ideally, the "tile_selection_mask" should make sure that one layer represents the "roof" and the other layer represents the "sky". Thus, even if the "z_layer_farthest" is conservatively updated as "z_layer_farthest = farthest(z_tri_farthest, z_layer_farthest)" for each layer, the precision is acceptable since both "z_tri_farthest" and "z_layer_farthest" represent the same surface.  
 
-```c++
+```cpp
 masked_coarse_depth_test()
 {
     tri_pass_mask = nearer(z_tri_nearerest, z_layer_nearerest);
@@ -27,7 +27,7 @@ masked_coarse_depth_test()
 }
 ```
 
-```c++
+```cpp
 masked_hiz_update()
 {
     // The "z_tile_nearest" can always be efficiently updated

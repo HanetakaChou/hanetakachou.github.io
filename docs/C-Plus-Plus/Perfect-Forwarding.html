@@ -17,7 +17,7 @@
         Types and Declarations / 6.4.1 Lvalues and Rvalues).</p>
     <h3 dir="auto" id="example-without-perfect-forwarding">Example without Perfect Forwarding</h3>
     <p dir="auto">For example, the following code will fail when compiled.</p>
-    <pre><code class="code-line language-cxx" dir="auto"><div><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;utility&gt;</span></span>
+    <pre><code class="code-line language-cpp" dir="auto"><div><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;utility&gt;</span></span>
 
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">foo</span><span class="hljs-params">(<span class="hljs-type">int</span> &amp;&amp;i)</span>
 </span>{
@@ -34,16 +34,16 @@
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }
 </div></code></pre>
-    <pre><code class="code-line language-cxx" dir="auto"><div>main.cpp: In function ‘<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>’:
-main.cpp:<span class="hljs-number">13</span>:<span class="hljs-number">9</span>: error: cannot bind rvalue reference of type ‘int&amp;&amp;’ to lvalue of type ‘int’
-     foo(r);</span>
+    <pre><code dir="auto"><code><div>main.cpp: In function ‘int main()’:
+main.cpp:13:9: error: cannot bind rvalue reference of type ‘int&amp;&amp;’ to lvalue of type ‘int’
+     foo(r);
          ^
-main.cpp:<span class="hljs-number">3</span>:<span class="hljs-number">6</span>: note:   initializing argument <span class="hljs-number">1</span> of ‘<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">foo</span><span class="hljs-params">(<span class="hljs-type">int</span>&amp;&amp;)</span>’
- <span class="hljs-type">void</span> <span class="hljs-title">foo</span><span class="hljs-params">(<span class="hljs-type">int</span> &amp;&amp;i)</span>
-</span></div></code></pre>
+main.cpp:3:6: note:   initializing argument 1 of ‘void foo(int&amp;&amp;)’
+ void foo(int &amp;&amp;i)
+</div></code></code></pre>
     <h3 dir="auto" id="example-with-perfect-forwarding">Example with Perfect Forwarding</h3>
     <p dir="auto">The &quot;std::forward&quot; can be used to fix the compilation error.</p>
-    <pre><code class="code-line language-cxx" dir="auto"><div><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;utility&gt;</span></span>
+    <pre><code class="code-line language-cpp" dir="auto"><div><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;utility&gt;</span></span>
 
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">foo</span><span class="hljs-params">(<span class="hljs-type">int</span> &amp;&amp;i)</span>
 </span>{

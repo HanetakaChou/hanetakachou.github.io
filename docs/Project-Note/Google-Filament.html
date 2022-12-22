@@ -7,14 +7,12 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/default.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markdown-it-texmath/css/texmath.min.css">
-
 </head>
 
 <body class="markdown-body">
-    <h1 id="google-filament">Google Filament</h1>
-    <h2 id="backend">backend</h2>
-    <p>Logically, the Renderer calls the Driver APIs of the &quot;DriverApi&quot;.<br>
+    <h1 dir="auto" id="google-filament">Google Filament</h1>
+    <h2 dir="auto" id="backend">backend</h2>
+    <p dir="auto">Logically, the Renderer calls the Driver APIs of the &quot;DriverApi&quot;.<br>
         However, these Driver APIs are not executed immediately, but encoded as &quot;Command&quot;s which will be
         decoded and executed in another thread &quot;FEngine::loop&quot;.<br>
         Personally, I don't praise this design, since we benefit nothing from the encoding and decoding, but introduce
@@ -25,19 +23,19 @@
         We can use the following code to modify the macros &quot;DECL_DRIVER_API&quot; and
         &quot;DECL_DRIVER_API_RETURN&quot; inside the &quot;CommandStream.h&quot; to remove the encoding and decoding,
         and thus the Driver APIs will be executed immediately.</p>
-    <pre><code class="code-line language-cxx"><div><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> DECL_DRIVER_API(methodName, paramsDecl, params)                                         \
+    <pre><code class="code-line language-cpp" dir="auto"><div><span class="hljs-meta">#<span class="hljs-keyword">define</span> DECL_DRIVER_API(methodName, paramsDecl, params)                                         \
     inline void methodName(paramsDecl) {                                                        \
         DEBUG_COMMAND_BEGIN(methodName, false, params);                                         \
         AutoExecute callOnExit([=](){                                                           \
             DEBUG_COMMAND_END(methodName, true);                                                \
         });                                                                                     \
         using Cmd = COMMAND_TYPE(methodName);                                                   \
-        std::aligned_storage<span class="hljs-meta-string">&lt;sizeof(Cmd), alignof(Cmd)&gt;::type p;                                \</span></span>
-        CommandBase *base = <span class="hljs-keyword">new</span>(&amp;p) Cmd(mDispatcher-&gt;methodName##_, APPLY(<span class="hljs-built_in">std</span>::move, params));  \
+        std::aligned_storage<span class="hljs-string">&lt;sizeof(Cmd), alignof(Cmd)&gt;</span>::type p;                                \
+        CommandBase *base = new(&amp;p) Cmd(mDispatcher-&gt;methodName##_, APPLY(std::move, params));  \
         base-&gt;execute(*mDriver);                                                                \
-    }
+    }</span>
 
-<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> DECL_DRIVER_API_RETURN(RetType, methodName, paramsDecl, params)                                          \
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> DECL_DRIVER_API_RETURN(RetType, methodName, paramsDecl, params)                                          \
     inline RetType methodName(paramsDecl) {                                                                      \
         DEBUG_COMMAND_BEGIN(methodName, false, params);                                                          \
         AutoExecute callOnExit([=](){                                                                            \
@@ -45,11 +43,11 @@
         });                                                                                                      \
         RetType result = mDriver-&gt;methodName##S();                                                               \
         using Cmd = COMMAND_TYPE(methodName##R);                                                                 \
-        std::aligned_storage<span class="hljs-meta-string">&lt;sizeof(Cmd), alignof(Cmd)&gt;::type p;                                                 \</span></span>
-        CommandBase *base = <span class="hljs-keyword">new</span>(&amp;p) Cmd(mDispatcher-&gt;methodName##_, RetType(result), APPLY(<span class="hljs-built_in">std</span>::move, params));  \
+        std::aligned_storage<span class="hljs-string">&lt;sizeof(Cmd), alignof(Cmd)&gt;</span>::type p;                                                 \
+        CommandBase *base = new(&amp;p) Cmd(mDispatcher-&gt;methodName##_, RetType(result), APPLY(std::move, params));  \
         base-&gt;execute(*mDriver);                                                                                 \
-        <span class="hljs-keyword">return</span> result;                                                                                           \
-    }
+        return result;                                                                                           \
+    }</span>
 </div></code></pre>
 
 </body>

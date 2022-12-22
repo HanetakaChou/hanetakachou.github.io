@@ -14,7 +14,7 @@ And thus, we may use the "COMPUTE_SHADER" stage to define the execution dependen
 This execution dependency is definitely legal and the "TRANSFER" stage of the copy command **happens after** the these jobs since the "TRANSFER" stage of the copy command logically **happens after** "COMPUTE_SHADER" stage of the same copy command.  
 However, the execution dependency doesn't imply the memory dependency and the "TRANSFER" stage of the copy command may not be able to use the data produced by these jobs.  
 
-```c++
+```cpp
 vkCmdDispatch
 
 vkCmdPipelineBarrier(..., VK_PIPELINE_STAGE_COMPUTE_SHADER_BIT, ...

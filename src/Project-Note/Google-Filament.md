@@ -8,7 +8,7 @@ Personally, I don't praise this design, since we benefit nothing from the encodi
 Besides, this design makes debugging more difficult, since we can't use the callstacks collected by the RenderDoc to analyze the FrameGraph of the Renderer.  
 We can use the following code to modify the macros "DECL_DRIVER_API" and "DECL_DRIVER_API_RETURN" inside the "CommandStream.h" to remove the encoding and decoding, and thus the Driver APIs will be executed immediately.  
 
-```cxx
+```cpp
 #define DECL_DRIVER_API(methodName, paramsDecl, params)                                         \
     inline void methodName(paramsDecl) {                                                        \
         DEBUG_COMMAND_BEGIN(methodName, false, params);                                         \
