@@ -72,7 +72,7 @@ Second, we would like to prove that $\displaystyle \boldsymbol{q}$ represents th
 >  
 > The inverse of of $\displaystyle \boldsymbol{q}$ is calculated as $\displaystyle {\boldsymbol{q}}^{-1} = \frac{\begin{bmatrix}\cos \frac{\theta}{2}, & - \sin \frac{\theta}{2} \overrightarrow{n}\end{bmatrix}}{{\| \boldsymbol{q} \|}^2} = \begin{bmatrix}\cos \frac{\theta}{2}, & - \sin \frac{\theta}{2} \overrightarrow{n}\end{bmatrix}$.  
 >  
-> By the multiplication of quaternions, we have that $\displaystyle \boldsymbol{p'} = \boldsymbol{q} \boldsymbol{p} {\boldsymbol{q}}^{-1} = \begin{bmatrix}\cos \frac{\theta}{2}, & \sin \frac{\theta}{2} \overrightarrow{n}\end{bmatrix} \begin{bmatrix}0, & \overrightarrow{p}\end{bmatrix} \begin{bmatrix}\cos \frac{\theta}{2}, & - \sin \frac{\theta}{2} \overrightarrow{n}\end{bmatrix} = \begin{bmatrix}0, & (1 - \cos \theta) (\overrightarrow{n} \cdot \overrightarrow{p}) \overrightarrow{p} + \cos \theta \overrightarrow{p} + \sin \theta \overrightarrow{n} \times \overrightarrow{p}\end{bmatrix}$. The lengthy calculation is provided by "Equation \(7.13\)" of [Quaternions for Computer Graphics](https://link.springer.com/book/10.1007/978-1-4471-7509-4). This means that $\displaystyle s' = 0$ and $\displaystyle \overrightarrow{p'} = (1 - \cos \theta) (\overrightarrow{v} \cdot \overrightarrow{p}) \overrightarrow{p} + \cos 2 \theta \overrightarrow{p} + \sin 2 \theta \overrightarrow{v} \times \overrightarrow{p}$.  
+> By the multiplication of quaternions, we have that $\displaystyle \boldsymbol{p'} = \boldsymbol{q} \boldsymbol{p} {\boldsymbol{q}}^{-1} = \begin{bmatrix}\cos \frac{\theta}{2}, & \sin \frac{\theta}{2} \overrightarrow{n}\end{bmatrix} \begin{bmatrix}0, & \overrightarrow{p}\end{bmatrix} \begin{bmatrix}\cos \frac{\theta}{2}, & - \sin \frac{\theta}{2} \overrightarrow{n}\end{bmatrix} = \begin{bmatrix}0, & (1 - \cos \theta) (\overrightarrow{n} \cdot \overrightarrow{p}) \overrightarrow{p} + \cos \theta \overrightarrow{p} + \sin \theta \overrightarrow{n} \times \overrightarrow{p}\end{bmatrix}$. The lengthy calculation is provided by "Equation \(7.13\)" of [Quaternions for Computer Graphics](https://link.springer.com/book/10.1007/978-1-4471-7509-4). This means that $\displaystyle s' = 0$ and $\displaystyle \overrightarrow{p'} = (1 - \cos \theta) (\overrightarrow{n} \cdot \overrightarrow{p}) \overrightarrow{p} + \cos \theta \overrightarrow{p} + \sin \theta \overrightarrow{n} \times \overrightarrow{p}$.  
 >  
 > By "Fig. 6.7" and "Fig. 6.8" of [Quaternions for Computer Graphics](https://link.springer.com/book/10.1007/978-1-4471-7509-4), we have  $\displaystyle \overrightarrow{p'}$ is exactly the new position of the position $\displaystyle \overrightarrow{p}$ after the rotation transform about the axis $\displaystyle \overrightarrow{n}$ by the angle $\displaystyle \theta$.  
 >  
@@ -227,7 +227,7 @@ Second, we would like to prove that $\displaystyle \hat{\boldsymbol{q}}$ represe
 
 The code of mapping the rigid transform to the unit dual quaternion is implemented by **UQTtoUDQ** in ["Skinning with Dual Quaternions" of "NVIDIA Direct3D SDK 10.5 Code Samples"](https://developer.download.nvidia.com/SDK/10.5/direct3d/samples.html#QuaternionSkinning).  
 
-Here is c++ code of mapping the rigid transform to the unit dual quaternion.  
+Here is C++ code of mapping the rigid transform to the unit dual quaternion.  
 ```cpp
 //
 // Mapping the rigid transformation to the unit dual quaternion.
@@ -301,6 +301,34 @@ We would like to prove that there exists the $\displaystyle \boldsymbol{r_0}$ an
 >  
 > This means that the rigid transform composed of the rotation transform represented by the unit quaternion $\displaystyle \boldsymbol{r_0}$ and the translation transform represented by the 3D vector $\displaystyle \overrightarrow{t}$ is the rigid transform represented by the unit dual quaternion $\displaystyle \hat{\boldsymbol{q}}$.  
 
+The code of mapping the unit dual quaternion to the rigid transform is implemented by **CharacterAnimatedVS_fast** in ["Skinning with Dual Quaternions" of "NVIDIA Direct3D SDK 10.5 Code Samples"](https://developer.download.nvidia.com/SDK/10.5/direct3d/samples.html#QuaternionSkinning).  
+
+Here is HLSL code of mapping the rigid transform to the unit dual quaternion.  
+
+```hlsl  
+//
+// Mapping the rigid transformation to the unit dual quaternion.
+//
+// [in]  q: The unit dual quaternion of which the q[0] is the real part and the q[1] is the dual part.
+//
+// [out] r: The unit quaternion which represents the rotation transform of the rigid transformation.
+//
+// [out] t: The 3D vector which represnets the translation transform of the rigid transformation.
+//
+void unit_dual_quaternion_to_rigid_transform(in float2x4 q, out float4 r, out float3 t)
+{
+    float4 q_0 = q[0];
+    float4 q_e = q[1];
+
+    // \boldsymbol{r_0} = \boldsymbol{q_0}
+    r = q_0;
+    
+    // \overrightarrow{t} = 2 (- s_ϵ \overrightarrow{v_0} + s_0 \overrightarrow{v_ϵ} - \overrightarrow{v_ϵ} \times \overrightarrow{v_0}
+    // t = 2.0 * (- q_e.w * q_0.xyz + q_0.w * q_e.xyz - cross(q_e.xyz, q_0.xyz));
+    t = 2.0 * (q_0.w * q_e.xyz - q_e.w * q_0.xyz + cross(q_0.xyz, q_e.xyz));
+}
+```
+
 ## 2\. Linear Vertex Blending
 
 ## 3\. Dual Quaternion Vertex Blending
@@ -312,5 +340,5 @@ The Dual Quaternion Vertex Blending is supported by [Autodesk 3ds Max](https://h
 ![Autodesk Maya: Dual Quaternion](Dual-Quaternion-Vertex-Blending-4.png)  
 
 ## Reference  
-\[Kavan 2007\][Ladislav Kavan, Steven Collins, Jiri Zara, Carol O'Sullivan. "Skinning with Dual Quaternions." I3D 2007.](http://www.cs.utah.edu/~ladislav/kavan07skinning/kavan07skinning.html)  
+\[Kavan 2007\] [Ladislav Kavan, Steven Collins, Jiri Zara, Carol O'Sullivan. "Skinning with Dual Quaternions." I3D 2007.](http://www.cs.utah.edu/~ladislav/kavan07skinning/kavan07skinning.html)  
 \[Kavan 2008\] [Ladislav Kavan, Steven Collins, Jiri Zara, Carol O'Sullivan. "Geometric Skinning with Approximate Dual Quaternion Blending." SIGGRAPH 2008.](http://www.cs.utah.edu/~ladislav/kavan08geometric/kavan08geometric.html)  
