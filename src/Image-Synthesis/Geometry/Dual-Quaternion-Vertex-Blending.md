@@ -287,9 +287,14 @@ void unit_dual_quaternion_from_rigid_transform(DirectX::XMFLOAT4 q[2], DirectX::
 
 ## 3\. Dual Quaternion Vertex Blending
 
+The Dual Quaternion Vertex Blending is supported by [Autodesk 3ds Max](https://help.autodesk.com/view/3DSMAX/2017/ENU/?guid=GUID-9596F6EF-3569-44F2-8D6C-6EB58C30BEDD) and [Autodesk Maya](https://help.autodesk.com/view/MAYAUL/2017/ENU/?guid=GUID-630C335C-B63E-4F2E-A4A4-AEA1DD00B0D6).  
+
+![Autodesk 3ds Max: Dual Quaternion](Dual-Quaternion-Vertex-Blending-3.png)  
+
+![Autodesk Maya: Dual Quaternion](Dual-Quaternion-Vertex-Blending-4.png)  
+
+
 
 ## Reference  
 \[Kavan 2007\][Ladislav Kavan, Steven Collins, Jiri Zara, Carol O'Sullivan. "Skinning with Dual Quaternions." I3D 2007.](http://www.cs.utah.edu/~ladislav/kavan07skinning/kavan07skinning.html)  
 \[Kavan 2008\] [Ladislav Kavan, Steven Collins, Jiri Zara, Carol O'Sullivan. "Geometric Skinning with Approximate Dual Quaternion Blending." SIGGRAPH 2008.](http://www.cs.utah.edu/~ladislav/kavan08geometric/kavan08geometric.html)  
-\[NVIDIA 2008\] [NVIDIA. "Skinning with Dual Quaternions." NVIDIA Direct3D SDK 10.5 Code Samples.](https://developer.download.nvidia.com/SDK/10.5/direct3d/samples.html#QuaternionSkinning)  
-\[Vince 2011\] [John Vince. "Quaternions for Computer Graphics." Springer 2011.](https://link.springer.com/book/10.1007/978-0-85729-760-0)  
