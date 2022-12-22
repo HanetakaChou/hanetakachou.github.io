@@ -84,11 +84,11 @@ Second, we would like to prove that $\displaystyle \boldsymbol{q}$ represents th
 
 ##### 1-1-7-2\. Mapping the Unit Quaternion to the Rotation Transform  
 
-Let $\displaystyle \boldsymbol{q} = \begin{bmatrix}s, & \overrightarrow{v}\end{bmatrix}$ be the unit quaternion where $\displaystyle s^2 + {\| \overrightarrow{v} \|}^2 = 1$.  
+Let $\displaystyle \boldsymbol{q} = \begin{bmatrix}s, & \overrightarrow{v}\end{bmatrix}$ be the unit quaternion, namely, $\displaystyle s^2 + {\| \overrightarrow{v} \|}^2 = 1$.  
 
 We would like to prove that there exists the $\displaystyle \theta$ and the $\overrightarrow{n}$ such that $\displaystyle \boldsymbol{q} = \begin{bmatrix}\cos \frac{\theta}{2}, & \sin \frac{\theta}{2} \overrightarrow{n}\end{bmatrix}$ and $\displaystyle \overrightarrow{n}$ is a unit vector in 3D space.  
 
-> Since $\displaystyle s^2 + {\| \overrightarrow{v} \|}^2 = 1$, we can find the $\displaystyle \theta$ such that $\displaystyle \cos \frac{\theta}{2} = s$ and $\displaystyle \sin \frac{\theta}{2} = \| \overrightarrow{v} \|$. And let $\displaystyle \overrightarrow{n} = \frac{\overrightarrow{v}}{\| \overrightarrow{v} \|}$. Thus, we have $\displaystyle \boldsymbol{q} = \begin{bmatrix}\cos \frac{\theta}{2}, & \sin \frac{\theta}{2} \overrightarrow{n}\end{bmatrix} = \begin{bmatrix}s, & \overrightarrow{v}\end{bmatrix}$.  
+> Since $\displaystyle s^2 + {\| \overrightarrow{v} \|}^2 = 1$, we can find the $\displaystyle \theta$ such that $\displaystyle \cos \frac{\theta}{2} = s$ and $\displaystyle \sin \frac{\theta}{2} = \| \overrightarrow{v} \|$. And let $\displaystyle \overrightarrow{n} = \frac{\overrightarrow{v}}{\| \overrightarrow{v} \|}$. Thus, we have that $\displaystyle \boldsymbol{q} = \begin{bmatrix}\cos \frac{\theta}{2}, & \sin \frac{\theta}{2} \overrightarrow{n}\end{bmatrix} = \begin{bmatrix}s, & \overrightarrow{v}\end{bmatrix}$.  
 
 This means that the rotation transform about the axis $\displaystyle \overrightarrow{n}$ by the angle $\displaystyle \theta$ is the rotation transform represented by the unit quaternion $\displaystyle \boldsymbol{q}$.  
 
@@ -116,7 +116,7 @@ Proof
   
 > We would like to find a dual number $\displaystyle \hat{b} = b_0 + b_\epsilon\epsilon$ such that $\displaystyle (b_0 + b_\epsilon \epsilon)(b_0 + b_\epsilon \epsilon) = a_0 + a_\epsilon \epsilon$, namely, $\displaystyle \hat{b} = \sqrt{\hat{a}}$.  
 >  
-> By the multiplication of dual numbers, we have that $\displaystyle a_0 + a_\epsilon \epsilon = (b_0 + b_\epsilon \epsilon)(b_0 + b_\epsilon \epsilon) = {b_0}^2 + 2 b_0 b_\epsilon \epsilon$. Thus, we have $\displaystyle {b_0}^2 = a_0$ and $\displaystyle a_\epsilon = 2 b_0 b_\epsilon$. Since $\displaystyle a_0 \gt 0$, we have $\displaystyle b_0 = \sqrt{a_0}$ and $\displaystyle b_\epsilon = \frac{a_\epsilon}{2\sqrt{a_0}}$.  
+> By the multiplication of dual numbers, we have that $\displaystyle a_0 + a_\epsilon \epsilon = (b_0 + b_\epsilon \epsilon)(b_0 + b_\epsilon \epsilon) = {b_0}^2 + 2 b_0 b_\epsilon \epsilon$. Thus, we have that $\displaystyle {b_0}^2 = a_0$ and $\displaystyle a_\epsilon = 2 b_0 b_\epsilon$. Since $\displaystyle a_0 \gt 0$, we have $\displaystyle b_0 = \sqrt{a_0}$ and $\displaystyle b_\epsilon = \frac{a_\epsilon}{2\sqrt{a_0}}$.  
 
 ### 1-3\. Dual Quaternion  
 
@@ -181,7 +181,7 @@ Proof
 
 #### 1-3-4\. Unit Dual Quaternion  
 
-By "A.2 Dual Quaternions" of \[Kavan 2008\], a unit dual quaternion  is a dual quaternion  of which the norm is one. By the norm of the dual quaternion , we have that $\displaystyle \| \boldsymbol{q} \| = 1$ and $\displaystyle \langle \boldsymbol{q_0}, \boldsymbol{q_\epsilon} \rangle = 0$. This means that a unit dual quaternion  is a dual quaternion  such that the real part is a unit quaternion and the inner product of the real part and the dual part is zero.  
+By "A.2 Dual Quaternions" of \[Kavan 2008\], a unit dual quaternion  is a dual quaternion  of which the norm is one. By the norm of the dual quaternion , we have that $\displaystyle \| \boldsymbol{q_0} \| = 1$ and $\displaystyle \langle \boldsymbol{q_0}, \boldsymbol{q_\epsilon} \rangle = 0$. This means that a unit dual quaternion  is a dual quaternion  such that the real part is a unit quaternion and the inner product of the real part and the dual part is zero.  
 
 #### 1-3-5\. Bijection between Rigid Transforms and Unit Dual Quaternions  
 
@@ -197,8 +197,6 @@ Let $\displaystyle \hat{\boldsymbol{t}} = \begin{bmatrix}1, & \overrightarrow{0}
 
 Let $\displaystyle \hat{\boldsymbol{q}} = \hat{\boldsymbol{t}} \hat{\boldsymbol{r}}$.  
 
-$\displaystyle \boldsymbol{r_0} + \begin{bmatrix}0, & \frac{1}{2}\overrightarrow{t}\end{bmatrix} \boldsymbol{r_0} = \boldsymbol{r_0} + \begin{bmatrix}0, & \frac{1}{2}\overrightarrow{t}\end{bmatrix} \begin{bmatrix}s_r, & \overrightarrow{v_r}\end{bmatrix} = \begin{bmatrix}-\frac{1}{2} \overrightarrow{t} \cdot \overrightarrow{v_r}, & \frac{1}{2} (s_r \overrightarrow{t} + \overrightarrow{t} \times \overrightarrow{v_r} ) \end{bmatrix}$
-
 First, we would like to prove that $\displaystyle \hat{\boldsymbol{q}}$ is a unit dual quaternion.  
 
 > The norm of of $\displaystyle \hat{\boldsymbol{r}}$ is calculated as $\displaystyle \| \hat{\boldsymbol{r}} \| = \| \boldsymbol{r_0} \| + \frac{\langle \begin{bmatrix}0, & \overrightarrow{0}\end{bmatrix}, \boldsymbol{r_0} \rangle}{\| \boldsymbol{r_0} \|} \epsilon = 1 + \frac{0}{1} \epsilon = 1$.  
@@ -207,7 +205,7 @@ First, we would like to prove that $\displaystyle \hat{\boldsymbol{q}}$ is a uni
 >  
 > By the distributive property of the norm of the dual quaternions, we have that $\displaystyle  \| \hat{\boldsymbol{q}} \| = \| \hat{\boldsymbol{t}} \hat{\boldsymbol{r}} \| = \| \hat{\boldsymbol{t}} \|  \| \hat{\boldsymbol{r}} \| = 1$. This means that the norm of $\displaystyle \hat{\boldsymbol{q}}$ is one. And thus, $\displaystyle \hat{\boldsymbol{q}}$ is a unit dual quaternion.  
 
-Second, we would like to prove that $\displaystyle \hat{\boldsymbol{q}}$ represents the rigid transform composed of the rotation transform represented by the unit quaternion $\displaystyle \boldsymbol{r_0}$ and the translation transform represented by the vector $\displaystyle \overrightarrow{t}$.  
+Second, we would like to prove that $\displaystyle \hat{\boldsymbol{q}}$ represents the rigid transform composed of the rotation transform represented by the unit quaternion $\displaystyle \boldsymbol{r_0}$ and the translation transform represented by the 3D vector $\displaystyle \overrightarrow{t}$.  
 
 > Let $\displaystyle \hat{\boldsymbol{p}} = \begin{bmatrix}1, & \overrightarrow{0}\end{bmatrix} + \begin{bmatrix}0, & \overrightarrow{p}\end{bmatrix} \epsilon$ where $\displaystyle \overrightarrow{p}$ is the position in 3D space.  
 >  
@@ -254,7 +252,7 @@ void unit_dual_quaternion_from_rigid_transform(DirectX::XMFLOAT4 q[2], DirectX::
 
     DirectX::XMFLOAT4 t_q = DirectX::XMFLOAT4(0.5F * t.x, 0.5F * t.y, 0.5F * t.z, 0.0F);
 
-    // NOTE: "XMQuaternionMultiply" returns "Q2*Q1" rather than "Q1*Q2".
+    // NOTE: "XMQuaternionMultiply" returns "Q2*Q1" rather than "Q1*Q2"!
     DirectX::XMStoreFloat4(&q_e, DirectX::XMQuaternionMultiply(DirectX::XMLoadFloat4(&r), DirectX::XMLoadFloat4(&t_q)));
 #else
     // \boldsymbol{r_0} + [0, 0.5 \overrightarrow{t}] \boldsymbol{r_0} ϵ = \boldsymbol{r_0} + [0, 0.5 \overrightarrow{t}] [s_r,  \overrightarrow{v_r}] = [-0.5 \overrightarrow{t} \cdot \overrightarrow{v_r},  0.5 (s_r \overrightarrow{t} + \overrightarrow{t} \times \overrightarrow{v_r} )]
@@ -279,9 +277,29 @@ void unit_dual_quaternion_from_rigid_transform(DirectX::XMFLOAT4 q[2], DirectX::
 }
 ```
 
-
 ##### 1-3-5-2\. Mapping the Unit Dual Quaternion to the Rigid Transform  
 
+Let $\displaystyle \hat{\boldsymbol{q}} = \boldsymbol{q_0} + \boldsymbol{q_\epsilon} \epsilon$ be the unit quaternion, namely,  $\displaystyle \| \boldsymbol{q_0} \| = 1$ and $\displaystyle \langle \boldsymbol{q_0}, \boldsymbol{q_\epsilon} \rangle = 0$.  
+
+We would like to prove that there exists the $\displaystyle \boldsymbol{r_0}$ and the $\displaystyle \overrightarrow{t}$ such that $\displaystyle \hat{\boldsymbol{r}} = \boldsymbol{r_0} + \begin{bmatrix}0, & \overrightarrow{0}\end{bmatrix} \epsilon$, $\displaystyle \hat{\boldsymbol{t}} = \begin{bmatrix}1, & \overrightarrow{0}\end{bmatrix} + \begin{bmatrix}0, & \frac{1}{2}\overrightarrow{t}\end{bmatrix} \epsilon$, $\displaystyle \hat{\boldsymbol{q}} = \hat{\boldsymbol{t}} \hat{\boldsymbol{r}}$ and  $\displaystyle \boldsymbol{r_0}$ is a unit quaternion.  
+
+> By the multiplication of dual quaternions, $\displaystyle \hat{\boldsymbol{q}} = \hat{\boldsymbol{t}} \hat{\boldsymbol{r}} = \boldsymbol{r_0} + \begin{bmatrix}0, & \frac{1}{2}\overrightarrow{t}\end{bmatrix} \boldsymbol{r_0}$.  
+>   
+> Evidently, we find the $\displaystyle \boldsymbol{r_0}$ such that $\displaystyle \boldsymbol{r_0} = \boldsymbol{q_0}$. Since $\displaystyle \| \boldsymbol{q_0} \| = 1$, $\displaystyle \boldsymbol{r_0}$ is a unit quaternion.  
+>   
+> And we would like to find the $\displaystyle \overrightarrow{t}$ such that $\displaystyle \begin{bmatrix}0, & \frac{1}{2}\overrightarrow{t}\end{bmatrix} \boldsymbol{r_0} = \boldsymbol{q_\epsilon}$.  
+>  
+> Since $\displaystyle \boldsymbol{r_0} = \boldsymbol{q_0}$ is a unit quaternion, we have that $\displaystyle \begin{bmatrix}0, & \frac{1}{2}\overrightarrow{t}\end{bmatrix} \boldsymbol{r_0} = \boldsymbol{q_\epsilon} \Leftrightarrow \begin{bmatrix}0, & \frac{1}{2}\overrightarrow{t}\end{bmatrix} \boldsymbol{q_0} = \boldsymbol{q_\epsilon} = \boldsymbol{q_\epsilon} \Leftrightarrow \begin{bmatrix}0, & \frac{1}{2}\overrightarrow{t}\end{bmatrix} \boldsymbol{q_0} {\boldsymbol{q_0}}^{-1} = \boldsymbol{q_\epsilon} {\boldsymbol{q_0}}^{-1} \Leftrightarrow \begin{bmatrix}0, & \frac{1}{2}\overrightarrow{t}\end{bmatrix} = \boldsymbol{q_\epsilon} {\boldsymbol{q_0}}^{-1} = \boldsymbol{q_\epsilon} \frac{{\boldsymbol{q_0}}^*}{\| \boldsymbol{q_0} \|} = \boldsymbol{q_\epsilon} {\boldsymbol{q_0}}^*$.  
+>  
+> Let $\displaystyle \boldsymbol{q_0} = \begin{bmatrix}s_0, & \overrightarrow{v_0}\end{bmatrix}$.  
+>  
+> Let $\displaystyle \boldsymbol{q_\epsilon} = \begin{bmatrix}s_\epsilon, & \overrightarrow{v_\epsilon}\end{bmatrix}$.  
+>  
+> Since $\displaystyle \langle \boldsymbol{q_0}, \boldsymbol{q_\epsilon} \rangle = 0$, by the multiplication of quaternions, we have that $\displaystyle \boldsymbol{q_\epsilon} {\boldsymbol{q_0}}^* = \begin{bmatrix}s_\epsilon, & \overrightarrow{v_\epsilon}\end{bmatrix} \begin{bmatrix}s_0, & -\overrightarrow{v_0}\end{bmatrix} = \begin{bmatrix}s_\epsilon s_0 - \overrightarrow{v_\epsilon} (-\overrightarrow{v_0}), & s_\epsilon (-\overrightarrow{v_0}) + s_0 \overrightarrow{v_\epsilon} + \overrightarrow{v_\epsilon} \times (-\overrightarrow{v_0})\end{bmatrix} = \begin{bmatrix}s_\epsilon s_0 + \overrightarrow{v_\epsilon} \overrightarrow{v_0}, & - s_\epsilon \overrightarrow{v_0} + s_0 \overrightarrow{v_\epsilon} - \overrightarrow{v_\epsilon} \times \overrightarrow{v_0}\end{bmatrix} = \begin{bmatrix} \langle \boldsymbol{q_\epsilon}, {\boldsymbol{q_0}}^* \rangle , & - s_\epsilon \overrightarrow{v_0} + s_0 \overrightarrow{v_\epsilon} - \overrightarrow{v_\epsilon} \times \overrightarrow{v_0}\end{bmatrix} = \begin{bmatrix} 0, & - s_\epsilon \overrightarrow{v_0} + s_0 \overrightarrow{v_\epsilon} - \overrightarrow{v_\epsilon} \times \overrightarrow{v_0}\end{bmatrix}$.  
+>  
+> Thus, we have that $\frac{1}{2}\overrightarrow{t} = - s_\epsilon \overrightarrow{v_0} + s_0 \overrightarrow{v_\epsilon} - \overrightarrow{v_\epsilon} \times \overrightarrow{v_0} \Rightarrow \overrightarrow{t} = 2 (- s_\epsilon \overrightarrow{v_0} + s_0 \overrightarrow{v_\epsilon} - \overrightarrow{v_\epsilon} \times \overrightarrow{v_0})$.  
+>  
+> This means that the rigid transform composed of the rotation transform represented by the unit quaternion $\displaystyle \boldsymbol{r_0}$ and the translation transform represented by the 3D vector $\displaystyle \overrightarrow{t}$ is the rigid transform represented by the unit dual quaternion $\displaystyle \hat{\boldsymbol{q}}$.  
 
 ## 2\. Linear Vertex Blending
 
@@ -292,8 +310,6 @@ The Dual Quaternion Vertex Blending is supported by [Autodesk 3ds Max](https://h
 ![Autodesk 3ds Max: Dual Quaternion](Dual-Quaternion-Vertex-Blending-3.png)  
 
 ![Autodesk Maya: Dual Quaternion](Dual-Quaternion-Vertex-Blending-4.png)  
-
-
 
 ## Reference  
 \[Kavan 2007\][Ladislav Kavan, Steven Collins, Jiri Zara, Carol O'Sullivan. "Skinning with Dual Quaternions." I3D 2007.](http://www.cs.utah.edu/~ladislav/kavan07skinning/kavan07skinning.html)  
