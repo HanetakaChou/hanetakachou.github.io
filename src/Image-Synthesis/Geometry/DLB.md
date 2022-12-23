@@ -397,7 +397,7 @@ float2x4 dual_quaternion_linear_blending(in float2x4 q[MAX_BONE_COUNT], in uint4
 }
 ```
 
-The Dual Quaternion Vertex Blending is supported by [Autodesk 3ds Max](https://help.autodesk.com/view/3DSMAX/2017/ENU/?guid=GUID-9596F6EF-3569-44F2-8D6C-6EB58C30BEDD) and [Autodesk Maya](https://help.autodesk.com/view/MAYAUL/2017/ENU/?guid=GUID-630C335C-B63E-4F2E-A4A4-AEA1DD00B0D6).  
+The DLB (Dual quaternion Linear Blending) is supported by [Autodesk 3ds Max](https://help.autodesk.com/view/3DSMAX/2017/ENU/?guid=GUID-9596F6EF-3569-44F2-8D6C-6EB58C30BEDD) and [Autodesk Maya](https://help.autodesk.com/view/MAYAUL/2017/ENU/?guid=GUID-630C335C-B63E-4F2E-A4A4-AEA1DD00B0D6).  
 
 ![Autodesk 3ds Max: Dual Quaternion](DLB-5.png)  
 
