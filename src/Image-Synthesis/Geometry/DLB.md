@@ -284,7 +284,9 @@ void unit_dual_quaternion_from_rigid_transform(DirectX::XMFLOAT4 q[2], DirectX::
     q[0] = q_0;
     q[1] = q_e;
 }
-```
+```  
+
+Usually, the quaternion and the translation are provided by the animation engine. For example, the **getRotation** and the **getTranslation** are provided by the **hkQsTransform** of the [Havok Animation](https://www.havok.com/). And if only the matrix is provided by the animation engine, the matrix decomposition by [PBR Book](https://pbr-book.org/3ed-2018/Geometry_and_Transformations/Animating_Transformations#eq:polar-decomposition) can be used. The code of the matrix decomposition is implemented by [XMMatrixDecompose](https://github.com/microsoft/DirectXMath/blob/jul2018b/Inc/DirectXMathMatrix.inl#L966) in DirectXMath.  
 
 ##### 1-3-5-2\. Mapping the Unit Dual Quaternion to the Rigid Transform  
 
@@ -396,6 +398,8 @@ float2x4 dual_quaternion_linear_blending(in float2x4 q[MAX_BONE_COUNT], in uint4
     return (b / length(b[0]));
 }
 ```
+
+However, the scale is NOT supported by DLB (Dual quaternion Linear Blending). By "4.2 Non-rigid Joint Transformations" of \[Kavan 2008\], we may separate the joint (bone) transform into scale transform (represented by a 3D vector) and rigid transform (represented by a unit dual quaternion). In the first phase, we linearly blend the 3D vector and apply the scale transform. In the second phase, we use the DLB (Dual quaternion Linear Blending) and apply the rigid transform.  
 
 The DLB (Dual quaternion Linear Blending) is supported by [Autodesk 3ds Max](https://help.autodesk.com/view/3DSMAX/2017/ENU/?guid=GUID-9596F6EF-3569-44F2-8D6C-6EB58C30BEDD) and [Autodesk Maya](https://help.autodesk.com/view/MAYAUL/2017/ENU/?guid=GUID-630C335C-B63E-4F2E-A4A4-AEA1DD00B0D6).  
 
