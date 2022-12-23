@@ -54,7 +54,7 @@ By "5.16 Inverse Quaternion" of [Quaternions for Computer Graphics](https://link
 
 #### 1-1-7\. Bijection between Rotation Transforms and Unit Quaternions  
 
-Each rotation transform can be represented by a unit quaternion. And conversely, each unit quaternion can represent a rotation transform.  
+Each rotation transform can be represented by a unit quaternion, and conversely, each unit quaternion can represent a rotation transform.  
 
 ##### 1-1-7-1\. Mapping the Rotation Transform to the Unit Quaternion  
 
@@ -68,7 +68,7 @@ Second, we would like to prove that $\displaystyle \boldsymbol{q}$ represents th
 
 > Let $\displaystyle \boldsymbol{p} = \begin{bmatrix}0, & \overrightarrow{p}\end{bmatrix}$ where $\displaystyle \overrightarrow{p}$ is the position in 3D space.  
 >  
-> Let $\displaystyle \boldsymbol{p'} = \boldsymbol{q} \boldsymbol{p} {\boldsymbol{q}}^{-1} = \begin{bmatrix}s', \overrightarrow{p'}\end{bmatrix}$ where $\displaystyle \overrightarrow{p'}$ is the new position of the position $\displaystyle \overrightarrow{p}$ after the transfrom. Actually, we will later prove that we always have $\displaystyle s' = 0$. Thus, these variable can be ignored.  
+> Let $\displaystyle \boldsymbol{p'} = \boldsymbol{q} \boldsymbol{p} {\boldsymbol{q}}^{-1} = \begin{bmatrix}s', \overrightarrow{p'}\end{bmatrix}$ where $\displaystyle \overrightarrow{p'}$ is the new position of the position $\displaystyle \overrightarrow{p}$ after the transfrom. Actually, we will later prove that we always have $\displaystyle s' = 0$. Thus, this variable can be ignored.  
 >  
 > The inverse of of $\displaystyle \boldsymbol{q}$ is calculated as $\displaystyle {\boldsymbol{q}}^{-1} = \frac{\begin{bmatrix}\cos \frac{\theta}{2}, & - \sin \frac{\theta}{2} \overrightarrow{n}\end{bmatrix}}{{\| \boldsymbol{q} \|}^2} = \begin{bmatrix}\cos \frac{\theta}{2}, & - \sin \frac{\theta}{2} \overrightarrow{n}\end{bmatrix}$.  
 >  
@@ -109,16 +109,7 @@ Proof
 
 > By the multiplication of dual numbers, we have that $\displaystyle \overline{\hat{a} \hat{b}} = \overline{(a_0 + a_\epsilon \epsilon)(b_0 + b_\epsilon \epsilon)} = \overline{a_0 b_0 + (a_0 b_\epsilon + b_0 a_\epsilon) \epsilon} = a_0 b_0 - (a_0 b_\epsilon + b_0 a_\epsilon) \epsilon = (a_0 - a_\epsilon \epsilon)(b_0 - b_\epsilon \epsilon) = \overline{\hat{a}} \overline{\hat{b}}$.  
 
-#### 1-2-3\. Inverse  
-By "Equation \(18\)" of \[Kavan 2008\], for any dual number $\displaystyle \hat{a} = a_0 + a_\epsilon \epsilon$ such that $\displaystyle a_0 \ne 0$, we have the inverse of the dual number $\displaystyle {\hat{a}}^{-1} = {(a_0 + a_\epsilon \epsilon)}^{-1} = \frac{1}{a_0} - \frac{a_\epsilon}{{\| a_0 \|}^2} \epsilon$.  
-
-Proof
-
-> We would like to find a dual number $\displaystyle \hat{b} = b_0 + b_\epsilon\epsilon$ such that $\displaystyle (b_0 + b_\epsilon \epsilon)(a_0 + a_\epsilon \epsilon) = 1 + 0 \epsilon$, namely, $\displaystyle \hat{b} = {\hat{a}}^{-1}$.  
->  
-> By the multiplication of dual numbers, we have that $\displaystyle 1 + 0 \epsilon = (b_0 + b_\epsilon \epsilon)(a_0 + a_\epsilon \epsilon) = b_0 a_0 + (b_\epsilon a_0 + a_\epsilon b_0 ) \epsilon$. Thus, we have that $\displaystyle b_0 a_0 = 1$ and $\displaystyle b_\epsilon a_0 + a_\epsilon b_0 = 0$. Since $\displaystyle a_0 \ne 0$, we have $\displaystyle b_0 = \frac{1}{a_0}$ and $\displaystyle b_\epsilon = - \frac{a_\epsilon}{{\| a_0 \|}^2}$.  
-
-#### 1-2-4\. Square Root  
+#### 1-2-3\. Square Root  
 By "Equation \(19\)" of \[Kavan 2008\], for any dual number $\displaystyle \hat{a} = a_0 + a_\epsilon \epsilon$ such that $\displaystyle a_0 \gt 0$, we have the square root of the dual number $\displaystyle \sqrt{\hat{a}} = \sqrt{a_0 + a_\epsilon \epsilon} = \sqrt{a_0} + \frac{a_\epsilon}{2\sqrt{a_0}} \epsilon$.  
 
 Proof  
@@ -126,6 +117,15 @@ Proof
 > We would like to find a dual number $\displaystyle \hat{b} = b_0 + b_\epsilon\epsilon$ such that $\displaystyle (b_0 + b_\epsilon \epsilon)(b_0 + b_\epsilon \epsilon) = a_0 + a_\epsilon \epsilon$, namely, $\displaystyle \hat{b} = \sqrt{\hat{a}}$.  
 >  
 > By the multiplication of dual numbers, we have that $\displaystyle a_0 + a_\epsilon \epsilon = (b_0 + b_\epsilon \epsilon)(b_0 + b_\epsilon \epsilon) = {b_0}^2 + 2 b_0 b_\epsilon \epsilon$. Thus, we have that $\displaystyle {b_0}^2 = a_0$ and $\displaystyle a_\epsilon = 2 b_0 b_\epsilon$. Since $\displaystyle a_0 \gt 0$, we have $\displaystyle b_0 = \sqrt{a_0}$ and $\displaystyle b_\epsilon = \frac{a_\epsilon}{2\sqrt{a_0}}$.  
+
+#### 1-2-4\. Inverse  
+By "Equation \(18\)" of \[Kavan 2008\], for any dual number $\displaystyle \hat{a} = a_0 + a_\epsilon \epsilon$ such that $\displaystyle a_0 \ne 0$, we have the inverse of the dual number $\displaystyle {\hat{a}}^{-1} = {(a_0 + a_\epsilon \epsilon)}^{-1} = \frac{1}{a_0} - \frac{a_\epsilon}{{\| a_0 \|}^2} \epsilon$.  
+
+Proof
+
+> We would like to find a dual number $\displaystyle \hat{b} = b_0 + b_\epsilon\epsilon$ such that $\displaystyle (b_0 + b_\epsilon \epsilon)(a_0 + a_\epsilon \epsilon) = 1 + 0 \epsilon$, namely, $\displaystyle \hat{b} = {\hat{a}}^{-1}$.  
+>  
+> By the multiplication of dual numbers, we have that $\displaystyle 1 + 0 \epsilon = (b_0 + b_\epsilon \epsilon)(a_0 + a_\epsilon \epsilon) = b_0 a_0 + (b_\epsilon a_0 + a_\epsilon b_0 ) \epsilon$. Thus, we have that $\displaystyle b_0 a_0 = 1$ and $\displaystyle b_\epsilon a_0 + a_\epsilon b_0 = 0$. Since $\displaystyle a_0 \ne 0$, we have $\displaystyle b_0 = \frac{1}{a_0}$ and $\displaystyle b_\epsilon = - \frac{a_\epsilon}{{\| a_0 \|}^2}$.  
 
 ### 1-3\. Dual Quaternion  
 
