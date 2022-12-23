@@ -1,4 +1,4 @@
-# DLB (Dual Quaternion Linear Blending)
+# DLB (Dual quaternion Linear Blending)
 
 ## 1\. Dual Quaternion Mathematics
 
@@ -168,11 +168,11 @@ Proof
 
 > By the multiplication of dual quaternions, we have that $\displaystyle (\boldsymbol{q_0} + \boldsymbol{q_\epsilon} \epsilon)(\boldsymbol{q_0} - \boldsymbol{q_\epsilon} \epsilon) = {\| \boldsymbol{q_0} \|}^2 + (\boldsymbol{q_0} {\boldsymbol{q_\epsilon}}^* + \boldsymbol{q_\epsilon} {\boldsymbol{q_0}}^*) \epsilon$.  
 >  
-> First, we would like to prove that $\displaystyle {\boldsymbol{q_\epsilon}}^* + \boldsymbol{q_\epsilon} {\boldsymbol{q_0}}^* = s_0 s_\epsilon + \overrightarrow{v_0} \cdot \overrightarrow{v_\epsilon} = \langle \boldsymbol{q_0}, \boldsymbol{q_\epsilon} \rangle$.  
+> First, we would like to prove that $\displaystyle \boldsymbol{q_0} {\boldsymbol{q_\epsilon}}^* + \boldsymbol{q_\epsilon} {\boldsymbol{q_0}}^* = 2 (s_0 s_\epsilon + \overrightarrow{v_0} \cdot \overrightarrow{v_\epsilon}) = 2 \langle \boldsymbol{q_0}, \boldsymbol{q_\epsilon} \rangle$.  
 >  
 >> By the multiplication of quaternions, we have that $\displaystyle \boldsymbol{q_0} {\boldsymbol{q_\epsilon}}^* + \boldsymbol{q_\epsilon} {\boldsymbol{q_0}}^* = \begin{bmatrix}s_0, & \overrightarrow{v_0}\end{bmatrix} \begin{bmatrix}s_\epsilon, & -\overrightarrow{v_\epsilon}\end{bmatrix} + \begin{bmatrix}s_\epsilon, & \overrightarrow{v_\epsilon}\end{bmatrix} \begin{bmatrix}s_0, & -\overrightarrow{v_0}\end{bmatrix} = \begin{bmatrix}s_0 s_\epsilon - \overrightarrow{v_0} \cdot (-\overrightarrow{v_\epsilon}), & s_0 (-\overrightarrow{v_\epsilon}) + s_\epsilon \overrightarrow{v_0} + \overrightarrow{v_0} \times (-\overrightarrow{v_\epsilon})\end{bmatrix} + \begin{bmatrix}s_\epsilon s_0 - \overrightarrow{v_\epsilon} \cdot (-\overrightarrow{v_0}), & s_\epsilon (-\overrightarrow{v_0}) + s_0 \overrightarrow{v_\epsilon} + \overrightarrow{v_\epsilon} \times (-\overrightarrow{v_0})\end{bmatrix} = \begin{bmatrix} s_0 s_\epsilon - \overrightarrow{v_0} \cdot (-\overrightarrow{v_\epsilon}) + s_\epsilon s_0 - \overrightarrow{v_\epsilon} \cdot (-\overrightarrow{v_0}), & s_0 (-\overrightarrow{v_\epsilon}) + s_\epsilon \overrightarrow{v_0} + \overrightarrow{v_0} \times (-\overrightarrow{v_\epsilon}) + s_\epsilon (-\overrightarrow{v_0}) + s_0 \overrightarrow{v_\epsilon} + \overrightarrow{v_\epsilon} \times (-\overrightarrow{v_0})\end{bmatrix} = \begin{bmatrix}2 (s_0 s_\epsilon + \overrightarrow{v_0} \cdot \overrightarrow{v_\epsilon}), & \overrightarrow{0}\end{bmatrix} = 2 (s_0 s_\epsilon + \overrightarrow{v_0} \cdot \overrightarrow{v_\epsilon})$.  
 >>  
->> By the inner product of quaternions, we have that $\displaystyle \boldsymbol{q_0} {\boldsymbol{q_\epsilon}}^* + \boldsymbol{q_\epsilon} {\boldsymbol{q_0}}^* = s_0 s_\epsilon + \overrightarrow{v_0} \cdot \overrightarrow{v_\epsilon} = \langle \boldsymbol{q_0}, \boldsymbol{q_\epsilon} \rangle$.
+>> By the inner product of quaternions, we have that $\displaystyle \boldsymbol{q_0} {\boldsymbol{q_\epsilon}}^* + \boldsymbol{q_\epsilon} {\boldsymbol{q_0}}^* = 2 (s_0 s_\epsilon + \overrightarrow{v_0} \cdot \overrightarrow{v_\epsilon}) = 2 \langle \boldsymbol{q_0}, \boldsymbol{q_\epsilon} \rangle$.
 >  
 > Second, we would like to prove that $\displaystyle \sqrt{{\| \boldsymbol{q_0} \|}^2 + (\boldsymbol{q_0} {\boldsymbol{q_\epsilon}}^* + \boldsymbol{q_\epsilon} {\boldsymbol{q_0}}^*) \epsilon} = \| \boldsymbol{q_0} \| + \frac{\langle \boldsymbol{q_0}, \boldsymbol{q_e} \rangle}{\| \hat{\boldsymbol{q}} \|} \epsilon$.  
 >  
@@ -190,7 +190,7 @@ Proof
 
 #### 1-3-4\. Unit Dual Quaternion  
 
-By "A.2 Dual Quaternions" of \[Kavan 2008\], a unit dual quaternion  is a dual quaternion  of which the norm is one. By the norm of the dual quaternion , we have that $\displaystyle \| \boldsymbol{q_0} \| = 1$ and $\displaystyle \langle \boldsymbol{q_0}, \boldsymbol{q_\epsilon} \rangle = 0$. This means that a unit dual quaternion  is a dual quaternion  such that the real part is a unit quaternion and the inner product of the real part and the dual part is zero.  
+By "A.2 Dual Quaternions" of \[Kavan 2008\], a unit dual quaternion  is a dual quaternion  of which the norm is one. By the norm of the dual quaternion, we have that $\displaystyle \| \boldsymbol{q_0} \| = 1$ and $\displaystyle \langle \boldsymbol{q_0}, \boldsymbol{q_\epsilon} \rangle = 0$. This means that a unit dual quaternion  is a dual quaternion  such that the real part is a unit quaternion and the inner product of the real part and the dual part is zero.  
 
 #### 1-3-5\. Bijection between Rigid Transforms and Unit Dual Quaternions  
 
@@ -331,7 +331,7 @@ void unit_dual_quaternion_to_rigid_transform(in float2x4 q, out float4 r, out fl
 
     // \boldsymbol{r_0} = \boldsymbol{q_0}
     r = q_0;
-    
+
     // \overrightarrow{t} = 2 (- s_ϵ \overrightarrow{v_0} + s_0 \overrightarrow{v_ϵ} - \overrightarrow{v_ϵ} \times \overrightarrow{v_0}
     // t = 2.0 * (- q_e.w * q_0.xyz + q_0.w * q_e.xyz - cross(q_e.xyz, q_0.xyz));
     t = 2.0 * (q_0.w * q_e.xyz - q_e.w * q_0.xyz + cross(q_0.xyz, q_e.xyz));
@@ -346,12 +346,56 @@ By the documents of [Autodesk 3ds Max](https://help.autodesk.com/view/3DSMAX/201
 
 !["Candy-Wrapper" Aartifact: Linear Blending](DLB-3.png)  
 
-!["Candy-Wrapper" Aartifact: Dual Quaternion Linear Blending](DLB-4.png)  
+!["Candy-Wrapper" Aartifact: DLB (Dual quaternion Linear Blending)](DLB-4.png)  
 
-## 3\. DLB (Dual Quaternion Linear Blending)  
+## 3\. DLB (Dual quaternion Linear Blending)  
 
 The DLB (Dual quaternion Linear Blending) method is proposed by \[Kavan 2007\] and \[Kavan 2008\]. Actually, another ScLERP (Screw Linear Interpolation) method is proposed by \[Kavan 2008\] as well. However, the ScLERP method is too unwieldy to be used.  
 
+First, we would like to calculate the linear combination of the dual quaternions $\displaystyle \hat{\boldsymbol{b}} = \sum_i^n w_i \hat{\boldsymbol{q_i}}$.  
+
+Second, we would like to calculate the normalization $\displaystyle \hat{\boldsymbol{b'}} = \frac{\hat{\boldsymbol{b}}}{\| \hat{\boldsymbol{b}} \|}$.  
+
+> By the norm of the dual quaternion, we have that $\displaystyle \| \hat{\boldsymbol{b}} \| = \| \boldsymbol{b_0} + \boldsymbol{b_\epsilon} \epsilon \| = \| \boldsymbol{b_0} \| + \frac{\langle \boldsymbol{b_0}, \boldsymbol{b_\epsilon} \rangle}{\| \boldsymbol{b_0} \|} \epsilon$.  
+>  
+> By "4 Implementation Notes" of \[Kavan 2008\], by the inverse of the dual number, we have that $\displaystyle {\| \hat{\boldsymbol{b}} \|}^{-1} = {(\| \boldsymbol{b_0} \| + \frac{\langle \boldsymbol{b_0}, \boldsymbol{b_\epsilon} \rangle}{\| \boldsymbol{b_0} \|} \epsilon)}^{-1} = \frac{1}{\| \boldsymbol{b_0} \|} - \frac{\frac{\langle \boldsymbol{b_0}, \boldsymbol{b_\epsilon} \rangle}{\| \boldsymbol{b_0} \|}}{{\| \boldsymbol{b_0} \|}^2} \epsilon = \frac{1}{\| \boldsymbol{b_0} \|} - \frac{\langle \boldsymbol{b_0}, \boldsymbol{b_\epsilon} \rangle}{{\| \boldsymbol{b_0} \|}^3} \epsilon$.  
+>  
+> Thus, we have that $\displaystyle \hat{\boldsymbol{b'}} = \frac{\hat{\boldsymbol{b}}}{\| \hat{\boldsymbol{b}} \|} = \hat{\boldsymbol{b}} \frac{1}{\| \hat{\boldsymbol{b}} \|} = (\boldsymbol{b_0} + \boldsymbol{b_\epsilon} \epsilon) (\frac{1}{\| \boldsymbol{b_0} \|} - \frac{\langle \boldsymbol{b_0}, \boldsymbol{b_\epsilon} \rangle}{{\| \boldsymbol{b_0} \|}^3} \epsilon) = \frac{\boldsymbol{b_0}}{\| \boldsymbol{b_0} \|} + \left\lparen \frac{\boldsymbol{b_\epsilon}}{\| \boldsymbol{b_0} \|} - \frac{\boldsymbol{b_0} \langle \boldsymbol{b_0}, \boldsymbol{b_\epsilon} \rangle}{{\| \boldsymbol{b_0} \|}^3} \right\rparen \epsilon$.  
+>  
+> Let $\displaystyle \boldsymbol{{b'}_0} = \frac{\boldsymbol{b_0}}{\| \boldsymbol{b_0} \|}$.  
+>  
+> Let $\displaystyle \boldsymbol{{b'}_\epsilon} = \frac{\boldsymbol{b_\epsilon}}{\| \boldsymbol{b_0} \|} - \frac{\boldsymbol{b_0} \langle \boldsymbol{b_0}, \boldsymbol{b_\epsilon} \rangle}{{\| \boldsymbol{b_0} \|}^3}$.  
+>  
+> By mapping the unit dual quaternion to the rigid transform, we have that $\displaystyle \boldsymbol{r_0} = \boldsymbol{{b'}_0} = \frac{\boldsymbol{b_0}}{\| \boldsymbol{b_0} \|}$ and $\displaystyle \begin{bmatrix}0, & \frac{1}{2}\overrightarrow{t}\end{bmatrix} = \boldsymbol{{b'}_\epsilon} {\boldsymbol{{b'}_0}}^* = (\frac{\boldsymbol{b_\epsilon}}{\| \boldsymbol{b_0} \|} - \frac{\boldsymbol{b_0} \langle \boldsymbol{b_0}, \boldsymbol{b_\epsilon} \rangle}{{\| \boldsymbol{b_0} \|}^3}) (\frac{{\boldsymbol{b_0}}^*}{\| \boldsymbol{b_0} \|}) = \frac{\boldsymbol{b_\epsilon} {\boldsymbol{b_0}}^*}{{\| \boldsymbol{b_0} \|}^2} - \frac{\langle \boldsymbol{b_0}, \boldsymbol{b_\epsilon} \rangle}{{\| \boldsymbol{b_0} \|}^2}$.  
+>  
+> Since the vector part of $\displaystyle \frac{\langle \boldsymbol{b_0}, \boldsymbol{b_\epsilon} \rangle}{{\| \boldsymbol{b_0} \|}^2}$ is zero, the vector part of $\displaystyle \frac{\boldsymbol{b_\epsilon} {\boldsymbol{b_0}}^*}{{\| \boldsymbol{b_0} \|}^2} - \frac{\langle \boldsymbol{b_0}, \boldsymbol{b_\epsilon} \rangle}{{\| \boldsymbol{b_0} \|}^2}$ is exactly the vector part of $\displaystyle \frac{\boldsymbol{b_\epsilon} {\boldsymbol{b_0}}^*}{{\| \boldsymbol{b_0} \|}^2}$. This means that the calculation of $\displaystyle \overrightarrow{t}$ does NOT requrie the calculation of $\displaystyle \frac{\langle \boldsymbol{b_0}, \boldsymbol{b_\epsilon} \rangle}{{\| \boldsymbol{b_0} \|}^2}$.  
+>  
+> Thus, we merely need to calculate $\displaystyle \hat{\boldsymbol{c}} = \frac{\boldsymbol{b_0}}{\| \boldsymbol{b_0} \|} + \frac{\boldsymbol{b_\epsilon}}{\| \boldsymbol{b_0} \|} \epsilon$ and calculate the vector part of $\displaystyle 2 \boldsymbol{{c}_\epsilon} {\boldsymbol{{c}_0}}^*$ as $\displaystyle \overrightarrow{t}$.  
+
+The code of DLB (Dual quaternion Linear Blending) is implemented by **CharacterAnimatedVS_fast** in ["Skinning with Dual Quaternions" of "NVIDIA Direct3D SDK 10.5 Code Samples"](https://developer.download.nvidia.com/SDK/10.5/direct3d/samples.html#QuaternionSkinning).  
+
+Here is HLSL code of DLB (Dual quaternion Linear Blending).  
+
+```hlsl  
+//
+// DLB (Dual quaternion Linear Blending)
+//
+float2x4 dual_quaternion_linear_blending(in float2x4 q[MAX_BONE_COUNT], in uint4 blend_indices, in float4 blend_weights)
+{
+    // "4 Implementation Notes" of [Ladislav Kavan, Steven Collins, Jiri Zara, Carol O'Sullivan. "Geometric Skinning with Approximate Dual Quaternion Blending." SIGGRAPH 2008.](http://www.cs.utah.edu/~ladislav/kavan08geometric/kavan08geometric.html)
+
+#if 1
+    // NOTE:
+    // The original DLB does NOT check the sign of the inner product of the unit quaternion q_x_0 and q_y_0(q_z_0 q_w_0).
+    // However, since the unit quaternion q and -q represent the same rotation transform, we may get the result of which the real part is zero.
+    float2x4 b = blend_weights.x * q[blend_indices.x] + blend_weights.y * sign(dot(q[blend_indices.x][0], q[blend_indices.y][0])) * q[blend_indices.y] + blend_weights.z * sign(dot(q[blend_indices.x][0], q[blend_indices.z][0])) * q[blend_indices.z] + blend_weights.w * sign(dot(q[blend_indices.x][0], q[blend_indices.w][0])) * q[blend_indices.w];
+#else
+    float2x4 b = blend_weights.x * g_dualquat[blend_indices.x] + blend_weights.y * g_dualquat[blend_indices.y] + blend_weights.z * g_dualquat[blend_indices.z] + blend_weights.w * g_dualquat[blend_indices.w];
+#endif
+
+    return (b / length(b[0]));
+}
+```
 
 The Dual Quaternion Vertex Blending is supported by [Autodesk 3ds Max](https://help.autodesk.com/view/3DSMAX/2017/ENU/?guid=GUID-9596F6EF-3569-44F2-8D6C-6EB58C30BEDD) and [Autodesk Maya](https://help.autodesk.com/view/MAYAUL/2017/ENU/?guid=GUID-630C335C-B63E-4F2E-A4A4-AEA1DD00B0D6).  
 
