@@ -1,4 +1,4 @@
-# Dual Quaternion Vertex Blending
+# DLB (Dual Quaternion Linear Blending)
 
 ## 1\. Dual Quaternion Mathematics
 
@@ -78,8 +78,8 @@ Second, we would like to prove that $\displaystyle \boldsymbol{q}$ represents th
 >  
 > Proof  
 >  
->> ![Fig. 6.7 A view of the geometry associated with rotating a point about an arbitrary axis](Dual-Quaternion-Vertex-Blending-1.png)  
->> ![Fig. 6.8 A cross-section and plan view of the geometry associated with rotating a point about an arbitrary axis](Dual-Quaternion-Vertex-Blending-2.png)  
+>> ![Fig. 6.7 A view of the geometry associated with rotating a point about an arbitrary axis](DLB-1.png)  
+>> ![Fig. 6.8 A cross-section and plan view of the geometry associated with rotating a point about an arbitrary axis](DLB-2.png)  
 >> TODO  
 
 ##### 1-1-7-2\. Mapping the Unit Quaternion to the Rotation Transform  
@@ -109,8 +109,17 @@ Proof
 
 > By the multiplication of dual numbers, we have that $\displaystyle \overline{\hat{a} \hat{b}} = \overline{(a_0 + a_\epsilon \epsilon)(b_0 + b_\epsilon \epsilon)} = \overline{a_0 b_0 + (a_0 b_\epsilon + b_0 a_\epsilon) \epsilon} = a_0 b_0 - (a_0 b_\epsilon + b_0 a_\epsilon) \epsilon = (a_0 - a_\epsilon \epsilon)(b_0 - b_\epsilon \epsilon) = \overline{\hat{a}} \overline{\hat{b}}$.  
 
-#### 1-2-3\. Square Root  
-By "Equation \(19\)" of \[Kavan 2008\], for any dual number $\displaystyle \hat{a} = a_0 + a_\epsilon \epsilon$ such that $\displaystyle a_0 \gt 0$, we have the square root of the dual number, $\displaystyle \sqrt{\hat{a}} = \sqrt{a_0 + a_\epsilon \epsilon} = \sqrt{a_0} + \frac{a_\epsilon}{2\sqrt{a_0}} \epsilon$.  
+#### 1-2-3\. Inverse  
+By "Equation \(18\)" of \[Kavan 2008\], for any dual number $\displaystyle \hat{a} = a_0 + a_\epsilon \epsilon$ such that $\displaystyle a_0 \ne 0$, we have the inverse of the dual number $\displaystyle {\hat{a}}^{-1} = {(a_0 + a_\epsilon \epsilon)}^{-1} = \frac{1}{a_0} - \frac{a_\epsilon}{{\| a_0 \|}^2} \epsilon$.  
+
+Proof
+
+> We would like to find a dual number $\displaystyle \hat{b} = b_0 + b_\epsilon\epsilon$ such that $\displaystyle (b_0 + b_\epsilon \epsilon)(a_0 + a_\epsilon \epsilon) = 1 + 0 \epsilon$, namely, $\displaystyle \hat{b} = {\hat{a}}^{-1}$.  
+>  
+> By the multiplication of dual numbers, we have that $\displaystyle 1 + 0 \epsilon = (b_0 + b_\epsilon \epsilon)(a_0 + a_\epsilon \epsilon) = b_0 a_0 + (b_\epsilon a_0 + a_\epsilon b_0 ) \epsilon$. Thus, we have that $\displaystyle b_0 a_0 = 1$ and $\displaystyle b_\epsilon a_0 + a_\epsilon b_0 = 0$. Since $\displaystyle a_0 \ne 0$, we have $\displaystyle b_0 = \frac{1}{a_0}$ and $\displaystyle b_\epsilon = - \frac{a_\epsilon}{{\| a_0 \|}^2}$.  
+
+#### 1-2-4\. Square Root  
+By "Equation \(19\)" of \[Kavan 2008\], for any dual number $\displaystyle \hat{a} = a_0 + a_\epsilon \epsilon$ such that $\displaystyle a_0 \gt 0$, we have the square root of the dual number $\displaystyle \sqrt{\hat{a}} = \sqrt{a_0 + a_\epsilon \epsilon} = \sqrt{a_0} + \frac{a_\epsilon}{2\sqrt{a_0}} \epsilon$.  
 
 Proof  
   
@@ -329,15 +338,26 @@ void unit_dual_quaternion_to_rigid_transform(in float2x4 q, out float4 r, out fl
 }
 ```
 
-## 2\. Linear Vertex Blending
+## 2\. Linear Blending  
 
-## 3\. Dual Quaternion Vertex Blending
+The main idea of the **linear blending** method is to calculate the linear combination of the joint (bone) matrices. Evidently, the **linear blending** method is NOT correct, since the linear combination of the rigid transformation matrices is NOT necessarily a rigid transformation matrix. However, the **linear blending** method is still one of the most popular **vertex blending** methods. By \[Kavan 2007\] and \[Kavan 2008\], perhaps this is only because there is no simple alternative.  
+
+By the documents of [Autodesk 3ds Max](https://help.autodesk.com/view/3DSMAX/2017/ENU/?guid=GUID-9596F6EF-3569-44F2-8D6C-6EB58C30BEDD), we have the "candy-wrapper" artifact of the **linear blending**.  
+
+!["Candy-Wrapper" Aartifact: Linear Blending](DLB-3.png)  
+
+!["Candy-Wrapper" Aartifact: Dual Quaternion Linear Blending](DLB-4.png)  
+
+## 3\. DLB (Dual Quaternion Linear Blending)  
+
+The DLB (Dual quaternion Linear Blending) method is proposed by \[Kavan 2007\] and \[Kavan 2008\]. Actually, another ScLERP (Screw Linear Interpolation) method is proposed by \[Kavan 2008\] as well. However, the ScLERP method is too unwieldy to be used.  
+
 
 The Dual Quaternion Vertex Blending is supported by [Autodesk 3ds Max](https://help.autodesk.com/view/3DSMAX/2017/ENU/?guid=GUID-9596F6EF-3569-44F2-8D6C-6EB58C30BEDD) and [Autodesk Maya](https://help.autodesk.com/view/MAYAUL/2017/ENU/?guid=GUID-630C335C-B63E-4F2E-A4A4-AEA1DD00B0D6).  
 
-![Autodesk 3ds Max: Dual Quaternion](Dual-Quaternion-Vertex-Blending-3.png)  
+![Autodesk 3ds Max: Dual Quaternion](DLB-5.png)  
 
-![Autodesk Maya: Dual Quaternion](Dual-Quaternion-Vertex-Blending-4.png)  
+![Autodesk Maya: Dual Quaternion](DLB-6.png)  
 
 ## Reference  
 \[Kavan 2007\] [Ladislav Kavan, Steven Collins, Jiri Zara, Carol O'Sullivan. "Skinning with Dual Quaternions." I3D 2007.](http://www.cs.utah.edu/~ladislav/kavan07skinning/kavan07skinning.html)  

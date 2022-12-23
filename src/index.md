@@ -29,7 +29,7 @@ If you find there are any mistakes or improvements, please don't hesitate to con
 ### Geometry  
 - MOC [Documentation](Image-Synthesis/Geometry/MOC.html)  
 - Projector Functions [Documentation](Image-Synthesis/Geometry/Projector-Functions.html)  
-- Dual Quaternion Vertex Blending [Documentation](Image-Synthesis/Geometry/Dual-Quaternion-Vertex-Blending.html) [Code](https://github.com/HanetakaChou/Dual-Quaternion-Vertex-Blending)  
+- DLB [Documentation](Image-Synthesis/Geometry/DLB.html) [Code](https://github.com/HanetakaChou/DLB)  
 - Grass [Documentation](Image-Synthesis/Geometry/Grass.html)  
 - Billboard [Documentation](Image-Synthesis/Geometry/Billboard.html)  
 
