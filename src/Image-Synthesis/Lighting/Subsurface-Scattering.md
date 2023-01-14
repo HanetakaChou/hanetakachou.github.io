@@ -50,32 +50,137 @@ The PreIntegrated SSS by \[Penner 2011\] is implemented by the [NVIDIA FaceWorks
 
 The main idea of PreIntegrated SSS is to pre-integrate $\displaystyle \operatorname{L_o}(\overrightarrow{p_o}, \overrightarrow{\omega_o}) = \int_{{\mathbb{R}}^2}  \operatorname{R_N}(\| \overrightarrow{p_i} - \overrightarrow{p_o} \|) \operatorname{R_d}(\overrightarrow{p_i}) \operatorname{F}(\overrightarrow{p_i}, \overrightarrow{\omega_o}) \, d \overrightarrow{p_i}$ offline.  
 
-The "Post-Scatter Texturing Mode" is assumed. This means that $\displaystyle \operatorname{R_d}(\overrightarrow{p_i}) = \operatorname{\rho}(\overrightarrow{p_o})$. And the form factor is approximated by the Lambert BRDF. This means that $\displaystyle \operatorname{F}(\overrightarrow{p_i}, \overrightarrow{\omega_o}) = \int_\Omega (1 - \operatorname{F_r}(\cos \theta_o)) \frac{1 - \operatorname{F_r}(\cos \theta_i)}{c} \frac{1}{\pi} \operatorname{L_i}(\overrightarrow{p_i}, \overrightarrow{\omega_i}) {(\cos \theta_i)}^+ \, d \overrightarrow{\omega_i} \approx \int_\Omega \frac{1}{\pi} \operatorname{L_i}(\overrightarrow{p_i}, \overrightarrow{\omega_i}) {(\cos \theta_i)}^+ \, d \overrightarrow{\omega_i}$. And the light is assumed to be the directional light. This means that the [Delta Distribution](https://www.pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/Sampling_Light_Sources#LightswithSingularities) is applied and we have $\displaystyle \displaystyle \operatorname{F}(\overrightarrow{p_i}, \overrightarrow{\omega_o}) = \int_\Omega \frac{1}{\pi} \operatorname{L_i}(\overrightarrow{p_i}, \overrightarrow{\omega_i}) {(\cos \theta_i)}^+ \, d \overrightarrow{\omega_i} = \frac{1}{\pi} E_L {(\cos \theta_i)}^+$. And the calculation of the subsurface scattering is further simplified as $\displaystyle \operatorname{L_o}(\overrightarrow{p_o}, \overrightarrow{\omega_o}) = \int_{{\mathbb{R}}^2}  \operatorname{R_N}(\| \overrightarrow{p_i} - \overrightarrow{p_o} \|) \operatorname{R_d}(\overrightarrow{p_i}) \operatorname{F}(\overrightarrow{p_i}, \overrightarrow{\omega_o}) \, d \overrightarrow{p_i} = \int_{{\mathbb{R}}^2} \operatorname{R_N}(\| \overrightarrow{p_i} - \overrightarrow{p_o} \|) \operatorname{\rho}(\overrightarrow{p_o}) \frac{1}{\pi} E_L {(\cos \theta_i)}^+ \, d \overrightarrow{p_i} = \frac{1}{\pi} \operatorname{\rho}(\overrightarrow{p_o}) E_L \int_{{\mathbb{R}}^2} \operatorname{R_N}(\| \overrightarrow{p_i} - \overrightarrow{p_o} \|) {(\cos \theta_i)}^+ \, d \overrightarrow{p_i}$.  
+Texturing Mode & Lambert BRDF & Directional Light
 
-Let $\displaystyle \operatorname{D}(\theta, c) = \int_{{\mathbb{R}}^2} \operatorname{R_N}(\| \overrightarrow{p_i} - \overrightarrow{p_o} \|) {(\cos \theta_i)}^+ \, d \overrightarrow{p_i}$ where $\displaystyle \theta$ is the angle between the normal $\displaystyle \overrightarrow{N}$ of the center position $\displaystyle \overrightarrow{p_o}$ and the opposite direction $\displaystyle \overrightarrow{L}$ of the directional light, and $\displaystyle c$ is the curvature which can be calculated on-the-fly as $\displaystyle \frac{1}{c} = \frac{\operatorname{ddx}(\overrightarrow{N})}{\operatorname{ddx}(\overrightarrow{P})}$. However, the curvature is precomputed by [GFSDK_FaceWorks_CalculateMeshCurvature](https://github.com/NVIDIAGameWorks/FaceWorks/blob/master/src/precomp.cpp#L160) in NVIDIA FaceWorks. Perhaps the on-the-fly method is NOT precise enough.  
- 
-By \[Penner 2011\], $\displaystyle \operatorname{D}(\theta, c)$ is approximated as $\displaystyle \frac{\int_{-\pi}^{\pi} \operatorname{R_N}(2 c | \sin (\frac{x}{2})|) {(\cos (\theta + x))}^+  \, dx}{\int_{-\pi}^{\pi} \operatorname{R_N}(2 c |\sin (\frac{x}{2})|) \, dx}$ and pre-integrated offline to be stored in the LUT (Look Up Table).  
+> The "Post-Scatter Texturing Mode" is assumed. This means that $\displaystyle \operatorname{R_d}(\overrightarrow{p_i}) = \operatorname{\rho}(\overrightarrow{p_o})$.  
+> And the form factor is approximated by the Lambert BRDF. This means that $\displaystyle \operatorname{F}(\overrightarrow{p_i}, \overrightarrow{\omega_o}) = \int_\Omega (1 - \operatorname{F_r}(\cos \theta_o)) \frac{1 - \operatorname{F_r}(\cos \theta_i)}{c} \frac{1}{\pi} \operatorname{L_i}(\overrightarrow{p_i}, \overrightarrow{\omega_i}) {(\cos \theta_i)}^+ \, d \overrightarrow{\omega_i} \approx \int_\Omega \frac{1}{\pi} \operatorname{L_i}(\overrightarrow{p_i}, \overrightarrow{\omega_i}) {(\cos \theta_i)}^+ \, d \overrightarrow{\omega_i}$.  
+> And the light is assumed to be the directional light. This means that the [Delta Distribution](https://www.pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/Sampling_Light_Sources#LightswithSingularities) is applied and we have $\displaystyle \displaystyle \operatorname{F}(\overrightarrow{p_i}, \overrightarrow{\omega_o}) = \int_\Omega \frac{1}{\pi} \operatorname{L_i}(\overrightarrow{p_i}, \overrightarrow{\omega_i}) {(\cos \theta_i)}^+ \, d \overrightarrow{\omega_i} = \frac{1}{\pi} E_L {(\cos \theta_i)}^+$.  
+> And the calculation of the subsurface scattering is further simplified as $\displaystyle \operatorname{L_o}(\overrightarrow{p_o}, \overrightarrow{\omega_o}) = \int_{{\mathbb{R}}^2}  \operatorname{R_N}(\| \overrightarrow{p_i} - \overrightarrow{p_o} \|) \operatorname{R_d}(\overrightarrow{p_i}) \operatorname{F}(\overrightarrow{p_i}, \overrightarrow{\omega_o}) \, d \overrightarrow{p_i} = \int_{{\mathbb{R}}^2} \operatorname{R_N}(\| \overrightarrow{p_i} - \overrightarrow{p_o} \|) \operatorname{\rho}(\overrightarrow{p_o}) \frac{1}{\pi} E_L {(\cos \theta_i)}^+ \, d \overrightarrow{p_i} = \frac{1}{\pi} \operatorname{\rho}(\overrightarrow{p_o}) E_L \int_{{\mathbb{R}}^2} \operatorname{R_N}(\| \overrightarrow{p_i} - \overrightarrow{p_o} \|) {(\cos \theta_i)}^+ \, d \overrightarrow{p_i}$.  
 
-![D](Subsurface-Scattering-1.png)  
+Curvature  
 
-We assume that $\displaystyle \theta$ is zero, and we have $\displaystyle r = 2 c  \sin (\frac{x}{2})$ due to the symmetry. By "13.5.2 Polar Coordinates" of [PBR Book](https://pbr-book.org/3ed-2018/Monte_Carlo_Integration/Transforming_between_Distributions#PolarCoordinates), we have that $\displaystyle \operatorname{D}(\theta, c) = \int_{{\mathbb{R}}^2} \operatorname{R_N}(\| \overrightarrow{p_i} - \overrightarrow{p_o} \|) {(\cos \theta_i)}^+ \, d \overrightarrow{p_i} = \int_0^\infin \int_0^{2\pi} \operatorname{R_N}(r) r {(\cos \theta_i)}^+ \, d \theta dr = 2 \pi \int_0^\infin \operatorname{R_N} (r) r {(\cos \theta_i)}^+ \, dr = 2 \pi \int_0^{2c} \operatorname{R_N} (r) r {(\cos \theta_i)}^+ \, dr + 2 \pi \int_{2c}^\infin \operatorname{R_N} (r) r {(\cos \theta_i)}^+ \, dr = 2 \pi \int_0^{\pi} \operatorname{R_N} (2 c \sin (\frac{x}{2})) (2 c \sin (\frac{x}{2})) {(\cos (\theta + x))}^+ \frac{dr}{dx} \, dx + 2 \pi \int_{2c}^\infin \operatorname{R_N} (r) r {(\cos \theta_i)}^+ \, dr = 2 \pi  \int_0^{\pi} \operatorname{R_N} (2 c \sin (\frac{x}{2})) (2 c \sin (\frac{x}{2})) {(\cos (\theta + x))}^+ （2 c \frac{1}{2} \cos(\frac{x}{2})）\, dx + 2 \pi \int_{2c}^\infin \operatorname{R_N} (r) r {(\cos \theta_i)}^+ \, dr = 2 \pi c^2 \int_0^{\pi} \operatorname{R_N} (2 c \sin (\frac{x}{2})) {(\cos (\theta + x))}^+ \sin x \, dx + 2 \pi \int_{2c}^\infin \operatorname{R_N} (r) r {(\cos \theta_i)}^+ \, dr$ which is totally different from  the numerator $\displaystyle \int_{-\pi}^{\pi} \operatorname{R_N}(2 c | \sin (\frac{x}{2})|) {(\cos (\theta + x))}^+  \, dx$ by \[Penner 2011\].  
+> Let $\displaystyle \operatorname{D}(\theta, c) = \int_{{\mathbb{R}}^2} \operatorname{R_N}(\| \overrightarrow{p_i} - \overrightarrow{p_o} \|) {(\cos \theta_i)}^+ \, d \overrightarrow{p_i}$ where $\displaystyle \theta$ is the angle between the normal $\displaystyle \overrightarrow{N}$ of the center position $\displaystyle \overrightarrow{p_o}$ and the opposite direction $\displaystyle \overrightarrow{L}$ of the directional light, and $\displaystyle c$ is the curvature which can be calculated on-the-fly as $\displaystyle \frac{1}{c} = \frac{\operatorname{ddx}(\overrightarrow{N})}{\operatorname{ddx}(\overrightarrow{P})}$. However, the curvature is precomputed by [GFSDK_FaceWorks_CalculateMeshCurvature](https://github.com/NVIDIAGameWorks/FaceWorks/blob/master/src/precomp.cpp#L160) in NVIDIA FaceWorks. Perhaps the on-the-fly method is NOT precise enough.  
 
-And 
+Diffusion Profile
 
-And thus the denominator $\displaystyle \int_{-\pi}^{\pi} \operatorname{R_N}(2 c |\sin (\frac{x}{2})|) \, dx$
- 
-Usually, the diffusion profile is normalized which indicates the energy conservation. This means that $\displaystyle \int_{-\pi}^{\pi} R(2r\sin(\frac{x}{2})) \,dx = 1$. However, according to \[Penner 2011\], $\displaystyle \operatorname{D}(\theta, \frac{1}{r}) = \frac{\int_{-\pi}^{\pi} | \cos (\theta + x) | \cdot R(2r\sin(\frac{x}{2})) \,dx}{\int_{-\pi}^{\pi} R(2r\sin(\frac{x}{2})) \,dx}$ where denominator is added to make sure the diffusion profile is normalized.
+> The diffusion profile, which is approximated by the Gaussians, by \[dEon 2007\] is still used by [EvaluateDiffusionProfile](https://github.com/NVIDIAGameWorks/FaceWorks/blob/master/src/precomp.cpp#L533) in NVIDIA FaceWorks. However, the motivation of \[dEon 2007\] is to replace the general 2D convolution into two 1D convolutions to improve the performance by using the [Separable Filter](https://en.wikipedia.org/wiki/Separable_filter) property of the [Gaussian Blur](https://en.wikipedia.org/wiki/Gaussian_blur). But the $\displaystyle \operatorname{D}(\theta, c)$ is pre-integrated offline by \[Penner 2011\], the efficiency of the convolution is NOT important any more, and thus the more physically plausible diffusion profile $\displaystyle \operatorname{R_N}(r) = \frac{S}{8 \pi r}(e^{-S r}+e^{-\frac{1}{3} S r})$ by \[Christensen 2015\] should be used.  
 
-In the GPU Pro 2, the $\displaystyle \operatorname{D}(\theta, \frac{1}{r})$ is calculated by **integrateDiffuseScatteringOnRing**. And there are some points to note.  
-1. \[Penner 2011\] merely follows \[dEon 2007\] and the diffusion profile is approximated by the Gaussians (the **Scatter** in the code). However, the motivation of \[dEon 2007\] is that the [Gaussian blur](https://en.wikipedia.org/wiki/Gaussian_blur) is a [separable filter](https://en.wikipedia.org/wiki/Separable_filter), and thus the general 2D convolution can be replaced by 1D convolutions to improve the performance. In my opinion, it is acceptable to perform a general 2D convolution even by using the exact accurate diffusion profile, since the approach proposed by \[Penner 2011\] **pre-integrates** the convolution, and the efficiency doesn't matter too much for offline precomputing.  
-2. The **pre-integral** is performed on a ring rather than on a sphere. This is reasonable since it is assumed that the diffusion profile is radially symmetric.  
-3. In the FaceWorks, according to the **numerical quadrature**, the funtion value $\operatorname{f}(x)$ is multiplied by the difference of the domain $\displaystyle \operatorname{\Delta}x$ (the **scale** in the code).  
-However, in the GPU Pro 2, there is no such code like **scale** since the $\displaystyle \operatorname{\Delta}x$ appears in both numerator and denominator, and the it is not necessary to multiply $\displaystyle \operatorname{f}(x)$ by $\displaystyle \operatorname{\Delta}x$.  
 
-In the FaceWorks, the $\displaystyle \operatorname{D}(\theta, \frac{1}{r})$ is calculated by **GFSDK_FaceWorks_GenerateCurvatureLUT**. However, there is some subtle modification.  
-1. The $\displaystyle 2r\sin(\frac{x}{2})$ is replaced by the $\displaystyle rx$ (the **delta** in the code). Technically, the $\displaystyle 2r\sin(\frac{x}{2})$ is more correct since the diffusion profile describes the light absorption inside the medium rather than over the surface. Perhaps the $\displaystyle 2r\sin(\frac{x}{2})$ and the $\displaystyle rx$ are close when the $\displaystyle x$ is small.  
-2. The denominator $\displaystyle \int_{-\pi}^{\pi} R(2r\sin(\frac{x}{2})) \,dx$ is omitted perhaps due to the fact that the diffusion profile has been normalized. Actually, I try to calculate the denominator by myself, and I find the denominator is really close to one.  
-3. In the GPU Pro 2, three normals should be used for different RGB components and the LUT should be sampled three times according to three different $\displaystyle \theta$s. Perhaps this method is not efficient and the FaceWorks detaches the $\displaystyle \operatorname{dot}(N,L)$, which denotes the part of the integral where x is close to zero and the diffuse profile is close to one, from the total integral $\displaystyle \operatorname{D}(\theta, \frac{1}{r})$. Evidently, the remaining part of the integral is relatively small, and thus FaceWorks maps the remaining part of the integral from [-0.25, 0.25] to [0, 1] to fully use the precision of the texture (the **rgbAdjust** in the code). The **GFSDK_FaceWorks_EvaluateSSSDirectLight** is used to calculate the diffuse term. The LUT is only sampled once and three normals are used to calculate the $\displaystyle \operatorname{dot}(N,L)$ which is detached from the total integral. 
+Integrate on the Ring
+
+> ![D](Subsurface-Scattering-1.png)  
+>  
+> By \[Penner 2011\], $\displaystyle \operatorname{D}(\theta, c)$ is approximated as $\displaystyle \frac{\int_{-\pi}^{\pi} \operatorname{R_N}(2 c |\sin (\frac{x}{2})|) {(\cos (\theta + x))}^+  \, dx}{\int_{-\pi}^{\pi} \operatorname{R_N}(2 c |\sin (\frac{x}{2})|) \, dx}$ and pre-integrated offline to be stored in the LUT (Look Up Table).  
+>  
+> However, this approximation can be improved much further.  
+> Evidently, we have $\displaystyle r = 2 c |\sin (\frac{x}{2})|$ and $\displaystyle \frac{dr}{dx} = 2 c \frac{1}{2} \cos(\frac{x}{2}) = c \cos(\frac{x}{2})$ due to the symmetry.  
+> By "13.5.2 Polar Coordinates" of [PBR Book](https://pbr-book.org/3ed-2018/Monte_Carlo_Integration/Transforming_between_Distributions#PolarCoordinates), we have that $\displaystyle \operatorname{D}(\theta, c) = \int_{{\mathbb{R}}^2} \operatorname{R_N}(\| \overrightarrow{p_i} - \overrightarrow{p_o} \|) {(\cos \theta_i)}^+ \, d \overrightarrow{p_i} = \int_0^\infin \int_0^{2\pi} \operatorname{R_N}(r) r {(\cos \theta_i)}^+ \, d \theta dr = \int_0^\infin 2 \pi \operatorname{R_N} (r) r {(\cos \theta_i)}^+ \, dr = \int_0^{2c} 2 \pi \operatorname{R_N} (r) r {(\cos \theta_i)}^+ \, dr + 2 \pi \int_{2c}^\infin \operatorname{R_N} (r) r {(\cos \theta_i)}^+ \, dr$.  
+> By "Figure 15.10" of [PBR Book](https://pbr-book.org/3ed-2018/Light_Transport_II_Volume_Rendering/Sampling_Subsurface_Reflection_Functions#fig:probe-segment-length), the diffusion profile falls off fairly quickly and the vicinal position $\displaystyle \overrightarrow{p_i}$, which is too far away from the center position $\displaystyle \overrightarrow{p_o}$, can be ignored. This means that we have $\displaystyle \operatorname{D}(\theta, c) = \int_0^{2c} 2 \pi \operatorname{R_N} (r) r {(\cos \theta_i)}^+ \, dr + \int_{2c}^\infin 2 \pi \operatorname{R_N} (r) r {(\cos \theta_i)}^+ \, dr \approx \frac{\int_0^{2c} 2 \pi \operatorname{R_N} (r) r {(\cos \theta_i)}^+ \, dr}{\int_0^{2c} 2 \pi \operatorname{R_N} (r) r \, dr}$.  
+> Evidently, the denominator does NOT equal one, since $\displaystyle 1 = \int_{{\mathbb{R}}^2} \operatorname{R_N}(\| \overrightarrow{p_i} - \overrightarrow{p_o} \|) \, d \overrightarrow{p_i} = \int_0^{2c} 2 \pi \operatorname{R_N} (r) r \, dr + \int_{2c}^\infin 2 \pi \operatorname{R_N} (r) r \, dr \Rightarrow \int_0^{2c} 2 \pi \operatorname{R_N} (r) r \, dr = 1 - \int_{2c}^\infin 2 \pi \operatorname{R_N} (r) r \, dr < 1$.  
+> By [Integration by Substitution](https://en.wikipedia.org/wiki/Integration_by_substitution) and symmetry, we have $\displaystyle \operatorname{D}(\theta, c) = \frac{\int_0^{2c} 2 \pi \operatorname{R_N} (r) r {(\cos \theta_i)}^+ \, dr}{\int_0^{2c} 2 \pi \operatorname{R_N} (r) r \, dr} = \frac{\frac{1}{2} \int_{-\pi}^{\pi} 2 \pi \operatorname{R_N} (2 c |\sin (\frac{x}{2})|) (2 c |\sin (\frac{x}{2})|) {(\cos (\theta + x))}^+ \frac{dr}{dx} \, dx}{\frac{1}{2} \int_{-\pi}^{\pi} 2 \pi \operatorname{R_N} (2 c |\sin (\frac{x}{2})|) (2 c |\sin (\frac{x}{2})|)  \frac{dr}{dx} \, dx} = \frac{\frac{1}{2} \int_{-\pi}^{\pi} 2 \pi \operatorname{R_N} (2 c |\sin (\frac{x}{2})|) (2 c |\sin (\frac{x}{2})|) {(\cos (\theta + x))}^+ （c \cos(\frac{x}{2})) \, dx}{\frac{1}{2} \int_{-\pi}^{\pi} 2 \pi \operatorname{R_N} (2 c |\sin (\frac{x}{2})|) (2 c |\sin (\frac{x}{2})|) （c \cos(\frac{x}{2})）\, dx}$.  
+>  
+> Here is the MATLAB code which verifies the the conclusion $\displaystyle \operatorname{D}(\theta, c) = \frac{\frac{1}{2} \int_{-\pi}^{\pi} 2 \pi \operatorname{R_N} (2 c |\sin (\frac{x}{2})|) (2 c |\sin (\frac{x}{2})|) {(\cos (\theta + x))}^+ （c \cos(\frac{x}{2})) \, dx}{\frac{1}{2} \int_{-\pi}^{\pi} 2 \pi \operatorname{R_N} (2 c |\sin (\frac{x}{2})|) (2 c |\sin (\frac{x}{2})|) （c \cos(\frac{x}{2})）\, dx}$.  
+>     
+>  ```matlab
+>  global S = (1.0 / 0.7568628);
+>  global c = 3.0;
+>  global theta = pi / 4.0;
+>  
+>  % ========================================================
+>  % numerator polar
+>  % ========================================================
+>  
+>  function y = numerator_polar_positive(r)
+>    global S
+>    global c
+>    global theta
+>    R_N_mul_r = (S / (8.0 * pi)) * (exp(-S * r) + exp(-(1.0 / 3.0) * S * r));
+>    x = 2.0 * asin(r / (2.0 * c));
+>    cos_theta_add_x = max(0.0, cos(theta + x));
+>    y = 2.0 * pi * R_N_mul_r * cos_theta_add_x;
+>  endfunction
+>  
+>  function y = numerator_polar_negative(r)
+>    global S
+>    global c
+>    global theta
+>    R_N_mul_r = (S / (8.0 * pi)) * (exp(-S * r) + exp(-(1.0 / 3.0) * S * r));
+>    x = -2.0 * asin(r / (2.0 * c));
+>    cos_theta_add_x = max(0.0, cos(theta + x));
+>    y = 2.0 * pi * R_N_mul_r * cos_theta_add_x;
+>  endfunction
+>  
+>  q_numerator_polar = 0.5 * (quad("numerator_polar_positive", 0, 2.0 * c) + quad("numerator_polar_negative", 0, 2.0 * c));
+>  
+>  % output: "numerator_polar: 0.563473"
+>  printf("numerator_polar: %f\n", q_numerator_polar);
+>  
+>  % ========================================================
+>  % numerator ring
+>  % ========================================================
+>  
+>  function y = numerator_ring(x)
+>    global S
+>    global c
+>    global theta
+>    r = 2.0 * c * abs(sin(0.5 * x));
+>    R_N_mul_r = (S / (8.0 * pi)) * (exp(-1.0 * S * r) + exp(-(1.0 / 3.0) * S * r));
+>    cos_theta_add_x = max(0.0, cos(theta + x));
+>    dr_per_dx = 2.0 * c * 0.5 * cos(0.5 * x);
+>    y =  2.0 * pi * R_N_mul_r * cos_theta_add_x * dr_per_dx;
+>  endfunction
+>  
+>  q_numerator_ring = 0.5 * quad("numerator_ring", -pi, pi);
+>  
+>  % output: "numerator_ring: 0.563473"
+>  printf("numerator_ring: %f\n", q_numerator_ring);
+>  
+>  % ========================================================
+>  % denominator polar
+>  % ========================================================
+>  
+>  function y = denominator_polar(r)
+>    global S
+>    R_N_mul_r = (S / (8.0 * pi)) * (exp(-S * r) + exp(-(1.0 / 3.0) * S * r));
+>    y = 2.0 * pi * R_N_mul_r;
+>  endfunction
+>  
+>  q_denominator_polar = quad("denominator_polar", 0, 2.0 * c);
+>  
+>  % output: "denominator_polar: 0.946522"
+>  printf("denominator_polar: %f\n", q_denominator_polar);
+>  
+>  % ========================================================
+>  % denominator ring
+>  % ========================================================
+>  
+>  function y = denominator_ring(x)
+>    global S
+>    global c
+>    r = 2.0 * c * abs(sin(0.5 * x));
+>    R_N_mul_r = (S / (8.0 * pi)) * (exp(-1.0 * S * r) + exp(-(1.0 / 3.0) * S * r));
+>    dr_per_dx = 2.0 * c * 0.5 * cos(0.5 * x);
+>    y =  2.0 * pi * R_N_mul_r * dr_per_dx;
+>  endfunction
+>  
+>  q_denominator_ring = 0.5 * quad("denominator_ring", -pi, pi);
+>  
+>  % output: "denominator_ring: 0.946522"
+>  printf("denominator_ring: %f\n", q_denominator_ring);
+>  ```  
+>  
+> The $\displaystyle \operatorname{D}(\theta, c)$ is pre-integrated by [GFSDK_FaceWorks_GenerateCurvatureLUT](https://github.com/NVIDIAGameWorks/FaceWorks/blob/master/src/precomp.cpp#L560) in NVIDIA FaceWorks.  
+
+
+Three Normals  
+
+> In the GPU Pro 2, three different normals should be used for different RGB components and the LUT should be sampled three times according to three different $\displaystyle \theta$s.  
+> 
+> Evidently, this method is not efficient and the FaceWorks detaches the $\displaystyle \displaystyle \overrightarrow{N} \cdot \displaystyle \overrightarrow{L}$, which denotes the part of the integral where x is close to zero and the diffuse profile is close to the peak, from the total integral $\displaystyle \operatorname{D}(\theta, c)$.  
+>  
+> However, the remaining part of the integral is relatively small, and thus FaceWorks maps the remaining part of the integral from [-0.25, 0.25] to [0, 1] to fully use the precision of the texture (the [rgbAdjust](https://github.com/NVIDIAGameWorks/FaceWorks/blob/master/src/precomp.cpp#L673) in the code).  
+>  
+> The [GFSDK_FaceWorks_EvaluateSSSDirectLight](https://github.com/NVIDIAGameWorks/FaceWorks/blob/master/include/GFSDK_FaceWorks.hlsli#L325) is used to calculate the diffuse term. The LUT is only sampled once and three normals are used to calculate the $\displaystyle \operatorname{dot}(N,L)$ which is detached from the total integral. 
 
 ### 3-2\. Separable SSS
 The **diffuse reflectance** term of the **Subsurface Profile** [Shading Model](https://docs.unrealengine.com/4.27/en-US/RenderingAndGraphics/Materials/MaterialProperties/LightingModels/) **without** [Enable Burley](https://docs.unrealengine.com/4.27/en-US/RenderingAndGraphics/Materials/LightingModels/SubSurfaceProfile/) of UE4 is based on the **Separable SSS** \[Jimenez 2012\].  
@@ -107,7 +212,7 @@ The **Disney SSS** by \[Golubev 2018\] is used by the [Subsurface Scattering Mat
 
 The main idea of the Disney SSS is to use the Monte Carlo method to integrate $\displaystyle \operatorname{L_o}(\overrightarrow{p_o}, \overrightarrow{\omega_o}) = \int_{{\mathbb{R}}^2} \operatorname{R}(\| \overrightarrow{p_i} - \overrightarrow{p_o} \|) \operatorname{F}(\overrightarrow{p_i}, \overrightarrow{\omega_o}) \, d \overrightarrow{p_i}$ in real time.  
 
-The diffusion profile $\displaystyle \operatorname{R}(r) = \frac{A s}{8 \pi r}(e^{-sr}+e^{-\frac{1}{3}sr})$, where the A is the surface albedo and the s is the scaling factor, proposed by \[Christensen 2015\] is used.  
+The diffusion profile $\displaystyle \operatorname{R}(r) = \frac{A S}{8 \pi r}(e^{-S r}+e^{-\frac{1}{3} S r})$, where the A is the surface albedo and the S is the scaling factor, proposed by \[Christensen 2015\] is used.  
 
 
 #### 3-3-1\. Monte Carlo Integration  
@@ -167,11 +272,11 @@ N/A | N/A | N/A | Surface Albedo | (0.91058, 0.338275, 0.2718)
 N/A | N/A | N/A | Mean Free Path Color | (1.0, 0.1983/2.229, (0.1607/2.229)  
 N/A | N/A | N/A | Mean Free Path Distance | (1.2\*2.229, 1.2\*2.229, 1.2\*2.229)  
 N/A | Scattering Distance | (0.7568628, 0.32156864, 0.20000002) | N/A | N/A  
-Scaling Factor s | N/A | $\displaystyle \frac{1}{\mathrm{ScatteringDistance}}$ | N/A | $\displaystyle \frac{\operatorname{GetScalingFactor}(\mathrm{SurfaceAlbedo})}{\mathrm{MeanFreePathColor} \cdot \mathrm{MeanFreePathDistance}}$  
+Scaling Factor S | N/A | $\displaystyle \frac{1}{\mathrm{ScatteringDistance}}$ | N/A | $\displaystyle \frac{\operatorname{GetScalingFactor}(\mathrm{SurfaceAlbedo})}{\mathrm{MeanFreePathColor} \cdot \mathrm{MeanFreePathDistance}}$  
 
 By "11.1.3 Out-Scattering and Attenuation" of [PBR Book](https://pbr-book.org/3ed-2018/Volume_Scattering/Volume_Scattering_Processes#Out-ScatteringandAttenuation), we have the **mean free path** $\displaystyle \frac{1}{\sigma_{\tau}} = \frac{1}{\sigma_a + \sigma_s}$ where $\displaystyle \sigma_{\tau}$ is the extinction coefficient, $\displaystyle \sigma_a$ is the absorption coefficient and $\displaystyle \sigma_s$ is the scattering coefficient.  
 
-Note that, in UE4, the scaling factor s is calculated by $\displaystyle s = \frac{\operatorname{GetScalingFactor}(\mathrm{SurfaceAlbedo})}{\mathrm{MeanFreePathColor} \cdot \mathrm{MeanFreePathDistance}}$ where the $\displaystyle \operatorname{GetScalingFactor}$ follows the Equation 5, 6, 7 of \[Christensen 2015\]. But, by \[Christensen 2015\], the result of the $\displaystyle \operatorname{GetScalingFactor}$ is exactly the scaling factor. Thus, the denominator is **NOT** reasonable.  
+Note that, in UE4, the scaling factor s is calculated by $\displaystyle S = \frac{\operatorname{GetScalingFactor}(\mathrm{SurfaceAlbedo})}{\mathrm{MeanFreePathColor} \cdot \mathrm{MeanFreePathDistance}}$ where the $\displaystyle \operatorname{GetScalingFactor}$ follows the Equation 5, 6, 7 of \[Christensen 2015\]. But, by \[Christensen 2015\], the result of the $\displaystyle \operatorname{GetScalingFactor}$ is exactly the scaling factor. Thus, the denominator is **NOT** reasonable.  
 
 ## 4\. Diffuse BRDF
 
