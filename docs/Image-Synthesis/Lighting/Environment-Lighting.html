@@ -3212,9 +3212,8 @@ M834 80h400000v40h-400000z' />
         in DirectXMath and <a
             href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/ReflectionEnvironmentShaders.usf#L448">DiffuseIrradianceCopyPS</a>
         in UE4.</p>
-    <pre><code class="code-line language-MATLAB" dir="auto"><div><span class="hljs-comment">% here is the MATLAB code which verifies the meaning of &quot;fWt = 4/(sqrt(fTmp)*fTmp)&quot;.</span>
-
-<span class="hljs-comment">% retrieved by &quot;textureSize(GLSL)&quot; or &quot;GetDimensions(HLSL)&quot;.</span>
+    <p dir="auto">Here is the MATLAB code which verifies the meaning of &quot;fWt = 4/(sqrt(fTmp)*fTmp)&quot;.</p>
+    <pre><code class="code-line language-MATLAB" dir="auto"><div><span class="hljs-comment">% retrieved by &quot;textureSize(GLSL)&quot; or &quot;GetDimensions(HLSL)&quot;.</span>
 cube_size_u = single(<span class="hljs-number">4096.0</span>);
 cube_size_v = single(<span class="hljs-number">4096.0</span>);
 
