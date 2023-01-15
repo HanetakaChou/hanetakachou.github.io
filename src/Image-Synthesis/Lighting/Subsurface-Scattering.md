@@ -363,9 +363,15 @@ The transmittance coefficient by \[Golubev 2018\] is calculated by the [ComputeT
 ## 6\. Specular BRDF  
 
 ### 6-1\. Two-lobe Blinn-Phong  
+
+The Two-lobe Blinn-Phong is calculated by [EvaluateSpecularLight](https://github.com/NVIDIAGameWorks/FaceWorks/blob/master/samples/d3d11/shaders/lighting.hlsli#L129) in NVIDIA FaceWorks.  
+
 TODO  
   
-### 6-2\. Dual GGX    
+### 6-2\. Dual Trowbridge-Reitz  
+
+The Dual Trowbridge-Reitz is calculated by [DualSpecularGGX](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/ShadingModels.ush#L178) in UE4.  
+
 TODO  
 
 ## References
