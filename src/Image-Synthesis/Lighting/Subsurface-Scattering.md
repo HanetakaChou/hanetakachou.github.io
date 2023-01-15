@@ -4,7 +4,7 @@
 
 The **diffusion profile** $\displaystyle \operatorname{R}(\Delta x, \Delta y, (\Delta z))$ by "14.4.2 Rendering with Diffusion Profile" of \[dEon 2007\] is called the **scattering profile** $\displaystyle \operatorname{S_p}(\overrightarrow{p_o}, \overrightarrow{p_i})$ by "Equation \(11.6\)" of [PBR Book](https://pbr-book.org/3ed-2018/Volume_Scattering/The_BSSRDF#eq:separable-bssrdf) and is called the **radial (scattering) profile** $\displaystyle \operatorname{S_r}(\| \overrightarrow{p_i} - \overrightarrow{p_o} \|)$ by "Equation \(11.9\)" of [PBR Book](https://pbr-book.org/3ed-2018/Volume_Scattering/The_BSSRDF#eq:distance-bssrdf).  
 
-By "Advantages of a Sum-of-Gaussians Diffusion Profile" of \[dEon 2007\] and "Equation \(11.9\)" of [PBR Book](https://pbr-book.org/3ed-2018/Volume_Scattering/The_BSSRDF#eq:distance-bssrdf), by assuming the material is homogeneous, the diffusion profile is isotropic (radially symmetric). This means that the diffusion profile can be reduced to the 1D function $\displaystyle \operatorname{R}(\Delta x, \Delta y) = \operatorname{R}(\sqrt{{\Delta x}^2 +{\Delta y}^2 (+ {\Delta z}^2))} = \operatorname{R}(r) = \operatorname{R}(\| \overrightarrow{p_i} - \overrightarrow{p_o} \|)$ and $\displaystyle \operatorname{S_p}(\overrightarrow{p_o}, \overrightarrow{p_i}) = \operatorname{S_r}(\| \overrightarrow{p_i} - \overrightarrow{p_o} \|)$.  
+By "Advantages of a Sum-of-Gaussians Diffusion Profile" of \[dEon 2007\] and "Equation \(11.9\)" of [PBR Book](https://pbr-book.org/3ed-2018/Volume_Scattering/The_BSSRDF#eq:distance-bssrdf), by assuming the material is homogeneous, the diffusion profile is isotropic (radially symmetric). This means that the diffusion profile can be reduced to the 1D function $\displaystyle \operatorname{R}(\Delta x, \Delta y, (\Delta z)) = \operatorname{R}(\sqrt{{\Delta x}^2 +{\Delta y}^2 (+ {\Delta z}^2))} = \operatorname{R}(r) = \operatorname{R}(\| \overrightarrow{p_i} - \overrightarrow{p_o} \|)$ and $\displaystyle \operatorname{S_p}(\overrightarrow{p_o}, \overrightarrow{p_i}) = \operatorname{S_r}(\| \overrightarrow{p_i} - \overrightarrow{p_o} \|)$.  
 
 By the "Equation \(11.7\)" of [PBR Book](https://pbr-book.org/3ed-2018/Volume_Scattering/The_BSSRDF#eq:separable-bssrdf-directional), the general BSSRDF term $\displaystyle \operatorname{S}(\overrightarrow{p_o}, \overrightarrow{\omega_o}, \overrightarrow{p_i}, \overrightarrow{\omega_i})$ is factored into spatial and directional components which can be integrated independently from each other. And the calculation of the subsurface scattering can be simplified as $\displaystyle \operatorname{L_o}(\overrightarrow{p_o}, \overrightarrow{\omega_o}) = \int_{{\mathbb{R}}^2} \left\lparen \int_\Omega \operatorname{S}(\overrightarrow{p_o}, \overrightarrow{\omega_o}, \overrightarrow{p_i}, \overrightarrow{\omega_i}) \operatorname{L_i}(\overrightarrow{p_i}, \overrightarrow{\omega_i}) {(\cos \theta_i)}^+ \, d \overrightarrow{\omega_i} \right\rparen \, d \overrightarrow{p_i} \approx (1 - \operatorname{F_r}(\cos \theta_o)) \left\lparen \int_{{\mathbb{R}}^2} \operatorname{R}(\| \overrightarrow{p_i} - \overrightarrow{p_o} \|) \left\lparen \int_\Omega \frac{1 - \operatorname{F_r}(\cos \theta_i)}{c}  \frac{1}{\pi} \operatorname{L_i}(\overrightarrow{p_i}, \overrightarrow{\omega_i}) {(\cos \theta_i)}^+ \, d \overrightarrow{\omega_i} \right\rparen \, d \overrightarrow{p_i} \right\rparen$ where $\displaystyle \operatorname{F_r}(\cos \theta))$ is the Fresnel term and $\displaystyle c = 1 - 2 \int_0^{\frac{\pi}{2}} \operatorname{F_r}(\cos \theta)) \sin \theta \cos \theta \, d \theta$ is the the first moment of the Fresnel term.  
 
@@ -328,7 +328,7 @@ Note that, in UE4, the scaling factor s is calculated by $\displaystyle S = \fra
 
 ## 5\. Transmittance
 
-The blur pass only accumulate the vicinal position $\displaystyle \overrightarrow{p_i}$ which is on the same face as the center position $\displaystyle \overrightarrow{p_o}$. And the transmittance is to accumulate the vicinal position $\displaystyle \overrightarrow{p_i}$ which is on the different face from the center position $\displaystyle \overrightarrow{p_o}$.  
+The blur pass is only to accumulate the vicinal position $\displaystyle \overrightarrow{p_i}$ which is on the same face as the center position $\displaystyle \overrightarrow{p_o}$. And the transmittance is to accumulate the vicinal position $\displaystyle \overrightarrow{p_i}$ which is on the different face from the center position $\displaystyle \overrightarrow{p_o}$.  
 
 ### 5-1\. Thickness Map  
 
@@ -360,7 +360,7 @@ By \[Golubev 2018\], the diffuse profile of \[Christensen 2015\] is applied, and
 
 The transmittance coefficient by \[Golubev 2018\] is calculated by the [ComputeTransmittanceDisney](https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.high-definition/Runtime/Material/DiffusionProfile/DiffusionProfile.hlsl#L9) in Unity3D.  
 
-## 6\. Specular Term  
+## 6\. Specular BRDF  
 
 ### 6-1\. Two-lobe Blinn-Phong  
 TODO  
