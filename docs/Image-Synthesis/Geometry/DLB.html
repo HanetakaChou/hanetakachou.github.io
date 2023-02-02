@@ -13,9 +13,10 @@
 	<h1 dir="auto" id="dlb-dual-quaternion-linear-blending">DLB (Dual quaternion Linear Blending)</h1>
 	<h2 dir="auto" id="1-linear-blending">1. Linear Blending</h2>
 	<p dir="auto">The main idea of the <strong>linear blending</strong> method is to calculate the linear combination of
-		the joint (bone) matrices. Evidently, the <strong>linear blending</strong> method is NOT correct, since the
-		linear combination of the rigid transformation matrices is NOT necessarily a rigid transformation matrix.
-		However, the <strong>linear blending</strong> method is still one of the most popular <strong>vertex
+		the joint (bone) matrices. By [Kavan 2007] and [Kavan 2008], the rigid transform is the composition of rotation
+		transform and translation transform. Evidently, the <strong>linear blending</strong> method is NOT correct,
+		since the linear combination of the rigid transformation matrices is NOT necessarily a rigid transformation
+		matrix. However, the <strong>linear blending</strong> method is still one of the most popular <strong>vertex
 			blending</strong> methods. By [Kavan 2007] and [Kavan 2008], perhaps this is only because there is no simple
 		alternative.</p>
 	<p dir="auto">By the documents of <a
@@ -20834,8 +20835,6 @@ M1001 80h400000v40h-400000z' />
 		part is zero.</p>
 	<h4 dir="auto" id="2-3-5-bijection-between-rigid-transforms-and-unit-dual-quaternions">2-3-5. Bijection between
 		Rigid Transforms and Unit Dual Quaternions</h4>
-	<p dir="auto">By [Kavan 2007] and [Kavan 2008], the rigid transform is the composition of rotation transform and
-		translation transform.</p>
 	<p dir="auto">By &quot;Lemma 12&quot; of [Kavan 2008], we have that each rigid transform can be represented by a
 		unit dual quaternion, and conversely, each unit dual quaternion can represent a rigid transform.</p>
 	<h5 dir="auto" id="2-3-5-1-mapping-the-rigid-transform-to-the-unit-dual-quaternion">2-3-5-1. Mapping the Rigid

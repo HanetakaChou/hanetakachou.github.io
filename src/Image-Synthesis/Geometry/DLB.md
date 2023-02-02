@@ -2,7 +2,7 @@
 
 ## 1\. Linear Blending  
 
-The main idea of the **linear blending** method is to calculate the linear combination of the joint (bone) matrices. Evidently, the **linear blending** method is NOT correct, since the linear combination of the rigid transformation matrices is NOT necessarily a rigid transformation matrix. However, the **linear blending** method is still one of the most popular **vertex blending** methods. By \[Kavan 2007\] and \[Kavan 2008\], perhaps this is only because there is no simple alternative.  
+The main idea of the **linear blending** method is to calculate the linear combination of the joint (bone) matrices. By \[Kavan 2007\] and \[Kavan 2008\], the rigid transform is the composition of rotation transform and translation transform. Evidently, the **linear blending** method is NOT correct, since the linear combination of the rigid transformation matrices is NOT necessarily a rigid transformation matrix. However, the **linear blending** method is still one of the most popular **vertex blending** methods. By \[Kavan 2007\] and \[Kavan 2008\], perhaps this is only because there is no simple alternative.  
 
 By the documents of [Autodesk 3ds Max](https://help.autodesk.com/view/3DSMAX/2017/ENU/?guid=GUID-9596F6EF-3569-44F2-8D6C-6EB58C30BEDD), we have the "candy-wrapper" artifact of the **linear blending**.  
 
@@ -203,8 +203,6 @@ Proof
 By "A.2 Dual Quaternions" of \[Kavan 2008\], a unit dual quaternion  is a dual quaternion  of which the norm is one. By the norm of the dual quaternion, we have that $\displaystyle \| \boldsymbol{q_0} \| = 1$ and $\displaystyle \langle \boldsymbol{q_0}, \boldsymbol{q_\epsilon} \rangle = 0$. This means that a unit dual quaternion  is a dual quaternion  such that the real part is a unit quaternion and the inner product of the real part and the dual part is zero.  
 
 #### 2-3-5\. Bijection between Rigid Transforms and Unit Dual Quaternions  
-
-By \[Kavan 2007\] and \[Kavan 2008\], the rigid transform is the composition of rotation transform and translation transform.  
 
 By "Lemma 12" of \[Kavan 2008\], we have that each rigid transform can be represented by a unit dual quaternion, and conversely, each unit dual quaternion can represent a rigid transform.  
 
