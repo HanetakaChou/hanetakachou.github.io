@@ -1,8 +1,8 @@
-# HanetakaChou(HanetakaChou)'s Blog  
+# HanetakaChou's Blog  
 
 ## License  
 ```  
-Copyright (C) 2018-2022 HanetakaChou(HanetakaChou)
+Copyright (C) 2018-2023 HanetakaChou
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
@@ -47,22 +47,9 @@ If you find there are any mistakes or improvements, please don't hesitate to con
 - Path-Tracing [Documentation](Image-Synthesis/Lighting/Path-Tracing.html)  
 - Volume-Rendering [Documentation](Image-Synthesis/Lighting/Volume-Rendering.html)  
 
-
-## PatriotEngine
-- [PatriotEngine](PatriotEngine/index.html)  
-
 ## Textbook Solution
 - [Visual-Complex-Analysis](Textbook-Solution/Visual-Complex-Analysis.html)  
 - [Visual-Differential-Geometry-and-Forms](Textbook-Solution/Visual-Differential-Geometry-and-Forms.html)  
-
-## Project Note  
-- [Google-Filament](Project-Note/Google-Filament.html)  
-
-## Scientific Web Surfing
-- [Trojan](Scientific-Web-Surfing/Trojan.html)   
-- [Tor](Scientific-Web-Surfing/Tor.html)   
-- [SSH](Scientific-Web-Surfing/SSH.html)   
-- [OpenVPN](Scientific-Web-Surfing/OpenVPN.html)   
 
 ## Linux   
 - [Bluetooth](Linux/Bluetooth.html)  
@@ -71,7 +58,8 @@ If you find there are any mistakes or improvements, please don't hesitate to con
 - [KDE](Linux/KDE.html)  
 - [Steam Controller](Linux/Steam-Controller.html)  
 
-## Music  
-- [HOI4](Music/HOI4.html)  
+## Project Note  
+- [Google-Filament](Project-Note/Google-Filament.html)  
 
-
+## PatriotEngine
+- [PatriotEngine](PatriotEngine/index.html)  
