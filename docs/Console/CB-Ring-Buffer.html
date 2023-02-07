@@ -13,22 +13,30 @@
     <h1 dir="auto" id="cbcommand-buffer-ring-buffer">CB(Command Buffer) Ring Buffer</h1>
     <h2 dir="auto" id="vulkan">Vulkan</h2>
     <p dir="auto">In Vulkan, the memory of the command buffer is managed by the driver. Usually, the application
-        allocates &quot;frame_throttling_count&quot; command buffers in advance, and uses the
-        &quot;frame_throttling_index&quot; to select the command buffer to be used at each frame. Note that the
-        &quot;frame_throttling_count&quot; should be distinguished from the &quot;swapchain_image_count&quot; (see <a
-            href="https://community.arm.com/arm-community-blogs/b/graphics-gaming-and-vr-blog/posts/the-mali-gpu-an-abstract-machine-part-1---frame-pipelining">Pipeline
-            Throttling</a> for more information).</p>
+        allocates &quot;frame_<a
+            href="https://community.arm.com/arm-community-blogs/b/graphics-gaming-and-vr-blog/posts/the-mali-gpu-an-abstract-machine-part-1---frame-pipelining">throttling</a>_count&quot;
+        command pools in advance, and uses the &quot;frame_throttling_index&quot; to select the command pool from which
+        the command buffers are allocated in each frame. Note that the &quot;frame_throttling_count&quot; should be
+        distinguished from the &quot;swapchain_image_count&quot;.</p>
     <p dir="auto">For example, in <a href="https://docs.mesa3d.org/drivers/radv.html">RADV</a>, the memory is stored in
         the list <a
             href="https://gitlab.freedesktop.org/mesa/mesa/-/blob/22.3/src/amd/vulkan/winsys/amdgpu/radv_amdgpu_cs.c#L482">radv_amdgpu_cs::handles</a>.
         Evidently, we can NOT know in advance how much memory we should allocate for the command buffer at the begining
         of each frame. Hence, when we are out of memory, we need to allocate a new buffer object and insert the new
         buffer object to the list (see <a
-            href="https://gitlab.freedesktop.org/mesa/mesa/-/blob/22.3/src/amd/vulkan/winsys/amdgpu/radv_amdgpu_cs.c#L409">cs_grow</a>
+            href="https://gitlab.freedesktop.org/mesa/mesa/-/blob/22.3/src/amd/vulkan/winsys/amdgpu/radv_amdgpu_cs.c#L409">cs_grow</a>,
+        <a
+            href="https://gitlab.freedesktop.org/mesa/mesa/-/blob/22.3/src/amd/vulkan/radv_cmd_buffer.c#L546">radv_cmd_buffer_resize_upload_buf</a>
         and <a
             href="https://gitlab.freedesktop.org/mesa/mesa/-/blob/22.3/src/amd/vulkan/winsys/amdgpu/radv_amdgpu_cs.c#L547">cs_add_buffer</a>
         for more information). Thus, the memory of the command buffer is NOT continuous, and is composed by several
-        buffer objects in the list.</p>
+        buffer objects in the list.
+    </p>
+    <p dir="auto">Peculiarly, the RADV follows the Mesa3D <a
+            href="https://gitlab.freedesktop.org/mesa/mesa/-/blob/22.3/src/vulkan/runtime/vk_command_pool.c#L131">common
+            command pool framework</a> where the vkResetCommandPool is implemented by the vkResetCommandBuffer. This
+        means that the memory of the command buffer is managed by the command buffer rather than the command pool in
+        RADV.</p>
     <h2 dir="auto" id="console">Console</h2>
     <p dir="auto">In console, the memory of the command buffer is managed by the application rather than the driver.
         When the command buffer is initialized by the application, a memory buffer can be provided by the application.
@@ -39,11 +47,11 @@
         callback of the command buffer can be provided by the ring buffer.</p>
     <p dir="auto">The &quot;memory buffer object&quot; is called the &quot;segment&quot; by the ring buffer. When the
         ring buffer is initialized by the application, several segments are provided by the application. The ring buffer
-        inserts the &quot;jump address packets&quot; to connect the separated segments. And when there is no remaining
-        segment, the ring buffer will wait for the GPU by default.</p>
+        inserts the &quot;jump&quot; packets to connect the separated segments. And when there is no remaining segment,
+        the ring buffer will wait for the GPU by default.</p>
     <p dir="auto">Evidently, it is the most efficient strategy to use only one segment for each command buffer in each
-        frame, since the &quot;jump address packets&quot; can be skipped, and it is NOT efficient to wait for the GPU.
-        In my view, the implementation of the ring buffer is similar to the <a
+        frame, since the &quot;jump&quot; packets can be skipped, and it is NOT efficient to wait for the GPU. In my
+        view, the implementation of the ring buffer is similar to the <a
             href="https://developer.nvidia.com/content/constant-buffers-without-constant-pain-0">Direct3D11 Constant
             Buffer</a>, which is NOT the optimal, where the application will wait for the GPU and stall when the memory
         of the constant buffer is run out. To improve the performance, the memory of the constant buffer is visible to
@@ -54,15 +62,14 @@
             Uniform buffers</a> for more information) to manage the memory of the constant buffer. But the application
         never waits for the GPU, but instead skips the objects which exceed the memory of the constant buffer in the
         current frame, and tries to allocate more memory for the constant buffer in the next frame.</p>
-    <p dir="auto">In my view, perhaps the ring buffer is merely for demonstration purpose and we should NOT use the ring
-        buffer in the product, since the implementation of the ring buffer is NOT the optimal. The more important point
-        is that since the memory of the command buffer is visible to the application, the most efficient strategy, which
-        may be NOT compatible with the mainstream API specifications such as Vulkan or Direct3D, can be adopted by the
-        application. For example, only one segment is used for each command buffer in each frame to skip the &quot;jump
-        address packets&quot;, and the strategy which is used to manage the memory of constant buffer in Vulkan can be
-        adopted. The application never waits for the GPU, but instead stops recording and submits the command buffer
-        when the memory of the command buffer is run out in the current frame, and tries to allocate more memory for the
-        command buffer in the next frame.</p>
+    <p dir="auto">In my view, perhaps we should NOT use the ring buffer in the product, since the implementation of the
+        ring buffer is NOT the optimal. The more important point than the ring buffer is that since the memory of the
+        command buffer is visible to the application, the most efficient strategy, which may be NOT compatible with the
+        mainstream API specifications such as Vulkan or Direct3D, can be adopted by the application. For example, only
+        one segment is used for each command buffer in each frame to skip the &quot;jump&quot; packets, and the strategy
+        which is used to manage the memory of constant buffer in Vulkan can be adopted. The application never waits for
+        the GPU, but instead stops recording and submits the command buffer when the memory of the command buffer is run
+        out in the current frame, and tries to allocate more memory for the command buffer in the next frame.</p>
 
 </body>
 
