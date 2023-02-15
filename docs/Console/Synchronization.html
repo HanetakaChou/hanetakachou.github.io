@@ -10,8 +10,8 @@
 </head>
 
 <body class="markdown-body">
-    <h1 dir="auto" id="synchronization-1">Synchronization</h1>
-    <h2 dir="auto" id="execution-synchronization-1">Execution Synchronization</h2>
+    <h1 dir="auto" id="synchronization">Synchronization</h1>
+    <h2 dir="auto" id="execution-synchronization">Execution Synchronization</h2>
     <table dir="auto">
         <thead dir="auto">
             <tr dir="auto">
@@ -34,8 +34,8 @@
             </tr>
         </tbody>
     </table>
-    <h2 dir="auto" id="memory-synchronization-1">Memory Synchronization</h2>
-    <h3 dir="auto" id="gpu-cache-hierarchy-1">GPU Cache Hierarchy</h3>
+    <h2 dir="auto" id="memory-synchronization">Memory Synchronization</h2>
+    <h3 dir="auto" id="gpu-cache-hierarchy">GPU Cache Hierarchy</h3>
     <pre><code class="code-line language-graphviz" dir="auto"><code><div></div></code></code></pre>
     <p dir="auto">The flush operation makes the data which has been written visible to other units. Evidently, the
         <strong>read-only</strong> or <strong>walk-through</strong> caches do NOT support the flush operation. The
@@ -98,7 +98,7 @@
                 <td style="text-align:left">an image is accessed as the color attachment</td>
                 <td style="text-align:left">RADV_CMD_FLAG_FLUSH_AND_INV_CB</td>
                 <td style="text-align:left">an image has been written as the color attachment and will be read by
-                    another usage <br /> the data will be flushed to GL1 and written directly to GL2</td>
+                    another usage <br /> ------- <br /> the data will be flushed to GL1 and written directly to GL2</td>
                 <td style="text-align:left">RADV_CMD_FLAG_FLUSH_AND_INV_CB</td>
                 <td style="text-align:left">TODO</td>
             </tr>
@@ -109,7 +109,7 @@
                 <td style="text-align:left">an image is accessed as the depth attachment</td>
                 <td style="text-align:left">RADV_CMD_FLAG_FLUSH_AND_INV_DB</td>
                 <td style="text-align:left">an image has been written as the depth attachment and will be read by
-                    another usage <br /> the data will be flushed to GL1 and written directly to GL2</td>
+                    another usage <br /> ------- <br /> the data will be flushed to GL1 and written directly to GL2</td>
                 <td style="text-align:left">RADV_CMD_FLAG_FLUSH_AND_INV_DB</td>
                 <td style="text-align:left">TODO</td>
             </tr>
@@ -121,8 +121,8 @@
                     attachment</td>
                 <td style="text-align:left">RADV_CMD_FLAG_FLUSH_AND_INV_CB_META</td>
                 <td style="text-align:left">an image with metadata (CMASK, FMASK or DCC) has been written as the color
-                    attachment and will be read by another usage <br /> the data will be flushed to GL1 and written
-                    directly to GL2</td>
+                    attachment and will be read by another usage <br /> ------- <br /> the data will be flushed to GL1
+                    and written directly to GL2</td>
                 <td style="text-align:left">RADV_CMD_FLAG_FLUSH_AND_INV_CB_META</td>
                 <td style="text-align:left">TODO</td>
             </tr>
@@ -133,8 +133,8 @@
                 <td style="text-align:left">an image with metadata (HTILE) is accessed as the depth attachment</td>
                 <td style="text-align:left">RADV_CMD_FLAG_FLUSH_AND_INV_DB_META</td>
                 <td style="text-align:left">an image with metadata (HTILE) has been written as the depth attachment and
-                    will be read by another usage <br /> the data will be flushed to GL1 and written directly to GL2
-                </td>
+                    will be read by another usage <br /> ------- <br /> the data will be flushed to GL1 and written
+                    directly to GL2</td>
                 <td style="text-align:left">RADV_CMD_FLAG_FLUSH_AND_INV_DB_META</td>
                 <td style="text-align:left">TODO</td>
             </tr>
@@ -147,8 +147,9 @@
                 <td style="text-align:left">N/A</td>
                 <td style="text-align:left">X_XXX_GL1_INV</td>
                 <td style="text-align:left">the data has been written to GL1 by the flush operation and will be read by
-                    GPU <br /> the data has been written by one computer shader and will be read by another computer
-                    (there are multiple GL1 and GL2 caches but the coherency is NOT maintained for computer shader)</td>
+                    GPU <br /> ------- <br /> the data has been written by one computer shader and will be read by
+                    another computer shader (there are multiple GL0 and GL1 caches but the coherency is NOT maintained
+                    for computer shaders)</td>
             </tr>
             <tr dir="auto">
                 <td style="text-align:left">GL2</td>
@@ -171,12 +172,13 @@
                 <td style="text-align:left">N/A</td>
                 <td style="text-align:left">RADV_CMD_FLAG_INV_L2_METADATA</td>
                 <td style="text-align:left">the metadata of the image has been written to GL2 by the flush operation and
-                    the image will be accessed as the sampled or storage image <br /> it is NOT necessary to invalidate
-                    the GLM when the data is accessed as the buffer since the data will NOT go through the GLM</td>
+                    the image will be accessed as the sampled or storage image <br /> ------- <br /> it is NOT necessary
+                    to invalidate the GLM when the data is accessed as the buffer since the data will NOT go through the
+                    GLM</td>
             </tr>
         </tbody>
     </table>
-    <h3 dir="auto" id="pm4-packet-1">PM4 Packet</h3>
+    <h3 dir="auto" id="pm4-packet">PM4 Packet</h3>
     <p dir="auto"><a
             href="https://gitlab.freedesktop.org/mesa/mesa/-/blob/22.3/src/amd/vulkan/si_cmd_buffer.c#L1144">PKT3_EVENT_WRITE</a><br>
         <a
@@ -184,12 +186,34 @@
         <a
             href="https://gitlab.freedesktop.org/mesa/mesa/-/blob/22.3/src/amd/vulkan/si_cmd_buffer.c#L1233">PKT3_ACQUIRE_MEM</a>
     </p>
-    <h3 dir="auto" id="gl2-1">GL2</h3>
+    <h3 dir="auto" id="gl2">GL2</h3>
     <p dir="auto">The GL2 is only used for the communication between GPU and CPU (for example, implementing the VkFence
         and the VkSemaphore).</p>
     <p dir="auto">By <a
             href="https://gitlab.freedesktop.org/mesa/mesa/-/blob/22.3/src/gallium/drivers/radeonsi/si_pipe.h#L285">si_cache_policy</a>
         of RADV, we have the GL2 cache policies.</p>
+    <table dir="auto">
+        <thead dir="auto">
+            <tr dir="auto">
+                <th style="text-align:left">Policy Name</th>
+                <th style="text-align:left">TODO</th>
+            </tr>
+        </thead>
+        <tbody dir="auto">
+            <tr dir="auto">
+                <td style="text-align:left">LRU</td>
+                <td style="text-align:left">TODO</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:left">BYPASS</td>
+                <td style="text-align:left">TODO</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:left">STREAM</td>
+                <td style="text-align:left">TODO</td>
+            </tr>
+        </tbody>
+    </table>
     <p dir="auto"><strong>write-combine</strong> which allows multiple writes to be combined together in order to
         improve performance (by &quot;PAGE_WRITECOMBINE&quot; of &quot;Protection Attributes&quot; of &quot;Chapter 13:
         Windows Memory Architecture&quot; of <a
