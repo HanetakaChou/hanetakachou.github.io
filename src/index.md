@@ -1,8 +1,8 @@
-# HanetakaChou's Blog  
+# YuqiaoZhang(HanetakaChou)'s Blog  
 
 ## License  
 ```  
-Copyright (C) 2018-2023 HanetakaChou
+Copyright (C) YuqiaoZhang(HanetakaChou)
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
@@ -26,6 +26,7 @@ If you find there are any mistakes or improvements, please don't hesitate to con
 
 ## Console  
 - CB(Command Buffer) Ring Buffer [Documentation](Console/CB-Ring-Buffer.html)  
+- Synchronization [Documentation](Console/Synchronization.html)  
 
 ## Image Synthesis  
 
