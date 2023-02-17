@@ -10,8 +10,23 @@ TODO | RADV_CMD_FLAG_CS_PARTIAL_FLUSH
 
 The GPU has some internal signalling.  
 The command packet (PKT3_EVENT_WRITE) throws an event down the pipeline and stalls the CP(command processor) until the signal arrives.  
-This is supported by Command Shader (RADV_CMD_FLAG_CS_PARTIAL_FLUSH), Pixel Shader (RADV_CMD_FLAG_PS_PARTIAL_FLUSH) and Vertex Shader (RADV_CMD_FLAG_VS_PARTIAL_FLUSH).  
+This is supported by Compute Shader (RADV_CMD_FLAG_CS_PARTIAL_FLUSH), Pixel Shader (RADV_CMD_FLAG_PS_PARTIAL_FLUSH) and Vertex Shader (RADV_CMD_FLAG_VS_PARTIAL_FLUSH).  
 
+
+cache flush  
+signalling that an operation has finished  
+waiting for the signal
+
+[SI_CONTEXT_PFP_SYNC_ME](https://gitlab.freedesktop.org/mesa/mesa/-/blob/22.3/src/gallium/drivers/radeonsi/si_gfx_cs.c#L796)  
+
+CPG (Command Processor Graphics) = PFP (Pre-Fetch Parser) V_580_CP_PFP +  ME (Micro Engine) 
+
+[V_580_CP_PFP](https://gitlab.freedesktop.org/mesa/mesa/-/blob/22.3/src/amd/vulkan/si_cmd_buffer.c#L1234)  
+[V_580_CP_ME](https://gitlab.freedesktop.org/mesa/mesa/-/blob/22.3/src/amd/vulkan/radv_device.c#L4574)  
+
+
+PFP - ME - // wait on early stage is ususaly safe // wait on later stage is usually more efficient  
+// PFP will ask GE to prefetch index data
 
 ## Cache Synchronization  
 
@@ -39,8 +54,14 @@ GLM (GL2 Metadata) | Graphics Level 2 Metadata Cache | Write-Through | an image 
 ### PM4 Packet
 
 [PKT3_EVENT_WRITE](https://gitlab.freedesktop.org/mesa/mesa/-/blob/22.3/src/amd/vulkan/si_cmd_buffer.c#L1144)  
-[PKT3_RELEASE_MEM](https://gitlab.freedesktop.org/mesa/mesa/-/blob/22.3/src/amd/vulkan/si_cmd_buffer.c#L1218)  
+
 [PKT3_ACQUIRE_MEM](https://gitlab.freedesktop.org/mesa/mesa/-/blob/22.3/src/amd/vulkan/si_cmd_buffer.c#L1233)  
+
+[PKT3_RELEASE_MEM](https://gitlab.freedesktop.org/mesa/mesa/-/blob/22.3/src/amd/vulkan/si_cmd_buffer.c#L1218)  
+
+[PKT3_EVENT_WRITE_EOP](https://gitlab.freedesktop.org/mesa/mesa/-/blob/22.3/src/amd/vulkan/si_cmd_buffer.c#L1047)  
+
+// flush cache
 
 ### GL2
 
