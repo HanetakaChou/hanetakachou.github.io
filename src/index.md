@@ -40,8 +40,8 @@ If you find there are any mistakes or improvements, please don't hesitate to con
 ### Lighting  
 - Radiometric and Photometric quantities [Documentation](Image-Synthesis/Lighting/Radiometric-and-Photometric-quantities.html)  
 - BRDF [Documentation](Image-Synthesis/Lighting/BRDF.html)  
-- Environment Lighting [Documentation](Image-Synthesis/Lighting/Environment-Lighting.html) [Code](https://github.com/HanetakaChou/Environment-Lighting)  
-- LTC [Documentation](Image-Synthesis/Lighting/LTC.html) [Code](https://github.com/HanetakaChou/LTC)  
+- Environment Lighting [Documentation](Image-Synthesis/Lighting/Environment-Lighting.html) [Code-VK](https://github.com/HanetakaChou/Image-Synthesis/tree/Environment-Lighting-VK) [Code-D3D11](https://github.com/HanetakaChou/Image-Synthesis/tree/Environment-Lighting-D3D11)  
+- LTC [Documentation](Image-Synthesis/Lighting/LTC.html) [Code-VK](https://github.com/HanetakaChou/Image-Synthesis/tree/LTC-VK) [Code-D3D11](https://github.com/HanetakaChou/Image-Synthesis/tree/LTC-D3D11)  
 - Subsurface-Scattering [Documentation](Image-Synthesis/Lighting/Subsurface-Scattering.html) [Code-Disney](https://github.com/HanetakaChou/Subsurface-Scattering-Disney) [Code-PreIntegrated](https://github.com/HanetakaChou/Subsurface-Scattering-PreIntegrated)  
 - OIT [Documentation](Image-Synthesis/Lighting/OIT.html) [Code-Stochastic-Transparency](https://github.com/HanetakaChou/StochasticTransparency) [Code-MLAB](https://github.com/HanetakaChou/MultiLayerAlphaBlending) [Code-WBOIT](https://github.com/HanetakaChou/WeightedBlendedOIT)  
 - Volumetric-Lighting [Documentation](Image-Synthesis/Lighting/Volumetric-Lighting.html) [Code](https://github.com/HanetakaChou/VolumetricLighting)  
