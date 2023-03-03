@@ -13,13 +13,28 @@
 // flush cache
 PKT3_WAIT_REG_MEM  
 
-But the event_write packet does NOT make the CP stall.  
+But the event_write packet does NOT make the CP stall (TODO: the flush operation stalls but the invalidate operation does NOT stall)  
 
 Usually, the acquire_mem packet can be used to mantually make the CP stall until the events triggered by the event_write packet have been processed. 
 
-// acquire_mem: the cache op (cb metadata or db metadata is NOT supported) is split into cb_db_op (cb or db caches) and gcr_cntl (Graphics Cache Rinse - Control, no cb or db caches)  
+acquire_mem:  
+the cache op (cb metadata or db metadata is NOT supported) is split into cb_db_op (cb or db caches) and gcr_cntl (Graphics Cache Rinse - Control, no cb or db caches)  
+
+Cache Operation Execution Order:  
+1\. GL0 -> GL1 -> GL2:  
+[S_586_SEQ(V_586_SEQ_FORWARD)](https://gitlab.freedesktop.org/mesa/mesa/-/blob/22.3/src/amd/vulkan/si_cmd_buffer.c#L1160)  
+// usually for flush  
+
+2\. GL2-> GL1 -> GL0:  
+[S_586_SEQ(V_586_SEQ_BACKWARD)](https://gitlab.freedesktop.org/mesa/mesa/-/blob/22.3/src/amd/vulkan/si_cmd_buffer.c#L1160)  
+// usually for invalidate  
 
 But sometimes we may have a no-depth no-color PS, the event_write_eop and wait packets packets should be used to make mantually the CP stall.   
+
+RELEASE_MEM packet is usually used together with the EVENT_WRITE_EOP (End Of Pipe) to singal the fence  
+But the EOP only make sure that the shaders which access the command buffer has been finished.  
+It is still possible that the CP is accessing the command buffer (the CP may even write into the command buffer)  
+If we reuse the memory of command buffer (reuse means that the address is still the same), we need to use the acquire_memory to force the CP has finished accessing
 
 ## Wait Synchronization
 
@@ -48,6 +63,7 @@ CPG (Command Processor Graphics) = PFP (Pre-Fetch Parser) V_580_CP_PFP +  ME (Mi
 
 [V_580_CP_PFP](https://gitlab.freedesktop.org/mesa/mesa/-/blob/22.3/src/amd/vulkan/si_cmd_buffer.c#L1234)  
 [V_580_CP_ME](https://gitlab.freedesktop.org/mesa/mesa/-/blob/22.3/src/amd/vulkan/radv_device.c#L4574)  
+
 
 
 PFP - ME - // wait on early stage is ususaly safe // wait on later stage is usually more efficient  

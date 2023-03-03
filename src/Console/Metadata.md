@@ -9,3 +9,5 @@ FMask (Fragment Mask) VK_AMD_shader_fragment_mask
 
 DB (Depth Block) Metadata  
 HTILE: HiZ(Hierarchical Z)  
+
+D3D12_RESOURCE_FLAG_DENY_SHADER_RESOURCE  
