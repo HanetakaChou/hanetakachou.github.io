@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/default.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+</head>
+
+<body class="markdown-body">
+    <h1 dir="auto" id="image-tiling">Image Tiling</h1>
+    <p dir="auto">The linear tiling (VK_IMAGE_TILING_LINEAR) is similiar to the natural layout of the C++ 2D array. By
+        &quot;A.4.4 Blocked 2D Arrays&quot; of <a
+            href="https://pbr-book.org/3ed-2018/Utilities/Memory_Management#Blocked2DArrays">PBR Book</a>, for the 2D
+        image indexed by (u, v), the linear tiling is NOT efficient, since the adjacent values in the v direction would
+        be on different cache line.</p>
+    <p dir="auto">The optimal tiling (VK_IMAGE_TILING_OPTIMAL) is the more efficient memory layout. By &quot;Figure
+        23.15&quot; of <a href="https://www.realtimerendering.com/">Real-Time Rendering Fourth Edition</a>, the Morton
+        sequence can be one implementation.</p>
+    <p dir="auto"><img src="Image-Tiling-1.png" alt="Morton sequence" data-src="Image-Tiling-1.png"></p>
+    <p dir="auto">The implementation of the optimal tiling is vendor dependent. This is why we usually do NOT write to
+        optimal tiling image even if we can map the memory. For AMD GPU, the AMD addrlib <a
+            href="https://gitlab.freedesktop.org/mesa/mesa/-/blob/22.3/src/amd/vulkan/radv_meta_bufimage.c#L1372">ac_surface_addr_from_coord</a>
+        can be used to calculate the address from the (u, v) index.</p>
+
+</body>
+
+</html>
