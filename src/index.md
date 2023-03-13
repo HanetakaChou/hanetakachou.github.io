@@ -22,11 +22,11 @@ If you find there are any mistakes or improvements, please don't hesitate to con
 
 ## Vulkan
 - Resource Binding [Documentation](Vulkan/Resource-Binding.html)  
-- Image Tiling [Documentation](Vulkan/Image-Tiling.html)  
+- Synchronization [Documentation](Vulkan/Image-Tiling.html)  
 
 ## Console  
 - CB(Command Buffer) Ring Buffer [Documentation](Console/CB-Ring-Buffer.html)  
-- Synchronization [Documentation](Console/Synchronization.html)  
+- Image Tiling [Documentation](Console/Image-Tiling.html)  
 
 ## Image Synthesis  
 
