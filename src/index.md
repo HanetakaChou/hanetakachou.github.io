@@ -22,7 +22,7 @@ If you find there are any mistakes or improvements, please don't hesitate to con
 
 ## Vulkan
 - Resource Binding [Documentation](Vulkan/Resource-Binding.html)  
-- Synchronization [Documentation](Vulkan/Image-Tiling.html)  
+- Synchronization [Documentation](Vulkan/Synchronization.html)  
 
 ## Console  
 - CB(Command Buffer) Ring Buffer [Documentation](Console/CB-Ring-Buffer.html)  
