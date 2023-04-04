@@ -55,16 +55,12 @@ waiting for the signal
 
 [PKT3_EVENT_WRITE](https://gitlab.freedesktop.org/mesa/mesa/-/blob/22.3/src/amd/vulkan/si_cmd_buffer.c#L1144)  
 
-
-
 [SI_CONTEXT_PFP_SYNC_ME](https://gitlab.freedesktop.org/mesa/mesa/-/blob/22.3/src/gallium/drivers/radeonsi/si_gfx_cs.c#L796)  
 
 CPG (Command Processor Graphics) = PFP (Pre-Fetch Parser) V_580_CP_PFP +  ME (Micro Engine) 
 
 [V_580_CP_PFP](https://gitlab.freedesktop.org/mesa/mesa/-/blob/22.3/src/amd/vulkan/si_cmd_buffer.c#L1234)  
 [V_580_CP_ME](https://gitlab.freedesktop.org/mesa/mesa/-/blob/22.3/src/amd/vulkan/radv_device.c#L4574)  
-
-
 
 PFP - ME - // wait on early stage is ususaly safe // wait on later stage is usually more efficient  
 // PFP will ask GE to prefetch index data
@@ -118,3 +114,110 @@ STREAM | TODO
 
 **write-combine** which allows multiple writes to be combined together in order to improve performance (by "PAGE_WRITECOMBINE" of "Protection Attributes" of "Chapter 13: Windows Memory Architecture" of [Windows via C/C++ Fifth Edition](https://www.microsoftpressstore.com/store/windows-via-c-c-plus-plus-9780735642980))  
 
+
+### GPU Cache Hierarchy
+
+[RDNA](https://gpuopen.com/rdna/)  
+
+```graphviz
+digraph RDNA
+{
+  bgcolor=transparent;
+  splines=false;
+
+  subgraph cluster_WGP 
+  {
+    label = "WGP (Work Group Processor)";
+    fontsize = 20;
+    style=filled;
+    color=grey;
+    
+    node [style=filled, color=pink];
+    I [label="I$ (Instruction Cache)", shape=box];
+    K [label="K$ (Scalar Cache)", shape=box];
+    V [label="V$ (Vector Cache)", shape=box];
+  }
+
+  subgraph cluster_RB 
+  {
+    label = "RB (Render Backend)";
+    fontsize = 20;
+    style=filled;
+    color=grey;
+    
+    node [style=filled, color=pink];
+    CBD [label = "CB (Color Block) Data Cache", shape=box];
+    CBM [label = "CB (Color Block) Metadata Cache", shape=box];
+    DBD [label = "DB (Depth Block) Data Cache", shape=box];
+    DBM [label = "DB (Depth Block) Metadata Cache", shape=box];
+  }
+  
+  GL1 [label = "GL1 (Graphics Level 1 Cache)", shape=box, style=filled, color=pink];
+  GL2 [label = "GL2 (Graphics Level 2 Cache)", shape=box, style=filled, color=pink];
+  GLM [label = "GLM (Graphics Level 2 Metadata Cache)", shape=box, style=filled, color=pink];
+  MM [label = "Main Memory", shape=box, style=filled, color=pink];
+
+  I -> GL1;
+  K -> GL1;
+  V -> GL1;
+  CBD -> GL1;  
+  CBM -> GL1;  
+  DBD -> GL1;  
+  DBM -> GL1;  
+
+  GL1 -> GL2;
+
+  GLM -> GL2;
+
+  GL2 -> MM;
+}
+```  
+
+```graphviz
+digraph GCN 
+{
+  bgcolor=transparent;
+  splines=false;
+
+  subgraph cluster_CU 
+  {
+    label = "CU (Compute Unit)";
+    fontsize = 20;
+    style = filled;
+    color = grey;
+    
+    node [style=filled, color=pink];
+    I [label="I$ (Instruction Cache)", shape=box];
+    K [label="K$ (Constant Cache)", shape=box];
+    GL1 [label="GL1 (Graphics Level 1 Cache)", shape=box];
+  }
+
+  subgraph cluster_RB 
+  {
+    label = "RB (Render Backend)";
+    fontsize = 20;
+    style=filled;
+    color=grey;
+    
+    node [style=filled, color=pink];
+    CBD [label = "CB (Color Block) Data Cache", shape=box];
+    CBM [label = "CB (Color Block) Metadata Cache", shape=box];
+    DBD [label = "DB (Depth Block) Data Cache", shape=box];
+    DBM [label = "DB (Depth Block) Metadata Cache", shape=box];
+  }
+  
+  GL2 [label = "GL2 (Graphics Level 2 Cache)", shape=box, style=filled, color=pink];
+  MM [label = "Main Memory", shape=box, style=filled, color=pink];
+
+  I -> GL2;
+  K -> GL2;
+  GL1 -> GL2;
+  
+  CBD -> MM;  
+  CBM -> MM;  
+  DBD -> MM;  
+  DBM -> MM;  
+
+  GL2 -> MM;
+}
+```
