@@ -42,6 +42,8 @@ By "Participating media" of [CS 348B - Computer Graphics: Image Synthesis Techni
 
 ![Radiative-Transfer-Equation](Volume-Rendering-2.png)  
 
+Technically, the relationship between $\displaystyle \operatorname{L_i}(p + \overrightarrow{\omega_i}t, \overrightarrow{\omega_{s}})$ and $\displaystyle \operatorname{L_o}(\overrightarrow{p_{sun}}, \overrightarrow{\omega_{s}})$ follows the **RTE** (**Radiative Transfer Equation**). However, in real time rendering, we assume that $\displaystyle \operatorname{L_i}(p + \overrightarrow{\omega_i}t, \overrightarrow{\omega_{s}}) \approx \operatorname{\Tau_{\tau}}(p + \overrightarrow{\omega_i}t, -\overrightarrow{\omega_{s}}, t_{sun}) \cdot \operatorname{L_o}(\overrightarrow{p_{sun}}, \overrightarrow{\omega_{s}})$ where $\displaystyle \overrightarrow{p_{sun}} = \operatorname{r}(p + \overrightarrow{\omega_i}t, -\overrightarrow{\omega_{s}})$ and $\displaystyle \operatorname{L_o}(\overrightarrow{p_{sun}}, \overrightarrow{\omega_{s}})$ is the "intensity" of the sun (directional light). This means that the in-scattering part of the **RTE** (**Radiative Transfer Equation**) is ignored.  
+ 
 Evidently, the relationship $\displaystyle \operatorname{L_i}(\overrightarrow{p}, \overrightarrow{\omega_i}) = \operatorname{L_o}(\operatorname{r}(\overrightarrow{p}, \overrightarrow{\omega_i}), -\overrightarrow{\omega_i})$ by "Figure 11.1" of [Real-Time Rendering Fourth Edition](http://www.realtimerendering.com/) and "Figure 14.14" of [PBRT-V3](https://pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/The_Light_Transport_Equation) is the simplified case of the **RTE** (**Radiative Transfer Equation**) by assuming no participating media.  
 
 ## Volumetric Fog  
