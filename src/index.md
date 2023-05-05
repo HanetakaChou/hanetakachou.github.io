@@ -46,10 +46,7 @@ If you find there are any mistakes or improvements, please don't hesitate to con
 - OIT [Documentation](Image-Synthesis/Lighting/OIT.html) [Code-Stochastic-Transparency](https://github.com/HanetakaChou/StochasticTransparency) [Code-MLAB](https://github.com/HanetakaChou/MultiLayerAlphaBlending) [Code-WBOIT](https://github.com/HanetakaChou/WeightedBlendedOIT)  
 - VXGI [Documentation](Image-Synthesis/Lighting/VXGI.html) [Code](https://github.com/HanetakaChou/VXGI)  
 - Volume-Rendering [Documentation](Image-Synthesis/Lighting/Volume-Rendering.html)  
-- Volumetric-Lighting [Documentation](Image-Synthesis/Lighting/Volumetric-Lighting.html) [Code](https://github.com/HanetakaChou/VolumetricLighting)  
-- Path-Tracing [Documentation](Image-Synthesis/Lighting/Path-Tracing.html)  
 - HFTS [Documentation](Image-Synthesis/Lighting/HFTS.html) [Code](https://github.com/HanetakaChou/HFTS)  
-- Radiosity [Documentation](Image-Synthesis/Lighting/Radiosity.html)  
 
 ## Textbook Solution
 - Visual-Complex-Analysis [Documentation](Textbook-Solution/Visual-Complex-Analysis.html)  
