@@ -23,7 +23,8 @@ The **NdotH** and the **LdotH** are calculated by [GetBSDFAngle](https://github.
 
 ## Specular AA
 
-"Real-Time Rendering Fourth Edition \ Equation 9.76"  
+By "Equation \(9.76\)" of [Real-Time Rendering Fourth Edition](https://www.realtimerendering.com/), the NDF by averaging the normal and the roughness separately is NOT the averaging NDF.  
+
 [TextureNormalVariance](https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.core/ShaderLibrary/CommonMaterial.hlsl#L214) by U3D  
 
 ## Trowbridge-Reitz  
