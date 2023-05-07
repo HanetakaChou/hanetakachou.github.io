@@ -46,18 +46,29 @@ Technically, the relationship between $\displaystyle \operatorname{L_i}(p + \ove
  
 Evidently, the relationship $\displaystyle \operatorname{L_i}(\overrightarrow{p}, \overrightarrow{\omega_i}) = \operatorname{L_o}(\operatorname{r}(\overrightarrow{p}, \overrightarrow{\omega_i}), -\overrightarrow{\omega_i})$ by "Figure 11.1" of [Real-Time Rendering Fourth Edition](http://www.realtimerendering.com/) and "Figure 14.14" of [PBRT-V3](https://pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/The_Light_Transport_Equation) is the simplified case of the **RTE** (**Radiative Transfer Equation**) by assuming no participating media.  
 
-## Volumetric Fog  
+## Participating Media Rendering  
 
-TODO
+### Epipolar Sampling  
 
-## Volumetric Lighting  
-
-[GameWorks VisualFX](https://developer.nvidia.com/volumetriclighting)  
+\[Yusov 2013\]  
+\[Hillaire 2016\]  
 
 TODO  
+https://www.intel.com/content/dam/develop/external/us/en/documents/gdc2013-lightscattering-final.pdf  
+https://www.intel.com/content/dam/develop/external/us/en/documents/outdoor-light-scattering-update.pdf  
+https://github.com/GameTechDev/OutdoorLightScattering
+
+### Tessellation  
+  
+\[Cantlay 2014\]  
+\[Hoobler 2016\]
+
+TODO  
+https://github.com/NVIDIAGameWorks/VolumetricLighting  
 
 ## Reference  
-\[Bruneton 2008\] [Eric Bruneton, Fabrice Neyret. "Precomputed Atmospheric Scattering." EGSR 2008.](https://github.com/ebruneton/precomputed_atmospheric_scattering)  
+\[Yusov 2013\] [Egor Yusov. "Practical Implementation of Light Scattering Effects Using Epipolar Sampling and 1D Min/Max Binary Trees." GDC 2013](https://github.com/GameTechDev/OutdoorLightScattering)  
 \[Cantlay 2014\] [Iain Cantlay. From Terrain to Godrays Better Use of DirectX11. GDC 2014.](https://developer.nvidia.com/sites/default/files/akamai/gameworks/events/gdc14/GDC_14_From%20Terrain%20to%20Godrays%20-%20Better%20Use%20of%20DirectX11CantlayTatarinov.pdf)  
+\[Hillaire 2016\] [Sebastien Hillaire. "Physically Based Sky, Atmosphere and Cloud Rendering in Frostbite." SIGGRAPH 2016.](https://www.ea.com/news/physically-based-sky-atmosphere-and-cloud-rendering)  
 \[Hoobler 2016\] [Nathan Hoobler. "Fast, Flexible, Physically-Based Volumetric Light Scattering." GTC 2016.](https://developer.nvidia.com/sites/default/files/akamai/gameworks/downloads/papers/NVVL/Fast_Flexible_Physically-Based_Volumetric_Light_Scattering.pdf)  
-\[Fong 2017\] [Julian Fong, Magnus Wrenninge, Christopher Kulla, Ralf Habel. "Production Volume Rendering." SIGGRAPH 2017 Course Notes.](https://graphics.pixar.com/library/)  
+\[Fong 2017\] [Julian Fong, Magnus Wrenninge, Christopher Kulla, Ralf Habel. "Production Volume Rendering." SIGGRAPH 2017.](https://graphics.pixar.com/library/)  
