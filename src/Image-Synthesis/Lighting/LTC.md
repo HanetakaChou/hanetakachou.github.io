@@ -1,6 +1,6 @@
 # LTC (Linearly Transformed Cosine)  
 
-By "Equation \(5.9\)" of [PBR Book](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Surface_Reflection#TheBRDF), we have the reflectance equation $\displaystyle \operatorname{L_V}(\overrightarrow{\omega_V}) = \int_\Omega \operatorname{f}(\overrightarrow{\omega_V}, \overrightarrow{\omega_L}) \cdot \operatorname{L_L}(\overrightarrow{\omega_L}) \cdot (\cos(\theta_i))^+ \, d\overrightarrow{\omega_L}$.  
+By "Equation \(5.9\)" of [PBR Book](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Surface_Reflection#TheBRDF), we have the reflectance equation $\displaystyle \operatorname{L_V}(\overrightarrow{\omega_V}) = \int_\Omega \operatorname{f}(\overrightarrow{\omega_V}, \overrightarrow{\omega_i}) \cdot \operatorname{L_L}(\overrightarrow{\omega_i}) \cdot (\cos(\theta_i))^+ \, d\overrightarrow{\omega_i}$.  
 
 By "Figure 14.13" of [PBR Book](https://pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/Direct_Lighting#EstimatingtheDirectLightingIntegral), the **MIS** ("13.10.1 Multiple Importance Sampling" of [PBR Book](https://pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling#MultipleImportanceSampling)) is applied and a large number of incident directions are sampled to calculate the reflectance equation.  
 
