@@ -104,7 +104,7 @@ By "Equation \(9\)" of \[Heitz 2014\] and "Figure 8.15" of [PBRT-V3](https://pbr
 
 Genuinely, although the NDF is the PDF used by UE4, the VNDF by \[Heitz 2018\] is the better alternative.  
 
-By "Equation (14)" of \[Heitz 2014\] and "Equation \(8.12\)" of [PBRT-V3](https://pbr-book.org/3ed-2018/Reflection_Models/Microfacet_Models#MaskingandShadowing), we have $\displaystyle \int_{\Omega} \operatorname{G_1}(\overrightarrow{\omega_o},  \overrightarrow{\omega_h}) ( \overrightarrow{\omega_o} \cdot  \overrightarrow{\omega_h} )^+ \operatorname{D}(\overrightarrow{\omega_h}) \, d \overrightarrow{\omega_h} = \cos \theta_V$.  
+By "Equation (14)" of \[Heitz 2014\] and "Equation \(8.12\)" of [PBRT-V3](https://pbr-book.org/3ed-2018/Reflection_Models/Microfacet_Models#MaskingandShadowing), we have $\displaystyle \int_{\Omega} \operatorname{G_1}(\overrightarrow{\omega_o},  \overrightarrow{\omega_h}) ( \overrightarrow{\omega_o} \cdot  \overrightarrow{\omega_h} )^+ \operatorname{D}(\overrightarrow{\omega_h}) \, d \overrightarrow{\omega_h} = \cos \theta_o$.  
 
 **TODO:**  
 
