@@ -1,0 +1,401 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/default.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+</head>
+
+<body class="markdown-body">
+  <h1 dir="auto" id="synchronization">Synchronization</h1>
+  <h2 dir="auto" id="pm4-packet">PM4 Packet</h2>
+  <p dir="auto"><a
+      href="https://gitlab.freedesktop.org/mesa/mesa/-/blob/22.3/src/amd/vulkan/si_cmd_buffer.c#L1144">PKT3_EVENT_WRITE</a>
+  </p>
+  <p dir="auto"><a
+      href="https://gitlab.freedesktop.org/mesa/mesa/-/blob/22.3/src/amd/vulkan/si_cmd_buffer.c#L1233">PKT3_ACQUIRE_MEM</a>
+  </p>
+  <p dir="auto"><a
+      href="https://gitlab.freedesktop.org/mesa/mesa/-/blob/22.3/src/amd/vulkan/si_cmd_buffer.c#L1218">PKT3_RELEASE_MEM</a>
+  </p>
+  <p dir="auto"><a
+      href="https://gitlab.freedesktop.org/mesa/mesa/-/blob/22.3/src/amd/vulkan/si_cmd_buffer.c#L1047">PKT3_EVENT_WRITE_EOP</a>
+  </p>
+  <p dir="auto">// flush cache
+    PKT3_WAIT_REG_MEM</p>
+  <p dir="auto">But the event_write packet does NOT make the CP stall (TODO: the flush operation stalls but the
+    invalidate operation does NOT stall)</p>
+  <p dir="auto">Usually, the acquire_mem packet can be used to mantually make the CP stall until the events triggered by
+    the event_write packet have been processed.</p>
+  <p dir="auto">acquire_mem:<br>
+    the cache op (cb metadata or db metadata is NOT supported) is split into cb_db_op (cb or db caches) and gcr_cntl
+    (Graphics Cache Rinse - Control, no cb or db caches)</p>
+  <p dir="auto">Cache Operation Execution Order:<br>
+    1. GL0 -&gt; GL1 -&gt; GL2:<br>
+    <a
+      href="https://gitlab.freedesktop.org/mesa/mesa/-/blob/22.3/src/amd/vulkan/si_cmd_buffer.c#L1160">S_586_SEQ(V_586_SEQ_FORWARD)</a><br>
+    // usually for flush
+  </p>
+  <p dir="auto">2. GL2-&gt; GL1 -&gt; GL0:<br>
+    <a
+      href="https://gitlab.freedesktop.org/mesa/mesa/-/blob/22.3/src/amd/vulkan/si_cmd_buffer.c#L1160">S_586_SEQ(V_586_SEQ_BACKWARD)</a><br>
+    // usually for invalidate
+  </p>
+  <p dir="auto">But sometimes we may have a no-depth no-color PS, the event_write_eop and wait packets packets should be
+    used to make mantually the CP stall.</p>
+  <p dir="auto">RELEASE_MEM packet is usually used together with the EVENT_WRITE_EOP (End Of Pipe) to singal the
+    fence<br>
+    But the EOP only make sure that the shaders which access the command buffer has been finished.<br>
+    It is still possible that the CP is accessing the command buffer (the CP may even write into the command buffer)<br>
+    If we reuse the memory of command buffer (reuse means that the address is still the same), we need to use the
+    acquire_memory to force the CP has finished accessing</p>
+  <h2 dir="auto" id="wait-synchronization">Wait Synchronization</h2>
+  <table dir="auto">
+    <thead dir="auto">
+      <tr dir="auto">
+        <th style="text-align:left">TODO</th>
+        <th style="text-align:left">TODO</th>
+      </tr>
+    </thead>
+    <tbody dir="auto">
+      <tr dir="auto">
+        <td style="text-align:left">TODO</td>
+        <td style="text-align:left">RADV_CMD_FLAG_VS_PARTIAL_FLUSH</td>
+      </tr>
+      <tr dir="auto">
+        <td style="text-align:left">TODO</td>
+        <td style="text-align:left">RADV_CMD_FLAG_PS_PARTIAL_FLUSH</td>
+      </tr>
+      <tr dir="auto">
+        <td style="text-align:left">TODO</td>
+        <td style="text-align:left">RADV_CMD_FLAG_CS_PARTIAL_FLUSH</td>
+      </tr>
+    </tbody>
+  </table>
+  <p dir="auto">The GPU has some internal signalling.<br>
+    The command packet (PKT3_EVENT_WRITE) throws an event down the pipeline and stalls the CP(command processor) until
+    the signal arrives.<br>
+    This is supported by Compute Shader (RADV_CMD_FLAG_CS_PARTIAL_FLUSH), Pixel Shader (RADV_CMD_FLAG_PS_PARTIAL_FLUSH)
+    and Vertex Shader (RADV_CMD_FLAG_VS_PARTIAL_FLUSH).</p>
+  <p dir="auto">cache flush<br>
+    signalling that an operation has finished<br>
+    waiting for the signal</p>
+  <p dir="auto"><a
+      href="https://gitlab.freedesktop.org/mesa/mesa/-/blob/22.3/src/amd/vulkan/si_cmd_buffer.c#L1144">PKT3_EVENT_WRITE</a>
+  </p>
+  <p dir="auto"><a
+      href="https://gitlab.freedesktop.org/mesa/mesa/-/blob/22.3/src/gallium/drivers/radeonsi/si_gfx_cs.c#L796">SI_CONTEXT_PFP_SYNC_ME</a>
+  </p>
+  <p dir="auto">CPG (Command Processor Graphics) = PFP (Pre-Fetch Parser) V_580_CP_PFP + ME (Micro Engine)</p>
+  <p dir="auto"><a
+      href="https://gitlab.freedesktop.org/mesa/mesa/-/blob/22.3/src/amd/vulkan/si_cmd_buffer.c#L1234">V_580_CP_PFP</a><br>
+    <a href="https://gitlab.freedesktop.org/mesa/mesa/-/blob/22.3/src/amd/vulkan/radv_device.c#L4574">V_580_CP_ME</a>
+  </p>
+  <p dir="auto">PFP - ME - // wait on early stage is ususaly safe // wait on later stage is usually more efficient<br>
+    // PFP will ask GE to prefetch index data</p>
+  <h2 dir="auto" id="cache-synchronization">Cache Synchronization</h2>
+  <h3 dir="auto" id="gpu-cache-hierarchy">GPU Cache Hierarchy</h3>
+  <pre><code class="code-line language-graphviz" dir="auto"><code><div></div></code></code></pre>
+  <p dir="auto">The flush operation makes the data which has been written visible to other units. Evidently, the
+    <strong>read-only</strong> or <strong>walk-through</strong> caches do NOT support the flush operation. The
+    invalidate operation makes the data which will be read is NOT stale.<br>
+    The supported flush and invalidate operations can be checked by <a
+      href="https://gitlab.freedesktop.org/mesa/mesa/-/blob/22.3/src/amd/vulkan/radv_private.h#L1173">radv_cmd_flush_bits</a>,
+    <a
+      href="https://gitlab.freedesktop.org/mesa/mesa/-/blob/22.3/src/amd/vulkan/si_cmd_buffer.c#L1335">si_cs_emit_cache_flush</a>
+    and <a href="https://gitlab.freedesktop.org/mesa/mesa/-/blob/22.3/src/amd/vulkan/si_cmd_buffer.c#L1100">gcr_cntl
+      (Graphics Cache Rinse - Control)</a> in <a href="https://docs.mesa3d.org/drivers/radv.html">RADV</a>.
+  </p>
+  <table dir="auto">
+    <thead dir="auto">
+      <tr dir="auto">
+        <th style="text-align:left">Cache Notation</th>
+        <th style="text-align:left">Cache Name</th>
+        <th style="text-align:left">Cache Type</th>
+        <th style="text-align:left">Cache Usage</th>
+        <th style="text-align:left">Flush Operation Name RADV</th>
+        <th style="text-align:left">Flush Operation Packet RADV</th>
+        <th style="text-align:left">Flush Operation Usage</th>
+        <th style="text-align:left">Invalidate Operation RADV</th>
+        <th style="text-align:left">Invalidate Operation Usage</th>
+      </tr>
+    </thead>
+    <tbody dir="auto">
+      <tr dir="auto">
+        <td style="text-align:left">I$</td>
+        <td style="text-align:left">(Graphics Level 0) Instruction Cache</td>
+        <td style="text-align:left">Read-Only</td>
+        <td style="text-align:left">TODO</td>
+        <td style="text-align:left">N/A</td>
+        <td style="text-align:left">N/A</td>
+        <td style="text-align:left">N/A</td>
+        <td style="text-align:left">RADV_CMD_FLAG_INV_SCACHE</td>
+        <td style="text-align:left"></td>
+      </tr>
+      <tr dir="auto">
+        <td style="text-align:left">K$ (GL0S)</td>
+        <td style="text-align:left">(Graphics Level 0) Scalar Cache</td>
+        <td style="text-align:left">Write-Back</td>
+        <td style="text-align:left">TODO</td>
+        <td style="text-align:left">X_XXX_GLK_WB</td>
+        <td style="text-align:left">TODO</td>
+        <td style="text-align:left">TODO</td>
+        <td style="text-align:left">RADV_CMD_FLAG_INV_KCACHE</td>
+        <td style="text-align:left">TODO</td>
+      </tr>
+      <tr dir="auto">
+        <td style="text-align:left">V$ (GL0V)</td>
+        <td style="text-align:left">(Graphics Level 0) Vector Cache</td>
+        <td style="text-align:left">Write-Through</td>
+        <td style="text-align:left">TODO</td>
+        <td style="text-align:left">N/A</td>
+        <td style="text-align:left">N/A</td>
+        <td style="text-align:left">N/A</td>
+        <td style="text-align:left">RADV_CMD_FLAG_INV_VCACHE</td>
+        <td style="text-align:left">TODO</td>
+      </tr>
+      <tr dir="auto">
+        <td style="text-align:left">CBD$ (CB Data)</td>
+        <td style="text-align:left">(Graphics Level 0) Color Block Cache</td>
+        <td style="text-align:left">Write-Back</td>
+        <td style="text-align:left">an image is accessed as the color attachment</td>
+        <td style="text-align:left">RADV_CMD_FLAG_FLUSH_AND_INV_CB</td>
+        <td style="text-align:left">TODO</td>
+        <td style="text-align:left">an image has been written as the color attachment and will be read by another usage
+          <br /> ------- <br /> the data will be flushed to GL1 and written directly to GL2
+        </td>
+        <td style="text-align:left">RADV_CMD_FLAG_FLUSH_AND_INV_CB</td>
+        <td style="text-align:left">TODO</td>
+      </tr>
+      <tr dir="auto">
+        <td style="text-align:left">DBD$ (DB Data)</td>
+        <td style="text-align:left">(Graphics Level 0) Depth Block Cache</td>
+        <td style="text-align:left">Write-Back</td>
+        <td style="text-align:left">an image is accessed as the depth attachment</td>
+        <td style="text-align:left">RADV_CMD_FLAG_FLUSH_AND_INV_DB</td>
+        <td style="text-align:left">TODO</td>
+        <td style="text-align:left">an image has been written as the depth attachment and will be read by another usage
+          <br /> ------- <br /> the data will be flushed to GL1 and written directly to GL2
+        </td>
+        <td style="text-align:left">RADV_CMD_FLAG_FLUSH_AND_INV_DB</td>
+        <td style="text-align:left">TODO</td>
+      </tr>
+      <tr dir="auto">
+        <td style="text-align:left">CBM$ (CB Metadata)</td>
+        <td style="text-align:left">(Graphics Level 0) Color Block Metadata Cache</td>
+        <td style="text-align:left">Write-Back</td>
+        <td style="text-align:left">an image with metadata (CMASK, FMASK or DCC) is accessed as the color attachment
+        </td>
+        <td style="text-align:left">RADV_CMD_FLAG_FLUSH_AND_INV_CB_META</td>
+        <td style="text-align:left">PKT3_EVENT_WRITE</td>
+        <td style="text-align:left">an image with metadata (CMASK, FMASK or DCC) has been written as the color
+          attachment and will be read by another usage <br /> ------- <br /> the data will be flushed to GL1 and written
+          directly to GL2</td>
+        <td style="text-align:left">RADV_CMD_FLAG_FLUSH_AND_INV_CB_META</td>
+        <td style="text-align:left">TODO</td>
+      </tr>
+      <tr dir="auto">
+        <td style="text-align:left">DBM$ (DB Metadata)</td>
+        <td style="text-align:left">(Graphics Level 0) Depth Block Metadata Cache</td>
+        <td style="text-align:left">Write-Back</td>
+        <td style="text-align:left">an image with metadata (HTILE) is accessed as the depth attachment</td>
+        <td style="text-align:left">RADV_CMD_FLAG_FLUSH_AND_INV_DB_META</td>
+        <td style="text-align:left">PKT3_EVENT_WRITE</td>
+        <td style="text-align:left">an image with metadata (HTILE) has been written as the depth attachment and will be
+          read by another usage <br /> ------- <br /> the data will be flushed to GL1 and written directly to GL2</td>
+        <td style="text-align:left">RADV_CMD_FLAG_FLUSH_AND_INV_DB_META</td>
+        <td style="text-align:left">TODO</td>
+      </tr>
+      <tr dir="auto">
+        <td style="text-align:left">GL1</td>
+        <td style="text-align:left">Graphics Level 1 Cache</td>
+        <td style="text-align:left">Write-Through</td>
+        <td style="text-align:left">communication inside GPU</td>
+        <td style="text-align:left">N/A</td>
+        <td style="text-align:left">N/A</td>
+        <td style="text-align:left">N/A</td>
+        <td style="text-align:left">X_XXX_GL1_INV</td>
+        <td style="text-align:left">the data has been written to GL1 by the flush operation and will be read by GPU
+          <br /> ------- <br /> the data has been written by one computer shader and will be read by another computer
+          shader (there are multiple GL0 and GL1 caches but the coherency is NOT maintained for computer shaders)
+        </td>
+      </tr>
+      <tr dir="auto">
+        <td style="text-align:left">GL2</td>
+        <td style="text-align:left">Graphics Level 2 Cache</td>
+        <td style="text-align:left">Write-Back</td>
+        <td style="text-align:left">communication between GPU and CPU</td>
+        <td style="text-align:left">RADV_CMD_FLAG_WB_L2</td>
+        <td style="text-align:left">PKT3_ACQUIRE_MEM</td>
+        <td style="text-align:left">the data has been written by GPU and will be read by CPU</td>
+        <td style="text-align:left">RADV_CMD_FLAG_INV_L2</td>
+        <td style="text-align:left">the data without the &quot;VK_MEMORY_PROPERTY_HOST_COHERENT_BIT&quot; has been
+          written by CPU and will be read by GPU</td>
+      </tr>
+      <tr dir="auto">
+        <td style="text-align:left">GLM (GL2 Metadata)</td>
+        <td style="text-align:left">Graphics Level 2 Metadata Cache</td>
+        <td style="text-align:left">Write-Through</td>
+        <td style="text-align:left">an image with metadata (CMASK, FMASK, DCC or HTILE) accessed as the sampled or
+          storage image</td>
+        <td style="text-align:left">N/A</td>
+        <td style="text-align:left">N/A</td>
+        <td style="text-align:left">N/A</td>
+        <td style="text-align:left">RADV_CMD_FLAG_INV_L2_METADATA</td>
+        <td style="text-align:left">the metadata of the image has been written to GL2 by the flush operation and the
+          image will be accessed as the sampled or storage image <br /> ------- <br /> it is NOT necessary to invalidate
+          the GLM when the data is accessed as the buffer since the data will NOT go through the GLM</td>
+      </tr>
+    </tbody>
+  </table>
+  <p dir="auto">The CB Metadata and the DB Metadata can only be flushed by event_write packet.</p>
+  <p dir="auto">// and there is a hardware restriction: if the metadata are flushed, the the matching data are forced to
+    flushed as well</p>
+  <p dir="auto">But the event_write packet does NOT make the CP stall.</p>
+  <p dir="auto">Usually, the acquire_mem packet can be used to mantually make the CP stall until the events triggered by
+    the event_write packet have been processed.</p>
+  <p dir="auto">// acquire_mem: the cache op (cb metadata or db metadata is NOT supported) is split into cb_db_op (cb or
+    db caches) and gcr_cntl (Graphics Cache Rinse - Control, no cb or db caches)</p>
+  <p dir="auto">But sometimes we may have a no-depth no-color PS, the event_write_eop and wait packets packets should be
+    used to make mantually the CP stall.</p>
+  <h3 dir="auto" id="gl2">GL2</h3>
+  <p dir="auto">The GL2 is only used for the communication between GPU and CPU (for example, implementing the VkFence
+    and the VkSemaphore).</p>
+  <p dir="auto">By <a
+      href="https://gitlab.freedesktop.org/mesa/mesa/-/blob/22.3/src/gallium/drivers/radeonsi/si_pipe.h#L285">si_cache_policy</a>
+    of RADV, we have the GL2 cache policies.</p>
+  <table dir="auto">
+    <thead dir="auto">
+      <tr dir="auto">
+        <th style="text-align:left">Policy Name</th>
+        <th style="text-align:left">TODO</th>
+      </tr>
+    </thead>
+    <tbody dir="auto">
+      <tr dir="auto">
+        <td style="text-align:left">LRU</td>
+        <td style="text-align:left">TODO</td>
+      </tr>
+      <tr dir="auto">
+        <td style="text-align:left">BYPASS</td>
+        <td style="text-align:left">TODO</td>
+      </tr>
+      <tr dir="auto">
+        <td style="text-align:left">STREAM</td>
+        <td style="text-align:left">TODO</td>
+      </tr>
+    </tbody>
+  </table>
+  <p dir="auto"><strong>write-combine</strong> which allows multiple writes to be combined together in order to improve
+    performance (by &quot;PAGE_WRITECOMBINE&quot; of &quot;Protection Attributes&quot; of &quot;Chapter 13: Windows
+    Memory Architecture&quot; of <a
+      href="https://www.microsoftpressstore.com/store/windows-via-c-c-plus-plus-9780735642980">Windows via C/C++ Fifth
+      Edition</a>)</p>
+  <h3 dir="auto" id="gpu-cache-hierarchy-1">GPU Cache Hierarchy</h3>
+  <p dir="auto"><a href="https://gpuopen.com/rdna/">RDNA</a></p>
+  <pre><code class="code-line language-graphviz" dir="auto"><code><div>digraph RDNA
+{
+  bgcolor=transparent;
+  splines=false;
+
+  subgraph cluster_WGP 
+  {
+    label = &quot;WGP (Work Group Processor)&quot;;
+    fontsize = 20;
+    style=filled;
+    color=grey;
+    
+    node [style=filled, color=pink];
+    I [label=&quot;I$ (Instruction Cache)&quot;, shape=box];
+    K [label=&quot;K$ (Scalar Cache)&quot;, shape=box];
+    V [label=&quot;V$ (Vector Cache)&quot;, shape=box];
+  }
+
+  subgraph cluster_RB 
+  {
+    label = &quot;RB (Render Backend)&quot;;
+    fontsize = 20;
+    style=filled;
+    color=grey;
+    
+    node [style=filled, color=pink];
+    CBD [label = &quot;CB (Color Block) Data Cache&quot;, shape=box];
+    CBM [label = &quot;CB (Color Block) Metadata Cache&quot;, shape=box];
+    DBD [label = &quot;DB (Depth Block) Data Cache&quot;, shape=box];
+    DBM [label = &quot;DB (Depth Block) Metadata Cache&quot;, shape=box];
+  }
+  
+  GL1 [label = &quot;GL1 (Graphics Level 1 Cache)&quot;, shape=box, style=filled, color=pink];
+  GL2 [label = &quot;GL2 (Graphics Level 2 Cache)&quot;, shape=box, style=filled, color=pink];
+  GLM [label = &quot;GLM (Graphics Level 2 Metadata Cache)&quot;, shape=box, style=filled, color=pink];
+  MM [label = &quot;Main Memory&quot;, shape=box, style=filled, color=pink];
+
+  I -&gt; GL1;
+  K -&gt; GL1;
+  V -&gt; GL1;
+  CBD -&gt; GL1;  
+  CBM -&gt; GL1;  
+  DBD -&gt; GL1;  
+  DBM -&gt; GL1;  
+
+  GL1 -&gt; GL2;
+
+  GLM -&gt; GL2;
+
+  GL2 -&gt; MM;
+}
+</div></code></code></pre>
+  <pre><code class="code-line language-graphviz" dir="auto"><code><div>digraph GCN 
+{
+  bgcolor=transparent;
+  splines=false;
+
+  subgraph cluster_CU 
+  {
+    label = &quot;CU (Compute Unit)&quot;;
+    fontsize = 20;
+    style = filled;
+    color = grey;
+    
+    node [style=filled, color=pink];
+    I [label=&quot;I$ (Instruction Cache)&quot;, shape=box];
+    K [label=&quot;K$ (Constant Cache)&quot;, shape=box];
+    GL1 [label=&quot;GL1 (Graphics Level 1 Cache)&quot;, shape=box];
+  }
+
+  subgraph cluster_RB 
+  {
+    label = &quot;RB (Render Backend)&quot;;
+    fontsize = 20;
+    style=filled;
+    color=grey;
+    
+    node [style=filled, color=pink];
+    CBD [label = &quot;CB (Color Block) Data Cache&quot;, shape=box];
+    CBM [label = &quot;CB (Color Block) Metadata Cache&quot;, shape=box];
+    DBD [label = &quot;DB (Depth Block) Data Cache&quot;, shape=box];
+    DBM [label = &quot;DB (Depth Block) Metadata Cache&quot;, shape=box];
+  }
+  
+  GL2 [label = &quot;GL2 (Graphics Level 2 Cache)&quot;, shape=box, style=filled, color=pink];
+  MM [label = &quot;Main Memory&quot;, shape=box, style=filled, color=pink];
+
+  I -&gt; GL2;
+  K -&gt; GL2;
+  GL1 -&gt; GL2;
+  
+  CBD -&gt; MM;  
+  CBM -&gt; MM;  
+  DBD -&gt; MM;  
+  DBM -&gt; MM;  
+
+  GL2 -&gt; MM;
+}
+</div></code></code></pre>
+
+</body>
+
+</html>

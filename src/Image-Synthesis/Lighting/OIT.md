@@ -3,7 +3,7 @@
 ## 1\. Alpha Channel  
 Porter proposed the "Alpha channel"(1.[Porter 1984]) in 1984 which is widely established in real-time rendering to simulate the transparent effect.  
 
-We assume that one "pixel" corresponds to a series of "fragments" which can be treated as the triples \[ $C_i$ $A_i$ $Z_i$ \] (C-Color A-Alpha Z-Depth), as shown in the following figure:  
+We assume that one "pixel" corresponds to a series of "fragments" which can be treated as the triples $\displaystyle \begin{bmatrix} C_i & A_i & Z_i \end{bmatrix}$ (C-Color A-Alpha Z-Depth), as shown in the following figure:  
 ![](OIT-1.png)  
 Then the final color of the pixel can be calculated as $\displaystyle C_{\displaystyle Final} = \sum_{\displaystyle i = 0}^{\displaystyle n} (\prod_{\displaystyle Z_j Nearer Z_i}(1 - A_j)) A_i C_i$.  
 

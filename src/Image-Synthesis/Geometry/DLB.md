@@ -218,7 +218,7 @@ First, we would like to prove that $\displaystyle \hat{\boldsymbol{q}}$ is a uni
 
 > The norm of of $\displaystyle \hat{\boldsymbol{r}}$ is calculated as $\displaystyle \| \hat{\boldsymbol{r}} \| = \| \boldsymbol{r_0} \| + \frac{\langle \begin{bmatrix}0, & \overrightarrow{0}\end{bmatrix}, \boldsymbol{r_0} \rangle}{\| \boldsymbol{r_0} \|} \epsilon = 1 + \frac{0}{1} \epsilon = 1$.  
 >  
-> And the norm of $\displaystyle \hat{\boldsymbol{t}}$ is calculated as $\displaystyle \| \hat{\boldsymbol{t}} \| = \|  \begin{bmatrix}1, & \overrightarrow{0}\end{bmatrix} \| + \frac{\langle  \begin{bmatrix}1, & \overrightarrow{0}\end{bmatrix}, \begin{bmatrix}0, & \frac{1}{2}\overrightarrow{t}\end{bmatrix} \rangle}{\begin{bmatrix}1, & \overrightarrow{0}\end{bmatrix}} \epsilon = 1 + 0 \epsilon = 1$. This means that the norm of $\displaystyle \boldsymbol{r_0}$ is one.  
+> And the norm of $\displaystyle \hat{\boldsymbol{t}}$ is calculated as $\displaystyle \| \hat{\boldsymbol{t}} \| = \|  \begin{bmatrix}1, & \overrightarrow{0}\end{bmatrix} \| + \frac{\langle  \begin{bmatrix}1, & \overrightarrow{0}\end{bmatrix}, \begin{bmatrix}0, & \frac{1}{2}\overrightarrow{t}\end{bmatrix} \rangle}{\begin{bmatrix}1, & \overrightarrow{0}\end{bmatrix}} \epsilon = 1 + 0 \epsilon = 1$. This means that the norm of $\displaystyle \hat{\boldsymbol{t}}$ is one.  
 >  
 > By the distributive property of the norm of the dual quaternions, we have that $\displaystyle  \| \hat{\boldsymbol{q}} \| = \| \hat{\boldsymbol{t}} \hat{\boldsymbol{r}} \| = \| \hat{\boldsymbol{t}} \|  \| \hat{\boldsymbol{r}} \| = 1$. This means that the norm of $\displaystyle \hat{\boldsymbol{q}}$ is one. And thus, $\displaystyle \hat{\boldsymbol{q}}$ is a unit dual quaternion.  
 

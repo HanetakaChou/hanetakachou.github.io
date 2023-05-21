@@ -1,3 +1,5 @@
+# Resource Binding  
+
 The key point is that the resource binding operation of the traditional APIs, such as **OpenGL**, is split into two different functions **vkUpdateDescriptorSets** and **vkCmdBindDescriptorSets** in **Vulkan**.  
 
 The **vkUpdateDescriptorSets** is expected to be called on initialization rather than per frame, and thus the **vkCmdBindDescriptorSets**, which is expected to be called per frame, is much faster than the traditional binding APIs, such as **glBindBufferBase**, **glBindTexture**, etc.  
