@@ -50,7 +50,7 @@
     <p dir="auto">The ring buffer maintains a list of several segments, which is analogous to the list of the
         &quot;memory buffer objects&quot; in RADV, and the ring buffer inserts the &quot;jump&quot; commands to connect
         these separated segments. When the ring buffer is initialized, several segments can be added to the ring buffer
-        by the application. And the application can also provide a out-of-memory callback, which is invoked when there
+        by the application. And the application can also provide an out-of-memory callback, which is invoked when there
         are no free segments in the ring buffer. Note that the out-of-memory callback of the ring buffer should be
         distinguished from the out-of-memory callback of the command buffer.</p>
     <p dir="auto">By default, no out-of-memory callback is provided, and the ring buffer waits until the GPU has stopped
