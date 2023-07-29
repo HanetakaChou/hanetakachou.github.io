@@ -39,9 +39,207 @@
         <img src="VXGI-7.png" alt="" data-src="VXGI-7.png">
     </p>
     <h2 dir="auto" id="voxelization">Voxelization</h2>
+    <h3 dir="auto" id="clipmap">Clipmap</h3>
+    <p dir="auto">TODO: by [McLaren 2015] and [Eric 2017], clipmap is better than SVO (sparse voxel octree).</p>
+    <p dir="auto">Clipmap Logical Structure</p>
+    <p dir="auto">[Panteleev 2014]: &quot;CLIPMAP VS. MIPMAP&quot;</p>
+    <p dir="auto">Texture size (for zero mipmap level) is the same for all clipmap levels, which is called that clipmap
+        size<br>
+        The voxel size increses<br>
+        Only the last level has more than one mipmap levels (the logical volume remains the same within the same clipmap
+        level)</p>
+    <p dir="auto"><img src="VXGI-Clipmap-1.png" alt="" data-src="VXGI-Clipmap-1.png"></p>
+    <p dir="auto">NVIDIA VXGI Implementation:</p>
+    <p dir="auto">Logical Structure:<br>
+        clipmap level 0-3: only one mipmap level<br>
+        clipmap level 4: mipmap 0-5 (6 levels)</p>
+    <p dir="auto">Physical Structure:<br>
+        Texture3D 128*128*785</p>
+    <table dir="auto">
+        <thead dir="auto">
+            <tr dir="auto">
+                <th style="text-align:center">Clipmap Level Index</th>
+                <th style="text-align:center">Mipmap Index</th>
+                <th style="text-align:center">Voxel Size</th>
+                <th style="text-align:center">Texture Size (Voxel Count)</th>
+                <th style="text-align:center">3D Texture Depth Index</th>
+                <th style="text-align:center">3D Texture Valid Width/Height</th>
+            </tr>
+        </thead>
+        <tbody dir="auto">
+            <tr dir="auto">
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">0</td>
+                <td style="text-align:center">N/A</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">0</td>
+                <td style="text-align:center">0</td>
+                <td style="text-align:center">8</td>
+                <td style="text-align:center">128</td>
+                <td style="text-align:center">1 - 128</td>
+                <td style="text-align:center">128</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">129 - 130</td>
+                <td style="text-align:center">N/A</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">1</td>
+                <td style="text-align:center">0</td>
+                <td style="text-align:center">16</td>
+                <td style="text-align:center">128</td>
+                <td style="text-align:center">131 - 258</td>
+                <td style="text-align:center">128</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">259 - 260</td>
+                <td style="text-align:center">N/A</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">2</td>
+                <td style="text-align:center">0</td>
+                <td style="text-align:center">32</td>
+                <td style="text-align:center">128</td>
+                <td style="text-align:center">261 - 388</td>
+                <td style="text-align:center">128</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">389 - 390</td>
+                <td style="text-align:center">N/A</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">3</td>
+                <td style="text-align:center">0</td>
+                <td style="text-align:center">64</td>
+                <td style="text-align:center">128</td>
+                <td style="text-align:center">391 - 518</td>
+                <td style="text-align:center">128</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">519 - 520</td>
+                <td style="text-align:center">N/A</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">4</td>
+                <td style="text-align:center">0</td>
+                <td style="text-align:center">128</td>
+                <td style="text-align:center">128</td>
+                <td style="text-align:center">521 - 648</td>
+                <td style="text-align:center">128</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">649 - 650</td>
+                <td style="text-align:center">N/A</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">4</td>
+                <td style="text-align:center">1</td>
+                <td style="text-align:center">256</td>
+                <td style="text-align:center">64</td>
+                <td style="text-align:center">651 - 714</td>
+                <td style="text-align:center">64</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">715 - 716</td>
+                <td style="text-align:center">N/A</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">4</td>
+                <td style="text-align:center">2</td>
+                <td style="text-align:center">512</td>
+                <td style="text-align:center">32</td>
+                <td style="text-align:center">717 - 748</td>
+                <td style="text-align:center">32</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">749 - 750</td>
+                <td style="text-align:center">N/A</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">4</td>
+                <td style="text-align:center">3</td>
+                <td style="text-align:center">1024</td>
+                <td style="text-align:center">16</td>
+                <td style="text-align:center">751 - 766</td>
+                <td style="text-align:center">16</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">767 - 768</td>
+                <td style="text-align:center">N/A</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">4</td>
+                <td style="text-align:center">4</td>
+                <td style="text-align:center">2048</td>
+                <td style="text-align:center">8</td>
+                <td style="text-align:center">769 - 776</td>
+                <td style="text-align:center">8</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">777 - 778</td>
+                <td style="text-align:center">N/A</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">4</td>
+                <td style="text-align:center">5</td>
+                <td style="text-align:center">4096</td>
+                <td style="text-align:center">4</td>
+                <td style="text-align:center">779 - 782</td>
+                <td style="text-align:center">4</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">N/A</td>
+                <td style="text-align:center">783 - 784</td>
+                <td style="text-align:center">N/A</td>
+            </tr>
+        </tbody>
+    </table>
+    <h3 dir="auto" id="msaa">MSAA</h3>
     <p dir="auto">TODO: conservative rasterization<br>
-        TODO: simulate &quot;conservative rasterization&quot; by MSAA ([Takeshige 2015])<br>
-        TODO: by [McLaren 2015] and [Eric 2017], clipmap is better than SVO (sparse voxel octree).</p>
+        TODO: simulate &quot;conservative rasterization&quot; by MSAA ([Takeshige 2015])</p>
     <h2 dir="auto" id="light-injection">Light Injection</h2>
     <p dir="auto">TODO: not related to &quot;ambient occlusion&quot;</p>
     <h2 dir="auto" id="filtering">Filtering</h2>
@@ -5015,6 +5213,10 @@
             Using Voxel Cone Tracing.&quot; SIGGRAPH 2011.</a><br>
         [Dunn 2014] <a href="https://developer.nvidia.com/content/transparency-or-translucency-rendering">Alex Dunn.
             &quot;Transparency (or Translucency) Rendering.&quot; NVIDIA GameWorks Blog 2014.</a><br>
+        [Panteleev 2014] <a
+            href="https://on-demand.gputechconf.com/gtc/2014/presentations/S4552-rt-voxel-based-global-illumination-gpus.pdf">Alexey
+            Panteleev. &quot;Practical Real-Time Voxel-Based Global Illumination for Current GPUs.&quot; GTC
+            2014.</a><br>
         [McLaren 2015] <a href="http://fumufumu.q-games.com/archives/TheTechnologyOfTomorrowsChildrenFinal.pdf">James
             McLaren. &quot;The Technology of The Tomorrow Children.&quot; GDC 2015.</a><br>
         [Takeshige 2015] <a href="https://developer.nvidia.com/content/basics-gpu-voxelization">Masaya Takeshige.

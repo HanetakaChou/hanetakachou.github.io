@@ -17,9 +17,57 @@ By \[Crassin 2011 B\], the idea of VXGI is to organize the photons by the voxels
 
 ## Voxelization  
 
+### Clipmap  
+
+TODO: by \[McLaren 2015\] and \[Eric 2017\], clipmap is better than SVO (sparse voxel octree).  
+
+Clipmap Logical Structure
+
+\[Panteleev 2014\]: "CLIPMAP VS. MIPMAP"  
+
+Texture size (for zero mipmap level)  is the same for all clipmap levels, which is called that clipmap size  
+The voxel size increses  
+Only the last level has more than one mipmap levels (the logical volume remains the same within the same clipmap level)  
+
+![](VXGI-Clipmap-1.png)  
+
+NVIDIA VXGI Implementation:  
+
+Logical Structure:  
+clipmap level 0-3: only one mipmap level  
+clipmap level 4: mipmap 0-5 (6 levels)
+
+Physical Structure:  
+Texture3D 128\*128\*785  
+
+Clipmap Level Index | Mipmap Index | Voxel Size | Texture Size \(Voxel Count\) | 3D Texture Depth Index | 3D Texture Valid Width/Height  
+:-: | :-: | :-: | :-: | :-: | :-:  
+N/A | N/A | N/A  | N/A | 0         | N/A  
+0   | 0   | 8    | 128 | 1 - 128   | 128
+N/A | N/A | N/A  | N/A | 129 - 130 | N/A 
+1   | 0   | 16   | 128 | 131 - 258 | 128  
+N/A | N/A | N/A  | N/A | 259 - 260 | N/A  
+2   | 0   | 32   | 128 | 261 - 388 | 128  
+N/A | N/A | N/A  | N/A | 389 - 390 | N/A  
+3   | 0   | 64   | 128 | 391 - 518 | 128  
+N/A | N/A | N/A  | N/A | 519 - 520 | N/A  
+4   | 0   | 128  | 128 | 521 - 648 | 128
+N/A | N/A | N/A  | N/A | 649 - 650 | N/A  
+4   | 1   | 256  | 64  | 651 - 714 | 64  
+N/A | N/A | N/A  | N/A | 715 - 716 | N/A  
+4   | 2   | 512  | 32  | 717 - 748 | 32  
+N/A | N/A | N/A  | N/A | 749 - 750 | N/A  
+4   | 3   | 1024 | 16  | 751 - 766 | 16  
+N/A | N/A | N/A  | N/A | 767 - 768 | N/A  
+4   | 4   | 2048 | 8   | 769 - 776 | 8  
+N/A | N/A | N/A  | N/A | 777 - 778 | N/A  
+4   | 5   | 4096 | 4   | 779 - 782 | 4  
+N/A | N/A | N/A  | N/A | 783 - 784 | N/A  
+
+### MSAA  
+
 TODO: conservative rasterization  
 TODO: simulate "conservative rasterization" by MSAA (\[Takeshige 2015\])  
-TODO: by \[McLaren 2015\] and \[Eric 2017\], clipmap is better than SVO (sparse voxel octree).  
 
 ## Light Injection  
 
@@ -88,6 +136,7 @@ Evidently, by \[McLaren 2015\], the cone tracing may NOT dectect the full occlus
 \[Crassin 2011 A\] [Cyril Crassin. "GigaVoxels: A Voxel-Based Rendering Pipeline For Efficient Exploration Of Large And Detailed Scenes." PhD Thesis 2011.](http://gigavoxels.inrialpes.fr/index.html)  
 \[Crassin 2011 B\] [Cyril Crassin, Fabrice Neyret, Miguel Sainz, Simon Green, Elmar Eisemann. "Interactive Indirect Illumination Using Voxel Cone Tracing." SIGGRAPH 2011.](https://research.nvidia.com/publication/interactive-indirect-illumination-using-voxel-cone-tracing)  
 \[Dunn 2014\] [Alex Dunn. "Transparency (or Translucency) Rendering." NVIDIA GameWorks Blog 2014.](https://developer.nvidia.com/content/transparency-or-translucency-rendering)   
+\[Panteleev 2014\] [Alexey Panteleev. "Practical Real-Time Voxel-Based Global Illumination for Current GPUs." GTC 2014.](https://on-demand.gputechconf.com/gtc/2014/presentations/S4552-rt-voxel-based-global-illumination-gpus.pdf)  
 \[McLaren 2015\] [James McLaren. "The Technology of The Tomorrow Children." GDC 2015.](http://fumufumu.q-games.com/archives/TheTechnologyOfTomorrowsChildrenFinal.pdf)  
 \[Takeshige 2015\] [Masaya Takeshige. "The Basics of GPU Voxelization." NVIDIA GameWorks Blog 2015.](https://developer.nvidia.com/content/basics-gpu-voxelization)  
 \[Eric 2017\] [Eric Arneback. “Comparing a Clipmap to a Sparse Voxel Octree for Global Illumination." Master thesis 2017.](https://erkaman.github.io/posts/masters_thesis.html)  
