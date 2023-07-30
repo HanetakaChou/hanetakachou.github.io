@@ -43,8 +43,8 @@
     <p dir="auto">TODO: by [McLaren 2015] and [Eric 2017], clipmap is better than SVO (sparse voxel octree).</p>
     <p dir="auto">Clipmap Logical Structure</p>
     <p dir="auto">[Panteleev 2014]: &quot;CLIPMAP VS. MIPMAP&quot;</p>
-    <p dir="auto">Texture size (for zero mipmap level) is the same for all clipmap levels, which is called that clipmap
-        size<br>
+    <p dir="auto">Texture size (for zeroth mipmap level) is the same for all clipmap levels, which is called that
+        clipmap size<br>
         The voxel size increses<br>
         Only the last level has more than one mipmap levels (the logical volume remains the same within the same clipmap
         level)</p>
@@ -59,7 +59,6 @@
         <thead dir="auto">
             <tr dir="auto">
                 <th style="text-align:center">3D Texture Depth Index</th>
-                <th style="text-align:center">3D Texture Equivalent Depth Index (Toroidal Address)</th>
                 <th style="text-align:center">Clipmap Level Index</th>
                 <th style="text-align:center">Mipmap Index</th>
                 <th style="text-align:center">Voxel Size</th>
@@ -68,251 +67,167 @@
         </thead>
         <tbody dir="auto">
             <tr dir="auto">
-                <td style="text-align:center">0</td>
-                <td style="text-align:center">128</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-            </tr>
-            <tr dir="auto">
                 <td style="text-align:center">1 - 128</td>
-                <td style="text-align:center">N/A</td>
                 <td style="text-align:center">0</td>
                 <td style="text-align:center">0</td>
                 <td style="text-align:center">8</td>
                 <td style="text-align:center">128</td>
             </tr>
             <tr dir="auto">
-                <td style="text-align:center">129</td>
-                <td style="text-align:center">1</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-            </tr>
-            <tr dir="auto">
-                <td style="text-align:center">130</td>
-                <td style="text-align:center">258</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-            </tr>
-            <tr dir="auto">
                 <td style="text-align:center">131 - 258</td>
-                <td style="text-align:center">N/A</td>
                 <td style="text-align:center">1</td>
                 <td style="text-align:center">0</td>
                 <td style="text-align:center">16</td>
                 <td style="text-align:center">128</td>
             </tr>
             <tr dir="auto">
-                <td style="text-align:center">259</td>
-                <td style="text-align:center">131</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-            </tr>
-            <tr dir="auto">
-                <td style="text-align:center">260</td>
-                <td style="text-align:center">388</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-            </tr>
-            <tr dir="auto">
                 <td style="text-align:center">261 - 388</td>
-                <td style="text-align:center">N/A</td>
                 <td style="text-align:center">2</td>
                 <td style="text-align:center">0</td>
                 <td style="text-align:center">32</td>
                 <td style="text-align:center">128</td>
             </tr>
             <tr dir="auto">
-                <td style="text-align:center">389</td>
-                <td style="text-align:center">261</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-            </tr>
-            <tr dir="auto">
-                <td style="text-align:center">390</td>
-                <td style="text-align:center">518</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-            </tr>
-            <tr dir="auto">
                 <td style="text-align:center">391 - 518</td>
-                <td style="text-align:center">N/A</td>
                 <td style="text-align:center">3</td>
                 <td style="text-align:center">0</td>
                 <td style="text-align:center">64</td>
                 <td style="text-align:center">128</td>
             </tr>
             <tr dir="auto">
-                <td style="text-align:center">519</td>
-                <td style="text-align:center">391</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-            </tr>
-            <tr dir="auto">
-                <td style="text-align:center">520</td>
-                <td style="text-align:center">648</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-            </tr>
-            <tr dir="auto">
                 <td style="text-align:center">521 - 648</td>
-                <td style="text-align:center">N/A</td>
                 <td style="text-align:center">4</td>
                 <td style="text-align:center">0</td>
                 <td style="text-align:center">128</td>
                 <td style="text-align:center">128</td>
             </tr>
             <tr dir="auto">
-                <td style="text-align:center">649</td>
-                <td style="text-align:center">521</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-            </tr>
-            <tr dir="auto">
-                <td style="text-align:center">650</td>
-                <td style="text-align:center">714</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-            </tr>
-            <tr dir="auto">
                 <td style="text-align:center">651 - 714</td>
-                <td style="text-align:center">N/A</td>
                 <td style="text-align:center">4</td>
                 <td style="text-align:center">1</td>
                 <td style="text-align:center">256</td>
                 <td style="text-align:center">64</td>
             </tr>
             <tr dir="auto">
-                <td style="text-align:center">715</td>
-                <td style="text-align:center">651</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-            </tr>
-            <tr dir="auto">
-                <td style="text-align:center">716</td>
-                <td style="text-align:center">748</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-            </tr>
-            <tr dir="auto">
                 <td style="text-align:center">717 - 748</td>
-                <td style="text-align:center">N/A</td>
                 <td style="text-align:center">4</td>
                 <td style="text-align:center">2</td>
                 <td style="text-align:center">512</td>
                 <td style="text-align:center">32</td>
             </tr>
             <tr dir="auto">
-                <td style="text-align:center">749</td>
-                <td style="text-align:center">717</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-            </tr>
-            <tr dir="auto">
-                <td style="text-align:center">750</td>
-                <td style="text-align:center">766</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-            </tr>
-            <tr dir="auto">
                 <td style="text-align:center">751 - 766</td>
-                <td style="text-align:center">N/A</td>
                 <td style="text-align:center">4</td>
                 <td style="text-align:center">3</td>
                 <td style="text-align:center">1024</td>
                 <td style="text-align:center">16</td>
             </tr>
             <tr dir="auto">
-                <td style="text-align:center">767</td>
-                <td style="text-align:center">751</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-            </tr>
-            <tr dir="auto">
-                <td style="text-align:center">768</td>
-                <td style="text-align:center">776</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-            </tr>
-            <tr dir="auto">
                 <td style="text-align:center">769 - 776</td>
-                <td style="text-align:center">N/A</td>
                 <td style="text-align:center">4</td>
                 <td style="text-align:center">4</td>
                 <td style="text-align:center">2048</td>
                 <td style="text-align:center">8</td>
             </tr>
             <tr dir="auto">
-                <td style="text-align:center">777</td>
-                <td style="text-align:center">769</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-            </tr>
-            <tr dir="auto">
-                <td style="text-align:center">778</td>
-                <td style="text-align:center">782</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-            </tr>
-            <tr dir="auto">
                 <td style="text-align:center">779 - 782</td>
-                <td style="text-align:center">N/A</td>
                 <td style="text-align:center">4</td>
                 <td style="text-align:center">5</td>
                 <td style="text-align:center">4096</td>
                 <td style="text-align:center">4</td>
             </tr>
+        </tbody>
+    </table>
+    <table dir="auto">
+        <thead dir="auto">
+            <tr dir="auto">
+                <th style="text-align:center">3D Texture Depth Index</th>
+                <th style="text-align:center">3D Texture Equivalent Depth Index (Toroidal Address)</th>
+            </tr>
+        </thead>
+        <tbody dir="auto">
+            <tr dir="auto">
+                <td style="text-align:center">0</td>
+                <td style="text-align:center">128</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">129</td>
+                <td style="text-align:center">1</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">130</td>
+                <td style="text-align:center">258</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">259</td>
+                <td style="text-align:center">131</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">260</td>
+                <td style="text-align:center">388</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">389</td>
+                <td style="text-align:center">261</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">390</td>
+                <td style="text-align:center">518</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">519</td>
+                <td style="text-align:center">391</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">520</td>
+                <td style="text-align:center">648</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">649</td>
+                <td style="text-align:center">521</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">650</td>
+                <td style="text-align:center">714</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">715</td>
+                <td style="text-align:center">651</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">716</td>
+                <td style="text-align:center">748</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">749</td>
+                <td style="text-align:center">717</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">750</td>
+                <td style="text-align:center">766</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">767</td>
+                <td style="text-align:center">751</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">768</td>
+                <td style="text-align:center">776</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">777</td>
+                <td style="text-align:center">769</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">778</td>
+                <td style="text-align:center">782</td>
+            </tr>
             <tr dir="auto">
                 <td style="text-align:center">783</td>
                 <td style="text-align:center">779</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
             </tr>
             <tr dir="auto">
                 <td style="text-align:center">784</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
-                <td style="text-align:center">N/A</td>
                 <td style="text-align:center">N/A</td>
             </tr>
         </tbody>

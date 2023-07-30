@@ -25,7 +25,7 @@ Clipmap Logical Structure
 
 \[Panteleev 2014\]: "CLIPMAP VS. MIPMAP"  
 
-Texture size (for zero mipmap level)  is the same for all clipmap levels, which is called that clipmap size  
+Texture size (for zeroth mipmap level)  is the same for all clipmap levels, which is called that clipmap size  
 The voxel size increses  
 Only the last level has more than one mipmap levels (the logical volume remains the same within the same clipmap level)  
 
@@ -40,39 +40,42 @@ clipmap level 4: mipmap 0-5 (6 levels)
 Physical Structure:  
 Texture3D 128\*128\*785  
 
-3D Texture Depth Index | 3D Texture Equivalent Depth Index (Toroidal Address) | Clipmap Level Index | Mipmap Index | Voxel Size | Texture Size \(Voxel Count & 3D Texture Logical Width/Height\)  
-:-: | :-: | :-: | :-: | :-: | :-: 
-0         | 128 | N/A | N/A | N/A  | N/A   
-1 - 128   | N/A | 0   | 0   | 8    | 128   
-129       | 1   | N/A | N/A | N/A  | N/A  
-130       | 258 | N/A | N/A | N/A  | N/A  
-131 - 258 | N/A | 1   | 0   | 16   | 128   
-259       | 131 | N/A | N/A | N/A  | N/A   
-260       | 388 | N/A | N/A | N/A  | N/A   
-261 - 388 | N/A | 2   | 0   | 32   | 128   
-389       | 261 | N/A | N/A | N/A  | N/A   
-390       | 518 | N/A | N/A | N/A  | N/A   
-391 - 518 | N/A | 3   | 0   | 64   | 128    
-519       | 391 | N/A | N/A | N/A  | N/A   
-520       | 648 | N/A | N/A | N/A  | N/A   
-521 - 648 | N/A | 4   | 0   | 128  | 128 
-649       | 521 | N/A | N/A | N/A  | N/A   
-650       | 714 | N/A | N/A | N/A  | N/A   
-651 - 714 | N/A | 4   | 1   | 256  | 64    
-715       | 651 | N/A | N/A | N/A  | N/A   
-716       | 748 | N/A | N/A | N/A  | N/A   
-717 - 748 | N/A | 4   | 2   | 512  | 32    
-749       | 717 | N/A | N/A | N/A  | N/A   
-750       | 766 | N/A | N/A | N/A  | N/A   
-751 - 766 | N/A | 4   | 3   | 1024 | 16    
-767       | 751 | N/A | N/A | N/A  | N/A   
-768       | 776 | N/A | N/A | N/A  | N/A   
-769 - 776 | N/A | 4   | 4   | 2048 | 8     
-777       | 769 | N/A | N/A | N/A  | N/A   
-778       | 782 | N/A | N/A | N/A  | N/A   
-779 - 782 | N/A | 4   | 5   | 4096 | 4     
-783       | 779 | N/A | N/A | N/A  | N/A   
-784       | N/A | N/A | N/A | N/A  | N/A   
+3D Texture Depth Index | Clipmap Level Index | Mipmap Index | Voxel Size | Texture Size \(Voxel Count & 3D Texture Logical Width/Height\)  
+:-: | :-: | :-: | :-: | :-: 
+1 - 128   | 0   | 0   | 8    | 128   
+131 - 258 | 1   | 0   | 16   | 128   
+261 - 388 | 2   | 0   | 32   | 128   
+391 - 518 | 3   | 0   | 64   | 128    
+521 - 648 | 4   | 0   | 128  | 128 
+651 - 714 | 4   | 1   | 256  | 64    
+717 - 748 | 4   | 2   | 512  | 32    
+751 - 766 | 4   | 3   | 1024 | 16     
+769 - 776 | 4   | 4   | 2048 | 8     
+779 - 782 | 4   | 5   | 4096 | 4     
+
+3D Texture Depth Index | 3D Texture Equivalent Depth Index (Toroidal Address)  
+:-: | :-:  
+0   | 128
+129 | 1    
+130 | 258  
+259 | 131   
+260 | 388   
+389 | 261    
+390 | 518    
+519 | 391    
+520 | 648   
+649 | 521   
+650 | 714   
+715 | 651    
+716 | 748    
+749 | 717    
+750 | 766    
+767 | 751    
+768 | 776   
+777 | 769    
+778 | 782    
+783 | 779    
+784 | N/A    
 
 ### MSAA  
 
