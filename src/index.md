@@ -35,7 +35,7 @@ If you find there are any mistakes or improvements, please don't hesitate to con
 ### Geometry  
 - MOC [Documentation](Image-Synthesis/Geometry/MOC.html)  
 - Projector Functions [Documentation](Image-Synthesis/Geometry/Projector-Functions.html)  
-- DLB [Documentation](Image-Synthesis/Geometry/DLB.html) [Code](https://github.com/HanetakaChou/Image-Synthesis/tree/DLB-DXUT-D3D11)  
+- DLB [Documentation](Image-Synthesis/Geometry/DLB.html) [Code-DXUT-D3D11](https://github.com/HanetakaChou/Image-Synthesis/tree/DLB-DXUT-D3D11)  
 - Grass [Documentation](Image-Synthesis/Geometry/Grass.html)  
 - Billboard [Documentation](Image-Synthesis/Geometry/Billboard.html)  
 
@@ -44,7 +44,8 @@ If you find there are any mistakes or improvements, please don't hesitate to con
 - BRDF [Documentation](Image-Synthesis/Lighting/BRDF.html)  
 - LTC [Documentation](Image-Synthesis/Lighting/LTC.html) [Code-VK](https://github.com/HanetakaChou/Image-Synthesis/tree/LTC-VK) [Code-D3D11](https://github.com/HanetakaChou/Image-Synthesis/tree/LTC-D3D11)  
 - Environment Lighting [Documentation](Image-Synthesis/Lighting/Environment-Lighting.html) [Code-VK](https://github.com/HanetakaChou/Image-Synthesis/tree/Environment-Lighting-VK) [Code-D3D11](https://github.com/HanetakaChou/Image-Synthesis/tree/Environment-Lighting-D3D11)  
-- Subsurface-Scattering [Documentation](Image-Synthesis/Lighting/Subsurface-Scattering.html) [Code-Disney](https://github.com/HanetakaChou/Image-Synthesis/tree/Subsurface-Scattering-Disney-DXUT-D3D11) [Code-PreIntegrated](https://github.com/HanetakaChou/Image-Synthesis/tree/Subsurface-Scattering-PreIntegrated-DXUT-D3D11)  
+- Subsurface-Scattering [Documentation](Image-Synthesis/Lighting/Subsurface-Scattering.html) [Code-Disney-DXUT-D3D11](https://github.com/HanetakaChou/Image-Synthesis/tree/Subsurface-Scattering-Disney-DXUT-D3D11) [Code-PreIntegrated-DXUT-D3D11](https://github.com/HanetakaChou/Image-Synthesis/tree/Subsurface-Scattering-PreIntegrated-DXUT-D3D11)  
+- LPV [Documentation](Image-Synthesis/Lighting/LPV.html) [Code-DXUT-D3D11](ttps://github.com/HanetakaChou/Image-Synthesis/tree/LPV-DXUT-D3D11)  
 - VXGI [Documentation](Image-Synthesis/Lighting/VXGI.html) [Code-D3D11](https://github.com/HanetakaChou/Image-Synthesis/tree/VXGI-D3D11)  
 - Volume-Rendering [Documentation](Image-Synthesis/Lighting/Volume-Rendering.html)  
 - OIT [Documentation](Image-Synthesis/Lighting/OIT.html) [Code-Stochastic-Transparency](https://github.com/HanetakaChou/StochasticTransparency) [Code-MLAB](https://github.com/HanetakaChou/MultiLayerAlphaBlending) [Code-WBOIT](https://github.com/HanetakaChou/WeightedBlendedOIT)  
