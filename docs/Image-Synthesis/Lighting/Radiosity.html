@@ -14,7 +14,8 @@
     <h2 dir="auto" id="fem-finite-element-method">FEM (Finite Element Method)</h2>
     <p dir="auto">The main idea of <strong>FEM(Finite Element Method)</strong> is to convert the
         <strong>infinite</strong> problem of solving a <strong>differential equation</strong> into the
-        <strong>finite</strong> problem of solving a <strong>system of equations</strong>.</p>
+        <strong>finite</strong> problem of solving a <strong>system of equations</strong>.
+    </p>
     <p dir="auto">Let <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
@@ -803,7 +804,7 @@
                                                 style="height:0.15em;"><span></span></span></span></span></span></span></span><span
                             class="mopen">(</span><span class="mord mathnormal">x</span><span
                             class="mclose">))</span></span></span></span></eq> be the <strong>residual</strong>. The
-        projection of the <strong>residual</strong> onto each basis function should be zero. This means that, for k = 1
+        projection of the <strong>residual</strong> onto each basis function should be zero. This means that, for j = 1
         ... n, we have <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
@@ -818,7 +819,7 @@
                                     <mi mathvariant="normal">
                                         <msub>
                                             <mi mathvariant="normal">v</mi>
-                                            <mi mathvariant="normal">k</mi>
+                                            <mi mathvariant="normal">j</mi>
                                         </msub>
                                     </mi>
                                     <mo>⁡</mo>
@@ -830,7 +831,7 @@
                                 </mstyle>
                             </mrow>
                             <annotation encoding="application/x-tex">\displaystyle \int \operatorname{r}(x)
-                                \operatorname{v_k}(x) = 0</annotation>
+                                \operatorname{v_j}(x) = 0</annotation>
                         </semantics>
                     </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
                             style="height:2.22225em;vertical-align:-0.86225em;"></span><span
@@ -842,13 +843,13 @@
                             style="margin-right:0.16666666666666666em;"></span><span class="mop"><span
                                 class="mord"><span class="mord mathrm" style="margin-right:0.01389em;">v</span><span
                                     class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-                                                class="vlist" style="height:0.33610799999999996em;"><span
+                                                class="vlist" style="height:0.317502em;"><span
                                                     style="top:-2.5500000000000003em;margin-left:-0.01389em;margin-right:0.05em;"><span
                                                         class="pstrut" style="height:2.7em;"></span><span
                                                         class="sizing reset-size6 size3 mtight"><span
-                                                            class="mord mathrm mtight">k</span></span></span></span><span
+                                                            class="mord mathrm mtight">j</span></span></span></span><span
                                                 class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                                style="height:0.15em;"><span></span></span></span></span></span></span></span><span
+                                                style="height:0.286108em;"><span></span></span></span></span></span></span></span><span
                             class="mopen">(</span><span class="mord mathnormal">x</span><span
                             class="mclose">)</span><span class="mspace"
                             style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
@@ -873,7 +874,7 @@
                                     <mi mathvariant="normal">
                                         <msub>
                                             <mi mathvariant="normal">v</mi>
-                                            <mi mathvariant="normal">k</mi>
+                                            <mi mathvariant="normal">j</mi>
                                         </msub>
                                     </mi>
                                     <mo>⁡</mo>
@@ -883,7 +884,7 @@
                                 </mstyle>
                             </mrow>
                             <annotation encoding="application/x-tex">\displaystyle \operatorname{R}(x) =
-                                \operatorname{r}(x) \operatorname{v_k}(x)</annotation>
+                                \operatorname{r}(x) \operatorname{v_j}(x)</annotation>
                         </semantics>
                     </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
                             style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span
@@ -891,19 +892,20 @@
                             class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace"
                             style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
                             class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-                        class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
-                            class="mop"><span class="mord mathrm">r</span></span><span class="mopen">(</span><span
+                        class="base"><span class="strut"
+                            style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mop"><span
+                                class="mord mathrm">r</span></span><span class="mopen">(</span><span
                             class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace"
                             style="margin-right:0.16666666666666666em;"></span><span class="mop"><span
                                 class="mord"><span class="mord mathrm" style="margin-right:0.01389em;">v</span><span
                                     class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-                                                class="vlist" style="height:0.33610799999999996em;"><span
+                                                class="vlist" style="height:0.317502em;"><span
                                                     style="top:-2.5500000000000003em;margin-left:-0.01389em;margin-right:0.05em;"><span
                                                         class="pstrut" style="height:2.7em;"></span><span
                                                         class="sizing reset-size6 size3 mtight"><span
-                                                            class="mord mathrm mtight">k</span></span></span></span><span
+                                                            class="mord mathrm mtight">j</span></span></span></span><span
                                                 class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                                style="height:0.15em;"><span></span></span></span></span></span></span></span><span
+                                                style="height:0.286108em;"><span></span></span></span></span></span></span></span><span
                             class="mopen">(</span><span class="mord mathnormal">x</span><span
                             class="mclose">)</span></span></span></span></eq> is also called the <strong>weighted
             residual</strong>). And we have the <strong>system of equations</strong> about the coefficients <eq><span
@@ -2799,7 +2801,8 @@
 -12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
  151.7 139 205zm0 0v40h399900v-40z' />
                                                 </svg></span></span></span></span></span></span><span
-                            class="mclose">)</span></span></span></span></eq>.</p>
+                            class="mclose">)</span></span></span></span></eq>.
+    </p>
     <p dir="auto">Thus, the problem of rendering is essentially a problem of solving the <strong>differential
             equation</strong>. There are two independent approaches: ray tracing (which depends on the <strong>Fredholm
             theory</strong>) and radiosity (which depends on the <strong>FEM</strong>).</p>
@@ -2879,11 +2882,13 @@
                             style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span
                             class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
                         class="base"><span class="strut" style="height:0.12em;vertical-align:0em;"></span><span
-                            class="minner">…</span></span></span></span></eq>.</p>
+                            class="minner">…</span></span></span></span>
+        </eq>.</p>
     <h2 dir="auto" id="radiosity-1">Radiosity</h2>
     <p dir="auto">Note that the term <strong>radiosity B</strong> has been deprecated and should be called
         <strong>radiant exitance M</strong> or outgoing <strong>irradiance E</strong> instead. But to be consistent with
-        most literature about <strong>radiosity</strong>, we still use <strong>radiosity B</strong> here.</p>
+        most literature about <strong>radiosity</strong>, we still use <strong>radiosity B</strong> here.
+    </p>
     <p dir="auto">By &quot;Equation (5.6)&quot; of <a
             href="https://pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#IntegralsoverArea">PBRT-V3</a>,
         we have the relationship <eq><span class="katex"><span class="katex-mathml"><math
@@ -4107,8 +4112,9 @@
                                                 </svg></span></span></span><span class="vlist-s">​</span></span><span
                                     class="vlist-r"><span class="vlist"
                                         style="height:0.19444em;"><span></span></span></span></span></span><span
-                            class="mclose">)</span></span></span></span></eq> where integral interval <eq><span
-                class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            class="mclose">)</span></span></span></span>
+        </eq> where integral interval <eq><span class="katex"><span class="katex-mathml"><math
+                        xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
                                 <mstyle scriptlevel="0" displaystyle="true">
@@ -4915,8 +4921,9 @@
                                                 </svg></span></span></span><span class="vlist-s">​</span></span><span
                                     class="vlist-r"><span class="vlist"
                                         style="height:0.19444em;"><span></span></span></span></span></span><span
-                            class="mclose">)</span></span></span></span></eq> does NOT depend on the direction <eq><span
-                class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            class="mclose">)</span></span></span></span>
+        </eq> does NOT depend on the direction <eq><span class="katex"><span class="katex-mathml"><math
+                        xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
                                 <mstyle scriptlevel="0" displaystyle="true">
@@ -6561,7 +6568,8 @@
                                                         class="vlist-s">​</span></span><span class="vlist-r"><span
                                                         class="vlist"
                                                         style="height:1.19em;"><span></span></span></span></span></span></span></span><span
-                                    class="mclose nulldelimiter"></span></span></span></span></span></span></eq> where
+                                    class="mclose nulldelimiter"></span></span></span></span></span></span>
+        </eq> where
         <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
@@ -8987,8 +8995,8 @@
             href="https://www.realtimerendering.com">Real-Time Rendering Fourth Edition</a>.</p>
     <p dir="auto">Proof</p>
     <blockquote dir="auto">
-        <p dir="auto">By <a href="https://en.wikipedia.org/wiki/Integral#Conventions">Additive Interval Property</a>, we
-            have <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+        <p dir="auto">By <a href="https://en.wikipedia.org/wiki/Integral#Linearity">Linearity Property</a>, we have <eq>
+                <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                             <semantics>
                                 <mrow>
                                     <mstyle scriptlevel="0" displaystyle="true">
@@ -10264,7 +10272,8 @@
                                                     </svg></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.19444em;"><span></span></span></span></span></span><span
-                                class="mclose">)</span></span></span></span></eq>
+                                class="mclose">)</span></span></span></span>
+            </eq>
         </p>
         <p dir="auto">First, we would like to prove that <eq><span class="katex"><span class="katex-mathml"><math
                             xmlns="http://www.w3.org/1998/Math/MathML">
@@ -10502,9 +10511,8 @@
                                                 style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
             </eq>.</p>
         <blockquote dir="auto">
-            <p dir="auto">By <a href="https://en.wikipedia.org/wiki/Integral#Conventions">Additive Interval
-                    Property</a>, we have <eq><span class="katex"><span class="katex-mathml"><math
-                                xmlns="http://www.w3.org/1998/Math/MathML">
+            <p dir="auto">By <a href="https://en.wikipedia.org/wiki/Integral#Linearity">Linearity Property</a>, we have
+                <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                                 <semantics>
                                     <mrow>
                                         <mstyle scriptlevel="0" displaystyle="true">
@@ -12623,13 +12631,13 @@
                                                     class="vlist-s">​</span></span><span class="vlist-r"><span
                                                     class="vlist"
                                                     style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
-                </eq>.</p>
+                </eq>.
+            </p>
         </blockquote>
         <p dir="auto">Third, we would like to prove that</p>
         <blockquote dir="auto">
-            <p dir="auto">By <a href="https://en.wikipedia.org/wiki/Integral#Conventions">Additive Interval
-                    Property</a>, we have <eq><span class="katex"><span class="katex-mathml"><math
-                                xmlns="http://www.w3.org/1998/Math/MathML">
+            <p dir="auto">By <a href="https://en.wikipedia.org/wiki/Integral#Linearity">Linearity Property</a>, we have
+                <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                                 <semantics>
                                     <mrow>
                                         <mstyle scriptlevel="0" displaystyle="true">
