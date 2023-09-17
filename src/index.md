@@ -43,8 +43,8 @@ If you find there are any mistakes or improvements, please don't hesitate to con
 >>  
 >> Projector Function  
 >>> Cube Mapping [Documentation](Image-Synthesis/Geometry/Projector-Function/Cube-Mapping.html)  
->>> Dual Paraboloid Mapping [Documentation](Image-Synthesis/Geometry/Projector-Function/Dual-Paraboloid-Mapping.html)  
->>> Octahedron Mapping [Documentation](Image-Synthesis/Geometry/Projector-Function/Octahedron-Mapping.html)  
+>>> Dual Paraboloid Mapping [Documentation](Image-Synthesis/Geometry/Projector-Function/Dual-Paraboloid-Mapping.html) [Code-VK](https://github.com/HanetakaChou/Image-Synthesis/tree/Dual-Paraboloid-Mapping-VK)  
+>>> Octahedron Mapping [Documentation](Image-Synthesis/Geometry/Projector-Function/Octahedron-Mapping.html) [Code-VK](https://github.com/HanetakaChou/Image-Synthesis/tree/Octahedron-Mapping-VK)  
 >>  
 >> DLB [Documentation](Image-Synthesis/Geometry/DLB.html) [Code-DXUT-D3D11](https://github.com/HanetakaChou/Image-Synthesis/tree/DLB-DXUT-D3D11)  
 >> Grass [Documentation](Image-Synthesis/Geometry/Grass.html)  
