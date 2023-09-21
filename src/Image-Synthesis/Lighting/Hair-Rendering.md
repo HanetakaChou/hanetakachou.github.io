@@ -7,4 +7,7 @@
 [EvaluateBSDF](https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.high-definition/Runtime/Material/Hair/Hair.hlsl#L359) in Unity3D  
 
 ## References  
+\[Scheuermann 2004\] [Thorsten Scheuermann. "Practical Real-Time Hair Rendering and Shading." SIGGRAPH 2004.](https://www.shaderwrangler.com/publications/hairsketch/)  
 \[Pharr 2016\] [Matt Pharr. "THE IMPLEMENTATION OF A HAIR SCATTERING MODEL." PBRT 2016.](http://pbrt.org/hair.pdf)  
+\[Karis 2016\] [Brian Karis. "Physically Based Hair Shading in Unreal." SIGGRAPH 2016.](https://blog.selfshadow.com/publications/s2016-shading-course/)  
+
