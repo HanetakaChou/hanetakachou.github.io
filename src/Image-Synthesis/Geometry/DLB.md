@@ -405,6 +405,6 @@ The DLB (Dual quaternion Linear Blending) is supported by [Autodesk 3ds Max](htt
 
 ![Autodesk Maya: Dual Quaternion](DLB-6.png)  
 
-## Reference  
+## References  
 \[Kavan 2007\] [Ladislav Kavan, Steven Collins, Jiri Zara, Carol O'Sullivan. "Skinning with Dual Quaternions." I3D 2007.](http://www.cs.utah.edu/~ladislav/kavan07skinning/kavan07skinning.html)  
 \[Kavan 2008\] [Ladislav Kavan, Steven Collins, Jiri Zara, Carol O'Sullivan. "Geometric Skinning with Approximate Dual Quaternion Blending." SIGGRAPH 2008.](http://www.cs.utah.edu/~ladislav/kavan08geometric/kavan08geometric.html)  

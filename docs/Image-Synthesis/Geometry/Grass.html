@@ -10,9 +10,9 @@
 </head>
 
 <body class="markdown-body">
-    <h2 id="nvidia-turf-effects-2" data-line="0" class="code-line">NVIDIA Turf Effects</h2>
-    <p data-line="1" class="code-line">The solutions provided by Makarov(1.[Makarov 2015]) and Jahrmann(2.[Jahrmann
-        2017]) all suggest using the tessellation shader to generate the vertices by the bezier control points.<br>
+    <h2 dir="auto" id="nvidia-turf-effects">NVIDIA Turf Effects</h2>
+    <p dir="auto">The solutions provided by Makarov(1.[Makarov 2015]) and Jahrmann(2.[Jahrmann 2017]) all suggest using
+        the tessellation shader to generate the vertices by the bezier control points.<br>
         However, the tessellation shader is inefficient on the mobile GPU since the output vertices data must be written
         back into the main memory while the output framebuffer data may be kept in tile memory and discarded when
         renderpass ends(3.[Harris 2019]).<br>
@@ -22,27 +22,22 @@
         shader mannually and optimize the usage of the computer shader finely.<br>
         As suggested by &quot;Best Practices&quot;(3.[Harris 2019]), we intend to generate two seperated vertex buffers:
         positions and varyings.</p>
-    <h2 id="tressfx-2" data-line="7" class="code-line">TressFX</h2>
-    <p data-line="8" class="code-line">4.[Han 2015]</p>
-    <h2 id="reference-2" data-line="10" class="code-line">Reference</h2>
-    <p data-line="11" class="code-line">1.[Makarov 2015] <a
-            href="http://on-demand.gputechconf.com/gtc/2015/presentation/S5748-Evgeny-Makarov.pdf"
-            data-href="http://on-demand.gputechconf.com/gtc/2015/presentation/S5748-Evgeny-Makarov.pdf">Evgeny Makarov.
+    <h2 dir="auto" id="tressfx">TressFX</h2>
+    <p dir="auto">4.[Han 2015]</p>
+    <h2 dir="auto" id="references">References</h2>
+    <p dir="auto">1.[Makarov 2015] <a
+            href="http://on-demand.gputechconf.com/gtc/2015/presentation/S5748-Evgeny-Makarov.pdf">Evgeny Makarov.
             &quot;NVIDIA Turf Effects: Massive Grass Rendering With Dynamic Simulation.&quot; GTC 2015.</a><br>
-        Appendix: <a href="https://developer.nvidia.com/turfeffects"
-            data-href="https://developer.nvidia.com/turfeffects">GameWorks VisualFX</a><br>
+        Appendix: <a href="https://developer.nvidia.com/turfeffects">GameWorks VisualFX</a><br>
         2.[Jahrmann 2017] <a
-            href="https://www.cg.tuwien.ac.at/research/publications/2017/JAHRMANN-2017-RRTG/JAHRMANN-2017-RRTG-draft.pdf"
-            data-href="https://www.cg.tuwien.ac.at/research/publications/2017/JAHRMANN-2017-RRTG/JAHRMANN-2017-RRTG-draft.pdf">Klemens
+            href="https://www.cg.tuwien.ac.at/research/publications/2017/JAHRMANN-2017-RRTG/JAHRMANN-2017-RRTG-draft.pdf">Klemens
             Jahrmann, Michael Wimmer. &quot;Responsive Real-Time Grass Rendering for General 3D Scenes.&quot; I3D
             2017.</a><br>
-        Appendix: <a href="https://github.com/klejah/ResponsiveGrassDemo"
-            data-href="https://github.com/klejah/ResponsiveGrassDemo">GitHub-Klejah</a> <a
-            href="https://github.com/YuqiaoZhang/ResponsiveGrassDemo"
-            data-href="https://github.com/YuqiaoZhang/ResponsiveGrassDemo">GitHub-YuqiaoZhang</a><br>
-        3.[Harris 2019] <a href="https://developer.arm.com/solutions/graphics/developer-guides/mali-gpu-best-practices"
-            data-href="https://developer.arm.com/solutions/graphics/developer-guides/mali-gpu-best-practices">Pete
-            Harris. &quot;Arm Mali GPUs Best Practices Developer Guide.&quot; ARM Developer 2019.</a><br>
+        Appendix: <a href="https://github.com/klejah/ResponsiveGrassDemo">GitHub-Klejah</a> <a
+            href="https://github.com/YuqiaoZhang/ResponsiveGrassDemo">GitHub-YuqiaoZhang</a><br>
+        3.[Harris 2019] <a
+            href="https://developer.arm.com/solutions/graphics/developer-guides/mali-gpu-best-practices">Pete Harris.
+            &quot;Arm Mali GPUs Best Practices Developer Guide.&quot; ARM Developer 2019.</a><br>
         4.[Han 2015] Dongsoo Han, Hongwei Li. &quot;Grass Rendering and Simulation with LOD.&quot; GPU Pro 6 Chapter
         II-2 2015.</p>
 

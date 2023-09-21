@@ -66,7 +66,7 @@ https://github.com/GameTechDev/OutdoorLightScattering
 TODO  
 https://github.com/NVIDIAGameWorks/VolumetricLighting  
 
-## Reference  
+## References  
 \[Yusov 2013\] [Egor Yusov. "Practical Implementation of Light Scattering Effects Using Epipolar Sampling and 1D Min/Max Binary Trees." GDC 2013](https://github.com/GameTechDev/OutdoorLightScattering)  
 \[Cantlay 2014\] [Iain Cantlay. From Terrain to Godrays Better Use of DirectX11. GDC 2014.](https://developer.nvidia.com/sites/default/files/akamai/gameworks/events/gdc14/GDC_14_From%20Terrain%20to%20Godrays%20-%20Better%20Use%20of%20DirectX11CantlayTatarinov.pdf)  
 \[Hillaire 2016\] [Sebastien Hillaire. "Physically Based Sky, Atmosphere and Cloud Rendering in Frostbite." SIGGRAPH 2016.](https://www.ea.com/news/physically-based-sky-atmosphere-and-cloud-rendering)  

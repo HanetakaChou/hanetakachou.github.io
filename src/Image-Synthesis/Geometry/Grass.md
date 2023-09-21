@@ -8,7 +8,7 @@ As suggested by "Best Practices"(3\.\[Harris 2019\]), we intend to generate two 
 ## TressFX  
 4\.\[Han 2015\]  
 
-## Reference  
+## References  
 1\.\[Makarov 2015\] [Evgeny Makarov. "NVIDIA Turf Effects: Massive Grass Rendering With Dynamic Simulation." GTC 2015.](http://on-demand.gputechconf.com/gtc/2015/presentation/S5748-Evgeny-Makarov.pdf)  
 Appendix: [GameWorks VisualFX](https://developer.nvidia.com/turfeffects)  
 2\.\[Jahrmann 2017\] [Klemens Jahrmann, Michael Wimmer. "Responsive Real-Time Grass Rendering for General 3D Scenes." I3D 2017.](https://www.cg.tuwien.ac.at/research/publications/2017/JAHRMANN-2017-RRTG/JAHRMANN-2017-RRTG-draft.pdf)  
