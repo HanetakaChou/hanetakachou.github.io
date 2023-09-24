@@ -10,7 +10,7 @@
 </head>
 
 <body class="markdown-body">
-    <h1 dir="auto" id="hair-rendering-1">Hair Rendering</h1>
+    <h1 dir="auto" id="hair-rendering">Hair Rendering</h1>
     <p dir="auto">By &quot;Equation (5.9)&quot; of <a
             href="https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Surface_Reflection#TheBRDF">PBR Book</a>, we
         have the reflectance equation <eq><span class="katex"><span class="katex-mathml"><math
@@ -327,7 +327,7 @@
         in Unity3D</p>
     <p dir="auto"><a href="https://rmanwiki.pixar.com/display/REN25/PxrMarschnerHair">PxrMarschnerHair</a> in RenderMan
     </p>
-    <h2 dir="auto" id="micro-cylinder-models-1">Micro-Cylinder Models</h2>
+    <h2 dir="auto" id="micro-cylinder-models">Micro-Cylinder Models</h2>
     <p dir="auto">The name <strong>micro-cylinder models</strong> is from &quot;9.10.3 Micro-Cylinder Cloth Models&quot;
         of <a href="https://www.realtimerendering.com/">Real-Time Rendering Fourth Edition</a>.</p>
     <p dir="auto">By [Kajiya 1998], at any given position of the cylinder, there are infinite number of normals which
@@ -739,7 +739,7 @@
                             class="mord mathnormal">ϕ</span></span></span></span></eq> be the normal points in one
         direction perpendicular to the tangent.</p>
     <p dir="auto"><img src="Hair-Rendering-2.png" alt="" data-src="Hair-Rendering-2.png"></p>
-    <p dir="auto">The <eq><span class="katex"><span class="katex-mathml"><math
+    <p dir="auto">By [Kajiya 1998], the <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
@@ -1714,7 +1714,7 @@
         </eq> be the outgoing direction.<br>
         <img src="Hair-Rendering-3.png" alt="" data-src="Hair-Rendering-3.png">
     </p>
-    <p dir="auto">Evidently, the half-angle vector <eq><span class="katex"><span class="katex-mathml"><math
+    <p dir="auto">By [Kajiya 1998], the half-angle vector <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
@@ -1773,8 +1773,8 @@
                         </semantics>
                     </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
                             style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span
-                            class="mord mathnormal">ϕ</span></span></span></span></eq>. Thus, The incident direction
-        <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            class="mord mathnormal">ϕ</span></span></span></span></eq>. This means that the incident
+        direction <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
                                 <mstyle scriptlevel="0" displaystyle="true">
@@ -2009,9 +2009,8 @@
                                                 </svg></span></span></span><span class="vlist-s">​</span></span><span
                                     class="vlist-r"><span class="vlist"
                                         style="height:0.15em;"><span></span></span></span></span></span></span></span></span>
-        </eq> are coplanar before the half-angle vector is calculated.
-    </p>
-    <h2 dir="auto" id="references-1">References</h2>
+        </eq> are coplanar before the half-angle vector is calculated.</p>
+    <h2 dir="auto" id="references">References</h2>
     <p dir="auto">[Kajiya 1998] James Kajiya, Timothy Kay. &quot;Rendering Fur with Three Dimensional Textures.&quot;
         SIGGRAPH 1998.<br>
         [Marschner 2003] <a href="https://www.cs.cornell.edu/~srm/publications/SG03-hair-abstract.html">Stephen
