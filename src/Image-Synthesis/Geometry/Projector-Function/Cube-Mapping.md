@@ -27,4 +27,4 @@ groundtruth_omega = 4.0 .* pi .* 1.0 .* 1.0 / 6.0;
 printf("numerical:%f groundtruth:%f\n", numerical_omega, groundtruth_omega);
 ```  
 ## References  
-\[Sloan 2008\] [Peter-Pike Sloan. "Stupid Spherical Harmonics (SH)." Tricks GDC 2008.](http://www.ppsloan.org/publications/StupidSH36.pdf)  
+\[Sloan 2008\] [Peter-Pike Sloan. "Stupid Spherical Harmonics (SH) Tricks." GDC 2008.](http://www.ppsloan.org/publications/StupidSH36.pdf)  
