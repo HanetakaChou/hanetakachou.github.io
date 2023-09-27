@@ -39,6 +39,7 @@ If you find there are any mistakes or improvements, please don't hesitate to con
 
 > Geometry  
 >  
+>> HLOD [Documentation](Image-Synthesis/Geometry/HLOD.html)  
 >> MOC [Documentation](Image-Synthesis/Geometry/MOC.html)  
 >>  
 >> Projector Function  
