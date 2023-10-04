@@ -25,7 +25,9 @@ The **NdotH** and the **LdotH** are calculated by [GetBSDFAngle](https://github.
 
 By "Equation \(9.76\)" of [Real-Time Rendering Fourth Edition](https://www.realtimerendering.com/), the NDF by averaging the normal and the roughness separately is NOT the averaging NDF.  
 
-[TextureNormalVariance](https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.core/ShaderLibrary/CommonMaterial.hlsl#L214) by U3D  
+[NormalCurvatureToRoughness](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/BasePassPixelShader.usf#L67) in UE4  
+
+[TextureNormalVariance](https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.core/ShaderLibrary/CommonMaterial.hlsl#L214) in U3D  
 
 ## Trowbridge-Reitz  
 
