@@ -2,13 +2,28 @@
 
 ## SH (Spherical Harmonics)  
 
-Let $\displaystyle \operatorname{\Upsilon_l^m}(\overrightarrow{\omega})$ be the SH basis function of which l is the degree and m is the basis function index from -l to l.  
+Let $\displaystyle \operatorname{\Upsilon_l^m}(\overrightarrow{\omega})$ be the SH basis function of which l is the degree (band) and m is the basis function index from -l to l.  
+
+By "Appendix A2" of \[Sloan 2008\], we have the **polynomial forms** of SH basis $\displaystyle \operatorname{\Upsilon_l^m}(\overrightarrow{\omega})$. These polynomial forms are calculated by [sh_eval_basis_1](https://github.com/microsoft/DirectXMath/blob/jul2018b/SHMath/DirectXSH.cpp#L105) in DirectXMath, and [SHBasisFunction](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/SHCommon.ush#L215) in UE4.  
+
+Note that the direction vector $\displaystyle \begin{bmatrix} x & y & z\end{bmatrix}$ should be **normalized** before using the polynomial forms. By "13.5.3 Spherical Coordinates" of [PBRT-V3](https://pbr-book.org/3ed-2018/Monte_Carlo_Integration/Transforming_between_Distributions#SphericalCoordinates), we have $\displaystyle \begin{bmatrix} x & y & z\end{bmatrix} = \begin{bmatrix} \sin \theta \cos \phi & \sin \theta \sin \phi & \cos \theta \end{bmatrix}$ where $\displaystyle \theta$ is the azimuth and $\displaystyle \phi$ is the inclination.  
+
+l  |  m  | $\displaystyle \operatorname{\Upsilon_l^m}(\overrightarrow{\omega})$  
+:-: | :-: | :-:  
+0  |  0  | $\displaystyle \frac{1}{2 \sqrt{\pi}} = 0.282094791773878140$       
+1  | -1  | $\displaystyle - \frac{\sqrt{3}}{2 \sqrt{\pi}} y = -0.488602511902919920 y$     
+1  |  0  | $\displaystyle \frac{\sqrt{3}}{2 \sqrt{\pi}} z = 0.488602511902919920 z$     
+1  |  1  | $\displaystyle - \frac{\sqrt{3}}{2 \sqrt{\pi}} x = -0.488602511902919920 x$     
+
 
 Let $\displaystyle \operatorname{\mathcal{SH}}$ be the **SH (Spherical Harmonics) projection operation**. Analogous to the **Fourier transform**, we have $\displaystyle k_l^m = \operatorname{\mathcal{SH}}(\operatorname{f}(\overrightarrow{\omega})) = \int_{\mathrm{S}^2} \operatorname{f}(\overrightarrow{\omega}) \operatorname{\Upsilon_l^m}(\overrightarrow{\omega}) \, d\overrightarrow{\omega}$, and the original function can be reconstructed as the SH series $\displaystyle\operatorname{f}(\overrightarrow{\omega}) = \sum k_l^m \operatorname{\Upsilon_l^m}(\overrightarrow{\omega})$.  
 
-Rotational Invariance  
+Let R be the rotation matrix, and we have $\displaystyle {k'}_l^m = \operatorname{\mathcal{SH}}(\operatorname{f}(\mathrm{R} \overrightarrow{\omega})) = \int_{\mathrm{S}^2} \operatorname{f}(\mathrm{R} \overrightarrow{\omega}) \operatorname{\Upsilon_l^m}(\overrightarrow{\omega}) \, d\overrightarrow{\omega}$. By "Appendix: SH Rotation" of \[Kautz 2002\], we have the **rotational invariance** $\displaystyle \begin{bmatrix} {k'}_l^{-l} \\ \vdots \\ {k'}_l^0 \\ \vdots \\ {k'}_l^l \end{bmatrix} = \mathrm{M}_l \begin{bmatrix} k_l^{-l} \\ \vdots \\ k_l^0 \\ \vdots \\ k_l^l \end{bmatrix}$ where $\displaystyle \mathrm{M}_l^{ij} = \int_{\mathrm{S}^2} \operatorname{\Upsilon_l^{i - l}}(\mathrm{R} \overrightarrow{\omega}) \operatorname{\Upsilon_l^{j - l}}(\overrightarrow{\omega}) \, d\overrightarrow{\omega}$.  
 
-Let R be the rotation matrix, and we have $\displaystyle {k'}_l^m = \operatorname{\mathcal{SH}}(\operatorname{f}(\mathrm{R} \overrightarrow{\omega})) = \int_{\mathrm{S}^2} \operatorname{f}(\mathrm{R} \overrightarrow{\omega}) \operatorname{\Upsilon_l^m}(\overrightarrow{\omega}) \, d\overrightarrow{\omega}$. By "Appendix: SH Rotation" of \[Kautz 2002\], we have the **rotational invariance** $\displaystyle {k'}_l^m = \sum_{m = -l}^l \mathrm{M}_l^m k_l^m$ where $\displaystyle \mathrm{R}$ is the rotation matrix.  
+l | i | j | $\displaystyle \mathrm{M}_l^{ij}$  
+:-: | :-: | :-: | :-:  
+0 | 0 | 0 | $\displaystyle \mathrm{M}_0^{00} = \int_{\mathrm{S}^2} \operatorname{\Upsilon_0^0}(\mathrm{R} \overrightarrow{\omega}) \operatorname{\Upsilon_0^0}(\overrightarrow{\omega}) \, d\overrightarrow{\omega} = \int_{\mathrm{S}^2} \frac{1}{2 \sqrt{\pi}} \frac{1}{2 \sqrt{\pi}} \, d\overrightarrow{\omega} = \frac{1}{4\pi} \int_{\mathrm{S}^2} 1 \, d\overrightarrow{\omega} = \frac{1}{4\pi} 4\pi = 1$  
+1 | 0 | 0| $\displaystyle \mathrm{M}_1^{00} = \int_{\mathrm{S}^2} \operatorname{\Upsilon_1^{-1}}(\mathrm{R} \overrightarrow{\omega}) \operatorname{\Upsilon_1^{-1}}(\overrightarrow{\omega}) \, d\overrightarrow{\omega} = $  
    
 [XMSHRotate](https://github.com/microsoft/DirectXMath/blob/jul2018b/SHMath/DirectXSH.cpp#L1026)  
 
@@ -24,8 +39,7 @@ The light position is at the Z axis
 
 ![](LPV-1.png)  
 
-azimuth  
-inclination  
+ 
 
 By "13.5.3 Spherical Coordinates" of [PBRT-V3](https://pbr-book.org/3ed-2018/Monte_Carlo_Integration/Transforming_between_Distributions#SphericalCoordinates), we have $\displaystyle \int_{\Omega} \operatorname{\Upsilon_l^0}(\overrightarrow{\omega}) \, d \overrightarrow{\omega} = \int_0^{2\pi} \left\lparen \int_0^{\alpha} \operatorname{\Upsilon_l^0}(\overrightarrow{\omega}) \sin \theta \, d \theta \right\rparen \, d \phi$.  
 
