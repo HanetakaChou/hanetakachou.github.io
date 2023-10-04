@@ -1877,7 +1877,7 @@
  151.7 139 205zm0 0v40h399900v-40z' />
                                                 </svg></span></span></span></span></span></span><span
                             class="mclose">)</span></span></span></span></eq> be the SH basis function of which l is the
-        degree and m is the basis function index from -l to l.</p>
+        degree (band) and m is the basis function index from -l to l.</p>
     <p dir="auto">Let <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
@@ -5681,18 +5681,77 @@ printf(<span class="hljs-string">&quot;numerical:%f analytical:%f\n&quot;</span>
     <table dir="auto">
         <thead dir="auto">
             <tr dir="auto">
-                <th style="text-align:center">i</th>
                 <th style="text-align:center">l</th>
                 <th style="text-align:center">m</th>
-                <th style="text-align:left">P</th>
+                <th style="text-align:center">
+                    <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                        <mrow>
+                                            <mstyle scriptlevel="0" displaystyle="true">
+                                                <mi mathvariant="normal">
+                                                    <msubsup>
+                                                        <mi mathvariant="normal">Υ</mi>
+                                                        <mi mathvariant="normal">l</mi>
+                                                        <mi mathvariant="normal">m</mi>
+                                                    </msubsup>
+                                                </mi>
+                                                <mo>⁡</mo>
+                                                <mo stretchy="false">(</mo>
+                                                <mover accent="true">
+                                                    <mi>ω</mi>
+                                                    <mo stretchy="true">→</mo>
+                                                </mover>
+                                                <mo stretchy="false">)</mo>
+                                            </mstyle>
+                                        </mrow>
+                                        <annotation encoding="application/x-tex">\displaystyle
+                                            \operatorname{\Upsilon_l^m}(\overrightarrow{\omega})</annotation>
+                                    </semantics>
+                                </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                        class="strut" style="height:1.20256em;vertical-align:-0.25em;"></span><span
+                                        class="mop"><span class="mord"><span class="mord mathrm">Υ</span><span
+                                                class="msupsub"><span class="vlist-t vlist-t2"><span
+                                                        class="vlist-r"><span class="vlist"
+                                                            style="height:0.7143919999999999em;"><span
+                                                                style="top:-2.4530000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                                    class="sizing reset-size6 size3 mtight"><span
+                                                                        class="mord mathrm mtight">l</span></span></span><span
+                                                                style="top:-3.113em;margin-right:0.05em;"><span
+                                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                                    class="sizing reset-size6 size3 mtight"><span
+                                                                        class="mord mathrm mtight">m</span></span></span></span><span
+                                                            class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                            class="vlist"
+                                                            style="height:0.247em;"><span></span></span></span></span></span></span></span><span
+                                        class="mopen">(</span><span class="mord accent"><span class="vlist-t"><span
+                                                class="vlist-r"><span class="vlist"
+                                                    style="height:0.9525600000000001em;"><span style="top:-3em;"><span
+                                                            class="pstrut" style="height:3em;"></span><span
+                                                            class="mord mathnormal"
+                                                            style="margin-right:0.03588em;">ω</span></span><span
+                                                        class="svg-align" style="top:-3.43056em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="hide-tail"
+                                                            style="height:0.522em;min-width:0.888em;"><svg width='400em'
+                                                                height='0.522em' viewBox='0 0 400000 522'
+                                                                preserveAspectRatio='xMaxYMin slice'>
+                                                                <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
+-16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
+ 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
+ 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
+-40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
+-12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
+ 151.7 139 205zm0 0v40h399900v-40z' />
+                                                            </svg></span></span></span></span></span></span><span
+                                        class="mclose">)</span></span></span></span></eq>
+                </th>
             </tr>
         </thead>
         <tbody dir="auto">
             <tr dir="auto">
                 <td style="text-align:center">0</td>
                 <td style="text-align:center">0</td>
-                <td style="text-align:center">0</td>
-                <td style="text-align:left">
+                <td style="text-align:center">
                     <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                                     <semantics>
                                         <mrow>
@@ -5778,9 +5837,8 @@ M834 80h400000v40h-400000z' />
             </tr>
             <tr dir="auto">
                 <td style="text-align:center">1</td>
-                <td style="text-align:center">1</td>
                 <td style="text-align:center">-1</td>
-                <td style="text-align:left">
+                <td style="text-align:center">
                     <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                                     <semantics>
                                         <mrow>
@@ -5910,10 +5968,9 @@ M834 80h400000v40h-400000z' />
                 </td>
             </tr>
             <tr dir="auto">
-                <td style="text-align:center">2</td>
                 <td style="text-align:center">1</td>
                 <td style="text-align:center">0</td>
-                <td style="text-align:left">
+                <td style="text-align:center">
                     <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                                     <semantics>
                                         <mrow>
@@ -6039,10 +6096,9 @@ M834 80h400000v40h-400000z' />
                 </td>
             </tr>
             <tr dir="auto">
-                <td style="text-align:center">3</td>
                 <td style="text-align:center">1</td>
                 <td style="text-align:center">1</td>
-                <td style="text-align:left">
+                <td style="text-align:center">
                     <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                                     <semantics>
                                         <mrow>
@@ -6171,10 +6227,9 @@ M834 80h400000v40h-400000z' />
                 </td>
             </tr>
             <tr dir="auto">
-                <td style="text-align:center">4</td>
                 <td style="text-align:center">2</td>
                 <td style="text-align:center">-2</td>
-                <td style="text-align:left">
+                <td style="text-align:center">
                     <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                                     <semantics>
                                         <mrow>
@@ -6304,10 +6359,9 @@ M834 80h400000v40h-400000z' />
                 </td>
             </tr>
             <tr dir="auto">
-                <td style="text-align:center">5</td>
                 <td style="text-align:center">2</td>
                 <td style="text-align:center">-1</td>
-                <td style="text-align:left">
+                <td style="text-align:center">
                     <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                                     <semantics>
                                         <mrow>
@@ -6439,10 +6493,9 @@ M834 80h400000v40h-400000z' />
                 </td>
             </tr>
             <tr dir="auto">
-                <td style="text-align:center">6</td>
                 <td style="text-align:center">2</td>
                 <td style="text-align:center">0</td>
-                <td style="text-align:left">
+                <td style="text-align:center">
                     <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                                     <semantics>
                                         <mrow>
@@ -6702,10 +6755,9 @@ M834 80h400000v40h-400000z' />
                 </td>
             </tr>
             <tr dir="auto">
-                <td style="text-align:center">7</td>
                 <td style="text-align:center">2</td>
                 <td style="text-align:center">1</td>
-                <td style="text-align:left">
+                <td style="text-align:center">
                     <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                                     <semantics>
                                         <mrow>
@@ -6838,10 +6890,9 @@ M834 80h400000v40h-400000z' />
                 </td>
             </tr>
             <tr dir="auto">
-                <td style="text-align:center">8</td>
                 <td style="text-align:center">2</td>
                 <td style="text-align:center">2</td>
-                <td style="text-align:left">
+                <td style="text-align:center">
                     <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                                     <semantics>
                                         <mrow>
@@ -8779,11 +8830,14 @@ M834 80h400000v40h-400000z' />
                                                     <mn>1</mn>
                                                     <mi>π</mi>
                                                 </mfrac>
-                                                <msubsup>
-                                                    <mi>P</mi>
-                                                    <mn>0</mn>
-                                                    <mn>0</mn>
-                                                </msubsup>
+                                                <mi mathvariant="normal">
+                                                    <msubsup>
+                                                        <mi mathvariant="normal">Υ</mi>
+                                                        <mn>0</mn>
+                                                        <mn>0</mn>
+                                                    </msubsup>
+                                                </mi>
+                                                <mo>⁡</mo>
                                                 <msub>
                                                     <mi>A</mi>
                                                     <mn>0</mn>
@@ -8815,9 +8869,9 @@ M834 80h400000v40h-400000z' />
                                                 </mfrac>
                                             </mstyle>
                                         </mrow>
-                                        <annotation encoding="application/x-tex">\displaystyle \frac{1}{\pi} P_0^0 A_0 =
-                                            \frac{1}{\pi} \frac{1}{2 \sqrt{\pi}} \pi = \frac{1}{2 \sqrt{\pi}}
-                                        </annotation>
+                                        <annotation encoding="application/x-tex">\displaystyle \frac{1}{\pi}
+                                            \operatorname{\Upsilon_0^0} A_0 = \frac{1}{\pi} \frac{1}{2 \sqrt{\pi}} \pi =
+                                            \frac{1}{2 \sqrt{\pi}}</annotation>
                                     </semantics>
                                 </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
                                         class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span
@@ -8836,21 +8890,23 @@ M834 80h400000v40h-400000z' />
                                                         class="vlist-s">​</span></span><span class="vlist-r"><span
                                                         class="vlist"
                                                         style="height:0.686em;"><span></span></span></span></span></span><span
-                                            class="mclose nulldelimiter"></span></span><span class="mord"><span
-                                            class="mord mathnormal" style="margin-right:0.13889em;">P</span><span
-                                            class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-                                                        class="vlist" style="height:0.8641079999999999em;"><span
-                                                            style="top:-2.4530000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span
-                                                                class="pstrut" style="height:2.7em;"></span><span
-                                                                class="sizing reset-size6 size3 mtight"><span
-                                                                    class="mord mtight">0</span></span></span><span
-                                                            style="top:-3.113em;margin-right:0.05em;"><span
-                                                                class="pstrut" style="height:2.7em;"></span><span
-                                                                class="sizing reset-size6 size3 mtight"><span
-                                                                    class="mord mtight">0</span></span></span></span><span
-                                                        class="vlist-s">​</span></span><span class="vlist-r"><span
-                                                        class="vlist"
-                                                        style="height:0.247em;"><span></span></span></span></span></span></span><span
+                                            class="mclose nulldelimiter"></span></span><span class="mspace"
+                                        style="margin-right:0.16666666666666666em;"></span><span class="mop"><span
+                                            class="mord"><span class="mord mathrm">Υ</span><span class="msupsub"><span
+                                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                            style="height:0.8641079999999999em;"><span
+                                                                style="top:-2.4530000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                                    class="sizing reset-size6 size3 mtight"><span
+                                                                        class="mord mathrm mtight">0</span></span></span><span
+                                                                style="top:-3.113em;margin-right:0.05em;"><span
+                                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                                    class="sizing reset-size6 size3 mtight"><span
+                                                                        class="mord mathrm mtight">0</span></span></span></span><span
+                                                            class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                            class="vlist"
+                                                            style="height:0.247em;"><span></span></span></span></span></span></span></span><span
+                                        class="mspace" style="margin-right:0.16666666666666666em;"></span><span
                                         class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span
                                                 class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
                                                         style="height:0.30110799999999993em;"><span
@@ -9005,11 +9061,14 @@ M834 80h400000v40h-400000z' />
                                                     <mn>1</mn>
                                                     <mi>π</mi>
                                                 </mfrac>
-                                                <msubsup>
-                                                    <mi>P</mi>
-                                                    <mn>1</mn>
-                                                    <mn>0</mn>
-                                                </msubsup>
+                                                <mi mathvariant="normal">
+                                                    <msubsup>
+                                                        <mi mathvariant="normal">Υ</mi>
+                                                        <mn>1</mn>
+                                                        <mn>0</mn>
+                                                    </msubsup>
+                                                </mi>
+                                                <mo>⁡</mo>
                                                 <msub>
                                                     <mi>A</mi>
                                                     <mn>1</mn>
@@ -9051,9 +9110,9 @@ M834 80h400000v40h-400000z' />
                                                 </mfrac>
                                             </mstyle>
                                         </mrow>
-                                        <annotation encoding="application/x-tex">\displaystyle \frac{1}{\pi} P_1^0 A_1 =
-                                            \frac{1}{\pi} \frac{\sqrt{3}}{2 \sqrt{\pi}} \frac{2 \pi}{3} =
-                                            \frac{\sqrt{3}}{3 \sqrt{\pi}}</annotation>
+                                        <annotation encoding="application/x-tex">\displaystyle \frac{1}{\pi}
+                                            \operatorname{\Upsilon_1^0} A_1 = \frac{1}{\pi} \frac{\sqrt{3}}{2
+                                            \sqrt{\pi}} \frac{2 \pi}{3} = \frac{\sqrt{3}}{3 \sqrt{\pi}}</annotation>
                                     </semantics>
                                 </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
                                         class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span
@@ -9072,21 +9131,23 @@ M834 80h400000v40h-400000z' />
                                                         class="vlist-s">​</span></span><span class="vlist-r"><span
                                                         class="vlist"
                                                         style="height:0.686em;"><span></span></span></span></span></span><span
-                                            class="mclose nulldelimiter"></span></span><span class="mord"><span
-                                            class="mord mathnormal" style="margin-right:0.13889em;">P</span><span
-                                            class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-                                                        class="vlist" style="height:0.8641079999999999em;"><span
-                                                            style="top:-2.4530000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span
-                                                                class="pstrut" style="height:2.7em;"></span><span
-                                                                class="sizing reset-size6 size3 mtight"><span
-                                                                    class="mord mtight">1</span></span></span><span
-                                                            style="top:-3.113em;margin-right:0.05em;"><span
-                                                                class="pstrut" style="height:2.7em;"></span><span
-                                                                class="sizing reset-size6 size3 mtight"><span
-                                                                    class="mord mtight">0</span></span></span></span><span
-                                                        class="vlist-s">​</span></span><span class="vlist-r"><span
-                                                        class="vlist"
-                                                        style="height:0.247em;"><span></span></span></span></span></span></span><span
+                                            class="mclose nulldelimiter"></span></span><span class="mspace"
+                                        style="margin-right:0.16666666666666666em;"></span><span class="mop"><span
+                                            class="mord"><span class="mord mathrm">Υ</span><span class="msupsub"><span
+                                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                            style="height:0.8641079999999999em;"><span
+                                                                style="top:-2.4530000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                                    class="sizing reset-size6 size3 mtight"><span
+                                                                        class="mord mathrm mtight">1</span></span></span><span
+                                                                style="top:-3.113em;margin-right:0.05em;"><span
+                                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                                    class="sizing reset-size6 size3 mtight"><span
+                                                                        class="mord mathrm mtight">0</span></span></span></span><span
+                                                            class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                            class="vlist"
+                                                            style="height:0.247em;"><span></span></span></span></span></span></span></span><span
+                                        class="mspace" style="margin-right:0.16666666666666666em;"></span><span
                                         class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span
                                                 class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
                                                         style="height:0.30110799999999993em;"><span
@@ -9327,14 +9388,17 @@ M834 80h400000v40h-400000z' />
                                                     <mn>1</mn>
                                                     <mi>π</mi>
                                                 </mfrac>
-                                                <msubsup>
-                                                    <mi>P</mi>
-                                                    <mn>2</mn>
-                                                    <mrow>
-                                                        <mo>−</mo>
+                                                <mi mathvariant="normal">
+                                                    <msubsup>
+                                                        <mi mathvariant="normal">Υ</mi>
                                                         <mn>2</mn>
-                                                    </mrow>
-                                                </msubsup>
+                                                        <mrow>
+                                                            <mo>−</mo>
+                                                            <mn>2</mn>
+                                                        </mrow>
+                                                    </msubsup>
+                                                </mi>
+                                                <mo>⁡</mo>
                                                 <msub>
                                                     <mi>A</mi>
                                                     <mn>2</mn>
@@ -9373,9 +9437,9 @@ M834 80h400000v40h-400000z' />
                                                 </mfrac>
                                             </mstyle>
                                         </mrow>
-                                        <annotation encoding="application/x-tex">\displaystyle \frac{1}{\pi} P_2^{-2}
-                                            A_2 = \frac{1}{\pi} \frac{\sqrt{15}}{2 \sqrt{\pi}} \frac{\pi}{4} =
-                                            \frac{\sqrt{15}}{8 \sqrt{\pi}}</annotation>
+                                        <annotation encoding="application/x-tex">\displaystyle \frac{1}{\pi}
+                                            \operatorname{\Upsilon_2^{-2}} A_2 = \frac{1}{\pi} \frac{\sqrt{15}}{2
+                                            \sqrt{\pi}} \frac{\pi}{4} = \frac{\sqrt{15}}{8 \sqrt{\pi}}</annotation>
                                     </semantics>
                                 </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
                                         class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span
@@ -9394,23 +9458,25 @@ M834 80h400000v40h-400000z' />
                                                         class="vlist-s">​</span></span><span class="vlist-r"><span
                                                         class="vlist"
                                                         style="height:0.686em;"><span></span></span></span></span></span><span
-                                            class="mclose nulldelimiter"></span></span><span class="mord"><span
-                                            class="mord mathnormal" style="margin-right:0.13889em;">P</span><span
-                                            class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-                                                        class="vlist" style="height:0.8641079999999999em;"><span
-                                                            style="top:-2.4435610000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span
-                                                                class="pstrut" style="height:2.7em;"></span><span
-                                                                class="sizing reset-size6 size3 mtight"><span
-                                                                    class="mord mtight">2</span></span></span><span
-                                                            style="top:-3.113em;margin-right:0.05em;"><span
-                                                                class="pstrut" style="height:2.7em;"></span><span
-                                                                class="sizing reset-size6 size3 mtight"><span
-                                                                    class="mord mtight"><span
-                                                                        class="mord mtight">−</span><span
-                                                                        class="mord mtight">2</span></span></span></span></span><span
-                                                        class="vlist-s">​</span></span><span class="vlist-r"><span
-                                                        class="vlist"
-                                                        style="height:0.256439em;"><span></span></span></span></span></span></span><span
+                                            class="mclose nulldelimiter"></span></span><span class="mspace"
+                                        style="margin-right:0.16666666666666666em;"></span><span class="mop"><span
+                                            class="mord"><span class="mord mathrm">Υ</span><span class="msupsub"><span
+                                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                            style="height:0.8641079999999999em;"><span
+                                                                style="top:-2.4435610000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                                    class="sizing reset-size6 size3 mtight"><span
+                                                                        class="mord mathrm mtight">2</span></span></span><span
+                                                                style="top:-3.113em;margin-right:0.05em;"><span
+                                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                                    class="sizing reset-size6 size3 mtight"><span
+                                                                        class="mord mtight"><span
+                                                                            class="mord mtight">−</span><span
+                                                                            class="mord mathrm mtight">2</span></span></span></span></span><span
+                                                            class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                            class="vlist"
+                                                            style="height:0.256439em;"><span></span></span></span></span></span></span></span><span
+                                        class="mspace" style="margin-right:0.16666666666666666em;"></span><span
                                         class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span
                                                 class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
                                                         style="height:0.30110799999999993em;"><span
@@ -9653,11 +9719,14 @@ M834 80h400000v40h-400000z' />
                                                 </mfrac>
                                                 <mo stretchy="false">(</mo>
                                                 <mo>−</mo>
-                                                <msubsup>
-                                                    <mi>P</mi>
-                                                    <mn>2</mn>
-                                                    <mn>0</mn>
-                                                </msubsup>
+                                                <mi mathvariant="normal">
+                                                    <msubsup>
+                                                        <mi mathvariant="normal">Υ</mi>
+                                                        <mn>2</mn>
+                                                        <mn>0</mn>
+                                                    </msubsup>
+                                                </mi>
+                                                <mo>⁡</mo>
                                                 <mo stretchy="false">)</mo>
                                                 <msub>
                                                     <mi>A</mi>
@@ -9697,9 +9766,9 @@ M834 80h400000v40h-400000z' />
                                                 </mfrac>
                                             </mstyle>
                                         </mrow>
-                                        <annotation encoding="application/x-tex">\displaystyle \frac{1}{\pi} (-P_2^{0})
-                                            A_2 = \frac{1}{\pi} \frac{\sqrt{5}}{4 \sqrt{\pi}} \frac{\pi}{4} =
-                                            \frac{\sqrt{5}}{16 \sqrt{\pi}}</annotation>
+                                        <annotation encoding="application/x-tex">\displaystyle \frac{1}{\pi}
+                                            (-\operatorname{\Upsilon_2^0}) A_2 = \frac{1}{\pi} \frac{\sqrt{5}}{4
+                                            \sqrt{\pi}} \frac{\pi}{4} = \frac{\sqrt{5}}{16 \sqrt{\pi}}</annotation>
                                     </semantics>
                                 </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
                                         class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span
@@ -9719,22 +9788,22 @@ M834 80h400000v40h-400000z' />
                                                         class="vlist"
                                                         style="height:0.686em;"><span></span></span></span></span></span><span
                                             class="mclose nulldelimiter"></span></span><span class="mopen">(</span><span
-                                        class="mord">−</span><span class="mord"><span class="mord mathnormal"
-                                            style="margin-right:0.13889em;">P</span><span class="msupsub"><span
-                                                class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                                        style="height:0.8641079999999999em;"><span
-                                                            style="top:-2.4530000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span
-                                                                class="pstrut" style="height:2.7em;"></span><span
-                                                                class="sizing reset-size6 size3 mtight"><span
-                                                                    class="mord mtight">2</span></span></span><span
-                                                            style="top:-3.113em;margin-right:0.05em;"><span
-                                                                class="pstrut" style="height:2.7em;"></span><span
-                                                                class="sizing reset-size6 size3 mtight"><span
-                                                                    class="mord mtight"><span
-                                                                        class="mord mtight">0</span></span></span></span></span><span
-                                                        class="vlist-s">​</span></span><span class="vlist-r"><span
-                                                        class="vlist"
-                                                        style="height:0.247em;"><span></span></span></span></span></span></span><span
+                                        class="mord">−</span><span class="mspace"
+                                        style="margin-right:0.16666666666666666em;"></span><span class="mop"><span
+                                            class="mord"><span class="mord mathrm">Υ</span><span class="msupsub"><span
+                                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                            style="height:0.8641079999999999em;"><span
+                                                                style="top:-2.4530000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                                    class="sizing reset-size6 size3 mtight"><span
+                                                                        class="mord mathrm mtight">2</span></span></span><span
+                                                                style="top:-3.113em;margin-right:0.05em;"><span
+                                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                                    class="sizing reset-size6 size3 mtight"><span
+                                                                        class="mord mathrm mtight">0</span></span></span></span><span
+                                                            class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                            class="vlist"
+                                                            style="height:0.247em;"><span></span></span></span></span></span></span></span><span
                                         class="mclose">)</span><span class="mord"><span
                                             class="mord mathnormal">A</span><span class="msupsub"><span
                                                 class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
@@ -9976,11 +10045,14 @@ M834 80h400000v40h-400000z' />
                                                     <mn>1</mn>
                                                     <mi>π</mi>
                                                 </mfrac>
-                                                <msubsup>
-                                                    <mi>P</mi>
-                                                    <mn>2</mn>
-                                                    <mn>0</mn>
-                                                </msubsup>
+                                                <mi mathvariant="normal">
+                                                    <msubsup>
+                                                        <mi mathvariant="normal">Υ</mi>
+                                                        <mn>2</mn>
+                                                        <mn>0</mn>
+                                                    </msubsup>
+                                                </mi>
+                                                <mo>⁡</mo>
                                                 <msub>
                                                     <mi>A</mi>
                                                     <mn>2</mn>
@@ -10025,9 +10097,9 @@ M834 80h400000v40h-400000z' />
                                                 </mfrac>
                                             </mstyle>
                                         </mrow>
-                                        <annotation encoding="application/x-tex">\displaystyle \frac{1}{\pi} P_2^{0} A_2
-                                            = \frac{1}{\pi} \frac{3 \sqrt{5}}{4 \sqrt{\pi}} \frac{\pi}{4} = \frac{3
-                                            \sqrt{5}}{16 \sqrt{\pi}}</annotation>
+                                        <annotation encoding="application/x-tex">\displaystyle \frac{1}{\pi}
+                                            \operatorname{\Upsilon_2^0} A_2 = \frac{1}{\pi} \frac{3 \sqrt{5}}{4
+                                            \sqrt{\pi}} \frac{\pi}{4} = \frac{3 \sqrt{5}}{16 \sqrt{\pi}}</annotation>
                                     </semantics>
                                 </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
                                         class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span
@@ -10046,22 +10118,23 @@ M834 80h400000v40h-400000z' />
                                                         class="vlist-s">​</span></span><span class="vlist-r"><span
                                                         class="vlist"
                                                         style="height:0.686em;"><span></span></span></span></span></span><span
-                                            class="mclose nulldelimiter"></span></span><span class="mord"><span
-                                            class="mord mathnormal" style="margin-right:0.13889em;">P</span><span
-                                            class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-                                                        class="vlist" style="height:0.8641079999999999em;"><span
-                                                            style="top:-2.4530000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span
-                                                                class="pstrut" style="height:2.7em;"></span><span
-                                                                class="sizing reset-size6 size3 mtight"><span
-                                                                    class="mord mtight">2</span></span></span><span
-                                                            style="top:-3.113em;margin-right:0.05em;"><span
-                                                                class="pstrut" style="height:2.7em;"></span><span
-                                                                class="sizing reset-size6 size3 mtight"><span
-                                                                    class="mord mtight"><span
-                                                                        class="mord mtight">0</span></span></span></span></span><span
-                                                        class="vlist-s">​</span></span><span class="vlist-r"><span
-                                                        class="vlist"
-                                                        style="height:0.247em;"><span></span></span></span></span></span></span><span
+                                            class="mclose nulldelimiter"></span></span><span class="mspace"
+                                        style="margin-right:0.16666666666666666em;"></span><span class="mop"><span
+                                            class="mord"><span class="mord mathrm">Υ</span><span class="msupsub"><span
+                                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                            style="height:0.8641079999999999em;"><span
+                                                                style="top:-2.4530000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                                    class="sizing reset-size6 size3 mtight"><span
+                                                                        class="mord mathrm mtight">2</span></span></span><span
+                                                                style="top:-3.113em;margin-right:0.05em;"><span
+                                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                                    class="sizing reset-size6 size3 mtight"><span
+                                                                        class="mord mathrm mtight">0</span></span></span></span><span
+                                                            class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                            class="vlist"
+                                                            style="height:0.247em;"><span></span></span></span></span></span></span></span><span
+                                        class="mspace" style="margin-right:0.16666666666666666em;"></span><span
                                         class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span
                                                 class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
                                                         style="height:0.30110799999999993em;"><span
@@ -10302,11 +10375,14 @@ M834 80h400000v40h-400000z' />
                                                     <mn>1</mn>
                                                     <mi>π</mi>
                                                 </mfrac>
-                                                <msubsup>
-                                                    <mi>P</mi>
-                                                    <mn>2</mn>
-                                                    <mn>2</mn>
-                                                </msubsup>
+                                                <mi mathvariant="normal">
+                                                    <msubsup>
+                                                        <mi mathvariant="normal">Υ</mi>
+                                                        <mn>2</mn>
+                                                        <mn>2</mn>
+                                                    </msubsup>
+                                                </mi>
+                                                <mo>⁡</mo>
                                                 <msub>
                                                     <mi>A</mi>
                                                     <mn>2</mn>
@@ -10345,9 +10421,9 @@ M834 80h400000v40h-400000z' />
                                                 </mfrac>
                                             </mstyle>
                                         </mrow>
-                                        <annotation encoding="application/x-tex">\displaystyle \frac{1}{\pi} P_2^{2} A_2
-                                            = \frac{1}{\pi} \frac{\sqrt{15}}{4 \sqrt{\pi}} \frac{\pi}{4} =
-                                            \frac{\sqrt{15}}{16 \sqrt{\pi}}</annotation>
+                                        <annotation encoding="application/x-tex">\displaystyle \frac{1}{\pi}
+                                            \operatorname{\Upsilon_2^2} A_2 = \frac{1}{\pi} \frac{\sqrt{15}}{4
+                                            \sqrt{\pi}} \frac{\pi}{4} = \frac{\sqrt{15}}{16 \sqrt{\pi}}</annotation>
                                     </semantics>
                                 </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
                                         class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span
@@ -10366,22 +10442,23 @@ M834 80h400000v40h-400000z' />
                                                         class="vlist-s">​</span></span><span class="vlist-r"><span
                                                         class="vlist"
                                                         style="height:0.686em;"><span></span></span></span></span></span><span
-                                            class="mclose nulldelimiter"></span></span><span class="mord"><span
-                                            class="mord mathnormal" style="margin-right:0.13889em;">P</span><span
-                                            class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-                                                        class="vlist" style="height:0.8641079999999999em;"><span
-                                                            style="top:-2.4530000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span
-                                                                class="pstrut" style="height:2.7em;"></span><span
-                                                                class="sizing reset-size6 size3 mtight"><span
-                                                                    class="mord mtight">2</span></span></span><span
-                                                            style="top:-3.113em;margin-right:0.05em;"><span
-                                                                class="pstrut" style="height:2.7em;"></span><span
-                                                                class="sizing reset-size6 size3 mtight"><span
-                                                                    class="mord mtight"><span
-                                                                        class="mord mtight">2</span></span></span></span></span><span
-                                                        class="vlist-s">​</span></span><span class="vlist-r"><span
-                                                        class="vlist"
-                                                        style="height:0.247em;"><span></span></span></span></span></span></span><span
+                                            class="mclose nulldelimiter"></span></span><span class="mspace"
+                                        style="margin-right:0.16666666666666666em;"></span><span class="mop"><span
+                                            class="mord"><span class="mord mathrm">Υ</span><span class="msupsub"><span
+                                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                            style="height:0.8641079999999999em;"><span
+                                                                style="top:-2.4530000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                                    class="sizing reset-size6 size3 mtight"><span
+                                                                        class="mord mathrm mtight">2</span></span></span><span
+                                                                style="top:-3.113em;margin-right:0.05em;"><span
+                                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                                    class="sizing reset-size6 size3 mtight"><span
+                                                                        class="mord mathrm mtight">2</span></span></span></span><span
+                                                            class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                            class="vlist"
+                                                            style="height:0.247em;"><span></span></span></span></span></span></span></span><span
+                                        class="mspace" style="margin-right:0.16666666666666666em;"></span><span
                                         class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span
                                                 class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
                                                         style="height:0.30110799999999993em;"><span
