@@ -5671,12 +5671,280 @@ printf(<span class="hljs-string">&quot;numerical:%f analytical:%f\n&quot;</span>
 -12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
  151.7 139 205zm0 0v40h399900v-40z' />
                                                 </svg></span></span></span></span></span></span><span
-                            class="mclose">)</span></span></span></span></eq>. Note that the direction should be
-        <strong>normalized</strong> before using the polynomial forms. These polynomial forms are calculated by <a
-            href="https://github.com/microsoft/DirectXMath/blob/jul2018b/SHMath/DirectXSH.cpp#L132">sh_eval_basis_2</a>
+                            class="mclose">)</span></span></span></span></eq>. These polynomial forms are calculated by
+        <a href="https://github.com/microsoft/DirectXMath/blob/jul2018b/SHMath/DirectXSH.cpp#L132">sh_eval_basis_2</a>
         in DirectXMath, and <a
             href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/SHCommon.ush#L226">SHBasisFunction3</a>
         in UE4.
+    </p>
+    <p dir="auto">Note that the direction vector <eq><span class="katex"><span class="katex-mathml"><math
+                        xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mrow>
+                                        <mo fence="true">[</mo>
+                                        <mtable rowspacing="0.1600em" columnalign="center center center"
+                                            columnspacing="1em">
+                                            <mtr>
+                                                <mtd>
+                                                    <mstyle scriptlevel="0" displaystyle="false">
+                                                        <mi>x</mi>
+                                                    </mstyle>
+                                                </mtd>
+                                                <mtd>
+                                                    <mstyle scriptlevel="0" displaystyle="false">
+                                                        <mi>y</mi>
+                                                    </mstyle>
+                                                </mtd>
+                                                <mtd>
+                                                    <mstyle scriptlevel="0" displaystyle="false">
+                                                        <mi>z</mi>
+                                                    </mstyle>
+                                                </mtd>
+                                            </mtr>
+                                        </mtable>
+                                        <mo fence="true">]</mo>
+                                    </mrow>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle \begin{bmatrix} x &amp; y &amp;
+                                z\end{bmatrix}</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1.20001em;vertical-align:-0.35001em;"></span><span class="minner"><span
+                                class="mopen delimcenter" style="top:0em;"><span
+                                    class="delimsizing size1">[</span></span><span class="mord"><span
+                                    class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span
+                                                class="vlist-r"><span class="vlist"
+                                                    style="height:0.8500000000000001em;"><span
+                                                        style="top:-3.01em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="mord"><span
+                                                                class="mord mathnormal">x</span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.35000000000000003em;"><span></span></span></span></span></span><span
+                                        class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep"
+                                        style="width:0.5em;"></span><span class="col-align-c"><span
+                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                    style="height:0.8500000000000001em;"><span
+                                                        style="top:-3.01em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="mord"><span
+                                                                class="mord mathnormal"
+                                                                style="margin-right:0.03588em;">y</span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.35000000000000003em;"><span></span></span></span></span></span><span
+                                        class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep"
+                                        style="width:0.5em;"></span><span class="col-align-c"><span
+                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                    style="height:0.8500000000000001em;"><span
+                                                        style="top:-3.01em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="mord"><span
+                                                                class="mord mathnormal"
+                                                                style="margin-right:0.04398em;">z</span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.35000000000000003em;"><span></span></span></span></span></span></span></span><span
+                                class="mclose delimcenter" style="top:0em;"><span
+                                    class="delimsizing size1">]</span></span></span></span></span></span></eq> should be
+        <strong>normalized</strong> before using the polynomial forms. By &quot;13.5.3 Spherical Coordinates&quot; of <a
+            href="https://pbr-book.org/3ed-2018/Monte_Carlo_Integration/Transforming_between_Distributions#SphericalCoordinates">PBRT-V3</a>,
+        we have <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mrow>
+                                        <mo fence="true">[</mo>
+                                        <mtable rowspacing="0.1600em" columnalign="center center center"
+                                            columnspacing="1em">
+                                            <mtr>
+                                                <mtd>
+                                                    <mstyle scriptlevel="0" displaystyle="false">
+                                                        <mi>x</mi>
+                                                    </mstyle>
+                                                </mtd>
+                                                <mtd>
+                                                    <mstyle scriptlevel="0" displaystyle="false">
+                                                        <mi>y</mi>
+                                                    </mstyle>
+                                                </mtd>
+                                                <mtd>
+                                                    <mstyle scriptlevel="0" displaystyle="false">
+                                                        <mi>z</mi>
+                                                    </mstyle>
+                                                </mtd>
+                                            </mtr>
+                                        </mtable>
+                                        <mo fence="true">]</mo>
+                                    </mrow>
+                                    <mo>=</mo>
+                                    <mrow>
+                                        <mo fence="true">[</mo>
+                                        <mtable rowspacing="0.1600em" columnalign="center center center"
+                                            columnspacing="1em">
+                                            <mtr>
+                                                <mtd>
+                                                    <mstyle scriptlevel="0" displaystyle="false">
+                                                        <mrow>
+                                                            <mi>sin</mi>
+                                                            <mo>⁡</mo>
+                                                            <mi>θ</mi>
+                                                            <mi>cos</mi>
+                                                            <mo>⁡</mo>
+                                                            <mi>ϕ</mi>
+                                                        </mrow>
+                                                    </mstyle>
+                                                </mtd>
+                                                <mtd>
+                                                    <mstyle scriptlevel="0" displaystyle="false">
+                                                        <mrow>
+                                                            <mi>sin</mi>
+                                                            <mo>⁡</mo>
+                                                            <mi>θ</mi>
+                                                            <mi>sin</mi>
+                                                            <mo>⁡</mo>
+                                                            <mi>ϕ</mi>
+                                                        </mrow>
+                                                    </mstyle>
+                                                </mtd>
+                                                <mtd>
+                                                    <mstyle scriptlevel="0" displaystyle="false">
+                                                        <mrow>
+                                                            <mi>cos</mi>
+                                                            <mo>⁡</mo>
+                                                            <mi>θ</mi>
+                                                        </mrow>
+                                                    </mstyle>
+                                                </mtd>
+                                            </mtr>
+                                        </mtable>
+                                        <mo fence="true">]</mo>
+                                    </mrow>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle \begin{bmatrix} x &amp; y &amp;
+                                z\end{bmatrix} = \begin{bmatrix} \sin \theta \cos \phi &amp; \sin \theta \sin \phi &amp;
+                                \cos \theta \end{bmatrix}</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1.20001em;vertical-align:-0.35001em;"></span><span class="minner"><span
+                                class="mopen delimcenter" style="top:0em;"><span
+                                    class="delimsizing size1">[</span></span><span class="mord"><span
+                                    class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span
+                                                class="vlist-r"><span class="vlist"
+                                                    style="height:0.8500000000000001em;"><span
+                                                        style="top:-3.01em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="mord"><span
+                                                                class="mord mathnormal">x</span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.35000000000000003em;"><span></span></span></span></span></span><span
+                                        class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep"
+                                        style="width:0.5em;"></span><span class="col-align-c"><span
+                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                    style="height:0.8500000000000001em;"><span
+                                                        style="top:-3.01em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="mord"><span
+                                                                class="mord mathnormal"
+                                                                style="margin-right:0.03588em;">y</span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.35000000000000003em;"><span></span></span></span></span></span><span
+                                        class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep"
+                                        style="width:0.5em;"></span><span class="col-align-c"><span
+                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                    style="height:0.8500000000000001em;"><span
+                                                        style="top:-3.01em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="mord"><span
+                                                                class="mord mathnormal"
+                                                                style="margin-right:0.04398em;">z</span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.35000000000000003em;"><span></span></span></span></span></span></span></span><span
+                                class="mclose delimcenter" style="top:0em;"><span
+                                    class="delimsizing size1">]</span></span></span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                        class="base"><span class="strut"
+                            style="height:1.20001em;vertical-align:-0.35001em;"></span><span class="minner"><span
+                                class="mopen delimcenter" style="top:0em;"><span
+                                    class="delimsizing size1">[</span></span><span class="mord"><span
+                                    class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span
+                                                class="vlist-r"><span class="vlist"
+                                                    style="height:0.8500000000000001em;"><span
+                                                        style="top:-3.01em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="mord"><span
+                                                                class="mop">sin</span><span class="mspace"
+                                                                style="margin-right:0.16666666666666666em;"></span><span
+                                                                class="mord mathnormal"
+                                                                style="margin-right:0.02778em;">θ</span><span
+                                                                class="mspace"
+                                                                style="margin-right:0.16666666666666666em;"></span><span
+                                                                class="mop">cos</span><span class="mspace"
+                                                                style="margin-right:0.16666666666666666em;"></span><span
+                                                                class="mord mathnormal">ϕ</span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.35000000000000003em;"><span></span></span></span></span></span><span
+                                        class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep"
+                                        style="width:0.5em;"></span><span class="col-align-c"><span
+                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                    style="height:0.8500000000000001em;"><span
+                                                        style="top:-3.01em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="mord"><span
+                                                                class="mop">sin</span><span class="mspace"
+                                                                style="margin-right:0.16666666666666666em;"></span><span
+                                                                class="mord mathnormal"
+                                                                style="margin-right:0.02778em;">θ</span><span
+                                                                class="mspace"
+                                                                style="margin-right:0.16666666666666666em;"></span><span
+                                                                class="mop">sin</span><span class="mspace"
+                                                                style="margin-right:0.16666666666666666em;"></span><span
+                                                                class="mord mathnormal">ϕ</span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.35000000000000003em;"><span></span></span></span></span></span><span
+                                        class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep"
+                                        style="width:0.5em;"></span><span class="col-align-c"><span
+                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                    style="height:0.8500000000000001em;"><span
+                                                        style="top:-3.01em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="mord"><span
+                                                                class="mop">cos</span><span class="mspace"
+                                                                style="margin-right:0.16666666666666666em;"></span><span
+                                                                class="mord mathnormal"
+                                                                style="margin-right:0.02778em;">θ</span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.35000000000000003em;"><span></span></span></span></span></span></span></span><span
+                                class="mclose delimcenter" style="top:0em;"><span
+                                    class="delimsizing size1">]</span></span></span></span></span></span></eq> where
+        <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mi>θ</mi>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle \theta</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal"
+                            style="margin-right:0.02778em;">θ</span></span></span></span></eq> is the azimuth and <eq>
+            <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mi>ϕ</mi>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle \phi</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span
+                            class="mord mathnormal">ϕ</span></span></span></span>
+        </eq> is the inclination.
     </p>
     <table dir="auto">
         <thead dir="auto">
