@@ -2,7 +2,7 @@
 
 ## SH (Spherical Harmonics)  
 
-Let $\displaystyle \operatorname{\Upsilon_l^m}(\overrightarrow{\omega})$ be the SH basis function of which l is the degree (band) and m is the basis function index from -l to l.  
+Let $\displaystyle \operatorname{\Upsilon_l^m}(\overrightarrow{\omega})$ be the SH basis function of which l is the degree (or band) and m is the basis function index from -l to l.  
 
 By "Appendix A2" of \[Sloan 2008\], we have the **polynomial forms** of SH basis $\displaystyle \operatorname{\Upsilon_l^m}(\overrightarrow{\omega})$. These polynomial forms are calculated by [sh_eval_basis_1](https://github.com/microsoft/DirectXMath/blob/jul2018b/SHMath/DirectXSH.cpp#L105) in DirectXMath, and [SHBasisFunction](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/SHCommon.ush#L215) in UE4.  
 
@@ -16,9 +16,9 @@ l  |  m  | $\displaystyle \operatorname{\Upsilon_l^m}(\overrightarrow{\omega})$
 1  |  1  | $\displaystyle - \frac{\sqrt{3}}{2 \sqrt{\pi}} x = -0.488602511902919920 x$     
 
 
-Let $\displaystyle \operatorname{\mathcal{SH}}$ be the **SH (Spherical Harmonics) projection operation**. Analogous to the **Fourier transform**, we have $\displaystyle k_l^m = \operatorname{\mathcal{SH}}(\operatorname{f}(\overrightarrow{\omega})) = \int_{\mathrm{S}^2} \operatorname{f}(\overrightarrow{\omega}) \operatorname{\Upsilon_l^m}(\overrightarrow{\omega}) \, d\overrightarrow{\omega}$, and the original function can be reconstructed as the SH series $\displaystyle\operatorname{f}(\overrightarrow{\omega}) = \sum k_l^m \operatorname{\Upsilon_l^m}(\overrightarrow{\omega})$.  
+Let $\displaystyle \operatorname{\mathcal{SH}}$ be the **SH (Spherical Harmonics) projection operation**. Analogous to the **Fourier transform**, we have $\displaystyle f_l^m = \operatorname{\mathcal{SH}}(\operatorname{f}(\overrightarrow{\omega})) = \int_{\mathrm{S}^2} \operatorname{f}(\overrightarrow{\omega}) \operatorname{\Upsilon_l^m}(\overrightarrow{\omega}) \, d\overrightarrow{\omega}$, and the original function can be reconstructed as the SH series $\displaystyle\operatorname{f}(\overrightarrow{\omega}) = \sum f_l^m \operatorname{\Upsilon_l^m}(\overrightarrow{\omega})$.  
 
-Let R be the rotation matrix, and we have $\displaystyle {k'}_l^m = \operatorname{\mathcal{SH}}(\operatorname{f}(\mathrm{R} \overrightarrow{\omega})) = \int_{\mathrm{S}^2} \operatorname{f}(\mathrm{R} \overrightarrow{\omega}) \operatorname{\Upsilon_l^m}(\overrightarrow{\omega}) \, d\overrightarrow{\omega}$. By "Appendix: SH Rotation" of \[Kautz 2002\], we have the **rotational invariance** $\displaystyle \begin{bmatrix} {k'}_l^{-l} \\ \vdots \\ {k'}_l^0 \\ \vdots \\ {k'}_l^l \end{bmatrix} = \mathrm{M}_l \begin{bmatrix} k_l^{-l} \\ \vdots \\ k_l^0 \\ \vdots \\ k_l^l \end{bmatrix}$ where $\displaystyle \mathrm{M}_l^{ij} = \int_{\mathrm{S}^2} \operatorname{\Upsilon_l^{i - l}}(\mathrm{R} \overrightarrow{\omega}) \operatorname{\Upsilon_l^{j - l}}(\overrightarrow{\omega}) \, d\overrightarrow{\omega}$.  
+Let R be the rotation matrix, and we have $\displaystyle {f'}_l^m = \operatorname{\mathcal{SH}}(\operatorname{f}(\mathrm{R} \overrightarrow{\omega})) = \int_{\mathrm{S}^2} \operatorname{f}(\mathrm{R} \overrightarrow{\omega}) \operatorname{\Upsilon_l^m}(\overrightarrow{\omega}) \, d\overrightarrow{\omega}$. By "Appendix: SH Rotation" of \[Kautz 2002\], we have the **rotational invariance** $\displaystyle \begin{bmatrix} {f'}_l^{-l} \\ \vdots \\ {f'}_l^0 \\ \vdots \\ {f'}_l^l \end{bmatrix} = \mathrm{M}_l \begin{bmatrix} f_l^{-l} \\ \vdots \\ f_l^0 \\ \vdots \\ f_l^l \end{bmatrix}$ where $\displaystyle \mathrm{M}_l^{ij} = \int_{\mathrm{S}^2} \operatorname{\Upsilon_l^{i - l}}(\mathrm{R} \overrightarrow{\omega}) \operatorname{\Upsilon_l^{j - l}}(\overrightarrow{\omega}) \, d\overrightarrow{\omega}$.  
 
 l | i | j | $\displaystyle \mathrm{M}_l^{ij}$  
 :-: | :-: | :-: | :-:  
@@ -53,6 +53,10 @@ For l = 1 and m = -1, we have $\displaystyle \operatorname{\Upsilon_1^{-1}}(\ove
 [ComputeCapInt](https://github.com/microsoft/DirectXMath/blob/jul2018b/SHMath/DirectXSH.cpp#L35)  
 
 [XMSHEvalConeLight](https://github.com/microsoft/DirectXMath/blob/jul2018b/SHMath/DirectXSH.cpp#L4664)
+
+Let $\displaystyle \operatorname{f}(\overrightarrow{\omega}) = \sum f_l^m \operatorname{\Upsilon_l^m}(\overrightarrow{\omega})$ and $\displaystyle \operatorname{g}(\overrightarrow{\omega}) = \sum g_l^m \operatorname{\Upsilon_l^m}(\overrightarrow{\omega})$. By "Basic Properties" of "3\. Review of Spherical Harmonics" of \[Sloan 2002\], due to the orthonormality of the SH basis, we have $\displaystyle \int_{\mathrm{S}^2} \operatorname{f}(\overrightarrow{\omega}) \operatorname{g}(\overrightarrow{\omega}) \, d\overrightarrow{\omega} = \int_{\mathrm{S}^2} (\sum f_l^m \operatorname{\Upsilon_l^m}(\overrightarrow{\omega})) (\sum g_l^m \operatorname{\Upsilon_l^m}(\overrightarrow{\omega})) \, d\overrightarrow{\omega} = \sum f_l^m g_l^m$.  
+
+Note that the projection coefficients of the product of two functions is NOT simply the product of the projection coefficients of each function. Let $\displaystyle \operatorname{h}(\overrightarrow{\omega}) = \operatorname{f}(\overrightarrow{\omega}) \operatorname{g}(\overrightarrow{\omega})$. By "Product Projection" of "3\. Review of Spherical Harmonics" of \[Sloan 2002\], we have that $\displaystyle h_l^m = \int_{\mathrm{S}^2} \operatorname{h}(\overrightarrow{\omega}) \operatorname{\Upsilon_l^m}(\overrightarrow{\omega}) \, d\overrightarrow{\omega} = \int_{\mathrm{S}^2} \operatorname{f}(\overrightarrow{\omega}) \operatorname{g}(\overrightarrow{\omega}) \operatorname{\Upsilon_l^m}(\overrightarrow{\omega}) \, d\overrightarrow{\omega} \ne f_l^m g_l^m$. Actually, the result is related to the **Clebsch–Gordan coefficients** which is too complex to explain.  
 
 ## References  
 \[Sloan 2002\] [Peter-Pike Sloan, Jan Kautz, John Snyder. "Precomputed Radiance Transfer for Real-Time Rendering in Dynamic, Low-Frequency Lighting Environments." SIGGRAPH 2002.](https://www.ppsloan.org/publications/shillum_final23.pdf)  
