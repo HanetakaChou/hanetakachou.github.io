@@ -28,7 +28,7 @@ The Wigner D-matrix is calculated by [DirectX::XMSHRotate](https://github.com/mi
 l | $\displaystyle \operatorname{D_l}(\mathrm{R})$  
 :-: | :-:  
 0 | $\displaystyle \begin{bmatrix} 1 \end{bmatrix}$  
-1 | $\displaystyle \begin{bmatrix} {\mathrm{R^T}}_{11} & -{\mathrm{R^T}}_{12} & {\mathrm{R^T}}_{10} \\ -{\mathrm{R^T}}_{21} & {\mathrm{R^T}}_{22} & -{\mathrm{R^T}}_{20} \\ {\mathrm{R^T}}_{01} & -{\mathrm{R^T}}_{02} & {\mathrm{R^T}}_{00} \end{bmatrix}$  
+1 | $\displaystyle \begin{bmatrix} {\mathrm{R}}_{11} & -{\mathrm{R}}_{12} & {\mathrm{R}}_{10} \\ -{\mathrm{R}}_{21} & {\mathrm{R}}_{22} & -{\mathrm{R}}_{20} \\ {\mathrm{R}}_{01} & -{\mathrm{R}}_{02} & {\mathrm{R}}_{00} \end{bmatrix}$  
 
 By "Appendix: SH Rotation" of \[Kautz 2002\], for each degree (or band) l, each element of the Wigner D-matrix can be calculated as $\displaystyle \operatorname{D_{ij}^l}(\mathrm{R}) = \int_{\mathrm{S}^2} \operatorname{\Upsilon_l^{i - l}}(\mathrm{R} \overrightarrow{\omega}) \operatorname{\Upsilon_l^{j - l}}(\overrightarrow{\omega}) \, d\overrightarrow{\omega}$.  
 For exmaple, for l = 0, we have $\displaystyle \mathrm{D_{00}^0} = \int_{\mathrm{S}^2} \operatorname{\Upsilon_0^0}(\mathrm{R} \overrightarrow{\omega}) \operatorname{\Upsilon_0^0}(\overrightarrow{\omega}) \, d\overrightarrow{\omega} = \int_{\mathrm{S}^2} \frac{1}{2 \sqrt{\pi}} \frac{1}{2 \sqrt{\pi}} \, d\overrightarrow{\omega} = \frac{1}{4\pi} \int_{\mathrm{S}^2} 1 \, d\overrightarrow{\omega} = \frac{1}{4\pi} 4\pi = 1$. This means that $\displaystyle \operatorname{D_l}(\mathrm{R}) = \begin{bmatrix} 1 \end{bmatrix}$.  
