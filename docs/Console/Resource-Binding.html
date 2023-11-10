@@ -12,8 +12,9 @@
 <body class="markdown-body">
     <h1 dir="auto" id="resource-binding">Resource Binding</h1>
     <p dir="auto">traditional: allocate memory for shader registers from command buffer on the fly</p>
-    <p dir="auto">shader resource table: allocate memory for shader registers in advance (vkUpdateDescriptorSets) and
-        bind the memory on the fly (vkCmdBindDescriptorSets)</p>
+    <p dir="auto">shader resource table: allocate and initialize memory for shader registers in advance
+        (vkAllocateDescriptorSets and vkUpdateDescriptorSets), and bind the memory on the fly (vkCmdBindDescriptorSets)
+    </p>
 
 </body>
 

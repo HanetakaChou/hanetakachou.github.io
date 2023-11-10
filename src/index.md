@@ -32,8 +32,8 @@ If you find there are any mistakes or improvements, please don't hesitate to con
 
 > CB(Command Buffer) Ring Buffer [Documentation](Console/CB-Ring-Buffer.html)  
 > Resource Binding [Documentation](Console/Resource-Binding.html)  
-> Synchronization [Documentation](Console/Synchronization.html)  
 > Image [Documentation](Console/Image.html)  
+> Synchronization [Documentation](Console/Synchronization.html)  
 
 ## Image Synthesis  
 
