@@ -25,16 +25,7 @@ If you find there are any mistakes or improvements, please don't hesitate to con
 
 ## API  
 
-> AGC Tutorial [Documentation](https://hanetakachou.github.io/AGC-Tutorial/) [Code](https://github.com/HanetakaChou/PAL-Cube)  
-
-## API (Obsolete)  
-
-> Vulkan Resource Binding [Documentation](Vulkan/Resource-Binding.html)  
-> Vulkan Synchronization [Documentation](Vulkan/Synchronization.html)  
-> AGC CB(Command Buffer) Ring Buffer [Documentation](Console/CB-Ring-Buffer.html)  
-> AGC Resource Binding [Documentation](Console/Resource-Binding.html)  
-> AGC Image [Documentation](Console/Image.html)  
-> AGC Synchronization [Documentation](Console/Synchronization.html)  
+> Console Tutorial [Documentation](https://hanetakachou.github.io/Console-Tutorial/)  
 
 ## Image Synthesis  
 
