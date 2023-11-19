@@ -17,8 +17,8 @@
     <p dir="auto">For example, we have a typical case where the texture is used as the color attachement first and used
         as the sampled image later. When the texture is used as the color attachement, CB(Color Block) Cache and CB META
         (Color Block Metadata) Cache are involved. But when the texture is used as the sampled image, L2 METADATA (Level
-        2 Metadata) will be involved. We need to flush all data in the CB Cache and CB META Cache to the memory and
-        invalidate all data in the L2 METADATA Cache.</p>
+        2 Metadata) cache will be involved. We need to flush all data in the CB Cache and CB META Cache to the memory
+        and invalidate all data in the L2 METADATA Cache.</p>
     <p dir="auto">Metadata is some extra data which is used to improve the performance of the texture. For exmaple, by
         &quot;Figure 23.13&quot; of <a href="https://www.realtimerendering.com/">Real-Time Rendering Fourth Edition</a>,
         HiZ (Hierarchy Z) is usualy used to handle coarse depth testing for the depth attachment. For AMD GPU, by
@@ -35,7 +35,7 @@
         specify the changing of texture usage in Vulkan. Actually, we rarely use the
         <strong>vkCmdPipelineBarrier</strong> in Vulkan. But since there is no decent render pass in Direct3D12, we have
         to use the <strong>ID3D12GraphicsCommandList::ResourceBarrier</strong> at the beginning or end of the render
-        pass to specify the changing of texture usage in Direct3D.
+        pass to specify the changing of texture usage in Direct3D12.
     </p>
     <p dir="auto">The texture usage is denoted by <strong>VkImageLayout</strong> in Vulkan or
         <strong>D3D12_RESOURCE_STATES</strong> in Direct3D12. The essential of specifying the changing of the texture
