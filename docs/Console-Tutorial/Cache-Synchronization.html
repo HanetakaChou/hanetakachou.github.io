@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/default.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+</head>
+
+<body class="markdown-body">
+    <h1 dir="auto" id="cache-synchronization">Cache Synchronization</h1>
+    <p dir="auto">By <a
+            href="https://gitlab.freedesktop.org/mesa/mesa/-/blob/22.3/src/amd/vulkan/radv_private.h#L1178">radv_cmd_flush_bits</a>,
+        there are many different types of cache in the GPU.</p>
+    <p dir="auto">For example, we have a typical case where the texture is used as the color attachement first and used
+        as the sampled image later. When the texture is used as the color attachement, CB(Color Block) Cache and CB META
+        (Color Block Metadata) Cache are involved. But when the texture is used as the sampled image, L2 METADATA (Level
+        2 Metadata) will be involved. We need to flush all data in the CB Cache and CB META Cache to the memory and
+        invalidate all data in the L2 METADATA Cache.</p>
+    <p dir="auto">Metadata is some extra data which is used to improve the performance of the texture. For exmaple, by
+        &quot;Figure 23.13&quot; of <a href="https://www.realtimerendering.com/">Real-Time Rendering Fourth Edition</a>,
+        HiZ (Hierarchy Z) is usualy used to handle coarse depth testing for the depth attachment. For AMD GPU, by
+        &quot;23.10.3 Case Study: AMD GCN Vega&quot; of <a href="https://www.realtimerendering.com/">Real-Time Rendering
+            Fourth Edition</a>, the related HiZ data is stored in the HTILE metadata. And for color attachmemnt on AMD
+        GPU, the <a href="https://gpuopen.com/learn/dcc-overview/">DCC</a> metadata can be used to perform the clear
+        operation more efficiently.</p>
+    <p dir="auto">In legacy OpenGL or Direct3D11 APIs, the texture usage is tracked by the driver. And the driver will
+        handle the cache synchronization when the texture usage changes.</p>
+    <p dir="auto">Evidently, it is more efficient for the application to handle the cache synchronization directly.</p>
+    <p dir="auto">The changing of texture usage usually happens at the beginning or end of the render pass. We can
+        efficiently use <strong>VkAttachmentDescription::initialLayout</strong>,
+        <strong>VkAttachmentDescription::layout</strong> and <strong>VkAttachmentDescription::finalLayout</strong> to
+        specify the changing of texture usage in Vulkan. Actually, we rarely use the
+        <strong>vkCmdPipelineBarrier</strong> in Vulkan. But since there is no decent render pass in Direct3D12, we have
+        to use the <strong>ID3D12GraphicsCommandList::ResourceBarrier</strong> at the beginning or end of the render
+        pass to specify the changing of texture usage in Direct3D.
+    </p>
+    <p dir="auto">The texture usage is denoted by <strong>VkImageLayout</strong> in Vulkan or
+        <strong>D3D12_RESOURCE_STATES</strong> in Direct3D12. The essential of specifying the changing of the texture
+        usage is to specify the cache synchronization. The old texture usage tells which cache we should flush, and the
+        new texture usage tells which cache we should invalidate. Technically, if we do not need to preserve the content
+        of the texture, especially for the textures which will be cleared at the beginning of the render pass, we do not
+        need to provide correct old texture usage. We can efficiently specify <strong>VK_IMAGE_LAYOUT_UNDEFINED</strong>
+        in Vulkan in such case, but we have to track the texture usage in Direct3D12 even if we do not need to preserve
+        the content of the texture.
+    </p>
+
+</body>
+
+</html>

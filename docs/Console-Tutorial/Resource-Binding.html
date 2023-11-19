@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/default.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+</head>
+
+<body class="markdown-body">
+    <h1 dir="auto" id="resource-binding">Resource Binding</h1>
+    <p dir="auto">In legacy OpenGL or Direct3D11 APIs, resources can be bound to each slot separately.</p>
+    <p dir="auto">Evidently, the driver of the legacy OpenGL or Direct3D12 APIs needs to allocate a block of memory,
+        which contains all resource bindings, from the command buffer for each draw call. And the driver needs to
+        provide the address of the allocated memory to the hardware before the draw call is issued.</p>
+    <p dir="auto">Analogous to the pipeline state, it is not efficient to allocate a block of memory from the command
+        buffer for each draw call. It is more efficient for the application to allocate and initialize a block of memory
+        in advance, and reuse the memory at each frame.</p>
+    <p dir="auto">This is the idea of of the (shader visible) descriptors in modern Vulkan or Direct3D12 APIs. The
+        application allocates and initailzes a block of memory in advance, and provides the address of the memory to the
+        hardware before the draw call is issued.</p>
+    <table dir="auto">
+        <thead dir="auto">
+            <tr dir="auto">
+                <th style="text-align:center">N/A</th>
+                <th style="text-align:center">allocate memory</th>
+                <th style="text-align:center">initailze memory</th>
+                <th style="text-align:center">bind memeory</th>
+            </tr>
+        </thead>
+        <tbody dir="auto">
+            <tr dir="auto">
+                <td style="text-align:center">Vulkan</td>
+                <td style="text-align:center">vkCreateDescriptorPool <br /> vkAllocateDescriptorSets</td>
+                <td style="text-align:center">vkUpdateDescriptorSets</td>
+                <td style="text-align:center">vkCmdBindDescriptorSets</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">Direct3D12</td>
+                <td style="text-align:center">ID3D12Device::CreateDescriptorHeap</td>
+                <td style="text-align:center">ID3D12Device::CreateShaderResourceView <br /> ID3D12Device::CreateSampler
+                </td>
+                <td style="text-align:center">ID3D12GraphicsCommandList::SetDescriptorHeaps <br />
+                    ID3D12GraphicsCommandList::SetGraphicsRootConstantBufferView <br />
+                    ID3D12GraphicsCommandList::SetGraphicsRootDescriptorTable</td>
+            </tr>
+        </tbody>
+    </table>
+    <p dir="auto">In console, an analog of the <strong>ID3D12RootSignature</strong> in Direct3D12 can be used.</p>
+
+</body>
+
+</html>
