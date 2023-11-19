@@ -17,11 +17,11 @@ If you find there are any mistakes or improvements, please don't hesitate to con
 
 ## C Plus Plus  
 
-Perfect Forwarding [Documentation](C-Plus-Plus/Perfect-Forwarding.html)  
+- Perfect Forwarding [Documentation](C-Plus-Plus/Perfect-Forwarding.html)  
 
 ## API  
 
-Console Tutorial [Documentation](https://hanetakachou.github.io/Console-Tutorial/)  
+- Console Tutorial [Documentation](https://hanetakachou.github.io/Console-Tutorial/)  
 
 ## Image Synthesis  
 
@@ -57,25 +57,21 @@ Console Tutorial [Documentation](https://hanetakachou.github.io/Console-Tutorial
 
 ## MATLAB  
 
-> Plotting-Spherical-Distributions [Documentation](MATLAB/Plotting-Spherical-Distributions.html)  
+- Plotting-Spherical-Distributions [Documentation](MATLAB/Plotting-Spherical-Distributions.html)  
 
 ## Textbook Solution  
 
-> Visual-Complex-Analysis [Documentation](Textbook-Solution/Visual-Complex-Analysis.html)  
-> Visual-Differential-Geometry-and-Forms [Documentation](Textbook-Solution/Visual-Differential-Geometry-and-Forms.html)  
+- Visual-Complex-Analysis [Documentation](Textbook-Solution/Visual-Complex-Analysis.html)  
+- Visual-Differential-Geometry-and-Forms [Documentation](Textbook-Solution/Visual-Differential-Geometry-and-Forms.html)  
 
 ## Linux  
 
-> Bluetooth [Documentation](Linux/Bluetooth.html)  
-> GPU-NVIDIA [Documentation](Linux/GPU-NVIDIA.html)  
-> CPU-Frequency [Documentation](Linux/CPU-Frequency.html)  
-> KDE [Documentation](Linux/KDE.html)  
-> Steam Controller [Documentation](Linux/Steam-Controller.html)  
+- Bluetooth [Documentation](Linux/Bluetooth.html)  
+- GPU-NVIDIA [Documentation](Linux/GPU-NVIDIA.html)  
+- CPU-Frequency [Documentation](Linux/CPU-Frequency.html)  
+- KDE [Documentation](Linux/KDE.html)  
+- Steam Controller [Documentation](Linux/Steam-Controller.html)  
 
 ## Project Note  
 
-> Google Filament [Documentation](Project-Note/Google-Filament.html)  
-
-## PatriotEngine  
-
-> PatriotEngine [Documentation](PatriotEngine/index.html)  
+- Google Filament [Documentation](Project-Note/Google-Filament.html)  
