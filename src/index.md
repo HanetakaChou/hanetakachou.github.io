@@ -28,27 +28,27 @@ Console Tutorial [Documentation](https://hanetakachou.github.io/Console-Tutorial
 - Scanline  
     - Geometry  
         - HLOD [Documentation](Image-Synthesis/Scanline/Geometry/HLOD.html)  
-        - MOC [Documentation](Image-Synthesis/Scanline/Geometry/Masked-Occlusion-Culling.html)  
+        - Masked Occlusion Culling [Documentation](Image-Synthesis/Scanline/Geometry/Masked-Occlusion-Culling.html)  
         - Projector Function  
             - Cube Mapping [Documentation](Image-Synthesis/Scanline/Geometry/Projector-Function/Cube-Mapping.html)  
             - Dual Paraboloid Mapping [Documentation](Image-Synthesis/Scanline/Geometry/Projector-Function/Dual-Paraboloid-Mapping.html) [Code-VK](https://github.com/HanetakaChou/Image-Synthesis/tree/Dual-Paraboloid-Mapping-VK)  
             - Octahedron Mapping [Documentation](Image-Synthesis/Scanline/Geometry/Projector-Function/Octahedron-Mapping.html) [Code-VK](https://github.com/HanetakaChou/Image-Synthesis/tree/Octahedron-Mapping-VK)  
-        - DLB (Dual quaternion Linear Blending) [Documentation](Image-Synthesis/Scanline/Geometry/Dual-Quaternion-Linear-Blending.html) [Code-DXUT-D3D11](https://github.com/HanetakaChou/Image-Synthesis/tree/DLB-DXUT-D3D11)  
+        - DLB (Dual quaternion Linear Blending) [Documentation](Image-Synthesis/Scanline/Geometry/Dual-Quaternion-Linear-Blending.html) [Code](https://github.com/HanetakaChou/Dual-Quaternion-Linear-Blending)  
         - Hair Animation [Documentation](Image-Synthesis/Scanline/Geometry/Hair-Animation.html)  
         - Grass [Documentation](Image-Synthesis/Scanline/Geometry/Grass.html)  
         - Billboard [Documentation](Image-Synthesis/Scanline/Geometry/Billboard.html)  
     - Lighting  
         - Radiometric and Photometric quantities [Documentation](Image-Synthesis/Scanline/Lighting/Radiometric-and-Photometric-quantities.html)  
         - BRDF [Documentation](Image-Synthesis/Scanline/Lighting/BRDF.html)  
-        - LTC (Linearly Transformed Cosine) [Documentation](Image-Synthesis/Scanline/Lighting/Linearly-Transformed-Cosine.html) [Code-VK](https://github.com/HanetakaChou/Image-Synthesis/tree/LTC-VK) [Code-D3D11](https://github.com/HanetakaChou/Image-Synthesis/tree/LTC-D3D11)  
-        - Environment Lighting [Documentation](Image-Synthesis/Scanline/Lighting/Environment-Lighting.html) [Code-VK](https://github.com/HanetakaChou/Image-Synthesis/tree/Environment-Lighting-VK) [Code-D3D11](https://github.com/HanetakaChou/Image-Synthesis/tree/Environment-Lighting-D3D11)  
-        - SSS (Subsurface Scattering) [Documentation](Image-Synthesis/Scanline/Lighting/Subsurface-Scattering.html) [Code-Disney-DXUT-D3D11](https://github.com/HanetakaChou/Image-Synthesis/tree/Subsurface-Scattering-Disney-DXUT-D3D11) [Code-PreIntegrated-DXUT-D3D11](https://github.com/HanetakaChou/Image-Synthesis/tree/Subsurface-Scattering-PreIntegrated-DXUT-D3D11)  
+        - LTC (Linearly Transformed Cosines) [Documentation](Image-Synthesis/Scanline/Lighting/Linearly-Transformed-Cosines.html) [Code](https://github.com/HanetakaChou/Linearly-Transformed-Cosines)    
+        - Environment Lighting [Documentation](Image-Synthesis/Scanline/Lighting/Environment-Lighting.html) [Code](https://github.com/HanetakaChou/Environment-Lighting)  
+        - SSS (Subsurface Scattering) [Documentation](Image-Synthesis/Scanline/Lighting/Subsurface-Scattering.html) [Code](https://github.com/HanetakaChou/Subsurface-Scattering)  
         - Hair Rendering [Documentation](Image-Synthesis/Scanline/Lighting/Hair-Rendering.html)  
         - Volume Rendering [Documentation](Image-Synthesis/Scanline/Lighting/Volume-Rendering.html)  
-        - LPV (Light Propagation Volume) [Documentation](Image-Synthesis/Scanline/Lighting/Light-Propagation-Volume.html) [Code-DXUT-D3D11](https://github.com/HanetakaChou/Image-Synthesis/tree/LPV-DXUT-D3D11)  
-        - VXGI (Voxel Global Illumintaion) [Documentation](Image-Synthesis/Scanline/Lighting/Voxel-Global-Illumintaion.html) [Code-D3D11](https://github.com/HanetakaChou/Image-Synthesis/tree/Voxel-Global-Illumintaion-D3D11)  
-        - OIT (Order Independent Transparency) [Documentation](Image-Synthesis/Scanline/Lighting/Order-Independent-Transparency.html) [Code-Stochastic-Transparency](https://github.com/HanetakaChou/StochasticTransparency) [Code-MLAB](https://github.com/HanetakaChou/MultiLayerAlphaBlending) [Code-WBOIT](https://github.com/HanetakaChou/WeightedBlendedOIT)  
-        - HFTS (Hybrid Frustum Traced Shadows) [Documentation](Image-Synthesis/Scanline/Lighting/Hybrid-Frustum-Traced-Shadows.html) [Code](https://github.com/HanetakaChou/HFTS)  
+        - LPV (Light Propagation Volumes) [Documentation](Image-Synthesis/Scanline/Lighting/Light-Propagation-Volumes.html) [Code](https://github.com/HanetakaChou/Light-Propagation-Volumes)  
+        - VXGI (Voxel Global Illumintaion) [Documentation](Image-Synthesis/Scanline/Lighting/Voxel-Global-Illumintaion.html) [Code](https://github.com/HanetakaChou/Voxel-Global-Illumintaion)  
+        - OIT (Order Independent Transparency) [Documentation](Image-Synthesis/Scanline/Lighting/Order-Independent-Transparency.html) [Code](https://github.com/HanetakaChou/Order-Independent-Transparency)  
+        - HFTS (Hybrid Frustum Traced Shadows) [Documentation](Image-Synthesis/Scanline/Lighting/Hybrid-Frustum-Traced-Shadows.html) [Code](https://github.com/HanetakaChou/Hybrid-Frustum-Traced-Shadows)  
 - Ray Tracing  
     - AO (Ambient Occlusion)  
 - Radiosity  

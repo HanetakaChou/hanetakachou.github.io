@@ -1,4 +1,4 @@
-# LPV (Light Propagation Volume)  
+# LPV (Light Propagation Volumes)  
 
 ## SH (Spherical Harmonics)  
 
