@@ -1,10 +1,10 @@
-# OIT  
+# OIT (Order Independent Transparency)  
 
 ## 1\. Alpha Channel  
 Porter proposed the "Alpha channel"(1.[Porter 1984]) in 1984 which is widely established in real-time rendering to simulate the transparent effect.  
 
 We assume that one "pixel" corresponds to a series of "fragments" which can be treated as the triples $\displaystyle \begin{bmatrix} C_i & A_i & Z_i \end{bmatrix}$ (C-Color A-Alpha Z-Depth), as shown in the following figure:  
-![](OIT-1.png)  
+![](Order-Independent-Transparency-1.png)  
 Then the final color of the pixel can be calculated as $\displaystyle C_{\displaystyle Final} = \sum_{\displaystyle i = 0}^{\displaystyle n} (\prod_{\displaystyle Z_j Nearer Z_i}(1 - A_j)) A_i C_i$.  
 
 The $\displaystyle \operatorname{V} ( Z_i ) = \prod_{\displaystyle Z_j Nearer Z_i} 1 - A_j$ is also called the visibility function which will be explained later.  
@@ -94,7 +94,7 @@ By this fact, Enderton proposed the "stochastic transparency"(6.[Enderton 2010])
 
 ### 3-2-1\. Stochastic Depth  
 With the MSAA on, we assume the relationship among the "pixel", "fragment" and "sample" as the following figure:  
-![](OIT-2.png)  
+![](Order-Independent-Transparency-2.png)  
 one pixel corresponds to several samples (for example, in the above figure, one pixel corresponds to 4 samples, namely, 4X MSAA) and at the same time one pixel corresponds to a series of fragments.  
 However, the same sample corresponding to the same pixel can only be occupied by one fragment of these fragments corresponding to the same pixel(The storage is limited, which can hold only one fragment. That's evident).  
 

@@ -19,24 +19,24 @@
         and the lighting of the interaction points on the surface are recorded as the photons. In the second pass
         (rendering pass), the paths are traced from the camera and the nearby photons of the interaction points are used
         to estimate the lighting.<br>
-        <img src="VXGI-1.png" alt="" data-src="VXGI-1.png"><br>
-        <img src="VXGI-2.png" alt="" data-src="VXGI-2.png">
+        <img src="Voxel-Global-Illumintaion-1.png" alt="" data-src="Voxel-Global-Illumintaion-1.png"><br>
+        <img src="Voxel-Global-Illumintaion-2.png" alt="" data-src="Voxel-Global-Illumintaion-2.png">
     </p>
     <p dir="auto">By &quot;Progressive Photon Mapping&quot; of <a
             href="https://pbr-book.org/3ed-2018/Light_Transport_III_Bidirectional_Methods/Stochastic_Progressive_Photon_Mapping#x2-ProgressivePhotonMapping">PBRT-V3</a>,
         the special case, where only the interaction points after the diffuse bounce are recorded as the photons in the
         photon pass, of the photon mapping is also called the <strong>final gathering</strong>.<br>
-        <img src="VXGI-3.png" alt="" data-src="VXGI-3.png">
+        <img src="Voxel-Global-Illumintaion-3.png" alt="" data-src="Voxel-Global-Illumintaion-3.png">
     </p>
     <p dir="auto">By [Crassin 2011 B], the idea of VXGI is to organize the photons by the voxels and to implement the
         &quot;final gathering&quot; by the following three steps: light injection, filtering and cone tracing. The first
         step (light injection) of the &quot;final gathering&quot; of VXGI is analogous to the first pass (photon pass)
         of photon mapping. The third step (cone tracing) of the &quot;final gathering&quot; of VXGI is analogous to the
         second pass (rendering pass) of photon mapping.<br>
-        <img src="VXGI-4.png" alt="" data-src="VXGI-4.png"><br>
-        <img src="VXGI-5.png" alt="" data-src="VXGI-5.png"><br>
-        <img src="VXGI-6.png" alt="" data-src="VXGI-6.png"><br>
-        <img src="VXGI-7.png" alt="" data-src="VXGI-7.png">
+        <img src="Voxel-Global-Illumintaion-4.png" alt="" data-src="Voxel-Global-Illumintaion-4.png"><br>
+        <img src="Voxel-Global-Illumintaion-5.png" alt="" data-src="Voxel-Global-Illumintaion-5.png"><br>
+        <img src="Voxel-Global-Illumintaion-6.png" alt="" data-src="Voxel-Global-Illumintaion-6.png"><br>
+        <img src="Voxel-Global-Illumintaion-7.png" alt="" data-src="Voxel-Global-Illumintaion-7.png">
     </p>
     <h2 dir="auto" id="voxelization">Voxelization</h2>
     <h3 dir="auto" id="clipmap">Clipmap</h3>
@@ -48,7 +48,8 @@
         The voxel size increses<br>
         Only the last level has more than one mipmap levels (the logical volume remains the same within the same clipmap
         level)</p>
-    <p dir="auto"><img src="VXGI-Clipmap-1.png" alt="" data-src="VXGI-Clipmap-1.png"></p>
+    <p dir="auto"><img src="Voxel-Global-Illumintaion-Clipmap-1.png" alt=""
+            data-src="Voxel-Global-Illumintaion-Clipmap-1.png"></p>
     <p dir="auto">NVIDIA VXGI Implementation:</p>
     <p dir="auto">Logical Structure:<br>
         clipmap level 0-3: only one mipmap level<br>
@@ -238,7 +239,7 @@
     <h2 dir="auto" id="light-injection">Light Injection</h2>
     <p dir="auto">TODO: not related to &quot;ambient occlusion&quot;</p>
     <h2 dir="auto" id="filtering">Filtering</h2>
-    <p dir="auto"><img src="VXGI-8.png" alt="" data-src="VXGI-8.png"></p>
+    <p dir="auto"><img src="Voxel-Global-Illumintaion-8.png" alt="" data-src="Voxel-Global-Illumintaion-8.png"></p>
     <p dir="auto">TODO: anisotropic voxel</p>
     <h2 dir="auto" id="cone-tracing">Cone Tracing</h2>
     <p dir="auto">By <a href="https://en.wikipedia.org/wiki/Integral#Conventions">Additive Interval Property</a>, the
@@ -656,7 +657,7 @@
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
         </eq> is the solid angle subtended by the <strong>i</strong>th cone.<br>
-        <img src="VXGI-9.png" alt="" data-src="VXGI-9.png">
+        <img src="Voxel-Global-Illumintaion-9.png" alt="" data-src="Voxel-Global-Illumintaion-9.png">
     </p>
     <p dir="auto">By [Crassin 2011 B], the visibility <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
@@ -1207,7 +1208,7 @@
                                     class="vlist-r"><span class="vlist"
                                         style="height:0.15em;"><span></span></span></span></span></span></span></span></span>
         </eq> can be calculated as the projected area on the unit disk.<br>
-        <img src="VXGI-10.png" alt="" data-src="VXGI-10.png">
+        <img src="Voxel-Global-Illumintaion-10.png" alt="" data-src="Voxel-Global-Illumintaion-10.png">
     </p>
     <p dir="auto">By [Crassin 2011 B], the recursive form, which is similar to the &quot;under operator&quot; ([Dunn
         2014]), can be used to calculated the final color <eq><span class="katex"><span class="katex-mathml"><math
@@ -5191,10 +5192,10 @@
             </p>
         </blockquote>
     </blockquote>
-    <p dir="auto"><img src="VXGI-12.png" alt="" data-src="VXGI-12.png"></p>
+    <p dir="auto"><img src="Voxel-Global-Illumintaion-12.png" alt="" data-src="Voxel-Global-Illumintaion-12.png"></p>
     <p dir="auto">Evidently, by [McLaren 2015], the cone tracing may NOT dectect the full occlusion which is the result
         of mutiple partial occlusions.<br>
-        <img src="VXGI-13.png" alt="" data-src="VXGI-13.png">
+        <img src="Voxel-Global-Illumintaion-13.png" alt="" data-src="Voxel-Global-Illumintaion-13.png">
     </p>
     <h2 dir="auto" id="references">References</h2>
     <p dir="auto">[Jensen 1996] <a href="http://graphics.ucsd.edu/~henrik/papers/photon_map/">Henrik Jensen.

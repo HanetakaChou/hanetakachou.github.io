@@ -1,4 +1,4 @@
-# LPV (Light Propagation Volumes)  
+# LPV (Light Propagation Volume)  
 
 ## SH (Spherical Harmonics)  
 
@@ -54,7 +54,7 @@ Product Projection
 
 The light position is at the Z axis  
 
-![](LPV-1.png)  
+![](Light-Propagation-Volume-1.png)  
 
 // Analytic Models
 

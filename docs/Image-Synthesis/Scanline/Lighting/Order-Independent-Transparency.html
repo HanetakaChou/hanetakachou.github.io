@@ -10,78 +10,126 @@
 </head>
 
 <body class="markdown-body">
-    <h1 id="oit">OIT</h1>
-    <h2 id="1-alpha-channel">1. Alpha Channel</h2>
-    <p>Porter proposed the &quot;Alpha channel&quot;(1.[Porter 1984]) in 1984 which is widely established in real-time
-        rendering to simulate the transparent effect.</p>
-    <p>We assume that one &quot;pixel&quot; corresponds to a series of &quot;fragments&quot; which can be treated as the
-        triples [ <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <h1 dir="auto" id="oit-order-independent-transparency">OIT (Order Independent Transparency)</h1>
+    <h2 dir="auto" id="1-alpha-channel">1. Alpha Channel</h2>
+    <p dir="auto">Porter proposed the &quot;Alpha channel&quot;(1.[Porter 1984]) in 1984 which is widely established in
+        real-time rendering to simulate the transparent effect.</p>
+    <p dir="auto">We assume that one &quot;pixel&quot; corresponds to a series of &quot;fragments&quot; which can be
+        treated as the triples <eq><span class="katex"><span class="katex-mathml"><math
+                        xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
-                                <msub>
-                                    <mi>C</mi>
-                                    <mi>i</mi>
-                                </msub>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mrow>
+                                        <mo fence="true">[</mo>
+                                        <mtable rowspacing="0.1600em" columnalign="center center center"
+                                            columnspacing="1em">
+                                            <mtr>
+                                                <mtd>
+                                                    <mstyle scriptlevel="0" displaystyle="false">
+                                                        <msub>
+                                                            <mi>C</mi>
+                                                            <mi>i</mi>
+                                                        </msub>
+                                                    </mstyle>
+                                                </mtd>
+                                                <mtd>
+                                                    <mstyle scriptlevel="0" displaystyle="false">
+                                                        <msub>
+                                                            <mi>A</mi>
+                                                            <mi>i</mi>
+                                                        </msub>
+                                                    </mstyle>
+                                                </mtd>
+                                                <mtd>
+                                                    <mstyle scriptlevel="0" displaystyle="false">
+                                                        <msub>
+                                                            <mi>Z</mi>
+                                                            <mi>i</mi>
+                                                        </msub>
+                                                    </mstyle>
+                                                </mtd>
+                                            </mtr>
+                                        </mtable>
+                                        <mo fence="true">]</mo>
+                                    </mrow>
+                                </mstyle>
                             </mrow>
-                            <annotation encoding="application/x-tex">C_i</annotation>
+                            <annotation encoding="application/x-tex">\displaystyle \begin{bmatrix} C_i &amp; A_i &amp;
+                                Z_i \end{bmatrix}</annotation>
                         </semantics>
                     </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
-                            style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span
-                                class="mord mathnormal" style="margin-right:0.07153em;">C</span><span
-                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                            style="height:0.31166399999999994em;"><span
-                                                style="top:-2.5500000000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span
-                                                    class="pstrut" style="height:2.7em;"></span><span
-                                                    class="sizing reset-size6 size3 mtight"><span
-                                                        class="mord mathnormal mtight">i</span></span></span></span><span
-                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
-        </eq>
-        <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
-                        <semantics>
-                            <mrow>
-                                <msub>
-                                    <mi>A</mi>
-                                    <mi>i</mi>
-                                </msub>
-                            </mrow>
-                            <annotation encoding="application/x-tex">A_i</annotation>
-                        </semantics>
-                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
-                            style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span
-                                class="mord mathnormal">A</span><span class="msupsub"><span
-                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                            style="height:0.31166399999999994em;"><span
-                                                style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
-                                                    class="pstrut" style="height:2.7em;"></span><span
-                                                    class="sizing reset-size6 size3 mtight"><span
-                                                        class="mord mathnormal mtight">i</span></span></span></span><span
-                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
-        </eq>
-        <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
-                        <semantics>
-                            <mrow>
-                                <msub>
-                                    <mi>Z</mi>
-                                    <mi>i</mi>
-                                </msub>
-                            </mrow>
-                            <annotation encoding="application/x-tex">Z_i</annotation>
-                        </semantics>
-                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
-                            style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span
-                                class="mord mathnormal" style="margin-right:0.07153em;">Z</span><span
-                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                            style="height:0.31166399999999994em;"><span
-                                                style="top:-2.5500000000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span
-                                                    class="pstrut" style="height:2.7em;"></span><span
-                                                    class="sizing reset-size6 size3 mtight"><span
-                                                        class="mord mathnormal mtight">i</span></span></span></span><span
-                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
-        </eq> ] (C-Color A-Alpha Z-Depth), as shown in the following figure:<br>
-        <img src="OIT-1.png" alt="" class="loading" id="image-hash--1869876336" data-src="OIT-1.png"><br>
+                            style="height:1.20001em;vertical-align:-0.35001em;"></span><span class="minner"><span
+                                class="mopen delimcenter" style="top:0em;"><span
+                                    class="delimsizing size1">[</span></span><span class="mord"><span
+                                    class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span
+                                                class="vlist-r"><span class="vlist"
+                                                    style="height:0.8500000000000001em;"><span
+                                                        style="top:-3.01em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="mord"><span
+                                                                class="mord"><span class="mord mathnormal"
+                                                                    style="margin-right:0.07153em;">C</span><span
+                                                                    class="msupsub"><span class="vlist-t vlist-t2"><span
+                                                                            class="vlist-r"><span class="vlist"
+                                                                                style="height:0.31166399999999994em;"><span
+                                                                                    style="top:-2.5500000000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span
+                                                                                        class="pstrut"
+                                                                                        style="height:2.7em;"></span><span
+                                                                                        class="sizing reset-size6 size3 mtight"><span
+                                                                                            class="mord mathnormal mtight">i</span></span></span></span><span
+                                                                                class="vlist-s">​</span></span><span
+                                                                            class="vlist-r"><span class="vlist"
+                                                                                style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.35000000000000003em;"><span></span></span></span></span></span><span
+                                        class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep"
+                                        style="width:0.5em;"></span><span class="col-align-c"><span
+                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                    style="height:0.8500000000000001em;"><span
+                                                        style="top:-3.01em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="mord"><span
+                                                                class="mord"><span class="mord mathnormal">A</span><span
+                                                                    class="msupsub"><span class="vlist-t vlist-t2"><span
+                                                                            class="vlist-r"><span class="vlist"
+                                                                                style="height:0.31166399999999994em;"><span
+                                                                                    style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                                                        class="pstrut"
+                                                                                        style="height:2.7em;"></span><span
+                                                                                        class="sizing reset-size6 size3 mtight"><span
+                                                                                            class="mord mathnormal mtight">i</span></span></span></span><span
+                                                                                class="vlist-s">​</span></span><span
+                                                                            class="vlist-r"><span class="vlist"
+                                                                                style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.35000000000000003em;"><span></span></span></span></span></span><span
+                                        class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep"
+                                        style="width:0.5em;"></span><span class="col-align-c"><span
+                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                    style="height:0.8500000000000001em;"><span
+                                                        style="top:-3.01em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="mord"><span
+                                                                class="mord"><span class="mord mathnormal"
+                                                                    style="margin-right:0.07153em;">Z</span><span
+                                                                    class="msupsub"><span class="vlist-t vlist-t2"><span
+                                                                            class="vlist-r"><span class="vlist"
+                                                                                style="height:0.31166399999999994em;"><span
+                                                                                    style="top:-2.5500000000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span
+                                                                                        class="pstrut"
+                                                                                        style="height:2.7em;"></span><span
+                                                                                        class="sizing reset-size6 size3 mtight"><span
+                                                                                            class="mord mathnormal mtight">i</span></span></span></span><span
+                                                                                class="vlist-s">​</span></span><span
+                                                                            class="vlist-r"><span class="vlist"
+                                                                                style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.35000000000000003em;"><span></span></span></span></span></span></span></span><span
+                                class="mclose delimcenter" style="top:0em;"><span
+                                    class="delimsizing size1">]</span></span></span></span></span></span></eq> (C-Color
+        A-Alpha Z-Depth), as shown in the following figure:<br>
+        <img src="Order-Independent-Transparency-1.png" alt="" data-src="Order-Independent-Transparency-1.png"><br>
         Then the final color of the pixel can be calculated as <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
@@ -274,7 +322,8 @@
                                             style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
         </eq>.
     </p>
-    <p>The <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <p dir="auto">The <eq><span class="katex"><span class="katex-mathml"><math
+                        xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
                                 <mstyle scriptlevel="0" displaystyle="true">
@@ -518,25 +567,25 @@
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
         </eq>.</p>
-    <p>Note that the physical meaning of the Alpha is the &quot;partial coverage&quot; rather than the
+    <p dir="auto">Note that the physical meaning of the Alpha is the &quot;partial coverage&quot; rather than the
         &quot;transmittance&quot;.</p>
-    <p>The Alpha stands for the ratio of the area covered by the fragments to the area covered by the pixel. That's why
-        we use the scalar &quot;float&quot; instead of the vector &quot;RGB&quot; to represent the Alpha. This
-        circumstance is also called the &quot;Wavelength Independent&quot; in some literatures.<br>
+    <p dir="auto">The Alpha stands for the ratio of the area covered by the fragments to the area covered by the pixel.
+        That's why we use the scalar &quot;float&quot; instead of the vector &quot;RGB&quot; to represent the Alpha.
+        This circumstance is also called the &quot;Wavelength Independent&quot; in some literatures.<br>
         For example, when we observe a red brick through a blue silk scarf, the color of the brick appears to be the
         &quot;addition&quot; of the blue and red. The fibers of silk scarf are intrinsically opaque but there exist gaps
         between the fibers. We see the brick through the gaps. Namely, the silk scarf &quot;partially covers&quot; the
         brick.</p>
-    <p>However, the transmittance is &quot;Wavelengh Dependent&quot;. If we observe a red brick through a blue plastic
-        film, the color of the brick appears to be black (the &quot;Multiplication&quot; of the blue and red). The red
-        brick only reflects the red light while the blue plastic film only allows blue light to pass through. All the
-        reflected light of the red brick is absorbed by the blue plastic film and then the red brick appears to be
-        black.</p>
-    <p>You can do the above two experiments by yourself.</p>
-    <p>If we demand the transmittance effect, the techniques related to the &quot;Participating Media&quot;(2.[Yusor
-        2013]、3.[Hoobler 2016]) should be used.</p>
-    <p>By the physical meaning of the Alpha, we can comprehend the visibility function <eq><span class="katex"><span
-                    class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <p dir="auto">However, the transmittance is &quot;Wavelengh Dependent&quot;. If we observe a red brick through a
+        blue plastic film, the color of the brick appears to be black (the &quot;Multiplication&quot; of the blue and
+        red). The red brick only reflects the red light while the blue plastic film only allows blue light to pass
+        through. All the reflected light of the red brick is absorbed by the blue plastic film and then the red brick
+        appears to be black.</p>
+    <p dir="auto">You can do the above two experiments by yourself.</p>
+    <p dir="auto">If we demand the transmittance effect, the techniques related to the &quot;Participating
+        Media&quot;(2.[Yusor 2013]、3.[Hoobler 2016]) should be used.</p>
+    <p dir="auto">By the physical meaning of the Alpha, we can comprehend the visibility function <eq><span
+                class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
                                 <mstyle scriptlevel="0" displaystyle="true">
@@ -599,10 +648,10 @@
                                             style="height:0.15em;"><span></span></span></span></span></span></span><span
                             class="mclose">)</span></span></span></span></eq> as the &quot;transmittance&quot;.
         Technically, that's wrong.</p>
-    <h2 id="2-ordered-transparency">2. Ordered Transparency</h2>
-    <p>In real time rendering, the classic method is to sort the transparent geometries and use the &quot;Over/Under
-        Operation&quot;(1.[Porter 1984]、4. [Dunn 2014]) to calculate the final color <eq><span class="katex"><span
-                    class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <h2 dir="auto" id="2-ordered-transparency">2. Ordered Transparency</h2>
+    <p dir="auto">In real time rendering, the classic method is to sort the transparent geometries and use the
+        &quot;Over/Under Operation&quot;(1.[Porter 1984]、4. [Dunn 2014]) to calculate the final color <eq><span
+                class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
                                 <msub>
@@ -634,15 +683,15 @@
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
         </eq> recursively:</p>
-    <blockquote>
-        <p>1.OpaquePass<br>
+    <blockquote dir="auto">
+        <p dir="auto">1.OpaquePass<br>
             draw the opaque geometries and have the BackgroundColor and the BackgroundDepth.</p>
     </blockquote>
-    <blockquote>
-        <p>2.TransparencyPass<br>
+    <blockquote dir="auto">
+        <p dir="auto">2.TransparencyPass<br>
             use the BackgroundDepth for depth test (without depth write), sort the geometries from far to near/from near
             to far and use Over/Under Operation to calculate recursively.</p>
-        <p>Over Operation<br>
+        <p dir="auto">Over Operation<br>
             sort the fragments from far to near to use the Over Operation<br>
             <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                             <semantics>
@@ -841,7 +890,7 @@
                                                 style="height:0.367em;"><span></span></span></span></span></span></span></span></span></span>
             </eq>
         </p>
-        <p>Under Operation<br>
+        <p dir="auto">Under Operation<br>
             sort the fragments from near to far to use the Under Operation<br>
             <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                             <semantics>
@@ -1237,8 +1286,8 @@
             C=BackgroundColor&quot; and added to the final color by the Under Operation.
         </p>
     </blockquote>
-    <p>By the mathematical induction, we can prove that the Over Operation and the Under Operation are equivalent. Both
-        can calculate the final color <eq><span class="katex"><span class="katex-mathml"><math
+    <p dir="auto">By the mathematical induction, we can prove that the Over Operation and the Under Operation are
+        equivalent. Both can calculate the final color <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
@@ -1361,22 +1410,22 @@
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
         </eq>.</p>
-    <p>Technically, the correctness of the Over/Under Operation can only be guaranteed by sorting the
+    <p dir="auto">Technically, the correctness of the Over/Under Operation can only be guaranteed by sorting the
         &quot;fragments&quot; from far to near/from near to far. However, in real time rendering, the sorting is based
         on the geometries not the fragments. If there exists interlacing inside the geometry, the order of the fragments
         will not follow and thus we have to explore the OIT(Order Independent Transparency) algorithm to settle this
         problem.</p>
-    <p>Note that keeping the geometries orderly also prohibits the batching of the geometries with the same material and
-        thus results in extra state changing which is hostile to the performance.</p>
-    <h2 id="3-1-depth-peeling">3-1. Depth Peeling</h2>
-    <p>Depth Peeling(5.[Everitt 2001]) is an archaic method which might be used in real time rendering.</p>
-    <h3 id="3-1-1-render-pass">3-1-1. Render Pass</h3>
-    <blockquote>
-        <p>1.OpaquePass<br>
+    <p dir="auto">Note that keeping the geometries orderly also prohibits the batching of the geometries with the same
+        material and thus results in extra state changing which is hostile to the performance.</p>
+    <h2 dir="auto" id="3-1-depth-peeling">3-1. Depth Peeling</h2>
+    <p dir="auto">Depth Peeling(5.[Everitt 2001]) is an archaic method which might be used in real time rendering.</p>
+    <h3 dir="auto" id="3-1-1-render-pass">3-1-1. Render Pass</h3>
+    <blockquote dir="auto">
+        <p dir="auto">1.OpaquePass<br>
             draw opaque geometries and have the BackgroundColor and the BackgroundDepth.</p>
     </blockquote>
-    <blockquote>
-        <p>2.NearestLayerPass //GeometryPass<br>
+    <blockquote dir="auto">
+        <p dir="auto">2.NearestLayerPass //GeometryPass<br>
             copy the BackgroundDepth to initialize the depth buffer<br>
             with depth test(NearerOrEqual) and depth write, sort the transparent geometries by [material, front-to-back]
             and draw them, having the NearestLayerColor and the NearestLayerDepth<br>
@@ -1416,8 +1465,8 @@
             //Note that the depth peeling doesn't depend on the order of the fragments and we sort the geometries from
             near to far is merely to improve the performance by the EarlyDepthTest.</p>
     </blockquote>
-    <blockquote>
-        <p>3.SecondNearestLayerPass //GeometryPass
+    <blockquote dir="auto">
+        <p dir="auto">3.SecondNearestLayerPass //GeometryPass
             copy the BackgroundDepth to initialize the depth buffer<br>
             with depth test(NearerOrEqual) and depth write, sort the transparent geometries by [material,
             front-to-back], bind the NearestLayerDepth to the SampledTextureUnit and draw them with discarding the
@@ -1459,24 +1508,24 @@
             //Note that the depth peeling doesn't depend on the order of the fragments and we sort the geometries from
             near to far is merely to improve the performance by the EarlyDepthTest.</p>
     </blockquote>
-    <blockquote>
-        <p>4.ThirdNearestLayerPass //GeometryPass
+    <blockquote dir="auto">
+        <p dir="auto">4.ThirdNearestLayerPass //GeometryPass
             copy the BackgroundDepth to initialize the depth buffer<br>
             with depth test(NearerOrEqual) and depth write, sort the transparent geometries by [material,
             front-to-back], bind the SecondNearestLayerDepth to the SampledTextureUnit and ...<br>
             //Note that the depth peeling doesn't depend on the order of the fragments and we sort the geometries from
             near to far is merely to improve the performance by the EarlyDepthTest.</p>
     </blockquote>
-    <blockquote>
-        <p>The subsequent operations are similar to the above, omitted... //we can peel N layers by N geometry passes.
-            The application can choose the proper N according to the requirements.</p>
+    <blockquote dir="auto">
+        <p dir="auto">The subsequent operations are similar to the above, omitted... //we can peel N layers by N
+            geometry passes. The application can choose the proper N according to the requirements.</p>
     </blockquote>
-    <blockquote>
-        <p>N+2.CompositePass //FullScreenTrianglePass<br>
+    <blockquote dir="auto">
+        <p dir="auto">N+2.CompositePass //FullScreenTrianglePass<br>
             At last, the BackgroundColor by OpaquePass is added to the final color by the Under Operation.</p>
     </blockquote>
-    <p>Technically, it's legal to peel the layers from far to near and add them to the final color by the Over
-        Operation.<br>
+    <p dir="auto">Technically, it's legal to peel the layers from far to near and add them to the final color by the
+        Over Operation.<br>
         However, if the number of the geometry passes N is too low to peel all layers, the farthest/nearest layers will
         be ignored when we use the Under/Over Operation.<br>
         Evidently, the visibility function <eq><span class="katex"><span class="katex-mathml"><math
@@ -1512,11 +1561,12 @@
                             class="mclose">)</span></span></span></span></eq> is monotonically decreasing. It follows
         that the farthest layers generally contribute little to the final color and introduce little error if they are
         ignored. That's why we prefer the Under Operation to the Over Operation.</p>
-    <h3 id="3-1-2-conclusion">3-1-2. Conclusion</h3>
-    <p>Evidently, the depth peeling has a fatal disadvantage that the number of the geometry passes is too high and the
-        performance is too low and thus the depth peeling has never been popular since proposed decades ago.</p>
-    <h2 id="3-2-stochastic-transparency">3-2. Stochastic Transparency</h2>
-    <p>The estimation of the visibility function <eq><span class="katex"><span class="katex-mathml"><math
+    <h3 dir="auto" id="3-1-2-conclusion">3-1-2. Conclusion</h3>
+    <p dir="auto">Evidently, the depth peeling has a fatal disadvantage that the number of the geometry passes is too
+        high and the performance is too low and thus the depth peeling has never been popular since proposed decades
+        ago.</p>
+    <h2 dir="auto" id="3-2-stochastic-transparency">3-2. Stochastic Transparency</h2>
+    <p dir="auto">The estimation of the visibility function <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
@@ -1698,16 +1748,16 @@
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.15em;"><span></span></span></span></span></span></span><span
                             class="mclose">)</span></span></span></span></eq> order independently.</p>
-    <h3 id="3-2-1-stochastic-depth">3-2-1. Stochastic Depth</h3>
-    <p>With the MSAA on, we assume the relationship among the &quot;pixel&quot;, &quot;fragment&quot; and
+    <h3 dir="auto" id="3-2-1-stochastic-depth">3-2-1. Stochastic Depth</h3>
+    <p dir="auto">With the MSAA on, we assume the relationship among the &quot;pixel&quot;, &quot;fragment&quot; and
         &quot;sample&quot; as the following figure:<br>
-        <img src="OIT-2.png" alt="" class="loading" id="image-hash--1868952815" data-src="OIT-2.png"><br>
+        <img src="Order-Independent-Transparency-2.png" alt="" data-src="Order-Independent-Transparency-2.png"><br>
         one pixel corresponds to several samples (for example, in the above figure, one pixel corresponds to 4 samples,
         namely, 4X MSAA) and at the same time one pixel corresponds to a series of fragments.<br>
         However, the same sample corresponding to the same pixel can only be occupied by one fragment of these fragments
         corresponding to the same pixel(The storage is limited, which can hold only one fragment. That's evident).
     </p>
-    <p>At the same time, we assume that:<br>
+    <p dir="auto">At the same time, we assume that:<br>
         <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
@@ -1866,7 +1916,7 @@
         </eq> denotes the fragment which is being discussed(which can be considered as the fragment being executed by
         the fragment shader in the implementation).
     </p>
-    <p>In addition, we assume that:<br>
+    <p dir="auto">In addition, we assume that:<br>
         By setting the value of gl_SampleMask/SV_Coverage, we ensure that the probability of each sample be occupied by
         the fragment [ <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
@@ -1960,7 +2010,7 @@
         sample is occupied by the nearest fragment.<br>
         The probabilities of different fragments are uncorrelated.
     </p>
-    <p>We claim that for each sample [ <eq><span class="katex"><span class="katex-mathml"><math
+    <p dir="auto">We claim that for each sample [ <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
@@ -2261,7 +2311,7 @@
                                             style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span>
         </eq>.
     </p>
-    <p>Proof:<br>
+    <p dir="auto">Proof:<br>
         Since &quot;the nearer fragment must overwrite the farther fragment&quot;, if &quot;<eq><span
                 class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
@@ -2559,9 +2609,9 @@
                                             style="height:0.15em;"><span></span></span></span></span></span></span><span
                             class="mclose">)</span></span></span></span></eq>.
     </p>
-    <p>Besides, we assume that:<br>
+    <p dir="auto">Besides, we assume that:<br>
         One pixel corresponds to S samples, namely, S-X MSAA.</p>
-    <p>We claim that if the count of the samples such that &quot;<eq><span class="katex"><span
+    <p dir="auto">We claim that if the count of the samples such that &quot;<eq><span class="katex"><span
                     class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
@@ -2772,9 +2822,9 @@
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.15em;"><span></span></span></span></span></span></span><span
                             class="mclose">)</span></span></span></span></eq>.</p>
-    <p>Proof:
+    <p dir="auto">Proof:
         Evidently, this is immediate from the above proposition.</p>
-    <p>Since we can get the value of <eq><span class="katex"><span class="katex-mathml"><math
+    <p dir="auto">Since we can get the value of <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
@@ -2866,8 +2916,8 @@
         Note that the extension &quot;ARB_texture_multisample&quot; should be enabled to use texelFetch on sampler2DMS
         in OpenGL.<br>
         We should use the knowledge of statistics to prove why we can estimate and thus the proof is omitted.</p>
-    <h3 id="3-2-2-alpha-correction">3-2-2. Alpha Correction</h3>
-    <p>We claim that <eq><span class="katex"><span class="katex-mathml"><math
+    <h3 dir="auto" id="3-2-2-alpha-correction">3-2-2. Alpha Correction</h3>
+    <p dir="auto">We claim that <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
@@ -3005,7 +3055,7 @@
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.15em;"><span></span></span></span></span></span></span><span
                             class="mclose">)</span></span></span></span></eq>.</p>
-    <p>Proof:<br>
+    <p dir="auto">Proof:<br>
         Prove by the mathematical induction.<br>
         1.basis:<br>
         when n=0:<br>
@@ -4035,7 +4085,7 @@
                                             style="height:0.15em;"><span></span></span></span></span></span></span><span
                             class="mclose">)</span></span></span></span></eq><br>
         left = right the equation holds</p>
-    <p>Evidently, the expected value of <eq><span class="katex"><span class="katex-mathml"><math
+    <p dir="auto">Evidently, the expected value of <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
@@ -4446,7 +4496,7 @@
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.15em;"><span></span></span></span></span></span></span><span
                             class="mclose">)</span></span></span></span></eq>.</p>
-    <p>The Alpha correction can be considered as the normalizing of the <eq><span class="katex"><span
+    <p dir="auto">The Alpha correction can be considered as the normalizing of the <eq><span class="katex"><span
                     class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
@@ -5196,15 +5246,15 @@
                                                 style="height:2.7390660000000002em;"><span></span></span></span></span></span><span
                                     class="mclose nulldelimiter"></span></span></span></span></span></span></eq>.
     </p>
-    <p>We should use the knowledge of statistics to explain the meaning of the Alpha correction and thus the explanation
-        is omitted.</p>
-    <h3 id="3-2-3-render-pass">3-2-3. Render Pass</h3>
-    <blockquote>
-        <p>1.OpaquePass<br>
+    <p dir="auto">We should use the knowledge of statistics to explain the meaning of the Alpha correction and thus the
+        explanation is omitted.</p>
+    <h3 dir="auto" id="3-2-3-render-pass">3-2-3. Render Pass</h3>
+    <blockquote dir="auto">
+        <p dir="auto">1.OpaquePass<br>
             draw the opaque geometries and have the BackgroundColor and the BackgroundDepth.</p>
     </blockquote>
-    <blockquote>
-        <p>2.StochasticDepthPass //GeometryPass<br>
+    <blockquote dir="auto">
+        <p dir="auto">2.StochasticDepthPass //GeometryPass<br>
             copy the BackgroundDepth to initialize the depth buffer<br>
             with MSAA, with depth test(NearerOrEqual) and depth write, sort the transparent geometries by [material,
             front-to-back] and draw them with setting the pseudo random value of gl_SampleMask/SV_Coverage by the <eq>
@@ -5307,18 +5357,18 @@
             These's no relationship between the MSAA used for random sampling (in StochasticDepthPass) and the MSAA used
             for spatial antialiasing (in other passes). For example, we can use 8X MASS in StochasticDepthPass while use
             4X MSAA in other passes.<br>
-            <a href="http://2-3.To">2-3.To</a> ensure the uncorrelation among fragments, we must use pseudo random value
-            rather than the &quot;AlphaToCoverage&quot; hardware feature.<br>
+            2-3.To ensure the uncorrelation among fragments, we must use pseudo random value rather than the
+            &quot;AlphaToCoverage&quot; hardware feature.<br>
             2-4.The depth value used in AccumulatePass is the value of the shading position not the value of the
             sampling position. To be consistant, we prefer to write the depth (value of the shading position) to
             gl_FragDepth/SV_Depth in the fragment shader.<br>
-            <a href="http://2-5.By">2-5.By</a> the limit of the hardware, the maximum sample count of MSAA is 8X MSAA.
-            The author (6.[Enderton 2010]) proposed that we can use multiple passes to simulate more sample counts. Due
-            to the performance issue, we only use one pass.
+            2-5.By the limit of the hardware, the maximum sample count of MSAA is 8X MSAA. The author (6.[Enderton
+            2010]) proposed that we can use multiple passes to simulate more sample counts. Due to the performance
+            issue, we only use one pass.
         </p>
     </blockquote>
-    <blockquote>
-        <p>3.AccumulateAndTotalAlphaPass //GeometryPass<br>
+    <blockquote dir="auto">
+        <p dir="auto">3.AccumulateAndTotalAlphaPass //GeometryPass<br>
             copy the BackgroundDepth to initialize the depth buffer<br>
             with depth test without depth write, with MRT and SeparateBlend/IndependentBlend, sort the transparent
             geometries by [material], bind the StochasticDepth to the SampledTextureUnit and draw them with estimate
@@ -5591,8 +5641,8 @@
             supported by the hardware when the author published the paper.
         </p>
     </blockquote>
-    <blockquote>
-        <p>4.CompositePass //FullScreenTrianglePass<br>
+    <blockquote dir="auto">
+        <p dir="auto">4.CompositePass //FullScreenTrianglePass<br>
             Without the Alpha correction, the total contribution of the transparent geometries:<br>
             TransparentColor = <eq><span class="katex"><span class="katex-mathml"><math
                             xmlns="http://www.w3.org/1998/Math/MathML">
@@ -7292,9 +7342,9 @@
             Note that the StochasticTotalAlpha of opaque geometries is evidently zero. However, due to the random
             sampling, the StochasticTotalAlpha of the transparent geometries can be zero as well.</p>
     </blockquote>
-    <blockquote>
-        <p>Then, add the TransparentColor to the final color <eq><span class="katex"><span class="katex-mathml"><math
-                            xmlns="http://www.w3.org/1998/Math/MathML">
+    <blockquote dir="auto">
+        <p dir="auto">Then, add the TransparentColor to the final color <eq><span class="katex"><span
+                        class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                             <semantics>
                                 <mrow>
                                     <mstyle scriptlevel="0" displaystyle="true">
@@ -7367,28 +7417,28 @@
             Operation.
         </p>
     </blockquote>
-    <h3 id="3-2-4-tileon-chip-memory">3-2-4. Tile/On-Chip Memory</h3>
-    <p>The stochastic transparency is intrinsically suitable to mobile GPU.</p>
-    <p>In the traditional desktop GPU, the performance bottleneck is the MSAA. Since one pixel corresponds to S samples,
-        the bandwidth is increased by S times.</p>
-    <p>However, in the mobile GPU, this problem has been solved effectively. We can keep the MSAA image in the
-        Tile/On-Chip Memory and discard the MSAA image when the renderpass ends without writing to the main memory. This
-        means that the bandwidth can be decreased to almost zero.</p>
-    <p>The Vulkan/Metal API allows the application to set this configuration explicitly:<br>
+    <h3 dir="auto" id="3-2-4-tileon-chip-memory">3-2-4. Tile/On-Chip Memory</h3>
+    <p dir="auto">The stochastic transparency is intrinsically suitable to mobile GPU.</p>
+    <p dir="auto">In the traditional desktop GPU, the performance bottleneck is the MSAA. Since one pixel corresponds to
+        S samples, the bandwidth is increased by S times.</p>
+    <p dir="auto">However, in the mobile GPU, this problem has been solved effectively. We can keep the MSAA image in
+        the Tile/On-Chip Memory and discard the MSAA image when the renderpass ends without writing to the main memory.
+        This means that the bandwidth can be decreased to almost zero.</p>
+    <p dir="auto">The Vulkan/Metal API allows the application to set this configuration explicitly:<br>
         Use the &quot;VK_IMAGE_USAGE_TRANSIENT_ATTACHMENT_BIT&quot;/&quot;MTLStorageModeMemoryless&quot; to set the
         storage mode of the image to the Tile/On-Chip Memory explicitly.<br>
         And the images with this storage mode prohibit to be read by the traditional sampled texture unit in the
         fragment shader and must be read by the &quot;Subpass Input&quot;/&quot;[color(m)]Attribute&quot;.</p>
-    <p>The OpenGL API doesn't allow the application to set this configuration explicitly but we can use
+    <p dir="auto">The OpenGL API doesn't allow the application to set this configuration explicitly but we can use
         &quot;FrameBufferFetch&quot;/&quot;PixelLocalStorage&quot;(16.[Bjorge 2014]) to indicate our purpose.</p>
-    <h4 id="3-2-4-1-vulkan">3-2-4-1. Vulkan</h4>
-    <p>In Vulkan, one &quot;RenderPass&quot; consists of several &quot;SubPass&quot;. The MSAA simple count of different
-        attachments of the same RenderPass may not be the same. However, the MSAA sample count of the attachments
-        refered by the same SubPass must be the same and the MSAA sample count is also expected to be the same as the
-        count in MultisampleState of the PipelineState when issuing DrawCall.</p>
-    <p>The stochastic transparency can be implemented in one renderPass as the following: //We suppose the application
-        doesn't turn on the MSAA for &quot;Spatial AntiAliasing&quot;.</p>
-    <pre><code><code><div>RenderPass  
+    <h4 dir="auto" id="3-2-4-1-vulkan">3-2-4-1. Vulkan</h4>
+    <p dir="auto">In Vulkan, one &quot;RenderPass&quot; consists of several &quot;SubPass&quot;. The MSAA simple count
+        of different attachments of the same RenderPass may not be the same. However, the MSAA sample count of the
+        attachments refered by the same SubPass must be the same and the MSAA sample count is also expected to be the
+        same as the count in MultisampleState of the PipelineState when issuing DrawCall.</p>
+    <p dir="auto">The stochastic transparency can be implemented in one renderPass as the following: //We suppose the
+        application doesn't turn on the MSAA for &quot;Spatial AntiAliasing&quot;.</p>
+    <pre><code dir="auto"><code><div>RenderPass  
     Attachments  
         0.FinalColor
         1.BackgroundDepth  
@@ -7441,9 +7491,9 @@
             //ColorAttachment-&gt;InputAttachment: 5.StochasticTotalAlpha
     //SubPassDependencyChain: 0-&gt;1-&gt;2-&gt;3-&gt;4  
 </div></code></code></pre>
-    <h4 id="3-2-4-2-metal">3-2-4-2. Metal</h4>
-    <p>In Metal, there is no such thing like InputAttachment. We instead use the [color(m)]Attribute in fragment shader
-        to read the ColorAttachment.<br>
+    <h4 dir="auto" id="3-2-4-2-metal">3-2-4-2. Metal</h4>
+    <p dir="auto">In Metal, there is no such thing like InputAttachment. We instead use the [color(m)]Attribute in
+        fragment shader to read the ColorAttachment.<br>
         However, this design introduces the limit that the [color(m)]Attribute only permits us to read the
         ColorAttachment in the fragment shader and we have no method to read the DepthAttachment. We have to use an
         extra ColorAttachment to store the Depth(17.[Apple]) although this may allow us to save the bandwidth by writing
@@ -7451,10 +7501,10 @@
         This limit may be related to the explanation of the
         &quot;D3D12_RESOURCE_FLAG_DENY_SHADER_RESOURCE&quot;(18.[Microsoft]). This means that for Apple's GPU, the
         performance may be improved by prohibiting reading the DepthAttachment.</p>
-    <p>Besides, there is no equivalent of &quot;subpassInputMS&quot; in Metal. While turning on the MSAA in Metal, the
-        fragment shader is excuted isolatedly for each sample, we can only use the [color(m)]Attribute to read the value
-        of one sample not all samples in the pixel and thus we can't calculate the <eq><span class="katex"><span
-                    class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <p dir="auto">Besides, there is no equivalent of &quot;subpassInputMS&quot; in Metal. While turning on the MSAA in
+        Metal, the fragment shader is excuted isolatedly for each sample, we can only use the [color(m)]Attribute to
+        read the value of one sample not all samples in the pixel and thus we can't calculate the <eq><span
+                class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
                                 <mi mathvariant="normal">SV</mi>
@@ -7482,31 +7532,32 @@
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.15em;"><span></span></span></span></span></span></span><span
                             class="mclose">)</span></span></span></span></eq>.</p>
-    <p>However, we may simulate the &quot;subpassInputMS&quot; by multiple ColorAttachments without MSAA. Since we turn
-        off the MSAA, there exists only one sample in the DepthAttachment and thus we can't perform MSAA depth test by
-        the hardware feature. This means that we have to simulate the depth test by programmable blending which will be
-        explained later in the K-Buffer.</p>
-    <p>Evidently, the simulation is expected to be hostile to the performance and I don't suggest using this method in
-        Metal.</p>
-    <h3 id="3-2-5-conclusion">3-2-5. Conclusion</h3>
-    <p>Since MSAA is efficient on mobile GPU, the stochastic transparency is intrinsically suitable to mobile GPU. We
-        can use the modern Vulkan API to fully explore the advantages of the mobile GPU.</p>
-    <p>However, due to the limit by the design of the Metal, I don't suggest using the stochastic transparency in Metal.
-    </p>
-    <p>Evidently, the vertex shader doesn't read or write the ColorAttachment and thus doesn't benifit from the
-        Tile/On-Chip Memory of the mobile GPU. The mobile GPU prefers the fragment processing to the vertex
+    <p dir="auto">However, we may simulate the &quot;subpassInputMS&quot; by multiple ColorAttachments without MSAA.
+        Since we turn off the MSAA, there exists only one sample in the DepthAttachment and thus we can't perform MSAA
+        depth test by the hardware feature. This means that we have to simulate the depth test by programmable blending
+        which will be explained later in the K-Buffer.</p>
+    <p dir="auto">Evidently, the simulation is expected to be hostile to the performance and I don't suggest using this
+        method in Metal.</p>
+    <h3 dir="auto" id="3-2-5-conclusion">3-2-5. Conclusion</h3>
+    <p dir="auto">Since MSAA is efficient on mobile GPU, the stochastic transparency is intrinsically suitable to mobile
+        GPU. We can use the modern Vulkan API to fully explore the advantages of the mobile GPU.</p>
+    <p dir="auto">However, due to the limit by the design of the Metal, I don't suggest using the stochastic
+        transparency in Metal.</p>
+    <p dir="auto">Evidently, the vertex shader doesn't read or write the ColorAttachment and thus doesn't benifit from
+        the Tile/On-Chip Memory of the mobile GPU. The mobile GPU prefers the fragment processing to the vertex
         processing(10.[Harris 2019]).<br>
         The stochastic transparency still need to be improved since we still have two geometry
         passes(StochasticDepthPass and AccumulateAndTotalAlphaPass) which may cause the vertex processing to be the
         performance bottleneck.</p>
-    <p>The stochastic transparency introduces error by itself due to the random sampling while the Alpha correction
-        eliminates the noise effectively and thus the noise impacts little.</p>
-    <h3 id="3-2-6-demo">3-2-6. Demo</h3>
-    <p>The github address <a
+    <p dir="auto">The stochastic transparency introduces error by itself due to the random sampling while the Alpha
+        correction eliminates the noise effectively and thus the noise impacts little.</p>
+    <h3 dir="auto" id="3-2-6-demo">3-2-6. Demo</h3>
+    <p dir="auto">The github address <a
             href="https://github.com/YuqiaoZhang/StochasticTransparency">https://github.com/YuqiaoZhang/StochasticTransparency</a>
     </p>
-    <p>The demo was originally the &quot;StochasticTransparency&quot; of the &quot;NVIDIA SDK11 Samples&quot;(9.[Bavoil
-        2011]). However, there are three fatal problems in the original code provide by the NVIDIA:<br>
+    <p dir="auto">The demo was originally the &quot;StochasticTransparency&quot; of the &quot;NVIDIA SDK11
+        Samples&quot;(9.[Bavoil 2011]). However, there are three fatal problems in the original code provide by the
+        NVIDIA:<br>
         1.&quot;Turning on MSAA in StochasticDepthPass is to random sample and the stochastic transparency intrinsically
         doesn't demand other passes to turn on the MSAA.&quot; The original code provided by the NVIDIA turns on the
         MSAA in all passes and thus the frame rate of the stochastic transparency is unexpectedly lower than the depth
@@ -7519,11 +7570,11 @@
         sampling position. To be consistant, we prefer to write the depth (value of the shading position) to
         gl_FragDepth/SV_Depth in the fragment shader.&quot; The original code provided by the NVIDIA doesn't do this.
         However, the Alpha correction fixes the error well and there's little impaction on the effect.</p>
-    <h2 id="3-3-k-buffer">3-3. K-Buffer</h2>
-    <p>Carpenter proposed the &quot;A-Buffer&quot;(11.[Carpenter 1984]) in the same year when Porter proposed the Alpha
-        channel. In the A-Buffer, each pixel corresponds to a list in which all fragments corresponding to this pixel
-        are stored. After sorting the fragments in the list by the depth, evidently we can use Over/Under operation to
-        calculate the final color <eq><span class="katex"><span class="katex-mathml"><math
+    <h2 dir="auto" id="3-3-k-buffer">3-3. K-Buffer</h2>
+    <p dir="auto">Carpenter proposed the &quot;A-Buffer&quot;(11.[Carpenter 1984]) in the same year when Porter proposed
+        the Alpha channel. In the A-Buffer, each pixel corresponds to a list in which all fragments corresponding to
+        this pixel are stored. After sorting the fragments in the list by the depth, evidently we can use Over/Under
+        operation to calculate the final color <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
@@ -7561,40 +7612,42 @@
         Although A-Buffer can be implemented by UAV/StorageImage and atomic operations at present, the implementation is
         very tedious and inelegant. Besides, the performance of the list is low since the address of the list is not
         continuous and thus unfriendly to the cache. Thus there is almost no implementation in reality.</p>
-    <p>Bavoil improved the A-Buffer and proposed K-Buffer(12.[Bavoil 2007]) in 2007. In K-Buffer, we limit the number of
-        the fragments corresponding to each pixel to no more than K. With this limit, the K-Buffer can be implemented
-        more elegantly and efficiently.</p>
-    <h3 id="3-3-1-rmwread-modify-write-operation">3-3-1. RMW(Read Modify Write) Operation</h3>
-    <p>In the renderpass in which we generate the K-Buffer, the following RMW operation is performed on each
+    <p dir="auto">Bavoil improved the A-Buffer and proposed K-Buffer(12.[Bavoil 2007]) in 2007. In K-Buffer, we limit
+        the number of the fragments corresponding to each pixel to no more than K. With this limit, the K-Buffer can be
+        implemented more elegantly and efficiently.</p>
+    <h3 dir="auto" id="3-3-1-rmwread-modify-write-operation">3-3-1. RMW(Read Modify Write) Operation</h3>
+    <p dir="auto">In the renderpass in which we generate the K-Buffer, the following RMW operation is performed on each
         fragment:<br>
         1.Read: read the (at most K) fragments corresponding to the same pixel from K-Buffer<br>
         2.Modify: use the information of the current fragment and modified the (at most K) fragments which have been
         read from the K-Buffer<br>
         3.Write: write the (at most K) fragments which have been modified to the K-Buffer</p>
-    <p>For the current hardware, we can immediately implement the RMW operation by the UAV/StorageImage. However, things
-        are far from simple. In general, the RMW operations performed on the fragments corresponding to the same pixel
-        should be mutually exclusive to ensure the correctness.</p>
-    <p>Although the API guarantees the order and dependency of different draw calls, the GPU designers always tend to
-        full explore the parallelism to improve the performance. In general, the GPU may still execute these draw calls
-        in parallel and merely synchronize at some points.</p>
-    <p>The API doesn't guarantee the order or dependency of the executions of the fragments (corresponding to the same
-        pixel) inside the same draw call. Evidently, the executions can be considered to be parallel since the GPU is
-        intrinsically parallel.</p>
-    <p>The desktop GPU is &quot;Sort-Last Fragment&quot;(13.[Ragan-Kelley 2011]). The parallelism of the fragments is
-        expected to be high since the synchronization occurs at the &quot;Reorder Buffer&quot;(13.[Ragan-Kelley 2011])
-        which is after the fragment shader and just before the Alpha blend.</p>
-    <p>The mobile GPU is &quot;Tile-Based Sort-Middle&quot;(13.[Ragan-Kelley 2011]). The executions of the fragments
-        corresponding to the same pixel inside the same draw call can be considered to be serial(13.[Ragan-Kelley 2011])
-        since there doesn't exist the &quot;Reorder Buffer&quot;. However, we shouldn't rely on this since the API
-        doesn't guarantee that.</p>
-    <p>Bavoil proposed two hardware proposals the &quot;Fragment Scheduling&quot; and the &quot;Programmable
+    <p dir="auto">For the current hardware, we can immediately implement the RMW operation by the UAV/StorageImage.
+        However, things are far from simple. In general, the RMW operations performed on the fragments corresponding to
+        the same pixel should be mutually exclusive to ensure the correctness.</p>
+    <p dir="auto">Although the API guarantees the order and dependency of different draw calls, the GPU designers always
+        tend to full explore the parallelism to improve the performance. In general, the GPU may still execute these
+        draw calls in parallel and merely synchronize at some points.</p>
+    <p dir="auto">The API doesn't guarantee the order or dependency of the executions of the fragments (corresponding to
+        the same pixel) inside the same draw call. Evidently, the executions can be considered to be parallel since the
+        GPU is intrinsically parallel.</p>
+    <p dir="auto">The desktop GPU is &quot;Sort-Last Fragment&quot;(13.[Ragan-Kelley 2011]). The parallelism of the
+        fragments is expected to be high since the synchronization occurs at the &quot;Reorder
+        Buffer&quot;(13.[Ragan-Kelley 2011]) which is after the fragment shader and just before the Alpha blend.</p>
+    <p dir="auto">The mobile GPU is &quot;Tile-Based Sort-Middle&quot;(13.[Ragan-Kelley 2011]). The executions of the
+        fragments corresponding to the same pixel inside the same draw call can be considered to be
+        serial(13.[Ragan-Kelley 2011]) since there doesn't exist the &quot;Reorder Buffer&quot;. However, we shouldn't
+        rely on this since the API doesn't guarantee that.</p>
+    <p dir="auto">Bavoil proposed two hardware proposals the &quot;Fragment Scheduling&quot; and the &quot;Programmable
         Blending&quot; to solve this problem in 2007(12.[Bavoil 2007]). Both two proposals have been widely supported by
         the hardware in reality at present.</p>
-    <h3 id="3-3-2-fragment-scheduling">3-3-2. Fragment Scheduling</h3>
-    <p>The fragment scheduling corresponds to the RasterOrderView/FragmentShaderInterlock/RasterOrderGroup(14.[D 2015],
-        15.[D 2017]) at present which is generally suitable to the desktop GPU.</p>
-    <p>The pseudo code to implement the K-Buffer by the fragment scheduling is generally as the following:</p>
-    <pre><code><code><div>    calcalte lighting and shading ... //This part of code doesn't need to be mutually exclusive
+    <h3 dir="auto" id="3-3-2-fragment-scheduling">3-3-2. Fragment Scheduling</h3>
+    <p dir="auto">The fragment scheduling corresponds to the
+        RasterOrderView/FragmentShaderInterlock/RasterOrderGroup(14.[D 2015], 15.[D 2017]) at present which is generally
+        suitable to the desktop GPU.</p>
+    <p dir="auto">The pseudo code to implement the K-Buffer by the fragment scheduling is generally as the following:
+    </p>
+    <pre><code dir="auto"><code><div>    calcalte lighting and shading ... //This part of code doesn't need to be mutually exclusive
                                                 
     //Enter the critical section
     #if RasterOrderView //Direct3D
@@ -7616,20 +7669,21 @@
         write to ROG
     #endif
 </div></code></code></pre>
-    <p>In theory, the contents which we read from or write to the ROV/ROG is not important since we merely read or write
-        to enter/leave the critical section. Thus the proposal of &quot;FragmentShaderInterlock&quot; is more elegant.
-        We don't have to read from or write to the ROV/ROG when we perform the RMW operation on the K-Buffer and the
-        regular UAV/StorageImage(14.[D 2017]) can be used since the related code has been within the protection of the
-        critical section.</p>
-    <h3 id="3-3-3-programmable-blending">3-3-3. Programmable Blending</h3>
-    <p>The programmable blending corresponds to the FrameBufferFetch/[color(m)]Attribute(16.[Bjorge 2014], 17.[Apple]）at
-        present which is generally suitable to the mobile GPU.</p>
-    <p>The programmable blending allows the fragment shader to read the ColorAttachment and perform RMW operation on the
-        ColorAttachment. The hardware guarantees the mutual exclusion of the fragments corresponding to the same pixel
-        automatically.</p>
-    <p>We can enable the MRT and implement the K-Buffer by programmable blending. We assume that one pixel corresponds
-        to four [C A Z] fragments in the K-Buffer and the related Metal code is generally as the following:</p>
-    <pre><code><code><div>    struct KBuffer_ColorAttachment  
+    <p dir="auto">In theory, the contents which we read from or write to the ROV/ROG is not important since we merely
+        read or write to enter/leave the critical section. Thus the proposal of &quot;FragmentShaderInterlock&quot; is
+        more elegant. We don't have to read from or write to the ROV/ROG when we perform the RMW operation on the
+        K-Buffer and the regular UAV/StorageImage(14.[D 2017]) can be used since the related code has been within the
+        protection of the critical section.</p>
+    <h3 dir="auto" id="3-3-3-programmable-blending">3-3-3. Programmable Blending</h3>
+    <p dir="auto">The programmable blending corresponds to the FrameBufferFetch/[color(m)]Attribute(16.[Bjorge 2014],
+        17.[Apple]）at present which is generally suitable to the mobile GPU.</p>
+    <p dir="auto">The programmable blending allows the fragment shader to read the ColorAttachment and perform RMW
+        operation on the ColorAttachment. The hardware guarantees the mutual exclusion of the fragments corresponding to
+        the same pixel automatically.</p>
+    <p dir="auto">We can enable the MRT and implement the K-Buffer by programmable blending. We assume that one pixel
+        corresponds to four [C A Z] fragments in the K-Buffer and the related Metal code is generally as the following:
+    </p>
+    <pre><code dir="auto"><code><div>    struct KBuffer_ColorAttachment  
     {
         //In general, [[color(0)]] is used to store the CFinal
         half4 C0A0[[color(1)]]; //R8G8B8A8_UNORM
@@ -7677,13 +7731,13 @@
         return kbuffer_out;
     }
 </div></code></code></pre>
-    <h3 id="3-3-4-mlabmult-layer-alpha-blending">3-3-4. MLAB(Mult Layer Alpha Blending)</h3>
-    <p>Salvi proposed three algorithms which are all based on the K-Buffer in 2010, 2011 and 2014(19.[Salvi 2010],
-        20.[Salvi 2011], 21.[Salvi 2014]) and we intend to explain the lastest one which is called the MLAB proposed in
-        2014.</p>
-    <h4 id="3-3-4-1-k-buffer">3-3-4-1. K-Buffer</h4>
-    <p>In MLAB, the format of the fragments in K-Buffer is [ <eq><span class="katex"><span class="katex-mathml"><math
-                        xmlns="http://www.w3.org/1998/Math/MathML">
+    <h3 dir="auto" id="3-3-4-mlabmult-layer-alpha-blending">3-3-4. MLAB(Mult Layer Alpha Blending)</h3>
+    <p dir="auto">Salvi proposed three algorithms which are all based on the K-Buffer in 2010, 2011 and 2014(19.[Salvi
+        2010], 20.[Salvi 2011], 21.[Salvi 2014]) and we intend to explain the lastest one which is called the MLAB
+        proposed in 2014.</p>
+    <h4 dir="auto" id="3-3-4-1-k-buffer">3-3-4-1. K-Buffer</h4>
+    <p dir="auto">In MLAB, the format of the fragments in K-Buffer is [ <eq><span class="katex"><span
+                    class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
                                 <mstyle scriptlevel="0" displaystyle="true">
@@ -8404,13 +8458,13 @@
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
         </eq> by the K fragments.</p>
-    <h4 id="3-3-4-2-render-pass">3-3-4-2. Render Pass</h4>
-    <blockquote>
-        <p>1.OpaquePass<br>
+    <h4 dir="auto" id="3-3-4-2-render-pass">3-3-4-2. Render Pass</h4>
+    <blockquote dir="auto">
+        <p dir="auto">1.OpaquePass<br>
             draw the opaque geometries and have the BackgroundColor and the BackgroundDepth.</p>
     </blockquote>
-    <blockquote>
-        <p>2.KBufferPass //GeometryPass<br>
+    <blockquote dir="auto">
+        <p dir="auto">2.KBufferPass //GeometryPass<br>
             reuse the BackgroundDepth by the OpaquePass<br>
             use clear load_op to initilize the fragments in the K-Buffer to the &quot;empty fragment&quot; [ 0 0
             farthest]<br>
@@ -8419,8 +8473,8 @@
             Note that since the depth write is turned off, the order of the geometries doesn't impact on the performance
             and thus we sort the geometries only by the material.</p>
     </blockquote>
-    <blockquote>
-        <p>3.CompositePass //FullScreenTrianglePass<br>
+    <blockquote dir="auto">
+        <p dir="auto">3.CompositePass //FullScreenTrianglePass<br>
             Based on the generated K-Buffer, use the Under operation to calculate the total contribution of the
             transparent geometries to the final color <eq><span class="katex"><span class="katex-mathml"><math
                             xmlns="http://www.w3.org/1998/Math/MathML">
@@ -8458,9 +8512,9 @@
                                                 style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
             </eq>: TransparentColor and AlphaTotal</p>
     </blockquote>
-    <blockquote>
-        <p>Then, add the TransparentColor to the final color <eq><span class="katex"><span class="katex-mathml"><math
-                            xmlns="http://www.w3.org/1998/Math/MathML">
+    <blockquote dir="auto">
+        <p dir="auto">Then, add the TransparentColor to the final color <eq><span class="katex"><span
+                        class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                             <semantics>
                                 <mrow>
                                     <mstyle scriptlevel="0" displaystyle="true">
@@ -8533,23 +8587,23 @@
             Operation.
         </p>
     </blockquote>
-    <h3 id="3-3-5-tileon-chip-memory">3-3-5. Tile/On-Chip Memory</h3>
-    <p>The K-Buffer is intrinsically suitable to mobile GPU.</p>
-    <p>In the traditional desktop GPU, the bandwidth is increased by K times due to the K-Buffer.</p>
-    <p>However, in the mobile GPU, we can keep the K-Buffer in the Tile/On-Chip Memory and discard the K-Buffer when the
-        renderpass ends without writing to the main memory. This means that the bandwidth can be decreased to almost
-        zero.</p>
-    <h4 id="3-3-5-1-vulkan">3-3-5-1. Vulkan</h4>
-    <p>Since the Vulkan doesn't support the &quot;FrameBufferFetch&quot;, we can't implement the K-Buffer by
+    <h3 dir="auto" id="3-3-5-tileon-chip-memory">3-3-5. Tile/On-Chip Memory</h3>
+    <p dir="auto">The K-Buffer is intrinsically suitable to mobile GPU.</p>
+    <p dir="auto">In the traditional desktop GPU, the bandwidth is increased by K times due to the K-Buffer.</p>
+    <p dir="auto">However, in the mobile GPU, we can keep the K-Buffer in the Tile/On-Chip Memory and discard the
+        K-Buffer when the renderpass ends without writing to the main memory. This means that the bandwidth can be
+        decreased to almost zero.</p>
+    <h4 dir="auto" id="3-3-5-1-vulkan">3-3-5-1. Vulkan</h4>
+    <p dir="auto">Since the Vulkan doesn't support the &quot;FrameBufferFetch&quot;, we can't implement the K-Buffer by
         programmable blending in Vulkan.<br>
         Although we can implement the K-Buffer by fragment scheduling, the fragment scheduling is not suitable to the
         mobile GPU.<br>
         However, the FrameBufferFetch is supported by OpenGL and we can implement the by programmable blending in
         OpenGL.</p>
-    <h4 id="3-3-5-2-metal">3-3-5-2. Metal</h4>
-    <p>The MLAB can be implemented in one renderPass as the following: //We assume that the K of K-Buffer equals four.
-    </p>
-    <pre><code><code><div>    RenderPassDescriptor:
+    <h4 dir="auto" id="3-3-5-2-metal">3-3-5-2. Metal</h4>
+    <p dir="auto">The MLAB can be implemented in one renderPass as the following: //We assume that the K of K-Buffer
+        equals four.</p>
+    <pre><code dir="auto"><code><div>    RenderPassDescriptor:
         ColorAttachment:
             0.FinalColor //Load:Clear //Store:Store //Format:R10G10B10A2_UNORM  //HDR10
             1.xyz:A0*C0 w:1-A0 //Load:Clear //ClearValue:[ 0 0 0 1 ] //Store:DontCare //Format:R16G16B16A16_FLOAT  
@@ -8577,19 +8631,20 @@
             Color[0]-&gt;BackgroundColor
             TransparentColor+AlphaTotal*BackgroundColor-&gt;Color[0]
 </div></code></code></pre>
-    <h3 id="3-3-6-conclusion">3-3-6. Conclusion</h3>
-    <p>Since the K-Buffer is efficient on mobile GPU, the MLAB is intrinsically suitable to mobile GPU. We can use the
-        modern Metal API to fully explore the advantages of the mobile GPU.</p>
-    <p>However, since the &quot;FrameBufferFetch&quot; is not supported by Vulkan, I don't suggest using the MLAB in
-        Vulkan.</p>
-    <p>Compared to the stochastic transparency, there is only one geometry pass in MLAB. This is beneficial to the
-        mobile GPU since the vertex processing is not efficient on the mobile GPU.</p>
-    <p>Besides, for the mobile GPU, the executions of the fragments corresponding to the same pixel inside the same draw
-        call is intrinsically serial(13.[Ragan-Kelley 2011]) and thus the mutual exclusion can be considered to
-        introduce little overhead.<br>
+    <h3 dir="auto" id="3-3-6-conclusion">3-3-6. Conclusion</h3>
+    <p dir="auto">Since the K-Buffer is efficient on mobile GPU, the MLAB is intrinsically suitable to mobile GPU. We
+        can use the modern Metal API to fully explore the advantages of the mobile GPU.</p>
+    <p dir="auto">However, since the &quot;FrameBufferFetch&quot; is not supported by Vulkan, I don't suggest using the
+        MLAB in Vulkan.</p>
+    <p dir="auto">Compared to the stochastic transparency, there is only one geometry pass in MLAB. This is beneficial
+        to the mobile GPU since the vertex processing is not efficient on the mobile GPU.</p>
+    <p dir="auto">Besides, for the mobile GPU, the executions of the fragments corresponding to the same pixel inside
+        the same draw call is intrinsically serial(13.[Ragan-Kelley 2011]) and thus the mutual exclusion can be
+        considered to introduce little overhead.<br>
         However, for the desktop GPU, mutual exclusion of the RMW operation limits the parallelism of the fragments and
         introduces extra overhead which is related to the &quot;Depth Complexity&quot; of the scene.</p>
-    <p>When we insert another fragment nearer than the fragment merged by two fragments, we introduce error.<br>
+    <p dir="auto">When we insert another fragment nearer than the fragment merged by two fragments, we introduce
+        error.<br>
         However, since the visibility function <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
@@ -8622,21 +8677,21 @@
                                             style="height:0.15em;"><span></span></span></span></span></span></span><span
                             class="mclose">)</span></span></span></span></eq> is monotonically decreasing, the farthest
         fragments generally introduce little error and thus the error impacts little.</p>
-    <h3 id="3-3-7-demo">3-3-7. Demo</h3>
-    <p>The github address <a
+    <h3 dir="auto" id="3-3-7-demo">3-3-7. Demo</h3>
+    <p dir="auto">The github address <a
             href="https://github.com/YuqiaoZhang/MultiLayerAlphaBlending">https://github.com/YuqiaoZhang/MultiLayerAlphaBlending</a>
     </p>
-    <p>The demo was originally the &quot;Order Independent Transparency with Imageblocks&quot; of the &quot;Metal Sample
-        Code&quot;(22.[Imbrogno 2017]). However, the original code provide by the Apple depends on the feature
-        Imageblock which is only available on A11 and later GPU. The Imageblock is intrinsically to customize the format
-        of the framebuffer which is not related to the mutual exclusion of the RMW operation at all. Thus I have
-        modified the demo and use the [color(m)]Attribute to implement the related code and the demo can be run on A8
-        and later GPU.</p>
-    <p>The relationship of the features between Metal and OpenGL:<br>
+    <p dir="auto">The demo was originally the &quot;Order Independent Transparency with Imageblocks&quot; of the
+        &quot;Metal Sample Code&quot;(22.[Imbrogno 2017]). However, the original code provide by the Apple depends on
+        the feature Imageblock which is only available on A11 and later GPU. The Imageblock is intrinsically to
+        customize the format of the framebuffer which is not related to the mutual exclusion of the RMW operation at
+        all. Thus I have modified the demo and use the [color(m)]Attribute to implement the related code and the demo
+        can be run on A8 and later GPU.</p>
+    <p dir="auto">The relationship of the features between Metal and OpenGL:<br>
         [Color(m)]Attribute &lt;-&gt; FrameBufferFetch //To support the programmable blending<br>
         ImageBlock &lt;-&gt; PixelLocalStorage //To customize the format of the framebuffer</p>
-    <h2 id="3-4-weighted-blending">3-4. Weighted Blending</h2>
-    <p>The estimation of the visibility function <eq><span class="katex"><span class="katex-mathml"><math
+    <h2 dir="auto" id="3-4-weighted-blending">3-4. Weighted Blending</h2>
+    <p dir="auto">The estimation of the visibility function <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
@@ -8877,9 +8932,9 @@
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.15em;"><span></span></span></span></span></span></span><span
                             class="mclose">)</span></span></span></span></eq>.</p>
-    <h3 id="3-4-1-weighted-function">3-4-1. Weighted Function</h3>
-    <p>By McGuire, the nearest fragments might contribute too much to the final color if the weighted function only
-        depended on the <eq><span class="katex"><span class="katex-mathml"><math
+    <h3 dir="auto" id="3-4-1-weighted-function">3-4-1. Weighted Function</h3>
+    <p dir="auto">By McGuire, the nearest fragments might contribute too much to the final color if the weighted
+        function only depended on the <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
@@ -8968,7 +9023,7 @@
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
         </eq>.</p>
-    <p>Besides, McGuire proposed three suggested weighted function as the following:<br>
+    <p dir="auto">Besides, McGuire proposed three suggested weighted function as the following:<br>
         1.<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
@@ -9942,8 +9997,8 @@
         </eq> is half float.<br>
         Note that the weighted function may exceed 1 when the fragment is very near while the visibility function is
         evidently less or equal than 1.</p>
-    <h3 id="3-4-2-normalization">3-4-2. Normalization</h3>
-    <p>We have proved that <eq><span class="katex"><span class="katex-mathml"><math
+    <h3 dir="auto" id="3-4-2-normalization">3-4-2. Normalization</h3>
+    <p dir="auto">We have proved that <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
@@ -10081,7 +10136,7 @@
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.15em;"><span></span></span></span></span></span></span><span
                             class="mclose">)</span></span></span></span></eq> in Alpha correction.</p>
-    <p>The normalization means that we assume that <eq><span class="katex"><span class="katex-mathml"><math
+    <p dir="auto">The normalization means that we assume that <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
@@ -10982,13 +11037,13 @@
                                                 style="height:2.7390660000000002em;"><span></span></span></span></span></span><span
                                     class="mclose nulldelimiter"></span></span></span></span></span></span></eq>.
     </p>
-    <h3 id="3-4-3-render-pass">3-4-3. Render Pass</h3>
-    <blockquote>
-        <p>1.OpaquePass<br>
+    <h3 dir="auto" id="3-4-3-render-pass">3-4-3. Render Pass</h3>
+    <blockquote dir="auto">
+        <p dir="auto">1.OpaquePass<br>
             draw the opaque geometries and have the BackgroundColor and the BackgroundDepth.</p>
     </blockquote>
-    <blockquote>
-        <p>2.AccumulateAndTotalAlphaPass //GeometryPass
+    <blockquote dir="auto">
+        <p dir="auto">2.AccumulateAndTotalAlphaPass //GeometryPass
             initilize the depth with the BackgroundDepth<br>
             with depth test without depth write, sort the transparent geometries by [material] and draw them, having
             WeightedColor=<eq><span class="katex"><span class="katex-mathml"><math
@@ -11260,8 +11315,8 @@
             2.The relationship between the AlphaTotal and the TotalAlpha is TotalAlpha = 1 – AlphaTotal as stated in the
             stochastic transparency.</p>
     </blockquote>
-    <blockquote>
-        <p>3.CompositePass //FullScreenTrianglePass<br>
+    <blockquote dir="auto">
+        <p dir="auto">3.CompositePass //FullScreenTrianglePass<br>
             The total contribution of the transparent geometries:<br>
             TransparentColor=<eq><span class="katex"><span class="katex-mathml"><math
                             xmlns="http://www.w3.org/1998/Math/MathML">
@@ -11963,9 +12018,9 @@
                                     class="mclose nulldelimiter"></span></span></span></span></span></eq>
         </p>
     </blockquote>
-    <blockquote>
-        <p>Then, add the TransparentColor to the final color <eq><span class="katex"><span class="katex-mathml"><math
-                            xmlns="http://www.w3.org/1998/Math/MathML">
+    <blockquote dir="auto">
+        <p dir="auto">Then, add the TransparentColor to the final color <eq><span class="katex"><span
+                        class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                             <semantics>
                                 <mrow>
                                     <mstyle scriptlevel="0" displaystyle="true">
@@ -12038,8 +12093,8 @@
             Operation.
         </p>
     </blockquote>
-    <h3 id="3-4-4-conclusion">3-4-4. Conclusion</h3>
-    <p>The weighted blending uses the predefined weighted function<eq><span class="katex"><span
+    <h3 dir="auto" id="3-4-4-conclusion">3-4-4. Conclusion</h3>
+    <p dir="auto">The weighted blending uses the predefined weighted function<eq><span class="katex"><span
                     class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
@@ -12218,16 +12273,16 @@
                                             style="height:0.15em;"><span></span></span></span></span></span></span><span
                             class="mclose">)</span></span></span></span></eq> is not related to the scene at all.
     </p>
-    <h3 id="3-4-5-demo">3-4-5. Demo</h3>
-    <p>The github address <a
+    <h3 dir="auto" id="3-4-5-demo">3-4-5. Demo</h3>
+    <p dir="auto">The github address <a
             href="https://github.com/YuqiaoZhang/WeightedBlendedOIT">https://github.com/YuqiaoZhang/WeightedBlendedOIT</a>
     </p>
-    <p>The demo was originally the &quot;Weighted Blended Order-independent Transparency&quot; of the &quot;NVIDIA
-        GameWorks Vulkan and OpenGL Samples&quot;(24.[NVIDIA]). The weighted blended is the simplest of the all OIT
-        algorithms and I haven't made any substantial changes to the demo.</p>
-    <h2 id="4-references">4. References</h2>
-    <p>1.[Porter 1984] <a href="https://keithp.com/~keithp/porterduff/p253-porter.pdf">Thomas Porter, Tom Duff.
-            &quot;Compositing Digital Images.&quot; SIGGRAPH 1984.</a><br>
+    <p dir="auto">The demo was originally the &quot;Weighted Blended Order-independent Transparency&quot; of the
+        &quot;NVIDIA GameWorks Vulkan and OpenGL Samples&quot;(24.[NVIDIA]). The weighted blended is the simplest of the
+        all OIT algorithms and I haven't made any substantial changes to the demo.</p>
+    <h2 dir="auto" id="4-references">4. References</h2>
+    <p dir="auto">1.[Porter 1984] <a href="https://keithp.com/~keithp/porterduff/p253-porter.pdf">Thomas Porter, Tom
+            Duff. &quot;Compositing Digital Images.&quot; SIGGRAPH 1984.</a><br>
         2.[Yusor 2013] Egor Yusor. &quot;Practical Implementation of Light Scattering Effects Using Epipolar Sampling
         and 1D Min/Max Binary Trees.&quot; GDC 2013. <a
             href="https://software.intel.com/en-us/blogs/2013/03/18/gtd-light-scattering-sample-updated">First-Edition</a>

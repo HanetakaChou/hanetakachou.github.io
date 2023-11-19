@@ -3,17 +3,17 @@
 ## Photon Mapping  
 
 By \[Jensen 1996\] and "16.2.2 Photon Mapping" of [PBRT-V3](https://pbr-book.org/3ed-2018/Light_Transport_III_Bidirectional_Methods/Stochastic_Progressive_Photon_Mapping#PhotonMapping), the **photon mapping** is composed of two-pass: the **photon pass** and the **rendering pass**. In the first pass (photon pass), the paths are traced from the light sources and the lighting of the interaction points on the surface are recorded as the photons. In the second pass (rendering pass), the paths are traced from the camera and the nearby photons of the interaction points are used to estimate the lighting.  
-![](VXGI-1.png)  
-![](VXGI-2.png)  
+![](Voxel-Global-Illumintaion-1.png)  
+![](Voxel-Global-Illumintaion-2.png)  
 
 By "Progressive Photon Mapping" of [PBRT-V3](https://pbr-book.org/3ed-2018/Light_Transport_III_Bidirectional_Methods/Stochastic_Progressive_Photon_Mapping#x2-ProgressivePhotonMapping), the special case, where only the interaction points after the diffuse bounce are recorded as the photons in the photon pass, of the photon mapping is also called the **final gathering**.  
-![](VXGI-3.png)  
+![](Voxel-Global-Illumintaion-3.png)  
 
 By \[Crassin 2011 B\], the idea of VXGI is to organize the photons by the voxels and to implement the "final gathering" by the following three steps: light injection, filtering and cone tracing. The first step (light injection) of the "final gathering" of VXGI is analogous to the first pass (photon pass) of photon mapping. The third step (cone tracing) of the "final gathering" of VXGI is analogous to the second pass (rendering pass) of photon mapping.  
-![](VXGI-4.png)  
-![](VXGI-5.png)  
-![](VXGI-6.png)  
-![](VXGI-7.png)  
+![](Voxel-Global-Illumintaion-4.png)  
+![](Voxel-Global-Illumintaion-5.png)  
+![](Voxel-Global-Illumintaion-6.png)  
+![](Voxel-Global-Illumintaion-7.png)  
 
 ## Voxelization  
 
@@ -29,7 +29,7 @@ Texture size (for zeroth mipmap level)  is the same for all clipmap levels, whic
 The voxel size increses  
 Only the last level has more than one mipmap levels (the logical volume remains the same within the same clipmap level)  
 
-![](VXGI-Clipmap-1.png)  
+![](Voxel-Global-Illumintaion-Clipmap-1.png)  
 
 NVIDIA VXGI Implementation:  
 
@@ -88,19 +88,19 @@ TODO: not related to "ambient occlusion"
 
 ## Filtering  
 
-![](VXGI-8.png)  
+![](Voxel-Global-Illumintaion-8.png)  
 
 TODO: anisotropic voxel  
 
 ## Cone Tracing  
 
 By [Additive Interval Property](https://en.wikipedia.org/wiki/Integral#Conventions), the ambient occlusion can be calculated as $\displaystyle \operatorname{k_A} = \int_\Omega \frac{1}{\pi}  \operatorname{V}(\overrightarrow{\omega_i}) (\cos \theta_i)^+ \, d \overrightarrow{\omega_i} = \frac{1}{\pi} \sum_{i=0}^{n} \left\lparen \int_{\Omega_i} \operatorname{V}(\overrightarrow{\omega_i}) (\cos \theta_i)^+ \, d \overrightarrow{\omega_i} \right\rparen$ where **n** is the number of cones, and $\displaystyle \Omega_i$ is the solid angle subtended by the **i**th cone.  
-![](VXGI-9.png)  
+![](Voxel-Global-Illumintaion-9.png)  
   
 By \[Crassin 2011 B\], the visibility $\displaystyle \operatorname{V}(\overrightarrow{\omega_i})$ is assumed to be the same for all directions within the same cone, and the calculation of the ambient occlusion can be simplified as $\displaystyle \int_{\Omega_i} \operatorname{V}(\overrightarrow{\omega_i}) (\cos \theta_i)^+ \, d \overrightarrow{\omega_i} \approx \operatorname{V_c}(\Omega_i) \cdot \int_{\Omega_i} (\cos \theta_i)^+ \, d \overrightarrow{\omega_i}$ where $\displaystyle \operatorname{V_c}(\Omega_i) = 1 - \operatorname{A_{Final}}$ is the inverse of the final occlusion of the cone tracing.  
 
 By "5.5.1 Integrals over Projected Solid Angle" of [PBRT-V3](https://pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#IntegralsoverProjectedSolidAngle) and \[Heitz 2017\], the integral of the clamped cosine $\displaystyle \int_{\Omega_i} (\cos \theta_i)^+ \, d \overrightarrow{\omega_i}$ can be calculated as the projected area on the unit disk.  
-![](VXGI-10.png)  
+![](Voxel-Global-Illumintaion-10.png)  
 
 By \[Crassin 2011 B\], the recursive form, which is similar to the "under operator" (\[Dunn 2014\]), can be used to calculated the final color $\displaystyle \operatorname{C_{Final}}$ and the final occlusion $\displaystyle \operatorname{A_{Final}}$ of the cone tracing.  
 > $\displaystyle \operatorname{C_{Final}}(0) = 0$  
@@ -139,10 +139,10 @@ The explicit form of the final color $\displaystyle \operatorname{C_{Final}}$ an
 >> $\displaystyle \text{right} = \sum_{i = 0}^{k + 1} \left\lparen \prod_{Z_j \operatorname{Nearer} Z_i}(1 - A_j) \right\rparen \cdot C_i$  
 >> left = right, the equation holds  
 
-![](VXGI-12.png)  
+![](Voxel-Global-Illumintaion-12.png)  
 
 Evidently, by \[McLaren 2015\], the cone tracing may NOT dectect the full occlusion which is the result of mutiple partial occlusions.  
-![](VXGI-13.png)  
+![](Voxel-Global-Illumintaion-13.png)  
 
 ## References  
 \[Jensen 1996\] [Henrik Jensen. "Global Illumination using Photon Maps." EGSR 1996.](http://graphics.ucsd.edu/~henrik/papers/photon_map/)  

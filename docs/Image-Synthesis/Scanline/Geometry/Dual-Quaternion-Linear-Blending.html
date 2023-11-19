@@ -10,7 +10,7 @@
 </head>
 
 <body class="markdown-body">
-	<h1 dir="auto" id="dlb-dual-quaternion-linear-blending">DLB (Dual quaternion Linear Blending)</h1>
+	<h1 dir="auto" id="dlb-dual-quaternion-linear-blending">DLB (Dual Quaternion Linear Blending)</h1>
 	<h2 dir="auto" id="1-linear-blending">1. Linear Blending</h2>
 	<p dir="auto">The main idea of the <strong>linear blending</strong> method is to calculate the linear combination of
 		the joint (bone) matrices. By [Kavan 2007] and [Kavan 2008], the rigid transform is the composition of rotation
@@ -22,10 +22,12 @@
 	<p dir="auto">By the documents of <a
 			href="https://help.autodesk.com/view/3DSMAX/2017/ENU/?guid=GUID-9596F6EF-3569-44F2-8D6C-6EB58C30BEDD">Autodesk
 			3ds Max</a>, we have the &quot;candy-wrapper&quot; artifact of the <strong>linear blending</strong>.</p>
-	<p dir="auto"><img src="DLB-1.png" alt="&quot;Candy-Wrapper&quot; Aartifact: Linear Blending" data-src="DLB-1.png">
+	<p dir="auto"><img src="Dual-Quaternion-Linear-Blending-1.png"
+			alt="&quot;Candy-Wrapper&quot; Aartifact: Linear Blending" data-src="Dual-Quaternion-Linear-Blending-1.png">
 	</p>
-	<p dir="auto"><img src="DLB-2.png" alt="&quot;Candy-Wrapper&quot; Aartifact: DLB (Dual quaternion Linear Blending)"
-			data-src="DLB-2.png"></p>
+	<p dir="auto"><img src="Dual-Quaternion-Linear-Blending-2.png"
+			alt="&quot;Candy-Wrapper&quot; Aartifact: DLB (Dual quaternion Linear Blending)"
+			data-src="Dual-Quaternion-Linear-Blending-2.png"></p>
 	<h2 dir="auto" id="2-dual-quaternion-mathematics">2. Dual Quaternion Mathematics</h2>
 	<table dir="auto">
 		<thead dir="auto">
@@ -6543,12 +6545,12 @@ M1001 80h400000v40h-400000z' />
 								style="margin-right:0.02778em;">θ</span></span></span></span></eq>.</p>
 		<p dir="auto">Proof</p>
 		<blockquote dir="auto">
-			<p dir="auto"><img src="DLB-3.png"
+			<p dir="auto"><img src="Dual-Quaternion-Linear-Blending-3.png"
 					alt="Fig. 6.7 A view of the geometry associated with rotating a point about an arbitrary axis"
-					data-src="DLB-3.png"><br>
-				<img src="DLB-4.png"
+					data-src="Dual-Quaternion-Linear-Blending-3.png"><br>
+				<img src="Dual-Quaternion-Linear-Blending-4.png"
 					alt="Fig. 6.8 A cross-section and plan view of the geometry associated with rotating a point about an arbitrary axis"
-					data-src="DLB-4.png"><br>
+					data-src="Dual-Quaternion-Linear-Blending-4.png"><br>
 				TODO
 			</p>
 		</blockquote>
@@ -38077,8 +38079,10 @@ float2x4 dual_quaternion_linear_blending(in float2x4 q[MAX_BONE_COUNT], in uint4
 			3ds Max</a> and <a
 			href="https://help.autodesk.com/view/MAYAUL/2017/ENU/?guid=GUID-630C335C-B63E-4F2E-A4A4-AEA1DD00B0D6">Autodesk
 			Maya</a>.</p>
-	<p dir="auto"><img src="DLB-5.png" alt="Autodesk 3ds Max: Dual Quaternion" data-src="DLB-5.png"></p>
-	<p dir="auto"><img src="DLB-6.png" alt="Autodesk Maya: Dual Quaternion" data-src="DLB-6.png"></p>
+	<p dir="auto"><img src="Dual-Quaternion-Linear-Blending-5.png" alt="Autodesk 3ds Max: Dual Quaternion"
+			data-src="Dual-Quaternion-Linear-Blending-5.png"></p>
+	<p dir="auto"><img src="Dual-Quaternion-Linear-Blending-6.png" alt="Autodesk Maya: Dual Quaternion"
+			data-src="Dual-Quaternion-Linear-Blending-6.png"></p>
 	<h2 dir="auto" id="references">References</h2>
 	<p dir="auto">[Kavan 2007] <a href="http://www.cs.utah.edu/~ladislav/kavan07skinning/kavan07skinning.html">Ladislav
 			Kavan, Steven Collins, Jiri Zara, Carol O'Sullivan. &quot;Skinning with Dual Quaternions.&quot; I3D

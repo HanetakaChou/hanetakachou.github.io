@@ -1,3 +1,5 @@
+# MOC (Masked Occlusion Culling)  
+
 ## HiZ  
 
 The Z buffer is splitted into serveral tiles and the HiZ(Hierarchical Z) buffer can be considered as an outline of a tile inside the Z buffer.  

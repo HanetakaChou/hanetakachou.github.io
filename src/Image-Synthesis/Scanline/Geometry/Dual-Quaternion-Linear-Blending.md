@@ -1,4 +1,4 @@
-# DLB (Dual quaternion Linear Blending)
+# DLB (Dual Quaternion Linear Blending)
 
 ## 1\. Linear Blending  
 
@@ -6,9 +6,9 @@ The main idea of the **linear blending** method is to calculate the linear combi
 
 By the documents of [Autodesk 3ds Max](https://help.autodesk.com/view/3DSMAX/2017/ENU/?guid=GUID-9596F6EF-3569-44F2-8D6C-6EB58C30BEDD), we have the "candy-wrapper" artifact of the **linear blending**.  
 
-!["Candy-Wrapper" Aartifact: Linear Blending](DLB-1.png)  
+!["Candy-Wrapper" Aartifact: Linear Blending](Dual-Quaternion-Linear-Blending-1.png)  
 
-!["Candy-Wrapper" Aartifact: DLB (Dual quaternion Linear Blending)](DLB-2.png)  
+!["Candy-Wrapper" Aartifact: DLB (Dual quaternion Linear Blending)](Dual-Quaternion-Linear-Blending-2.png)  
 
 ## 2\. Dual Quaternion Mathematics
 
@@ -88,8 +88,8 @@ Second, we would like to prove that $\displaystyle \boldsymbol{q}$ represents th
 >  
 > Proof  
 >  
->> ![Fig. 6.7 A view of the geometry associated with rotating a point about an arbitrary axis](DLB-3.png)  
->> ![Fig. 6.8 A cross-section and plan view of the geometry associated with rotating a point about an arbitrary axis](DLB-4.png)  
+>> ![Fig. 6.7 A view of the geometry associated with rotating a point about an arbitrary axis](Dual-Quaternion-Linear-Blending-3.png)  
+>> ![Fig. 6.8 A cross-section and plan view of the geometry associated with rotating a point about an arbitrary axis](Dual-Quaternion-Linear-Blending-4.png)  
 >> TODO  
 
 ##### 2-1-7-2\. Mapping the Unit Quaternion to the Rotation Transform  
@@ -401,9 +401,9 @@ However, the scale is NOT supported by DLB (Dual quaternion Linear Blending). By
 
 The DLB (Dual quaternion Linear Blending) is supported by [Autodesk 3ds Max](https://help.autodesk.com/view/3DSMAX/2017/ENU/?guid=GUID-9596F6EF-3569-44F2-8D6C-6EB58C30BEDD) and [Autodesk Maya](https://help.autodesk.com/view/MAYAUL/2017/ENU/?guid=GUID-630C335C-B63E-4F2E-A4A4-AEA1DD00B0D6).  
 
-![Autodesk 3ds Max: Dual Quaternion](DLB-5.png)  
+![Autodesk 3ds Max: Dual Quaternion](Dual-Quaternion-Linear-Blending-5.png)  
 
-![Autodesk Maya: Dual Quaternion](DLB-6.png)  
+![Autodesk Maya: Dual Quaternion](Dual-Quaternion-Linear-Blending-6.png)  
 
 ## References  
 \[Kavan 2007\] [Ladislav Kavan, Steven Collins, Jiri Zara, Carol O'Sullivan. "Skinning with Dual Quaternions." I3D 2007.](http://www.cs.utah.edu/~ladislav/kavan07skinning/kavan07skinning.html)  
