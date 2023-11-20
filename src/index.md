@@ -50,7 +50,7 @@ If you find there are any mistakes or improvements, please don't hesitate to con
         - OIT (Order Independent Transparency) [Documentation](Image-Synthesis/Scanline/Lighting/Order-Independent-Transparency.html) [Code](https://github.com/HanetakaChou/Order-Independent-Transparency)  
         - HFTS (Hybrid Frustum Traced Shadows) [Documentation](Image-Synthesis/Scanline/Lighting/Hybrid-Frustum-Traced-Shadows.html) [Code](https://github.com/HanetakaChou/Hybrid-Frustum-Traced-Shadows)  
 - Ray Tracing  
-    - AO (Ambient Occlusion) [Documentation](Image-Synthesis/Ray-Tracing/Ambient-Occlusion.html)  
+    - RTAO (Ray Traced Ambient Occlusion) [Documentation](Image-Synthesis/Ray-Tracing/Ray-Traced-Ambient-Occlusion.html)  
     - Photon Mapping [Documentation](Image-Synthesis/Ray-Tracing/Photon-Mapping.html)    
 - Radiosity  
     - Radiosity [Documentation](Image-Synthesis/Radiosity/Radiosity.html)  
