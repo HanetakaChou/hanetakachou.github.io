@@ -12,7 +12,7 @@
 <body class="markdown-body">
     <h1 dir="auto" id="resource-binding">Resource Binding</h1>
     <p dir="auto">In legacy OpenGL or Direct3D11 APIs, resources can be bound to each slot separately.</p>
-    <p dir="auto">Evidently, the driver of the legacy OpenGL or Direct3D12 APIs needs to allocate a block of memory,
+    <p dir="auto">Evidently, the driver of the legacy OpenGL or Direct3D11 APIs needs to allocate a block of memory,
         which contains all resource bindings, from the command buffer for each draw call. And the driver needs to
         provide the address of the allocated memory to the hardware before the draw call is issued.</p>
     <p dir="auto">Analogous to the pipeline state, it is not efficient to allocate a block of memory from the command

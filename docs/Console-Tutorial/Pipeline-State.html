@@ -16,7 +16,7 @@
         Changes&quot; of &quot;18. Pipeline Optimization&quot; of <a href="https://www.realtimerendering.com/">Real-Time
             Rendering Fourth Edition</a>, the application may issue redundant state changing calls. This makes the
         situation even worse.</p>
-    <p dir="auto">Thus, the driver of the legacy OpenGL or Direct3D12 APIs will allocate a block of memory, which
+    <p dir="auto">Thus, the driver of the legacy OpenGL or Direct3D11 APIs will allocate a block of memory, which
         contains all state, from the command buffer for each draw call. The state changing calls are merely modifying
         the content of the allocated memory rather than actually changing the state.</p>
     <p dir="auto">Evidently, it is not efficient to allocate a block of memory from the command buffer for each draw

@@ -2,7 +2,7 @@
 
 In legacy OpenGL or Direct3D11 APIs, resources can be bound to each slot separately.  
 
-Evidently, the driver of the legacy OpenGL or Direct3D12 APIs needs to allocate a block of memory, which contains all resource bindings, from the command buffer for each draw call. And the driver needs to provide the address of the allocated memory to the hardware before the draw call is issued.  
+Evidently, the driver of the legacy OpenGL or Direct3D11 APIs needs to allocate a block of memory, which contains all resource bindings, from the command buffer for each draw call. And the driver needs to provide the address of the allocated memory to the hardware before the draw call is issued.  
 
 Analogous to the pipeline state, it is not efficient to allocate a block of memory from the command buffer for each draw call. It is more efficient for the application to allocate and initialize a block of memory in advance, and reuse the memory at each frame.  
 
