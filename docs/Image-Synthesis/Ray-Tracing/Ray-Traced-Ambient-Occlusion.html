@@ -1330,6 +1330,11 @@
             Book V3</a> and &quot;A.5.3 Cosine-Weighted Hemisphere Sampling&quot; of <a
             href="https://www.pbr-book.org/4ed/Sampling_Algorithms/Sampling_Multidimensional_Functions#Cosine-WeightedHemisphereSampling">PBR
             Book V4</a>, we can efficiently sample the normalized clamped cosine.</p>
+    <p dir="auto">The normalized clamped cosine sampling is calculated by <a
+            href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/MonteCarlo.ush#L241">CosineSampleHemisphere</a>
+        in UE4 and <a
+            href="https://github.com/Unity-Technologies/Graphics/blob/v10.8.1/com.unity.render-pipelines.core/ShaderLibrary/Sampling/Sampling.hlsl#L157">SampleHemisphereCosine</a>
+        in Unity3D.</p>
     <h3 dir="auto" id="1-4-low-discrepancy-sequence">1-4. Low Discrepancy Sequence</h3>
     <p dir="auto">By &quot;20.3 Quasirandom Low-Discrepancy Sequences&quot; of [Colbert 2007], &quot;13.8.2 Quasi Monte
         Carlo&quot; of <a

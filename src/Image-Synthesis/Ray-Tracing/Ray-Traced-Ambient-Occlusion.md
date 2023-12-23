@@ -18,6 +18,8 @@ By "Equation (13.3)" of [PBR Book V3](https://pbr-book.org/3ed-2018/Monte_Carlo_
 
 By "13.6.3 Cosine-Weighted Hemisphere Sampling" of [PBR Book V3](https://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/2D_Sampling_with_Multidimensional_Transformations#Cosine-WeightedHemisphereSampling) and "A.5.3 Cosine-Weighted Hemisphere Sampling" of [PBR Book V4](https://www.pbr-book.org/4ed/Sampling_Algorithms/Sampling_Multidimensional_Functions#Cosine-WeightedHemisphereSampling), we can efficiently sample the normalized clamped cosine.  
 
+The normalized clamped cosine sampling is calculated by [CosineSampleHemisphere](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/MonteCarlo.ush#L241) in UE4 and [SampleHemisphereCosine](https://github.com/Unity-Technologies/Graphics/blob/v10.8.1/com.unity.render-pipelines.core/ShaderLibrary/Sampling/Sampling.hlsl#L157) in Unity3D.  
+
 ### 1-4\. Low Discrepancy Sequence
   
 By "20.3 Quasirandom Low-Discrepancy Sequences" of \[Colbert 2007\], "13.8.2 Quasi Monte Carlo" of [PBR Book V3](https://pbr-book.org/3ed-2018/Monte_Carlo_Integration/Careful_Sample_Placement#QuasiMonteCarlo) and "8.2.2 Low Discrepancy and Quasi Monte Carlo" of [PBR Book V4](https://pbr-book.org/4ed/Sampling_and_Reconstruction/Sampling_and_Integration#LowDiscrepancyandQuasiMonteCarlo), the **low discrepancy sequence** is the better alternative than **pseudo random sequence** to generate the $\displaystyle \xi_1$ and $\displaystyle \xi_2$.  
