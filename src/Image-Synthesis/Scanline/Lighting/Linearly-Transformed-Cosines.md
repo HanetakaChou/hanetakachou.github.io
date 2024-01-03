@@ -1,4 +1,4 @@
-# LTC (Linearly Transformed Cosine)  
+# LTC (Linearly Transformed Cosines)  
 
 By "Equation \(5.9\)" of [PBR Book](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Surface_Reflection#TheBRDF), we have the reflectance equation $\displaystyle \operatorname{L_V}(\overrightarrow{\omega_V}) = \int_\Omega \operatorname{f}(\overrightarrow{\omega_V}, \overrightarrow{\omega_i}) \cdot \operatorname{L_L}(\overrightarrow{\omega_i}) \cdot (\cos(\theta_i))^+ \, d\overrightarrow{\omega_i}$.  
 
