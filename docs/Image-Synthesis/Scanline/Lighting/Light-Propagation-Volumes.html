@@ -293,8 +293,11 @@
                                 class="mclose delimcenter" style="top:0em;"><span
                                     class="delimsizing size1">]</span></span></span></span></span></span></eq> should be
         <strong>normalized</strong> before using the polynomial forms. By &quot;13.5.3 Spherical Coordinates&quot; of <a
-            href="https://pbr-book.org/3ed-2018/Monte_Carlo_Integration/Transforming_between_Distributions#SphericalCoordinates">PBRT-V3</a>,
-        we have <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+            href="https://pbr-book.org/3ed-2018/Monte_Carlo_Integration/Transforming_between_Distributions#SphericalCoordinates">PBR
+            Book V3</a> and &quot;Spherical Coordinates&quot; of &quot;3.8.3 Spherical Parameterizations&quot; of <a
+            href="https://pbr-book.org/4ed/Geometry_and_Transformations/Spherical_Geometry#x3-SphericalCoordinates">PBR
+            Book V4</a>, we have <eq><span class="katex"><span class="katex-mathml"><math
+                        xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
                                 <mstyle scriptlevel="0" displaystyle="true">
@@ -16467,6 +16470,14 @@ M834 80h400000v40h-400000z' />
                                             </msqrt>
                                         </mrow>
                                     </mfrac>
+                                    <msub>
+                                        <mo>∫</mo>
+                                        <msup>
+                                            <mi mathvariant="script">H</mi>
+                                            <mn>2</mn>
+                                        </msup>
+                                    </msub>
+                                    <mn>1</mn>
                                     <mtext> </mtext>
                                     <mi>d</mi>
                                     <mover accent="true">
@@ -16508,8 +16519,9 @@ M834 80h400000v40h-400000z' />
                                 \overrightarrow{\omega} = \int_{\mathrm{S}^2} \frac{1}{\pi} (\cos \theta)^+ \frac{1}{2
                                 \sqrt{\pi}} \, d \overrightarrow{\omega} = \frac{1}{\pi} \frac{1}{2
                                 \sqrt{\pi}}\int_{\mathrm{S}^2} (\cos \theta)^+ \, d \overrightarrow{\omega} =
-                                \frac{1}{\pi} \frac{1}{2 \sqrt{\pi}} \, d \overrightarrow{\omega^{\perp}} =
-                                \frac{1}{\pi} \frac{1}{2 \sqrt{\pi}} \pi = \frac{1}{2 \sqrt{\pi}}</annotation>
+                                \frac{1}{\pi} \frac{1}{2 \sqrt{\pi}} \int_{\mathcal{H}^2} 1 \, d
+                                \overrightarrow{\omega^{\perp}} = \frac{1}{\pi} \frac{1}{2 \sqrt{\pi}} \pi = \frac{1}{2
+                                \sqrt{\pi}}</annotation>
                         </semantics>
                     </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
                             style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span
@@ -16853,8 +16865,8 @@ M834 80h400000v40h-400000z' />
                             style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
                             class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
                         class="base"><span class="strut"
-                            style="height:2.25144em;vertical-align:-0.9300000000000002em;"></span><span
-                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                            style="height:2.29em;vertical-align:-0.9300000000000002em;"></span><span class="mord"><span
+                                class="mopen nulldelimiter"></span><span class="mfrac"><span
                                     class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
                                             style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut"
                                                     style="height:3em;"></span><span class="mord"><span
@@ -16916,6 +16928,29 @@ M834 80h400000v40h-400000z' />
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.9300000000000002em;"><span></span></span></span></span></span><span
                                 class="mclose nulldelimiter"></span></span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mop"><span
+                                class="mop op-symbol large-op"
+                                style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span
+                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:-0.38952999999999993em;"><span
+                                                style="top:-1.7880500000000001em;margin-left:-0.44445em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight"><span class="mord mtight"><span
+                                                                class="mord mathcal mtight"
+                                                                style="margin-right:0.00965em;">H</span><span
+                                                                class="msupsub"><span class="vlist-t"><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.7463142857142857em;"><span
+                                                                                style="top:-2.786em;margin-right:0.07142857142857144em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:2.5em;"></span><span
+                                                                                    class="sizing reset-size3 size1 mtight"><span
+                                                                                        class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.9119499999999999em;"><span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                            class="mord">1</span><span class="mspace"
                             style="margin-right:0.16666666666666666em;"></span><span
                             class="mord mathnormal">d</span><span class="mord accent"><span class="vlist-t"><span
                                     class="vlist-r"><span class="vlist" style="height:1.297108em;"><span
@@ -19821,8 +19856,1252 @@ M834 80h400000v40h-400000z' />
                                                         class="mord mtight">2</span></span></span></span></span></span></span></span><span
                             class="mspace" style="margin-right:0.16666666666666666em;"></span><span
                             class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span></eq> by
-        &quot;11.2 Analytical generation of cone and cosine lobes&quot; of [Kaplanyan 2009] is different from us. And we
-        are <strong>NOT</strong> really sure which one is correct currently.</p>
+        &quot;11.2 Analytical generation of cone and cosine lobes&quot; of [Kaplanyan 2009] is <strong>NOT</strong>
+        correct. We have the counterexample when the cone angle <eq><span class="katex"><span class="katex-mathml"><math
+                        xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mi>α</mi>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle \alpha</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal"
+                            style="margin-right:0.0037em;">α</span></span></span></span></eq> is <eq><span
+                class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mfrac>
+                                        <mi>π</mi>
+                                        <mn>2</mn>
+                                    </mfrac>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle \frac{\pi}{2}</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1.7935600000000003em;vertical-align:-0.686em;"></span><span class="mord"><span
+                                class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.10756em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">2</span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord mathnormal"
+                                                        style="margin-right:0.03588em;">π</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span></span></span></span></eq>, namely, the solid
+        angle is the whole hemisphere. This means that <eq><span class="katex"><span class="katex-mathml"><math
+                        xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <msub>
+                                        <mo>∫</mo>
+                                        <msup>
+                                            <mi mathvariant="normal">S</mi>
+                                            <mn>2</mn>
+                                        </msup>
+                                    </msub>
+                                    <mi mathvariant="normal">L</mi>
+                                    <mo>⁡</mo>
+                                    <mo stretchy="false">(</mo>
+                                    <mover accent="true">
+                                        <mi>ω</mi>
+                                        <mo stretchy="true">→</mo>
+                                    </mover>
+                                    <mo stretchy="false">)</mo>
+                                    <mfrac>
+                                        <mn>1</mn>
+                                        <mi>π</mi>
+                                    </mfrac>
+                                    <mo stretchy="false">(</mo>
+                                    <mi>cos</mi>
+                                    <mo>⁡</mo>
+                                    <mi>θ</mi>
+                                    <msup>
+                                        <mo stretchy="false">)</mo>
+                                        <mo>+</mo>
+                                    </msup>
+                                    <mtext> </mtext>
+                                    <mi>d</mi>
+                                    <mover accent="true">
+                                        <mi>ω</mi>
+                                        <mo stretchy="true">→</mo>
+                                    </mover>
+                                    <mo>=</mo>
+                                    <msub>
+                                        <mo>∫</mo>
+                                        <msup>
+                                            <mi mathvariant="script">H</mi>
+                                            <mn>2</mn>
+                                        </msup>
+                                    </msub>
+                                    <mfrac>
+                                        <mn>1</mn>
+                                        <mi>π</mi>
+                                    </mfrac>
+                                    <mi>cos</mi>
+                                    <mo>⁡</mo>
+                                    <mi>θ</mi>
+                                    <mtext> </mtext>
+                                    <mi>d</mi>
+                                    <mover accent="true">
+                                        <mi>ω</mi>
+                                        <mo stretchy="true">→</mo>
+                                    </mover>
+                                    <mo>=</mo>
+                                    <mfrac>
+                                        <mn>1</mn>
+                                        <mi>π</mi>
+                                    </mfrac>
+                                    <msub>
+                                        <mo>∫</mo>
+                                        <msup>
+                                            <mi mathvariant="script">H</mi>
+                                            <mn>2</mn>
+                                        </msup>
+                                    </msub>
+                                    <mi>cos</mi>
+                                    <mo>⁡</mo>
+                                    <mi>θ</mi>
+                                    <mtext> </mtext>
+                                    <mi>d</mi>
+                                    <mover accent="true">
+                                        <mi>ω</mi>
+                                        <mo stretchy="true">→</mo>
+                                    </mover>
+                                    <mo>=</mo>
+                                    <mfrac>
+                                        <mn>1</mn>
+                                        <mi>π</mi>
+                                    </mfrac>
+                                    <msub>
+                                        <mo>∫</mo>
+                                        <msup>
+                                            <mi mathvariant="script">H</mi>
+                                            <mn>2</mn>
+                                        </msup>
+                                    </msub>
+                                    <mn>1</mn>
+                                    <mtext> </mtext>
+                                    <mi>d</mi>
+                                    <mover accent="true">
+                                        <msup>
+                                            <mi>ω</mi>
+                                            <mo lspace="0em" rspace="0em">⊥</mo>
+                                        </msup>
+                                        <mo stretchy="true">→</mo>
+                                    </mover>
+                                    <mo>=</mo>
+                                    <mfrac>
+                                        <mn>1</mn>
+                                        <mi>π</mi>
+                                    </mfrac>
+                                    <mi>π</mi>
+                                    <mo>=</mo>
+                                    <mn>1</mn>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle \int_{\mathrm{S}^2}
+                                \operatorname{L}(\overrightarrow{\omega}) \frac{1}{\pi} (\cos \theta)^+ \,
+                                d\overrightarrow{\omega} = \int_{\mathcal{H}^2} \frac{1}{\pi} \cos \theta \,
+                                d\overrightarrow{\omega} = \frac{1}{\pi} \int_{\mathcal{H}^2} \cos \theta \,
+                                d\overrightarrow{\omega} = \frac{1}{\pi} \int_{\mathcal{H}^2} 1 \, d
+                                \overrightarrow{\omega^{\perp}} = \frac{1}{\pi} \pi = 1</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:2.27195em;vertical-align:-0.9119499999999999em;"></span><span
+                            class="mop"><span class="mop op-symbol large-op"
+                                style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span
+                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:-0.38952999999999993em;"><span
+                                                style="top:-1.7880500000000001em;margin-left:-0.44445em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight"><span class="mord mtight"><span
+                                                                class="mord mathrm mtight">S</span><span
+                                                                class="msupsub"><span class="vlist-t"><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.7463142857142857em;"><span
+                                                                                style="top:-2.786em;margin-right:0.07142857142857144em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:2.5em;"></span><span
+                                                                                    class="sizing reset-size3 size1 mtight"><span
+                                                                                        class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.9119499999999999em;"><span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop"><span
+                                class="mord mathrm">L</span></span><span class="mopen">(</span><span
+                            class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist"
+                                        style="height:0.9525600000000001em;"><span style="top:-3em;"><span
+                                                class="pstrut" style="height:3em;"></span><span class="mord mathnormal"
+                                                style="margin-right:0.03588em;">ω</span></span><span class="svg-align"
+                                            style="top:-3.43056em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="hide-tail"
+                                                style="height:0.522em;min-width:0.888em;"><svg width='400em'
+                                                    height='0.522em' viewBox='0 0 400000 522'
+                                                    preserveAspectRatio='xMaxYMin slice'>
+                                                    <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
+-16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
+ 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
+ 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
+-40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
+-12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
+ 151.7 139 205zm0 0v40h399900v-40z' />
+                                                </svg></span></span></span></span></span></span><span
+                            class="mclose">)</span><span class="mord"><span class="mopen nulldelimiter"></span><span
+                                class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord mathnormal"
+                                                        style="margin-right:0.03588em;">π</span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">1</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span><span class="mopen">(</span><span
+                            class="mop">cos</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal"
+                            style="margin-right:0.02778em;">θ</span><span class="mclose"><span
+                                class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span
+                                        class="vlist-r"><span class="vlist" style="height:0.821331em;"><span
+                                                style="top:-3.113em;margin-right:0.05em;"><span class="pstrut"
+                                                    style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mbin mtight">+</span></span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                            class="mord mathnormal">d</span><span class="mord accent"><span class="vlist-t"><span
+                                    class="vlist-r"><span class="vlist" style="height:0.9525600000000001em;"><span
+                                            style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span
+                                                class="mord mathnormal"
+                                                style="margin-right:0.03588em;">ω</span></span><span class="svg-align"
+                                            style="top:-3.43056em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="hide-tail"
+                                                style="height:0.522em;min-width:0.888em;"><svg width='400em'
+                                                    height='0.522em' viewBox='0 0 400000 522'
+                                                    preserveAspectRatio='xMaxYMin slice'>
+                                                    <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
+-16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
+ 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
+ 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
+-40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
+-12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
+ 151.7 139 205zm0 0v40h399900v-40z' />
+                                                </svg></span></span></span></span></span></span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                        class="base"><span class="strut"
+                            style="height:2.27195em;vertical-align:-0.9119499999999999em;"></span><span
+                            class="mop"><span class="mop op-symbol large-op"
+                                style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span
+                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:-0.38952999999999993em;"><span
+                                                style="top:-1.7880500000000001em;margin-left:-0.44445em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight"><span class="mord mtight"><span
+                                                                class="mord mathcal mtight"
+                                                                style="margin-right:0.00965em;">H</span><span
+                                                                class="msupsub"><span class="vlist-t"><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.7463142857142857em;"><span
+                                                                                style="top:-2.786em;margin-right:0.07142857142857144em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:2.5em;"></span><span
+                                                                                    class="sizing reset-size3 size1 mtight"><span
+                                                                                        class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.9119499999999999em;"><span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span
+                                class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord mathnormal"
+                                                        style="margin-right:0.03588em;">π</span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">1</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mop">cos</span><span
+                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                            class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span
+                            class="mord mathnormal">d</span><span class="mord accent"><span class="vlist-t"><span
+                                    class="vlist-r"><span class="vlist" style="height:0.9525600000000001em;"><span
+                                            style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span
+                                                class="mord mathnormal"
+                                                style="margin-right:0.03588em;">ω</span></span><span class="svg-align"
+                                            style="top:-3.43056em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="hide-tail"
+                                                style="height:0.522em;min-width:0.888em;"><svg width='400em'
+                                                    height='0.522em' viewBox='0 0 400000 522'
+                                                    preserveAspectRatio='xMaxYMin slice'>
+                                                    <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
+-16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
+ 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
+ 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
+-40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
+-12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
+ 151.7 139 205zm0 0v40h399900v-40z' />
+                                                </svg></span></span></span></span></span></span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                        class="base"><span class="strut"
+                            style="height:2.27195em;vertical-align:-0.9119499999999999em;"></span><span
+                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord mathnormal"
+                                                        style="margin-right:0.03588em;">π</span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">1</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mop"><span
+                                class="mop op-symbol large-op"
+                                style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span
+                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:-0.38952999999999993em;"><span
+                                                style="top:-1.7880500000000001em;margin-left:-0.44445em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight"><span class="mord mtight"><span
+                                                                class="mord mathcal mtight"
+                                                                style="margin-right:0.00965em;">H</span><span
+                                                                class="msupsub"><span class="vlist-t"><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.7463142857142857em;"><span
+                                                                                style="top:-2.786em;margin-right:0.07142857142857144em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:2.5em;"></span><span
+                                                                                    class="sizing reset-size3 size1 mtight"><span
+                                                                                        class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.9119499999999999em;"><span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                            class="mop">cos</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal"
+                            style="margin-right:0.02778em;">θ</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span
+                            class="mord mathnormal">d</span><span class="mord accent"><span class="vlist-t"><span
+                                    class="vlist-r"><span class="vlist" style="height:0.9525600000000001em;"><span
+                                            style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span
+                                                class="mord mathnormal"
+                                                style="margin-right:0.03588em;">ω</span></span><span class="svg-align"
+                                            style="top:-3.43056em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="hide-tail"
+                                                style="height:0.522em;min-width:0.888em;"><svg width='400em'
+                                                    height='0.522em' viewBox='0 0 400000 522'
+                                                    preserveAspectRatio='xMaxYMin slice'>
+                                                    <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
+-16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
+ 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
+ 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
+-40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
+-12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
+ 151.7 139 205zm0 0v40h399900v-40z' />
+                                                </svg></span></span></span></span></span></span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                        class="base"><span class="strut"
+                            style="height:2.27195em;vertical-align:-0.9119499999999999em;"></span><span
+                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord mathnormal"
+                                                        style="margin-right:0.03588em;">π</span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">1</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mop"><span
+                                class="mop op-symbol large-op"
+                                style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span
+                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:-0.38952999999999993em;"><span
+                                                style="top:-1.7880500000000001em;margin-left:-0.44445em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight"><span class="mord mtight"><span
+                                                                class="mord mathcal mtight"
+                                                                style="margin-right:0.00965em;">H</span><span
+                                                                class="msupsub"><span class="vlist-t"><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.7463142857142857em;"><span
+                                                                                style="top:-2.786em;margin-right:0.07142857142857144em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:2.5em;"></span><span
+                                                                                    class="sizing reset-size3 size1 mtight"><span
+                                                                                        class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.9119499999999999em;"><span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                            class="mord">1</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span
+                            class="mord mathnormal">d</span><span class="mord accent"><span class="vlist-t"><span
+                                    class="vlist-r"><span class="vlist" style="height:1.297108em;"><span
+                                            style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span
+                                                class="mord"><span class="mord mathnormal"
+                                                    style="margin-right:0.03588em;">ω</span><span class="msupsub"><span
+                                                        class="vlist-t"><span class="vlist-r"><span class="vlist"
+                                                                style="height:0.7751079999999999em;"><span
+                                                                    style="top:-2.9890000000000003em;margin-right:0.05em;"><span
+                                                                        class="pstrut"
+                                                                        style="height:2.7em;"></span><span
+                                                                        class="sizing reset-size6 size3 mtight"><span
+                                                                            class="mord mtight"><span
+                                                                                class="mrel mtight">⊥</span></span></span></span></span></span></span></span></span></span><span
+                                            class="svg-align" style="top:-3.775108em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="hide-tail"
+                                                style="height:0.522em;min-width:0.888em;"><svg width='400em'
+                                                    height='0.522em' viewBox='0 0 400000 522'
+                                                    preserveAspectRatio='xMaxYMin slice'>
+                                                    <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
+-16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
+ 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
+ 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
+-40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
+-12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
+ 151.7 139 205zm0 0v40h399900v-40z' />
+                                                </svg></span></span></span></span></span></span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                        class="base"><span class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span
+                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord mathnormal"
+                                                        style="margin-right:0.03588em;">π</span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">1</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span><span class="mord mathnormal"
+                            style="margin-right:0.03588em;">π</span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                        class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span
+                            class="mord">1</span></span></span></span></eq>. This is consistent with our result <eq>
+            <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <msub>
+                                        <mo>∫</mo>
+                                        <msup>
+                                            <mi mathvariant="normal">S</mi>
+                                            <mn>2</mn>
+                                        </msup>
+                                    </msub>
+                                    <mi mathvariant="normal">L</mi>
+                                    <mo>⁡</mo>
+                                    <mo stretchy="false">(</mo>
+                                    <mover accent="true">
+                                        <mi>ω</mi>
+                                        <mo stretchy="true">→</mo>
+                                    </mover>
+                                    <mo stretchy="false">)</mo>
+                                    <mfrac>
+                                        <mn>1</mn>
+                                        <mi>π</mi>
+                                    </mfrac>
+                                    <mo stretchy="false">(</mo>
+                                    <mi>cos</mi>
+                                    <mo>⁡</mo>
+                                    <mi>θ</mi>
+                                    <msup>
+                                        <mo stretchy="false">)</mo>
+                                        <mo>+</mo>
+                                    </msup>
+                                    <mtext> </mtext>
+                                    <mi>d</mi>
+                                    <mover accent="true">
+                                        <mi>ω</mi>
+                                        <mo stretchy="true">→</mo>
+                                    </mover>
+                                    <mo>=</mo>
+                                    <msub>
+                                        <mi mathvariant="normal">L</mi>
+                                        <mn>0</mn>
+                                    </msub>
+                                    <msub>
+                                        <mi mathvariant="normal">T</mi>
+                                        <mn>0</mn>
+                                    </msub>
+                                    <mo>+</mo>
+                                    <msub>
+                                        <mi mathvariant="normal">L</mi>
+                                        <mn>1</mn>
+                                    </msub>
+                                    <msub>
+                                        <mi mathvariant="normal">T</mi>
+                                        <mn>1</mn>
+                                    </msub>
+                                    <mo>=</mo>
+                                    <mfrac>
+                                        <mn>1</mn>
+                                        <mn>2</mn>
+                                    </mfrac>
+                                    <mo stretchy="false">(</mo>
+                                    <mn>1</mn>
+                                    <mo>−</mo>
+                                    <mi>cos</mi>
+                                    <mo>⁡</mo>
+                                    <mi>α</mi>
+                                    <mo stretchy="false">)</mo>
+                                    <mo>+</mo>
+                                    <mfrac>
+                                        <mn>1</mn>
+                                        <mn>2</mn>
+                                    </mfrac>
+                                    <msup>
+                                        <mrow>
+                                            <mi>sin</mi>
+                                            <mo>⁡</mo>
+                                        </mrow>
+                                        <mn>2</mn>
+                                    </msup>
+                                    <mi>α</mi>
+                                    <mo>=</mo>
+                                    <mfrac>
+                                        <mn>1</mn>
+                                        <mn>2</mn>
+                                    </mfrac>
+                                    <mo stretchy="false">(</mo>
+                                    <mn>1</mn>
+                                    <mo>−</mo>
+                                    <mi>cos</mi>
+                                    <mo>⁡</mo>
+                                    <mfrac>
+                                        <mi>π</mi>
+                                        <mn>2</mn>
+                                    </mfrac>
+                                    <mo stretchy="false">)</mo>
+                                    <mo>+</mo>
+                                    <mfrac>
+                                        <mn>1</mn>
+                                        <mn>2</mn>
+                                    </mfrac>
+                                    <msup>
+                                        <mrow>
+                                            <mi>sin</mi>
+                                            <mo>⁡</mo>
+                                        </mrow>
+                                        <mn>2</mn>
+                                    </msup>
+                                    <mfrac>
+                                        <mi>π</mi>
+                                        <mn>2</mn>
+                                    </mfrac>
+                                    <mo>=</mo>
+                                    <mn>1</mn>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle \int_{\mathrm{S}^2}
+                                \operatorname{L}(\overrightarrow{\omega}) \frac{1}{\pi} (\cos \theta)^+ \,
+                                d\overrightarrow{\omega} = \mathrm{L}_0 \mathrm{T}_0 + \mathrm{L}_1 \mathrm{T}_1 =
+                                \frac{1}{2} (1 - \cos \alpha) + \frac{1}{2} \sin^2 \alpha = \frac{1}{2} (1 - \cos
+                                \frac{\pi}{2}) + \frac{1}{2} \sin^2 \frac{\pi}{2} = 1</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:2.27195em;vertical-align:-0.9119499999999999em;"></span><span
+                            class="mop"><span class="mop op-symbol large-op"
+                                style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span
+                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:-0.38952999999999993em;"><span
+                                                style="top:-1.7880500000000001em;margin-left:-0.44445em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight"><span class="mord mtight"><span
+                                                                class="mord mathrm mtight">S</span><span
+                                                                class="msupsub"><span class="vlist-t"><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.7463142857142857em;"><span
+                                                                                style="top:-2.786em;margin-right:0.07142857142857144em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:2.5em;"></span><span
+                                                                                    class="sizing reset-size3 size1 mtight"><span
+                                                                                        class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.9119499999999999em;"><span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop"><span
+                                class="mord mathrm">L</span></span><span class="mopen">(</span><span
+                            class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist"
+                                        style="height:0.9525600000000001em;"><span style="top:-3em;"><span
+                                                class="pstrut" style="height:3em;"></span><span class="mord mathnormal"
+                                                style="margin-right:0.03588em;">ω</span></span><span class="svg-align"
+                                            style="top:-3.43056em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="hide-tail"
+                                                style="height:0.522em;min-width:0.888em;"><svg width='400em'
+                                                    height='0.522em' viewBox='0 0 400000 522'
+                                                    preserveAspectRatio='xMaxYMin slice'>
+                                                    <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
+-16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
+ 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
+ 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
+-40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
+-12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
+ 151.7 139 205zm0 0v40h399900v-40z' />
+                                                </svg></span></span></span></span></span></span><span
+                            class="mclose">)</span><span class="mord"><span class="mopen nulldelimiter"></span><span
+                                class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord mathnormal"
+                                                        style="margin-right:0.03588em;">π</span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">1</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span><span class="mopen">(</span><span
+                            class="mop">cos</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal"
+                            style="margin-right:0.02778em;">θ</span><span class="mclose"><span
+                                class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span
+                                        class="vlist-r"><span class="vlist" style="height:0.821331em;"><span
+                                                style="top:-3.113em;margin-right:0.05em;"><span class="pstrut"
+                                                    style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mbin mtight">+</span></span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                            class="mord mathnormal">d</span><span class="mord accent"><span class="vlist-t"><span
+                                    class="vlist-r"><span class="vlist" style="height:0.9525600000000001em;"><span
+                                            style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span
+                                                class="mord mathnormal"
+                                                style="margin-right:0.03588em;">ω</span></span><span class="svg-align"
+                                            style="top:-3.43056em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="hide-tail"
+                                                style="height:0.522em;min-width:0.888em;"><svg width='400em'
+                                                    height='0.522em' viewBox='0 0 400000 522'
+                                                    preserveAspectRatio='xMaxYMin slice'>
+                                                    <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
+-16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
+ 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
+ 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
+-40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
+-12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
+ 151.7 139 205zm0 0v40h399900v-40z' />
+                                                </svg></span></span></span></span></span></span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                        class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span
+                            class="mord"><span class="mord mathrm">L</span><span class="msupsub"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.30110799999999993em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight">0</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
+                            class="mord"><span class="mord mathrm">T</span><span class="msupsub"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.30110799999999993em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight">0</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+                            class="mbin">+</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span
+                            class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span
+                            class="mord"><span class="mord mathrm">L</span><span class="msupsub"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.30110799999999993em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight">1</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
+                            class="mord"><span class="mord mathrm">T</span><span class="msupsub"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.30110799999999993em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight">1</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span><span
+                            class="mrel">=</span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+                            class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span
+                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">2</span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">1</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span><span class="mopen">(</span><span
+                            class="mord">1</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                            class="mop">cos</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal"
+                            style="margin-right:0.0037em;">α</span><span class="mclose">)</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span
+                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">2</span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">1</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mop"><span
+                                class="mop">sin</span><span class="msupsub"><span class="vlist-t"><span
+                                        class="vlist-r"><span class="vlist" style="height:0.871868em;"><span
+                                                style="top:-3.12076em;margin-right:0.05em;"><span class="pstrut"
+                                                    style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight">2</span></span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                            class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                        class="base"><span class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span
+                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">2</span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">1</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span><span class="mopen">(</span><span
+                            class="mord">1</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut"
+                            style="height:1.7935600000000003em;vertical-align:-0.686em;"></span><span
+                            class="mop">cos</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mord"><span
+                                class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.10756em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">2</span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord mathnormal"
+                                                        style="margin-right:0.03588em;">π</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span><span class="mclose">)</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+                            class="mbin">+</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span
+                            class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span
+                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">2</span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">1</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mop"><span
+                                class="mop">sin</span><span class="msupsub"><span class="vlist-t"><span
+                                        class="vlist-r"><span class="vlist" style="height:0.871868em;"><span
+                                                style="top:-3.12076em;margin-right:0.05em;"><span class="pstrut"
+                                                    style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight">2</span></span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span
+                                class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.10756em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">2</span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord mathnormal"
+                                                        style="margin-right:0.03588em;">π</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                        class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span
+                            class="mord">1</span></span></span></span>
+        </eq>. However, according to result by [Kaplanyan
+        2009], we have <eq><span class="katex"><span class="katex-mathml"><math
+                        xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <msub>
+                                        <mo>∫</mo>
+                                        <msup>
+                                            <mi mathvariant="normal">S</mi>
+                                            <mn>2</mn>
+                                        </msup>
+                                    </msub>
+                                    <mi mathvariant="normal">L</mi>
+                                    <mo>⁡</mo>
+                                    <mo stretchy="false">(</mo>
+                                    <mover accent="true">
+                                        <mi>ω</mi>
+                                        <mo stretchy="true">→</mo>
+                                    </mover>
+                                    <mo stretchy="false">)</mo>
+                                    <mfrac>
+                                        <mn>1</mn>
+                                        <mi>π</mi>
+                                    </mfrac>
+                                    <mo stretchy="false">(</mo>
+                                    <mi>cos</mi>
+                                    <mo>⁡</mo>
+                                    <mi>θ</mi>
+                                    <msup>
+                                        <mo stretchy="false">)</mo>
+                                        <mo>+</mo>
+                                    </msup>
+                                    <mtext> </mtext>
+                                    <mi>d</mi>
+                                    <mover accent="true">
+                                        <mi>ω</mi>
+                                        <mo stretchy="true">→</mo>
+                                    </mover>
+                                    <mo>=</mo>
+                                    <msub>
+                                        <mi mathvariant="normal">L</mi>
+                                        <mn>0</mn>
+                                    </msub>
+                                    <msub>
+                                        <mi mathvariant="normal">T</mi>
+                                        <mn>0</mn>
+                                    </msub>
+                                    <mo>+</mo>
+                                    <msub>
+                                        <mi mathvariant="normal">L</mi>
+                                        <mn>1</mn>
+                                    </msub>
+                                    <msub>
+                                        <mi mathvariant="normal">T</mi>
+                                        <mn>1</mn>
+                                    </msub>
+                                    <mo>=</mo>
+                                    <mfrac>
+                                        <mn>1</mn>
+                                        <mn>2</mn>
+                                    </mfrac>
+                                    <mo stretchy="false">(</mo>
+                                    <mn>1</mn>
+                                    <mo>−</mo>
+                                    <mi>cos</mi>
+                                    <mo>⁡</mo>
+                                    <mi>α</mi>
+                                    <mo stretchy="false">)</mo>
+                                    <mo>+</mo>
+                                    <mfrac>
+                                        <mn>3</mn>
+                                        <mn>4</mn>
+                                    </mfrac>
+                                    <msup>
+                                        <mrow>
+                                            <mi>sin</mi>
+                                            <mo>⁡</mo>
+                                        </mrow>
+                                        <mn>2</mn>
+                                    </msup>
+                                    <mi>α</mi>
+                                    <mo>=</mo>
+                                    <mfrac>
+                                        <mn>1</mn>
+                                        <mn>2</mn>
+                                    </mfrac>
+                                    <mo stretchy="false">(</mo>
+                                    <mn>1</mn>
+                                    <mo>−</mo>
+                                    <mi>cos</mi>
+                                    <mo>⁡</mo>
+                                    <mfrac>
+                                        <mi>π</mi>
+                                        <mn>2</mn>
+                                    </mfrac>
+                                    <mo stretchy="false">)</mo>
+                                    <mo>+</mo>
+                                    <mfrac>
+                                        <mn>3</mn>
+                                        <mn>4</mn>
+                                    </mfrac>
+                                    <msup>
+                                        <mrow>
+                                            <mi>sin</mi>
+                                            <mo>⁡</mo>
+                                        </mrow>
+                                        <mn>2</mn>
+                                    </msup>
+                                    <mfrac>
+                                        <mi>π</mi>
+                                        <mn>2</mn>
+                                    </mfrac>
+                                    <mo>=</mo>
+                                    <mfrac>
+                                        <mn>5</mn>
+                                        <mn>4</mn>
+                                    </mfrac>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle \int_{\mathrm{S}^2}
+                                \operatorname{L}(\overrightarrow{\omega}) \frac{1}{\pi} (\cos \theta)^+ \,
+                                d\overrightarrow{\omega} = \mathrm{L}_0 \mathrm{T}_0 + \mathrm{L}_1 \mathrm{T}_1 =
+                                \frac{1}{2} (1 - \cos \alpha) + \frac{3}{4} \sin^2 \alpha = \frac{1}{2} (1 - \cos
+                                \frac{\pi}{2}) + \frac{3}{4} \sin^2 \frac{\pi}{2} = \frac{5}{4}</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:2.27195em;vertical-align:-0.9119499999999999em;"></span><span
+                            class="mop"><span class="mop op-symbol large-op"
+                                style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span
+                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:-0.38952999999999993em;"><span
+                                                style="top:-1.7880500000000001em;margin-left:-0.44445em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight"><span class="mord mtight"><span
+                                                                class="mord mathrm mtight">S</span><span
+                                                                class="msupsub"><span class="vlist-t"><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.7463142857142857em;"><span
+                                                                                style="top:-2.786em;margin-right:0.07142857142857144em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:2.5em;"></span><span
+                                                                                    class="sizing reset-size3 size1 mtight"><span
+                                                                                        class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.9119499999999999em;"><span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop"><span
+                                class="mord mathrm">L</span></span><span class="mopen">(</span><span
+                            class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist"
+                                        style="height:0.9525600000000001em;"><span style="top:-3em;"><span
+                                                class="pstrut" style="height:3em;"></span><span class="mord mathnormal"
+                                                style="margin-right:0.03588em;">ω</span></span><span class="svg-align"
+                                            style="top:-3.43056em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="hide-tail"
+                                                style="height:0.522em;min-width:0.888em;"><svg width='400em'
+                                                    height='0.522em' viewBox='0 0 400000 522'
+                                                    preserveAspectRatio='xMaxYMin slice'>
+                                                    <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
+-16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
+ 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
+ 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
+-40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
+-12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
+ 151.7 139 205zm0 0v40h399900v-40z' />
+                                                </svg></span></span></span></span></span></span><span
+                            class="mclose">)</span><span class="mord"><span class="mopen nulldelimiter"></span><span
+                                class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord mathnormal"
+                                                        style="margin-right:0.03588em;">π</span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">1</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span><span class="mopen">(</span><span
+                            class="mop">cos</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal"
+                            style="margin-right:0.02778em;">θ</span><span class="mclose"><span
+                                class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span
+                                        class="vlist-r"><span class="vlist" style="height:0.821331em;"><span
+                                                style="top:-3.113em;margin-right:0.05em;"><span class="pstrut"
+                                                    style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mbin mtight">+</span></span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                            class="mord mathnormal">d</span><span class="mord accent"><span class="vlist-t"><span
+                                    class="vlist-r"><span class="vlist" style="height:0.9525600000000001em;"><span
+                                            style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span
+                                                class="mord mathnormal"
+                                                style="margin-right:0.03588em;">ω</span></span><span class="svg-align"
+                                            style="top:-3.43056em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="hide-tail"
+                                                style="height:0.522em;min-width:0.888em;"><svg width='400em'
+                                                    height='0.522em' viewBox='0 0 400000 522'
+                                                    preserveAspectRatio='xMaxYMin slice'>
+                                                    <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
+-16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
+ 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
+ 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
+-40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
+-12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
+ 151.7 139 205zm0 0v40h399900v-40z' />
+                                                </svg></span></span></span></span></span></span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                        class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span
+                            class="mord"><span class="mord mathrm">L</span><span class="msupsub"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.30110799999999993em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight">0</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
+                            class="mord"><span class="mord mathrm">T</span><span class="msupsub"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.30110799999999993em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight">0</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+                            class="mbin">+</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span
+                            class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span
+                            class="mord"><span class="mord mathrm">L</span><span class="msupsub"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.30110799999999993em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight">1</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
+                            class="mord"><span class="mord mathrm">T</span><span class="msupsub"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.30110799999999993em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight">1</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span><span
+                            class="mrel">=</span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+                            class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span
+                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">2</span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">1</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span><span class="mopen">(</span><span
+                            class="mord">1</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                            class="mop">cos</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal"
+                            style="margin-right:0.0037em;">α</span><span class="mclose">)</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span
+                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">4</span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">3</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mop"><span
+                                class="mop">sin</span><span class="msupsub"><span class="vlist-t"><span
+                                        class="vlist-r"><span class="vlist" style="height:0.871868em;"><span
+                                                style="top:-3.12076em;margin-right:0.05em;"><span class="pstrut"
+                                                    style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight">2</span></span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                            class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                        class="base"><span class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span
+                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">2</span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">1</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span><span class="mopen">(</span><span
+                            class="mord">1</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut"
+                            style="height:1.7935600000000003em;vertical-align:-0.686em;"></span><span
+                            class="mop">cos</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mord"><span
+                                class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.10756em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">2</span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord mathnormal"
+                                                        style="margin-right:0.03588em;">π</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span><span class="mclose">)</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+                            class="mbin">+</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span
+                            class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span
+                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">4</span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">3</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mop"><span
+                                class="mop">sin</span><span class="msupsub"><span class="vlist-t"><span
+                                        class="vlist-r"><span class="vlist" style="height:0.871868em;"><span
+                                                style="top:-3.12076em;margin-right:0.05em;"><span class="pstrut"
+                                                    style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight">2</span></span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span
+                                class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.10756em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">2</span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord mathnormal"
+                                                        style="margin-right:0.03588em;">π</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                        class="base"><span class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span
+                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">4</span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">5</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span></span></span></span></eq> which is
+        <strong>NOT</strong> correct.
+    </p>
     <h4 dir="auto" id="rotation">Rotation</h4>
     <p dir="auto">We need to rotate the light from the Z axis to the specific direction <eq><span class="katex"><span
                     class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -21649,10 +22928,11 @@ M834 80h400000v40h-400000z' />
                                                     style="height:0.35000000000000003em;"><span></span></span></span></span></span></span></span><span
                                 class="mclose delimcenter" style="top:0em;"><span
                                     class="delimsizing size1">]</span></span></span></span></span></span></eq>, namely,
-        we do <strong>NOT</strong> rotate the light at all. Evidently, the coefficients should be the same in this case,
-        namely, <code>vResult.xyzw == half4(vZHCoeffs.x, 0, vZHCoeffs.y, 0)</code>. However, according to result by
-        [Kaplanyan 2009], we have <code>vResult.xyzw = half4(vZHCoeffs.x, 0, -vZHCoeffs.y, 0)</code> which is definitely
-        wrong.</p>
+        we do <strong>NOT</strong> rotate the light at all. This means that the coefficients should be the same in this
+        case, namely, <code>vResult.xyzw == half4(vZHCoeffs.x, 0, vZHCoeffs.y, 0)</code>. However, according to result
+        by [Kaplanyan 2009], we have <code>vResult.xyzw = half4(vZHCoeffs.x, 0, -vZHCoeffs.y, 0)</code> which is
+        <strong>NOT</strong> correct.
+    </p>
     <h2 dir="auto" id="references">References</h2>
     <p dir="auto">[Ramamoorthi 2001 A] <a href="https://graphics.stanford.edu/papers/invlamb/">Ravi Ramamoorthi, Pat
             Hanrahan. &quot;On the Relationship between Radiance and Irradiance: Determining the illumination from
