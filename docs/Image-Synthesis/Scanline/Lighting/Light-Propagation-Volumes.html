@@ -13098,11 +13098,23 @@ M834 80h400000v40h-400000z' />
             spherical function. Actually, the result is related to the <strong>Clebsch–Gordan coefficients</strong>
             which is too complex and thus the explaination is omitted.</p>
     </blockquote>
-    <h3 dir="auto" id="sh-cone-light">SH Cone Light</h3>
-    <p dir="auto">The light position is at the Z axis</p>
+    <h3 dir="auto" id="sh-analytic-light">SH Analytic Light</h3>
+    <p dir="auto">The light position is at the Z axis and the cone angle is <eq><span class="katex"><span
+                    class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mi>α</mi>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle \alpha</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal"
+                            style="margin-right:0.0037em;">α</span></span></span></span></eq>.</p>
     <p dir="auto"><img src="Light-Propagation-Volumes-1.png" alt="" data-src="Light-Propagation-Volumes-1.png"></p>
     <p dir="auto">By &quot;Appendix A3 ZH Coefficients for Spherical Light Source&quot; of [Sloan 2008], we have the
-        coefficents of the ZH(Zonal Harmonics).</p>
+        coefficients of the ZH(Zonal Harmonics).</p>
     <p dir="auto">By &quot;13.5.3 Spherical Coordinates&quot; of <a
             href="https://pbr-book.org/3ed-2018/Monte_Carlo_Integration/Transforming_between_Distributions#SphericalCoordinates">PBR
             Book V3</a> and &quot;Equation (2.23)&quot; of <a
@@ -13114,7 +13126,10 @@ M834 80h400000v40h-400000z' />
                                 <mstyle scriptlevel="0" displaystyle="true">
                                     <msub>
                                         <mo>∫</mo>
-                                        <mi mathvariant="normal">Ω</mi>
+                                        <msub>
+                                            <mi mathvariant="normal">Ω</mi>
+                                            <mi>α</mi>
+                                        </msub>
                                     </msub>
                                     <mi mathvariant="normal">f</mi>
                                     <mo>⁡</mo>
@@ -13166,24 +13181,36 @@ M834 80h400000v40h-400000z' />
                                     <mi>ϕ</mi>
                                 </mstyle>
                             </mrow>
-                            <annotation encoding="application/x-tex">\displaystyle \int_{\Omega}
+                            <annotation encoding="application/x-tex">\displaystyle \int_{\Omega_\alpha}
                                 \operatorname{f}(\overrightarrow{\omega}) \, d \overrightarrow{\omega} = \int_0^{2\pi}
                                 \left\lparen \int_0^{\alpha} \operatorname{f}(\theta, \phi) \sin \theta \, d \theta
                                 \right\rparen \, d \phi</annotation>
                         </semantics>
                     </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
-                            style="height:2.27195em;vertical-align:-0.9119499999999999em;"></span><span
+                            style="height:2.3720499999999998em;vertical-align:-1.01205em;"></span><span
                             class="mop"><span class="mop op-symbol large-op"
                                 style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span
                                 class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
                                             style="height:-0.433619em;"><span
-                                                style="top:-1.7880500000000001em;margin-left:-0.44445em;margin-right:0.05em;"><span
+                                                style="top:-1.7880500000000004em;margin-left:-0.44445em;margin-right:0.05em;"><span
                                                     class="pstrut" style="height:2.7em;"></span><span
                                                     class="sizing reset-size6 size3 mtight"><span
-                                                        class="mord mtight"><span
-                                                            class="mord mtight">Ω</span></span></span></span></span><span
+                                                        class="mord mtight"><span class="mord mtight"><span
+                                                                class="mord mtight">Ω</span><span class="msupsub"><span
+                                                                    class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                                            class="vlist"
+                                                                            style="height:0.16454285714285719em;"><span
+                                                                                style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:2.5em;"></span><span
+                                                                                    class="sizing reset-size3 size1 mtight"><span
+                                                                                        class="mord mathnormal mtight"
+                                                                                        style="margin-right:0.0037em;">α</span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:0.9119499999999999em;"><span></span></span></span></span></span></span><span
+                                            style="height:1.01205em;"><span></span></span></span></span></span></span><span
                             class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop"><span
                                 class="mord mathrm" style="margin-right:0.07778em;">f</span></span><span
                             class="mopen">(</span><span class="mord accent"><span class="vlist-t"><span
@@ -13406,7 +13433,10 @@ M834 80h400000v40h-400000z' />
                                 <mstyle scriptlevel="0" displaystyle="true">
                                     <msub>
                                         <mo>∫</mo>
-                                        <mi mathvariant="normal">Ω</mi>
+                                        <msub>
+                                            <mi mathvariant="normal">Ω</mi>
+                                            <mi>α</mi>
+                                        </msub>
                                     </msub>
                                     <mi mathvariant="normal">
                                         <msubsup>
@@ -13431,7 +13461,10 @@ M834 80h400000v40h-400000z' />
                                     <mo>=</mo>
                                     <msub>
                                         <mo>∫</mo>
-                                        <mi mathvariant="normal">Ω</mi>
+                                        <msub>
+                                            <mi mathvariant="normal">Ω</mi>
+                                            <mi>α</mi>
+                                        </msub>
                                     </msub>
                                     <mfrac>
                                         <mn>1</mn>
@@ -13460,7 +13493,10 @@ M834 80h400000v40h-400000z' />
                                     </mfrac>
                                     <msub>
                                         <mo>∫</mo>
-                                        <mi mathvariant="normal">Ω</mi>
+                                        <msub>
+                                            <mi mathvariant="normal">Ω</mi>
+                                            <mi>α</mi>
+                                        </msub>
                                     </msub>
                                     <mn>1</mn>
                                     <mtext> </mtext>
@@ -13581,28 +13617,40 @@ M834 80h400000v40h-400000z' />
                                     <mo stretchy="false">)</mo>
                                 </mstyle>
                             </mrow>
-                            <annotation encoding="application/x-tex">\displaystyle \int_{\Omega}
+                            <annotation encoding="application/x-tex">\displaystyle \int_{\Omega_\alpha}
                                 \operatorname{\Upsilon_0^0}(\overrightarrow{\omega}) \, d \overrightarrow{\omega} =
-                                \int_{\Omega} \frac{1}{2 \sqrt{\pi}} \, d \overrightarrow{\omega} = \frac{1}{2
-                                \sqrt{\pi}} \int_{\Omega} 1 \, d \overrightarrow{\omega} = \frac{1}{2 \sqrt{\pi}}
+                                \int_{\Omega_\alpha} \frac{1}{2 \sqrt{\pi}} \, d \overrightarrow{\omega} = \frac{1}{2
+                                \sqrt{\pi}} \int_{\Omega_\alpha} 1 \, d \overrightarrow{\omega} = \frac{1}{2 \sqrt{\pi}}
                                 \int_0^{2\pi} \left\lparen \int_0^{\alpha} \sin \theta \, d \theta \right\rparen \, d
                                 \phi = \frac{1}{2 \sqrt{\pi}} \int_0^{2\pi} ( (-\cos \alpha) - (-\cos 0) ) \, d \phi =
                                 \frac{1}{2 \sqrt{\pi}} 2\pi ( (-\cos \alpha) - (-\cos 0) ) = \sqrt{\pi} (1 - \cos
                                 \alpha)</annotation>
                         </semantics>
                     </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
-                            style="height:2.27195em;vertical-align:-0.9119499999999999em;"></span><span
+                            style="height:2.3720499999999998em;vertical-align:-1.01205em;"></span><span
                             class="mop"><span class="mop op-symbol large-op"
                                 style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span
                                 class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
                                             style="height:-0.433619em;"><span
-                                                style="top:-1.7880500000000001em;margin-left:-0.44445em;margin-right:0.05em;"><span
+                                                style="top:-1.7880500000000004em;margin-left:-0.44445em;margin-right:0.05em;"><span
                                                     class="pstrut" style="height:2.7em;"></span><span
                                                     class="sizing reset-size6 size3 mtight"><span
-                                                        class="mord mtight"><span
-                                                            class="mord mtight">Ω</span></span></span></span></span><span
+                                                        class="mord mtight"><span class="mord mtight"><span
+                                                                class="mord mtight">Ω</span><span class="msupsub"><span
+                                                                    class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                                            class="vlist"
+                                                                            style="height:0.16454285714285719em;"><span
+                                                                                style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:2.5em;"></span><span
+                                                                                    class="sizing reset-size3 size1 mtight"><span
+                                                                                        class="mord mathnormal mtight"
+                                                                                        style="margin-right:0.0037em;">α</span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:0.9119499999999999em;"><span></span></span></span></span></span></span><span
+                                            style="height:1.01205em;"><span></span></span></span></span></span></span><span
                             class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop"><span
                                 class="mord"><span class="mord mathrm">Υ</span><span class="msupsub"><span
                                         class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
@@ -13658,18 +13706,30 @@ M834 80h400000v40h-400000z' />
                             style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
                             class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
                         class="base"><span class="strut"
-                            style="height:2.29em;vertical-align:-0.9300000000000002em;"></span><span class="mop"><span
-                                class="mop op-symbol large-op"
+                            style="height:2.3720499999999998em;vertical-align:-1.01205em;"></span><span
+                            class="mop"><span class="mop op-symbol large-op"
                                 style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span
                                 class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
                                             style="height:-0.433619em;"><span
-                                                style="top:-1.7880500000000001em;margin-left:-0.44445em;margin-right:0.05em;"><span
+                                                style="top:-1.7880500000000004em;margin-left:-0.44445em;margin-right:0.05em;"><span
                                                     class="pstrut" style="height:2.7em;"></span><span
                                                     class="sizing reset-size6 size3 mtight"><span
-                                                        class="mord mtight"><span
-                                                            class="mord mtight">Ω</span></span></span></span></span><span
+                                                        class="mord mtight"><span class="mord mtight"><span
+                                                                class="mord mtight">Ω</span><span class="msupsub"><span
+                                                                    class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                                            class="vlist"
+                                                                            style="height:0.16454285714285719em;"><span
+                                                                                style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:2.5em;"></span><span
+                                                                                    class="sizing reset-size3 size1 mtight"><span
+                                                                                        class="mord mathnormal mtight"
+                                                                                        style="margin-right:0.0037em;">α</span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:0.9119499999999999em;"><span></span></span></span></span></span></span><span
+                                            style="height:1.01205em;"><span></span></span></span></span></span></span><span
                             class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span
                                 class="mopen nulldelimiter"></span><span class="mfrac"><span
                                     class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
@@ -13740,8 +13800,8 @@ M834 80h400000v40h-400000z' />
                             style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
                             class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
                         class="base"><span class="strut"
-                            style="height:2.29em;vertical-align:-0.9300000000000002em;"></span><span class="mord"><span
-                                class="mopen nulldelimiter"></span><span class="mfrac"><span
+                            style="height:2.3720499999999998em;vertical-align:-1.01205em;"></span><span
+                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
                                     class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
                                             style="height:1.32144em;"><span style="top:-2.30972em;"><span class="pstrut"
                                                     style="height:3em;"></span><span class="mord"><span
@@ -13793,13 +13853,25 @@ M834 80h400000v40h-400000z' />
                                 style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span
                                 class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
                                             style="height:-0.433619em;"><span
-                                                style="top:-1.7880500000000001em;margin-left:-0.44445em;margin-right:0.05em;"><span
+                                                style="top:-1.7880500000000004em;margin-left:-0.44445em;margin-right:0.05em;"><span
                                                     class="pstrut" style="height:2.7em;"></span><span
                                                     class="sizing reset-size6 size3 mtight"><span
-                                                        class="mord mtight"><span
-                                                            class="mord mtight">Ω</span></span></span></span></span><span
+                                                        class="mord mtight"><span class="mord mtight"><span
+                                                                class="mord mtight">Ω</span><span class="msupsub"><span
+                                                                    class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                                            class="vlist"
+                                                                            style="height:0.16454285714285719em;"><span
+                                                                                style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:2.5em;"></span><span
+                                                                                    class="sizing reset-size3 size1 mtight"><span
+                                                                                        class="mord mathnormal mtight"
+                                                                                        style="margin-right:0.0037em;">α</span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:0.9119499999999999em;"><span></span></span></span></span></span></span><span
+                                            style="height:1.01205em;"><span></span></span></span></span></span></span><span
                             class="mspace" style="margin-right:0.16666666666666666em;"></span><span
                             class="mord">1</span><span class="mspace"
                             style="margin-right:0.16666666666666666em;"></span><span
@@ -14260,7 +14332,10 @@ M834 80h400000v40h-400000z' />
                                 <mstyle scriptlevel="0" displaystyle="true">
                                     <msub>
                                         <mo>∫</mo>
-                                        <mi mathvariant="normal">Ω</mi>
+                                        <msub>
+                                            <mi mathvariant="normal">Ω</mi>
+                                            <mi>α</mi>
+                                        </msub>
                                     </msub>
                                     <mi mathvariant="normal">
                                         <msubsup>
@@ -14285,7 +14360,10 @@ M834 80h400000v40h-400000z' />
                                     <mo>=</mo>
                                     <msub>
                                         <mo>∫</mo>
-                                        <mi mathvariant="normal">Ω</mi>
+                                        <msub>
+                                            <mi mathvariant="normal">Ω</mi>
+                                            <mi>α</mi>
+                                        </msub>
                                     </msub>
                                     <mfrac>
                                         <msqrt>
@@ -14319,7 +14397,10 @@ M834 80h400000v40h-400000z' />
                                     </mfrac>
                                     <msub>
                                         <mo>∫</mo>
-                                        <mi mathvariant="normal">Ω</mi>
+                                        <msub>
+                                            <mi mathvariant="normal">Ω</mi>
+                                            <mi>α</mi>
+                                        </msub>
                                     </msub>
                                     <mi>z</mi>
                                     <mtext> </mtext>
@@ -14510,10 +14591,10 @@ M834 80h400000v40h-400000z' />
                                     <mi>α</mi>
                                 </mstyle>
                             </mrow>
-                            <annotation encoding="application/x-tex">\displaystyle \int_{\Omega}
+                            <annotation encoding="application/x-tex">\displaystyle \int_{\Omega_\alpha}
                                 \operatorname{\Upsilon_1^0}(\overrightarrow{\omega}) \, d \overrightarrow{\omega} =
-                                \int_{\Omega} \frac{\sqrt{3}}{2 \sqrt{\pi}} z \, d \overrightarrow{\omega} =
-                                \frac{\sqrt{3}}{2 \sqrt{\pi}} \int_{\Omega} z \, d \overrightarrow{\omega} =
+                                \int_{\Omega_\alpha} \frac{\sqrt{3}}{2 \sqrt{\pi}} z \, d \overrightarrow{\omega} =
+                                \frac{\sqrt{3}}{2 \sqrt{\pi}} \int_{\Omega_\alpha} z \, d \overrightarrow{\omega} =
                                 \frac{\sqrt{3}}{2 \sqrt{\pi}} \int_0^{2\pi} \left\lparen \int_0^{\alpha} z \sin \theta
                                 \, d \theta \right\rparen \, d \phi = \frac{\sqrt{3}}{2 \sqrt{\pi}} \int_0^{2\pi}
                                 \left\lparen \int_0^{\alpha} \cos \theta \sin \theta \, d \theta \right\rparen \, d \phi
@@ -14522,18 +14603,30 @@ M834 80h400000v40h-400000z' />
                                 \frac{\sin^2 \alpha}{2} = \frac{1}{2} \sqrt{3} \sqrt{\pi} \sin^2 \alpha</annotation>
                         </semantics>
                     </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
-                            style="height:2.27195em;vertical-align:-0.9119499999999999em;"></span><span
+                            style="height:2.3720499999999998em;vertical-align:-1.01205em;"></span><span
                             class="mop"><span class="mop op-symbol large-op"
                                 style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span
                                 class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
                                             style="height:-0.433619em;"><span
-                                                style="top:-1.7880500000000001em;margin-left:-0.44445em;margin-right:0.05em;"><span
+                                                style="top:-1.7880500000000004em;margin-left:-0.44445em;margin-right:0.05em;"><span
                                                     class="pstrut" style="height:2.7em;"></span><span
                                                     class="sizing reset-size6 size3 mtight"><span
-                                                        class="mord mtight"><span
-                                                            class="mord mtight">Ω</span></span></span></span></span><span
+                                                        class="mord mtight"><span class="mord mtight"><span
+                                                                class="mord mtight">Ω</span><span class="msupsub"><span
+                                                                    class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                                            class="vlist"
+                                                                            style="height:0.16454285714285719em;"><span
+                                                                                style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:2.5em;"></span><span
+                                                                                    class="sizing reset-size3 size1 mtight"><span
+                                                                                        class="mord mathnormal mtight"
+                                                                                        style="margin-right:0.0037em;">α</span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:0.9119499999999999em;"><span></span></span></span></span></span></span><span
+                                            style="height:1.01205em;"><span></span></span></span></span></span></span><span
                             class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop"><span
                                 class="mord"><span class="mord mathrm">Υ</span><span class="msupsub"><span
                                         class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
@@ -14589,18 +14682,30 @@ M834 80h400000v40h-400000z' />
                             style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
                             class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
                         class="base"><span class="strut"
-                            style="height:2.5142200000000003em;vertical-align:-0.9300000000000002em;"></span><span
-                            class="mop"><span class="mop op-symbol large-op"
+                            style="height:2.59627em;vertical-align:-1.01205em;"></span><span class="mop"><span
+                                class="mop op-symbol large-op"
                                 style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span
                                 class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
                                             style="height:-0.433619em;"><span
-                                                style="top:-1.7880500000000001em;margin-left:-0.44445em;margin-right:0.05em;"><span
+                                                style="top:-1.7880500000000004em;margin-left:-0.44445em;margin-right:0.05em;"><span
                                                     class="pstrut" style="height:2.7em;"></span><span
                                                     class="sizing reset-size6 size3 mtight"><span
-                                                        class="mord mtight"><span
-                                                            class="mord mtight">Ω</span></span></span></span></span><span
+                                                        class="mord mtight"><span class="mord mtight"><span
+                                                                class="mord mtight">Ω</span><span class="msupsub"><span
+                                                                    class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                                            class="vlist"
+                                                                            style="height:0.16454285714285719em;"><span
+                                                                                style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:2.5em;"></span><span
+                                                                                    class="sizing reset-size3 size1 mtight"><span
+                                                                                        class="mord mathnormal mtight"
+                                                                                        style="margin-right:0.0037em;">α</span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:0.9119499999999999em;"><span></span></span></span></span></span></span><span
+                                            style="height:1.01205em;"><span></span></span></span></span></span></span><span
                             class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span
                                 class="mopen nulldelimiter"></span><span class="mfrac"><span
                                     class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
@@ -14702,8 +14807,8 @@ M834 80h400000v40h-400000z' />
                             style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
                             class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
                         class="base"><span class="strut"
-                            style="height:2.5142200000000003em;vertical-align:-0.9300000000000002em;"></span><span
-                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                            style="height:2.59627em;vertical-align:-1.01205em;"></span><span class="mord"><span
+                                class="mopen nulldelimiter"></span><span class="mfrac"><span
                                     class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
                                             style="height:1.5842200000000002em;"><span style="top:-2.30972em;"><span
                                                     class="pstrut" style="height:3em;"></span><span class="mord"><span
@@ -14785,13 +14890,25 @@ M834 80h400000v40h-400000z' />
                                 style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span
                                 class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
                                             style="height:-0.433619em;"><span
-                                                style="top:-1.7880500000000001em;margin-left:-0.44445em;margin-right:0.05em;"><span
+                                                style="top:-1.7880500000000004em;margin-left:-0.44445em;margin-right:0.05em;"><span
                                                     class="pstrut" style="height:2.7em;"></span><span
                                                     class="sizing reset-size6 size3 mtight"><span
-                                                        class="mord mtight"><span
-                                                            class="mord mtight">Ω</span></span></span></span></span><span
+                                                        class="mord mtight"><span class="mord mtight"><span
+                                                                class="mord mtight">Ω</span><span class="msupsub"><span
+                                                                    class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                                            class="vlist"
+                                                                            style="height:0.16454285714285719em;"><span
+                                                                                style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:2.5em;"></span><span
+                                                                                    class="sizing reset-size3 size1 mtight"><span
+                                                                                        class="mord mathnormal mtight"
+                                                                                        style="margin-right:0.0037em;">α</span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:0.9119499999999999em;"><span></span></span></span></span></span></span><span
+                                            style="height:1.01205em;"><span></span></span></span></span></span></span><span
                             class="mspace" style="margin-right:0.16666666666666666em;"></span><span
                             class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mspace"
                             style="margin-right:0.16666666666666666em;"></span><span
@@ -15414,8 +15531,11 @@ M834 80h400000v40h-400000z' />
                             class="mspace" style="margin-right:0.16666666666666666em;"></span><span
                             class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span></eq>.
     </p>
-    <p dir="auto">Due to circular symmetry, the coefficents of the basis functions other than the ZH(Zonal Harmonics)
-        are zero.</p>
+    <p dir="auto">The coefficients of the ZH(Zonal Harmonics) is calculated by <a
+            href="https://github.com/microsoft/DirectXMath/blob/jul2018b/SHMath/DirectXSH.cpp#L35">ComputeCapInt</a> in
+        DirectXMath.</p>
+    <p dir="auto">Due to circular symmetry, we have that the coefficients of all other basis functions than the ZH(Zonal
+        Harmonics) are zero.</p>
     <p dir="auto">For l = 1 and m = -1, we have <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
@@ -15581,7 +15701,10 @@ M834 80h400000v40h-400000z' />
                                 <mstyle scriptlevel="0" displaystyle="true">
                                     <msub>
                                         <mo>∫</mo>
-                                        <mi mathvariant="normal">Ω</mi>
+                                        <msub>
+                                            <mi mathvariant="normal">Ω</mi>
+                                            <mi>α</mi>
+                                        </msub>
                                     </msub>
                                     <mi mathvariant="normal">
                                         <msubsup>
@@ -15609,7 +15732,10 @@ M834 80h400000v40h-400000z' />
                                     <mo>=</mo>
                                     <msub>
                                         <mo>∫</mo>
-                                        <mi mathvariant="normal">Ω</mi>
+                                        <msub>
+                                            <mi mathvariant="normal">Ω</mi>
+                                            <mi>α</mi>
+                                        </msub>
                                     </msub>
                                     <mo>−</mo>
                                     <mfrac>
@@ -15645,7 +15771,10 @@ M834 80h400000v40h-400000z' />
                                     </mfrac>
                                     <msub>
                                         <mo>∫</mo>
-                                        <mi mathvariant="normal">Ω</mi>
+                                        <msub>
+                                            <mi mathvariant="normal">Ω</mi>
+                                            <mi>α</mi>
+                                        </msub>
                                     </msub>
                                     <mi>y</mi>
                                     <mtext> </mtext>
@@ -15876,10 +16005,10 @@ M834 80h400000v40h-400000z' />
                                     <mn>0</mn>
                                 </mstyle>
                             </mrow>
-                            <annotation encoding="application/x-tex">\displaystyle \int_{\Omega}
+                            <annotation encoding="application/x-tex">\displaystyle \int_{\Omega_\alpha}
                                 \operatorname{\Upsilon_1^{-1}}(\overrightarrow{\omega}) \, d \overrightarrow{\omega} =
-                                \int_{\Omega} - \frac{\sqrt{3}}{2 \sqrt{\pi}} y \, d \overrightarrow{\omega} = -
-                                \frac{\sqrt{3}}{2 \sqrt{\pi}} \int_{\Omega} y \, d \overrightarrow{\omega} = -
+                                \int_{\Omega_\alpha} - \frac{\sqrt{3}}{2 \sqrt{\pi}} y \, d \overrightarrow{\omega} = -
+                                \frac{\sqrt{3}}{2 \sqrt{\pi}} \int_{\Omega_\alpha} y \, d \overrightarrow{\omega} = -
                                 \frac{\sqrt{3}}{2 \sqrt{\pi}} \int_0^{2\pi} \left\lparen \int_0^{\alpha} y \sin \theta
                                 \, d \theta \right\rparen \, d \phi = - \frac{\sqrt{3}}{2 \sqrt{\pi}} \int_0^{2\pi}
                                 \left\lparen \int_0^{\alpha} \sin \theta \sin \phi \sin \theta \, d \theta \right\rparen
@@ -15891,18 +16020,30 @@ M834 80h400000v40h-400000z' />
                                 \left\lparen \cos 2\pi - \cos 0 \right\rparen = 0</annotation>
                         </semantics>
                     </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
-                            style="height:2.27195em;vertical-align:-0.9119499999999999em;"></span><span
+                            style="height:2.3720499999999998em;vertical-align:-1.01205em;"></span><span
                             class="mop"><span class="mop op-symbol large-op"
                                 style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span
                                 class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
                                             style="height:-0.433619em;"><span
-                                                style="top:-1.7880500000000001em;margin-left:-0.44445em;margin-right:0.05em;"><span
+                                                style="top:-1.7880500000000004em;margin-left:-0.44445em;margin-right:0.05em;"><span
                                                     class="pstrut" style="height:2.7em;"></span><span
                                                     class="sizing reset-size6 size3 mtight"><span
-                                                        class="mord mtight"><span
-                                                            class="mord mtight">Ω</span></span></span></span></span><span
+                                                        class="mord mtight"><span class="mord mtight"><span
+                                                                class="mord mtight">Ω</span><span class="msupsub"><span
+                                                                    class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                                            class="vlist"
+                                                                            style="height:0.16454285714285719em;"><span
+                                                                                style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:2.5em;"></span><span
+                                                                                    class="sizing reset-size3 size1 mtight"><span
+                                                                                        class="mord mathnormal mtight"
+                                                                                        style="margin-right:0.0037em;">α</span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:0.9119499999999999em;"><span></span></span></span></span></span></span><span
+                                            style="height:1.01205em;"><span></span></span></span></span></span></span><span
                             class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop"><span
                                 class="mord"><span class="mord mathrm">Υ</span><span class="msupsub"><span
                                         class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
@@ -15959,18 +16100,30 @@ M834 80h400000v40h-400000z' />
                             style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
                             class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
                         class="base"><span class="strut"
-                            style="height:2.5142200000000003em;vertical-align:-0.9300000000000002em;"></span><span
-                            class="mop"><span class="mop op-symbol large-op"
+                            style="height:2.59627em;vertical-align:-1.01205em;"></span><span class="mop"><span
+                                class="mop op-symbol large-op"
                                 style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span
                                 class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
                                             style="height:-0.433619em;"><span
-                                                style="top:-1.7880500000000001em;margin-left:-0.44445em;margin-right:0.05em;"><span
+                                                style="top:-1.7880500000000004em;margin-left:-0.44445em;margin-right:0.05em;"><span
                                                     class="pstrut" style="height:2.7em;"></span><span
                                                     class="sizing reset-size6 size3 mtight"><span
-                                                        class="mord mtight"><span
-                                                            class="mord mtight">Ω</span></span></span></span></span><span
+                                                        class="mord mtight"><span class="mord mtight"><span
+                                                                class="mord mtight">Ω</span><span class="msupsub"><span
+                                                                    class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                                            class="vlist"
+                                                                            style="height:0.16454285714285719em;"><span
+                                                                                style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:2.5em;"></span><span
+                                                                                    class="sizing reset-size3 size1 mtight"><span
+                                                                                        class="mord mathnormal mtight"
+                                                                                        style="margin-right:0.0037em;">α</span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:0.9119499999999999em;"><span></span></span></span></span></span></span><span
+                                            style="height:1.01205em;"><span></span></span></span></span></span></span><span
                             class="mspace" style="margin-right:0.16666666666666666em;"></span><span
                             class="mord">−</span><span class="mord"><span class="mopen nulldelimiter"></span><span
                                 class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
@@ -16072,9 +16225,9 @@ M834 80h400000v40h-400000z' />
                             style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
                             class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
                         class="base"><span class="strut"
-                            style="height:2.5142200000000003em;vertical-align:-0.9300000000000002em;"></span><span
-                            class="mord">−</span><span class="mord"><span class="mopen nulldelimiter"></span><span
-                                class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                            style="height:2.59627em;vertical-align:-1.01205em;"></span><span class="mord">−</span><span
+                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
                                             style="height:1.5842200000000002em;"><span style="top:-2.30972em;"><span
                                                     class="pstrut" style="height:3em;"></span><span class="mord"><span
                                                         class="mord">2</span><span class="mord sqrt"><span
@@ -16155,13 +16308,25 @@ M834 80h400000v40h-400000z' />
                                 style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span
                                 class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
                                             style="height:-0.433619em;"><span
-                                                style="top:-1.7880500000000001em;margin-left:-0.44445em;margin-right:0.05em;"><span
+                                                style="top:-1.7880500000000004em;margin-left:-0.44445em;margin-right:0.05em;"><span
                                                     class="pstrut" style="height:2.7em;"></span><span
                                                     class="sizing reset-size6 size3 mtight"><span
-                                                        class="mord mtight"><span
-                                                            class="mord mtight">Ω</span></span></span></span></span><span
+                                                        class="mord mtight"><span class="mord mtight"><span
+                                                                class="mord mtight">Ω</span><span class="msupsub"><span
+                                                                    class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                                            class="vlist"
+                                                                            style="height:0.16454285714285719em;"><span
+                                                                                style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:2.5em;"></span><span
+                                                                                    class="sizing reset-size3 size1 mtight"><span
+                                                                                        class="mord mathnormal mtight"
+                                                                                        style="margin-right:0.0037em;">α</span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:0.9119499999999999em;"><span></span></span></span></span></span></span><span
+                                            style="height:1.01205em;"><span></span></span></span></span></span></span><span
                             class="mspace" style="margin-right:0.16666666666666666em;"></span><span
                             class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mspace"
                             style="margin-right:0.16666666666666666em;"></span><span
@@ -16996,7 +17161,10 @@ M834 80h400000v40h-400000z' />
                                 <mstyle scriptlevel="0" displaystyle="true">
                                     <msub>
                                         <mo>∫</mo>
-                                        <mi mathvariant="normal">Ω</mi>
+                                        <msub>
+                                            <mi mathvariant="normal">Ω</mi>
+                                            <mi>α</mi>
+                                        </msub>
                                     </msub>
                                     <mi mathvariant="normal">
                                         <msubsup>
@@ -17021,7 +17189,10 @@ M834 80h400000v40h-400000z' />
                                     <mo>=</mo>
                                     <msub>
                                         <mo>∫</mo>
-                                        <mi mathvariant="normal">Ω</mi>
+                                        <msub>
+                                            <mi mathvariant="normal">Ω</mi>
+                                            <mi>α</mi>
+                                        </msub>
                                     </msub>
                                     <mo>−</mo>
                                     <mfrac>
@@ -17057,7 +17228,10 @@ M834 80h400000v40h-400000z' />
                                     </mfrac>
                                     <msub>
                                         <mo>∫</mo>
-                                        <mi mathvariant="normal">Ω</mi>
+                                        <msub>
+                                            <mi mathvariant="normal">Ω</mi>
+                                            <mi>α</mi>
+                                        </msub>
                                     </msub>
                                     <mi>x</mi>
                                     <mtext> </mtext>
@@ -17294,10 +17468,10 @@ M834 80h400000v40h-400000z' />
                                     <mn>0</mn>
                                 </mstyle>
                             </mrow>
-                            <annotation encoding="application/x-tex">\displaystyle \int_{\Omega}
+                            <annotation encoding="application/x-tex">\displaystyle \int_{\Omega_\alpha}
                                 \operatorname{\Upsilon_1^1}(\overrightarrow{\omega}) \, d \overrightarrow{\omega} =
-                                \int_{\Omega} - \frac{\sqrt{3}}{2 \sqrt{\pi}} x \, d \overrightarrow{\omega} = -
-                                \frac{\sqrt{3}}{2 \sqrt{\pi}} \int_{\Omega} x \, d \overrightarrow{\omega} = -
+                                \int_{\Omega_\alpha} - \frac{\sqrt{3}}{2 \sqrt{\pi}} x \, d \overrightarrow{\omega} = -
+                                \frac{\sqrt{3}}{2 \sqrt{\pi}} \int_{\Omega_\alpha} x \, d \overrightarrow{\omega} = -
                                 \frac{\sqrt{3}}{2 \sqrt{\pi}} \int_0^{2\pi} \left\lparen \int_0^{\alpha} x \sin \theta
                                 \, d \theta \right\rparen \, d \phi = - \frac{\sqrt{3}}{2 \sqrt{\pi}} \int_0^{2\pi}
                                 \left\lparen \int_0^{\alpha} \sin \theta \cos \phi \sin \theta \, d \theta \right\rparen
@@ -17309,18 +17483,30 @@ M834 80h400000v40h-400000z' />
                                 \left\lparen (-\sin 2\pi) - (-\sin 0) \right\rparen = 0</annotation>
                         </semantics>
                     </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
-                            style="height:2.27195em;vertical-align:-0.9119499999999999em;"></span><span
+                            style="height:2.3720499999999998em;vertical-align:-1.01205em;"></span><span
                             class="mop"><span class="mop op-symbol large-op"
                                 style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span
                                 class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
                                             style="height:-0.433619em;"><span
-                                                style="top:-1.7880500000000001em;margin-left:-0.44445em;margin-right:0.05em;"><span
+                                                style="top:-1.7880500000000004em;margin-left:-0.44445em;margin-right:0.05em;"><span
                                                     class="pstrut" style="height:2.7em;"></span><span
                                                     class="sizing reset-size6 size3 mtight"><span
-                                                        class="mord mtight"><span
-                                                            class="mord mtight">Ω</span></span></span></span></span><span
+                                                        class="mord mtight"><span class="mord mtight"><span
+                                                                class="mord mtight">Ω</span><span class="msupsub"><span
+                                                                    class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                                            class="vlist"
+                                                                            style="height:0.16454285714285719em;"><span
+                                                                                style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:2.5em;"></span><span
+                                                                                    class="sizing reset-size3 size1 mtight"><span
+                                                                                        class="mord mathnormal mtight"
+                                                                                        style="margin-right:0.0037em;">α</span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:0.9119499999999999em;"><span></span></span></span></span></span></span><span
+                                            style="height:1.01205em;"><span></span></span></span></span></span></span><span
                             class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop"><span
                                 class="mord"><span class="mord mathrm">Υ</span><span class="msupsub"><span
                                         class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
@@ -17376,18 +17562,30 @@ M834 80h400000v40h-400000z' />
                             style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
                             class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
                         class="base"><span class="strut"
-                            style="height:2.5142200000000003em;vertical-align:-0.9300000000000002em;"></span><span
-                            class="mop"><span class="mop op-symbol large-op"
+                            style="height:2.59627em;vertical-align:-1.01205em;"></span><span class="mop"><span
+                                class="mop op-symbol large-op"
                                 style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span
                                 class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
                                             style="height:-0.433619em;"><span
-                                                style="top:-1.7880500000000001em;margin-left:-0.44445em;margin-right:0.05em;"><span
+                                                style="top:-1.7880500000000004em;margin-left:-0.44445em;margin-right:0.05em;"><span
                                                     class="pstrut" style="height:2.7em;"></span><span
                                                     class="sizing reset-size6 size3 mtight"><span
-                                                        class="mord mtight"><span
-                                                            class="mord mtight">Ω</span></span></span></span></span><span
+                                                        class="mord mtight"><span class="mord mtight"><span
+                                                                class="mord mtight">Ω</span><span class="msupsub"><span
+                                                                    class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                                            class="vlist"
+                                                                            style="height:0.16454285714285719em;"><span
+                                                                                style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:2.5em;"></span><span
+                                                                                    class="sizing reset-size3 size1 mtight"><span
+                                                                                        class="mord mathnormal mtight"
+                                                                                        style="margin-right:0.0037em;">α</span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:0.9119499999999999em;"><span></span></span></span></span></span></span><span
+                                            style="height:1.01205em;"><span></span></span></span></span></span></span><span
                             class="mspace" style="margin-right:0.16666666666666666em;"></span><span
                             class="mord">−</span><span class="mord"><span class="mopen nulldelimiter"></span><span
                                 class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
@@ -17488,9 +17686,9 @@ M834 80h400000v40h-400000z' />
                             style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
                             class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
                         class="base"><span class="strut"
-                            style="height:2.5142200000000003em;vertical-align:-0.9300000000000002em;"></span><span
-                            class="mord">−</span><span class="mord"><span class="mopen nulldelimiter"></span><span
-                                class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                            style="height:2.59627em;vertical-align:-1.01205em;"></span><span class="mord">−</span><span
+                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
                                             style="height:1.5842200000000002em;"><span style="top:-2.30972em;"><span
                                                     class="pstrut" style="height:3em;"></span><span class="mord"><span
                                                         class="mord">2</span><span class="mord sqrt"><span
@@ -17571,13 +17769,25 @@ M834 80h400000v40h-400000z' />
                                 style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span
                                 class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
                                             style="height:-0.433619em;"><span
-                                                style="top:-1.7880500000000001em;margin-left:-0.44445em;margin-right:0.05em;"><span
+                                                style="top:-1.7880500000000004em;margin-left:-0.44445em;margin-right:0.05em;"><span
                                                     class="pstrut" style="height:2.7em;"></span><span
                                                     class="sizing reset-size6 size3 mtight"><span
-                                                        class="mord mtight"><span
-                                                            class="mord mtight">Ω</span></span></span></span></span><span
+                                                        class="mord mtight"><span class="mord mtight"><span
+                                                                class="mord mtight">Ω</span><span class="msupsub"><span
+                                                                    class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                                            class="vlist"
+                                                                            style="height:0.16454285714285719em;"><span
+                                                                                style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:2.5em;"></span><span
+                                                                                    class="sizing reset-size3 size1 mtight"><span
+                                                                                        class="mord mathnormal mtight"
+                                                                                        style="margin-right:0.0037em;">α</span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:0.9119499999999999em;"><span></span></span></span></span></span></span><span
+                                            style="height:1.01205em;"><span></span></span></span></span></span></span><span
                             class="mspace" style="margin-right:0.16666666666666666em;"></span><span
                             class="mord mathnormal">x</span><span class="mspace"
                             style="margin-right:0.16666666666666666em;"></span><span
@@ -18256,8 +18466,6 @@ M834 80h400000v40h-400000z' />
                         class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span
                             class="mord">0</span></span></span></span></eq>
     </p>
-    <p dir="auto"><a
-            href="https://github.com/microsoft/DirectXMath/blob/jul2018b/SHMath/DirectXSH.cpp#L35">ComputeCapInt</a></p>
     <p dir="auto"><a
             href="https://github.com/microsoft/DirectXMath/blob/jul2018b/SHMath/DirectXSH.cpp#L4664">XMSHEvalConeLight</a>
     </p>
