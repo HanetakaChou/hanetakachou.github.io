@@ -13,10 +13,12 @@
     <h1 dir="auto" id="environment-lighting">Environment Lighting</h1>
     <p dir="auto">The name <strong>environment lighting</strong> is from &quot;10.2 Environment Lighting&quot; of <a
             href="https://www.realtimerendering.com/">Real-Time Rendering Fourth Edition</a>. By &quot;10.2 Environment
-        Lighting&quot; of <a href="https://www.realtimerendering.com/">Real-Time Rendering Fourth Edition</a> and
+        Lighting&quot; of <a href="https://www.realtimerendering.com/">Real-Time Rendering Fourth Edition</a>,
         &quot;14.4 The Light Transport Equation&quot; of <a
-            href="https://pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/The_Light_Transport_Equation">PBR
-            Book V3</a>, the most important difference between environment lighting (local illumination) and global
+            href="https://pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/The_Light_Transport_Equation#">PBR
+            Book V3</a> and &quot;13.1 The Light Transport Equation&quot; of <a
+            href="https://pbr-book.org/4ed/Light_Transport_I_Surface_Reflection/The_Light_Transport_Equation#">PBR Book
+            V4</a>, the most important difference between environment lighting (local illumination) and global
         illumination is that the shading algorithm of the environment lighting (local illumination) is independent of
         the other positions on the surface except the shading position. Hence, when we are discussing the environment
         lighting, the position parameter <eq><span class="katex"><span class="katex-mathml"><math
@@ -426,7 +428,7 @@
                                                     style="height:0.15em;"><span></span></span></span></span></span></span></span></span>
                     </eq>
                 </td>
-                <td style="text-align:center">Incident Direction</td>
+                <td style="text-align:center">Incident Direction in Tangent Space</td>
                 <td style="text-align:center">L</td>
             </tr>
             <tr dir="auto">
@@ -484,7 +486,7 @@
                                                     style="height:0.15em;"><span></span></span></span></span></span></span></span></span>
                     </eq>
                 </td>
-                <td style="text-align:center">Outgoing Direction</td>
+                <td style="text-align:center">Outgoing Direction in Tangent Space</td>
                 <td style="text-align:center">V</td>
             </tr>
             <tr dir="auto">
@@ -854,8 +856,49 @@
                                                     style="height:0.15em;"><span></span></span></span></span></span></span></span></span>
                     </eq>
                 </td>
-                <td style="text-align:center">Half Vector</td>
+                <td style="text-align:center">Half Vector in Tangent Space</td>
                 <td style="text-align:center">H</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">
+                    <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                        <mrow>
+                                            <mstyle scriptlevel="0" displaystyle="true">
+                                                <mover accent="true">
+                                                    <mi>n</mi>
+                                                    <mo stretchy="true">→</mo>
+                                                </mover>
+                                            </mstyle>
+                                        </mrow>
+                                        <annotation encoding="application/x-tex">\displaystyle \overrightarrow{n}
+                                        </annotation>
+                                    </semantics>
+                                </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                        class="strut"
+                                        style="height:0.9525600000000001em;vertical-align:0em;"></span><span
+                                        class="mord accent"><span class="vlist-t"><span class="vlist-r"><span
+                                                    class="vlist" style="height:0.9525600000000001em;"><span
+                                                        style="top:-3em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span
+                                                            class="mord mathnormal">n</span></span><span
+                                                        class="svg-align" style="top:-3.43056em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="hide-tail"
+                                                            style="height:0.522em;min-width:0.888em;"><svg width='400em'
+                                                                height='0.522em' viewBox='0 0 400000 522'
+                                                                preserveAspectRatio='xMaxYMin slice'>
+                                                                <path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
+-16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
+ 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
+ 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
+-40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
+-12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
+ 151.7 139 205zm0 0v40h399900v-40z' />
+                                                            </svg></span></span></span></span></span></span></span></span></span>
+                    </eq>
+                </td>
+                <td style="text-align:center">Normal in World Space</td>
+                <td style="text-align:center">N</td>
             </tr>
         </tbody>
     </table>
@@ -14223,7 +14266,7 @@ M834 80h400000v40h-400000z' />
                                                 class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                                 style="height:3.3500499999999995em;"><span></span></span></span></span></span></span></span></span></span></span>
         </eq>.</p>
-    <h5 dir="auto" id="1-1-3-1-sh-rotational-invariance">1-1-3-1. SH Rotational Invariance</h5>
+    <h4 dir="auto" id="1-1-4-sh-rotational-invariance">1-1-4. SH Rotational Invariance</h4>
     <p dir="auto">Let <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
@@ -18310,7 +18353,7 @@ M834 80h400000v40h-400000z' />
                                 class="mopen">(</span><span class="mord mathrm">R</span><span
                                 class="mclose">)</span></span></span></span></eq>.</p>
     </blockquote>
-    <h5 dir="auto" id="1-1-3-2-sh-product-integration">1-1-3-2. SH Product Integration</h5>
+    <h4 dir="auto" id="1-1-5-sh-product-integration">1-1-5. SH Product Integration</h4>
     <p dir="auto">Let <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
@@ -19187,7 +19230,7 @@ M834 80h400000v40h-400000z' />
                                             style="height:0.247em;"><span></span></span></span></span></span></span></span></span></span>
         </eq>.
     </p>
-    <h5 dir="auto" id="1-1-3-3-sh-product-projection">1-1-3-3. SH Product Projection</h5>
+    <h4 dir="auto" id="1-1-6-sh-product-projection">1-1-6. SH Product Projection</h4>
     <p dir="auto">Actually, &quot;SH Product Projection&quot; is related to the <strong>Clebsch–Gordan
             coefficients</strong> which is too complex to be used in rendering. We only need to know that &quot;SH
         Product Projection&quot; should be distinguished from &quot;SH Product Integration&quot;.</p>
@@ -19742,7 +19785,7 @@ M834 80h400000v40h-400000z' />
  151.7 139 205zm0 0v40h399900v-40z' />
                                                 </svg></span></span></span></span></span></span></span></span></span>
         </eq> which is totally different from &quot;SH Product Integration&quot;.</p>
-    <h4 dir="auto" id="1-1-4-sh-convolution">1-1-4. SH convolution</h4>
+    <h3 dir="auto" id="1-2-sh-convolution">1-2. SH convolution</h3>
     <p dir="auto">Analogous to the <strong>convolution theorem</strong>, by [Ramamoorthi 2001 A], due to the circular
         symmetry of the clamped cosine <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
@@ -22894,7 +22937,7 @@ h400000v40h-400000z' />
                                                     </svg></span></span></span></span></span></span><span
                                 class="mclose">)</span></span></span></span></eq>.</p>
     </blockquote>
-    <h4 dir="auto" id="1-1-5-cubemap-texel-solid-angle">1-1-5. Cubemap Texel Solid Angle</h4>
+    <h3 dir="auto" id="1-3-cubemap-texel-solid-angle">1-3. Cubemap Texel Solid Angle</h3>
     <p dir="auto">We merely use <strong>numerical quadrature</strong> rather than <strong>Monte Carlo
             integration</strong> to integrate over the cubemap. But it should be noted that the solid angle subtended by
         each texel of the cubemap is NOT the same. Let u and v be the texcoord of the cubemap. By &quot;5.5.3 Integrals
@@ -23732,7 +23775,7 @@ analytical_omega = single(<span class="hljs-number">4.0</span>) .* single(<span 
 <span class="hljs-comment">% output: &quot;numerical:2.094395 analytic_omega:2.094395&quot;.</span>
 printf(<span class="hljs-string">&quot;numerical:%f analytical:%f\n&quot;</span>, numerical_omega, analytical_omega);
 </div></code></pre>
-    <h4 dir="auto" id="1-1-6-clamped-cosine">1-1-6. Clamped Cosine</h4>
+    <h3 dir="auto" id="1-4-clamped-cosine">1-4. Clamped Cosine</h3>
     <p dir="auto">By [Ramamoorthi 2001 B], <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
@@ -25360,7 +25403,7 @@ M834 80h400000v40h-400000z' />
             </tr>
         </tbody>
     </table>
-    <h4 dir="auto" id="1-1-7-form-factor">1-1-7. Form Factor</h4>
+    <h3 dir="auto" id="1-5-form-factor">1-5. Form Factor</h3>
     <p dir="auto">&quot;Appendix A10&quot; of [Sloan 2008] proposed a more efficient approach to reconstruct from SH
         basis than [Ramamoorthi 2001 B]. This approach is used by <a
             href="https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.core/ShaderLibrary/EntityLighting.hlsl#L37">SampleSH9</a>
