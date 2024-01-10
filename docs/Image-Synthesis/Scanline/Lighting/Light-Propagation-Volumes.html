@@ -11,6 +11,776 @@
 
 <body class="markdown-body">
     <h1 dir="auto" id="lpv-light-propagation-volumes">LPV (Light Propagation Volumes)</h1>
+    <h2 dir="auto" id="rsm-reflective-shadow-map">RSM (Reflective Shadow Map)</h2>
+    <table dir="auto">
+        <thead dir="auto">
+            <tr dir="auto">
+                <th style="text-align:center">Quantity</th>
+                <th style="text-align:center">Radiometric Name</th>
+                <th style="text-align:center">Radiometric Unit</th>
+                <th style="text-align:center">Photometric Name</th>
+                <th style="text-align:center">Photometric Unit</th>
+            </tr>
+        </thead>
+        <tbody dir="auto">
+            <tr dir="auto">
+                <td style="text-align:center">
+                    <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                        <mrow>
+                                            <mstyle scriptlevel="0" displaystyle="true">
+                                                <mtext>Power</mtext>
+                                            </mstyle>
+                                        </mrow>
+                                        <annotation encoding="application/x-tex">\displaystyle \text{Power}</annotation>
+                                    </semantics>
+                                </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                        class="strut" style="height:0.68333em;vertical-align:0em;"></span><span
+                                        class="mord text"><span class="mord">Power</span></span></span></span></span>
+                    </eq>
+                </td>
+                <td style="text-align:center">Radiant Flux <eq><span class="katex"><span class="katex-mathml"><math
+                                    xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                        <mrow>
+                                            <mstyle scriptlevel="0" displaystyle="true">
+                                                <mi mathvariant="normal">Φ</mi>
+                                            </mstyle>
+                                        </mrow>
+                                        <annotation encoding="application/x-tex">\displaystyle \mathrm{\Phi}
+                                        </annotation>
+                                    </semantics>
+                                </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                        class="strut" style="height:0.68333em;vertical-align:0em;"></span><span
+                                        class="mord mathrm">Φ</span></span></span></span></eq>
+                </td>
+                <td style="text-align:center">
+                    <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                        <mrow>
+                                            <mstyle scriptlevel="0" displaystyle="true">
+                                                <mi>W</mi>
+                                            </mstyle>
+                                        </mrow>
+                                        <annotation encoding="application/x-tex">\displaystyle W</annotation>
+                                    </semantics>
+                                </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                        class="strut" style="height:0.68333em;vertical-align:0em;"></span><span
+                                        class="mord mathnormal"
+                                        style="margin-right:0.13889em;">W</span></span></span></span></eq>
+                </td>
+                <td style="text-align:center">Luminous Flux <eq><span class="katex"><span class="katex-mathml"><math
+                                    xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                        <mrow>
+                                            <mstyle scriptlevel="0" displaystyle="true">
+                                                <mi mathvariant="normal">Φ</mi>
+                                            </mstyle>
+                                        </mrow>
+                                        <annotation encoding="application/x-tex">\displaystyle \mathrm{\Phi}
+                                        </annotation>
+                                    </semantics>
+                                </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                        class="strut" style="height:0.68333em;vertical-align:0em;"></span><span
+                                        class="mord mathrm">Φ</span></span></span></span></eq>
+                </td>
+                <td style="text-align:center">Lumen <eq><span class="katex"><span class="katex-mathml"><math
+                                    xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                        <mrow>
+                                            <mstyle scriptlevel="0" displaystyle="true">
+                                                <mrow>
+                                                    <mi mathvariant="normal">l</mi>
+                                                    <mi mathvariant="normal">m</mi>
+                                                </mrow>
+                                            </mstyle>
+                                        </mrow>
+                                        <annotation encoding="application/x-tex">\displaystyle \mathrm{lm}</annotation>
+                                    </semantics>
+                                </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                        class="strut" style="height:0.69444em;vertical-align:0em;"></span><span
+                                        class="mord"><span class="mord mathrm">lm</span></span></span></span></span>
+                    </eq>
+                </td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">
+                    <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                        <mrow>
+                                            <mstyle scriptlevel="0" displaystyle="true">
+                                                <mfrac>
+                                                    <mtext>Power</mtext>
+                                                    <mtext>Solid Angle</mtext>
+                                                </mfrac>
+                                            </mstyle>
+                                        </mrow>
+                                        <annotation encoding="application/x-tex">\displaystyle
+                                            \frac{\text{Power}}{\text{Solid Angle}}</annotation>
+                                    </semantics>
+                                </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                        class="strut"
+                                        style="height:2.2407700000000004em;vertical-align:-0.8804400000000001em;"></span><span
+                                        class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                                class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                        style="height:1.36033em;"><span style="top:-2.314em;"><span
+                                                                class="pstrut" style="height:3em;"></span><span
+                                                                class="mord"><span class="mord text"><span
+                                                                        class="mord">Solid Angle</span></span></span></span><span
+                                                            style="top:-3.23em;"><span class="pstrut"
+                                                                style="height:3em;"></span><span class="frac-line"
+                                                                style="border-bottom-width:0.04em;"></span></span><span
+                                                            style="top:-3.677em;"><span class="pstrut"
+                                                                style="height:3em;"></span><span class="mord"><span
+                                                                    class="mord text"><span
+                                                                        class="mord">Power</span></span></span></span></span><span
+                                                        class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                        class="vlist"
+                                                        style="height:0.8804400000000001em;"><span></span></span></span></span></span><span
+                                            class="mclose nulldelimiter"></span></span></span></span></span></eq>
+                </td>
+                <td style="text-align:center">Radiant Intensity <eq><span class="katex"><span class="katex-mathml"><math
+                                    xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                        <mrow>
+                                            <mstyle scriptlevel="0" displaystyle="true">
+                                                <mi mathvariant="normal">I</mi>
+                                            </mstyle>
+                                        </mrow>
+                                        <annotation encoding="application/x-tex">\displaystyle \mathrm{I}</annotation>
+                                    </semantics>
+                                </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                        class="strut" style="height:0.68333em;vertical-align:0em;"></span><span
+                                        class="mord mathrm">I</span></span></span></span></eq>
+                </td>
+                <td style="text-align:center">
+                    <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                        <mrow>
+                                            <mstyle scriptlevel="0" displaystyle="true">
+                                                <mfrac>
+                                                    <mi>W</mi>
+                                                    <mrow>
+                                                        <mi mathvariant="normal">s</mi>
+                                                        <mi mathvariant="normal">r</mi>
+                                                    </mrow>
+                                                </mfrac>
+                                            </mstyle>
+                                        </mrow>
+                                        <annotation encoding="application/x-tex">\displaystyle \frac{W}{\mathrm{sr}}
+                                        </annotation>
+                                    </semantics>
+                                </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                        class="strut" style="height:2.04633em;vertical-align:-0.686em;"></span><span
+                                        class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                                class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                        style="height:1.36033em;"><span style="top:-2.314em;"><span
+                                                                class="pstrut" style="height:3em;"></span><span
+                                                                class="mord"><span class="mord"><span
+                                                                        class="mord mathrm">sr</span></span></span></span><span
+                                                            style="top:-3.23em;"><span class="pstrut"
+                                                                style="height:3em;"></span><span class="frac-line"
+                                                                style="border-bottom-width:0.04em;"></span></span><span
+                                                            style="top:-3.677em;"><span class="pstrut"
+                                                                style="height:3em;"></span><span class="mord"><span
+                                                                    class="mord mathnormal"
+                                                                    style="margin-right:0.13889em;">W</span></span></span></span><span
+                                                        class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                        class="vlist"
+                                                        style="height:0.686em;"><span></span></span></span></span></span><span
+                                            class="mclose nulldelimiter"></span></span></span></span></span></eq>
+                </td>
+                <td style="text-align:center">Luminous Intensity <eq><span class="katex"><span
+                                class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                        <mrow>
+                                            <mstyle scriptlevel="0" displaystyle="true">
+                                                <mi mathvariant="normal">I</mi>
+                                            </mstyle>
+                                        </mrow>
+                                        <annotation encoding="application/x-tex">\displaystyle \mathrm{I}</annotation>
+                                    </semantics>
+                                </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                        class="strut" style="height:0.68333em;vertical-align:0em;"></span><span
+                                        class="mord mathrm">I</span></span></span></span></eq>
+                </td>
+                <td style="text-align:center">Candela <eq><span class="katex"><span class="katex-mathml"><math
+                                    xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                        <mrow>
+                                            <mstyle scriptlevel="0" displaystyle="true">
+                                                <mrow>
+                                                    <mi mathvariant="normal">c</mi>
+                                                    <mi mathvariant="normal">d</mi>
+                                                </mrow>
+                                            </mstyle>
+                                        </mrow>
+                                        <annotation encoding="application/x-tex">\displaystyle \mathrm{cd}</annotation>
+                                    </semantics>
+                                </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                        class="strut" style="height:0.69444em;vertical-align:0em;"></span><span
+                                        class="mord"><span class="mord mathrm">cd</span></span></span></span></span>
+                    </eq>
+                </td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">
+                    <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                        <mrow>
+                                            <mstyle scriptlevel="0" displaystyle="true">
+                                                <mfrac>
+                                                    <mtext>Power</mtext>
+                                                    <mtext>Area</mtext>
+                                                </mfrac>
+                                            </mstyle>
+                                        </mrow>
+                                        <annotation encoding="application/x-tex">\displaystyle
+                                            \frac{\text{Power}}{\text{Area}}</annotation>
+                                    </semantics>
+                                </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                        class="strut" style="height:2.04633em;vertical-align:-0.686em;"></span><span
+                                        class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                                class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                        style="height:1.36033em;"><span style="top:-2.314em;"><span
+                                                                class="pstrut" style="height:3em;"></span><span
+                                                                class="mord"><span class="mord text"><span
+                                                                        class="mord">Area</span></span></span></span><span
+                                                            style="top:-3.23em;"><span class="pstrut"
+                                                                style="height:3em;"></span><span class="frac-line"
+                                                                style="border-bottom-width:0.04em;"></span></span><span
+                                                            style="top:-3.677em;"><span class="pstrut"
+                                                                style="height:3em;"></span><span class="mord"><span
+                                                                    class="mord text"><span
+                                                                        class="mord">Power</span></span></span></span></span><span
+                                                        class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                        class="vlist"
+                                                        style="height:0.686em;"><span></span></span></span></span></span><span
+                                            class="mclose nulldelimiter"></span></span></span></span></span></eq>
+                </td>
+                <td style="text-align:center">Radiant Exitance <eq><span class="katex"><span class="katex-mathml"><math
+                                    xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                        <mrow>
+                                            <mstyle scriptlevel="0" displaystyle="true">
+                                                <mi mathvariant="normal">M</mi>
+                                            </mstyle>
+                                        </mrow>
+                                        <annotation encoding="application/x-tex">\displaystyle \mathrm{M}</annotation>
+                                    </semantics>
+                                </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                        class="strut" style="height:0.68333em;vertical-align:0em;"></span><span
+                                        class="mord mathrm">M</span></span></span></span></eq> (Radiosity <eq><span
+                            class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                        <mrow>
+                                            <mstyle scriptlevel="0" displaystyle="true">
+                                                <mi mathvariant="normal">B</mi>
+                                            </mstyle>
+                                        </mrow>
+                                        <annotation encoding="application/x-tex">\displaystyle \mathrm{B}</annotation>
+                                    </semantics>
+                                </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                        class="strut" style="height:0.68333em;vertical-align:0em;"></span><span
+                                        class="mord mathrm">B</span></span></span></span></eq>)</td>
+                <td style="text-align:center">
+                    <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                        <mrow>
+                                            <mstyle scriptlevel="0" displaystyle="true">
+                                                <mfrac>
+                                                    <mi>W</mi>
+                                                    <msup>
+                                                        <mi>m</mi>
+                                                        <mn>2</mn>
+                                                    </msup>
+                                                </mfrac>
+                                            </mstyle>
+                                        </mrow>
+                                        <annotation encoding="application/x-tex">\displaystyle \frac{W}{m^2}
+                                        </annotation>
+                                    </semantics>
+                                </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                        class="strut" style="height:2.04633em;vertical-align:-0.686em;"></span><span
+                                        class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                                class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                        style="height:1.36033em;"><span style="top:-2.314em;"><span
+                                                                class="pstrut" style="height:3em;"></span><span
+                                                                class="mord"><span class="mord"><span
+                                                                        class="mord mathnormal">m</span><span
+                                                                        class="msupsub"><span class="vlist-t"><span
+                                                                                class="vlist-r"><span class="vlist"
+                                                                                    style="height:0.740108em;"><span
+                                                                                        style="top:-2.9890000000000003em;margin-right:0.05em;"><span
+                                                                                            class="pstrut"
+                                                                                            style="height:2.7em;"></span><span
+                                                                                            class="sizing reset-size6 size3 mtight"><span
+                                                                                                class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span
+                                                            style="top:-3.23em;"><span class="pstrut"
+                                                                style="height:3em;"></span><span class="frac-line"
+                                                                style="border-bottom-width:0.04em;"></span></span><span
+                                                            style="top:-3.677em;"><span class="pstrut"
+                                                                style="height:3em;"></span><span class="mord"><span
+                                                                    class="mord mathnormal"
+                                                                    style="margin-right:0.13889em;">W</span></span></span></span><span
+                                                        class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                        class="vlist"
+                                                        style="height:0.686em;"><span></span></span></span></span></span><span
+                                            class="mclose nulldelimiter"></span></span></span></span></span></eq>
+                </td>
+                <td style="text-align:center">Luminous Exitance <eq><span class="katex"><span class="katex-mathml"><math
+                                    xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                        <mrow>
+                                            <mstyle scriptlevel="0" displaystyle="true">
+                                                <mi mathvariant="normal">M</mi>
+                                            </mstyle>
+                                        </mrow>
+                                        <annotation encoding="application/x-tex">\displaystyle \mathrm{M}</annotation>
+                                    </semantics>
+                                </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                        class="strut" style="height:0.68333em;vertical-align:0em;"></span><span
+                                        class="mord mathrm">M</span></span></span></span></eq> (Luminosity <eq><span
+                            class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                        <mrow>
+                                            <mstyle scriptlevel="0" displaystyle="true">
+                                                <mi mathvariant="normal">B</mi>
+                                            </mstyle>
+                                        </mrow>
+                                        <annotation encoding="application/x-tex">\displaystyle \mathrm{B}</annotation>
+                                    </semantics>
+                                </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                        class="strut" style="height:0.68333em;vertical-align:0em;"></span><span
+                                        class="mord mathrm">B</span></span></span></span></eq>)</td>
+                <td style="text-align:center">Lux <eq><span class="katex"><span class="katex-mathml"><math
+                                    xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                        <mrow>
+                                            <mstyle scriptlevel="0" displaystyle="true">
+                                                <mrow>
+                                                    <mi mathvariant="normal">l</mi>
+                                                    <mi mathvariant="normal">x</mi>
+                                                </mrow>
+                                            </mstyle>
+                                        </mrow>
+                                        <annotation encoding="application/x-tex">\displaystyle \mathrm{lx}</annotation>
+                                    </semantics>
+                                </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                        class="strut" style="height:0.69444em;vertical-align:0em;"></span><span
+                                        class="mord"><span class="mord mathrm">lx</span></span></span></span></span>
+                    </eq>
+                </td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">
+                    <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                        <mrow>
+                                            <mstyle scriptlevel="0" displaystyle="true">
+                                                <mfrac>
+                                                    <mtext>Power</mtext>
+                                                    <mtext>Area</mtext>
+                                                </mfrac>
+                                            </mstyle>
+                                        </mrow>
+                                        <annotation encoding="application/x-tex">\displaystyle
+                                            \frac{\text{Power}}{\text{Area}}</annotation>
+                                    </semantics>
+                                </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                        class="strut" style="height:2.04633em;vertical-align:-0.686em;"></span><span
+                                        class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                                class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                        style="height:1.36033em;"><span style="top:-2.314em;"><span
+                                                                class="pstrut" style="height:3em;"></span><span
+                                                                class="mord"><span class="mord text"><span
+                                                                        class="mord">Area</span></span></span></span><span
+                                                            style="top:-3.23em;"><span class="pstrut"
+                                                                style="height:3em;"></span><span class="frac-line"
+                                                                style="border-bottom-width:0.04em;"></span></span><span
+                                                            style="top:-3.677em;"><span class="pstrut"
+                                                                style="height:3em;"></span><span class="mord"><span
+                                                                    class="mord text"><span
+                                                                        class="mord">Power</span></span></span></span></span><span
+                                                        class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                        class="vlist"
+                                                        style="height:0.686em;"><span></span></span></span></span></span><span
+                                            class="mclose nulldelimiter"></span></span></span></span></span></eq>
+                </td>
+                <td style="text-align:center">Irradiance <eq><span class="katex"><span class="katex-mathml"><math
+                                    xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                        <mrow>
+                                            <mstyle scriptlevel="0" displaystyle="true">
+                                                <mi mathvariant="normal">E</mi>
+                                            </mstyle>
+                                        </mrow>
+                                        <annotation encoding="application/x-tex">\displaystyle \mathrm{E}</annotation>
+                                    </semantics>
+                                </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                        class="strut" style="height:0.68333em;vertical-align:0em;"></span><span
+                                        class="mord mathrm">E</span></span></span></span></eq>
+                </td>
+                <td style="text-align:center">
+                    <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                        <mrow>
+                                            <mstyle scriptlevel="0" displaystyle="true">
+                                                <mfrac>
+                                                    <mi>W</mi>
+                                                    <msup>
+                                                        <mi>m</mi>
+                                                        <mn>2</mn>
+                                                    </msup>
+                                                </mfrac>
+                                            </mstyle>
+                                        </mrow>
+                                        <annotation encoding="application/x-tex">\displaystyle \frac{W}{m^2}
+                                        </annotation>
+                                    </semantics>
+                                </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                        class="strut" style="height:2.04633em;vertical-align:-0.686em;"></span><span
+                                        class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                                class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                        style="height:1.36033em;"><span style="top:-2.314em;"><span
+                                                                class="pstrut" style="height:3em;"></span><span
+                                                                class="mord"><span class="mord"><span
+                                                                        class="mord mathnormal">m</span><span
+                                                                        class="msupsub"><span class="vlist-t"><span
+                                                                                class="vlist-r"><span class="vlist"
+                                                                                    style="height:0.740108em;"><span
+                                                                                        style="top:-2.9890000000000003em;margin-right:0.05em;"><span
+                                                                                            class="pstrut"
+                                                                                            style="height:2.7em;"></span><span
+                                                                                            class="sizing reset-size6 size3 mtight"><span
+                                                                                                class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span
+                                                            style="top:-3.23em;"><span class="pstrut"
+                                                                style="height:3em;"></span><span class="frac-line"
+                                                                style="border-bottom-width:0.04em;"></span></span><span
+                                                            style="top:-3.677em;"><span class="pstrut"
+                                                                style="height:3em;"></span><span class="mord"><span
+                                                                    class="mord mathnormal"
+                                                                    style="margin-right:0.13889em;">W</span></span></span></span><span
+                                                        class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                        class="vlist"
+                                                        style="height:0.686em;"><span></span></span></span></span></span><span
+                                            class="mclose nulldelimiter"></span></span></span></span></span></eq>
+                </td>
+                <td style="text-align:center">Illuminance <eq><span class="katex"><span class="katex-mathml"><math
+                                    xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                        <mrow>
+                                            <mstyle scriptlevel="0" displaystyle="true">
+                                                <mi mathvariant="normal">E</mi>
+                                            </mstyle>
+                                        </mrow>
+                                        <annotation encoding="application/x-tex">\displaystyle \mathrm{E}</annotation>
+                                    </semantics>
+                                </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                        class="strut" style="height:0.68333em;vertical-align:0em;"></span><span
+                                        class="mord mathrm">E</span></span></span></span></eq>
+                </td>
+                <td style="text-align:center">Lux <eq><span class="katex"><span class="katex-mathml"><math
+                                    xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                        <mrow>
+                                            <mstyle scriptlevel="0" displaystyle="true">
+                                                <mrow>
+                                                    <mi mathvariant="normal">l</mi>
+                                                    <mi mathvariant="normal">x</mi>
+                                                </mrow>
+                                            </mstyle>
+                                        </mrow>
+                                        <annotation encoding="application/x-tex">\displaystyle \mathrm{lx}</annotation>
+                                    </semantics>
+                                </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                        class="strut" style="height:0.69444em;vertical-align:0em;"></span><span
+                                        class="mord"><span class="mord mathrm">lx</span></span></span></span></span>
+                    </eq>
+                </td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">
+                    <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                        <mrow>
+                                            <mstyle scriptlevel="0" displaystyle="true">
+                                                <mfrac>
+                                                    <mtext>Power</mtext>
+                                                    <mrow>
+                                                        <mtext>Area</mtext>
+                                                        <mo>⋅</mo>
+                                                        <mtext>Solid Angle</mtext>
+                                                    </mrow>
+                                                </mfrac>
+                                            </mstyle>
+                                        </mrow>
+                                        <annotation encoding="application/x-tex">\displaystyle
+                                            \frac{\text{Power}}{\text{Area} \cdot \text{Solid Angle}}</annotation>
+                                    </semantics>
+                                </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                        class="strut"
+                                        style="height:2.2407700000000004em;vertical-align:-0.8804400000000001em;"></span><span
+                                        class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                                class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                        style="height:1.36033em;"><span style="top:-2.314em;"><span
+                                                                class="pstrut" style="height:3em;"></span><span
+                                                                class="mord"><span class="mord text"><span
+                                                                        class="mord">Area</span></span><span
+                                                                    class="mspace"
+                                                                    style="margin-right:0.2222222222222222em;"></span><span
+                                                                    class="mbin">⋅</span><span class="mspace"
+                                                                    style="margin-right:0.2222222222222222em;"></span><span
+                                                                    class="mord text"><span
+                                                                        class="mord">Solid Angle</span></span></span></span><span
+                                                            style="top:-3.23em;"><span class="pstrut"
+                                                                style="height:3em;"></span><span class="frac-line"
+                                                                style="border-bottom-width:0.04em;"></span></span><span
+                                                            style="top:-3.677em;"><span class="pstrut"
+                                                                style="height:3em;"></span><span class="mord"><span
+                                                                    class="mord text"><span
+                                                                        class="mord">Power</span></span></span></span></span><span
+                                                        class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                        class="vlist"
+                                                        style="height:0.8804400000000001em;"><span></span></span></span></span></span><span
+                                            class="mclose nulldelimiter"></span></span></span></span></span></eq>
+                </td>
+                <td style="text-align:center">Radiance <eq><span class="katex"><span class="katex-mathml"><math
+                                    xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                        <mrow>
+                                            <mstyle scriptlevel="0" displaystyle="true">
+                                                <mi mathvariant="normal">L</mi>
+                                            </mstyle>
+                                        </mrow>
+                                        <annotation encoding="application/x-tex">\displaystyle \mathrm{L}</annotation>
+                                    </semantics>
+                                </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                        class="strut" style="height:0.68333em;vertical-align:0em;"></span><span
+                                        class="mord mathrm">L</span></span></span></span></eq>
+                </td>
+                <td style="text-align:center">
+                    <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                        <mrow>
+                                            <mstyle scriptlevel="0" displaystyle="true">
+                                                <mfrac>
+                                                    <mi>W</mi>
+                                                    <mrow>
+                                                        <msup>
+                                                            <mi>m</mi>
+                                                            <mn>2</mn>
+                                                        </msup>
+                                                        <mo>⋅</mo>
+                                                        <mrow>
+                                                            <mi mathvariant="normal">s</mi>
+                                                            <mi mathvariant="normal">r</mi>
+                                                        </mrow>
+                                                    </mrow>
+                                                </mfrac>
+                                            </mstyle>
+                                        </mrow>
+                                        <annotation encoding="application/x-tex">\displaystyle \frac{W}{m^2 \cdot
+                                            \mathrm{sr}}</annotation>
+                                    </semantics>
+                                </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                        class="strut" style="height:2.04633em;vertical-align:-0.686em;"></span><span
+                                        class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                                class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                        style="height:1.36033em;"><span style="top:-2.314em;"><span
+                                                                class="pstrut" style="height:3em;"></span><span
+                                                                class="mord"><span class="mord"><span
+                                                                        class="mord mathnormal">m</span><span
+                                                                        class="msupsub"><span class="vlist-t"><span
+                                                                                class="vlist-r"><span class="vlist"
+                                                                                    style="height:0.740108em;"><span
+                                                                                        style="top:-2.9890000000000003em;margin-right:0.05em;"><span
+                                                                                            class="pstrut"
+                                                                                            style="height:2.7em;"></span><span
+                                                                                            class="sizing reset-size6 size3 mtight"><span
+                                                                                                class="mord mtight">2</span></span></span></span></span></span></span></span><span
+                                                                    class="mspace"
+                                                                    style="margin-right:0.2222222222222222em;"></span><span
+                                                                    class="mbin">⋅</span><span class="mspace"
+                                                                    style="margin-right:0.2222222222222222em;"></span><span
+                                                                    class="mord"><span
+                                                                        class="mord mathrm">sr</span></span></span></span><span
+                                                            style="top:-3.23em;"><span class="pstrut"
+                                                                style="height:3em;"></span><span class="frac-line"
+                                                                style="border-bottom-width:0.04em;"></span></span><span
+                                                            style="top:-3.677em;"><span class="pstrut"
+                                                                style="height:3em;"></span><span class="mord"><span
+                                                                    class="mord mathnormal"
+                                                                    style="margin-right:0.13889em;">W</span></span></span></span><span
+                                                        class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                        class="vlist"
+                                                        style="height:0.686em;"><span></span></span></span></span></span><span
+                                            class="mclose nulldelimiter"></span></span></span></span></span></eq>
+                </td>
+                <td style="text-align:center">Luminance <eq><span class="katex"><span class="katex-mathml"><math
+                                    xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                        <mrow>
+                                            <mstyle scriptlevel="0" displaystyle="true">
+                                                <mi mathvariant="normal">L</mi>
+                                            </mstyle>
+                                        </mrow>
+                                        <annotation encoding="application/x-tex">\displaystyle \mathrm{L}</annotation>
+                                    </semantics>
+                                </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                        class="strut" style="height:0.68333em;vertical-align:0em;"></span><span
+                                        class="mord mathrm">L</span></span></span></span></eq>
+                </td>
+                <td style="text-align:center">Nit <eq><span class="katex"><span class="katex-mathml"><math
+                                    xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                        <mrow>
+                                            <mstyle scriptlevel="0" displaystyle="true">
+                                                <mrow>
+                                                    <mi mathvariant="normal">n</mi>
+                                                    <mi mathvariant="normal">t</mi>
+                                                </mrow>
+                                            </mstyle>
+                                        </mrow>
+                                        <annotation encoding="application/x-tex">\displaystyle \mathrm{nt}</annotation>
+                                    </semantics>
+                                </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                        class="strut" style="height:0.61508em;vertical-align:0em;"></span><span
+                                        class="mord"><span class="mord mathrm">nt</span></span></span></span></span>
+                    </eq>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <p dir="auto">For directional light, by &quot;4.6 Sun&quot; of [Lagarde 2014], the illuminance <eq><span
+                class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mi mathvariant="normal">E</mi>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle \mathrm{E}</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.68333em;vertical-align:0em;"></span><span
+                            class="mord mathrm">E</span></span></span></span></eq> for the surface perpendicular to the
+        light direction is specified.</p>
+    <p dir="auto">For point light, by &quot;4.4 Punctual lights&quot; [Lagarde 2014], the luminous flux <eq><span
+                class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mi mathvariant="normal">Φ</mi>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle \mathrm{\Phi}</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.68333em;vertical-align:0em;"></span><span
+                            class="mord mathrm">Φ</span></span></span></span></eq> is specified, and we have the
+        luminous intensity <eq><span class="katex"><span class="katex-mathml"><math
+                        xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mi mathvariant="normal">I</mi>
+                                    <mo>=</mo>
+                                    <mfrac>
+                                        <mi mathvariant="normal">Φ</mi>
+                                        <mrow>
+                                            <mn>4</mn>
+                                            <mi>π</mi>
+                                        </mrow>
+                                    </mfrac>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle \mathrm{I} = \frac{\mathrm{\Phi}}{4
+                                \pi}</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathrm">I</span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span><span
+                            class="mrel">=</span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+                            class="strut" style="height:2.04633em;vertical-align:-0.686em;"></span><span
+                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.36033em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">4</span><span class="mord mathnormal"
+                                                        style="margin-right:0.03588em;">π</span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord mathrm">Φ</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span></span></span></span></eq>. By the inverse
+        square law, we have the illuminance for the surface perpendicular to the light direction <eq><span
+                class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mi mathvariant="normal">E</mi>
+                                    <mo>=</mo>
+                                    <mfrac>
+                                        <mi mathvariant="normal">I</mi>
+                                        <msup>
+                                            <mtext>distance</mtext>
+                                            <mn>2</mn>
+                                        </msup>
+                                    </mfrac>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle \mathrm{E} =
+                                \frac{\mathrm{I}}{{\text{distance}}^2}</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathrm">E</span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span><span
+                            class="mrel">=</span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+                            class="strut" style="height:2.148778em;vertical-align:-0.7884479999999999em;"></span><span
+                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.36033em;"><span style="top:-2.211552em;"><span
+                                                    class="pstrut" style="height:3em;"></span><span class="mord"><span
+                                                        class="mord"><span class="mord"><span class="mord text"><span
+                                                                    class="mord">distance</span></span></span><span
+                                                            class="msupsub"><span class="vlist-t"><span
+                                                                    class="vlist-r"><span class="vlist"
+                                                                        style="height:0.8984479999999999em;"><span
+                                                                            style="top:-3.1473400000000002em;margin-right:0.05em;"><span
+                                                                                class="pstrut"
+                                                                                style="height:2.7em;"></span><span
+                                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                                    class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord mathrm">I</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.7884479999999999em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span></span></span></span></eq>. But the light
+        radius and the attenuation windowing function are usually specified, and the illuminance <eq><span
+                class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mi mathvariant="normal">E</mi>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle \mathrm{E}</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.68333em;vertical-align:0em;"></span><span
+                            class="mord mathrm">E</span></span></span></span></eq> will smoothly reach zero at the light
+        radius.</p>
     <h2 dir="auto" id="sh-spherical-harmonics">SH (Spherical Harmonics)</h2>
     <h3 dir="auto" id="sh-basis">SH Basis</h3>
     <p dir="auto">Let <eq><span class="katex"><span class="katex-mathml"><math
@@ -26938,6 +27708,7 @@ M834 80h400000v40h-400000z' />
             Snyder. &quot;Fast, Arbitrary BRDF Shading for Low-Frequency Lighting Using Spherical Harmonics.&quot; EGWR
             2002.</a><br>
         [Green 2003] Robin Green. &quot;Spherical Harmonic Lighting: The Gritty Details.&quot; GDC 2003.<br>
+        [Dachsbacher 2005] Carsten Dachsbacher, Marc Stamminger. &quot;Reflective Shadow Maps.&quot; I3D 2005.<br>
         [Sloan 2008] <a href="http://www.ppsloan.org/publications/StupidSH36.pdf">Peter-Pike Sloan. &quot;Stupid
             Spherical Harmonics (SH) Tricks.&quot; GDC 2008.</a><br>
         [Kaplanyan 2009] <a href="https://advances.realtimerendering.com/s2009/Light_Propagation_Volumes.pdf">Anton
@@ -26948,6 +27719,8 @@ M834 80h400000v40h-400000z' />
         Temporally Coherent Light Propagation Volumes.&quot; GPU Pro 2.<br>
         [Engel 2012] Wolfgang Engel, Igor Lobanchikov, Timothy Martin. &quot;Dynamic Global Illumination from Many
         Lights.&quot; AltDevConf 2012.<br>
+        [Lagarde 2014] <a href="https://www.ea.com/frostbite/news/moving-frostbite-to-pb">Sebastian Lagarde, Charles
+            Rousiers. &quot;Moving Frostbite to PBR.&quot; SIGGRAPH 2014.</a><br>
         [Hable 2014] <a href="http://filmicworlds.com/blog/simple-and-fast-spherical-harmonic-rotation/">John Hable.
             &quot;Simple and Fast Spherical Harmonic Rotation.&quot; Filmic Worlds Blog 2014.</a></p>
 

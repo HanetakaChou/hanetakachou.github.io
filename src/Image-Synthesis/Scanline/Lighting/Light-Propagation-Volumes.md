@@ -1,5 +1,20 @@
 # LPV (Light Propagation Volumes)  
 
+## RSM (Reflective Shadow Map)
+
+Quantity | Radiometric Name | Radiometric Unit | Photometric Name | Photometric Unit  
+ :-: | :-: | :-: | :-: | :-:  
+$\displaystyle \text{Power}$ | Radiant Flux $\displaystyle \mathrm{\Phi}$ | $\displaystyle W$ | Luminous Flux $\displaystyle \mathrm{\Phi}$ | Lumen $\displaystyle \mathrm{lm}$  
+$\displaystyle \frac{\text{Power}}{\text{Solid Angle}}$ | Radiant Intensity $\displaystyle \mathrm{I}$ | $\displaystyle \frac{W}{\mathrm{sr}}$ | Luminous Intensity $\displaystyle \mathrm{I}$ | Candela $\displaystyle \mathrm{cd}$  
+$\displaystyle \frac{\text{Power}}{\text{Area}}$ | Radiant Exitance $\displaystyle \mathrm{M}$ (Radiosity $\displaystyle \mathrm{B}$) | $\displaystyle \frac{W}{m^2}$ | Luminous Exitance $\displaystyle \mathrm{M}$ (Luminosity $\displaystyle \mathrm{B}$) | Lux $\displaystyle \mathrm{lx}$  
+$\displaystyle \frac{\text{Power}}{\text{Area}}$ | Irradiance $\displaystyle \mathrm{E}$ | $\displaystyle \frac{W}{m^2}$ | Illuminance $\displaystyle \mathrm{E}$ | Lux $\displaystyle \mathrm{lx}$  
+$\displaystyle \frac{\text{Power}}{\text{Area} \cdot \text{Solid Angle}}$ | Radiance $\displaystyle \mathrm{L}$ | $\displaystyle \frac{W}{m^2 \cdot \mathrm{sr}}$ | Luminance $\displaystyle \mathrm{L}$ | Nit $\displaystyle \mathrm{nt}$  
+
+For directional light, by "4.6 Sun" of \[Lagarde 2014\], the illuminance $\displaystyle \mathrm{E}$ for the surface perpendicular to the light direction is specified.  
+
+For point light, by "4.4 Punctual lights" \[Lagarde 2014\], the luminous flux $\displaystyle \mathrm{\Phi}$ is specified, and we have the luminous intensity $\displaystyle \mathrm{I} = \frac{\mathrm{\Phi}}{4 \pi}$. By the inverse square law, we have the illuminance for the surface perpendicular to the light direction $\displaystyle \mathrm{E} = \frac{\mathrm{I}}{{\text{distance}}^2}$. But the light radius and the attenuation windowing function are usually specified, and the illuminance $\displaystyle \mathrm{E}$ will smoothly reach zero at the light radius.  
+
+
 ## SH (Spherical Harmonics)  
 
 ### SH Basis  
@@ -121,9 +136,11 @@ However, the result $\displaystyle \operatorname{D_1}(\mathrm{R}) = \begin{bmatr
 \[Sloan 2002\] [Peter-Pike Sloan, Jan Kautz, John Snyder. "Precomputed Radiance Transfer for Real-Time Rendering in Dynamic, Low-Frequency Lighting Environments." SIGGRAPH 2002.](https://www.ppsloan.org/publications/shillum_final23.pdf)  
 \[Kautz 2002\] [Jan Kautz, Peter-Pike Sloan, John Snyder. "Fast, Arbitrary BRDF Shading for Low-Frequency Lighting Using Spherical Harmonics." EGWR 2002.](http://www.ppsloan.org/publications/shbrdf_final17.pdf)  
 \[Green 2003\] Robin Green. "Spherical Harmonic Lighting: The Gritty Details." GDC 2003.  
+\[Dachsbacher 2005\] Carsten Dachsbacher, Marc Stamminger. "Reflective Shadow Maps." I3D 2005.  
 \[Sloan 2008\] [Peter-Pike Sloan. "Stupid Spherical Harmonics (SH) Tricks." GDC 2008.](http://www.ppsloan.org/publications/StupidSH36.pdf)  
 \[Kaplanyan 2009\] [Anton Kaplanyan. "Light Propagation Volumes in CryEngine 3." SIGGRAPH 2009.](https://advances.realtimerendering.com/s2009/Light_Propagation_Volumes.pdf)  
 \[Kaplanyan 2010\] Anton Kaplanyan. "Cascaded Light Propagation Volumes for Real-Time Indirect Illumination." I3D 2010.  
 \[Kaplanyan 2011\] Anton Kaplanyan, Wolfgang Engel, Carsten Dachsbacher. "Diffuse Global Illumination with Temporally Coherent Light Propagation Volumes." GPU Pro 2.  
 \[Engel 2012\] Wolfgang Engel, Igor Lobanchikov, Timothy Martin. "Dynamic Global Illumination from Many Lights." AltDevConf 2012.  
+\[Lagarde 2014\] [Sebastian Lagarde, Charles Rousiers. "Moving Frostbite to PBR." SIGGRAPH 2014.](https://www.ea.com/frostbite/news/moving-frostbite-to-pb)  
 \[Hable 2014\] [John Hable. "Simple and Fast Spherical Harmonic Rotation." Filmic Worlds Blog 2014.](http://filmicworlds.com/blog/simple-and-fast-spherical-harmonic-rotation/)  
