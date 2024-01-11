@@ -50,7 +50,6 @@ If you find there are any mistakes or improvements, please don't hesitate to con
         - VXGI (Voxel Global Illumintaion) [Documentation](Image-Synthesis/Scanline/Lighting/Voxel-Global-Illumintaion.html) [Code](https://github.com/HanetakaChou/Voxel-Global-Illumintaion)  
         - OIT (Order Independent Transparency) [Documentation](Image-Synthesis/Scanline/Lighting/Order-Independent-Transparency.html) [Code](https://github.com/HanetakaChou/Order-Independent-Transparency)  
         - HFTS (Hybrid Frustum Traced Shadows) [Documentation](Image-Synthesis/Scanline/Lighting/Hybrid-Frustum-Traced-Shadows.html) [Code](https://github.com/HanetakaChou/Hybrid-Frustum-Traced-Shadows)  
-        - Radiometric and Photometric quantities [Documentation](Image-Synthesis/Scanline/Lighting/Radiometric-and-Photometric-quantities.html)  
         - BRDF [Documentation](Image-Synthesis/Scanline/Lighting/BRDF.html)    
 - Radiosity  
     - Radiosity [Documentation](Image-Synthesis/Radiosity/Radiosity.html)  

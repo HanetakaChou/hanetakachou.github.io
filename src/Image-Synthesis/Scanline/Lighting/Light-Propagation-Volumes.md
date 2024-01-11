@@ -2,6 +2,8 @@
 
 ## RSM (Reflective Shadow Map)
 
+### Radiometric and Photometric quantities  
+
 Quantity | Radiometric Name | Radiometric Unit | Photometric Name | Photometric Unit  
  :-: | :-: | :-: | :-: | :-:  
 $\displaystyle \text{Power}$ | Radiant Flux $\displaystyle \mathrm{\Phi}$ | $\displaystyle W$ | Luminous Flux $\displaystyle \mathrm{\Phi}$ | Lumen $\displaystyle \mathrm{lm}$  
