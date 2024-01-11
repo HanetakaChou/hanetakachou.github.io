@@ -12609,7 +12609,10 @@ M1001 80h400000v40h-400000z' />
                     </msup>
                     <mtext> </mtext>
                     <mi>d</mi>
-                    <mi>θ</mi>
+                    <msub>
+                      <mi>θ</mi>
+                      <mi>r</mi>
+                    </msub>
                     <mi>d</mi>
                     <mi>r</mi>
                     <mo>=</mo>
@@ -12728,8 +12731,8 @@ M1001 80h400000v40h-400000z' />
                 <annotation encoding="application/x-tex">\displaystyle \operatorname{D}(\theta, c) =
                   \int_{{\mathbb{R}}^2} \operatorname{R_N}(\| \overrightarrow{p_i} - \overrightarrow{p_o} \|) {(\cos
                   \theta_i)}^+ \, d \overrightarrow{p_i} = \int_0^\infin \int_0^{2\pi} \operatorname{R_N}(r) r {(\cos
-                  \theta_i)}^+ \, d \theta dr = \int_0^\infin 2 \pi \operatorname{R_N} (r) r {(\cos \theta_i)}^+ \, dr =
-                  \int_0^{2c} 2 \pi \operatorname{R_N} (r) r {(\cos \theta_i)}^+ \, dr + \int_{2c}^\infin 2 \pi
+                  \theta_i)}^+ \, d \theta_r dr = \int_0^\infin 2 \pi \operatorname{R_N} (r) r {(\cos \theta_i)}^+ \, dr
+                  = \int_0^{2c} 2 \pi \operatorname{R_N} (r) r {(\cos \theta_i)}^+ \, dr + \int_{2c}^\infin 2 \pi
                   \operatorname{R_N} (r) r {(\cos \theta_i)}^+ \, dr</annotation>
               </semantics>
             </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
@@ -12916,9 +12919,17 @@ M1001 80h400000v40h-400000z' />
                             style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
                               class="mbin mtight">+</span></span></span></span></span></span></span></span><span
                 class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                class="mord mathnormal">d</span><span class="mord"><span class="mord mathnormal"
+                  style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+                      class="vlist-r"><span class="vlist" style="height:0.151392em;"><span
+                          style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span
+                            class="pstrut" style="height:2.7em;"></span><span
+                            class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight"
+                              style="margin-right:0.02778em;">r</span></span></span></span><span
+                        class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                        style="height:0.15em;"><span></span></span></span></span></span></span><span
                 class="mord mathnormal">d</span><span class="mord mathnormal"
-                style="margin-right:0.02778em;">θ</span><span class="mord mathnormal">d</span><span
-                class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mspace"
+                style="margin-right:0.02778em;">r</span><span class="mspace"
                 style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace"
                 style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut"
                 style="height:2.326242em;vertical-align:-0.9119499999999999em;"></span><span class="mop"><span
@@ -13061,7 +13072,30 @@ M1001 80h400000v40h-400000z' />
                               class="mbin mtight">+</span></span></span></span></span></span></span></span><span
                 class="mspace" style="margin-right:0.16666666666666666em;"></span><span
                 class="mord mathnormal">d</span><span class="mord mathnormal"
-                style="margin-right:0.02778em;">r</span></span></span></span></eq>.</p>
+                style="margin-right:0.02778em;">r</span></span></span></span></eq>. Note that <eq><span
+          class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+              <semantics>
+                <mrow>
+                  <mstyle scriptlevel="0" displaystyle="true">
+                    <msub>
+                      <mi>θ</mi>
+                      <mi>r</mi>
+                    </msub>
+                  </mstyle>
+                </mrow>
+                <annotation encoding="application/x-tex">\displaystyle \theta_r</annotation>
+              </semantics>
+            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal"
+                  style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+                      class="vlist-r"><span class="vlist" style="height:0.151392em;"><span
+                          style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span
+                            class="pstrut" style="height:2.7em;"></span><span
+                            class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight"
+                              style="margin-right:0.02778em;">r</span></span></span></span><span
+                        class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                        style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
+      </eq> is the polar coordinate which is not marked in the figure and is reduced due to the circular symmetry.</p>
     <p dir="auto">By &quot;Figure 15.10&quot; of <a
         href="https://pbr-book.org/3ed-2018/Light_Transport_II_Volume_Rendering/Sampling_Subsurface_Reflection_Functions#fig:probe-segment-length">PBR
         Book</a>, the diffusion profile falls off fairly quickly and the vicinal position <eq><span class="katex"><span
