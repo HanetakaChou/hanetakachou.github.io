@@ -200,7 +200,7 @@ TransparentColor = ${\begin{cases} {\displaystyle\sum_{i = 0}^n} {  ( \operatorn
 Note that the StochasticTotalAlpha of opaque geometries is evidently zero. However, due to the random sampling, the StochasticTotalAlpha of the transparent geometries can be zero as well.  
 
 > Then, add the TransparentColor to the final color $\displaystyle C_{Final}$ by the Over Operation:  
-$\displaystyle C_{Final}$ = TransparentColor + CorrectAlphaTotal × BackgroundColor)  
+$\displaystyle C_{Final}$ = TransparentColor + CorrectAlphaTotal × BackgroundColor  
 Note that the BackgroundColor has been added to the color buffer. We can output the TransparentColor and CorrectAlphaTotal in the fragment shader and use the Alpha blend hardware feature to implement the Over Operation.  
 
 ### 3-2-4\. Tile/On-Chip Memory  
@@ -309,16 +309,16 @@ The demo was originally the "StochasticTransparency" of the "NVIDIA SDK11 Sample
 
 ## 3-3\. K-Buffer  
 
-Carpenter proposed the "A-Buffer"(11.[Carpenter 1984]) in the same year when Porter proposed the Alpha channel. In the A-Buffer, each pixel corresponds to a list in which all fragments corresponding to this pixel are stored. After sorting the fragments in the list by the depth, evidently we can use Over/Under operation to calculate the final color $\displaystyle C_{Final}$.  
+Carpenter proposed the "A-Buffer" (11.[Carpenter 1984]) in the same year when Porter proposed the Alpha channel. In the A-Buffer, each pixel corresponds to a list in which all fragments corresponding to this pixel are stored. After sorting the fragments in the list by the depth, evidently we can use Over/Under operation to calculate the final color $\displaystyle C_{Final}$.  
 Although A-Buffer can be implemented by UAV/StorageImage and atomic operations at present, the implementation is very tedious and inelegant. Besides, the performance of the list is low since the address of the list is not continuous and thus unfriendly to the cache. Thus there is almost no implementation in reality.
 
-Bavoil improved the A-Buffer and proposed K-Buffer(12.[Bavoil 2007]) in 2007. In K-Buffer, we limit the number of the fragments corresponding to each pixel to no more than K. With this limit, the K-Buffer can be implemented more elegantly and efficiently.
+Bavoil improved the A-Buffer and proposed K-Buffer (12.[Bavoil 2007]) in 2007. In K-Buffer, we limit the number of the fragments corresponding to each pixel to no more than K. With this limit, the K-Buffer can be implemented more elegantly and efficiently.
   
-### 3-3-1\. RMW(Read Modify Write) Operation  
+### 3-3-1\. RMW (Read Modify Write) Operation  
 In the renderpass in which we generate the K-Buffer, the following RMW operation is performed on each fragment:  
-1\.Read: read the (at most K) fragments corresponding to the same pixel from K-Buffer  
-2\.Modify: use the information of the current fragment and modified the (at most K) fragments which have been read from the K-Buffer  
-3\.Write: write the (at most K) fragments which have been modified to the K-Buffer  
+1\. Read: read the (at most K) fragments corresponding to the same pixel from K-Buffer  
+2\. Modify: use the information of the current fragment and modified the (at most K) fragments which have been read from the K-Buffer  
+3\. Write: write the (at most K) fragments which have been modified to the K-Buffer  
 
 For the current hardware, we can immediately implement the RMW operation by the UAV/StorageImage. However, things are far from simple. In general, the RMW operations performed on the fragments corresponding to the same pixel should be mutually exclusive to ensure the correctness.  
   
@@ -326,37 +326,39 @@ Although the API guarantees the order and dependency of different draw calls, th
 
 The API doesn't guarantee the order or dependency of the executions of the fragments (corresponding to the same pixel) inside the same draw call. Evidently, the executions can be considered to be parallel since the GPU is intrinsically parallel.  
 
-The desktop GPU is "Sort-Last Fragment"(13.[Ragan-Kelley 2011]). The parallelism of the fragments is expected to be high since the synchronization occurs at the "Reorder Buffer"(13.[Ragan-Kelley 2011]) which is after the fragment shader and just before the Alpha blend.
+The desktop GPU is "Sort-Last Fragment" (13.[Ragan-Kelley 2011]). The parallelism of the fragments is expected to be high since the synchronization occurs at the "Reorder Buffer" (13.[Ragan-Kelley 2011]) which is after the fragment shader and just before the Alpha blend.
 
-The mobile GPU is "Tile-Based Sort-Middle"(13.[Ragan-Kelley 2011]). The executions of the fragments corresponding to the same pixel inside the same draw call can be considered to be serial(13.[Ragan-Kelley 2011]) since there doesn't exist the "Reorder Buffer". However, we shouldn't rely on this since the API doesn't guarantee that.  
+The mobile GPU is "Tile-Based Sort-Middle" (13.[Ragan-Kelley 2011]). The executions of the fragments corresponding to the same pixel inside the same draw call can be considered to be serial (13.[Ragan-Kelley 2011]) since there doesn't exist the "Reorder Buffer". However, we shouldn't rely on this since the API doesn't guarantee that.  
 
-Bavoil proposed two hardware proposals the "Fragment Scheduling" and the "Programmable Blending" to solve this problem in 2007(12.[Bavoil 2007]). Both two proposals have been widely supported by the hardware in reality at present.  
+Bavoil proposed two hardware proposals the "Fragment Scheduling" and the "Programmable Blending" to solve this problem in 2007 (12.[Bavoil 2007]). Both two proposals have been widely supported by the hardware in reality at present.  
 
 ### 3-3-2\. Fragment Scheduling  
 
 The fragment scheduling corresponds to the RasterOrderView/FragmentShaderInterlock/RasterOrderGroup(14.[D 2015], 15.[D 2017]) at present which is generally suitable to the desktop GPU.  
 
 The pseudo code to implement the K-Buffer by the fragment scheduling is generally as the following:   
-```  
-    calcalte lighting and shading ... //This part of code doesn't need to be mutually exclusive
+```c++  
+    // This part of code doesn't need to be mutually exclusive
+    calcalte lighting and shading ... 
                                                 
-    //Enter the critical section
-    #if RasterOrderView //Direct3D
+    // Enter the critical section
+    #if RasterOrderView // Direct3D
         read from ROV
-    #elif FragmentShaderInterlock //OpenGL/Vulkan
+    #elif FragmentShaderInterlock // OpenGL/Vulkan
         beginInvocationInterlockARB
-    #elif RasterOrderGroup //Metal
+    #elif RasterOrderGroup // Metal
         read from ROG
     #endif
 
-    perform the RMW operation on the K-Buffer ... //This part of code is within the protection of the critical section
+    // This part of code is within the protection of the critical section
+    perform the RMW operation on the K-Buffer ... 
 
-    //Leave the critical section
-    #if RasterOrderView //Direct3D)
+    // Leave the critical section
+    #if RasterOrderView // Direct3D
         write to ROV
-    #elif FragmentShaderInterlock //OpenGL/Vulkan)
+    #elif FragmentShaderInterlock // OpenGL/Vulkan
         endInvocationInterlockARB
-    #elif RasterOrderGroup //Metal
+    #elif RasterOrderGroup // Metal
         write to ROG
     #endif
 ```  
@@ -364,12 +366,12 @@ In theory, the contents which we read from or write to the ROV/ROG is not import
 
 ### 3-3-3\. Programmable Blending  
 
-The programmable blending corresponds to the FrameBufferFetch/\[color(m)\]Attribute(16.[Bjorge 2014], 17.[Apple]）at present which is generally suitable to the mobile GPU.  
+The programmable blending, which is generally suitable for the mobile GPU, corresponds to the [GL_EXT_shader_framebuffer_fetch](https://github.com/KhronosGroup/VK-GL-CTS/blob/main/modules/gles31/functional/es31fShaderFramebufferFetchTests.cpp) extension in OpenGL, the \[\[color(m)\]\] attribute in Metal ("Table 5.5. Attributes for fragment function input arguments" of [Metal Shading Language Specification](https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf)) and the [VK_EXT_rasterization_order_attachment_access](https://github.com/KhronosGroup/VK-GL-CTS/blob/main/external/vulkancts/modules/vulkan/rasterization/vktRasterizationOrderAttachmentAccessTests.cpp) extension in Vulkan.  
 
-The programmable blending allows the fragment shader to read the ColorAttachment and perform RMW operation on the ColorAttachment. The hardware guarantees the mutual exclusion of the fragments corresponding to the same pixel automatically.  
+The programmable blending allows the fragment shader to perform RMW as an atomic operation on the color attachment. The hardware guarantees the mutual exclusion of the fragments corresponding to the same pixel automatically.  
 
 We can enable the MRT and implement the K-Buffer by programmable blending. We assume that one pixel corresponds to four [C A Z] fragments in the K-Buffer and the related Metal code is generally as the following:    
-```  
+```c++  
     struct KBuffer_ColorAttachment  
     {
         //In general, [[color(0)]] is used to store the CFinal
@@ -388,13 +390,15 @@ We can enable the MRT and implement the K-Buffer by programmable blending. We as
 
     fragment KBuffer_ColorAttachment KBufferPass_FragmentMain(..., KBuffer_ColorAttachment kbuffer_in)
     {
-        CA = CalcalteLighting_And_Shading(...) //This part of code doesn't need to be mutually exclusive
-        Z = ... //In general, "Z" denotes position.z
+        // This part of code doesn't need to be mutually exclusive
+        CA = CalcalteLighting_And_Shading(...) 
+        // In general, "Z" denotes position.z
+        Z = ... 
 
         KBuffer_Local kbuffer_local;
 
-        //Read K-Buffer
-        //We enter the critical section automatically when we read the ColorAttachment 
+        // Read K-Buffer
+        // We enter the critical section automatically when we read the ColorAttachment 
         kbuffer_local.Z[0] = kbuffer_in.Z0123.r; 
         kbuffer_local.Z[1] = kbuffer_in.Z0123.g;
         kbuffer_local.Z[2] = kbuffer_in.Z0123.b;
@@ -404,46 +408,48 @@ We can enable the MRT and implement the K-Buffer by programmable blending. We as
         kbuffer_local.CA[2] = kbuffer_in.C2A2;
         kbuffer_local.CA[3] = kbuffer_in.C3A3;
         
-        //Modify K-Buffer 
-        ...(The concrete code depends on the requirements of the application) //This part of code is within the protection of the critical section
+        // Modify K-Buffer
+        // This part of code is within the protection of the critical section
+        ... (The concrete code depends on the requirements of the application) 
         
-        //Write K-Buffer 
+        // Write K-Buffer 
+        // We leave the critical section automatically after we write the ColorAttachment
         KBuffer_ColorAttachment kbuffer_out;
         kbuffer_out.C0A0 = kbuffer_local.CA[0];
         kbuffer_out.C1A1 = kbuffer_local.CA[1];
         kbuffer_out.C2A2 = kbuffer_local.CA[2];
         kbuffer_out.C3A3 = kbuffer_local.CA[3];
         kbuffer_out.Z0123 = half4(kbuffer_local.Z[0], kbuffer_local.Z[1], kbuffer_local.Z[2], kbuffer_local.Z[3]); 
-        //We leave the critical section automatically after we write the ColorAttachment
+        
         return kbuffer_out;
     }
 ```  
    
-### 3-3-4\. MLAB(Mult Layer Alpha Blending)  
+### 3-3-4\. MLAB (Mult Layer Alpha Blending)  
 Salvi proposed three algorithms which are all based on the K-Buffer in 2010, 2011 and 2014(19\.\[Salvi 2010\], 20\.\[Salvi 2011\], 21\.\[Salvi 2014\]) and we intend to explain the lastest one which is called the MLAB proposed in 2014.  
     
 #### 3-3-4-1\. K-Buffer  
 In MLAB, the format of the fragments in K-Buffer is \[ $\displaystyle A_i C_i$ | $\displaystyle 1 - A_i$ | $\displaystyle Z_i$ \].  
 The algorithm is generally as the following:  
-1\.Initializes the fragments in the K-Buffer to the "empty fragment" which is "$\displaystyle C_i$=0 $\displaystyle A_i$=0 $Z_i$=farthest". //In reality, since the $\displaystyle Z_i$ is in the range from 0 to 1, we only need to ensure that the value of $\displaystyle Z_i$ is farther than all possible values.  
-2\.When we generate the K-Buffer, the modify operation performed on the K-Buffer is to sort the fragments from near to far based on the $\displaystyle Z_i$ and insert the current fragment (which the fragment shader is executing) into the proper position based on the $\displaystyle Z_i$.  
+1\. Initializes the fragments in the K-Buffer to the "empty fragment" which is "$\displaystyle C_i$=0 $\displaystyle A_i$=0 $Z_i$=farthest". // In reality, since the $\displaystyle Z_i$ is in the range from 0 to 1, we only need to ensure that the value of $\displaystyle Z_i$ is farther than all possible values.  
+2\. When we generate the K-Buffer, the modify operation performed on the K-Buffer is to sort the fragments from near to far based on the $\displaystyle Z_i$ and insert the current fragment (which the fragment shader is executing) into the proper position based on the $\displaystyle Z_i$.  
 Evidently we have K+1 fragments at present. Then the modify operation will merge the two farthest fragments into one fragment based on the rule of Under operation such that \[ $\displaystyle A_i C_i$ | $\displaystyle 1 - A_i$ | $\displaystyle Z_i$ \] + [ $\displaystyle A_{i+1} C_{i+1}$ | $\displaystyle 1 - A_{i+1}$ | $\displaystyle Z_{i+1}$ \] = \[ $\displaystyle A_i C_i + ( 1 - A_i ) A_{i+1} C_{i+1}$ | $\displaystyle ( 1 - A_i ) ( 1 - A_{i+1} )$ | $\displaystyle Z_i$ \] and thus we have K fragments again.  
 Evidently, if we insert another fragment nearer than the fragment merged by two fragments, there exists error. By Salvi, the error intruduced by the two farthest fragments is the lowest since the visibility function $\displaystyle \operatorname{V} ( Z_i )$ is monotonically decreasing and the farthest fragments generally introduce the lowest error.  
-3\.Based on the generated K-Buffer, we calculate the total contribution of the transparent geometries to the final color $\displaystyle C_{Final}$ by the K fragments.
+3\. Based on the generated K-Buffer, we calculate the total contribution of the transparent geometries to the final color $\displaystyle C_{Final}$ by the K fragments.
    
 #### 3-3-4-2\. Render Pass
-> 1\.OpaquePass  
+> 1\. OpaquePass  
 draw the opaque geometries and have the BackgroundColor and the BackgroundDepth.  
-
-> 2\.KBufferPass //GeometryPass  
+> 
+> 2\. KBufferPass // GeometryPass  
 reuse the BackgroundDepth by the OpaquePass  
 use clear load_op to initilize the fragments in the K-Buffer to the "empty fragment" \[ 0 0 farthest\]  
 with depth test without depth write, sort the transparent geometries by \[material\] and draw them to generate the K-Buffer  
 Note that since the depth write is turned off, the order of the geometries doesn't impact on the performance and thus we sort the geometries only by the material.  
-
-> 3\.CompositePass //FullScreenTrianglePass  
+> 
+> 3\. CompositePass // FullScreenTrianglePass  
 Based on the generated K-Buffer, use the Under operation to calculate the total contribution of the transparent geometries to the final color $\displaystyle C_{Final}$: TransparentColor and AlphaTotal  
-
+> 
 > Then, add the TransparentColor to the final color $\displaystyle C_{Final}$ by the Over Operation:  
 $\displaystyle C_{Final}$ = TransparentColor + CorrectAlphaTotal × BackgroundColor)  
 Note that the BackgroundColor has been added to the color buffer. We can output the TransparentColor and CorrectAlphaTotal in the fragment shader and use the Alpha blend hardware feature to implement the Over Operation.  
@@ -457,51 +463,49 @@ However, in the mobile GPU, we can keep the K-Buffer in the Tile/On-Chip Memory 
 
 #### 3-3-5-1\. Vulkan  
 
-Since the Vulkan doesn't support the "FrameBufferFetch", we can't implement the K-Buffer by programmable blending in Vulkan.  
-Although we can implement the K-Buffer by fragment scheduling, the fragment scheduling is not suitable to the mobile GPU.  
-However, the FrameBufferFetch is supported by OpenGL and we can implement the by programmable blending in OpenGL.  
+The K-Buffer can be implemented by the [VK_EXT_rasterization_order_attachment_access](https://github.com/KhronosGroup/VK-GL-CTS/blob/main/external/vulkancts/modules/vulkan/rasterization/vktRasterizationOrderAttachmentAccessTests.cpp) extension in Vulkan.  
+
+However, this extension has not been widely supported on Android devices.  
 
 #### 3-3-5-2\. Metal  
 
-The MLAB can be implemented in one renderPass as the following: //We assume that the K of K-Buffer equals four.  
+The K-Buffer can be implemented in one renderPass as the following: // We assume that the K of K-Buffer equals four.  
 ```
     RenderPassDescriptor:
         ColorAttachment:
-            0.FinalColor //Load:Clear //Store:Store //Format:R10G10B10A2_UNORM  //HDR10
-            1.xyz:A0*C0 w:1-A0 //Load:Clear //ClearValue:[ 0 0 0 1 ] //Store:DontCare //Format:R16G16B16A16_FLOAT  
-            //The size of the PixelStorage is limited(A7-128bit A8\A9\A10-256bit A11-512bit)  
-            //Since the visibility function is monotonically decreasing and the farther fragments generally contribute introduce the lowest error, we prefer to reduce the precision of the farther fragments.
-            2.xyz:A1*C1 w:1-A1 //Load:Clear //ClearValue:[ 0 0 0 1 ] //Store:DontCare //Format:R8G8B8A8_UNORM 
-            3.xyz:A2*C2 w:1-A2 //Load:Clear //ClearValue:[ 0 0 0 1 ] //Store:DontCare //Format:R8G8B8A8_UNORM
-            4.xyz:A3*C3 w:1-A3 //Load:Clear //ClearValue:[ 0 0 0 1 ] //Store:DontCare //Format:R8G8B8A8_UNORM
-            5.Z0123 //Load:Clear //ClearValue:[ farthest farthest farthest farthest ] //Store:DontCare //Format:R16G16B16A16_FLOAT
+            0.FinalColor // Load:Clear // Store:Store // Format:R10G10B10A2_UNORM  // HDR10
+            1.xyz:A0*C0 w:1-A0 //Load:Clear // ClearValue:[ 0 0 0 1 ] //Store:DontCare //Format:R16G16B16A16_FLOAT  
+            // The size of the PixelStorage is limited(A7-128bit A8\A9\A10-256bit A11-512bit)  
+            // Since the visibility function is monotonically decreasing and the farther fragments generally contribute introduce the lowest error, we prefer to reduce the precision of the farther fragments.
+            2.xyz:A1*C1 w:1-A1 // Load:Clear // ClearValue:[ 0 0 0 1 ] // Store:DontCare // Format:R8G8B8A8_UNORM 
+            3.xyz:A2*C2 w:1-A2 // Load:Clear // ClearValue:[ 0 0 0 1 ] // Store:DontCare // Format:R8G8B8A8_UNORM
+            4.xyz:A3*C3 w:1-A3 // Load:Clear // ClearValue:[ 0 0 0 1 ] // Store:DontCare // Format:R8G8B8A8_UNORM
+            5.Z0123 // Load:Clear // ClearValue:[ farthest farthest farthest farthest ] // Store:DontCare // Format:R16G16B16A16_FLOAT
         DepthAttachment:
-            Depth //Load:Clear //Store:DontCare
+            Depth // Load:Clear // Store:DontCare
     RenderCommandEncoder:
         0.OpaquePass:
             BackgroundColor->Color[0]
             BackgroundDepth->Depth
         1.KBufferPass:
-            Read: Color[1]/Color[2]/Color[3]/Color[4]/Color[5]->4个Fragment
+            Read: Color[1]/Color[2]/Color[3]/Color[4]/Color[5] -> 4 Fragments
             Modify: ...
-            Write: 4个Fragment->Color[1]/Color[2]/Color[3]/Color[4]/Color[5]
-            //reuse the BackgroundDepth
+            Write: 4 Fragments -> Color[1]/Color[2]/Color[3]/Color[4]/Color[5]
+            // reuse the BackgroundDepth
         3.CompositePass:
-            Color[1]/Color[2]/Color[3]/Color[4]/Color[5]->...
-            ...->TransparentColor
-            ...->AlphaTotal
-            Color[0]->BackgroundColor
-            TransparentColor+AlphaTotal*BackgroundColor->Color[0]
+            Color[1]/Color[2]/Color[3]/Color[4]/Color[5] -> ...
+            ... -> TransparentColor
+            ... -> AlphaTotal
+            Color[0] -> BackgroundColor
+            TransparentColor+AlphaTotal*BackgroundColor -> Color[0]
 ```
   
 ### 3-3-6\. Conclusion  
 Since the K-Buffer is efficient on mobile GPU, the MLAB is intrinsically suitable to mobile GPU. We can use the modern Metal API to fully explore the advantages of the mobile GPU.  
 
-However, since the "FrameBufferFetch" is not supported by Vulkan, I don't suggest using the MLAB in Vulkan.  
-
 Compared to the stochastic transparency, there is only one geometry pass in MLAB. This is beneficial to the mobile GPU since the vertex processing is not efficient on the mobile GPU.  
 
-Besides, for the mobile GPU, the executions of the fragments corresponding to the same pixel inside the same draw call is intrinsically serial(13.[Ragan-Kelley 2011]) and thus the mutual exclusion can be considered to introduce little overhead.  
+Besides, for the mobile GPU, the executions of the fragments corresponding to the same pixel inside the same draw call is intrinsically serial (13.[Ragan-Kelley 2011]) and thus the mutual exclusion can be considered to introduce little overhead.  
 However, for the desktop GPU, mutual exclusion of the RMW operation limits the parallelism of the fragments and introduces extra overhead which is related to the "Depth Complexity" of the scene.  
 
 When we insert another fragment nearer than the fragment merged by two fragments, we introduce error.  
@@ -509,13 +513,13 @@ However, since the visibility function $\displaystyle \operatorname{V} ( Z_i )$ 
 
 ### 3-3-7\. Demo  
 
-The github address [https://github.com/YuqiaoZhang/MultiLayerAlphaBlending](https://github.com/YuqiaoZhang/MultiLayerAlphaBlending)
+The github address [https://github.com/HanetakaChou/MultiLayerAlphaBlending](https://github.com/HanetakaChou/MultiLayerAlphaBlending)
 
-The demo was originally the "Order Independent Transparency with Imageblocks" of the "Metal Sample Code"(22\.\[Imbrogno 2017\]). However, the original code provide by the Apple depends on the feature Imageblock which is only available on A11 and later GPU. The Imageblock is intrinsically to customize the format of the framebuffer which is not related to the mutual exclusion of the RMW operation at all. Thus I have modified the demo and use the \[color(m)\]Attribute to implement the related code and the demo can be run on A8 and later GPU.  
+The demo was originally the "Order Independent Transparency with Imageblocks" of the "Metal Sample Code"(22\.\[Imbrogno 2017\]). However, the original code provide by the Apple depends on the feature Imageblock which is only available on A11 and later GPU. The Imageblock is intrinsically to customize the format of the framebuffer which is not related to the mutual exclusion of the RMW operation at all. Thus I have modified the demo and use the \\[[Color(m)\]\] Attributeto implement the related code and the demo can be run on A8 and later GPU.  
 
 The relationship of the features between Metal and OpenGL:  
-\[Color(m)\]Attribute <-> FrameBufferFetch //To support the programmable blending  
-ImageBlock <-> PixelLocalStorage //To customize the format of the framebuffer  
+\\[[Color(m)\]\] Attribute <-> FrameBufferFetch // To support the programmable blending  
+ImageBlock <-> PixelLocalStorage // To customize the format of the framebuffer  
 
 ## 3-4\. Weighted Blending  
 The estimation of the visibility function $\displaystyle \operatorname{V} ( Z_i )$ depends on the order of the fragments. This results in that the estimation of the final color $\displaystyle C_{\displaystyle Final} = \sum_{\displaystyle i = 0}^{\displaystyle n} \operatorname{V} ( Z_i ) A_i C_i$ depends on the order.  
