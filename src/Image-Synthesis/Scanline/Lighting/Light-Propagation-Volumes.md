@@ -16,6 +16,12 @@ For directional light, by "4.6 Sun" of \[Lagarde 2014\], the illuminance $\displ
 
 For point light, by "4.4 Punctual lights" \[Lagarde 2014\], the luminous flux $\displaystyle \mathrm{\Phi}$ is specified, and we have the luminous intensity $\displaystyle \mathrm{I} = \frac{\mathrm{\Phi}}{4 \pi}$. By the inverse square law, we have the illuminance for the surface perpendicular to the light direction $\displaystyle \mathrm{E} = \frac{\mathrm{I}}{{\text{distance}}^2}$. But the light radius and the attenuation windowing function are usually specified, and the illuminance $\displaystyle \mathrm{E}$ will smoothly reach zero at the light radius.  
 
+## Discrete Ordinates Method  
+
+https://www.pbr-book.org/3ed-2018/Light_Transport_II_Volume_Rendering/Further_Reading  
+
+Wang et al. (2008b) further generalized the media supported, solving the diffusion equation on a grid of sample points. Fattal (2009) applied the discrete ordinates method, addressing a number of shortcomings of the direct application of that technique. Arbree et al. (2011) developed a finite element method to solve the diffusion equation on a tetrahedral mesh in a way that is more numerically robust than prior grid-based methods.
+
 
 ## SH (Spherical Harmonics)  
 
