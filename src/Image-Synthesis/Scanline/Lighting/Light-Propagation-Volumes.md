@@ -14,9 +14,13 @@ $\displaystyle \frac{\text{Power}}{\text{Area} \cdot \text{Solid Angle}}$ | Radi
 
 For directional light, by "4.6 Sun" of \[Lagarde 2014\], the illuminance $\displaystyle \mathrm{E}$ for the surface perpendicular to the light direction is specified.  
 
-For point light, by "4.4 Punctual lights" \[Lagarde 2014\], the luminous flux $\displaystyle \mathrm{\Phi}$ is specified, and we have the luminous intensity $\displaystyle \mathrm{I} = \frac{\mathrm{\Phi}}{4 \pi}$. By the inverse square law, we have the illuminance for the surface perpendicular to the light direction $\displaystyle \mathrm{E} = \frac{\mathrm{I}}{{\text{distance}}^2}$. But the light radius and the attenuation windowing function are usually specified, and the illuminance $\displaystyle \mathrm{E}$ will smoothly reach zero at the light radius.  
+For point light, by "4.4 Punctual lights" of \[Lagarde 2014\], the luminous flux $\displaystyle \mathrm{\Phi}$ is specified, and we have the luminous intensity $\displaystyle \mathrm{I} = \frac{\mathrm{\Phi}}{4 \pi}$. By the inverse square law, we have the illuminance for the surface perpendicular to the light direction $\displaystyle \mathrm{E} = \frac{\mathrm{I}}{{\text{distance}}^2}$. But the light radius and the attenuation windowing function are usually specified, and the illuminance $\displaystyle \mathrm{E}$ will smoothly reach zero at the light radius.  
 
-## Discrete Ordinates Method  
+For spot light, 
+
+## DOM (Discrete Ordinates Method)  
+
+By "Further Reading" of "15 Light Transport II: Volume Rendering" of [PBR Book V3](https://www.pbr-book.org/3ed-2018/Light_Transport_II_Volume_Rendering/Further_Reading), **DOM (Discrete Ordinates Method)** is used by \[Fattal 2009\] as well to  
 
 https://www.pbr-book.org/3ed-2018/Light_Transport_II_Volume_Rendering/Further_Reading  
 
@@ -146,6 +150,7 @@ However, the result $\displaystyle \operatorname{D_1}(\mathrm{R}) = \begin{bmatr
 \[Green 2003\] Robin Green. "Spherical Harmonic Lighting: The Gritty Details." GDC 2003.  
 \[Dachsbacher 2005\] Carsten Dachsbacher, Marc Stamminger. "Reflective Shadow Maps." I3D 2005.  
 \[Sloan 2008\] [Peter-Pike Sloan. "Stupid Spherical Harmonics (SH) Tricks." GDC 2008.](http://www.ppsloan.org/publications/StupidSH36.pdf)  
+\[Fattal 2009\] [Raanan Fattal. "Participating Media Illumination using Light Propagation Maps." TOG 2009.](https://www.cs.huji.ac.il/w~raananf/projects/lpm/)  
 \[Kaplanyan 2009\] [Anton Kaplanyan. "Light Propagation Volumes in CryEngine 3." SIGGRAPH 2009.](https://advances.realtimerendering.com/s2009/Light_Propagation_Volumes.pdf)  
 \[Kaplanyan 2010\] Anton Kaplanyan. "Cascaded Light Propagation Volumes for Real-Time Indirect Illumination." I3D 2010.  
 \[Kaplanyan 2011\] Anton Kaplanyan, Wolfgang Engel, Carsten Dachsbacher. "Diffuse Global Illumination with Temporally Coherent Light Propagation Volumes." GPU Pro 2.  
