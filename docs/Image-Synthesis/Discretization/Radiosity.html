@@ -10,9 +10,9 @@
 </head>
 
 <body class="markdown-body">
-    <h1 dir="auto" id="radiosity">Radiosity</h1>
-    <h2 dir="auto" id="fem-finite-element-method">FEM (Finite Element Method)</h2>
-    <p dir="auto">The main idea of <strong>FEM(Finite Element Method)</strong> is to convert the
+    <h1 dir="auto" id="radiosity-2">Radiosity</h1>
+    <h2 dir="auto" id="fem-finite-element-method-1">FEM (Finite Element Method)</h2>
+    <p dir="auto">The main idea of <strong>FEM (Finite Element Method)</strong> is to convert the
         <strong>infinite</strong> problem of solving a <strong>differential equation</strong> into the
         <strong>finite</strong> problem of solving a <strong>system of equations</strong>.
     </p>
@@ -934,11 +934,11 @@
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
         </eq>.</p>
-    <h2 dir="auto" id="rendering-equation">Rendering Equation</h2>
+    <h2 dir="auto" id="rendering-equation-1">Rendering Equation</h2>
     <p dir="auto">The <strong>Rendering Equation</strong> is also called the <strong>LTE</strong> (<strong>Light
             Transport Equation</strong>) by &quot;14.4 The Light Transport Equation&quot; of <a
-            href="https://www.pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/The_Light_Transport_Equation">PBRT-V3</a>.
-        And we have the <strong>Rendering Equation</strong>
+            href="https://www.pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/The_Light_Transport_Equation">PBR
+            Book V3</a>. And we have the <strong>Rendering Equation</strong>
         <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
@@ -1413,9 +1413,9 @@
         surface and the light are actually the same thing, since the light is merely the surface which is emissive.</p>
     <p dir="auto">By &quot;Figure 11.1&quot; of <a href="http://www.realtimerendering.com/">Real-Time Rendering Fourth
             Edition</a> and &quot;Figure 14.14&quot; of <a
-            href="https://pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/The_Light_Transport_Equation">PBRT-V3</a>,
-        by assuming no <strong>participating media</strong>, we have the relationship <eq><span class="katex"><span
-                    class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+            href="https://pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/The_Light_Transport_Equation">PBR
+            Book V3</a>, by assuming no <strong>participating media</strong>, we have the relationship <eq><span
+                class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
                                 <mstyle scriptlevel="0" displaystyle="true">
@@ -2806,7 +2806,7 @@
     <p dir="auto">Thus, the problem of rendering is essentially a problem of solving the <strong>differential
             equation</strong>. There are two independent approaches: ray tracing (which depends on the <strong>Fredholm
             theory</strong>) and radiosity (which depends on the <strong>FEM</strong>).</p>
-    <h2 dir="auto" id="ray-tracing">Ray Tracing</h2>
+    <h2 dir="auto" id="ray-tracing-1">Ray Tracing</h2>
     <p dir="auto">By &quot;Light transport and the rendering equation&quot; of <a
             href="http://www-graphics.stanford.edu/courses/cs348b-96/">CS 348B - Computer Graphics: Image Synthesis
             Techniques</a> and &quot;Global Illumination and Rendering Equation&quot; of <a
@@ -2884,14 +2884,14 @@
                         class="base"><span class="strut" style="height:0.12em;vertical-align:0em;"></span><span
                             class="minner">…</span></span></span></span>
         </eq>.</p>
-    <h2 dir="auto" id="radiosity-1">Radiosity</h2>
+    <h2 dir="auto" id="radiosity-3">Radiosity</h2>
     <p dir="auto">Note that the term <strong>radiosity B</strong> has been deprecated and should be called
         <strong>radiant exitance M</strong> or outgoing <strong>irradiance E</strong> instead. But to be consistent with
         most literature about <strong>radiosity</strong>, we still use <strong>radiosity B</strong> here.
     </p>
     <p dir="auto">By &quot;Equation (5.6)&quot; of <a
-            href="https://pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#IntegralsoverArea">PBRT-V3</a>,
-        we have the relationship <eq><span class="katex"><span class="katex-mathml"><math
+            href="https://pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#IntegralsoverArea">PBR
+            Book V3</a>, we have the relationship <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
@@ -2954,8 +2954,9 @@
         <img src="Radiosity-2.png" alt="" data-src="Radiosity-2.png">
     </p>
     <p dir="auto">By &quot;Equation (14.14)&quot; of <a
-            href="https://pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/The_Light_Transport_Equation#TheSurfaceFormoftheLTE">PBRT-V3</a>,
-        let <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+            href="https://pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/The_Light_Transport_Equation#TheSurfaceFormoftheLTE">PBR
+            Book V3</a>, let <eq><span class="katex"><span class="katex-mathml"><math
+                        xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
                                 <mi mathvariant="normal">V</mi>
@@ -16562,7 +16563,7 @@
             </p>
         </blockquote>
     </blockquote>
-    <h2 dir="auto" id="references">References</h2>
+    <h2 dir="auto" id="references-1">References</h2>
     <p dir="auto">[Cohen 1993] <a href="https://www.graphics.cornell.edu/online/box">Michael Cohen, John Wallace.
             &quot;Radiosity and Realistic Image Synthesis.&quot; Academic Press Professional 1993.</a></p>
 
