@@ -20,11 +20,18 @@ For spot light,
 
 ## DOM (Discrete Ordinates Method)  
 
-By "Further Reading" of "15 Light Transport II: Volume Rendering" of [PBR Book V3](https://www.pbr-book.org/3ed-2018/Light_Transport_II_Volume_Rendering/Further_Reading), **DOM (Discrete Ordinates Method)** is used by \[Fattal 2009\] as well to  
+By "Further Reading" of "15 Light Transport II: Volume Rendering" of [PBR Book V3](https://www.pbr-book.org/3ed-2018/Light_Transport_II_Volume_Rendering/Further_Reading), **DOM (Discrete Ordinates Method)** is used by \[Fattal 2009\] as well to calculate the diffusion profile.  
 
-https://www.pbr-book.org/3ed-2018/Light_Transport_II_Volume_Rendering/Further_Reading  
+By "11.1.3 Out-Scattering and Attenuation" of [PBR Book V3](https://www.pbr-book.org/3ed-2018/Volume_Scattering/Volume_Scattering_Processes#Out-ScatteringandAttenuation), we have the relationship between the coefficients $\displaystyle \operatorname{\sigma_t}(\overrightarrow{p}, \overrightarrow{\omega}) = \operatorname{\sigma_a}(\overrightarrow{p}, \overrightarrow{\omega}) + \operatorname{\sigma_s}(\overrightarrow{p}, \overrightarrow{\omega})$.  
 
-Wang et al. (2008b) further generalized the media supported, solving the diffusion equation on a grid of sample points. Fattal (2009) applied the discrete ordinates method, addressing a number of shortcomings of the direct application of that technique. Arbree et al. (2011) developed a finite element method to solve the diffusion equation on a tetrahedral mesh in a way that is more numerically robust than prior grid-based methods.
+By "Equation \(15.15\)" of [PBR Book V3](https://www.pbr-book.org/3ed-2018/Light_Transport_II_Volume_Rendering/Subsurface_Scattering_Using_the_Diffusion_Equation#DiffusionTheory), we have the **RTE (Radiative Transfer Equation)** $\displaystyle \frac{\partial \operatorname{L}(\overrightarrow{p} + \overrightarrow{\omega}t, \overrightarrow{\omega})}{\partial t} = \operatorname{L_e}(\overrightarrow{p}, \overrightarrow{\omega}) - \operatorname{\sigma_t}(\overrightarrow{p}, \overrightarrow{\omega}) \operatorname{L}(\overrightarrow{p}, \overrightarrow{\omega}) + \frac{\operatorname{\sigma_s}(\overrightarrow{p}, \overrightarrow{\omega})}{4 \pi} \int_{\mathrm{S}^2} \operatorname{L}(\overrightarrow{p}, \overrightarrow{\omega_s}) \, d \overrightarrow{\omega_s} = \operatorname{L_e}(\overrightarrow{p}, \overrightarrow{\omega}) - (\operatorname{\sigma_a}(\overrightarrow{p}, \overrightarrow{\omega}) + \operatorname{\sigma_s}(\overrightarrow{p}, \overrightarrow{\omega})) \operatorname{L}(\overrightarrow{p}, \overrightarrow{\omega}) + \frac{\operatorname{\sigma_s}(\overrightarrow{p}, \overrightarrow{\omega})}{4 \pi} \int_{\mathrm{S}^2} \operatorname{L}(\overrightarrow{p}, \overrightarrow{\omega_s}) \, d \overrightarrow{\omega_s}$.  
+
+
+
+
+
+
+
 
 
 ## SH (Spherical Harmonics)  
@@ -152,6 +159,7 @@ However, the result $\displaystyle \operatorname{D_1}(\mathrm{R}) = \begin{bmatr
 \[Sloan 2008\] [Peter-Pike Sloan. "Stupid Spherical Harmonics (SH) Tricks." GDC 2008.](http://www.ppsloan.org/publications/StupidSH36.pdf)  
 \[Fattal 2009\] [Raanan Fattal. "Participating Media Illumination using Light Propagation Maps." TOG 2009.](https://www.cs.huji.ac.il/w~raananf/projects/lpm/)  
 \[Kaplanyan 2009\] [Anton Kaplanyan. "Light Propagation Volumes in CryEngine 3." SIGGRAPH 2009.](https://advances.realtimerendering.com/s2009/Light_Propagation_Volumes.pdf)  
+\[Arbree 2010\] [Adam Arbree. "Heterogeneous Subsurface Scattering Using the Finite Element Method." TVCG 2010.](https://www.cs.cornell.edu/%7Earbree/)  
 \[Kaplanyan 2010\] Anton Kaplanyan. "Cascaded Light Propagation Volumes for Real-Time Indirect Illumination." I3D 2010.  
 \[Kaplanyan 2011\] Anton Kaplanyan, Wolfgang Engel, Carsten Dachsbacher. "Diffuse Global Illumination with Temporally Coherent Light Propagation Volumes." GPU Pro 2.  
 \[Engel 2012\] Wolfgang Engel, Igor Lobanchikov, Timothy Martin. "Dynamic Global Illumination from Many Lights." AltDevConf 2012.  

@@ -2,7 +2,7 @@
 
 ## FEM (Finite Element Method)  
 
-The main idea of **FEM(Finite Element Method)** is to convert the **infinite** problem of solving a **differential equation** into the **finite** problem of solving a **system of equations**.  
+The main idea of **FEM (Finite Element Method)** is to convert the **infinite** problem of solving a **differential equation** into the **finite** problem of solving a **system of equations**.  
 
 Let $\displaystyle \operatorname{f}(x)$ be the solution of a **differential equation** which can be written as $\displaystyle \operatorname{f}(x) = P(f(x))$.  
 
