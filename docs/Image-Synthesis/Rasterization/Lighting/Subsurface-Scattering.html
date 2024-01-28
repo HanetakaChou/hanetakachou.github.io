@@ -10,8 +10,8 @@
 </head>
 
 <body class="markdown-body">
-  <h1 dir="auto" id="subsurface-scattering">Subsurface Scattering</h1>
-  <h2 dir="auto" id="1-diffusion-profile">1. Diffusion Profile</h2>
+  <h1 dir="auto" id="subsurface-scattering-1">Subsurface Scattering</h1>
+  <h2 dir="auto" id="1-diffusion-profile-1">1. Diffusion Profile</h2>
   <p dir="auto">The <strong>diffusion profile</strong>
     <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
             <semantics>
@@ -289,9 +289,9 @@
                         <mn>2</mn>
                       </msup>
                       <mo stretchy="false">)</mo>
-                      <mo stretchy="false">)</mo>
                     </mrow>
                   </msqrt>
+                  <mo stretchy="false">)</mo>
                   <mo>=</mo>
                   <mi mathvariant="normal">R</mi>
                   <mo>⁡</mo>
@@ -323,7 +323,7 @@
                 </mstyle>
               </mrow>
               <annotation encoding="application/x-tex">\displaystyle \operatorname{R}(\Delta x, \Delta y, (\Delta z)) =
-                \operatorname{R}(\sqrt{{\Delta x}^2 +{\Delta y}^2 (+ {\Delta z}^2))} = \operatorname{R}(r) =
+                \operatorname{R}(\sqrt{{\Delta x}^2 +{\Delta y}^2 (+ {\Delta z}^2)}) = \operatorname{R}(r) =
                 \operatorname{R}(\| \overrightarrow{p_i} - \overrightarrow{p_o} \|)</annotation>
             </semantics>
           </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
@@ -363,7 +363,7 @@
                                     style="top:-3.1362300000000003em;margin-right:0.05em;"><span class="pstrut"
                                       style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
                                         class="mord mtight">2</span></span></span></span></span></span></span></span><span
-                          class="mclose">))</span></span></span><span style="top:-3.312544em;"><span class="pstrut"
+                          class="mclose">)</span></span></span><span style="top:-3.312544em;"><span class="pstrut"
                         style="height:3.8em;"></span><span class="hide-tail"
                         style="min-width:1.02em;height:1.8800000000000001em;"><svg width='400em'
                           height='1.8800000000000001em' viewBox='0 0 400000 1944' preserveAspectRatio='xMinYMin slice'>
@@ -379,9 +379,9 @@ c53.7,-170.3,84.5,-266.8,92.5,-289.5z
 M1001 80h400000v40h-400000z' />
                         </svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
                     class="vlist" style="height:0.4874560000000001em;"><span></span></span></span></span></span><span
-              class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-              class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-              class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span
+              class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span
+              class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+            class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span
                 class="mord mathrm">R</span></span><span class="mopen">(</span><span class="mord mathnormal"
               style="margin-right:0.02778em;">r</span><span class="mclose">)</span><span class="mspace"
               style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace"
@@ -6127,7 +6127,7 @@ M1001 80h400000v40h-400000z' />
                     class="vlist" style="height:0.19444em;"><span></span></span></span></span></span><span
               class="mord">∥</span><span class="mclose">)</span></span></span></span>
     </eq>.</p>
-  <h2 dir="auto" id="2-texturing-mode">2. Texturing Mode</h2>
+  <h2 dir="auto" id="2-texturing-mode-1">2. Texturing Mode</h2>
   <p dir="auto">However, by &quot;Incorporating Diffuse Color Variation&quot; of [dEon 2007], it is difficult to measure
     the total diffuse reflectance. Thus, we resort to use the albedo from the texture asset to simulate the total
     diffuse reflectance.</p>
@@ -8074,7 +8074,7 @@ M1001 80h400000v40h-400000z' />
     and <a
       href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/PostProcessSubsurface.usf#L741">SubsurfaceRecombinePS</a>
     in UE4.</p>
-  <h2 dir="auto" id="3-diffuse-brdf">3. Diffuse BRDF</h2>
+  <h2 dir="auto" id="3-diffuse-brdf-1">3. Diffuse BRDF</h2>
   <p dir="auto">The form factor is approximated by the Lambert BRDF <eq><span class="katex"><span
           class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
             <semantics>
@@ -9215,7 +9215,7 @@ M1001 80h400000v40h-400000z' />
       href="https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.core/ShaderLibrary/BSDF.hlsl#L414">Unity3D</a>.
   </p>
   <p dir="auto">TODO</p>
-  <h2 dir="auto" id="4-blur-pass">4. Blur Pass</h2>
+  <h2 dir="auto" id="4-blur-pass-1">4. Blur Pass</h2>
   <table dir="auto">
     <thead dir="auto">
       <tr dir="auto">
@@ -9384,7 +9384,7 @@ M1001 80h400000v40h-400000z' />
       href="https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@10.8/manual/Material-Type.html">Subsurface
       Mask Map</a> in Unity3D.
   </p>
-  <h3 dir="auto" id="4-1-preintegrated-sss">4-1. PreIntegrated SSS</h3>
+  <h3 dir="auto" id="4-1-preintegrated-sss-1">4-1. PreIntegrated SSS</h3>
   <p dir="auto">The PreIntegrated SSS by [Penner 2011 B] is used by the <a
       href="https://github.com/NVIDIAGameWorks/FaceWorks">NVIDIA FaceWorks</a> and the <a
       href="https://docs.unrealengine.com/4.27/en-US/RenderingAndGraphics/Materials/MaterialProperties/LightingModels/#preintegratedskin">Preintegrated
@@ -15552,7 +15552,7 @@ printf(<span class="hljs-string">&quot;denominator_ring: %f\n&quot;</span>, q_de
                           </svg></span></span></span></span></span></span></span></span></span></eq> which is detached
       from the total integral.</p>
   </blockquote>
-  <h3 dir="auto" id="4-2-separable-sss">4-2. Separable SSS</h3>
+  <h3 dir="auto" id="4-2-separable-sss-1">4-2. Separable SSS</h3>
   <p dir="auto">The <strong>Separable SSS</strong> by [Jimenez 2012] is used by <a
       href="https://github.com/iryoku/separable-sss">Demo of [Jimenez 2015]</a> and the <a
       href="https://docs.unrealengine.com/4.27/en-US/RenderingAndGraphics/Materials/MaterialProperties/LightingModels/">Subsurface
@@ -17024,7 +17024,7 @@ printf(<span class="hljs-string">&quot;denominator_ring: %f\n&quot;</span>, q_de
       </p>
     </blockquote>
   </blockquote>
-  <h3 dir="auto" id="4-3-disney-sss">4-3. Disney SSS</h3>
+  <h3 dir="auto" id="4-3-disney-sss-1">4-3. Disney SSS</h3>
   <p dir="auto">The <strong>Disney SSS</strong> by [Golubev 2018] is used by the <a
       href="https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@10.8/manual/Material-Type.html">Subsurface
       Scattering Material Type</a> of Unity3D and the <a
@@ -17330,7 +17330,7 @@ printf(<span class="hljs-string">&quot;denominator_ring: %f\n&quot;</span>, q_de
                     class="vlist"
                     style="height:0.19444em;"><span></span></span></span></span></span></span></span></span></eq> in
     real time.</p>
-  <p dir="auto">The diffusion profile <eq><span class="katex"><span class="katex-mathml"><math
+  <p dir="auto">By [Christensen 2015], the diffusion profile <eq><span class="katex"><span class="katex-mathml"><math
             xmlns="http://www.w3.org/1998/Math/MathML">
             <semantics>
               <mrow>
@@ -17434,8 +17434,11 @@ printf(<span class="hljs-string">&quot;denominator_ring: %f\n&quot;</span>, q_de
                               class="mord mathnormal mtight"
                               style="margin-right:0.02778em;">r</span></span></span></span></span></span></span></span></span><span
               class="mclose">)</span></span></span></span></eq>, where the A is the surface albedo and the S is the
-    scaling factor, proposed by [Christensen 2015] is used.</p>
-  <h4 dir="auto" id="4-3-1-monte-carlo-integration">4-3-1. Monte Carlo Integration</h4>
+    scaling factor, is used. The derivation of the diffusion profile will NOT be involved here, but you can refer to
+    &quot;15.5 Subsurface Scattering Using the Diffusion Equation&quot; of <a
+      href="https://pbr-book.org/3ed-2018/Light_Transport_II_Volume_Rendering/Subsurface_Scattering_Using_the_Diffusion_Equation">PBR
+      Book V3</a> for more information.</p>
+  <h4 dir="auto" id="4-3-1-monte-carlo-integration-1">4-3-1. Monte Carlo Integration</h4>
   <p dir="auto">PDF</p>
   <blockquote dir="auto">
     <p dir="auto">By [Christensen 2015], we have the norm of the diffusion profile <eq><span class="katex"><span
@@ -20385,7 +20388,7 @@ M1001 80h400000v40h-400000z' />
     <p dir="auto">The <strong>Stretch Texture</strong> by &quot;Correcting for UV Distortion&quot; of [dEon 2007] can be
       used to calculate the radius as well. However, it is too inefficient to be used in real time rendering.</p>
   </blockquote>
-  <h4 dir="auto" id="4-3-2-properties-between-unity3d-and-ue4">4-3-2. Properties between Unity3D and UE4</h4>
+  <h4 dir="auto" id="4-3-2-properties-between-unity3d-and-ue4-1">4-3-2. Properties between Unity3D and UE4</h4>
   <table dir="auto">
     <thead dir="auto">
       <tr dir="auto">
@@ -20894,7 +20897,7 @@ M1001 80h400000v40h-400000z' />
               style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mop"><span
                 class="mord mathrm">GetScalingFactor</span></span></span></span></span></eq> is exactly the scaling
     factor. Thus, the denominator is <strong>NOT</strong> reasonable.</p>
-  <h2 dir="auto" id="5-transmittance">5. Transmittance</h2>
+  <h2 dir="auto" id="5-transmittance-1">5. Transmittance</h2>
   <p dir="auto">The blur pass is only to accumulate the vicinal position <eq><span class="katex"><span
           class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
             <semantics>
@@ -21063,7 +21066,7 @@ M1001 80h400000v40h-400000z' />
                         </svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
                     class="vlist"
                     style="height:0.19444em;"><span></span></span></span></span></span></span></span></span></eq>.</p>
-  <h3 dir="auto" id="5-1-thickness-map">5-1. Thickness Map</h3>
+  <h3 dir="auto" id="5-1-thickness-map-1">5-1. Thickness Map</h3>
   <p dir="auto">By &quot;16.3 Simulating Absorption Using Depth Maps&quot; of [Green 2004], if the objects are assumed
     to be convex, the thickness (the distance a light ray travels inside an object) can be estimated by using the shadow
     maps.</p>
@@ -21083,7 +21086,7 @@ M1001 80h400000v40h-400000z' />
     and the <a
       href="https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.high-definition/Runtime/Lighting/SurfaceShading.hlsl#L120">EvaluateTransmittance_Punctual</a>
     in Unity3D.</p>
-  <h3 dir="auto" id="5-2-transmittance-coefficient">5-2. Transmittance Coefficient</h3>
+  <h3 dir="auto" id="5-2-transmittance-coefficient-1">5-2. Transmittance Coefficient</h3>
   <p dir="auto">By [Green 2004], by the <a href="https://en.wikipedia.org/wiki/Beer%E2%80%93Lambert_law">Beer–Lambert
       law</a>, the transmittance coefficient can be calculated according to the thickness.</p>
   <p dir="auto">The transmittance coefficient by [Green 2004] is calculated by <a
@@ -22359,18 +22362,18 @@ M1001 80h400000v40h-400000z' />
   <p dir="auto">The transmittance coefficient by [Golubev 2018] is calculated by the <a
       href="https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.high-definition/Runtime/Material/DiffusionProfile/DiffusionProfile.hlsl#L9">ComputeTransmittanceDisney</a>
     in Unity3D.</p>
-  <h2 dir="auto" id="6-specular-brdf">6. Specular BRDF</h2>
-  <h3 dir="auto" id="6-1-two-lobe-blinn-phong">6-1. Two-lobe Blinn-Phong</h3>
+  <h2 dir="auto" id="6-specular-brdf-1">6. Specular BRDF</h2>
+  <h3 dir="auto" id="6-1-two-lobe-blinn-phong-1">6-1. Two-lobe Blinn-Phong</h3>
   <p dir="auto">The Two-lobe Blinn-Phong is calculated by <a
       href="https://github.com/NVIDIAGameWorks/FaceWorks/blob/master/samples/d3d11/shaders/lighting.hlsli#L129">EvaluateSpecularLight</a>
     in NVIDIA FaceWorks.</p>
   <p dir="auto">TODO</p>
-  <h3 dir="auto" id="6-2-dual-trowbridge-reitz">6-2. Dual Trowbridge-Reitz</h3>
+  <h3 dir="auto" id="6-2-dual-trowbridge-reitz-1">6-2. Dual Trowbridge-Reitz</h3>
   <p dir="auto">The Dual Trowbridge-Reitz is calculated by <a
       href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/ShadingModels.ush#L178">DualSpecularGGX</a>
     in UE4.</p>
   <p dir="auto">TODO</p>
-  <h2 dir="auto" id="references">References</h2>
+  <h2 dir="auto" id="references-1">References</h2>
   <p dir="auto">[Kelemen 2001] <a href="http://cg.iit.bme.hu/~szirmay/scook_link.htm">Csaba Kelemen, László
       Szirmay-Kalos. &quot;A Microfacet Based Coupled Specular-Matte BRDF Model with Importance Sampling.&quot; EGSR
       2001.</a><br>
