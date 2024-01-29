@@ -53,7 +53,7 @@ If you find there are any mistakes or improvements, please don't hesitate to con
         - BRDF [Documentation](Image-Synthesis/Rasterization/Lighting/BRDF.html)    
 - Discretization  
     - Radiosity [Documentation](Image-Synthesis/Discretization/Radiosity.html)  
-
+    - Diffusion Profile [Documentation](Image-Synthesis/Discretization/Diffusion-Profile.html)  
 
 ## MATLAB  
 
