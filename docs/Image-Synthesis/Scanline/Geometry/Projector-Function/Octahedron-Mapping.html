@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/default.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+</head>
+
+<body class="markdown-body">
+    <h1 dir="auto" id="octahedron-map">Octahedron Map</h1>
+    <p dir="auto">Since the sphere is a 2-manifold rather than a 3-manifold, a bijection can be formed between the
+        points on the sphere and the 2D texture coordinates.</p>
+    <p dir="auto">Real-Time Rendering Fourth Edition / 10.4.4 Other Projections</p>
+    <p dir="auto">L1 (Manhattan) norm</p>
+    <h2 dir="auto" id="applications">Applications</h2>
+    <h3 dir="auto" id="point-light-shadow-mapping">Point Light Shadow Mapping</h3>
+    <p dir="auto">// TODO</p>
+    <h3 dir="auto" id="normal-representation">Normal Representation</h3>
+    <p dir="auto">// Real-Time Rendering Fourth Edition / 16.6 Compression and Precision<br>
+        // Evidently, a bijection can be formed between the unit vectors and the points on the sphere. And thus, the
+        projector functions can be used to compress the normals to 2D coordinates.</p>
+    <p dir="auto">&quot;Octahedral Encoding&quot; of &quot;3.8.3 Spherical Parameterizations&quot; of <a
+            href="https://pbr-book.org/4ed/Geometry_and_Transformations/Spherical_Geometry#x3-OctahedralEncoding">PBR
+            Book V4</a></p>
+    <h2 dir="auto" id="references">References</h2>
+    <p dir="auto">[Engelhardt 2008] <a
+            href="https://www.visus.uni-stuttgart.de/institut/team/Engelhardt-00005/#publ_087656454_bibtex">Thomas
+            Engelhardt, Carsten Dachsbacher. &quot;Octahedron Environment Maps.&quot; VMV 2008.</a><br>
+        [Meyer 2010] Quirin Meyer, Jochen Sussmuth, Gerd Sussner, Marc Stamminger, Gunther Greiner. &quot;On
+        Floating-Point Normal Vectors.&quot; Computer Graphics Forum 2010.<br>
+        [Cigolle 2014] <a href="https://jcgt.org/published/0003/02/01/">Zina Cigolle, Sam Donow, Daniel Evangelakos,
+            Michael Mara, Morgan McGuire, Quirin Meyer. &quot;A Survey of Efficient Representations for Independent Unit
+            Vectors.&quot; JCGT 2014.</a></p>
+
+</body>
+
+</html>

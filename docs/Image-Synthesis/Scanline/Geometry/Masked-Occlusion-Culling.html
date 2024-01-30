@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/default.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+</head>
+
+<body class="markdown-body">
+    <h1 dir="auto" id="moc-masked-occlusion-culling">MOC (Masked Occlusion Culling)</h1>
+    <h2 dir="auto" id="hiz">HiZ</h2>
+    <p dir="auto">The Z buffer is splitted into serveral tiles and the HiZ(Hierarchical Z) buffer can be considered as
+        an outline of a tile inside the Z buffer.</p>
+    <p dir="auto">The HiZ buffer consists of a &quot;z_tile_nearest&quot; value and a &quot;z_tile_farthest&quot; value.
+        And the &quot;z_tile_nearest&quot; is exactly the nearest Z value of the corresponding tile while the
+        &quot;z_tile_farthest&quot; may be equal or farther than the farthest Z value of the corresponding tile due to
+        the fact that there is currently no efficient method to keep the &quot;z_tile_farthest&quot; equal to the
+        farthest Z value of the tile.</p>
+    <p dir="auto">The aim of the HiZ buffer is to skip the full z buffer test to improve the performance and there are
+        three potential outcomes of the HiZ test: fail(&quot;z_tile_farthest&quot; nearer than
+        &quot;z_tri_nearest&quot;), pass(&quot;z_tri_farthest&quot; nearer than &quot;z_tile_nearest&quot;) and
+        ambiguous(neither fail or pass). Evidently, both &quot;fail&quot; and &quot;pass&quot; outcomes skip the full z
+        buffer test and the ambiguous outcome should be decreased to improve the performance.</p>
+    <p dir="auto">And the &quot;z_tile_nearest&quot; can be efficiently updated as &quot;z_tile_nearest =
+        nearest(z_tri_nearest, z_tile_nearest)&quot;. However, the &quot;z_tile_farthest&quot; can NOT be efficiently
+        updated as &quot;z_tile_farthest = nearest(z_tri_farthest, z_tile_farthest)&quot; even if the outcome is
+        &quot;pass&quot; since the &quot;z_tri_farthest&quot; and &quot;z_tile_farthest&quot; may be not at the same
+        sample of the Z buffer. Acutally, the &quot;z_tile_farthest&quot; can only be efficiently updated when the tile
+        is completely overlapped by the triangle. Hence, the &quot;fail&quot; outcome is conservative since the
+        &quot;z_tile_farthest&quot; may be farther than the farthest Z value of the corresponding tile. Thus, the slower
+        delayed &quot;feedback update&quot;, which is to be removed by 1.[Andersson 2015], is currently required to make
+        the &quot;z_tile_farthest&quot; more precise.</p>
+    <p dir="auto">The main idea of &quot;1.[Andersson 2015]&quot; is to use the &quot;tile_selection_mask&quot; to split
+        the tile into two layers. Each layer has its own &quot;z_layer_farthest&quot; and the
+        &quot;z_tile_farthest&quot; is replaced. And the HiZ test is performed based on the layer rather than the tile.
+    </p>
+    <p dir="auto">Evidently, for a single sample, there is no &quot;ambiguous&quot; outcome, only &quot;pass&quot; or
+        &quot;fail&quot;. A tile is considered as &quot;ambiguous&quot; only when it contains both the &quot;pass&quot;
+        and &quot;fail&quot; samples. In my opinion, since the size of the layer is smaller than the tile, the potential
+        that the layer contains both the &quot;pass&quot; and &quot;fail&quot; samples decreases. Thus, the
+        &quot;ambiguous&quot; outcome, which is NOT friendly for the performance, is decreased. And the layer is more
+        likely to be completely overlapped by the triangle than the tile. Hence, the &quot;z_layer_farthest&quot; is
+        more likely to be efficiently updated than the &quot;z_tile_farthest&quot;.</p>
+    <p dir="auto">The underlying assumption of the &quot;two&quot; layers is that the same layer is expected to
+        represent the same surface. For example, the Z buffer may represent a &quot;roof&quot; before the
+        &quot;sky&quot;. And ideally, the &quot;tile_selection_mask&quot; should make sure that one layer represents the
+        &quot;roof&quot; and the other layer represents the &quot;sky&quot;. Thus, even if the
+        &quot;z_layer_farthest&quot; is conservatively updated as &quot;z_layer_farthest = farthest(z_tri_farthest,
+        z_layer_farthest)&quot; for each layer, the precision is acceptable since both &quot;z_tri_farthest&quot; and
+        &quot;z_layer_farthest&quot; represent the same surface.</p>
+    <pre><code class="code-line language-cpp" dir="auto"><div><span class="hljs-built_in">masked_coarse_depth_test</span>()
+{
+    tri_pass_mask = <span class="hljs-built_in">nearer</span>(z_tri_nearerest, z_layer_nearerest);
+
+    tri_fail_mask0 = <span class="hljs-built_in">farther_or_equal</span>(z_tri_farthest, z_layer0_farthest) ? tri_rast_mask &amp; ˜tile_selection_mask : <span class="hljs-number">0</span>;
+    tri_fail_mask1 = <span class="hljs-built_in">farther_or_equal</span>(z_tri_farthest, z_layer1_farthest) ? tri_rast_mask &amp; tile_selection_mask : <span class="hljs-number">0</span>;  
+    tri_fail_mask = tri_fail_mask0 | tri_fail_mask1;
+
+    <span class="hljs-keyword">return</span> {tri_pass_mask, tri_fail_mask};
+}
+</div></code></pre>
+    <pre><code class="code-line language-cpp" dir="auto"><div><span class="hljs-built_in">masked_hiz_update</span>()
+{
+    <span class="hljs-comment">// The &quot;z_tile_nearest&quot; can always be efficiently updated</span>
+    <span class="hljs-comment">// z_tile_nearest = nearest(z_tri_nearest, z_tile_nearest)</span>
+
+    tri_non_fail_mask0 = <span class="hljs-built_in">nearer</span>(z_tri_farthest, z_layer0_farthest) ? tri_rast_mask &amp; ˜tile_selection_mask : <span class="hljs-number">0</span>;
+    tri_non_fail_mask1 = <span class="hljs-built_in">nearer</span>(z_tri_farthest, z_layer1_farthest) ? tri_rast_mask &amp; tile_selection_mask : <span class="hljs-number">0</span>;
+    tri_mask = tri_non_fail_mask0 | tri_non_fail_mask1;
+
+    <span class="hljs-comment">// Since the size of the layer is smaller than the tile, the layer is more likely to be completely overlapped by the triangle than the tile, and thus the &quot;z_layer_farthest&quot; is more likely to be efficiently updated than the &quot;z_tile_farthest&quot;.  </span>
+    layer0_mask = ˜tile_selection_mask &amp; ˜tri_mask;
+    layer1_mask = tile_selection_mask &amp; ˜tri_mask;
+
+    <span class="hljs-keyword">if</span>(<span class="hljs-number">0</span> != tri_mask)
+    {
+        <span class="hljs-comment">// Layer0 is completely overlapped by the triangle and thus can be efficiently updated.</span>
+        <span class="hljs-keyword">if</span>(<span class="hljs-number">0</span> == layer0_mask)
+        {
+            z_layer0_farthest = z_tri_farthest;
+            tile_selection_mask = ˜tri_mask;
+        }
+        <span class="hljs-comment">// Layer0 is completely overlapped by the triangle and thus can be efficiently updated.</span>
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(<span class="hljs-number">1</span> == layer1_mask)
+        {
+            z_layer1_farthest = z_tri_farthest;
+            tile_selection_mask = tri_mask;   
+        }
+        <span class="hljs-comment">// The shortest distance is used to determine which merge operation is performed.</span>
+        <span class="hljs-keyword">else</span>
+        {
+            <span class="hljs-comment">// distance-based heuristic merge</span>
+            <span class="hljs-comment">// ... </span>
+        }
+    }
+}
+</div></code></pre>
+    <h2 dir="auto" id="moc">MOC</h2>
+    <p dir="auto">TODO</p>
+    <p dir="auto">1.[Andersson 2015] <a href="https://fileadmin.cs.lth.se/graphics/research/papers/2015/ZMM/">Magnus
+            Andersson, Jon Hasselgren, Tomas Akenine-Moller. &quot;Masked Depth Culling for Graphics Hardware.&quot;
+            SIGGRAPH 2015.</a></p>
+
+</body>
+
+</html>

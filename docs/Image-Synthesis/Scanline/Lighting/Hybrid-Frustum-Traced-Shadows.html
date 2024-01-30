@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/default.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+</head>
+
+<body class="markdown-body">
+    <h1 dir="auto" id="hfts-hybrid-frustum-traced-shadows">HFTS (Hybrid Frustum Traced Shadows)</h1>
+    <p dir="auto">IZB (Irregular Z-Buffers)</p>
+    <p dir="auto"><a href="https://developer.nvidia.com/shadowworks">NVIDIA ShadowWorks</a></p>
+    <p dir="auto">Real Time Rendering //
+        &quot;With a tile/edge intersection test in place, it is possible to hierarchically traverse a triangle.&quot;
+        &quot;Both OCR and UCR can be implemented using tiled traversal by shrinking the tile size to one pixel.&quot;
+    </p>
+    <p dir="auto">OCR(Overestimated Conservative Rasterization) //Outer-Conservative Rasterization //API中的CR
+        UCR(Underestimated Conservative Rasterization) //Inner-Conservative Rasterization</p>
+    <p dir="auto">Implement 32 MSAA By Software —— &quot;Since samples can lie anywhere within a texel, conservative
+        rasterization is required&quot;</p>
+    <p dir="auto">To Solve &quot;Perspecrive Aliasing&quot; //One Pixel In Eye-Space Match Large Volume In View Space In
+        the Distance</p>
+    <p dir="auto">//To Do List:</p>
+    <p dir="auto">//Q: How Shoud We Do If One Pixel In Eye-Space Match More Than One Pixel In Light-Space?<br>
+        //A: Calculate A Threshould Distance?</p>
+    <h2 dir="auto" id="references">References</h2>
+    <p dir="auto">[Wyman 2015] <a
+            href="https://research.nvidia.com/publication/frustum-traced-raster-shadows-revisiting-irregular-z-buffers">Chris
+            Wyman, Rama Hoetzlein, Aaron Lefohn. &quot;Frustum-Traced Raster Shadows: Revisiting Irregular
+            Z-Buffers.&quot; I3D 2015.</a><br>
+        [Story 2015 A] <a href="https://developer.nvidia.com/content/hybrid-ray-traced-shadows">Jon Story. &quot;Hybrid
+            Ray Traced Shadows&quot;. NVIDIA Developer 2015</a><br>
+        [Story 2015 B] <a
+            href="http://developer.download.nvidia.com/assets/events/GDC15/hybrid_ray_traced_GDC_2015.pdf">Jon Story.
+            &quot;Hybrid Ray Traced Shadows&quot;. GDC 2015.</a><br>
+        [Story 2016 A] <a href="https://developer.nvidia.com/hybrid-frustum-traced-shadows-0">Jon Story. &quot;Hybrid
+            Frustum Traced Shadows&quot;. NVIDIA Developer 2016</a><br>
+        [Story 2016 B] <a href="http://developer.download.nvidia.com/gameworks/events/GDC2016/jstory_hfts.pdf">Jon
+            Story. &quot;Advanced Geometrically Correct Shadows for Modern Game Engines&quot;. GDC 2016.</a></p>
+
+</body>
+
+</html>
