@@ -51,9 +51,9 @@
     <p dir="auto">The key point is that the resource binding functions of the legacy OpenGL or Direct3D11 APIs is split
         into two different kinds of functions in modern Vulkan or Direct3D12 APIs: the &quot;allocate memory and
         initialize memory&quot; functions and the &quot;bind memeory&quot; functions.</p>
-    <p dir="auto">The &quot;allocate memory and initialize memory&quot; functions should be called during initialization
-        rather than per frame, and thus the &quot;bind memeory&quot; functions, which should be called per frame, is
-        much faster than the resource binding functions of the legacy OpenGL or Direct3D11 APIs.</p>
+    <p dir="auto">The &quot;allocate memory and initialize memory&quot; functions should be used during initialization
+        rather than per frame, and thus the &quot;bind memeory&quot; functions, which should be used per frame, is much
+        faster than the resource binding functions of the legacy OpenGL or Direct3D11 APIs.</p>
     <p dir="auto">Since the descriptors are essentially blocks of memory, the descriptors in modern Vulkan or Direct3D12
         APIs should be simply treated as assets, merely following the rules to store the vertex buffers of a mesh or the
         textures of a material.</p>
@@ -72,7 +72,7 @@
                 <td style="text-align:left">set = 0</td>
                 <td style="text-align:left">N/A</td>
                 <td style="text-align:left">global descriptor set</td>
-                <td style="text-align:left">the <strong>vkUpdateDescriptorSets</strong> is called on rendering module
+                <td style="text-align:left">the <strong>vkUpdateDescriptorSets</strong> is used during rendering module
                     initialization</td>
             </tr>
             <tr dir="auto">
@@ -120,15 +120,15 @@
             <tr dir="auto">
                 <td style="text-align:left">set = 1</td>
                 <td style="text-align:left">N/A</td>
-                <td style="text-align:left">permesh descriptor set</td>
-                <td style="text-align:left">the <strong>vkUpdateDescriptorSets</strong> is called on mesh initialization
-                </td>
+                <td style="text-align:left">per mesh descriptor set</td>
+                <td style="text-align:left">the <strong>vkUpdateDescriptorSets</strong> is used during mesh
+                    initialization</td>
             </tr>
             <tr dir="auto">
                 <td style="text-align:left">set = 1 binding = 0</td>
                 <td style="text-align:left">UNIFORM_BUFFER</td>
                 <td style="text-align:left">mesh arguments</td>
-                <td style="text-align:left">the immutable uniform buffer owned by the mesh</td>
+                <td style="text-align:left">for example, the immutable uniform buffer owned by the mesh</td>
             </tr>
             <tr dir="auto">
                 <td style="text-align:left">--------</td>
@@ -139,15 +139,15 @@
             <tr dir="auto">
                 <td style="text-align:left">set = 2</td>
                 <td style="text-align:left">N/A</td>
-                <td style="text-align:left">permaterial descriptor set</td>
-                <td style="text-align:left">the <strong>vkUpdateDescriptorSets</strong> is called on material
+                <td style="text-align:left">per material descriptor set</td>
+                <td style="text-align:left">the <strong>vkUpdateDescriptorSets</strong> is used during material
                     initialization</td>
             </tr>
             <tr dir="auto">
                 <td style="text-align:left">set = 2 binding = 0</td>
                 <td style="text-align:left">UNIFORM_BUFFER</td>
                 <td style="text-align:left">material arguments</td>
-                <td style="text-align:left">the immutable uniform buffer owned by the material</td>
+                <td style="text-align:left">for example, the immutable uniform buffer owned by the material</td>
             </tr>
             <tr dir="auto">
                 <td style="text-align:left">set = 2 binding = 1</td>
@@ -157,8 +157,8 @@
             </tr>
         </tbody>
     </table>
-    <p dir="auto">Evidently, by using this pipeline layout, the <strong>vkUpdateDescriptorSets</strong> is always called
-        during initialization, and the <strong>vkUpdateDescriptorSets</strong> should NOT be called at all during
+    <p dir="auto">Evidently, by using this pipeline layout, the <strong>vkUpdateDescriptorSets</strong> is always used
+        during initialization, and the <strong>vkUpdateDescriptorSets</strong> should NOT be used at all during
         rendering.</p>
     <p dir="auto">In console, an analog of the <strong>ID3D12RootSignature</strong> in Direct3D12 can be used.</p>
 
