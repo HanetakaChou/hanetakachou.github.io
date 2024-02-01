@@ -72,8 +72,8 @@
                 <td style="text-align:left">set = 0</td>
                 <td style="text-align:left">N/A</td>
                 <td style="text-align:left">global descriptor set</td>
-                <td style="text-align:left">the <strong>vkUpdateDescriptorSets</strong> is used during rendering module
-                    initialization</td>
+                <td style="text-align:left">the vkUpdateDescriptorSets is used during rendering module initialization
+                </td>
             </tr>
             <tr dir="auto">
                 <td style="text-align:left">set = 0 binding = 0</td>
@@ -121,8 +121,7 @@
                 <td style="text-align:left">set = 1</td>
                 <td style="text-align:left">N/A</td>
                 <td style="text-align:left">per mesh descriptor set</td>
-                <td style="text-align:left">the <strong>vkUpdateDescriptorSets</strong> is used during mesh
-                    initialization</td>
+                <td style="text-align:left">the vkUpdateDescriptorSets is used during mesh initialization</td>
             </tr>
             <tr dir="auto">
                 <td style="text-align:left">set = 1 binding = 0</td>
@@ -140,8 +139,7 @@
                 <td style="text-align:left">set = 2</td>
                 <td style="text-align:left">N/A</td>
                 <td style="text-align:left">per material descriptor set</td>
-                <td style="text-align:left">the <strong>vkUpdateDescriptorSets</strong> is used during material
-                    initialization</td>
+                <td style="text-align:left">the vkUpdateDescriptorSets is used during material initialization</td>
             </tr>
             <tr dir="auto">
                 <td style="text-align:left">set = 2 binding = 0</td>
@@ -157,9 +155,8 @@
             </tr>
         </tbody>
     </table>
-    <p dir="auto">Evidently, by using this pipeline layout, the <strong>vkUpdateDescriptorSets</strong> is always used
-        during initialization, and the <strong>vkUpdateDescriptorSets</strong> should NOT be used at all during
-        rendering.</p>
+    <p dir="auto">Evidently, by using this pipeline layout, the vkUpdateDescriptorSets is always used during
+        initialization, and the vkUpdateDescriptorSets should NOT be used at all during rendering.</p>
     <p dir="auto">In console, an analog of the <strong>ID3D12RootSignature</strong> in Direct3D12 can be used.</p>
 
 </body>

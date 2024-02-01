@@ -22,7 +22,7 @@ Since the descriptors are essentially blocks of memory, the descriptors in moder
 Here is a typical pipeline layout of Vulkan.  
 location              | type                   | readable name               | introduction  
 :-                    | :-                     | :-                          | :-  
-set = 0               | N/A                    | global descriptor set       | the **vkUpdateDescriptorSets** is used during rendering module initialization  
+set = 0               | N/A                    | global descriptor set       | the vkUpdateDescriptorSets is used during rendering module initialization  
 set = 0 binding = 0   | UNIFORM_BUFFER_DYNAMIC | per frame dynamic offset    | dynamic offset of the unique global_upload_ringbuffer  
 set = 0 binding = 1   | UNIFORM_BUFFER_DYNAMIC | per camera dynamic offset   | dynamic offset of the unique global_upload_ringbuffer  
 set = 0 binding = ... | UNIFORM_BUFFER_DYNAMIC | per ... dynamic offset      | dynamic offset of the unique global_upload_ringbuffer  
@@ -30,13 +30,13 @@ set = 0 binding = 3   | UNIFORM_BUFFER_DYNAMIC | per drawcall dynamic offset | d
 set = 0 binding = 4   | COMBINED_IMAGE_SAMPLER | shadow maps                 | for example, the global shadow maps 
 set = 0 binding = 5   | COMBINED_IMAGE_SAMPLER | LUTs                        | for example, the global LUTs  
 \-\-\-\-\-\-\-\-      | \-\-\-\-\-\-\-\-       | \-\-\-\-\-\-\-\-            | \-\-\-\-\-\-\-\-  
-set = 1               | N/A                    | per mesh descriptor set      | the **vkUpdateDescriptorSets** is used during mesh initialization  
+set = 1               | N/A                    | per mesh descriptor set     | the vkUpdateDescriptorSets is used during mesh initialization  
 set = 1 binding = 0   | UNIFORM_BUFFER         | mesh arguments              | for example, the immutable uniform buffer owned by the mesh  
 \-\-\-\-\-\-\-\-      | \-\-\-\-\-\-\-\-       | \-\-\-\-\-\-\-\-            | \-\-\-\-\-\-\-\-  
-set = 2               | N/A                    | per material descriptor set  | the **vkUpdateDescriptorSets** is used during material initialization  
+set = 2               | N/A                    | per material descriptor set | the vkUpdateDescriptorSets is used during material initialization  
 set = 2 binding = 0   | UNIFORM_BUFFER         | material arguments          | for example, the immutable uniform buffer owned by the material  
 set = 2 binding = 1   | COMBINED_IMAGE_SAMPLER | albedo map                  | the albedo map owned by the material  
 
-Evidently, by using this pipeline layout, the **vkUpdateDescriptorSets** is always used during initialization, and the **vkUpdateDescriptorSets** should NOT be used at all during rendering.  
+Evidently, by using this pipeline layout, the vkUpdateDescriptorSets is always used during initialization, and the vkUpdateDescriptorSets should NOT be used at all during rendering.  
 
 In console, an analog of the **ID3D12RootSignature** in Direct3D12 can be used.  
