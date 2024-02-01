@@ -18,10 +18,10 @@ However, the tile mode (**VkImageTiling** in Vulkan, **D3D12_TEXTURE_LAYOUT** in
 
 #### Tile Mode  
 
-The linear tile mode (**VK_IMAGE_TILING_LINEAR** in Vulkan, **D3D12_TEXTURE_LAYOUT_ROW_MAJOR** in Direct3D12) is exactly the natural memory layout of the **C++ 2D array**. However, by "A.4.4 Blocked 2D Arrays" of [PBRT-V3](https://pbr-book.org/3ed-2018/Utilities/Memory_Management#Blocked2DArrays), the linear tile mode is NOT efficient when the 2D texture is indexed by (u, v), since the adjacent locations in the v direction would be on different cache line.  
+The linear tile mode (**VK_IMAGE_TILING_LINEAR** in Vulkan, **D3D12_TEXTURE_LAYOUT_ROW_MAJOR** in Direct3D12) is exactly the natural memory layout of the **C++ 2D array**. However, by "A.4.4 Blocked 2D Arrays" of [PBR Book V3](https://pbr-book.org/3ed-2018/Utilities/Memory_Management#Blocked2DArrays), the linear tile mode is NOT efficient when the 2D texture is indexed by (u, v), since the adjacent locations in the v direction would be on different cache line.  
   
 The optimal tile mode (**VK_IMAGE_TILING_OPTIMAL** in Vulkan, **D3D12_TEXTURE_LAYOUT_UNKNOWN** in Direct3D12) is the efficient memory layout of which the implementation is vendor dependent.  
-By "A.4.4 Blocked 2D Arrays" of [PBRT-V3](https://pbr-book.org/3ed-2018/Utilities/Memory_Management#Blocked2DArrays), the **Blocked 2D Array** can be one implementation.  
+By "A.4.4 Blocked 2D Arrays" of [PBR Book V3](https://pbr-book.org/3ed-2018/Utilities/Memory_Management#Blocked2DArrays), the **Blocked 2D Array** can be one implementation.  
 ![](Memory-Management-1.png)  
 And by "Figure 23.15" of [Real-Time Rendering Fourth Edition](https://www.realtimerendering.com/), the **Morton sequence** can be one implementation.  
 ![](Memory-Management-2.png)  

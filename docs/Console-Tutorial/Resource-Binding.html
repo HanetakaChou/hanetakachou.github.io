@@ -18,9 +18,9 @@
     <p dir="auto">Analogous to the pipeline state, it is not efficient to allocate a block of memory from the command
         buffer for each draw call. It is more efficient for the application to allocate and initialize a block of memory
         in advance, and reuse the memory at each frame.</p>
-    <p dir="auto">This is the idea of of the (shader visible) descriptors in modern Vulkan or Direct3D12 APIs. The
-        application allocates and initailzes a block of memory in advance, and provides the address of the memory to the
-        hardware before the draw call is issued.</p>
+    <p dir="auto">This is the idea of of the descriptors in modern Vulkan or Direct3D12 APIs. The application allocates
+        and initailzes a block of memory in advance, and provides the address of the memory to the hardware before the
+        draw call is issued.</p>
     <table dir="auto">
         <thead dir="auto">
             <tr dir="auto">
@@ -48,6 +48,118 @@
             </tr>
         </tbody>
     </table>
+    <p dir="auto">The key point is that the resource binding functions of the legacy OpenGL or Direct3D11 APIs is split
+        into two different kinds of functions in modern Vulkan or Direct3D12 APIs: the &quot;allocate memory and
+        initialize memory&quot; functions and the &quot;bind memeory&quot; functions.</p>
+    <p dir="auto">The &quot;allocate memory and initialize memory&quot; functions should be called during initialization
+        rather than per frame, and thus the &quot;bind memeory&quot; functions, which should be called per frame, is
+        much faster than the resource binding functions of the legacy OpenGL or Direct3D11 APIs.</p>
+    <p dir="auto">Since the descriptors are essentially blocks of memory, the descriptors in modern Vulkan or Direct3D12
+        APIs should be simply treated as assets, merely following the rules to store the vertex buffers of a mesh or the
+        textures of a material.</p>
+    <p dir="auto">Here is a typical pipeline layout of Vulkan.</p>
+    <table dir="auto">
+        <thead dir="auto">
+            <tr dir="auto">
+                <th style="text-align:left">location</th>
+                <th style="text-align:left">type</th>
+                <th style="text-align:left">readable name</th>
+                <th style="text-align:left">introduction</th>
+            </tr>
+        </thead>
+        <tbody dir="auto">
+            <tr dir="auto">
+                <td style="text-align:left">set = 0</td>
+                <td style="text-align:left">N/A</td>
+                <td style="text-align:left">global descriptor set</td>
+                <td style="text-align:left">the <strong>vkUpdateDescriptorSets</strong> is called on rendering module
+                    initialization</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:left">set = 0 binding = 0</td>
+                <td style="text-align:left">UNIFORM_BUFFER_DYNAMIC</td>
+                <td style="text-align:left">per frame dynamic offset</td>
+                <td style="text-align:left">dynamic offset of the unique global_upload_ringbuffer</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:left">set = 0 binding = 1</td>
+                <td style="text-align:left">UNIFORM_BUFFER_DYNAMIC</td>
+                <td style="text-align:left">per camera dynamic offset</td>
+                <td style="text-align:left">dynamic offset of the unique global_upload_ringbuffer</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:left">set = 0 binding = ...</td>
+                <td style="text-align:left">UNIFORM_BUFFER_DYNAMIC</td>
+                <td style="text-align:left">per ... dynamic offset</td>
+                <td style="text-align:left">dynamic offset of the unique global_upload_ringbuffer</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:left">set = 0 binding = 3</td>
+                <td style="text-align:left">UNIFORM_BUFFER_DYNAMIC</td>
+                <td style="text-align:left">per drawcall dynamic offset</td>
+                <td style="text-align:left">dynamic offset of the unique global_upload_ringbuffer</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:left">set = 0 binding = 4</td>
+                <td style="text-align:left">COMBINED_IMAGE_SAMPLER</td>
+                <td style="text-align:left">shadow maps</td>
+                <td style="text-align:left">for example, the global shadow maps</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:left">set = 0 binding = 5</td>
+                <td style="text-align:left">COMBINED_IMAGE_SAMPLER</td>
+                <td style="text-align:left">LUTs</td>
+                <td style="text-align:left">for example, the global LUTs</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:left">--------</td>
+                <td style="text-align:left">--------</td>
+                <td style="text-align:left">--------</td>
+                <td style="text-align:left">--------</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:left">set = 1</td>
+                <td style="text-align:left">N/A</td>
+                <td style="text-align:left">permesh descriptor set</td>
+                <td style="text-align:left">the <strong>vkUpdateDescriptorSets</strong> is called on mesh initialization
+                </td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:left">set = 1 binding = 0</td>
+                <td style="text-align:left">UNIFORM_BUFFER</td>
+                <td style="text-align:left">mesh arguments</td>
+                <td style="text-align:left">the immutable uniform buffer owned by the mesh</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:left">--------</td>
+                <td style="text-align:left">--------</td>
+                <td style="text-align:left">--------</td>
+                <td style="text-align:left">--------</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:left">set = 2</td>
+                <td style="text-align:left">N/A</td>
+                <td style="text-align:left">permaterial descriptor set</td>
+                <td style="text-align:left">the <strong>vkUpdateDescriptorSets</strong> is called on material
+                    initialization</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:left">set = 2 binding = 0</td>
+                <td style="text-align:left">UNIFORM_BUFFER</td>
+                <td style="text-align:left">material arguments</td>
+                <td style="text-align:left">the immutable uniform buffer owned by the material</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:left">set = 2 binding = 1</td>
+                <td style="text-align:left">COMBINED_IMAGE_SAMPLER</td>
+                <td style="text-align:left">albedo map</td>
+                <td style="text-align:left">the albedo map owned by the material</td>
+            </tr>
+        </tbody>
+    </table>
+    <p dir="auto">Evidently, by using this pipeline layout, the <strong>vkUpdateDescriptorSets</strong> is always called
+        during initialization, and the <strong>vkUpdateDescriptorSets</strong> should NOT be called at all during
+        rendering.</p>
     <p dir="auto">In console, an analog of the <strong>ID3D12RootSignature</strong> in Direct3D12 can be used.</p>
 
 </body>

@@ -32,14 +32,15 @@
     <p dir="auto">The linear tile mode (<strong>VK_IMAGE_TILING_LINEAR</strong> in Vulkan,
         <strong>D3D12_TEXTURE_LAYOUT_ROW_MAJOR</strong> in Direct3D12) is exactly the natural memory layout of the
         <strong>C++ 2D array</strong>. However, by &quot;A.4.4 Blocked 2D Arrays&quot; of <a
-            href="https://pbr-book.org/3ed-2018/Utilities/Memory_Management#Blocked2DArrays">PBRT-V3</a>, the linear
+            href="https://pbr-book.org/3ed-2018/Utilities/Memory_Management#Blocked2DArrays">PBR Book V3</a>, the linear
         tile mode is NOT efficient when the 2D texture is indexed by (u, v), since the adjacent locations in the v
-        direction would be on different cache line.</p>
+        direction would be on different cache line.
+    </p>
     <p dir="auto">The optimal tile mode (<strong>VK_IMAGE_TILING_OPTIMAL</strong> in Vulkan,
         <strong>D3D12_TEXTURE_LAYOUT_UNKNOWN</strong> in Direct3D12) is the efficient memory layout of which the
         implementation is vendor dependent.<br>
         By &quot;A.4.4 Blocked 2D Arrays&quot; of <a
-            href="https://pbr-book.org/3ed-2018/Utilities/Memory_Management#Blocked2DArrays">PBRT-V3</a>, the
+            href="https://pbr-book.org/3ed-2018/Utilities/Memory_Management#Blocked2DArrays">PBR Book V3</a>, the
         <strong>Blocked 2D Array</strong> can be one implementation.<br>
         <img src="Memory-Management-1.png" alt="" data-src="Memory-Management-1.png"><br>
         And by &quot;Figure 23.15&quot; of <a href="https://www.realtimerendering.com/">Real-Time Rendering Fourth
@@ -51,7 +52,8 @@
     <p dir="auto">We can use <strong>VK_EXT_host_image_copy</strong> in Vulkan or
         <strong>ID3D12Resource::WriteToSubresource</strong> in Direct3D12 to use the CPU to write initial data into the
         image directly. These two functions can convert the linear initial data into the optimal tiling mode of the
-        image.</p>
+        image.
+    </p>
     <p dir="auto">In console, an analog of the the AMD addrlib <a
             href="https://gitlab.freedesktop.org/mesa/mesa/-/blob/22.3/src/amd/vulkan/radv_meta_bufimage.c#L1372">ac_surface_addr_from_coord</a>
         can be used.</p>

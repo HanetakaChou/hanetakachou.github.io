@@ -6,11 +6,37 @@ Evidently, the driver of the legacy OpenGL or Direct3D11 APIs needs to allocate 
 
 Analogous to the pipeline state, it is not efficient to allocate a block of memory from the command buffer for each draw call. It is more efficient for the application to allocate and initialize a block of memory in advance, and reuse the memory at each frame.  
 
-This is the idea of of the (shader visible) descriptors in modern Vulkan or Direct3D12 APIs. The application allocates and initailzes a block of memory in advance, and provides the address of the memory to the hardware before the draw call is issued.
+This is the idea of of the descriptors in modern Vulkan or Direct3D12 APIs. The application allocates and initailzes a block of memory in advance, and provides the address of the memory to the hardware before the draw call is issued.
 
 N/A | allocate memory  | initailze memory | bind memeory 
 :-: | :-: | :-: | :-:  
 Vulkan | vkCreateDescriptorPool <br/> vkAllocateDescriptorSets | vkUpdateDescriptorSets | vkCmdBindDescriptorSets   
 Direct3D12 | ID3D12Device::CreateDescriptorHeap | ID3D12Device::CreateShaderResourceView <br/> ID3D12Device::CreateSampler | ID3D12GraphicsCommandList::SetDescriptorHeaps <br/> ID3D12GraphicsCommandList::SetGraphicsRootConstantBufferView <br/> ID3D12GraphicsCommandList::SetGraphicsRootDescriptorTable   
+
+The key point is that the resource binding functions of the legacy OpenGL or Direct3D11 APIs is split into two different kinds of functions in modern Vulkan or Direct3D12 APIs: the "allocate memory and initialize memory" functions and the "bind memeory" functions.  
+
+The "allocate memory and initialize memory" functions should be called during initialization rather than per frame, and thus the "bind memeory" functions, which should be called per frame, is much faster than the resource binding functions of the legacy OpenGL or Direct3D11 APIs.  
+
+Since the descriptors are essentially blocks of memory, the descriptors in modern Vulkan or Direct3D12 APIs should be simply treated as assets, merely following the rules to store the vertex buffers of a mesh or the textures of a material.  
+
+Here is a typical pipeline layout of Vulkan.  
+location              | type                   | readable name               | introduction  
+:-                    | :-                     | :-                          | :-  
+set = 0               | N/A                    | global descriptor set       | the **vkUpdateDescriptorSets** is called on rendering module initialization  
+set = 0 binding = 0   | UNIFORM_BUFFER_DYNAMIC | per frame dynamic offset    | dynamic offset of the unique global_upload_ringbuffer  
+set = 0 binding = 1   | UNIFORM_BUFFER_DYNAMIC | per camera dynamic offset   | dynamic offset of the unique global_upload_ringbuffer  
+set = 0 binding = ... | UNIFORM_BUFFER_DYNAMIC | per ... dynamic offset      | dynamic offset of the unique global_upload_ringbuffer  
+set = 0 binding = 3   | UNIFORM_BUFFER_DYNAMIC | per drawcall dynamic offset | dynamic offset of the unique global_upload_ringbuffer 
+set = 0 binding = 4   | COMBINED_IMAGE_SAMPLER | shadow maps                 | for example, the global shadow maps 
+set = 0 binding = 5   | COMBINED_IMAGE_SAMPLER | LUTs                         | for example, the global LUTs  
+\-\-\-\-\-\-\-\-      | \-\-\-\-\-\-\-\-       | \-\-\-\-\-\-\-\-            | \-\-\-\-\-\-\-\-  
+set = 1               | N/A                    | permesh descriptor set      | the **vkUpdateDescriptorSets** is called on mesh initialization  
+set = 1 binding = 0   | UNIFORM_BUFFER         | mesh arguments              | the immutable uniform buffer owned by the mesh  
+\-\-\-\-\-\-\-\-      | \-\-\-\-\-\-\-\-       | \-\-\-\-\-\-\-\-            | \-\-\-\-\-\-\-\-  
+set = 2               | N/A                    | permaterial descriptor set  | the **vkUpdateDescriptorSets** is called on material initialization  
+set = 2 binding = 0   | UNIFORM_BUFFER         | material arguments          | the immutable uniform buffer owned by the material  
+set = 2 binding = 1   | COMBINED_IMAGE_SAMPLER | albedo map                  | the albedo map owned by the material  
+
+Evidently, by using this pipeline layout, the **vkUpdateDescriptorSets** is always called during initialization, and the **vkUpdateDescriptorSets** should NOT be called at all during rendering.  
 
 In console, an analog of the **ID3D12RootSignature** in Direct3D12 can be used.  
