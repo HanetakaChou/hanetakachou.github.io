@@ -11,11 +11,7 @@ This is the idea of of the descriptors in modern Vulkan or Direct3D12 APIs. The 
 N/A | allocate memory  | initailze memory | bind memeory 
 :-: | :-: | :-: | :-:  
 Vulkan | vkCreateDescriptorPool <br/> vkAllocateDescriptorSets | vkUpdateDescriptorSets | vkCmdBindDescriptorSets   
-Direct3D12 | ID3D12Device::CreateDescriptorHeap | ID3D12Device::CreateShaderResourceView <br/> ID3D12Device::CreateSampler | ID3D12GraphicsCommandList::SetDescriptorHeaps <br/> ID3D12GraphicsCommandList::SetGraphicsRootConstantBufferView <br/> ID3D12GraphicsCommandList::SetGraphicsRootDescriptorTable   
-
-The key point is that the resource binding functions of the legacy OpenGL or Direct3D11 APIs is split into two different kinds of functions in modern Vulkan or Direct3D12 APIs: the "allocate memory and initialize memory" functions and the "bind memeory" functions.  
-
-The "allocate memory and initialize memory" functions should be used during initialization rather than per frame, and thus the "bind memeory" functions, which should be used per frame, is much faster than the resource binding functions of the legacy OpenGL or Direct3D11 APIs.  
+Direct3D12 | ID3D12Device::CreateDescriptorHeap | ID3D12Device::CreateShaderResourceView <br/> ID3D12Device::CreateSampler <br/> ID3D12Device::CreateUnorderedAccessView | ID3D12GraphicsCommandList::SetDescriptorHeaps <br/> ID3D12GraphicsCommandList::SetGraphicsRootConstantBufferView <br/> ID3D12GraphicsCommandList::SetGraphicsRootDescriptorTable <br/> ID3D12GraphicsCommandList::SetComputeRootConstantBufferView <br/> ID3D12GraphicsCommandList::SetComputeRootDescriptorTable  
 
 Since the descriptors are essentially blocks of memory, the descriptors in modern Vulkan or Direct3D12 APIs should be simply treated as assets, merely following the rules to store the vertex buffers of a mesh or the textures of a material.  
 
@@ -37,6 +33,6 @@ set = 2               | N/A                    | per material descriptor set | t
 set = 2 binding = 0   | UNIFORM_BUFFER         | material arguments          | for example, the immutable uniform buffer owned by the material  
 set = 2 binding = 1   | COMBINED_IMAGE_SAMPLER | albedo map                  | the albedo map owned by the material  
 
-Evidently, by using this pipeline layout, the vkUpdateDescriptorSets is always used during initialization, and the vkUpdateDescriptorSets should NOT be used at all during rendering.  
+Evidently, by using this pipeline layout, the vkUpdateDescriptorSets is always used during initialization and NEVER used during rendering.  
 
 In console, an analog of the **ID3D12RootSignature** in Direct3D12 can be used.  

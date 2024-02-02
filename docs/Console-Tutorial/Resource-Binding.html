@@ -41,19 +41,16 @@
                 <td style="text-align:center">Direct3D12</td>
                 <td style="text-align:center">ID3D12Device::CreateDescriptorHeap</td>
                 <td style="text-align:center">ID3D12Device::CreateShaderResourceView <br /> ID3D12Device::CreateSampler
+                    <br /> ID3D12Device::CreateUnorderedAccessView
                 </td>
                 <td style="text-align:center">ID3D12GraphicsCommandList::SetDescriptorHeaps <br />
                     ID3D12GraphicsCommandList::SetGraphicsRootConstantBufferView <br />
-                    ID3D12GraphicsCommandList::SetGraphicsRootDescriptorTable</td>
+                    ID3D12GraphicsCommandList::SetGraphicsRootDescriptorTable <br />
+                    ID3D12GraphicsCommandList::SetComputeRootConstantBufferView <br />
+                    ID3D12GraphicsCommandList::SetComputeRootDescriptorTable</td>
             </tr>
         </tbody>
     </table>
-    <p dir="auto">The key point is that the resource binding functions of the legacy OpenGL or Direct3D11 APIs is split
-        into two different kinds of functions in modern Vulkan or Direct3D12 APIs: the &quot;allocate memory and
-        initialize memory&quot; functions and the &quot;bind memeory&quot; functions.</p>
-    <p dir="auto">The &quot;allocate memory and initialize memory&quot; functions should be used during initialization
-        rather than per frame, and thus the &quot;bind memeory&quot; functions, which should be used per frame, is much
-        faster than the resource binding functions of the legacy OpenGL or Direct3D11 APIs.</p>
     <p dir="auto">Since the descriptors are essentially blocks of memory, the descriptors in modern Vulkan or Direct3D12
         APIs should be simply treated as assets, merely following the rules to store the vertex buffers of a mesh or the
         textures of a material.</p>
@@ -156,7 +153,7 @@
         </tbody>
     </table>
     <p dir="auto">Evidently, by using this pipeline layout, the vkUpdateDescriptorSets is always used during
-        initialization, and the vkUpdateDescriptorSets should NOT be used at all during rendering.</p>
+        initialization and NEVER used during rendering.</p>
     <p dir="auto">In console, an analog of the <strong>ID3D12RootSignature</strong> in Direct3D12 can be used.</p>
 
 </body>
