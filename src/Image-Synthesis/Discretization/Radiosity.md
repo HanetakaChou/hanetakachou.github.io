@@ -2,13 +2,13 @@
 
 ## FEM (Finite Element Method)  
 
-The main idea of **FEM (Finite Element Method)** is to convert the **infinite** problem of solving a **differential equation** into the **finite** problem of solving a **system of equations**.  
+The main idea of **FEM (Finite Element Method)** is to convert the **infinite** problem of solving a **differential equation** into the **finite** problem of solving a set of **simultaneous linear equations**.  
 
 Let $\displaystyle \operatorname{f}(x)$ be the solution of a **differential equation** which can be written as $\displaystyle \operatorname{f}(x) = P(f(x))$.  
 
 We try to approximate the $\displaystyle \operatorname{f}(x)$ by the **basis functions** $\displaystyle \sum_{k=1}^n f_k \operatorname{v_k}(x)$. The idea of the basis functions in **FEM** is similar to **SH (Spherical Harmonics)** or **Fourier**. But since the aim of the **FEM** is usually to **discretize** the domain of $\displaystyle \operatorname{f}(x)$, the basis functions in FEM is much simpler than in **SH** or **Fourier**. For example, when the domain of $\displaystyle \operatorname{f}(x)$ is [0, 1], let $\displaystyle \operatorname{v_1}(x) = {\begin{cases} 1 &{x \isin [0, \frac{1}{2}]} \\0 &{x \isin [\frac{1}{2}, 1]} \end{cases}}$ and $\displaystyle \operatorname{v_2}(x) = {\begin{cases} 0 &{x \isin [0, \frac{1}{2}]} \\1 &{x \isin [\frac{1}{2}, 1]} \end{cases}}$, evidently $\displaystyle \operatorname{v_1}(x)$ and $\displaystyle \operatorname{v_2}(x)$ are **orthogonal**.  
 
-Let $\displaystyle \operatorname{r}(x) = \sum_{k=1}^n f_k \operatorname{v_k}(x) - P(\sum_{k=1}^n f_k \operatorname{v_k}(x))$ be the **residual**. The projection of the **residual** onto each basis function should be zero. This means that, for j = 1 ... n, we have $\displaystyle \int \operatorname{r}(x) \operatorname{v_j}(x) = 0$ (of which the $\displaystyle \operatorname{R}(x) = \operatorname{r}(x) \operatorname{v_j}(x)$ is also called the **weighted residual**). And we have the **system of equations** about the coefficients $\displaystyle f_k$.  
+Let $\displaystyle \operatorname{r}(x) = \sum_{k=1}^n f_k \operatorname{v_k}(x) - P(\sum_{k=1}^n f_k \operatorname{v_k}(x))$ be the **residual**. The projection of the **residual** onto each basis function should be zero. This means that, for j = 1 ... n, we have $\displaystyle \int \operatorname{r}(x) \operatorname{v_j}(x) = 0$ (of which the $\displaystyle \operatorname{R}(x) = \operatorname{r}(x) \operatorname{v_j}(x)$ is also called the **weighted residual**). And we have the **simultaneous linear equations** about the coefficients $\displaystyle f_k$.  
 
 ## Rendering Equation  
 
