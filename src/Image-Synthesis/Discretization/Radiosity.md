@@ -64,61 +64,7 @@ Proof
 >  
 >> By [Linearity Property](https://en.wikipedia.org/wiki/Integral#Linearity), we have $\displaystyle \int_A  \left \lparen \frac{1}{\pi} \operatorname{\rho_{hd}}(\overrightarrow{p}) \int_A \left \lparen \sum_{j=1}^n B_j \operatorname{N_j}(\overrightarrow{p}) \right \rparen \operatorname{G}(\overrightarrow{p'} \rightarrow \overrightarrow{p}) \, d \operatorname{A}(\overrightarrow{p'}) \right \rparen \operatorname{N_i}(\overrightarrow{p}) \, d \operatorname{A}(\overrightarrow{p}) = \sum_{j=1}^n \int_A  \left \lparen \frac{1}{\pi} \operatorname{\rho_{hd}}(\overrightarrow{p}) \int_A B_j \operatorname{N_j}(\overrightarrow{p}) \operatorname{G}(\overrightarrow{p'} \rightarrow \overrightarrow{p}) \, d \operatorname{A}(\overrightarrow{p'}) \right \rparen \operatorname{N_i}(\overrightarrow{p}) \, d \operatorname{A}(\overrightarrow{p})$.  
 >> Since $\displaystyle \operatorname{N_i}(\overrightarrow{p}) = {\begin{cases} 1 &{\overrightarrow{p} \isin A_i} \\0 &{\overrightarrow{p} \notin A_i} \end{cases}}$ and $\displaystyle \operatorname{N_j}(\overrightarrow{p}) = {\begin{cases} 1 &{\overrightarrow{p} \isin A_j} \\0 &{\overrightarrow{p} \notin A_j} \end{cases}}$, we have $\displaystyle \sum_{j=1}^n \int_A  \left \lparen \frac{1}{\pi} \operatorname{\rho_{hd}}(\overrightarrow{p}) \int_A B_j \operatorname{N_j}(\overrightarrow{p}) \operatorname{G}(\overrightarrow{p'} \rightarrow \overrightarrow{p}) \, d \operatorname{A}(\overrightarrow{p'}) \right \rparen \operatorname{N_i}(\overrightarrow{p}) \, d \operatorname{A}(\overrightarrow{p}) = \sum_{j=1}^n \int_{A_i} \left \lparen \frac{1}{\pi} \operatorname{\rho_{hd}}(\overrightarrow{p}) \int_{A_j} B_j \operatorname{G}(\overrightarrow{p'} \rightarrow \overrightarrow{p}) \, d \operatorname{A}(\overrightarrow{p'}) \right \rparen \, d \operatorname{A}(\overrightarrow{p})$.  
->> Since $\displaystyle \operatorname{\rho_{hd}}(\overrightarrow{p})$ is the assumed to be the constant $\displaystyle \rho_i^{ss}$ over the ith patch surface, we have $\displaystyle \sum_{j=1}^n \int_{A_i} \left \lparen \frac{1}{\pi} \operatorname{\rho_{hd}}(\overrightarrow{p}) \int_{A_j} B_j \operatorname{G}(\overrightarrow{p'} \rightarrow \overrightarrow{p}) \, d \operatorname{A}(\overrightarrow{p'}) \right \rparen \, d \operatorname{A}(\overrightarrow{p}) = \rho_i^{ss} \sum_{j=1}^n \frac{1}{\pi} B_j \int_{A_i} \left \lparen \int_{A_j} \operatorname{G}(\overrightarrow{p'} \rightarrow \overrightarrow{p}) \, d \operatorname{A}(\overrightarrow{p'}) \right \rparen \, d \operatorname{A}(\overrightarrow{p}) = A_i \rho_i^{ss} \sum_{j=1}^n \left \lparen \frac{1}{A_i} \frac{1}{\pi} \int_{A_i} \int_{A_j} \operatorname{G}(\overrightarrow{p'} \rightarrow \overrightarrow{p}) \, d \operatorname{A}(\overrightarrow{p'}) \, d \operatorname{A}(\overrightarrow{p}) \right \rparen B_j = A_i \rho_i^{ss} \sum_{j=1}^n F_{ij} B_j$ 
-
-## FreeFEM  
-
-```c++
-load "msh3"
-include "MeshSurface.idp"
-
-// ["Octahedral Encoding" of "3.8.3 Spherical Parameterizations" of PBR Book V4](https://pbr-book.org/4ed/Geometry_and_Transformations/Spherical_Geometry#x3-OctahedralEncoding)
-int NumberDiscretization = 64;
-// func PositionRectangleSpaceX = -1.0 + 2.0 * x;
-// func PositionRectangleSpaceY = -1.0 + 2.0 * y;
-// func PositionOctahedronSpaceZ = 1.0 - abs(PositionRectangleSpaceX(x, y, z)) - abs(PositionRectangleSpaceY(x, y, z));
-// func PositionOctahedronSpaceX = (0.5 * (copysign(1.0, PositionOctahedronSpaceZ(x, y, z)) + 1.0)) * PositionRectangleSpaceX(x, y, z) + (0.5 * (-copysign(1.0, PositionOctahedronSpaceZ(x, y, z)) + 1.0)) * ((1.0 - abs(PositionRectangleSpaceY(x, y, z))) * copysign(1.0, PositionRectangleSpaceX(x, y, z)));
-// func PositionOctahedronSpaceY = (0.5 * (copysign(1.0, PositionOctahedronSpaceZ(x, y, z)) + 1.0)) * PositionRectangleSpaceY(x, y, z) + (0.5 * (-copysign(1.0, PositionOctahedronSpaceZ(x, y, z)) + 1.0)) * ((1.0 - abs(PositionRectangleSpaceX(x, y, z))) * copysign(1.0, PositionRectangleSpaceY(x, y, z)));
-// func PositionOctahedronSpaceLength = sqrt(PositionOctahedronSpaceX(x, y, z) * PositionOctahedronSpaceX(x, y, z) + PositionOctahedronSpaceY(x, y, z) * PositionOctahedronSpaceY(x, y, z) + PositionOctahedronSpaceZ(x, y, z) * PositionOctahedronSpaceZ(x, y, z));
-// func PositionSphereSpaceX = PositionOctahedronSpaceX(x, y, z) / PositionOctahedronSpaceLength(x, y, z);
-// func PositionSphereSpaceY = PositionOctahedronSpaceY(x, y, z) / PositionOctahedronSpaceLength(x, y, z);
-// func PositionSphereSpaceZ = PositionOctahedronSpaceZ(x, y, z) / PositionOctahedronSpaceLength(x, y, z);
-// meshS Mesh = square3(NumberDiscretization, NumberDiscretization, [ PositionSphereSpaceX, PositionSphereSpaceY, PositionSphereSpaceZ ], orientation = -1);
-meshS Mesh = Sphere(1.0, 0.1, 0, -1);
-// func PositionSphereSpaceX = x;
-// func PositionSphereSpaceY = y;
-// func PositionSphereSpaceZ = 0.0;
-// meshS Mesh = square3(NumberDiscretization, NumberDiscretization, [ PositionSphereSpaceX, PositionSphereSpaceY, PositionSphereSpaceZ ], orientation = -1);
-
-// "Figure 3.5" of "Radiosity-and-Realistic-Image-Synthesis"
-// P0: "Constant Basis Function"
-// P1: "Linear Basis Function"
-fespace FiniteElementSpace(Mesh, P1);
-
-// Finite Element Approximation of the Radiosity Function B(p)
-FiniteElementSpace B;
-// Basis Function Nb(p)
-FiniteElementSpace Nb;
-
-
-// ["13.1.2 Analytic Solutions to the LTE" of PBR Book V4](https://pbr-book.org/4ed/Light_Transport_I_Surface_Reflection/The_Light_Transport_Equation#AnalyticSolutionstotheLTE)
-// Emission 
-func Be = 1.0;
-// Albedo (Diffuse Color)
-func RHOhd = 0.5;
-// Visibility
-func V = 1.0;
-
-// TODO: Geometric Coupling Term
-// G(q → p) = V(q → p) ((cosθq+)(cosθp+))/(||q - p||2)
-
-// Projection of the Weighted Residual of the Radiosity Equation
-// ∫ r(p) Nb(p)  = ∫ B(p) Nb(p) dA(p) - ∫ Be(p) Nb(p) dA(p) + ∫ ( 1/PI * ρhd(p) * ∫ ( B(q) G(q → p) dA(q) ) * Nb(p) ) dA(p)
-
-solve ProjectionWeightedResidual(B, Nb) = int2d(Mesh)(B * Nb) - int2d(Mesh)(Be * Nb) + int2d(Mesh)(RHOhd * B * Nb);
-
-plot(Mesh, B, wait = true);
-```
+>> Since $\displaystyle \operatorname{\rho_{hd}}(\overrightarrow{p})$ is the assumed to be the constant $\displaystyle \rho_i^{ss}$ over the ith patch surface, we have $\displaystyle \sum_{j=1}^n \int_{A_i} \left \lparen \frac{1}{\pi} \operatorname{\rho_{hd}}(\overrightarrow{p}) \int_{A_j} B_j \operatorname{G}(\overrightarrow{p'} \rightarrow \overrightarrow{p}) \, d \operatorname{A}(\overrightarrow{p'}) \right \rparen \, d \operatorname{A}(\overrightarrow{p}) = \rho_i^{ss} \sum_{j=1}^n \frac{1}{\pi} B_j \int_{A_i} \left \lparen \int_{A_j} \operatorname{G}(\overrightarrow{p'} \rightarrow \overrightarrow{p}) \, d \operatorname{A}(\overrightarrow{p'}) \right \rparen \, d \operatorname{A}(\overrightarrow{p}) = A_i \rho_i^{ss} \sum_{j=1}^n \left \lparen \frac{1}{A_i} \frac{1}{\pi} \int_{A_i} \int_{A_j} \operatorname{G}(\overrightarrow{p'} \rightarrow \overrightarrow{p}) \, d \operatorname{A}(\overrightarrow{p'}) \, d \operatorname{A}(\overrightarrow{p}) \right \rparen B_j = A_i \rho_i^{ss} \sum_{j=1}^n F_{ij} B_j$  
 
 ## References  
 
