@@ -10,7 +10,7 @@
 </head>
 
 <body class="markdown-body">
-    <h1 dir="auto" id="cache-synchronization">Cache Synchronization</h1>
+    <h1 dir="auto" id="cache-synchronization-1">Cache Synchronization</h1>
     <p dir="auto">By <a
             href="https://gitlab.freedesktop.org/mesa/mesa/-/blob/22.3/src/amd/vulkan/radv_private.h#L1178">radv_cmd_flush_bits</a>,
         there are many different types of cache in the GPU.</p>
@@ -25,12 +25,12 @@
             href="https://www.realtimerendering.com/">Real-Time Rendering Fourth Edition</a>, HiZ (Hierarchy Z) is
         usualy used to handle coarse depth testing for the depth attachment. For AMD GPU, by &quot;23.10.3 Case Study:
         AMD GCN Vega&quot; of <a href="https://www.realtimerendering.com/">Real-Time Rendering Fourth Edition</a>, the
-        related HiZ data is stored in the HTILE metadata. Technically, we may also need to decompress the metadata
-        before we flush the cache (see <a
+        related HiZ data is stored in the HTILE metadata. Technically, we may also need to decompress the metadata (see
+        <a
             href="https://gitlab.freedesktop.org/mesa/mesa/-/blob/22.3/src/amd/vulkan/radv_cmd_buffer.c#L9408">radv_decompress_dcc</a>
         and <a
             href="https://gitlab.freedesktop.org/mesa/mesa/-/blob/22.3/src/amd/vulkan/radv_cmd_buffer.c#L9214">radv_expand_depth_stencil</a>
-        for more information).
+        for more information) before we flush the cache.
     </p>
     <p dir="auto">In legacy OpenGL or Direct3D11 APIs, the texture usage is tracked by the driver. And the driver will
         handle the cache synchronization (and the metadata decompression) when the texture usage changes.</p>

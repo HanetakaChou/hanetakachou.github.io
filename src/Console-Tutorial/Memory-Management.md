@@ -1,6 +1,6 @@
 # Memory Management  
 
-There are two the GPU memory architectures: UMA and NUMA.  
+There are two GPU memory architectures: UMA and NUMA.  
 Desktop PC discrete GPUs are the typical cases of the NUMA architecture where the system memory can be accessed by both the GPU and CPU, while the dedicated video memory can be only accessed by the the GPU.  
 Desktop PC integrated GPUs, mobile GPUs and console (PlayStation and XBox) GPUs are the typical cases of the UMA architecture where the GPU and CPU share the same memory.  
 
