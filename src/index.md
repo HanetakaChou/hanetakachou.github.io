@@ -28,6 +28,7 @@ If you find there are any mistakes or improvements, please don't hesitate to con
 - Ray Tracing  
     - RTAO (Ray Traced Ambient Occlusion) [Documentation](Image-Synthesis/Ray-Tracing/Ray-Traced-Ambient-Occlusion.html) [Code](https://github.com/HanetakaChou/Ray-Traced-Ambient-Occlusion)  
     - Photon Mapping [Documentation](Image-Synthesis/Ray-Tracing/Photon-Mapping.html)  
+    - DDGI (Dynamic Diffuse Global Illumination) [Documentation](Image-Synthesis/Ray-Tracing/Dynamic-Diffuse-Global-Illumination.html)  
 - Rasterization  
     - Geometry  
         - HLOD [Documentation](Image-Synthesis/Rasterization/Geometry/HLOD.html)  
