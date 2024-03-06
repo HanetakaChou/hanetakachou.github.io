@@ -70,4 +70,5 @@ Proof
 
 ## References  
 
-\[Cohen 1993\] [Michael Cohen, John Wallace. "Radiosity and Realistic Image Synthesis." Academic Press Professional 1993.](https://www.graphics.cornell.edu/online/box)  
+\[Cohen 1993\] [Michael Cohen, John Wallace. "Radiosity and Realistic Image Synthesis." Academic Press Professional 1993.](https://www.realtimerendering.com/blog/two-classic-radiosity-books-now-free/)  
+\[Hecht 2012\] [Frederic Hecht. "New development in FreeFem++." Journal of Numerical Mathematics 2012.](https://doc.freefem.org/introduction/citation.html)  
