@@ -7,5 +7,6 @@
 
 ## References  
 \[Jensen 2001\] [Henrik Jensen. "Realistic Image Synthesis Using Photon Mapping." AK Peters 2001.](http://www.graphics.stanford.edu/papers/jensen_book/)  
+\[Hachisuka 2008\] [Toshiya Hachisuka, Shinji Ogaki, Henrik Jensen. "Progressive Photon Mapping." SIGGRAPH 2008.](http://graphics.ucsd.edu/~henrik/papers/progressive_photon_mapping/)  
 \[Hachisuka 2009\] [Toshiya Hachisuka, Henrik Jensen. "Stochastic Progressive Photon Mapping." SIGGRAPH 2009.](http://graphics.ucsd.edu/~henrik/papers/sppm/index.html)  
 
