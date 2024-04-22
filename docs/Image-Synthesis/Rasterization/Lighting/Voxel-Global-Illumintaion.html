@@ -19,9 +19,11 @@
             rays</strong> are traced from the light sources, and the lighting information of the interaction positions
         of these <strong>photon rays</strong> is recorded as the photons. During the <strong>rendering</strong> step,
         the <strong>primary rays</strong> are traced from the camera and the <strong>final gather rays</strong> are
-        traced from the <strong>final gather points</strong>, and the lighting information of the vicinal photons of the
-        interaction positions of these <strong>primary rays</strong> or <strong>final gather rays</strong> is used to
-        estimate the lighting of these interaction points by <strong>(probability) density estimation</strong>.</p>
+        traced from the <a
+            href="http://docs.autodesk.com/MENTALRAY/2015/ENU/mental-ray-help/files/manual/node52.html"><strong>final
+                gather points</strong></a>, and the lighting information of the vicinal photons of the interaction
+        positions of these <strong>primary rays</strong> or <strong>final gather rays</strong> is used to estimate the
+        lighting of these interaction points by <strong>(probability) density estimation</strong>.</p>
     <p dir="auto">By &quot;7.5 Photon Gathering&quot; of [Jensen 2001], [Hachisuka 2005] and &quot;16.2.2 Photon
         Mapping&quot; of <a
             href="https://pbr-book.org/3ed-2018/Light_Transport_III_Bidirectional_Methods/Stochastic_Progressive_Photon_Mapping#PhotonMapping">PBR
@@ -37,9 +39,17 @@
         information of the vicinal photons of the interaction positions of the <strong>final gather rays</strong> is
         used to estimate the lighting of these interaction positions by <strong>(probability) density
             estimation</strong>.</p>
-    <p dir="auto"><img src="Voxel-Global-Illumintaion-1.png" alt="" data-src="Voxel-Global-Illumintaion-1.png"><br>
-        <img src="Voxel-Global-Illumintaion-2.png" alt="" data-src="Voxel-Global-Illumintaion-2.png"><br>
-        <img src="Voxel-Global-Illumintaion-3.png" alt="" data-src="Voxel-Global-Illumintaion-3.png">
+    <p dir="auto"><strong>Photon Tracing</strong><br>
+        <img src="Voxel-Global-Illumintaion-Photon-Mapping-Photon-Tracing.png" alt=""
+            data-src="Voxel-Global-Illumintaion-Photon-Mapping-Photon-Tracing.png">
+    </p>
+    <p dir="auto"><strong>Rendering - Radiance-Estimate</strong><br>
+        <img src="Voxel-Global-Illumintaion-Photon-Mapping-Rendering-Radiance-Estimate.png" alt=""
+            data-src="Voxel-Global-Illumintaion-Photon-Mapping-Rendering-Radiance-Estimate.png">
+    </p>
+    <p dir="auto"><strong>Rendering - Final Gathering</strong><br>
+        <img src="Voxel-Global-Illumintaion-Photon-Mapping-Rendering-Final-Gathering.png" alt=""
+            data-src="Voxel-Global-Illumintaion-Photon-Mapping-Rendering-Final-Gathering.png">
     </p>
     <p dir="auto">By [Crassin 2011 B], the <strong>VXGI (Voxel Global Illumintaion)</strong> is composed of four steps:
         <strong>voxelization</strong>, <strong>light injection</strong>, <strong>filtering</strong> and <strong>cone
@@ -5214,7 +5224,7 @@
     <p dir="auto">[Jensen 2001] <a href="http://www.graphics.stanford.edu/papers/jensen_book/">Henrik Jensen.
             &quot;Realistic Image Synthesis Using Photon Mapping.&quot; AK Peters 2001.</a><br>
         [Hachisuka 2005] <a
-            href="https://developer.nvidia.com/gpugems/gpugems2/part-iii-high-quality-rendering/chapter-21-high-quality-antialiased-rasterization">Toshiya
+            href="https://developer.nvidia.com/gpugems/gpugems2/part-v-image-oriented-computing/chapter-38-high-quality-global-illumination">Toshiya
             Hachisuka. &quot;High-Quality Global Illumination Rendering Using Rasterization.&quot; GPU Gems 2.</a><br>
         [Crassin 2011 A] <a href="http://gigavoxels.inrialpes.fr/index.html">Cyril Crassin. &quot;GigaVoxels: A
             Voxel-Based Rendering Pipeline For Efficient Exploration Of Large And Detailed Scenes.&quot; PhD Thesis
