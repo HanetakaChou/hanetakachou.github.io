@@ -1,6 +1,6 @@
 # VXGI (Voxel Global Illumintaion)  
 
-## Photon Mapping  
+## 1\. Photon Mapping  
 
 By "4.3 Overview" of \[Jensen 2001\] and "16.2.2 Photon Mapping" of [PBR Book V3](https://pbr-book.org/3ed-2018/Light_Transport_III_Bidirectional_Methods/Stochastic_Progressive_Photon_Mapping#PhotonMapping), the **photon mapping** is composed of two steps: **photon tracing** and **rendering**. During the **photon tracing** step, the **photon rays** are traced from the light sources, and the lighting information of the interaction positions of these **photon rays** is recorded as the photons. During the **rendering** step, the **primary rays** are traced from the camera and the **final gather rays** are traced from the [**final gather points**](http://docs.autodesk.com/MENTALRAY/2015/ENU/mental-ray-help/files/manual/node52.html), and the lighting information of the vicinal photons of the interaction positions of these **primary rays** or **final gather rays** is used to estimate the lighting of these interaction points by **(probability) density estimation**.  
 
@@ -10,15 +10,17 @@ By "7.5 Photon Gathering" of \[Jensen 2001\], \[Hachisuka 2005\] and "16.2.2 Pho
 | :-: | :-: | :-: |  
 | ![](Voxel-Global-Illumintaion-Photon-Mapping-Photon-Tracing.png) | ![](Voxel-Global-Illumintaion-Photon-Mapping-Rendering-Radiance-Estimate.png) | ![](Voxel-Global-Illumintaion-Photon-Mapping-Rendering-Final-Gathering.png) |  
 
-By \[Crassin 2011 B\], the **VXGI (Voxel Global Illumintaion)** is composed of four steps: **voxelization**, **light injection**, **filtering** and **cone tracing**. The idea of the VXGI is intrinsically to implement the photon mapping by storing the photons in the voxels. The light injection step of the VXGI is analogous to the photon tracing pass of the photon mapping. The cone tracing of the VXGI is analogous to the rendering pass of the photon mapping.  
+## 2\. VXGI (Voxel Global Illumintaion)  
+
+By \[Crassin 2011\], the **VXGI (Voxel Global Illumintaion)** is composed of four steps: **voxelization**, **light injection**, **filtering** and **cone tracing**. The idea of the VXGI is intrinsically to implement the photon mapping by storing the photons in the voxels. The **light injection** step of the VXGI is analogous to the **photon tracing** step of the photon mapping. The **cone tracing** of the VXGI is analogous to the **rendering / final gathering** step of the photon mapping.  
 
 | **Voxelization** | **Light Injection** | **Filtering** | **Cone Tracing** |  
 | :-: | :-: | :-: | :-: |  
 | ![](Voxel-Global-Illumintaion-VXGI-Voxelization.png) | ![](Voxel-Global-Illumintaion-VXGI-Light-Injection.png) | ![](Voxel-Global-Illumintaion-VXGI-Filtering.png) | ![](Voxel-Global-Illumintaion-VXGI-Cone-Tracing.png) |  
 
-## Voxelization  
+### 2-1\. Voxelization  
 
-### Clipmap  
+#### Clipmap  
 
 TODO: by \[McLaren 2015\] and \[Eric 2017\], clipmap is better than SVO (sparse voxel octree).  
 
@@ -78,22 +80,22 @@ Texture3D 128\*128\*785
 783 | 779    
 784 | N/A    
 
-### MSAA  
+#### MSAA  
 
 TODO: conservative rasterization  
 TODO: simulate "conservative rasterization" by MSAA (\[Takeshige 2015\])  
 
-## Light Injection  
+### 2-2\. Light Injection  
 
 TODO: not related to "ambient occlusion"  
 
-## Filtering  
+### 2-3\. Filtering  
 
 ![](Voxel-Global-Illumintaion-8.png)  
 
 TODO: anisotropic voxel  
 
-## Cone Tracing  
+### 2-4\. Cone Tracing  
 
 By [Additive Interval Property](https://en.wikipedia.org/wiki/Integral#Conventions), the ambient occlusion can be calculated as $\displaystyle \operatorname{k_A} = \int_\Omega \frac{1}{\pi}  \operatorname{V}(\overrightarrow{\omega_i}) (\cos \theta_i)^+ \, d \overrightarrow{\omega_i} = \frac{1}{\pi} \sum_{i=0}^{n} \left\lparen \int_{\Omega_i} \operatorname{V}(\overrightarrow{\omega_i}) (\cos \theta_i)^+ \, d \overrightarrow{\omega_i} \right\rparen$ where **n** is the number of cones, and $\displaystyle \Omega_i$ is the solid angle subtended by the **i**th cone.  
 ![](Voxel-Global-Illumintaion-9.png)  
@@ -148,8 +150,7 @@ Evidently, by \[McLaren 2015\], the cone tracing may NOT dectect the full occlus
 ## References  
 \[Jensen 2001\] [Henrik Jensen. "Realistic Image Synthesis Using Photon Mapping." AK Peters 2001.](http://www.graphics.stanford.edu/papers/jensen_book/)  
 \[Hachisuka 2005\] [Toshiya Hachisuka. "High-Quality Global Illumination Rendering Using Rasterization." GPU Gems 2.](https://developer.nvidia.com/gpugems/gpugems2/part-v-image-oriented-computing/chapter-38-high-quality-global-illumination)  
-\[Crassin 2011 A\] [Cyril Crassin. "GigaVoxels: A Voxel-Based Rendering Pipeline For Efficient Exploration Of Large And Detailed Scenes." PhD Thesis 2011.](http://gigavoxels.inrialpes.fr/index.html)  
-\[Crassin 2011 B\] [Cyril Crassin, Fabrice Neyret, Miguel Sainz, Simon Green, Elmar Eisemann. "Interactive Indirect Illumination Using Voxel Cone Tracing." SIGGRAPH 2011.](https://research.nvidia.com/publication/interactive-indirect-illumination-using-voxel-cone-tracing)  
+\[Crassin 2011\] [Cyril Crassin, Fabrice Neyret, Miguel Sainz, Simon Green, Elmar Eisemann. "Interactive Indirect Illumination Using Voxel Cone Tracing." SIGGRAPH 2011.](https://research.nvidia.com/publication/interactive-indirect-illumination-using-voxel-cone-tracing)  
 \[Dunn 2014\] [Alex Dunn. "Transparency (or Translucency) Rendering." NVIDIA GameWorks Blog 2014.](https://developer.nvidia.com/content/transparency-or-translucency-rendering)   
 \[Panteleev 2014\] [Alexey Panteleev. "Practical Real-Time Voxel-Based Global Illumination for Current GPUs." GTC 2014.](https://on-demand.gputechconf.com/gtc/2014/presentations/S4552-rt-voxel-based-global-illumination-gpus.pdf)  
 \[McLaren 2015\] [James McLaren. "The Technology of The Tomorrow Children." GDC 2015.](http://fumufumu.q-games.com/archives/TheTechnologyOfTomorrowsChildrenFinal.pdf)  

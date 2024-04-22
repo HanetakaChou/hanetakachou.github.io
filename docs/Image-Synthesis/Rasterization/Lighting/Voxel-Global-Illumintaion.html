@@ -11,7 +11,7 @@
 
 <body class="markdown-body">
     <h1 dir="auto" id="vxgi-voxel-global-illumintaion">VXGI (Voxel Global Illumintaion)</h1>
-    <h2 dir="auto" id="photon-mapping">Photon Mapping</h2>
+    <h2 dir="auto" id="1-photon-mapping">1. Photon Mapping</h2>
     <p dir="auto">By &quot;4.3 Overview&quot; of [Jensen 2001] and &quot;16.2.2 Photon Mapping&quot; of <a
             href="https://pbr-book.org/3ed-2018/Light_Transport_III_Bidirectional_Methods/Stochastic_Progressive_Photon_Mapping#PhotonMapping">PBR
             Book V3</a>, the <strong>photon mapping</strong> is composed of two steps: <strong>photon tracing</strong>
@@ -60,11 +60,13 @@
             </tr>
         </tbody>
     </table>
-    <p dir="auto">By [Crassin 2011 B], the <strong>VXGI (Voxel Global Illumintaion)</strong> is composed of four steps:
+    <h2 dir="auto" id="2-vxgi-voxel-global-illumintaion">2. VXGI (Voxel Global Illumintaion)</h2>
+    <p dir="auto">By [Crassin 2011], the <strong>VXGI (Voxel Global Illumintaion)</strong> is composed of four steps:
         <strong>voxelization</strong>, <strong>light injection</strong>, <strong>filtering</strong> and <strong>cone
             tracing</strong>. The idea of the VXGI is intrinsically to implement the photon mapping by storing the
-        photons in the voxels. The light injection step of the VXGI is analogous to the photon tracing pass of the
-        photon mapping. The cone tracing of the VXGI is analogous to the rendering pass of the photon mapping.
+        photons in the voxels. The <strong>light injection</strong> step of the VXGI is analogous to the <strong>photon
+            tracing</strong> step of the photon mapping. The <strong>cone tracing</strong> of the VXGI is analogous to
+        the <strong>rendering / final gathering</strong> step of the photon mapping.
     </p>
     <table dir="auto">
         <thead dir="auto">
@@ -88,8 +90,8 @@
             </tr>
         </tbody>
     </table>
-    <h2 dir="auto" id="voxelization">Voxelization</h2>
-    <h3 dir="auto" id="clipmap">Clipmap</h3>
+    <h3 dir="auto" id="2-1-voxelization">2-1. Voxelization</h3>
+    <h4 dir="auto" id="clipmap">Clipmap</h4>
     <p dir="auto">TODO: by [McLaren 2015] and [Eric 2017], clipmap is better than SVO (sparse voxel octree).</p>
     <p dir="auto">Clipmap Logical Structure</p>
     <p dir="auto">[Panteleev 2014]: &quot;CLIPMAP VS. MIPMAP&quot;</p>
@@ -283,15 +285,15 @@
             </tr>
         </tbody>
     </table>
-    <h3 dir="auto" id="msaa">MSAA</h3>
+    <h4 dir="auto" id="msaa">MSAA</h4>
     <p dir="auto">TODO: conservative rasterization<br>
         TODO: simulate &quot;conservative rasterization&quot; by MSAA ([Takeshige 2015])</p>
-    <h2 dir="auto" id="light-injection">Light Injection</h2>
+    <h3 dir="auto" id="2-2-light-injection">2-2. Light Injection</h3>
     <p dir="auto">TODO: not related to &quot;ambient occlusion&quot;</p>
-    <h2 dir="auto" id="filtering">Filtering</h2>
+    <h3 dir="auto" id="2-3-filtering">2-3. Filtering</h3>
     <p dir="auto"><img src="Voxel-Global-Illumintaion-8.png" alt="" data-src="Voxel-Global-Illumintaion-8.png"></p>
     <p dir="auto">TODO: anisotropic voxel</p>
-    <h2 dir="auto" id="cone-tracing">Cone Tracing</h2>
+    <h3 dir="auto" id="2-4-cone-tracing">2-4. Cone Tracing</h3>
     <p dir="auto">By <a href="https://en.wikipedia.org/wiki/Integral#Conventions">Additive Interval Property</a>, the
         ambient occlusion can be calculated as <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
@@ -5253,10 +5255,7 @@
         [Hachisuka 2005] <a
             href="https://developer.nvidia.com/gpugems/gpugems2/part-v-image-oriented-computing/chapter-38-high-quality-global-illumination">Toshiya
             Hachisuka. &quot;High-Quality Global Illumination Rendering Using Rasterization.&quot; GPU Gems 2.</a><br>
-        [Crassin 2011 A] <a href="http://gigavoxels.inrialpes.fr/index.html">Cyril Crassin. &quot;GigaVoxels: A
-            Voxel-Based Rendering Pipeline For Efficient Exploration Of Large And Detailed Scenes.&quot; PhD Thesis
-            2011.</a><br>
-        [Crassin 2011 B] <a
+        [Crassin 2011] <a
             href="https://research.nvidia.com/publication/interactive-indirect-illumination-using-voxel-cone-tracing">Cyril
             Crassin, Fabrice Neyret, Miguel Sainz, Simon Green, Elmar Eisemann. &quot;Interactive Indirect Illumination
             Using Voxel Cone Tracing.&quot; SIGGRAPH 2011.</a><br>
