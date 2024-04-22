@@ -11,10 +11,10 @@ By "7.5 Photon Gathering" of \[Jensen 2001\], \[Hachisuka 2005\] and "16.2.2 Pho
 | ![](Voxel-Global-Illumintaion-Photon-Mapping-Photon-Tracing.png) | ![](Voxel-Global-Illumintaion-Photon-Mapping-Rendering-Radiance-Estimate.png) | ![](Voxel-Global-Illumintaion-Photon-Mapping-Rendering-Final-Gathering.png) |  
 
 By \[Crassin 2011 B\], the **VXGI (Voxel Global Illumintaion)** is composed of four steps: **voxelization**, **light injection**, **filtering** and **cone tracing**. The idea of the VXGI is intrinsically to implement the photon mapping by storing the photons in the voxels. The light injection step of the VXGI is analogous to the photon tracing pass of the photon mapping. The cone tracing of the VXGI is analogous to the rendering pass of the photon mapping.  
-![](Voxel-Global-Illumintaion-4.png)  
-![](Voxel-Global-Illumintaion-5.png)  
-![](Voxel-Global-Illumintaion-6.png)  
-![](Voxel-Global-Illumintaion-7.png)  
+
+| **Voxelization** | **Light Injection** | **Filtering** | **Cone Tracing** |  
+| :-: | :-: | :-: | :-: |  
+| ![](Voxel-Global-Illumintaion-VXGI-Voxelization.png) | ![](Voxel-Global-Illumintaion-VXGI-Light-Injection.png) | ![](Voxel-Global-Illumintaion-VXGI-Filtering.png) | ![](Voxel-Global-Illumintaion-VXGI-Cone-Tracing.png) |  
 
 ## Voxelization  
 
