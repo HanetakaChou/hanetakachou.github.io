@@ -6,14 +6,9 @@ By "4.3 Overview" of \[Jensen 2001\] and "16.2.2 Photon Mapping" of [PBR Book V3
 
 By "7.5 Photon Gathering" of \[Jensen 2001\], \[Hachisuka 2005\] and "16.2.2 Photon Mapping" of [PBR Book V3](https://pbr-book.org/3ed-2018/Light_Transport_III_Bidirectional_Methods/Stochastic_Progressive_Photon_Mapping#PhotonMapping), the rendering step of the photon mapping is usually composed of two steps: **radiance estimate** and **final gathering**. During the **radiance estimate** step, the **primary rays** are traced from the camera, and the lighting information of the vicinal photons of the interaction positions of these **primary rays** is used to estimate the lighting of these interaction points by **(probability) density estimation**. During the **final gathering** step, from some of the interaction positions of the **primary rays**, which are called the [**final gather points**](http://docs.autodesk.com/MENTALRAY/2015/ENU/mental-ray-help/files/manual/node52.html), the **final gather rays** are traced, and the lighting information of the vicinal photons of the interaction positions of the **final gather rays** is used to estimate the lighting of these interaction positions by **(probability) density estimation**.  
 
-**Photon Tracing**  
-![](Voxel-Global-Illumintaion-Photon-Mapping-Photon-Tracing.png)  
-
-**Rendering - Radiance-Estimate**  
-![](Voxel-Global-Illumintaion-Photon-Mapping-Rendering-Radiance-Estimate.png)  
-
-**Rendering - Final Gathering**  
-![](Voxel-Global-Illumintaion-Photon-Mapping-Rendering-Final-Gathering.png)  
+| **Photon Tracing** | **Rendering / Radiance-Estimate** | **Rendering / Final Gathering** |  
+| :-: | :-: | :-: |  
+| ![](Voxel-Global-Illumintaion-Photon-Mapping-Photon-Tracing.png) | ![](Voxel-Global-Illumintaion-Photon-Mapping-Rendering-Radiance-Estimate.png) | ![](Voxel-Global-Illumintaion-Photon-Mapping-Rendering-Final-Gathering.png) |  
 
 By \[Crassin 2011 B\], the **VXGI (Voxel Global Illumintaion)** is composed of four steps: **voxelization**, **light injection**, **filtering** and **cone tracing**. The idea of the VXGI is intrinsically to implement the photon mapping by storing the photons in the voxels. The light injection step of the VXGI is analogous to the photon tracing pass of the photon mapping. The cone tracing of the VXGI is analogous to the rendering pass of the photon mapping.  
 ![](Voxel-Global-Illumintaion-4.png)  
