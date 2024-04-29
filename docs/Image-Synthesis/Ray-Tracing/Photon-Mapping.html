@@ -16,27 +16,27 @@
             href="https://pbr-book.org/3ed-2018/Light_Transport_III_Bidirectional_Methods/Stochastic_Progressive_Photon_Mapping#PhotonMapping">PBR
             Book V3</a>, the <strong>photon mapping</strong> is composed of two steps: <strong>photon tracing</strong>
         and <strong>rendering</strong>. During the <strong>photon tracing</strong> step, the <strong>photon
-            rays</strong> are traced from the light sources, and the lighting information of the interaction positions
+            rays</strong> are traced from the light sources, and the lighting information of the intersection positions
         of these <strong>photon rays</strong> is recorded as the photons. During the <strong>rendering</strong> step,
         the <strong>primary rays</strong> are traced from the camera and the <strong>final gather rays</strong> are
         traced from the <a
             href="http://docs.autodesk.com/MENTALRAY/2015/ENU/mental-ray-help/files/manual/node52.html"><strong>final
-                gather points</strong></a>, and the lighting information of the vicinal photons of the interaction
+                gather points</strong></a>, and the lighting information of the vicinal photons of the intersection
         positions of these <strong>primary rays</strong> or <strong>final gather rays</strong> is used to approximate
-        the lighting of these interaction points by <strong>density estimation</strong>.</p>
+        the lighting of these intersection points by <strong>density estimation</strong>.</p>
     <p dir="auto">By &quot;7.5 Photon Gathering&quot; of [Jensen 2001], &quot;38.2.2 Final Gathering&quot; of [Hachisuka
         2005] and &quot;16.2.2 Photon Mapping&quot; of <a
             href="https://pbr-book.org/3ed-2018/Light_Transport_III_Bidirectional_Methods/Stochastic_Progressive_Photon_Mapping#PhotonMapping">PBR
             Book V3</a>, the rendering step of the photon mapping is usually composed of two steps: <strong>radiance
             estimate</strong> and <strong>final gathering</strong>. During the <strong>radiance estimate</strong> step,
         the <strong>primary rays</strong> are traced from the camera, and the lighting information of the vicinal
-        photons of the interaction positions of these <strong>primary rays</strong> is used to approximate the lighting
-        of these interaction points by <strong>density estimation</strong>. During the <strong>final gathering</strong>
-        step, from some of the interaction positions of the <strong>primary rays</strong>, which are called the <a
+        photons of the intersection positions of these <strong>primary rays</strong> is used to approximate the lighting
+        of these intersection points by <strong>density estimation</strong>. During the <strong>final gathering</strong>
+        step, from some of the intersection positions of the <strong>primary rays</strong>, which are called the <a
             href="http://docs.autodesk.com/MENTALRAY/2015/ENU/mental-ray-help/files/manual/node52.html"><strong>final
                 gather points</strong></a>, the <strong>final gather rays</strong> are traced, and the lighting
-        information of the vicinal photons of the interaction positions of these <strong>final gather rays</strong> is
-        used to approximate the lighting of these interaction positions by <strong>density estimation</strong>.</p>
+        information of the vicinal photons of the intersection positions of these <strong>final gather rays</strong> is
+        used to approximate the lighting of these intersection positions by <strong>density estimation</strong>.</p>
     <table dir="auto">
         <thead dir="auto">
             <tr dir="auto">
@@ -3392,7 +3392,7 @@
                                                 style="height:0.15em;"><span></span></span></span></span></span></span></span><span
                             class="mopen">(</span><span class="mord mathnormal">p</span><span
                             class="mclose">)</span></span></span></span></eq>, which is also called the radius, is the
-        largest distance between each sample position <eq><span class="katex"><span class="katex-mathml"><math
+        maximum distance between each sample position <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
