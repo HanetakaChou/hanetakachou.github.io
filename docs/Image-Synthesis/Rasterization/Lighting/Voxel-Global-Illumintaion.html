@@ -10,8 +10,9 @@
 </head>
 
 <body class="markdown-body">
-    <h1 dir="auto" id="vxgi-voxel-global-illumintaion">VXGI (Voxel Global Illumintaion)</h1>
-    <h2 dir="auto" id="1-photon-mapping">1. Photon Mapping</h2>
+    <h1 dir="auto" id="vxgi-voxel-global-illumintaion-2">VXGI (Voxel Global Illumintaion)</h1>
+    <h2 dir="auto" id="1-workflow-2">1. Workflow</h2>
+    <h3 dir="auto" id="1-1-photon-mapping-2">1-1. Photon Mapping</h3>
     <p dir="auto">By &quot;4.3 Overview&quot; of [Jensen 2001] and &quot;16.2.2 Photon Mapping&quot; of <a
             href="https://pbr-book.org/3ed-2018/Light_Transport_III_Bidirectional_Methods/Stochastic_Progressive_Photon_Mapping#PhotonMapping">PBR
             Book V3</a>, the <strong>photon mapping</strong> is composed of two steps: <strong>photon tracing</strong>
@@ -22,23 +23,21 @@
         traced from the <a
             href="http://docs.autodesk.com/MENTALRAY/2015/ENU/mental-ray-help/files/manual/node52.html"><strong>final
                 gather points</strong></a>, and the lighting information of the vicinal photons of the interaction
-        positions of these <strong>primary rays</strong> or <strong>final gather rays</strong> is used to estimate the
-        lighting of these interaction points by <strong>(probability) density estimation</strong>.</p>
-    <p dir="auto">By &quot;7.5 Photon Gathering&quot; of [Jensen 2001], [Hachisuka 2005] and &quot;16.2.2 Photon
-        Mapping&quot; of <a
+        positions of these <strong>primary rays</strong> or <strong>final gather rays</strong> is used to approximate
+        the lighting of these interaction points by <strong>density estimation</strong>.</p>
+    <p dir="auto">By &quot;7.5 Photon Gathering&quot; of [Jensen 2001], &quot;38.2.2 Final Gathering&quot; of [Hachisuka
+        2005] and &quot;16.2.2 Photon Mapping&quot; of <a
             href="https://pbr-book.org/3ed-2018/Light_Transport_III_Bidirectional_Methods/Stochastic_Progressive_Photon_Mapping#PhotonMapping">PBR
             Book V3</a>, the rendering step of the photon mapping is usually composed of two steps: <strong>radiance
             estimate</strong> and <strong>final gathering</strong>. During the <strong>radiance estimate</strong> step,
         the <strong>primary rays</strong> are traced from the camera, and the lighting information of the vicinal
-        photons of the interaction positions of these <strong>primary rays</strong> is used to estimate the lighting of
-        these interaction points by <strong>(probability) density estimation</strong>. During the <strong>final
-            gathering</strong> step, from some of the interaction positions of the <strong>primary rays</strong>, which
-        are called the <a
+        photons of the interaction positions of these <strong>primary rays</strong> is used to approximate the lighting
+        of these interaction points by <strong>density estimation</strong>. During the <strong>final gathering</strong>
+        step, from some of the interaction positions of the <strong>primary rays</strong>, which are called the <a
             href="http://docs.autodesk.com/MENTALRAY/2015/ENU/mental-ray-help/files/manual/node52.html"><strong>final
                 gather points</strong></a>, the <strong>final gather rays</strong> are traced, and the lighting
         information of the vicinal photons of the interaction positions of these <strong>final gather rays</strong> is
-        used to estimate the lighting of these interaction positions by <strong>(probability) density
-            estimation</strong>.</p>
+        used to approximate the lighting of these interaction positions by <strong>density estimation</strong>.</p>
     <table dir="auto">
         <thead dir="auto">
             <tr dir="auto">
@@ -60,13 +59,14 @@
             </tr>
         </tbody>
     </table>
-    <h2 dir="auto" id="2-vxgi-voxel-global-illumintaion">2. VXGI (Voxel Global Illumintaion)</h2>
+    <h3 dir="auto" id="1-2-vxgi-voxel-global-illumintaion-2">1-2. VXGI (Voxel Global Illumintaion)</h3>
     <p dir="auto">By [Crassin 2011], the <strong>VXGI (Voxel Global Illumintaion)</strong> is composed of four steps:
         <strong>voxelization</strong>, <strong>light injection</strong>, <strong>filtering</strong> and <strong>cone
             tracing</strong>. The idea of the VXGI is intrinsically to implement the photon mapping by storing the
         photons in the voxels. The <strong>light injection</strong> step of the VXGI is analogous to the <strong>photon
             tracing</strong> step of the photon mapping. The <strong>cone tracing</strong> of the VXGI is analogous to
-        the <strong>rendering / final gathering</strong> step of the photon mapping.
+        the <strong>rendering / final gathering</strong> step of the photon mapping. The <strong>filtering</strong> step
+        of the VXGI is analogous to the idea of the <strong>density estimation</strong> of the photon mapping.
     </p>
     <table dir="auto">
         <thead dir="auto">
@@ -90,8 +90,8 @@
             </tr>
         </tbody>
     </table>
-    <h3 dir="auto" id="2-1-voxelization">2-1. Voxelization</h3>
-    <h4 dir="auto" id="clipmap">Clipmap</h4>
+    <h3 dir="auto" id="2-1-voxelization-2">2-1. Voxelization</h3>
+    <h4 dir="auto" id="clipmap-2">Clipmap</h4>
     <p dir="auto">TODO: by [McLaren 2015] and [Eric 2017], clipmap is better than SVO (sparse voxel octree).</p>
     <p dir="auto">Clipmap Logical Structure</p>
     <p dir="auto">[Panteleev 2014]: &quot;CLIPMAP VS. MIPMAP&quot;</p>
@@ -285,15 +285,15 @@
             </tr>
         </tbody>
     </table>
-    <h4 dir="auto" id="msaa">MSAA</h4>
+    <h4 dir="auto" id="msaa-2">MSAA</h4>
     <p dir="auto">TODO: conservative rasterization<br>
         TODO: simulate &quot;conservative rasterization&quot; by MSAA ([Takeshige 2015])</p>
-    <h3 dir="auto" id="2-2-light-injection">2-2. Light Injection</h3>
+    <h3 dir="auto" id="2-2-light-injection-2">2-2. Light Injection</h3>
     <p dir="auto">TODO: not related to &quot;ambient occlusion&quot;</p>
-    <h3 dir="auto" id="2-3-filtering">2-3. Filtering</h3>
+    <h3 dir="auto" id="2-3-filtering-2">2-3. Filtering</h3>
     <p dir="auto"><img src="Voxel-Global-Illumintaion-8.png" alt="" data-src="Voxel-Global-Illumintaion-8.png"></p>
     <p dir="auto">TODO: anisotropic voxel</p>
-    <h3 dir="auto" id="2-4-cone-tracing">2-4. Cone Tracing</h3>
+    <h3 dir="auto" id="2-4-cone-tracing-2">2-4. Cone Tracing</h3>
     <p dir="auto">By <a href="https://en.wikipedia.org/wiki/Integral#Conventions">Additive Interval Property</a>, the
         ambient occlusion can be calculated as <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
@@ -5249,7 +5249,7 @@
         of mutiple partial occlusions.<br>
         <img src="Voxel-Global-Illumintaion-13.png" alt="" data-src="Voxel-Global-Illumintaion-13.png">
     </p>
-    <h2 dir="auto" id="references">References</h2>
+    <h2 dir="auto" id="references-2">References</h2>
     <p dir="auto">[Jensen 2001] <a href="http://www.graphics.stanford.edu/papers/jensen_book/">Henrik Jensen.
             &quot;Realistic Image Synthesis Using Photon Mapping.&quot; AK Peters 2001.</a><br>
         [Hachisuka 2005] <a
