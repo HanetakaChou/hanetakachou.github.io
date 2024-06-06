@@ -12,11 +12,24 @@ $\displaystyle \frac{\text{Power}}{\text{Area}}$ | Radiant Exitance $\displaysty
 $\displaystyle \frac{\text{Power}}{\text{Area}}$ | Irradiance $\displaystyle \mathrm{E}$ | $\displaystyle \frac{W}{m^2}$ | Illuminance $\displaystyle \mathrm{E}$ | Lux $\displaystyle \mathrm{lx}$  
 $\displaystyle \frac{\text{Power}}{\text{Area} \cdot \text{Solid Angle}}$ | Radiance $\displaystyle \mathrm{L}$ | $\displaystyle \frac{W}{m^2 \cdot \mathrm{sr}}$ | Luminance $\displaystyle \mathrm{L}$ | Nit $\displaystyle \mathrm{nt}$  
 
+### Light
+
 For directional light, by "4.6 Sun" of \[Lagarde 2014\], the illuminance $\displaystyle \mathrm{E}$ for the surface perpendicular to the light direction is specified.  
 
-For point light, by "4.4 Punctual lights" of \[Lagarde 2014\], the luminous flux $\displaystyle \mathrm{\Phi}$ is specified, and we have the luminous intensity $\displaystyle \mathrm{I} = \frac{\mathrm{\Phi}}{4 \pi}$. By the inverse square law, we have the illuminance for the surface perpendicular to the light direction $\displaystyle \mathrm{E} = \frac{\mathrm{I}}{{\text{distance}}^2}$. But the light radius and the attenuation windowing function are usually specified, and the illuminance $\displaystyle \mathrm{E}$ will smoothly reach zero at the light radius.  
+For point light, by "4.4 Punctual lights" of \[Lagarde 2014\], the flux $\displaystyle \mathrm{\Phi}$ is specified, and we have the intensity $\displaystyle \mathrm{I} = \frac{\mathrm{\Phi}}{4 \pi}$. By the inverse square law, we have the illuminance for the surface perpendicular to the light direction $\displaystyle \mathrm{E} = \frac{\mathrm{I}}{{\text{distance}}^2}$. But the light radius and the attenuation windowing function are usually specified, and the illuminance $\displaystyle \mathrm{E}$ will smoothly reach zero at the light radius.  
 
-For spot light, 
+For spot light
+
+### VPL (Virtual Point Light)  
+
+VPL described by flux and orientation (and position)
+
+"directional intensity distribution" // to do find name  
+
+not use uniform distribution $\displaystyle \mathrm{I} = \frac{\mathrm{\Phi}}{4 \pi}$  
+
+"Indirect Light" of "3.1 LPV Initialization" and "Reprojection" of "3.3 Propagation Scheme" of 
+
 
 ## DOM (Discrete Ordinates Method)  
 
@@ -27,7 +40,7 @@ By "11.1.3 Out-Scattering and Attenuation" of [PBR Book V3](https://www.pbr-book
 By "Equation \(15.15\)" of [PBR Book V3](https://www.pbr-book.org/3ed-2018/Light_Transport_II_Volume_Rendering/Subsurface_Scattering_Using_the_Diffusion_Equation#DiffusionTheory), we have the **RTE (Radiative Transfer Equation)** $\displaystyle \frac{\partial \operatorname{L}(\overrightarrow{p} + \overrightarrow{\omega}t, \overrightarrow{\omega})}{\partial t} = \operatorname{L_e}(\overrightarrow{p}, \overrightarrow{\omega}) - \operatorname{\sigma_t}(\overrightarrow{p}, \overrightarrow{\omega}) \operatorname{L}(\overrightarrow{p}, \overrightarrow{\omega}) + \frac{\operatorname{\sigma_s}(\overrightarrow{p}, \overrightarrow{\omega})}{4 \pi} \int_{\mathrm{S}^2} \operatorname{L}(\overrightarrow{p}, \overrightarrow{\omega_s}) \, d \overrightarrow{\omega_s} = \operatorname{L_e}(\overrightarrow{p}, \overrightarrow{\omega}) - (\operatorname{\sigma_a}(\overrightarrow{p}, \overrightarrow{\omega}) + \operatorname{\sigma_s}(\overrightarrow{p}, \overrightarrow{\omega})) \operatorname{L}(\overrightarrow{p}, \overrightarrow{\omega}) + \frac{\operatorname{\sigma_s}(\overrightarrow{p}, \overrightarrow{\omega})}{4 \pi} \int_{\mathrm{S}^2} \operatorname{L}(\overrightarrow{p}, \overrightarrow{\omega_s}) \, d \overrightarrow{\omega_s}$.  
 
 
-
+"13.6.4 Lattice-Boltzmann Method" of \[Howell 2021\]
 
 
 
@@ -159,9 +172,9 @@ However, the result $\displaystyle \operatorname{D_1}(\mathrm{R}) = \begin{bmatr
 \[Sloan 2008\] [Peter-Pike Sloan. "Stupid Spherical Harmonics (SH) Tricks." GDC 2008.](http://www.ppsloan.org/publications/StupidSH36.pdf)  
 \[Fattal 2009\] [Raanan Fattal. "Participating Media Illumination using Light Propagation Maps." TOG 2009.](https://www.cs.huji.ac.il/w~raananf/projects/lpm/)  
 \[Kaplanyan 2009\] [Anton Kaplanyan. "Light Propagation Volumes in CryEngine 3." SIGGRAPH 2009.](https://advances.realtimerendering.com/s2009/Light_Propagation_Volumes.pdf)  
-\[Arbree 2010\] [Adam Arbree. "Heterogeneous Subsurface Scattering Using the Finite Element Method." TVCG 2010.](https://www.cs.cornell.edu/%7Earbree/)  
-\[Kaplanyan 2010\] Anton Kaplanyan. "Cascaded Light Propagation Volumes for Real-Time Indirect Illumination." I3D 2010.  
-\[Kaplanyan 2011\] Anton Kaplanyan, Wolfgang Engel, Carsten Dachsbacher. "Diffuse Global Illumination with Temporally Coherent Light Propagation Volumes." GPU Pro 2.  
+\[Kaplanyan 2010\] [Anton Kaplanyan. "Cascaded Light Propagation Volumes for Real-Time Indirect Illumination." I3D 2010.](https://cg.ivd.kit.edu/publications/p2010/CLPVFRII_Kaplanyan_2010/CLPVFRII_Kaplanyan_2010.pdf)  
+\[Kaplanyan 2011\] [Anton Kaplanyan, Wolfgang Engel, Carsten Dachsbacher. "Diffuse Global Illumination with Temporally Coherent Light Propagation Volumes." GPU Pro 2.](https://gpupro.blogspot.com/2012/11/gpu-pro-2-table-of-content.html)  
 \[Engel 2012\] Wolfgang Engel, Igor Lobanchikov, Timothy Martin. "Dynamic Global Illumination from Many Lights." AltDevConf 2012.  
 \[Lagarde 2014\] [Sebastian Lagarde, Charles Rousiers. "Moving Frostbite to PBR." SIGGRAPH 2014.](https://www.ea.com/frostbite/news/moving-frostbite-to-pb)  
 \[Hable 2014\] [John Hable. "Simple and Fast Spherical Harmonic Rotation." Filmic Worlds Blog 2014.](http://filmicworlds.com/blog/simple-and-fast-spherical-harmonic-rotation/)  
+\[Howell 2021\] [John Howell, Pinar Menguc, Kyle Daun, Robert Siegel. "Thermal Radiation Heat Transfer Seventh Edition." CRC Press 2021.](https://www.thermalradiation.net/index.html)  
