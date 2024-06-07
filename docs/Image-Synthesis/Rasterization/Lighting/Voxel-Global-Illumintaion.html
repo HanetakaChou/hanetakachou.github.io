@@ -6,13 +6,12 @@
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/default.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
 </head>
 
 <body class="markdown-body">
-    <h1 dir="auto" id="vxgi-voxel-global-illumintaion-2">VXGI (Voxel Global Illumintaion)</h1>
-    <h2 dir="auto" id="1-workflow-2">1. Workflow</h2>
-    <h3 dir="auto" id="1-1-photon-mapping-2">1-1. Photon Mapping</h3>
+    <h1 dir="auto" id="vxgi-voxel-global-illumintaion">VXGI (Voxel Global Illumintaion)</h1>
+    <h2 dir="auto" id="1-workflow">1. Workflow</h2>
+    <h3 dir="auto" id="1-1-photon-mapping">1-1. Photon Mapping</h3>
     <p dir="auto">By &quot;4.3 Overview&quot; of [Jensen 2001] and &quot;16.2.2 Photon Mapping&quot; of <a
             href="https://pbr-book.org/3ed-2018/Light_Transport_III_Bidirectional_Methods/Stochastic_Progressive_Photon_Mapping#PhotonMapping">PBR
             Book V3</a>, the <strong>photon mapping</strong> is composed of two steps: <strong>photon tracing</strong>
@@ -59,19 +58,18 @@
             </tr>
         </tbody>
     </table>
-    <h3 dir="auto" id="1-2-vxgi-voxel-global-illumintaion-2">1-2. VXGI (Voxel Global Illumintaion)</h3>
-    <p dir="auto">By [Crassin 2011], the <strong>VXGI (Voxel Global Illumintaion)</strong> is composed of four steps:
-        <strong>voxelization</strong>, <strong>light injection</strong>, <strong>filtering</strong> and <strong>cone
-            tracing</strong>. The idea of the VXGI is intrinsically to implement the photon mapping by storing the
-        photons in the voxels. The <strong>light injection</strong> step of the VXGI is analogous to the <strong>photon
-            tracing</strong> step of the photon mapping. The <strong>cone tracing</strong> of the VXGI is analogous to
-        the <strong>rendering / final gathering</strong> step of the photon mapping. The <strong>filtering</strong> step
-        of the VXGI is analogous to the idea of the <strong>density estimation</strong> of the photon mapping.
+    <h3 dir="auto" id="1-2-vxgi-voxel-global-illumintaion">1-2. VXGI (Voxel Global Illumintaion)</h3>
+    <p dir="auto">By [Crassin 2011], the <strong>VXGI (Voxel Global Illumintaion)</strong> is composed of three steps:
+        <strong>light injection</strong>, <strong>filtering</strong> and <strong>cone tracing</strong>. The idea of the
+        VXGI is intrinsically to implement the photon mapping by storing the photons in the voxels. The <strong>light
+            injection</strong> step of the VXGI is analogous to the <strong>photon tracing</strong> step of the photon
+        mapping. The <strong>cone tracing</strong> of the VXGI is analogous to the <strong>rendering / final
+            gathering</strong> step of the photon mapping. The <strong>filtering</strong> step of the VXGI is analogous
+        to the idea of the <strong>density estimation</strong> of the photon mapping.
     </p>
     <table dir="auto">
         <thead dir="auto">
             <tr dir="auto">
-                <th style="text-align:center"><strong>Voxelization</strong></th>
                 <th style="text-align:center"><strong>Light Injection</strong></th>
                 <th style="text-align:center"><strong>Filtering</strong></th>
                 <th style="text-align:center"><strong>Cone Tracing</strong></th>
@@ -79,8 +77,6 @@
         </thead>
         <tbody dir="auto">
             <tr dir="auto">
-                <td style="text-align:center"><img src="Voxel-Global-Illumintaion-VXGI-Voxelization.png" alt=""
-                        data-src="Voxel-Global-Illumintaion-VXGI-Voxelization.png"></td>
                 <td style="text-align:center"><img src="Voxel-Global-Illumintaion-VXGI-Light-Injection.png" alt=""
                         data-src="Voxel-Global-Illumintaion-VXGI-Light-Injection.png"></td>
                 <td style="text-align:center"><img src="Voxel-Global-Illumintaion-VXGI-Filtering.png" alt=""
@@ -90,11 +86,37 @@
             </tr>
         </tbody>
     </table>
-    <h3 dir="auto" id="2-1-voxelization-2">2-1. Voxelization</h3>
-    <h4 dir="auto" id="clipmap-2">Clipmap</h4>
-    <p dir="auto">TODO: by [McLaren 2015] and [Eric 2017], clipmap is better than SVO (sparse voxel octree).</p>
-    <p dir="auto">Clipmap Logical Structure</p>
-    <p dir="auto">[Panteleev 2014]: &quot;CLIPMAP VS. MIPMAP&quot;</p>
+    <h3 dir="auto" id="2-1-light-injection">2-1. Light Injection</h3>
+    <p dir="auto">As per the original version by [Crassin 2011], the voxels are stored in the <strong>SVO (Sparse Voxel
+            Octree)</strong>. However, by [McLaren 2015] and [Eric 2017], the <strong>Clipmap</strong> is a better
+        alternative. And actually, the <strong>Clipmap</strong> is exactly what the <a
+            href="https://developer.nvidia.com/vxgi">NVIDIA VXGI</a> is based on.</p>
+    <p dir="auto">By [Eric 2017], there are several approaches to inject the lighting. Some approaches treat the
+        geometry and the lighting separablely. The geometry is voxelized at first, and then the <strong>RSM (Reflective
+            Shadow Maps)</strong> by [Dachsbacher 2005] is used to inject the lighting later. The advantage of these
+        approaches is that as long as the geometry remains the same, the voxelized data of the geometry can be reused
+        even if the lighting has been changed. However, we will focus on the approach which the <a
+            href="https://developer.nvidia.com/vxgi">NVIDIA VXGI</a> is based on. This approach is called the
+        &quot;voxelization-based&quot; approach by [Eric 2017]. The light injection is performed at the same time when
+        the geometry is voxelized. The most significant advantage of this approach is that the <strong>RSM</strong> is
+        no longer required. However, the voxelized data can not be reused whenever either the geometry or the lighting
+        has been changed. The <strong>VXGI::UpdateVoxelizationParameters::invalidatedRegions</strong> is used to invalid
+        the voxelized data when the geometry has been changed in the <a href="https://developer.nvidia.com/vxgi">NVIDIA
+            VXGI</a>. And the <strong>VXGI::UpdateVoxelizationParameters::invalidatedLightFrusta</strong> is used to
+        invalid the voxelized data when the lighting has been changed in the <a
+            href="https://developer.nvidia.com/vxgi">NVIDIA VXGI</a>.</p>
+    <p dir="auto">TODO:<br>
+        By [Panteleev 2014], the <a href="https://developer.nvidia.com/vxgi">NVIDIA VXGI</a> does use the
+        <strong>Toroidal Addressing</strong> to reuse the voxelized data. However, it rarely happens that both the
+        geometry and the lighting remain the same. Actually, the
+        <strong>VXGI::VoxelizationParameters::persistentVoxelData</strong> is always set to <strong>false</strong> in
+        the <strong>NVIDIA Unreal Engine 4 Fork</strong>. And the evolution of the rendering technique tends to get
+        close to the real time solution and get rid of the cache based solution. The <strong>DXR (DirectX
+            Raytracing)</strong> is the a typical example for this tendency. Thus, the <strong>Toroidal
+            Addressing</strong> is not involved in the current version, but perhaps will be involved in the future
+        version.
+    </p>
+    <p dir="auto">By [Panteleev 2014], we have the logical structure of the <strong>Clipmap</strong>.</p>
     <p dir="auto">Texture size (for zeroth mipmap level) is the same for all clipmap levels, which is called that
         clipmap size<br>
         The voxel size increses<br>
@@ -285,15 +307,15 @@
             </tr>
         </tbody>
     </table>
-    <h4 dir="auto" id="msaa-2">MSAA</h4>
+    <h4 dir="auto" id="msaa">MSAA</h4>
     <p dir="auto">TODO: conservative rasterization<br>
         TODO: simulate &quot;conservative rasterization&quot; by MSAA ([Takeshige 2015])</p>
-    <h3 dir="auto" id="2-2-light-injection-2">2-2. Light Injection</h3>
+    <h3 dir="auto" id="2-2-light-injection">2-2. Light Injection</h3>
     <p dir="auto">TODO: not related to &quot;ambient occlusion&quot;</p>
-    <h3 dir="auto" id="2-3-filtering-2">2-3. Filtering</h3>
+    <h3 dir="auto" id="2-3-filtering">2-3. Filtering</h3>
     <p dir="auto"><img src="Voxel-Global-Illumintaion-8.png" alt="" data-src="Voxel-Global-Illumintaion-8.png"></p>
     <p dir="auto">TODO: anisotropic voxel</p>
-    <h3 dir="auto" id="2-4-cone-tracing-2">2-4. Cone Tracing</h3>
+    <h3 dir="auto" id="2-4-cone-tracing">2-4. Cone Tracing</h3>
     <p dir="auto">By <a href="https://en.wikipedia.org/wiki/Integral#Conventions">Additive Interval Property</a>, the
         ambient occlusion can be calculated as <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
@@ -5249,12 +5271,14 @@
         of mutiple partial occlusions.<br>
         <img src="Voxel-Global-Illumintaion-13.png" alt="" data-src="Voxel-Global-Illumintaion-13.png">
     </p>
-    <h2 dir="auto" id="references-2">References</h2>
+    <h2 dir="auto" id="references">References</h2>
     <p dir="auto">[Jensen 2001] <a href="http://www.graphics.stanford.edu/papers/jensen_book/">Henrik Jensen.
             &quot;Realistic Image Synthesis Using Photon Mapping.&quot; AK Peters 2001.</a><br>
         [Hachisuka 2005] <a
             href="https://developer.nvidia.com/gpugems/gpugems2/part-v-image-oriented-computing/chapter-38-high-quality-global-illumination">Toshiya
             Hachisuka. &quot;High-Quality Global Illumination Rendering Using Rasterization.&quot; GPU Gems 2.</a><br>
+        [Dachsbacher 2005] <a href="https://cg.ivd.kit.edu/english/publikationen.php">Carsten Dachsbacher, Marc
+            Stamminger. &quot;Reflective Shadow Maps.&quot; I3D 2005.</a><br>
         [Crassin 2011] <a
             href="https://research.nvidia.com/publication/interactive-indirect-illumination-using-voxel-cone-tracing">Cyril
             Crassin, Fabrice Neyret, Miguel Sainz, Simon Green, Elmar Eisemann. &quot;Interactive Indirect Illumination

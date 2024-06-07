@@ -14,21 +14,22 @@ By "7.5 Photon Gathering" of \[Jensen 2001\], "38.2.2 Final Gathering" of \[Hach
 
 ### 1-2\. VXGI (Voxel Global Illumintaion)  
 
-By \[Crassin 2011\], the **VXGI (Voxel Global Illumintaion)** is composed of four steps: **voxelization**, **light injection**, **filtering** and **cone tracing**. The idea of the VXGI is intrinsically to implement the photon mapping by storing the photons in the voxels. The **light injection** step of the VXGI is analogous to the **photon tracing** step of the photon mapping. The **cone tracing** of the VXGI is analogous to the **rendering / final gathering** step of the photon mapping. The **filtering** step of the VXGI is analogous to the idea of the **density estimation** of the photon mapping.  
+By \[Crassin 2011\], the **VXGI (Voxel Global Illumintaion)** is composed of three steps: **light injection**, **filtering** and **cone tracing**. The idea of the VXGI is intrinsically to implement the photon mapping by storing the photons in the voxels. The **light injection** step of the VXGI is analogous to the **photon tracing** step of the photon mapping. The **cone tracing** of the VXGI is analogous to the **rendering / final gathering** step of the photon mapping. The **filtering** step of the VXGI is analogous to the idea of the **density estimation** of the photon mapping.  
 
-| **Voxelization** | **Light Injection** | **Filtering** | **Cone Tracing** |  
-| :-: | :-: | :-: | :-: |  
-| ![](Voxel-Global-Illumintaion-VXGI-Voxelization.png) | ![](Voxel-Global-Illumintaion-VXGI-Light-Injection.png) | ![](Voxel-Global-Illumintaion-VXGI-Filtering.png) | ![](Voxel-Global-Illumintaion-VXGI-Cone-Tracing.png) |  
+| **Light Injection** | **Filtering** | **Cone Tracing** |  
+| :-: | :-: | :-: |  
+| ![](Voxel-Global-Illumintaion-VXGI-Light-Injection.png) | ![](Voxel-Global-Illumintaion-VXGI-Filtering.png) | ![](Voxel-Global-Illumintaion-VXGI-Cone-Tracing.png) |  
 
-### 2-1\. Voxelization  
+### 2-1\. Light Injection  
 
-#### Clipmap  
+As per the original version by \[Crassin 2011\], the voxels are stored in the **SVO (Sparse Voxel Octree)**. However, by \[McLaren 2015\] and \[Eric 2017\], the **Clipmap** is a better alternative. And actually, the **Clipmap** is exactly what the [NVIDIA VXGI](https://developer.nvidia.com/vxgi) is based on.  
 
-TODO: by \[McLaren 2015\] and \[Eric 2017\], clipmap is better than SVO (sparse voxel octree).  
+By \[Eric 2017\], there are several approaches to inject the lighting. Some approaches treat the geometry and the lighting separablely. The geometry is voxelized at first, and then the **RSM (Reflective Shadow Maps)** by \[Dachsbacher 2005\] is used to inject the lighting later. The advantage of these approaches is that as long as the geometry remains the same, the voxelized data of the geometry can be reused even if the lighting has been changed. However, we will focus on the approach which the [NVIDIA VXGI](https://developer.nvidia.com/vxgi) is based on. This approach is called the "voxelization-based" approach by \[Eric 2017\]. The light injection is performed at the same time when the geometry is voxelized. The most significant advantage of this approach is that the **RSM** is no longer required. However, the voxelized data can not be reused whenever either the geometry or the lighting has been changed. The **VXGI::UpdateVoxelizationParameters::invalidatedRegions** is used to invalid the voxelized data when the geometry has been changed in the [NVIDIA VXGI](https://developer.nvidia.com/vxgi). And the **VXGI::UpdateVoxelizationParameters::invalidatedLightFrusta** is used to invalid the voxelized data when the lighting has been changed in the [NVIDIA VXGI](https://developer.nvidia.com/vxgi).  
 
-Clipmap Logical Structure
+TODO:  
+By \[Panteleev 2014\], the [NVIDIA VXGI](https://developer.nvidia.com/vxgi) does use the **Toroidal Addressing** to reuse the voxelized data. However, it rarely happens that both the geometry and the lighting remain the same. Actually, the **VXGI::VoxelizationParameters::persistentVoxelData** is always set to **false** in the **NVIDIA Unreal Engine 4 Fork**. And the evolution of the rendering technique tends to get close to the real time solution and get rid of the cache based solution. The **DXR (DirectX Raytracing)** is the a typical example for this tendency. Thus, the **Toroidal Addressing** is not involved in the current version, but perhaps will be involved in the future version.  
 
-\[Panteleev 2014\]: "CLIPMAP VS. MIPMAP"  
+By \[Panteleev 2014\], we have the logical structure of the **Clipmap**.  
 
 Texture size (for zeroth mipmap level)  is the same for all clipmap levels, which is called that clipmap size  
 The voxel size increses  
@@ -152,6 +153,7 @@ Evidently, by \[McLaren 2015\], the cone tracing may NOT dectect the full occlus
 ## References  
 \[Jensen 2001\] [Henrik Jensen. "Realistic Image Synthesis Using Photon Mapping." AK Peters 2001.](http://www.graphics.stanford.edu/papers/jensen_book/)  
 \[Hachisuka 2005\] [Toshiya Hachisuka. "High-Quality Global Illumination Rendering Using Rasterization." GPU Gems 2.](https://developer.nvidia.com/gpugems/gpugems2/part-v-image-oriented-computing/chapter-38-high-quality-global-illumination)  
+\[Dachsbacher 2005\] [Carsten Dachsbacher, Marc Stamminger. "Reflective Shadow Maps." I3D 2005.](https://cg.ivd.kit.edu/english/publikationen.php)  
 \[Crassin 2011\] [Cyril Crassin, Fabrice Neyret, Miguel Sainz, Simon Green, Elmar Eisemann. "Interactive Indirect Illumination Using Voxel Cone Tracing." SIGGRAPH 2011.](https://research.nvidia.com/publication/interactive-indirect-illumination-using-voxel-cone-tracing)  
 \[Dunn 2014\] [Alex Dunn. "Transparency (or Translucency) Rendering." NVIDIA GameWorks Blog 2014.](https://developer.nvidia.com/content/transparency-or-translucency-rendering)   
 \[Panteleev 2014\] [Alexey Panteleev. "Practical Real-Time Voxel-Based Global Illumination for Current GPUs." GTC 2014.](https://on-demand.gputechconf.com/gtc/2014/presentations/S4552-rt-voxel-based-global-illumination-gpus.pdf)  
