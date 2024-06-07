@@ -24,81 +24,103 @@ By \[Crassin 2011\], the **VXGI (Voxel Global Illumintaion)** is composed of thr
 
 As per the original version by \[Crassin 2011\], the voxels are stored in the **SVO (Sparse Voxel Octree)**. However, by \[McLaren 2015\] and \[Eric 2017\], the **Clipmap** is a better alternative. And actually, the **Clipmap** is exactly what the [NVIDIA VXGI](https://developer.nvidia.com/vxgi) is based on.  
 
-By \[Eric 2017\], there are several approaches to inject the lighting. Some approaches treat the geometry and the lighting separablely. The geometry is voxelized at first, and then the **RSM (Reflective Shadow Maps)** by \[Dachsbacher 2005\] is used to inject the lighting later. The advantage of these approaches is that as long as the geometry remains the same, the voxelized data of the geometry can be reused even if the lighting has been changed. However, we will focus on the approach which the [NVIDIA VXGI](https://developer.nvidia.com/vxgi) is based on. This approach is called the "voxelization-based" approach by \[Eric 2017\]. The light injection is performed at the same time when the geometry is voxelized. The most significant advantage of this approach is that the **RSM** is no longer required. However, the voxelized data can not be reused whenever either the geometry or the lighting has been changed. The **VXGI::UpdateVoxelizationParameters::invalidatedRegions** is used to invalid the voxelized data when the geometry has been changed in the [NVIDIA VXGI](https://developer.nvidia.com/vxgi). And the **VXGI::UpdateVoxelizationParameters::invalidatedLightFrusta** is used to invalid the voxelized data when the lighting has been changed in the [NVIDIA VXGI](https://developer.nvidia.com/vxgi).  
+#### 2-1-1\. Voxelization  
+
+By \[Eric 2017\], there are several approaches to inject the lighting. Some approaches treat the geometry and the lighting separablely. The geometry is voxelized at first, and then the **RSM (Reflective Shadow Maps)** by \[Dachsbacher 2005\] is used to inject the lighting later. The advantage of these approaches is that as long as the geometry remains the same, the voxelized data of the geometry can be reused even if the lighting has been changed. However, we will focus on the "voxelization-based" approach which the [NVIDIA VXGI](https://developer.nvidia.com/vxgi) is based on. The light injection is performed at the same time when the geometry is voxelized. The most significant advantage of this approach is that the **RSM** is no longer required. However, the voxelized data can not be reused whenever either the geometry or the lighting has been changed. The **VXGI::UpdateVoxelizationParameters::invalidatedRegions** is used to invalidate the voxelized data when the geometry has been changed in the [NVIDIA VXGI](https://developer.nvidia.com/vxgi). And the **VXGI::UpdateVoxelizationParameters::invalidatedLightFrusta** is used to invalidate the voxelized data when the lighting has been changed in the [NVIDIA VXGI](https://developer.nvidia.com/vxgi).  
+
+#### 2-1-2\. Toroidal Addressing  
 
 TODO:  
 By \[Panteleev 2014\], the [NVIDIA VXGI](https://developer.nvidia.com/vxgi) does use the **Toroidal Addressing** to reuse the voxelized data. However, it rarely happens that both the geometry and the lighting remain the same. Actually, the **VXGI::VoxelizationParameters::persistentVoxelData** is always set to **false** in the **NVIDIA Unreal Engine 4 Fork**. And the evolution of the rendering technique tends to get close to the real time solution and get rid of the cache based solution. The **DXR (DirectX Raytracing)** is the a typical example for this tendency. Thus, the **Toroidal Addressing** is not involved in the current version, but perhaps will be involved in the future version.  
 
-By \[Panteleev 2014\], we have the logical structure of the **Clipmap**.  
+#### 2-1-3\. Clipmap Logical Structure  
 
-Texture size (for zeroth mipmap level)  is the same for all clipmap levels, which is called that clipmap size  
-The voxel size increses  
-Only the last level has more than one mipmap levels (the logical volume remains the same within the same clipmap level)  
+By \[Panteleev 2014\], we have the logical structure of the **Clipmap**. The first several clipmap levels have only one mipmap level, and the last clipmap level is the only one which has multiple mipmap levels. The voxel size increases for each (clipmap or mipmap) level. The texture size (voxel count) (of the zeroth mipmap level) of each clipmap level is the same. The volume of each mipmap level of the same clipmap level is the same.  
 
-![](Voxel-Global-Illumintaion-Clipmap-1.png)  
+N/A | 0-0 | 1-0 | 2-0 | 2-1 | 2-2  
+:-: | :-: | :-: | :-: | :-: | :-:   
+Figure | ![](Voxel-Global-Illumintaion-Clipmap-Logical-Structure-0-0.png) | ![](Voxel-Global-Illumintaion-Clipmap-Logical-Structure-1-0.png) | ![](Voxel-Global-Illumintaion-Clipmap-Logical-Structure-2-0.png) | ![](Voxel-Global-Illumintaion-Clipmap-Logical-Structure-2-1.png) | ![](Voxel-Global-Illumintaion-Clipmap-Logical-Structure-2-2.png)  
+Clipmap Level Index | 0 | 1 | 2 | 2 | 2  
+Mipmap Level Index | 0 | 0 | 0 | 1 | 2  
+Voxel Size | 1 | 2 | 4 | 8 | 16  
+Texture Size (Voxel Count) | 4 | 4 | 4 | 2 | 1  
+Volume | $\displaystyle (1 \times 4)^3 = 64$ | $\displaystyle (2 \times 4)^3 = 512$ | $\displaystyle (4 \times 4)^3 = 4096$ | $\displaystyle (8 \times 2)^3 = 4096$ | $\displaystyle (16 \times 1)^3 = 4096$  
 
-NVIDIA VXGI Implementation:  
+#### 2-1-4\. Clipmap Physical Structure  
 
-Logical Structure:  
-clipmap level 0-3: only one mipmap level  
-clipmap level 4: mipmap 0-5 (6 levels)
+And here is the logical structure of the clipmap used in the **Global Illumination** sample of the [NVIDIA VXGI](https://developer.nvidia.com/vxgi). Logical Structure: clipmap level 0-3: only one mipmap level; clipmap level 4: mipmap 0-5 (6 levels)  
 
-Physical Structure:  
-Texture3D 128\*128\*785  
+N/A | 0-0 | 1-0 | 2-0 | 3-0 | 4-0 | 4-1 | 4-2 | 4-3 | 4-4 | 4-5  
+:-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-:  
+Clipmap Level Index | 0 | 1 | 2 | 3 | 4 | 4 | 4 | 4 | 4 | 4  
+Mipmap Level Index | 0 | 0 | 0 | 0 | 0 | 1 | 2 | 3 | 4 | 5  
+Voxel Size | 8 | 16 | 32 | 64 | 128 | 256 | 512 | 1024 |2048 | 4096  
+Texture Size (Voxel Count) | 128 | 128 | 128 | 128 | 128 | 64 | 32 | 16 | 8 | 4  
+Volume | $\displaystyle {(8 \times 128)}^3 = 2^{30}$ | $\displaystyle {(16 \times 128)}^3 = 2^{33}$ | $\displaystyle {(32 \times 128)}^3 = 2^{36}$ | $\displaystyle {(64 \times 128)}^3 = 2^{39}$ | $\displaystyle {(128 \times 128)}^3 = 2^{42}$ | $\displaystyle {(256 \times 64)}^3 = 2^{42}$ | $\displaystyle {(512 \times 32)}^3 = 2^{42}$ | $\displaystyle {(1024 \times 16)}^3 = 2^{42}$ | $\displaystyle {(2048 \times 8)}^3 = 2^{42}$ | $\displaystyle {(4096 \times 4)}^3 = 2^{42}$  
 
-3D Texture Depth Index | Clipmap Level Index | Mipmap Index | Voxel Size | Texture Size \(Voxel Count & 3D Texture Logical Width/Height\)  
-:-: | :-: | :-: | :-: | :-: 
-1 - 128   | 0   | 0   | 8    | 128   
-131 - 258 | 1   | 0   | 16   | 128   
-261 - 388 | 2   | 0   | 32   | 128   
-391 - 518 | 3   | 0   | 64   | 128    
-521 - 648 | 4   | 0   | 128  | 128 
-651 - 714 | 4   | 1   | 256  | 64    
-717 - 748 | 4   | 2   | 512  | 32    
-751 - 766 | 4   | 3   | 1024 | 16     
-769 - 776 | 4   | 4   | 2048 | 8     
-779 - 782 | 4   | 5   | 4096 | 4     
+And here is the physical structure of the clipmap used in the **Global Illumination** sample of the [NVIDIA VXGI](https://developer.nvidia.com/vxgi). The clipmap is implemented by the $\displaystyle 128 \times 128 \times 785$ 3D texture.  
 
-3D Texture Depth Index | 3D Texture Equivalent Depth Index (Toroidal Address)  
+3D Texture Depth Index | Clipmap Level Index | Mipmap Level Index | 3D Texture Width/Height   
+:-: | :-: | :-: | :-: 
+1 - 128   | 0   | 0   | 128   
+131 - 258 | 1   | 0   | 128   
+261 - 388 | 2   | 0   | 128   
+391 - 518 | 3   | 0   | 128    
+521 - 648 | 4   | 0   | 128 
+651 - 714 | 4   | 1   | 64 (64 unused)  
+717 - 748 | 4   | 2   | 32 (96 unused)  
+751 - 766 | 4   | 3   | 16 (112 unused)  
+769 - 776 | 4   | 4   | 8 (120 unused)  
+779 - 782 | 4   | 5   | 4 (124 unused)  
+
+3D Texture Depth Index | Equivalent 3D Texture Depth Index (Toroidal Address)  
 :-: | :-:  
 0   | 128
 129 | 1    
+------- | -------  
 130 | 258  
 259 | 131   
+------- | -------  
 260 | 388   
 389 | 261    
+------- | -------  
 390 | 518    
 519 | 391    
+------- | -------  
 520 | 648   
 649 | 521   
+------- | -------  
 650 | 714   
 715 | 651    
+------- | -------  
 716 | 748    
 749 | 717    
+------- | -------  
 750 | 766    
 767 | 751    
+------- | -------  
 768 | 776   
 777 | 769    
+------- | -------  
 778 | 782    
 783 | 779    
+------- | -------  
 784 | N/A    
 
-#### MSAA  
+#### 2-1-4\. MSAA  
 
 TODO: conservative rasterization  
 TODO: simulate "conservative rasterization" by MSAA (\[Takeshige 2015\])  
 
-### 2-2\. Light Injection  
-
 TODO: not related to "ambient occlusion"  
 
-### 2-3\. Filtering  
+### 2-2\. Filtering  
 
 ![](Voxel-Global-Illumintaion-8.png)  
 
 TODO: anisotropic voxel  
 
-### 2-4\. Cone Tracing  
+### 2-3\. Cone Tracing  
 
 By [Additive Interval Property](https://en.wikipedia.org/wiki/Integral#Conventions), the ambient occlusion can be calculated as $\displaystyle \operatorname{k_A} = \int_\Omega \frac{1}{\pi}  \operatorname{V}(\overrightarrow{\omega_i}) (\cos \theta_i)^+ \, d \overrightarrow{\omega_i} = \frac{1}{\pi} \sum_{i=0}^{n} \left\lparen \int_{\Omega_i} \operatorname{V}(\overrightarrow{\omega_i}) (\cos \theta_i)^+ \, d \overrightarrow{\omega_i} \right\rparen$ where **n** is the number of cones, and $\displaystyle \Omega_i$ is the solid angle subtended by the **i**th cone.  
 ![](Voxel-Global-Illumintaion-9.png)  

@@ -6,6 +6,7 @@
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/default.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
 </head>
 
 <body class="markdown-body">
@@ -65,8 +66,7 @@
             injection</strong> step of the VXGI is analogous to the <strong>photon tracing</strong> step of the photon
         mapping. The <strong>cone tracing</strong> of the VXGI is analogous to the <strong>rendering / final
             gathering</strong> step of the photon mapping. The <strong>filtering</strong> step of the VXGI is analogous
-        to the idea of the <strong>density estimation</strong> of the photon mapping.
-    </p>
+        to the idea of the <strong>density estimation</strong> of the photon mapping.</p>
     <table dir="auto">
         <thead dir="auto">
             <tr dir="auto">
@@ -91,20 +91,21 @@
             Octree)</strong>. However, by [McLaren 2015] and [Eric 2017], the <strong>Clipmap</strong> is a better
         alternative. And actually, the <strong>Clipmap</strong> is exactly what the <a
             href="https://developer.nvidia.com/vxgi">NVIDIA VXGI</a> is based on.</p>
+    <h4 dir="auto" id="2-1-1-voxelization">2-1-1. Voxelization</h4>
     <p dir="auto">By [Eric 2017], there are several approaches to inject the lighting. Some approaches treat the
         geometry and the lighting separablely. The geometry is voxelized at first, and then the <strong>RSM (Reflective
             Shadow Maps)</strong> by [Dachsbacher 2005] is used to inject the lighting later. The advantage of these
         approaches is that as long as the geometry remains the same, the voxelized data of the geometry can be reused
-        even if the lighting has been changed. However, we will focus on the approach which the <a
-            href="https://developer.nvidia.com/vxgi">NVIDIA VXGI</a> is based on. This approach is called the
-        &quot;voxelization-based&quot; approach by [Eric 2017]. The light injection is performed at the same time when
-        the geometry is voxelized. The most significant advantage of this approach is that the <strong>RSM</strong> is
-        no longer required. However, the voxelized data can not be reused whenever either the geometry or the lighting
-        has been changed. The <strong>VXGI::UpdateVoxelizationParameters::invalidatedRegions</strong> is used to invalid
-        the voxelized data when the geometry has been changed in the <a href="https://developer.nvidia.com/vxgi">NVIDIA
-            VXGI</a>. And the <strong>VXGI::UpdateVoxelizationParameters::invalidatedLightFrusta</strong> is used to
-        invalid the voxelized data when the lighting has been changed in the <a
-            href="https://developer.nvidia.com/vxgi">NVIDIA VXGI</a>.</p>
+        even if the lighting has been changed. However, we will focus on the &quot;voxelization-based&quot; approach
+        which the <a href="https://developer.nvidia.com/vxgi">NVIDIA VXGI</a> is based on. The light injection is
+        performed at the same time when the geometry is voxelized. The most significant advantage of this approach is
+        that the <strong>RSM</strong> is no longer required. However, the voxelized data can not be reused whenever
+        either the geometry or the lighting has been changed. The
+        <strong>VXGI::UpdateVoxelizationParameters::invalidatedRegions</strong> is used to invalidate the voxelized data
+        when the geometry has been changed in the <a href="https://developer.nvidia.com/vxgi">NVIDIA VXGI</a>. And the
+        <strong>VXGI::UpdateVoxelizationParameters::invalidatedLightFrusta</strong> is used to invalidate the voxelized
+        data when the lighting has been changed in the <a href="https://developer.nvidia.com/vxgi">NVIDIA VXGI</a>.</p>
+    <h4 dir="auto" id="2-1-2-toroidal-addressing">2-1-2. Toroidal Addressing</h4>
     <p dir="auto">TODO:<br>
         By [Panteleev 2014], the <a href="https://developer.nvidia.com/vxgi">NVIDIA VXGI</a> does use the
         <strong>Toroidal Addressing</strong> to reuse the voxelized data. However, it rarely happens that both the
@@ -114,30 +115,938 @@
         close to the real time solution and get rid of the cache based solution. The <strong>DXR (DirectX
             Raytracing)</strong> is the a typical example for this tendency. Thus, the <strong>Toroidal
             Addressing</strong> is not involved in the current version, but perhaps will be involved in the future
-        version.
-    </p>
-    <p dir="auto">By [Panteleev 2014], we have the logical structure of the <strong>Clipmap</strong>.</p>
-    <p dir="auto">Texture size (for zeroth mipmap level) is the same for all clipmap levels, which is called that
-        clipmap size<br>
-        The voxel size increses<br>
-        Only the last level has more than one mipmap levels (the logical volume remains the same within the same clipmap
-        level)</p>
-    <p dir="auto"><img src="Voxel-Global-Illumintaion-Clipmap-1.png" alt=""
-            data-src="Voxel-Global-Illumintaion-Clipmap-1.png"></p>
-    <p dir="auto">NVIDIA VXGI Implementation:</p>
-    <p dir="auto">Logical Structure:<br>
-        clipmap level 0-3: only one mipmap level<br>
-        clipmap level 4: mipmap 0-5 (6 levels)</p>
-    <p dir="auto">Physical Structure:<br>
-        Texture3D 128*128*785</p>
+        version.</p>
+    <h4 dir="auto" id="2-1-3-clipmap-logical-structure">2-1-3. Clipmap Logical Structure</h4>
+    <p dir="auto">By [Panteleev 2014], we have the logical structure of the <strong>Clipmap</strong>. The first several
+        clipmap levels have only one mipmap level, and the last clipmap level is the only one which has multiple mipmap
+        levels. The voxel size increases for each (clipmap or mipmap) level. The texture size (voxel count) (of the
+        zeroth mipmap level) of each clipmap level is the same. The volume of each mipmap level of the same clipmap
+        level is the same.</p>
+    <table dir="auto">
+        <thead dir="auto">
+            <tr dir="auto">
+                <th style="text-align:center">N/A</th>
+                <th style="text-align:center">0-0</th>
+                <th style="text-align:center">1-0</th>
+                <th style="text-align:center">2-0</th>
+                <th style="text-align:center">2-1</th>
+                <th style="text-align:center">2-2</th>
+            </tr>
+        </thead>
+        <tbody dir="auto">
+            <tr dir="auto">
+                <td style="text-align:center">Figure</td>
+                <td style="text-align:center"><img src="Voxel-Global-Illumintaion-Clipmap-Logical-Structure-0-0.png"
+                        alt="" data-src="Voxel-Global-Illumintaion-Clipmap-Logical-Structure-0-0.png"></td>
+                <td style="text-align:center"><img src="Voxel-Global-Illumintaion-Clipmap-Logical-Structure-1-0.png"
+                        alt="" data-src="Voxel-Global-Illumintaion-Clipmap-Logical-Structure-1-0.png"></td>
+                <td style="text-align:center"><img src="Voxel-Global-Illumintaion-Clipmap-Logical-Structure-2-0.png"
+                        alt="" data-src="Voxel-Global-Illumintaion-Clipmap-Logical-Structure-2-0.png"></td>
+                <td style="text-align:center"><img src="Voxel-Global-Illumintaion-Clipmap-Logical-Structure-2-1.png"
+                        alt="" data-src="Voxel-Global-Illumintaion-Clipmap-Logical-Structure-2-1.png"></td>
+                <td style="text-align:center"><img src="Voxel-Global-Illumintaion-Clipmap-Logical-Structure-2-2.png"
+                        alt="" data-src="Voxel-Global-Illumintaion-Clipmap-Logical-Structure-2-2.png"></td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">Clipmap Level Index</td>
+                <td style="text-align:center">0</td>
+                <td style="text-align:center">1</td>
+                <td style="text-align:center">2</td>
+                <td style="text-align:center">2</td>
+                <td style="text-align:center">2</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">Mipmap Level Index</td>
+                <td style="text-align:center">0</td>
+                <td style="text-align:center">0</td>
+                <td style="text-align:center">0</td>
+                <td style="text-align:center">1</td>
+                <td style="text-align:center">2</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">Voxel Size</td>
+                <td style="text-align:center">1</td>
+                <td style="text-align:center">2</td>
+                <td style="text-align:center">4</td>
+                <td style="text-align:center">8</td>
+                <td style="text-align:center">16</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">Texture Size (Voxel Count)</td>
+                <td style="text-align:center">4</td>
+                <td style="text-align:center">4</td>
+                <td style="text-align:center">4</td>
+                <td style="text-align:center">2</td>
+                <td style="text-align:center">1</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">Volume</td>
+                <td style="text-align:center">
+                    <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                        <mrow>
+                                            <mstyle scriptlevel="0" displaystyle="true">
+                                                <mo stretchy="false">(</mo>
+                                                <mn>1</mn>
+                                                <mo>×</mo>
+                                                <mn>4</mn>
+                                                <msup>
+                                                    <mo stretchy="false">)</mo>
+                                                    <mn>3</mn>
+                                                </msup>
+                                                <mo>=</mo>
+                                                <mn>64</mn>
+                                            </mstyle>
+                                        </mrow>
+                                        <annotation encoding="application/x-tex">\displaystyle (1 \times 4)^3 = 64
+                                        </annotation>
+                                    </semantics>
+                                </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                        class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                        class="mopen">(</span><span class="mord">1</span><span class="mspace"
+                                        style="margin-right:0.2222222222222222em;"></span><span
+                                        class="mbin">×</span><span class="mspace"
+                                        style="margin-right:0.2222222222222222em;"></span></span><span
+                                    class="base"><span class="strut"
+                                        style="height:1.1141079999999999em;vertical-align:-0.25em;"></span><span
+                                        class="mord">4</span><span class="mclose"><span class="mclose">)</span><span
+                                            class="msupsub"><span class="vlist-t"><span class="vlist-r"><span
+                                                        class="vlist" style="height:0.8641079999999999em;"><span
+                                                            style="top:-3.113em;margin-right:0.05em;"><span
+                                                                class="pstrut" style="height:2.7em;"></span><span
+                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                    class="mord mtight">3</span></span></span></span></span></span></span></span><span
+                                        class="mspace" style="margin-right:0.2777777777777778em;"></span><span
+                                        class="mrel">=</span><span class="mspace"
+                                        style="margin-right:0.2777777777777778em;"></span></span><span
+                                    class="base"><span class="strut"
+                                        style="height:0.64444em;vertical-align:0em;"></span><span
+                                        class="mord">64</span></span></span></span></eq>
+                </td>
+                <td style="text-align:center">
+                    <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                        <mrow>
+                                            <mstyle scriptlevel="0" displaystyle="true">
+                                                <mo stretchy="false">(</mo>
+                                                <mn>2</mn>
+                                                <mo>×</mo>
+                                                <mn>4</mn>
+                                                <msup>
+                                                    <mo stretchy="false">)</mo>
+                                                    <mn>3</mn>
+                                                </msup>
+                                                <mo>=</mo>
+                                                <mn>512</mn>
+                                            </mstyle>
+                                        </mrow>
+                                        <annotation encoding="application/x-tex">\displaystyle (2 \times 4)^3 = 512
+                                        </annotation>
+                                    </semantics>
+                                </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                        class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                        class="mopen">(</span><span class="mord">2</span><span class="mspace"
+                                        style="margin-right:0.2222222222222222em;"></span><span
+                                        class="mbin">×</span><span class="mspace"
+                                        style="margin-right:0.2222222222222222em;"></span></span><span
+                                    class="base"><span class="strut"
+                                        style="height:1.1141079999999999em;vertical-align:-0.25em;"></span><span
+                                        class="mord">4</span><span class="mclose"><span class="mclose">)</span><span
+                                            class="msupsub"><span class="vlist-t"><span class="vlist-r"><span
+                                                        class="vlist" style="height:0.8641079999999999em;"><span
+                                                            style="top:-3.113em;margin-right:0.05em;"><span
+                                                                class="pstrut" style="height:2.7em;"></span><span
+                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                    class="mord mtight">3</span></span></span></span></span></span></span></span><span
+                                        class="mspace" style="margin-right:0.2777777777777778em;"></span><span
+                                        class="mrel">=</span><span class="mspace"
+                                        style="margin-right:0.2777777777777778em;"></span></span><span
+                                    class="base"><span class="strut"
+                                        style="height:0.64444em;vertical-align:0em;"></span><span
+                                        class="mord">512</span></span></span></span></eq>
+                </td>
+                <td style="text-align:center">
+                    <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                        <mrow>
+                                            <mstyle scriptlevel="0" displaystyle="true">
+                                                <mo stretchy="false">(</mo>
+                                                <mn>4</mn>
+                                                <mo>×</mo>
+                                                <mn>4</mn>
+                                                <msup>
+                                                    <mo stretchy="false">)</mo>
+                                                    <mn>3</mn>
+                                                </msup>
+                                                <mo>=</mo>
+                                                <mn>4096</mn>
+                                            </mstyle>
+                                        </mrow>
+                                        <annotation encoding="application/x-tex">\displaystyle (4 \times 4)^3 = 4096
+                                        </annotation>
+                                    </semantics>
+                                </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                        class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                        class="mopen">(</span><span class="mord">4</span><span class="mspace"
+                                        style="margin-right:0.2222222222222222em;"></span><span
+                                        class="mbin">×</span><span class="mspace"
+                                        style="margin-right:0.2222222222222222em;"></span></span><span
+                                    class="base"><span class="strut"
+                                        style="height:1.1141079999999999em;vertical-align:-0.25em;"></span><span
+                                        class="mord">4</span><span class="mclose"><span class="mclose">)</span><span
+                                            class="msupsub"><span class="vlist-t"><span class="vlist-r"><span
+                                                        class="vlist" style="height:0.8641079999999999em;"><span
+                                                            style="top:-3.113em;margin-right:0.05em;"><span
+                                                                class="pstrut" style="height:2.7em;"></span><span
+                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                    class="mord mtight">3</span></span></span></span></span></span></span></span><span
+                                        class="mspace" style="margin-right:0.2777777777777778em;"></span><span
+                                        class="mrel">=</span><span class="mspace"
+                                        style="margin-right:0.2777777777777778em;"></span></span><span
+                                    class="base"><span class="strut"
+                                        style="height:0.64444em;vertical-align:0em;"></span><span
+                                        class="mord">4096</span></span></span></span></eq>
+                </td>
+                <td style="text-align:center">
+                    <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                        <mrow>
+                                            <mstyle scriptlevel="0" displaystyle="true">
+                                                <mo stretchy="false">(</mo>
+                                                <mn>8</mn>
+                                                <mo>×</mo>
+                                                <mn>2</mn>
+                                                <msup>
+                                                    <mo stretchy="false">)</mo>
+                                                    <mn>3</mn>
+                                                </msup>
+                                                <mo>=</mo>
+                                                <mn>4096</mn>
+                                            </mstyle>
+                                        </mrow>
+                                        <annotation encoding="application/x-tex">\displaystyle (8 \times 2)^3 = 4096
+                                        </annotation>
+                                    </semantics>
+                                </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                        class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                        class="mopen">(</span><span class="mord">8</span><span class="mspace"
+                                        style="margin-right:0.2222222222222222em;"></span><span
+                                        class="mbin">×</span><span class="mspace"
+                                        style="margin-right:0.2222222222222222em;"></span></span><span
+                                    class="base"><span class="strut"
+                                        style="height:1.1141079999999999em;vertical-align:-0.25em;"></span><span
+                                        class="mord">2</span><span class="mclose"><span class="mclose">)</span><span
+                                            class="msupsub"><span class="vlist-t"><span class="vlist-r"><span
+                                                        class="vlist" style="height:0.8641079999999999em;"><span
+                                                            style="top:-3.113em;margin-right:0.05em;"><span
+                                                                class="pstrut" style="height:2.7em;"></span><span
+                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                    class="mord mtight">3</span></span></span></span></span></span></span></span><span
+                                        class="mspace" style="margin-right:0.2777777777777778em;"></span><span
+                                        class="mrel">=</span><span class="mspace"
+                                        style="margin-right:0.2777777777777778em;"></span></span><span
+                                    class="base"><span class="strut"
+                                        style="height:0.64444em;vertical-align:0em;"></span><span
+                                        class="mord">4096</span></span></span></span></eq>
+                </td>
+                <td style="text-align:center">
+                    <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                        <mrow>
+                                            <mstyle scriptlevel="0" displaystyle="true">
+                                                <mo stretchy="false">(</mo>
+                                                <mn>16</mn>
+                                                <mo>×</mo>
+                                                <mn>1</mn>
+                                                <msup>
+                                                    <mo stretchy="false">)</mo>
+                                                    <mn>3</mn>
+                                                </msup>
+                                                <mo>=</mo>
+                                                <mn>4096</mn>
+                                            </mstyle>
+                                        </mrow>
+                                        <annotation encoding="application/x-tex">\displaystyle (16 \times 1)^3 = 4096
+                                        </annotation>
+                                    </semantics>
+                                </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                        class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                        class="mopen">(</span><span class="mord">16</span><span class="mspace"
+                                        style="margin-right:0.2222222222222222em;"></span><span
+                                        class="mbin">×</span><span class="mspace"
+                                        style="margin-right:0.2222222222222222em;"></span></span><span
+                                    class="base"><span class="strut"
+                                        style="height:1.1141079999999999em;vertical-align:-0.25em;"></span><span
+                                        class="mord">1</span><span class="mclose"><span class="mclose">)</span><span
+                                            class="msupsub"><span class="vlist-t"><span class="vlist-r"><span
+                                                        class="vlist" style="height:0.8641079999999999em;"><span
+                                                            style="top:-3.113em;margin-right:0.05em;"><span
+                                                                class="pstrut" style="height:2.7em;"></span><span
+                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                    class="mord mtight">3</span></span></span></span></span></span></span></span><span
+                                        class="mspace" style="margin-right:0.2777777777777778em;"></span><span
+                                        class="mrel">=</span><span class="mspace"
+                                        style="margin-right:0.2777777777777778em;"></span></span><span
+                                    class="base"><span class="strut"
+                                        style="height:0.64444em;vertical-align:0em;"></span><span
+                                        class="mord">4096</span></span></span></span></eq>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <h4 dir="auto" id="2-1-4-clipmap-physical-structure">2-1-4. Clipmap Physical Structure</h4>
+    <p dir="auto">And here is the logical structure of the clipmap used in the <strong>Global Illumination</strong>
+        sample of the <a href="https://developer.nvidia.com/vxgi">NVIDIA VXGI</a>. Logical Structure: clipmap level 0-3:
+        only one mipmap level; clipmap level 4: mipmap 0-5 (6 levels)</p>
+    <table dir="auto">
+        <thead dir="auto">
+            <tr dir="auto">
+                <th style="text-align:center">N/A</th>
+                <th style="text-align:center">0-0</th>
+                <th style="text-align:center">1-0</th>
+                <th style="text-align:center">2-0</th>
+                <th style="text-align:center">3-0</th>
+                <th style="text-align:center">4-0</th>
+                <th style="text-align:center">4-1</th>
+                <th style="text-align:center">4-2</th>
+                <th style="text-align:center">4-3</th>
+                <th style="text-align:center">4-4</th>
+                <th style="text-align:center">4-5</th>
+            </tr>
+        </thead>
+        <tbody dir="auto">
+            <tr dir="auto">
+                <td style="text-align:center">Clipmap Level Index</td>
+                <td style="text-align:center">0</td>
+                <td style="text-align:center">1</td>
+                <td style="text-align:center">2</td>
+                <td style="text-align:center">3</td>
+                <td style="text-align:center">4</td>
+                <td style="text-align:center">4</td>
+                <td style="text-align:center">4</td>
+                <td style="text-align:center">4</td>
+                <td style="text-align:center">4</td>
+                <td style="text-align:center">4</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">Mipmap Level Index</td>
+                <td style="text-align:center">0</td>
+                <td style="text-align:center">0</td>
+                <td style="text-align:center">0</td>
+                <td style="text-align:center">0</td>
+                <td style="text-align:center">0</td>
+                <td style="text-align:center">1</td>
+                <td style="text-align:center">2</td>
+                <td style="text-align:center">3</td>
+                <td style="text-align:center">4</td>
+                <td style="text-align:center">5</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">Voxel Size</td>
+                <td style="text-align:center">8</td>
+                <td style="text-align:center">16</td>
+                <td style="text-align:center">32</td>
+                <td style="text-align:center">64</td>
+                <td style="text-align:center">128</td>
+                <td style="text-align:center">256</td>
+                <td style="text-align:center">512</td>
+                <td style="text-align:center">1024</td>
+                <td style="text-align:center">2048</td>
+                <td style="text-align:center">4096</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">Texture Size (Voxel Count)</td>
+                <td style="text-align:center">128</td>
+                <td style="text-align:center">128</td>
+                <td style="text-align:center">128</td>
+                <td style="text-align:center">128</td>
+                <td style="text-align:center">128</td>
+                <td style="text-align:center">64</td>
+                <td style="text-align:center">32</td>
+                <td style="text-align:center">16</td>
+                <td style="text-align:center">8</td>
+                <td style="text-align:center">4</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">Volume</td>
+                <td style="text-align:center">
+                    <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                        <mrow>
+                                            <mstyle scriptlevel="0" displaystyle="true">
+                                                <msup>
+                                                    <mrow>
+                                                        <mo stretchy="false">(</mo>
+                                                        <mn>8</mn>
+                                                        <mo>×</mo>
+                                                        <mn>128</mn>
+                                                        <mo stretchy="false">)</mo>
+                                                    </mrow>
+                                                    <mn>3</mn>
+                                                </msup>
+                                                <mo>=</mo>
+                                                <msup>
+                                                    <mn>2</mn>
+                                                    <mn>30</mn>
+                                                </msup>
+                                            </mstyle>
+                                        </mrow>
+                                        <annotation encoding="application/x-tex">\displaystyle {(8 \times 128)}^3 =
+                                            2^{30}</annotation>
+                                    </semantics>
+                                </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                        class="strut" style="height:1.204008em;vertical-align:-0.25em;"></span><span
+                                        class="mord"><span class="mord"><span class="mopen">(</span><span
+                                                class="mord">8</span><span class="mspace"
+                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                class="mbin">×</span><span class="mspace"
+                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                class="mord">128</span><span class="mclose">)</span></span><span
+                                            class="msupsub"><span class="vlist-t"><span class="vlist-r"><span
+                                                        class="vlist" style="height:0.954008em;"><span
+                                                            style="top:-3.2029em;margin-right:0.05em;"><span
+                                                                class="pstrut" style="height:2.7em;"></span><span
+                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                    class="mord mtight">3</span></span></span></span></span></span></span></span><span
+                                        class="mspace" style="margin-right:0.2777777777777778em;"></span><span
+                                        class="mrel">=</span><span class="mspace"
+                                        style="margin-right:0.2777777777777778em;"></span></span><span
+                                    class="base"><span class="strut"
+                                        style="height:0.8641079999999999em;vertical-align:0em;"></span><span
+                                        class="mord"><span class="mord">2</span><span class="msupsub"><span
+                                                class="vlist-t"><span class="vlist-r"><span class="vlist"
+                                                        style="height:0.8641079999999999em;"><span
+                                                            style="top:-3.113em;margin-right:0.05em;"><span
+                                                                class="pstrut" style="height:2.7em;"></span><span
+                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                    class="mord mtight"><span
+                                                                        class="mord mtight">30</span></span></span></span></span></span></span></span></span></span></span></span>
+                    </eq>
+                </td>
+                <td style="text-align:center">
+                    <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                        <mrow>
+                                            <mstyle scriptlevel="0" displaystyle="true">
+                                                <msup>
+                                                    <mrow>
+                                                        <mo stretchy="false">(</mo>
+                                                        <mn>16</mn>
+                                                        <mo>×</mo>
+                                                        <mn>128</mn>
+                                                        <mo stretchy="false">)</mo>
+                                                    </mrow>
+                                                    <mn>3</mn>
+                                                </msup>
+                                                <mo>=</mo>
+                                                <msup>
+                                                    <mn>2</mn>
+                                                    <mn>33</mn>
+                                                </msup>
+                                            </mstyle>
+                                        </mrow>
+                                        <annotation encoding="application/x-tex">\displaystyle {(16 \times 128)}^3 =
+                                            2^{33}</annotation>
+                                    </semantics>
+                                </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                        class="strut" style="height:1.204008em;vertical-align:-0.25em;"></span><span
+                                        class="mord"><span class="mord"><span class="mopen">(</span><span
+                                                class="mord">16</span><span class="mspace"
+                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                class="mbin">×</span><span class="mspace"
+                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                class="mord">128</span><span class="mclose">)</span></span><span
+                                            class="msupsub"><span class="vlist-t"><span class="vlist-r"><span
+                                                        class="vlist" style="height:0.954008em;"><span
+                                                            style="top:-3.2029em;margin-right:0.05em;"><span
+                                                                class="pstrut" style="height:2.7em;"></span><span
+                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                    class="mord mtight">3</span></span></span></span></span></span></span></span><span
+                                        class="mspace" style="margin-right:0.2777777777777778em;"></span><span
+                                        class="mrel">=</span><span class="mspace"
+                                        style="margin-right:0.2777777777777778em;"></span></span><span
+                                    class="base"><span class="strut"
+                                        style="height:0.8641079999999999em;vertical-align:0em;"></span><span
+                                        class="mord"><span class="mord">2</span><span class="msupsub"><span
+                                                class="vlist-t"><span class="vlist-r"><span class="vlist"
+                                                        style="height:0.8641079999999999em;"><span
+                                                            style="top:-3.113em;margin-right:0.05em;"><span
+                                                                class="pstrut" style="height:2.7em;"></span><span
+                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                    class="mord mtight"><span
+                                                                        class="mord mtight">33</span></span></span></span></span></span></span></span></span></span></span></span>
+                    </eq>
+                </td>
+                <td style="text-align:center">
+                    <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                        <mrow>
+                                            <mstyle scriptlevel="0" displaystyle="true">
+                                                <msup>
+                                                    <mrow>
+                                                        <mo stretchy="false">(</mo>
+                                                        <mn>32</mn>
+                                                        <mo>×</mo>
+                                                        <mn>128</mn>
+                                                        <mo stretchy="false">)</mo>
+                                                    </mrow>
+                                                    <mn>3</mn>
+                                                </msup>
+                                                <mo>=</mo>
+                                                <msup>
+                                                    <mn>2</mn>
+                                                    <mn>36</mn>
+                                                </msup>
+                                            </mstyle>
+                                        </mrow>
+                                        <annotation encoding="application/x-tex">\displaystyle {(32 \times 128)}^3 =
+                                            2^{36}</annotation>
+                                    </semantics>
+                                </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                        class="strut" style="height:1.204008em;vertical-align:-0.25em;"></span><span
+                                        class="mord"><span class="mord"><span class="mopen">(</span><span
+                                                class="mord">32</span><span class="mspace"
+                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                class="mbin">×</span><span class="mspace"
+                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                class="mord">128</span><span class="mclose">)</span></span><span
+                                            class="msupsub"><span class="vlist-t"><span class="vlist-r"><span
+                                                        class="vlist" style="height:0.954008em;"><span
+                                                            style="top:-3.2029em;margin-right:0.05em;"><span
+                                                                class="pstrut" style="height:2.7em;"></span><span
+                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                    class="mord mtight">3</span></span></span></span></span></span></span></span><span
+                                        class="mspace" style="margin-right:0.2777777777777778em;"></span><span
+                                        class="mrel">=</span><span class="mspace"
+                                        style="margin-right:0.2777777777777778em;"></span></span><span
+                                    class="base"><span class="strut"
+                                        style="height:0.8641079999999999em;vertical-align:0em;"></span><span
+                                        class="mord"><span class="mord">2</span><span class="msupsub"><span
+                                                class="vlist-t"><span class="vlist-r"><span class="vlist"
+                                                        style="height:0.8641079999999999em;"><span
+                                                            style="top:-3.113em;margin-right:0.05em;"><span
+                                                                class="pstrut" style="height:2.7em;"></span><span
+                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                    class="mord mtight"><span
+                                                                        class="mord mtight">36</span></span></span></span></span></span></span></span></span></span></span></span>
+                    </eq>
+                </td>
+                <td style="text-align:center">
+                    <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                        <mrow>
+                                            <mstyle scriptlevel="0" displaystyle="true">
+                                                <msup>
+                                                    <mrow>
+                                                        <mo stretchy="false">(</mo>
+                                                        <mn>64</mn>
+                                                        <mo>×</mo>
+                                                        <mn>128</mn>
+                                                        <mo stretchy="false">)</mo>
+                                                    </mrow>
+                                                    <mn>3</mn>
+                                                </msup>
+                                                <mo>=</mo>
+                                                <msup>
+                                                    <mn>2</mn>
+                                                    <mn>39</mn>
+                                                </msup>
+                                            </mstyle>
+                                        </mrow>
+                                        <annotation encoding="application/x-tex">\displaystyle {(64 \times 128)}^3 =
+                                            2^{39}</annotation>
+                                    </semantics>
+                                </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                        class="strut" style="height:1.204008em;vertical-align:-0.25em;"></span><span
+                                        class="mord"><span class="mord"><span class="mopen">(</span><span
+                                                class="mord">64</span><span class="mspace"
+                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                class="mbin">×</span><span class="mspace"
+                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                class="mord">128</span><span class="mclose">)</span></span><span
+                                            class="msupsub"><span class="vlist-t"><span class="vlist-r"><span
+                                                        class="vlist" style="height:0.954008em;"><span
+                                                            style="top:-3.2029em;margin-right:0.05em;"><span
+                                                                class="pstrut" style="height:2.7em;"></span><span
+                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                    class="mord mtight">3</span></span></span></span></span></span></span></span><span
+                                        class="mspace" style="margin-right:0.2777777777777778em;"></span><span
+                                        class="mrel">=</span><span class="mspace"
+                                        style="margin-right:0.2777777777777778em;"></span></span><span
+                                    class="base"><span class="strut"
+                                        style="height:0.8641079999999999em;vertical-align:0em;"></span><span
+                                        class="mord"><span class="mord">2</span><span class="msupsub"><span
+                                                class="vlist-t"><span class="vlist-r"><span class="vlist"
+                                                        style="height:0.8641079999999999em;"><span
+                                                            style="top:-3.113em;margin-right:0.05em;"><span
+                                                                class="pstrut" style="height:2.7em;"></span><span
+                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                    class="mord mtight"><span
+                                                                        class="mord mtight">39</span></span></span></span></span></span></span></span></span></span></span></span>
+                    </eq>
+                </td>
+                <td style="text-align:center">
+                    <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                        <mrow>
+                                            <mstyle scriptlevel="0" displaystyle="true">
+                                                <msup>
+                                                    <mrow>
+                                                        <mo stretchy="false">(</mo>
+                                                        <mn>128</mn>
+                                                        <mo>×</mo>
+                                                        <mn>128</mn>
+                                                        <mo stretchy="false">)</mo>
+                                                    </mrow>
+                                                    <mn>3</mn>
+                                                </msup>
+                                                <mo>=</mo>
+                                                <msup>
+                                                    <mn>2</mn>
+                                                    <mn>42</mn>
+                                                </msup>
+                                            </mstyle>
+                                        </mrow>
+                                        <annotation encoding="application/x-tex">\displaystyle {(128 \times 128)}^3 =
+                                            2^{42}</annotation>
+                                    </semantics>
+                                </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                        class="strut" style="height:1.204008em;vertical-align:-0.25em;"></span><span
+                                        class="mord"><span class="mord"><span class="mopen">(</span><span
+                                                class="mord">128</span><span class="mspace"
+                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                class="mbin">×</span><span class="mspace"
+                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                class="mord">128</span><span class="mclose">)</span></span><span
+                                            class="msupsub"><span class="vlist-t"><span class="vlist-r"><span
+                                                        class="vlist" style="height:0.954008em;"><span
+                                                            style="top:-3.2029em;margin-right:0.05em;"><span
+                                                                class="pstrut" style="height:2.7em;"></span><span
+                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                    class="mord mtight">3</span></span></span></span></span></span></span></span><span
+                                        class="mspace" style="margin-right:0.2777777777777778em;"></span><span
+                                        class="mrel">=</span><span class="mspace"
+                                        style="margin-right:0.2777777777777778em;"></span></span><span
+                                    class="base"><span class="strut"
+                                        style="height:0.8641079999999999em;vertical-align:0em;"></span><span
+                                        class="mord"><span class="mord">2</span><span class="msupsub"><span
+                                                class="vlist-t"><span class="vlist-r"><span class="vlist"
+                                                        style="height:0.8641079999999999em;"><span
+                                                            style="top:-3.113em;margin-right:0.05em;"><span
+                                                                class="pstrut" style="height:2.7em;"></span><span
+                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                    class="mord mtight"><span
+                                                                        class="mord mtight">42</span></span></span></span></span></span></span></span></span></span></span></span>
+                    </eq>
+                </td>
+                <td style="text-align:center">
+                    <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                        <mrow>
+                                            <mstyle scriptlevel="0" displaystyle="true">
+                                                <msup>
+                                                    <mrow>
+                                                        <mo stretchy="false">(</mo>
+                                                        <mn>256</mn>
+                                                        <mo>×</mo>
+                                                        <mn>64</mn>
+                                                        <mo stretchy="false">)</mo>
+                                                    </mrow>
+                                                    <mn>3</mn>
+                                                </msup>
+                                                <mo>=</mo>
+                                                <msup>
+                                                    <mn>2</mn>
+                                                    <mn>42</mn>
+                                                </msup>
+                                            </mstyle>
+                                        </mrow>
+                                        <annotation encoding="application/x-tex">\displaystyle {(256 \times 64)}^3 =
+                                            2^{42}</annotation>
+                                    </semantics>
+                                </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                        class="strut" style="height:1.204008em;vertical-align:-0.25em;"></span><span
+                                        class="mord"><span class="mord"><span class="mopen">(</span><span
+                                                class="mord">256</span><span class="mspace"
+                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                class="mbin">×</span><span class="mspace"
+                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                class="mord">64</span><span class="mclose">)</span></span><span
+                                            class="msupsub"><span class="vlist-t"><span class="vlist-r"><span
+                                                        class="vlist" style="height:0.954008em;"><span
+                                                            style="top:-3.2029em;margin-right:0.05em;"><span
+                                                                class="pstrut" style="height:2.7em;"></span><span
+                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                    class="mord mtight">3</span></span></span></span></span></span></span></span><span
+                                        class="mspace" style="margin-right:0.2777777777777778em;"></span><span
+                                        class="mrel">=</span><span class="mspace"
+                                        style="margin-right:0.2777777777777778em;"></span></span><span
+                                    class="base"><span class="strut"
+                                        style="height:0.8641079999999999em;vertical-align:0em;"></span><span
+                                        class="mord"><span class="mord">2</span><span class="msupsub"><span
+                                                class="vlist-t"><span class="vlist-r"><span class="vlist"
+                                                        style="height:0.8641079999999999em;"><span
+                                                            style="top:-3.113em;margin-right:0.05em;"><span
+                                                                class="pstrut" style="height:2.7em;"></span><span
+                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                    class="mord mtight"><span
+                                                                        class="mord mtight">42</span></span></span></span></span></span></span></span></span></span></span></span>
+                    </eq>
+                </td>
+                <td style="text-align:center">
+                    <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                        <mrow>
+                                            <mstyle scriptlevel="0" displaystyle="true">
+                                                <msup>
+                                                    <mrow>
+                                                        <mo stretchy="false">(</mo>
+                                                        <mn>512</mn>
+                                                        <mo>×</mo>
+                                                        <mn>32</mn>
+                                                        <mo stretchy="false">)</mo>
+                                                    </mrow>
+                                                    <mn>3</mn>
+                                                </msup>
+                                                <mo>=</mo>
+                                                <msup>
+                                                    <mn>2</mn>
+                                                    <mn>42</mn>
+                                                </msup>
+                                            </mstyle>
+                                        </mrow>
+                                        <annotation encoding="application/x-tex">\displaystyle {(512 \times 32)}^3 =
+                                            2^{42}</annotation>
+                                    </semantics>
+                                </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                        class="strut" style="height:1.204008em;vertical-align:-0.25em;"></span><span
+                                        class="mord"><span class="mord"><span class="mopen">(</span><span
+                                                class="mord">512</span><span class="mspace"
+                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                class="mbin">×</span><span class="mspace"
+                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                class="mord">32</span><span class="mclose">)</span></span><span
+                                            class="msupsub"><span class="vlist-t"><span class="vlist-r"><span
+                                                        class="vlist" style="height:0.954008em;"><span
+                                                            style="top:-3.2029em;margin-right:0.05em;"><span
+                                                                class="pstrut" style="height:2.7em;"></span><span
+                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                    class="mord mtight">3</span></span></span></span></span></span></span></span><span
+                                        class="mspace" style="margin-right:0.2777777777777778em;"></span><span
+                                        class="mrel">=</span><span class="mspace"
+                                        style="margin-right:0.2777777777777778em;"></span></span><span
+                                    class="base"><span class="strut"
+                                        style="height:0.8641079999999999em;vertical-align:0em;"></span><span
+                                        class="mord"><span class="mord">2</span><span class="msupsub"><span
+                                                class="vlist-t"><span class="vlist-r"><span class="vlist"
+                                                        style="height:0.8641079999999999em;"><span
+                                                            style="top:-3.113em;margin-right:0.05em;"><span
+                                                                class="pstrut" style="height:2.7em;"></span><span
+                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                    class="mord mtight"><span
+                                                                        class="mord mtight">42</span></span></span></span></span></span></span></span></span></span></span></span>
+                    </eq>
+                </td>
+                <td style="text-align:center">
+                    <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                        <mrow>
+                                            <mstyle scriptlevel="0" displaystyle="true">
+                                                <msup>
+                                                    <mrow>
+                                                        <mo stretchy="false">(</mo>
+                                                        <mn>1024</mn>
+                                                        <mo>×</mo>
+                                                        <mn>16</mn>
+                                                        <mo stretchy="false">)</mo>
+                                                    </mrow>
+                                                    <mn>3</mn>
+                                                </msup>
+                                                <mo>=</mo>
+                                                <msup>
+                                                    <mn>2</mn>
+                                                    <mn>42</mn>
+                                                </msup>
+                                            </mstyle>
+                                        </mrow>
+                                        <annotation encoding="application/x-tex">\displaystyle {(1024 \times 16)}^3 =
+                                            2^{42}</annotation>
+                                    </semantics>
+                                </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                        class="strut" style="height:1.204008em;vertical-align:-0.25em;"></span><span
+                                        class="mord"><span class="mord"><span class="mopen">(</span><span
+                                                class="mord">1024</span><span class="mspace"
+                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                class="mbin">×</span><span class="mspace"
+                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                class="mord">16</span><span class="mclose">)</span></span><span
+                                            class="msupsub"><span class="vlist-t"><span class="vlist-r"><span
+                                                        class="vlist" style="height:0.954008em;"><span
+                                                            style="top:-3.2029em;margin-right:0.05em;"><span
+                                                                class="pstrut" style="height:2.7em;"></span><span
+                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                    class="mord mtight">3</span></span></span></span></span></span></span></span><span
+                                        class="mspace" style="margin-right:0.2777777777777778em;"></span><span
+                                        class="mrel">=</span><span class="mspace"
+                                        style="margin-right:0.2777777777777778em;"></span></span><span
+                                    class="base"><span class="strut"
+                                        style="height:0.8641079999999999em;vertical-align:0em;"></span><span
+                                        class="mord"><span class="mord">2</span><span class="msupsub"><span
+                                                class="vlist-t"><span class="vlist-r"><span class="vlist"
+                                                        style="height:0.8641079999999999em;"><span
+                                                            style="top:-3.113em;margin-right:0.05em;"><span
+                                                                class="pstrut" style="height:2.7em;"></span><span
+                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                    class="mord mtight"><span
+                                                                        class="mord mtight">42</span></span></span></span></span></span></span></span></span></span></span></span>
+                    </eq>
+                </td>
+                <td style="text-align:center">
+                    <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                        <mrow>
+                                            <mstyle scriptlevel="0" displaystyle="true">
+                                                <msup>
+                                                    <mrow>
+                                                        <mo stretchy="false">(</mo>
+                                                        <mn>2048</mn>
+                                                        <mo>×</mo>
+                                                        <mn>8</mn>
+                                                        <mo stretchy="false">)</mo>
+                                                    </mrow>
+                                                    <mn>3</mn>
+                                                </msup>
+                                                <mo>=</mo>
+                                                <msup>
+                                                    <mn>2</mn>
+                                                    <mn>42</mn>
+                                                </msup>
+                                            </mstyle>
+                                        </mrow>
+                                        <annotation encoding="application/x-tex">\displaystyle {(2048 \times 8)}^3 =
+                                            2^{42}</annotation>
+                                    </semantics>
+                                </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                        class="strut" style="height:1.204008em;vertical-align:-0.25em;"></span><span
+                                        class="mord"><span class="mord"><span class="mopen">(</span><span
+                                                class="mord">2048</span><span class="mspace"
+                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                class="mbin">×</span><span class="mspace"
+                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                class="mord">8</span><span class="mclose">)</span></span><span
+                                            class="msupsub"><span class="vlist-t"><span class="vlist-r"><span
+                                                        class="vlist" style="height:0.954008em;"><span
+                                                            style="top:-3.2029em;margin-right:0.05em;"><span
+                                                                class="pstrut" style="height:2.7em;"></span><span
+                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                    class="mord mtight">3</span></span></span></span></span></span></span></span><span
+                                        class="mspace" style="margin-right:0.2777777777777778em;"></span><span
+                                        class="mrel">=</span><span class="mspace"
+                                        style="margin-right:0.2777777777777778em;"></span></span><span
+                                    class="base"><span class="strut"
+                                        style="height:0.8641079999999999em;vertical-align:0em;"></span><span
+                                        class="mord"><span class="mord">2</span><span class="msupsub"><span
+                                                class="vlist-t"><span class="vlist-r"><span class="vlist"
+                                                        style="height:0.8641079999999999em;"><span
+                                                            style="top:-3.113em;margin-right:0.05em;"><span
+                                                                class="pstrut" style="height:2.7em;"></span><span
+                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                    class="mord mtight"><span
+                                                                        class="mord mtight">42</span></span></span></span></span></span></span></span></span></span></span></span>
+                    </eq>
+                </td>
+                <td style="text-align:center">
+                    <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                        <mrow>
+                                            <mstyle scriptlevel="0" displaystyle="true">
+                                                <msup>
+                                                    <mrow>
+                                                        <mo stretchy="false">(</mo>
+                                                        <mn>4096</mn>
+                                                        <mo>×</mo>
+                                                        <mn>4</mn>
+                                                        <mo stretchy="false">)</mo>
+                                                    </mrow>
+                                                    <mn>3</mn>
+                                                </msup>
+                                                <mo>=</mo>
+                                                <msup>
+                                                    <mn>2</mn>
+                                                    <mn>42</mn>
+                                                </msup>
+                                            </mstyle>
+                                        </mrow>
+                                        <annotation encoding="application/x-tex">\displaystyle {(4096 \times 4)}^3 =
+                                            2^{42}</annotation>
+                                    </semantics>
+                                </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                        class="strut" style="height:1.204008em;vertical-align:-0.25em;"></span><span
+                                        class="mord"><span class="mord"><span class="mopen">(</span><span
+                                                class="mord">4096</span><span class="mspace"
+                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                class="mbin">×</span><span class="mspace"
+                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                class="mord">4</span><span class="mclose">)</span></span><span
+                                            class="msupsub"><span class="vlist-t"><span class="vlist-r"><span
+                                                        class="vlist" style="height:0.954008em;"><span
+                                                            style="top:-3.2029em;margin-right:0.05em;"><span
+                                                                class="pstrut" style="height:2.7em;"></span><span
+                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                    class="mord mtight">3</span></span></span></span></span></span></span></span><span
+                                        class="mspace" style="margin-right:0.2777777777777778em;"></span><span
+                                        class="mrel">=</span><span class="mspace"
+                                        style="margin-right:0.2777777777777778em;"></span></span><span
+                                    class="base"><span class="strut"
+                                        style="height:0.8641079999999999em;vertical-align:0em;"></span><span
+                                        class="mord"><span class="mord">2</span><span class="msupsub"><span
+                                                class="vlist-t"><span class="vlist-r"><span class="vlist"
+                                                        style="height:0.8641079999999999em;"><span
+                                                            style="top:-3.113em;margin-right:0.05em;"><span
+                                                                class="pstrut" style="height:2.7em;"></span><span
+                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                    class="mord mtight"><span
+                                                                        class="mord mtight">42</span></span></span></span></span></span></span></span></span></span></span></span>
+                    </eq>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <p dir="auto">And here is the physical structure of the clipmap used in the <strong>Global Illumination</strong>
+        sample of the <a href="https://developer.nvidia.com/vxgi">NVIDIA VXGI</a>. The clipmap is implemented by the
+        <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mn>128</mn>
+                                    <mo>×</mo>
+                                    <mn>128</mn>
+                                    <mo>×</mo>
+                                    <mn>785</mn>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle 128 \times 128 \times 785
+                            </annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.72777em;vertical-align:-0.08333em;"></span><span
+                            class="mord">128</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut"
+                            style="height:0.72777em;vertical-align:-0.08333em;"></span><span
+                            class="mord">128</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span
+                            class="mord">785</span></span></span></span></eq> 3D texture.</p>
     <table dir="auto">
         <thead dir="auto">
             <tr dir="auto">
                 <th style="text-align:center">3D Texture Depth Index</th>
                 <th style="text-align:center">Clipmap Level Index</th>
-                <th style="text-align:center">Mipmap Index</th>
-                <th style="text-align:center">Voxel Size</th>
-                <th style="text-align:center">Texture Size (Voxel Count &amp; 3D Texture Logical Width/Height)</th>
+                <th style="text-align:center">Mipmap Level Index</th>
+                <th style="text-align:center">3D Texture Width/Height</th>
             </tr>
         </thead>
         <tbody dir="auto">
@@ -145,28 +1054,24 @@
                 <td style="text-align:center">1 - 128</td>
                 <td style="text-align:center">0</td>
                 <td style="text-align:center">0</td>
-                <td style="text-align:center">8</td>
                 <td style="text-align:center">128</td>
             </tr>
             <tr dir="auto">
                 <td style="text-align:center">131 - 258</td>
                 <td style="text-align:center">1</td>
                 <td style="text-align:center">0</td>
-                <td style="text-align:center">16</td>
                 <td style="text-align:center">128</td>
             </tr>
             <tr dir="auto">
                 <td style="text-align:center">261 - 388</td>
                 <td style="text-align:center">2</td>
                 <td style="text-align:center">0</td>
-                <td style="text-align:center">32</td>
                 <td style="text-align:center">128</td>
             </tr>
             <tr dir="auto">
                 <td style="text-align:center">391 - 518</td>
                 <td style="text-align:center">3</td>
                 <td style="text-align:center">0</td>
-                <td style="text-align:center">64</td>
                 <td style="text-align:center">128</td>
             </tr>
             <tr dir="auto">
@@ -174,42 +1079,36 @@
                 <td style="text-align:center">4</td>
                 <td style="text-align:center">0</td>
                 <td style="text-align:center">128</td>
-                <td style="text-align:center">128</td>
             </tr>
             <tr dir="auto">
                 <td style="text-align:center">651 - 714</td>
                 <td style="text-align:center">4</td>
                 <td style="text-align:center">1</td>
-                <td style="text-align:center">256</td>
-                <td style="text-align:center">64</td>
+                <td style="text-align:center">64 (64 unused)</td>
             </tr>
             <tr dir="auto">
                 <td style="text-align:center">717 - 748</td>
                 <td style="text-align:center">4</td>
                 <td style="text-align:center">2</td>
-                <td style="text-align:center">512</td>
-                <td style="text-align:center">32</td>
+                <td style="text-align:center">32 (96 unused)</td>
             </tr>
             <tr dir="auto">
                 <td style="text-align:center">751 - 766</td>
                 <td style="text-align:center">4</td>
                 <td style="text-align:center">3</td>
-                <td style="text-align:center">1024</td>
-                <td style="text-align:center">16</td>
+                <td style="text-align:center">16 (112 unused)</td>
             </tr>
             <tr dir="auto">
                 <td style="text-align:center">769 - 776</td>
                 <td style="text-align:center">4</td>
                 <td style="text-align:center">4</td>
-                <td style="text-align:center">2048</td>
-                <td style="text-align:center">8</td>
+                <td style="text-align:center">8 (120 unused)</td>
             </tr>
             <tr dir="auto">
                 <td style="text-align:center">779 - 782</td>
                 <td style="text-align:center">4</td>
                 <td style="text-align:center">5</td>
-                <td style="text-align:center">4096</td>
-                <td style="text-align:center">4</td>
+                <td style="text-align:center">4 (124 unused)</td>
             </tr>
         </tbody>
     </table>
@@ -217,7 +1116,7 @@
         <thead dir="auto">
             <tr dir="auto">
                 <th style="text-align:center">3D Texture Depth Index</th>
-                <th style="text-align:center">3D Texture Equivalent Depth Index (Toroidal Address)</th>
+                <th style="text-align:center">Equivalent 3D Texture Depth Index (Toroidal Address)</th>
             </tr>
         </thead>
         <tbody dir="auto">
@@ -230,12 +1129,20 @@
                 <td style="text-align:center">1</td>
             </tr>
             <tr dir="auto">
+                <td style="text-align:center">-------</td>
+                <td style="text-align:center">-------</td>
+            </tr>
+            <tr dir="auto">
                 <td style="text-align:center">130</td>
                 <td style="text-align:center">258</td>
             </tr>
             <tr dir="auto">
                 <td style="text-align:center">259</td>
                 <td style="text-align:center">131</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">-------</td>
+                <td style="text-align:center">-------</td>
             </tr>
             <tr dir="auto">
                 <td style="text-align:center">260</td>
@@ -246,12 +1153,20 @@
                 <td style="text-align:center">261</td>
             </tr>
             <tr dir="auto">
+                <td style="text-align:center">-------</td>
+                <td style="text-align:center">-------</td>
+            </tr>
+            <tr dir="auto">
                 <td style="text-align:center">390</td>
                 <td style="text-align:center">518</td>
             </tr>
             <tr dir="auto">
                 <td style="text-align:center">519</td>
                 <td style="text-align:center">391</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">-------</td>
+                <td style="text-align:center">-------</td>
             </tr>
             <tr dir="auto">
                 <td style="text-align:center">520</td>
@@ -262,12 +1177,20 @@
                 <td style="text-align:center">521</td>
             </tr>
             <tr dir="auto">
+                <td style="text-align:center">-------</td>
+                <td style="text-align:center">-------</td>
+            </tr>
+            <tr dir="auto">
                 <td style="text-align:center">650</td>
                 <td style="text-align:center">714</td>
             </tr>
             <tr dir="auto">
                 <td style="text-align:center">715</td>
                 <td style="text-align:center">651</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">-------</td>
+                <td style="text-align:center">-------</td>
             </tr>
             <tr dir="auto">
                 <td style="text-align:center">716</td>
@@ -278,12 +1201,20 @@
                 <td style="text-align:center">717</td>
             </tr>
             <tr dir="auto">
+                <td style="text-align:center">-------</td>
+                <td style="text-align:center">-------</td>
+            </tr>
+            <tr dir="auto">
                 <td style="text-align:center">750</td>
                 <td style="text-align:center">766</td>
             </tr>
             <tr dir="auto">
                 <td style="text-align:center">767</td>
                 <td style="text-align:center">751</td>
+            </tr>
+            <tr dir="auto">
+                <td style="text-align:center">-------</td>
+                <td style="text-align:center">-------</td>
             </tr>
             <tr dir="auto">
                 <td style="text-align:center">768</td>
@@ -294,6 +1225,10 @@
                 <td style="text-align:center">769</td>
             </tr>
             <tr dir="auto">
+                <td style="text-align:center">-------</td>
+                <td style="text-align:center">-------</td>
+            </tr>
+            <tr dir="auto">
                 <td style="text-align:center">778</td>
                 <td style="text-align:center">782</td>
             </tr>
@@ -302,20 +1237,23 @@
                 <td style="text-align:center">779</td>
             </tr>
             <tr dir="auto">
+                <td style="text-align:center">-------</td>
+                <td style="text-align:center">-------</td>
+            </tr>
+            <tr dir="auto">
                 <td style="text-align:center">784</td>
                 <td style="text-align:center">N/A</td>
             </tr>
         </tbody>
     </table>
-    <h4 dir="auto" id="msaa">MSAA</h4>
+    <h4 dir="auto" id="2-1-4-msaa">2-1-4. MSAA</h4>
     <p dir="auto">TODO: conservative rasterization<br>
         TODO: simulate &quot;conservative rasterization&quot; by MSAA ([Takeshige 2015])</p>
-    <h3 dir="auto" id="2-2-light-injection">2-2. Light Injection</h3>
     <p dir="auto">TODO: not related to &quot;ambient occlusion&quot;</p>
-    <h3 dir="auto" id="2-3-filtering">2-3. Filtering</h3>
+    <h3 dir="auto" id="2-2-filtering">2-2. Filtering</h3>
     <p dir="auto"><img src="Voxel-Global-Illumintaion-8.png" alt="" data-src="Voxel-Global-Illumintaion-8.png"></p>
     <p dir="auto">TODO: anisotropic voxel</p>
-    <h3 dir="auto" id="2-4-cone-tracing">2-4. Cone Tracing</h3>
+    <h3 dir="auto" id="2-3-cone-tracing">2-3. Cone Tracing</h3>
     <p dir="auto">By <a href="https://en.wikipedia.org/wiki/Integral#Conventions">Additive Interval Property</a>, the
         ambient occlusion can be calculated as <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
