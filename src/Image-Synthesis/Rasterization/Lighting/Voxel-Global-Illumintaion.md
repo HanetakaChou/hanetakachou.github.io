@@ -122,6 +122,8 @@ TODO: anisotropic voxel
 
 ### 2-3\. Cone Tracing  
 
+#### 2-3-1\. Monte Carlo Method  
+
 By [Additive Interval Property](https://en.wikipedia.org/wiki/Integral#Conventions), the ambient occlusion can be calculated as $\displaystyle \operatorname{k_A} = \int_\Omega \frac{1}{\pi}  \operatorname{V}(\overrightarrow{\omega_i}) (\cos \theta_i)^+ \, d \overrightarrow{\omega_i} = \frac{1}{\pi} \sum_{i=0}^{n} \left\lparen \int_{\Omega_i} \operatorname{V}(\overrightarrow{\omega_i}) (\cos \theta_i)^+ \, d \overrightarrow{\omega_i} \right\rparen$ where **n** is the number of cones, and $\displaystyle \Omega_i$ is the solid angle subtended by the **i**th cone.  
 ![](Voxel-Global-Illumintaion-9.png)  
   
@@ -130,47 +132,38 @@ By \[Crassin 2011 B\], the visibility $\displaystyle \operatorname{V}(\overright
 By "5.5.1 Integrals over Projected Solid Angle" of [PBRT-V3](https://pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#IntegralsoverProjectedSolidAngle) and \[Heitz 2017\], the integral of the clamped cosine $\displaystyle \int_{\Omega_i} (\cos \theta_i)^+ \, d \overrightarrow{\omega_i}$ can be calculated as the projected area on the unit disk.  
 ![](Voxel-Global-Illumintaion-10.png)  
 
-By \[Crassin 2011 B\], the recursive form, which is similar to the "under operator" (\[Dunn 2014\]), can be used to calculated the final color $\displaystyle \operatorname{C_{Final}}$ and the final occlusion $\displaystyle \operatorname{A_{Final}}$ of the cone tracing.  
-> $\displaystyle \operatorname{C_{Final}}(0) = 0$  
-> $\displaystyle \operatorname{A_{Final}}(0) = 0$  
-> $\displaystyle \operatorname{C_{Final}}(n + 1) = \operatorname{C_{Final}}(n) + (1 - \operatorname{A_{Final}}(n)) \cdot C_n$  
-> $\displaystyle \operatorname{A_{Final}}(n + 1) = \operatorname{A_{Final}}(n) + (1 - \operatorname{A_{Final}}(n)) \cdot A_n$  
+By "20.4 Mipmap Filtered Samples" of \[Colbert 2007\], we use the mip-level $\text{sample\_mip\_level} = \displaystyle \max(0, \log(\sqrt{\frac{d\overrightarrow{\omega_S}}{d\overrightarrow{\omega_P}}}))$ to sample the filtered L value from the distant radiance distribution to reduce the variance. The $\displaystyle d\overrightarrow{\omega_S}$ is the solid angle subtended by the sample, and we have $\displaystyle d\overrightarrow{\omega_S} = \frac{1}{\text{N}} \cdot \frac{1}{\text{PDF}}$. The $\displaystyle d\overrightarrow{\omega_P}$ is the solid angle subtended by a single texel of the zeroth mip-level of the texture, and by "Projection from Cube Maps" of \[Sloan 2008\], we have $\displaystyle d\overrightarrow{\omega_P} = \frac{1}{\text{cubesize\_u} \cdot \text{cubesize\_v}} \cdot \frac{4}{\sqrt{1^2 + u^2 +v^2} \cdot (1^2 + u^2 +v^2)}$.  
 
-The explicit form of the final color $\displaystyle \operatorname{C_{Final}}$ and the final occlusion $\displaystyle \operatorname{A_{Final}}$ of the cone tracing can proved by mathematical induction.  
-> Prove $\displaystyle \operatorname{A_{Final}}(n + 1) = 1 - \prod_{i = 0}^n (1 - A_i)$ by mathematical induction  
->  
->> Basis  
->> when n = 0  
->> $\displaystyle \text{left} = \operatorname{A_{Final}}(1) = \operatorname{A_{Final}}(0) + (1 - \operatorname{A_{Final}}(0)) \cdot A_0 = 0 + (1 - 0) \cdot A_0 = A_0$  
->> $\displaystyle \text{right} = 1 - (1 - A_0) = 0$  
->> left = right, the equation holds  
->   
->> Inductive step  
->> we assume that the proposition holds for n = k  
->> when n = k + 1  
->> $\displaystyle \text{left} = \operatorname{A_{Final}}((k + 1) + 1) = \operatorname{A_{Final}}(k + 1) + (1 - \operatorname{A_{Final}}(k + 1)) \cdot A_{k + 1} = (1 - \prod_{i = 0}^k (1 - A_i)) + (1 - (1 - \prod_{i = 0}^k (1 - A_i))) \cdot A_{k + 1} = 1 - \prod_{i = 0}^k (1 - A_i) - \prod_{i = 0}^k (1 - A_i) \cdot A_{k + 1} = 1 - \prod_{i = 0}^k (1 - A_i) (1 -  A_{k + 1}) = 1 - \prod_{i = 0}^{k + 1} (1 - A_i)$  
->> $\displaystyle \text{right} =  1 - \prod_{i = 0}^{k + 1} (1 - A_i)$  
->> left = right, the equation holds  
->  
-> Prove $\displaystyle \operatorname{C_{Final}}(n + 1) = \sum_{i = 0}^{n} \left\lparen \prod_{Z_j \operatorname{Nearer} Z_i}(1 - A_j) \right\rparen \cdot C_i$ by mathematical induction  
->  
->> Basis  
->> when n = 0  
->> $\displaystyle \text{left} = \operatorname{C_{Final}}(1) = \operatorname{C_{Final}}(0) + (1 - \operatorname{A_{Final}}(0)) \cdot C_0 = 0 + (1 - 0) \cdot C_0 = C_0$  
->> $\displaystyle \text{right} = \sum_{i = 0}^{0} \left\lparen \prod_{Z_j \operatorname{Nearer} Z_i}(1 - A_j) \right\rparen \cdot C_i = \left\lparen \prod_{Z_j \operatorname{Nearer} Z_0}(1 - A_j) \right\rparen \cdot C_0 = 1 \cdot C_0 = C_0$  
->> left = right, the equation holds  
->   
->> Inductive step  
->> we assume that the proposition holds for n = k  
->> when n = k + 1  
->> $\displaystyle \text{left} = \operatorname{C_{Final}}((k + 1) + 1) = \operatorname{C_{Final}}(k + 1) + (1 - \operatorname{A_{Final}}(k + 1)) \cdot C_{k + 1} = \sum_{i = 0}^{k} \left\lparen \prod_{Z_j \operatorname{Nearer} Z_i}(1 - A_j) \right\rparen \cdot C_i + \left\lparen 1 - \left\lparen 1 - \prod_{i = 0}^{k} (1 - A_i)  \right\rparen \right\rparen \cdot C_{k + 1} = \sum_{i = 0}^{k} \left\lparen \prod_{Z_j \operatorname{Nearer} Z_i}(1 - A_j) \right\rparen \cdot C_i + \left\lparen \prod_{i = 0}^{k} (1 - A_i) \right\rparen \cdot C_{k + 1} = \sum_{i = 0}^{k} \left\lparen \prod_{Z_j \operatorname{Nearer} Z_i}(1 - A_j) \right\rparen \cdot C_i + \left\lparen \prod_{Z_j \operatorname{Nearer} Z_{k+1}} (1 - A_j) \right\rparen \cdot C_{k + 1} = \sum_{i = 0}^{k + 1} \left\lparen \prod_{Z_j \operatorname{Nearer} Z_i}(1 - A_j) \right\rparen \cdot C_i$  
->> $\displaystyle \text{right} = \sum_{i = 0}^{k + 1} \left\lparen \prod_{Z_j \operatorname{Nearer} Z_i}(1 - A_j) \right\rparen \cdot C_i$  
->> left = right, the equation holds  
+The $\displaystyle d\overrightarrow{\omega_S}$ is calculated by [SolidAngleSample](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/ReflectionEnvironmentShaders.usf#L414) in UE4 and [omegaS](https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.core/ShaderLibrary/ImageBasedLighting.hlsl#L500) in Unity3D. And the $\displaystyle d\overrightarrow{\omega_P}$ is calculated by [SolidAngleTexel](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/ReflectionEnvironmentShaders.usf#L355) in UE4 and [invOmegaP](https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.core/ShaderLibrary/ImageBasedLighting.hlsl#L506) in Unity3D.  
+
+![](Voxel-Global-Illumintaion-Mipmap.png)  
+
+#### 2-3-2\. Under Operator 
+
+By \[Crassin 2011 B\], the **under operator** is used to calculated the final color $\displaystyle \mathrm{C}_\mathrm{Final}$ and the final occlusion $\displaystyle \mathrm{A}_\mathrm{Final}$.  
+
+By \[Dunn 2014\], we have the recursive form of the **under operator**.  
+$\displaystyle \mathrm{C}_\mathrm{Final}^{0} = 0$  
+$\displaystyle \mathrm{A}_\mathrm{Final}^{0} = 0$  
+$\displaystyle \mathrm{C}_\mathrm{Final}^{n + 1} = \mathrm{C}_\mathrm{Final}^{n} + (1 - \mathrm{A}_\mathrm{Final}^{n}) \cdot \mathrm{C}_{n}$  
+$\displaystyle \mathrm{A}_\mathrm{Final}^{n + 1} = \mathrm{A}_\mathrm{Final}^{n} + (1 - \mathrm{A}_\mathrm{Final}^{n}) \cdot \mathrm{A}_{n}$  
+
+Actually, the explicit form of the **under operator** can be proved by mathematical induction.  
+$\displaystyle \mathrm{A}_\mathrm{Final}^{n + 1} = 1 - \prod_{i = 0}^{n} \left\lparen 1 - \mathrm{A}_{i} \right\rparen$  
+$\displaystyle \mathrm{C}_\mathrm{Final}^{n + 1} = \sum_{i = 0}^{n} \left\lparen \left\lparen \prod_{\mathrm{Z}_{j} \operatorname{Nearer} \mathrm{Z}_{i}} \left\lparen 1 - \mathrm{A}_{j} \right\rparen \right\rparen \cdot \mathrm{C}_{i} \right\rparen$  
 
 ![](Voxel-Global-Illumintaion-12.png)  
 
 Evidently, by \[McLaren 2015\], the cone tracing may NOT dectect the full occlusion which is the result of mutiple partial occlusions.  
 ![](Voxel-Global-Illumintaion-13.png)  
+
+#### 2-3-3\. Self Intersection  
+
+TODO  
+
+**AdjustConePosition**  
+
+By \[Wachter 2019\], "3.9.5 Robust Spawned Ray Origins" of [PBR Book V3](https://pbr-book.org/3ed-2018/Shapes/Managing_Rounding_Error#RobustSpawnedRayOrigins) and "6.8.6 Robust Spawned Ray Origins" of [PBR Book V4](https://pbr-book.org/4ed/Shapes/Managing_Rounding_Error#RobustSpawnedRayOrigins), we should offset the ray origin to avoid self intersection.  
 
 ## References  
 \[Jensen 2001\] [Henrik Jensen. "Realistic Image Synthesis Using Photon Mapping." AK Peters 2001.](http://www.graphics.stanford.edu/papers/jensen_book/)  
