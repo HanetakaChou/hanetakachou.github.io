@@ -14,7 +14,7 @@ By "7.5 Photon Gathering" of \[Jensen 2001\], "38.2.2 Final Gathering" of \[Hach
 
 ### 1-2\. VXGI (Voxel Global Illumintaion)  
 
-By \[Crassin 2011\], the **VXGI (Voxel Global Illumintaion)** is composed of three steps: **light injection**, **filtering** and **cone tracing**. The idea of the VXGI is intrinsically to implement the photon mapping by storing the photons in the voxels. The **light injection** step of the VXGI is analogous to the **photon tracing** step of the photon mapping. The **cone tracing** of the VXGI is analogous to the **rendering / final gathering** step of the photon mapping. The **filtering** step of the VXGI is analogous to the idea of the **density estimation** of the photon mapping.  
+By \[Crassin 2011 B\], the **VXGI (Voxel Global Illumintaion)** is composed of three steps: **light injection**, **filtering** and **cone tracing**. The idea of the VXGI is intrinsically to implement the photon mapping by storing the photons in the voxels. The **light injection** step of the VXGI is analogous to the **photon tracing** step of the photon mapping. The **cone tracing** of the VXGI is analogous to the **rendering / final gathering** step of the photon mapping. The **filtering** step of the VXGI is analogous to the idea of the **density estimation** of the photon mapping.  
 
 | **Light Injection** | **Filtering** | **Cone Tracing** |  
 | :-: | :-: | :-: |  
@@ -22,7 +22,7 @@ By \[Crassin 2011\], the **VXGI (Voxel Global Illumintaion)** is composed of thr
 
 ### 2-1\. Light Injection  
 
-As per the original version by \[Crassin 2011\], the voxels are stored in the **SVO (Sparse Voxel Octree)**. However, by \[McLaren 2015\] and \[Eric 2017\], the **Clipmap** is a better alternative. And actually, the **Clipmap** is exactly what the [NVIDIA VXGI](https://developer.nvidia.com/vxgi) is based on.  
+As per the original version by \[Crassin 2011 B\], the voxels are stored in the **SVO (Sparse Voxel Octree)**. However, by \[McLaren 2015\] and \[Eric 2017\], the **Clipmap** is a better alternative. And actually, the **Clipmap** is exactly what the [NVIDIA VXGI](https://developer.nvidia.com/vxgi) is based on.  
 
 #### 2-1-1\. Voxelization  
 
@@ -35,7 +35,7 @@ By \[Panteleev 2014\], the [NVIDIA VXGI](https://developer.nvidia.com/vxgi) does
 
 #### 2-1-3\. Clipmap Logical Structure  
 
-By \[Panteleev 2014\], we have the logical structure of the **Clipmap**. The first several clipmap levels have only one mipmap level, and the last clipmap level is the only one which has multiple mipmap levels. The voxel size increases for each (clipmap or mipmap) level. The texture size (voxel count) (of the zeroth mipmap level) of each clipmap level is the same. The volume of each mipmap level of the same clipmap level is the same.  
+By \[Panteleev 2014\], we have the logical structure of the **Clipmap**. Each of the first several clipmap levels has only one mipmap level, and the last clipmap level is the only one which has multiple mipmap levels. The voxel size increases for each (clipmap or mipmap) level. The texture size (voxel count) (of the zeroth mipmap level) of each clipmap level is the same. The volume of each mipmap level of the same clipmap level is the same.  
 
 N/A | 0-0 | 1-0 | 2-0 | 2-1 | 2-2  
 :-: | :-: | :-: | :-: | :-: | :-:   
@@ -48,7 +48,7 @@ Volume | $\displaystyle (1 \times 4)^3 = 64$ | $\displaystyle (2 \times 4)^3 = 5
 
 #### 2-1-4\. Clipmap Physical Structure  
 
-And here is the logical structure of the clipmap used in the **Global Illumination** sample of the [NVIDIA VXGI](https://developer.nvidia.com/vxgi). Logical Structure: clipmap level 0-3: only one mipmap level; clipmap level 4: mipmap 0-5 (6 levels)  
+And here is the logical structure of the clipmap used in the **Global Illumination** sample of the [NVIDIA VXGI](https://developer.nvidia.com/vxgi). Each of the first four (index from 0 to 3) clipmap levels has only one mipmap level, and the last (index 4) clipmap level has six (index from 0 to 5) mipmap levels.  
 
 N/A | 0-0 | 1-0 | 2-0 | 3-0 | 4-0 | 4-1 | 4-2 | 4-3 | 4-4 | 4-5  
 :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-:  
@@ -169,7 +169,8 @@ By \[Wachter 2019\], "3.9.5 Robust Spawned Ray Origins" of [PBR Book V3](https:/
 \[Jensen 2001\] [Henrik Jensen. "Realistic Image Synthesis Using Photon Mapping." AK Peters 2001.](http://www.graphics.stanford.edu/papers/jensen_book/)  
 \[Hachisuka 2005\] [Toshiya Hachisuka. "High-Quality Global Illumination Rendering Using Rasterization." GPU Gems 2.](https://developer.nvidia.com/gpugems/gpugems2/part-v-image-oriented-computing/chapter-38-high-quality-global-illumination)  
 \[Dachsbacher 2005\] [Carsten Dachsbacher, Marc Stamminger. "Reflective Shadow Maps." I3D 2005.](https://cg.ivd.kit.edu/english/publikationen.php)  
-\[Crassin 2011\] [Cyril Crassin, Fabrice Neyret, Miguel Sainz, Simon Green, Elmar Eisemann. "Interactive Indirect Illumination Using Voxel Cone Tracing." SIGGRAPH 2011.](https://research.nvidia.com/publication/interactive-indirect-illumination-using-voxel-cone-tracing)  
+\[Crassin 2011 A\] [Cyril Crassin. "GigaVoxels: A Voxel-Based Rendering Pipeline For Efficient Exploration Of Large And Detailed Scenes." PhD Thesis 2011.](http://gigavoxels.inrialpes.fr/index.html)  
+\[Crassin 2011 B\] [Cyril Crassin, Fabrice Neyret, Miguel Sainz, Simon Green, Elmar Eisemann. "Interactive Indirect Illumination Using Voxel Cone Tracing." SIGGRAPH 2011.](https://research.nvidia.com/publication/interactive-indirect-illumination-using-voxel-cone-tracing)  
 \[Dunn 2014\] [Alex Dunn. "Transparency (or Translucency) Rendering." NVIDIA GameWorks Blog 2014.](https://developer.nvidia.com/content/transparency-or-translucency-rendering)   
 \[Panteleev 2014\] [Alexey Panteleev. "Practical Real-Time Voxel-Based Global Illumination for Current GPUs." GTC 2014.](https://on-demand.gputechconf.com/gtc/2014/presentations/S4552-rt-voxel-based-global-illumination-gpus.pdf)  
 \[McLaren 2015\] [James McLaren. "The Technology of The Tomorrow Children." GDC 2015.](http://fumufumu.q-games.com/archives/TheTechnologyOfTomorrowsChildrenFinal.pdf)  

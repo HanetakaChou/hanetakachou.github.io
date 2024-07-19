@@ -60,7 +60,7 @@
         </tbody>
     </table>
     <h3 dir="auto" id="1-2-vxgi-voxel-global-illumintaion">1-2. VXGI (Voxel Global Illumintaion)</h3>
-    <p dir="auto">By [Crassin 2011], the <strong>VXGI (Voxel Global Illumintaion)</strong> is composed of three steps:
+    <p dir="auto">By [Crassin 2011 B], the <strong>VXGI (Voxel Global Illumintaion)</strong> is composed of three steps:
         <strong>light injection</strong>, <strong>filtering</strong> and <strong>cone tracing</strong>. The idea of the
         VXGI is intrinsically to implement the photon mapping by storing the photons in the voxels. The <strong>light
             injection</strong> step of the VXGI is analogous to the <strong>photon tracing</strong> step of the photon
@@ -88,8 +88,8 @@
         </tbody>
     </table>
     <h3 dir="auto" id="2-1-light-injection">2-1. Light Injection</h3>
-    <p dir="auto">As per the original version by [Crassin 2011], the voxels are stored in the <strong>SVO (Sparse Voxel
-            Octree)</strong>. However, by [McLaren 2015] and [Eric 2017], the <strong>Clipmap</strong> is a better
+    <p dir="auto">As per the original version by [Crassin 2011 B], the voxels are stored in the <strong>SVO (Sparse
+            Voxel Octree)</strong>. However, by [McLaren 2015] and [Eric 2017], the <strong>Clipmap</strong> is a better
         alternative. And actually, the <strong>Clipmap</strong> is exactly what the <a
             href="https://developer.nvidia.com/vxgi">NVIDIA VXGI</a> is based on.</p>
     <h4 dir="auto" id="2-1-1-voxelization">2-1-1. Voxelization</h4>
@@ -120,10 +120,10 @@
         version.
     </p>
     <h4 dir="auto" id="2-1-3-clipmap-logical-structure">2-1-3. Clipmap Logical Structure</h4>
-    <p dir="auto">By [Panteleev 2014], we have the logical structure of the <strong>Clipmap</strong>. The first several
-        clipmap levels have only one mipmap level, and the last clipmap level is the only one which has multiple mipmap
-        levels. The voxel size increases for each (clipmap or mipmap) level. The texture size (voxel count) (of the
-        zeroth mipmap level) of each clipmap level is the same. The volume of each mipmap level of the same clipmap
+    <p dir="auto">By [Panteleev 2014], we have the logical structure of the <strong>Clipmap</strong>. Each of the first
+        several clipmap levels has only one mipmap level, and the last clipmap level is the only one which has multiple
+        mipmap levels. The voxel size increases for each (clipmap or mipmap) level. The texture size (voxel count) (of
+        the zeroth mipmap level) of each clipmap level is the same. The volume of each mipmap level of the same clipmap
         level is the same.</p>
     <table dir="auto">
         <thead dir="auto">
@@ -399,8 +399,9 @@
     </table>
     <h4 dir="auto" id="2-1-4-clipmap-physical-structure">2-1-4. Clipmap Physical Structure</h4>
     <p dir="auto">And here is the logical structure of the clipmap used in the <strong>Global Illumination</strong>
-        sample of the <a href="https://developer.nvidia.com/vxgi">NVIDIA VXGI</a>. Logical Structure: clipmap level 0-3:
-        only one mipmap level; clipmap level 4: mipmap 0-5 (6 levels)</p>
+        sample of the <a href="https://developer.nvidia.com/vxgi">NVIDIA VXGI</a>. Each of the first four (index from 0
+        to 3) clipmap levels has only one mipmap level, and the last (index 4) clipmap level has six (index from 0 to 5)
+        mipmap levels.</p>
     <table dir="auto">
         <thead dir="auto">
             <tr dir="auto">
@@ -3820,7 +3821,10 @@ M834 80h400000v40h-400000z' />
             Hachisuka. &quot;High-Quality Global Illumination Rendering Using Rasterization.&quot; GPU Gems 2.</a><br>
         [Dachsbacher 2005] <a href="https://cg.ivd.kit.edu/english/publikationen.php">Carsten Dachsbacher, Marc
             Stamminger. &quot;Reflective Shadow Maps.&quot; I3D 2005.</a><br>
-        [Crassin 2011] <a
+        [Crassin 2011 A] <a href="http://gigavoxels.inrialpes.fr/index.html">Cyril Crassin. &quot;GigaVoxels: A
+            Voxel-Based Rendering Pipeline For Efficient Exploration Of Large And Detailed Scenes.&quot; PhD Thesis
+            2011.</a><br>
+        [Crassin 2011 B] <a
             href="https://research.nvidia.com/publication/interactive-indirect-illumination-using-voxel-cone-tracing">Cyril
             Crassin, Fabrice Neyret, Miguel Sainz, Simon Green, Elmar Eisemann. &quot;Interactive Indirect Illumination
             Using Voxel Cone Tracing.&quot; SIGGRAPH 2011.</a><br>
