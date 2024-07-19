@@ -58,7 +58,7 @@ If you find there are any mistakes or improvements, please don't hesitate to con
 
 ## Deep Learning
 
-- Super Resolution [Documentation](Deep-Learning/Super-Resolution.html)  
+- DLSS (Deep Learning Super Sampling) [Documentation](Deep-Learning/Deep-Learning-Super-Sampling.html)  
 
 ## MATLAB  
 
