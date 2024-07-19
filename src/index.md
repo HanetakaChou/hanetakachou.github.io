@@ -19,7 +19,7 @@ If you find there are any mistakes or improvements, please don't hesitate to con
 
 - Perfect Forwarding [Documentation](C-Plus-Plus/Perfect-Forwarding.html)  
 
-## API  
+## PS5 AGC API  
 
 - Console Tutorial [Documentation](https://hanetakachou.github.io/Console-Tutorial/)  
 
@@ -55,6 +55,10 @@ If you find there are any mistakes or improvements, please don't hesitate to con
 - Discretization  
     - Radiosity [Documentation](Image-Synthesis/Discretization/Radiosity.html)  
     - Diffusion Profile [Documentation](Image-Synthesis/Discretization/Diffusion-Profile.html)  
+
+## Deep Learning
+
+- Super Resolution [Documentation](Deep-Learning/Super-Resolution.html)  
 
 ## MATLAB  
 

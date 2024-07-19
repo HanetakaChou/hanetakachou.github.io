@@ -10,21 +10,156 @@
 </head>
 
 <body class="markdown-body">
-    <h1 dir="auto" id="console-tutorial">Console Tutorial</h1>
-    <p dir="auto">This tutorial is to introduce the usage of the console API. We assume that readers already have the
-        knowledge of the modern API such as Vulkan or Direct3D12. And we will provide the analogous concepts from the
-        Vulkan or Direct3D12 API to help readers comprehend the idea of the console API better. Besides, we provide a
-        demo project <strong>PAL-Cube</strong> (only available for accredited developers) which is a Direct3D12 and
-        console port of the original <a href="https://github.com/KhronosGroup/Vulkan-Tools/tree/main/cube">Vkcube</a>
-        demo to help readers compare the usage of the console API with the Vulkan or Direct3D12 API.</p>
-    <h2 dir="auto" id="contents">Contents</h2>
-    <ol dir="auto">
-        <li dir="auto"><a href="Command-Buffer.html">Command Buffer</a></li>
-        <li dir="auto"><a href="Pipeline-State.html">Pipeline State</a></li>
-        <li dir="auto"><a href="Cache-Synchronization.html">Cache Synchronization</a></li>
-        <li dir="auto"><a href="Resource-Binding.html">Resource Binding</a></li>
-        <li dir="auto"><a href="Memory-Management.html">Memory Management</a></li>
-    </ol>
+    <h1 dir="auto" id="yuqiaozhanghanetakachous-blog">YuqiaoZhang(HanetakaChou)'s Blog</h1>
+    <h2 dir="auto" id="license">License</h2>
+    <pre><code dir="auto">Copyright (C) YuqiaoZhang(HanetakaChou)
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License along with this program.  If not, see &lt;https://www.gnu.org/licenses/&gt;
+</code></pre>
+    <h2 dir="auto" id="acknowledgment">Acknowledgment</h2>
+    <p dir="auto">If you find there are any mistakes or improvements, please don't hesitate to contact me by <a
+            href="mailto:HanetakaChou@outlook.com">email</a>.</p>
+    <h2 dir="auto" id="c-plus-plus">C Plus Plus</h2>
+    <ul dir="auto">
+        <li dir="auto">Perfect Forwarding <a href="C-Plus-Plus/Perfect-Forwarding.html">Documentation</a></li>
+    </ul>
+    <h2 dir="auto" id="api">API</h2>
+    <ul dir="auto">
+        <li dir="auto">Console Tutorial <a href="https://hanetakachou.github.io/Console-Tutorial/">Documentation</a>
+        </li>
+    </ul>
+    <h2 dir="auto" id="image-synthesis">Image Synthesis</h2>
+    <ul dir="auto">
+        <li dir="auto">Ray Tracing
+            <ul dir="auto">
+                <li dir="auto">RTAO (Ray Traced Ambient Occlusion) <a
+                        href="Image-Synthesis/Ray-Tracing/Ray-Traced-Ambient-Occlusion.html">Documentation</a> <a
+                        href="https://github.com/HanetakaChou/Ray-Traced-Ambient-Occlusion">Code</a></li>
+                <li dir="auto">Photon Mapping <a
+                        href="Image-Synthesis/Ray-Tracing/Photon-Mapping.html">Documentation</a></li>
+                <li dir="auto">DDGI (Dynamic Diffuse Global Illumination) <a
+                        href="Image-Synthesis/Ray-Tracing/Dynamic-Diffuse-Global-Illumination.html">Documentation</a>
+                </li>
+            </ul>
+        </li>
+        <li dir="auto">Rasterization
+            <ul dir="auto">
+                <li dir="auto">Geometry
+                    <ul dir="auto">
+                        <li dir="auto">HLOD <a href="Image-Synthesis/Rasterization/Geometry/HLOD.html">Documentation</a>
+                        </li>
+                        <li dir="auto">Masked Occlusion Culling <a
+                                href="Image-Synthesis/Rasterization/Geometry/Masked-Occlusion-Culling.html">Documentation</a>
+                        </li>
+                        <li dir="auto">Projector Function
+                            <ul dir="auto">
+                                <li dir="auto">Cube Mapping <a
+                                        href="Image-Synthesis/Rasterization/Geometry/Projector-Function/Cube-Mapping.html">Documentation</a>
+                                </li>
+                                <li dir="auto">Dual Paraboloid Mapping <a
+                                        href="Image-Synthesis/Rasterization/Geometry/Projector-Function/Dual-Paraboloid-Mapping.html">Documentation</a>
+                                    <a
+                                        href="https://github.com/HanetakaChou/Image-Synthesis/tree/Dual-Paraboloid-Mapping-VK">Code-VK</a>
+                                </li>
+                                <li dir="auto">Octahedron Mapping <a
+                                        href="Image-Synthesis/Rasterization/Geometry/Projector-Function/Octahedron-Mapping.html">Documentation</a>
+                                    <a href="https://github.com/HanetakaChou/Octahedron-Mapping">Code</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li dir="auto">DLB (Dual quaternion Linear Blending) <a
+                                href="Image-Synthesis/Rasterization/Geometry/Dual-Quaternion-Linear-Blending.html">Documentation</a>
+                            <a href="https://github.com/HanetakaChou/Dual-Quaternion-Linear-Blending">Code</a>
+                        </li>
+                        <li dir="auto">Hair Animation <a
+                                href="Image-Synthesis/Rasterization/Geometry/Hair-Animation.html">Documentation</a></li>
+                        <li dir="auto">Grass <a
+                                href="Image-Synthesis/Rasterization/Geometry/Grass.html">Documentation</a></li>
+                        <li dir="auto">Billboard <a
+                                href="Image-Synthesis/Rasterization/Geometry/Billboard.html">Documentation</a></li>
+                    </ul>
+                </li>
+                <li dir="auto">Lighting
+                    <ul dir="auto">
+                        <li dir="auto">LTC (Linearly Transformed Cosines) <a
+                                href="Image-Synthesis/Rasterization/Lighting/Linearly-Transformed-Cosines.html">Documentation</a>
+                            <a href="https://github.com/HanetakaChou/Linearly-Transformed-Cosines">Code</a>
+                        </li>
+                        <li dir="auto">SSS (Subsurface Scattering) <a
+                                href="Image-Synthesis/Rasterization/Lighting/Subsurface-Scattering.html">Documentation</a>
+                            <a href="https://github.com/HanetakaChou/Subsurface-Scattering">Code</a>
+                        </li>
+                        <li dir="auto">Environment Lighting <a
+                                href="Image-Synthesis/Rasterization/Lighting/Environment-Lighting.html">Documentation</a>
+                            <a href="https://github.com/HanetakaChou/Environment-Lighting">Code</a>
+                        </li>
+                        <li dir="auto">Hair Rendering <a
+                                href="Image-Synthesis/Rasterization/Lighting/Hair-Rendering.html">Documentation</a></li>
+                        <li dir="auto">Volume Rendering <a
+                                href="Image-Synthesis/Rasterization/Lighting/Volume-Rendering.html">Documentation</a>
+                        </li>
+                        <li dir="auto">LPV (Light Propagation Volumes) <a
+                                href="Image-Synthesis/Rasterization/Lighting/Light-Propagation-Volumes.html">Documentation</a>
+                            <a href="https://github.com/HanetakaChou/Light-Propagation-Volumes">Code</a>
+                        </li>
+                        <li dir="auto">VXGI (Voxel Global Illumintaion) <a
+                                href="Image-Synthesis/Rasterization/Lighting/Voxel-Global-Illumintaion.html">Documentation</a>
+                            <a href="https://github.com/HanetakaChou/Voxel-Global-Illumintaion">Code</a>
+                        </li>
+                        <li dir="auto">OIT (Order Independent Transparency) <a
+                                href="Image-Synthesis/Rasterization/Lighting/Order-Independent-Transparency.html">Documentation</a>
+                            <a href="https://github.com/HanetakaChou/Order-Independent-Transparency">Code</a>
+                        </li>
+                        <li dir="auto">HFTS (Hybrid Frustum Traced Shadows) <a
+                                href="Image-Synthesis/Rasterization/Lighting/Hybrid-Frustum-Traced-Shadows.html">Documentation</a>
+                            <a href="https://github.com/HanetakaChou/Hybrid-Frustum-Traced-Shadows">Code</a>
+                        </li>
+                        <li dir="auto">BRDF <a href="Image-Synthesis/Rasterization/Lighting/BRDF.html">Documentation</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li dir="auto">Discretization
+            <ul dir="auto">
+                <li dir="auto">Radiosity <a href="Image-Synthesis/Discretization/Radiosity.html">Documentation</a></li>
+                <li dir="auto">Diffusion Profile <a
+                        href="Image-Synthesis/Discretization/Diffusion-Profile.html">Documentation</a></li>
+            </ul>
+        </li>
+    </ul>
+    <h2 dir="auto" id="deep-learning">Deep Learning</h2>
+    <ul dir="auto">
+        <li dir="auto">Super Resolution <a href="Deep-Learning/Super-Resolution.html">Documentation</a></li>
+    </ul>
+    <h2 dir="auto" id="matlab">MATLAB</h2>
+    <ul dir="auto">
+        <li dir="auto">Plotting-Spherical-Distributions <a
+                href="MATLAB/Plotting-Spherical-Distributions.html">Documentation</a></li>
+    </ul>
+    <h2 dir="auto" id="textbook-solution">Textbook Solution</h2>
+    <ul dir="auto">
+        <li dir="auto">Visual-Complex-Analysis <a
+                href="Textbook-Solution/Visual-Complex-Analysis.html">Documentation</a></li>
+        <li dir="auto">Visual-Differential-Geometry-and-Forms <a
+                href="Textbook-Solution/Visual-Differential-Geometry-and-Forms.html">Documentation</a></li>
+    </ul>
+    <h2 dir="auto" id="linux">Linux</h2>
+    <ul dir="auto">
+        <li dir="auto">Bluetooth <a href="Linux/Bluetooth.html">Documentation</a></li>
+        <li dir="auto">GPU-NVIDIA <a href="Linux/GPU-NVIDIA.html">Documentation</a></li>
+        <li dir="auto">CPU-Frequency <a href="Linux/CPU-Frequency.html">Documentation</a></li>
+        <li dir="auto">KDE <a href="Linux/KDE.html">Documentation</a></li>
+        <li dir="auto">Steam Controller <a href="Linux/Steam-Controller.html">Documentation</a></li>
+    </ul>
+    <h2 dir="auto" id="project-note">Project Note</h2>
+    <ul dir="auto">
+        <li dir="auto">Google Filament <a href="Project-Note/Google-Filament.html">Documentation</a></li>
+    </ul>
 
 </body>
 
