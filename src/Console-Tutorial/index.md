@@ -4,8 +4,8 @@ This tutorial is to introduce the usage of the console API. We assume that reade
 
 ## Contents  
 
-1. [Command Buffer](Command-Buffer.html)  
-2. [Pipeline State](Pipeline-State.html)  
-3. [Cache Synchronization](Cache-Synchronization.html)  
-4. [Resource Binding](Resource-Binding.html)  
-5. [Memory Management](Memory-Management.html)  
+- [Command Buffer](Command-Buffer.html)  
+- [Pipeline State](Pipeline-State.html)  
+- [Cache Synchronization](Cache-Synchronization.html)  
+- [Resource Binding](Resource-Binding.html)  
+- [Memory Management](Memory-Management.html)  
