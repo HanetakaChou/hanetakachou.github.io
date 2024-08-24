@@ -19,9 +19,9 @@ If you find there are any mistakes or improvements, please don't hesitate to con
 
 - Perfect Forwarding [Documentation](C-Plus-Plus/Perfect-Forwarding.html)  
 
-## PS5 AGC API  
+## API  
 
-- Console Tutorial [Documentation](https://hanetakachou.github.io/Console-Tutorial/)  
+- PS5 AGC [Documentation](https://hanetakachou.github.io/Console-Tutorial/)  
 
 ## Image Synthesis  
 
