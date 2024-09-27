@@ -6,14 +6,34 @@
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/default.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
 </head>
 
 <body class="markdown-body">
     <h1 dir="auto" id="ddgi-dynamic-diffuse-global-illumination">DDGI (Dynamic Diffuse Global Illumination)</h1>
-    <p dir="auto"><a href="https://github.com/NVIDIAGameWorks/RTXGI">https://github.com/NVIDIAGameWorks/RTXGI</a></p>
+    <p dir="auto"><a
+            href="https://github.com/NVIDIAGameWorks/RTXGI-DDGI">https://github.com/NVIDIAGameWorks/RTXGI-DDGI</a></p>
+    <p dir="auto"><a
+            href="https://morgan3d.github.io/articles/2019-04-01-ddgi/index.html">https://morgan3d.github.io/articles/2019-04-01-ddgi/index.html</a>
+    </p>
     <p dir="auto">Dynamic Diffuse Global Illumination with Ray-Traced Irradiance Fields</p>
     <p dir="auto">Real-Time Global Illumination using Precomputed Light Field Probes</p>
+    <h2 dir="auto" id="avoid-leaks">Avoid Leaks</h2>
+    <p dir="auto">The <strong>visibility</strong> information is the most important difference between
+        <strong>DDGI</strong> and traditional <strong>irradiance environment mapping</strong>. The Ray Tracing APIs,
+        such as <a href="https://microsoft.github.io/DirectX-Specs/d3d/Raytracing.html">DXR (DirectX Raytracing)</a> and
+        <a href="https://www.khronos.org/blog/ray-tracing-in-vulkan">Vulkan Ray Tracing</a>, make it possible to
+        calculate the hit distance in hundreds of directions at each <strong>light probe</strong> position in real time.
+    </p>
+    <p dir="auto">Analogous to the <strong>VSM (Variance Shader Map)</strong>, the <strong>Chebyshev's
+            inequality</strong> is used to compare the distance of the shading position with the &quot;average&quot;
+        distance stored in the light probe to test the <strong>visibility</strong>.</p>
+    <p dir="auto">TODO: According to the <strong>VSM (Variance Shader Map)</strong>, both the distance and the
+        <strong>squared</strong> distance should be stored in the light probe. However, according to the <a
+            href="https://github.com/NVIDIAGameWorks/RTXGI-DDGI/blob/main/rtxgi-sdk/shaders/ddgi/Irradiance.hlsl#L65">DDGIGetVolumeIrradiance</a>
+        of the <strong>RTXGI SDK</strong>, only the distance is stored in the light probe and the
+        <strong>squared</strong> distance is calculated from the <strong>sampled</strong> distance. This makes the
+        &quot;average&quot; <strong>squared</strong> distance incorrect.
+    </p>
 
 </body>
 
