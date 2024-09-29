@@ -130,6 +130,8 @@
                                                     style="height:0.35000000000000003em;"><span></span></span></span></span></span></span></span><span
                                 class="mclose delimcenter" style="top:0em;"><span
                                     class="delimsizing size1">)</span></span></span></span></span></span></eq>.</p>
+    <h2 dir="auto" id="positional-encoding">Positional Encoding</h2>
+    <p dir="auto">TODO</p>
     <h2 dir="auto" id="model">Model</h2>
     <p dir="auto"><img src="Neural-Texture-Mapping-NN-SVG.png" alt="" data-src="Neural-Texture-Mapping-NN-SVG.png"></p>
     <pre><code class="code-line language-python" dir="auto">NUM_FREQUENCIES = <span class="hljs-number">16</span>
@@ -142,8 +144,6 @@ keras_model.add(tensorflow.keras.layers.InputLayer(shape=(NUM_FREQUENCIES * <spa
     keras_model.add(tensorflow.keras.layers.Dense(NUM_NEURONS_PER_HIDDEN_LAYER, activation=<span class="hljs-string">&quot;relu&quot;</span>))
 keras_model.add(tensorflow.keras.layers.Dense(<span class="hljs-number">3</span>, activation=<span class="hljs-string">&quot;linear&quot;</span>))
 </code></pre>
-    <h2 dir="auto" id="positional-encoding">Positional Encoding</h2>
-    <p dir="auto">TODO</p>
     <h2 dir="auto" id="references">References</h2>
     <p dir="auto">[Boksansky 2024] <a href="https://gpuopen.com/learn/deep_learning_crash_course/">Jakub Boksansky.
             &quot;Crash Course in Deep Learning (for Computer Graphics).&quot; AMD GPUOpen 2024.</a></p>

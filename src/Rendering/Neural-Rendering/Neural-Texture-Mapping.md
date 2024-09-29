@@ -2,6 +2,10 @@
 
 The idea is to represent the 2D texture by the neural network: $\displaystyle \begin{pmatrix} U & V \end{pmatrix} \rightarrow \begin{pmatrix} R & G & B \end{pmatrix}$.  
 
+## Positional Encoding  
+
+TODO  
+
 ## Model  
 
 ![](Neural-Texture-Mapping-NN-SVG.png)  
@@ -17,10 +21,6 @@ for i in range(NUM_HIDDEN_LAYERS):
     keras_model.add(tensorflow.keras.layers.Dense(NUM_NEURONS_PER_HIDDEN_LAYER, activation="relu"))
 keras_model.add(tensorflow.keras.layers.Dense(3, activation="linear"))
 ```
-
-## Positional Encoding  
-
-TODO  
 
 ## References  
 
