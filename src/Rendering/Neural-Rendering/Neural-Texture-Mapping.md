@@ -1,8 +1,10 @@
 # Neural Texture Mapping
 
-The main idea is to represent the 2D texture by the neural network: $\displaystyle \begin{pmatrix} U & V \end{pmatrix} \rightarrow \begin{pmatrix} R & G & B \end{pmatrix}$.  
+The idea is to represent the 2D texture by the neural network: $\displaystyle \begin{pmatrix} U & V \end{pmatrix} \rightarrow \begin{pmatrix} R & G & B \end{pmatrix}$.  
 
 ## Model  
+
+![](Neural-Texture-Mapping-NN-SVG.png)  
 
 ```python
 NUM_FREQUENCIES = 16
@@ -15,6 +17,10 @@ for i in range(NUM_HIDDEN_LAYERS):
     keras_model.add(tensorflow.keras.layers.Dense(NUM_NEURONS_PER_HIDDEN_LAYER, activation="relu"))
 keras_model.add(tensorflow.keras.layers.Dense(3, activation="linear"))
 ```
+
+## Positional Encoding  
+
+TODO  
 
 ## References  
 
