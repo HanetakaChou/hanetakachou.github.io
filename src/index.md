@@ -26,6 +26,7 @@ If you find there are any mistakes or improvements, please don't hesitate to con
 ## Rendering (Image Synthesis)  
 
 - Neural Rendering
+    - Neural Texture Mapping [Documentation](Rendering/Neural-Rendering/Neural-Radiance-Fields.html) [Code](https://github.com/HanetakaChou/Neural-Texture-Mapping)      
     - NeRFs (Neural Radiance Fields) [Documentation](Rendering/Neural-Rendering/Neural-Radiance-Fields.html)  
     - NRC (Neural Radiance Cache) [Documentation](Rendering/Neural-Rendering/Neural-Radiance-Cache.html)  
 - Ray Tracing  
