@@ -48,6 +48,37 @@ Evidently, the relationship $\displaystyle \operatorname{L_i}(\overrightarrow{p}
 
 ## Participating Media Rendering  
 
+### PBRT  
+
+sample the **transmittance** $\displaystyle \operatorname{\Tau_{\tau}}(t)$ // range [0, \frac{1}{\sigma_t}]  
+range $\displaystyle [ 0, \infty )$ // the distance t of the ray   
+
+For homogeneous medium  
+"Equation 15.9" of [PBR Book V3](https://www.pbr-book.org/3ed-2018/Light_Transport_II_Volume_Rendering/Sampling_Volume_Scattering#eq:homogeneous-medium-sampling)  
+the **attenuation/extinction coefficient** $\displaystyle \operatorname{\sigma_t}$ remains the same  
+"13.3.1 The Inversion Method" of [PBR Book V3](https://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Sampling_Random_Variables#x1-Example:ExponentialDistribution)  
+**transmittance** follows the **exponential distribution**  
+
+TODO: heterogeneous medium  
+
+assume t_max -> o + dt_max =  $\displaystyle \operatorname{r}(\overrightarrow{p}, \overrightarrow{\omega})$ // hit distance  
+
+VolPathIntegrator::Li // check mi.IsValid()  
+(t_max, \infty) -> surface term   
+[0, t_max] -> medium-related term  
+
+// complement  
+// since when t > t_max we do NOT calculate the medium-related term (namely, we do NOT sample the medium)  
+// 1 - \int_0^{t_max} pdf(t) dt
+
+// for surface term  
+// the "regular" surface reflection rendering  
+
+// for medium-related term  
+// we sample the phase funtion to trace ray to calculate the L_i within the integral of L_s  
+
+TODO: PBRT V4  
+
 ### Epipolar Sampling  
 
 \[Yusov 2013\]  
