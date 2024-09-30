@@ -5,6 +5,8 @@ The idea is to represent the 2D texture by the neural network: $\displaystyle \b
 ## Positional Encoding  
 
 ```python
+NUM_FREQUENCIES = 16
+
 class PositionalEncodingLayer(tensorflow.keras.layers.Layer):
     def __init__(self, num_frequencies, **kwargs):
         super(PositionalEncodingLayer, self).__init__(**kwargs)
@@ -22,7 +24,7 @@ class PositionalEncodingLayer(tensorflow.keras.layers.Layer):
         config.update({"num_frequencies": self.num_frequencies})
         return config
 
-assert PositionalEncodingLayer(num_frequencies=NUM_FREQUENCIES)(tensorflow.random.uniform((7, 2))).shape == (7, NUM_FREQUENCIES*4)
+assert PositionalEncodingLayer(num_frequencies=NUM_FREQUENCIES)(tensorflow.random.uniform((7, 2))).shape == (7, NUM_FREQUENCIES * 4)
 ```
 
 ## Model  
@@ -31,14 +33,14 @@ assert PositionalEncodingLayer(num_frequencies=NUM_FREQUENCIES)(tensorflow.rando
 
 ```python
 NUM_FREQUENCIES = 16
-NUM_NEURONS_PER_HIDDEN_LAYER = 64
-NUM_HIDDEN_LAYERS = 5
+NUM_NEURONS_PER_TEXTURE_MAPPING_LAYER = 64
+NUM_TEXTURE_MAPPING_LAYERS = 5
 
 keras_model = tensorflow.keras.models.Sequential()
 keras_model.add(tensorflow.keras.layers.InputLayer(shape=(2,)))
 keras_model.add(PositionalEncodingLayer(num_frequencies=NUM_FREQUENCIES))
 for i in range(NUM_HIDDEN_LAYERS):
-    keras_model.add(tensorflow.keras.layers.Dense(NUM_NEURONS_PER_HIDDEN_LAYER, activation="relu"))
+    keras_model.add(tensorflow.keras.layers.Dense(NUM_NEURONS_PER_TEXTURE_MAPPING_LAYER, activation="relu"))
 keras_model.add(tensorflow.keras.layers.Dense(3, activation="linear"))
 ```
 
