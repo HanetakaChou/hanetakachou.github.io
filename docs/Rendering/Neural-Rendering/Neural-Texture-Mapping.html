@@ -131,9 +131,7 @@
                                 class="mclose delimcenter" style="top:0em;"><span
                                     class="delimsizing size1">)</span></span></span></span></span></span></eq>.</p>
     <h2 dir="auto" id="positional-encoding">Positional Encoding</h2>
-    <pre><code class="code-line language-python" dir="auto">NUM_FREQUENCIES = <span class="hljs-number">16</span>
-
-<span class="hljs-keyword">class</span> <span class="hljs-title class_">PositionalEncodingLayer</span>(tensorflow.keras.layers.Layer):
+    <pre><code class="code-line language-python" dir="auto"><span class="hljs-keyword">class</span> <span class="hljs-title class_">PositionalEncodingLayer</span>(tensorflow.keras.layers.Layer):
     <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, num_frequencies, **kwargs</span>):
         <span class="hljs-built_in">super</span>(PositionalEncodingLayer, self).__init__(**kwargs)
         self.num_frequencies = num_frequencies
@@ -149,14 +147,14 @@
         config = <span class="hljs-built_in">super</span>(PositionalEncodingLayer, self).get_config()
         config.update({<span class="hljs-string">&quot;num_frequencies&quot;</span>: self.num_frequencies})
         <span class="hljs-keyword">return</span> config
-
-<span class="hljs-keyword">assert</span> PositionalEncodingLayer(num_frequencies=NUM_FREQUENCIES)(tensorflow.random.uniform((<span class="hljs-number">7</span>, <span class="hljs-number">2</span>))).shape == (<span class="hljs-number">7</span>, NUM_FREQUENCIES * <span class="hljs-number">4</span>)
 </code></pre>
     <h2 dir="auto" id="model">Model</h2>
     <p dir="auto"><img src="Neural-Texture-Mapping-NN-SVG.png" alt="" data-src="Neural-Texture-Mapping-NN-SVG.png"></p>
     <pre><code class="code-line language-python" dir="auto">NUM_FREQUENCIES = <span class="hljs-number">16</span>
 NUM_NEURONS_PER_TEXTURE_MAPPING_LAYER = <span class="hljs-number">64</span>
 NUM_TEXTURE_MAPPING_LAYERS = <span class="hljs-number">5</span>
+
+<span class="hljs-keyword">assert</span> PositionalEncodingLayer(num_frequencies=NUM_FREQUENCIES)(tensorflow.random.uniform((<span class="hljs-number">7</span>, <span class="hljs-number">2</span>))).shape == (<span class="hljs-number">7</span>, NUM_FREQUENCIES * <span class="hljs-number">4</span>)
 
 keras_model = tensorflow.keras.models.Sequential()
 keras_model.add(tensorflow.keras.layers.InputLayer(shape=(<span class="hljs-number">2</span>,)))

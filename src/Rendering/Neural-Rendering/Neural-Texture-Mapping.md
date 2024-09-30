@@ -5,8 +5,6 @@ The idea is to represent the 2D texture by the neural network: $\displaystyle \b
 ## Positional Encoding  
 
 ```python
-NUM_FREQUENCIES = 16
-
 class PositionalEncodingLayer(tensorflow.keras.layers.Layer):
     def __init__(self, num_frequencies, **kwargs):
         super(PositionalEncodingLayer, self).__init__(**kwargs)
@@ -23,8 +21,6 @@ class PositionalEncodingLayer(tensorflow.keras.layers.Layer):
         config = super(PositionalEncodingLayer, self).get_config()
         config.update({"num_frequencies": self.num_frequencies})
         return config
-
-assert PositionalEncodingLayer(num_frequencies=NUM_FREQUENCIES)(tensorflow.random.uniform((7, 2))).shape == (7, NUM_FREQUENCIES * 4)
 ```
 
 ## Model  
@@ -35,6 +31,8 @@ assert PositionalEncodingLayer(num_frequencies=NUM_FREQUENCIES)(tensorflow.rando
 NUM_FREQUENCIES = 16
 NUM_NEURONS_PER_TEXTURE_MAPPING_LAYER = 64
 NUM_TEXTURE_MAPPING_LAYERS = 5
+
+assert PositionalEncodingLayer(num_frequencies=NUM_FREQUENCIES)(tensorflow.random.uniform((7, 2))).shape == (7, NUM_FREQUENCIES * 4)
 
 keras_model = tensorflow.keras.models.Sequential()
 keras_model.add(tensorflow.keras.layers.InputLayer(shape=(2,)))
