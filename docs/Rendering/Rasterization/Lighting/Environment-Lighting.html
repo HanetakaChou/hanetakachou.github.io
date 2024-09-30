@@ -902,6 +902,13 @@
             </tr>
         </tbody>
     </table>
+    <p dir="auto">TODO: about the distant radiance distribution<br>
+        <a href="https://dev.epicgames.com/documentation/en-us/unreal-engine/sky-light?application_version=4.27">Lower
+            Hemisphere is Solid Color</a><br>
+        <a
+            href="https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@10.8/manual/Override-HDRI-Sky.html">Upper
+            Hemisphere Only</a>
+    </p>
     <h2 dir="auto" id="1-diffuse-environment-lighting">1. Diffuse Environment Lighting</h2>
     <p dir="auto">Let <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">
@@ -24777,7 +24784,7 @@ M834 80h400000v40h-400000z' />
             href="https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/ReflectionEnvironmentShaders.usf#L448">DiffuseIrradianceCopyPS</a>
         in UE4.</p>
     <p dir="auto">Here is the MATLAB code which verifies the meaning of &quot;fWt = 4/(sqrt(fTmp)*fTmp)&quot;.</p>
-    <pre><code class="code-line language-MATLAB" dir="auto"><div><span class="hljs-comment">% retrieved by &quot;textureSize(GLSL)&quot; or &quot;GetDimensions(HLSL)&quot;.</span>
+    <pre><code class="code-line language-MATLAB" dir="auto"><span class="hljs-comment">% retrieved by &quot;textureSize(GLSL)&quot; or &quot;GetDimensions(HLSL)&quot;.</span>
 cube_size_u = single(<span class="hljs-number">4096.0</span>);
 cube_size_v = single(<span class="hljs-number">4096.0</span>);
 
@@ -24797,7 +24804,7 @@ analytical_omega = single(<span class="hljs-number">4.0</span>) .* single(<span 
 
 <span class="hljs-comment">% output: &quot;numerical:2.094395 analytic_omega:2.094395&quot;.</span>
 printf(<span class="hljs-string">&quot;numerical:%f analytical:%f\n&quot;</span>, numerical_omega, analytical_omega);
-</div></code></pre>
+</code></pre>
     <h3 dir="auto" id="1-4-clamped-cosine">1-4. Clamped Cosine</h3>
     <p dir="auto">By [Ramamoorthi 2001 B], <eq><span class="katex"><span class="katex-mathml"><math
                         xmlns="http://www.w3.org/1998/Math/MathML">

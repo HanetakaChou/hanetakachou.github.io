@@ -13,6 +13,10 @@ $\displaystyle (\cos \theta_i)^+$ | Clamped Cosine | clamp(dot(N, L), 0.0, 1.0)
 $\displaystyle \overrightarrow{\omega_h}$ | Half Vector in Tangent Space | H  
 $\displaystyle \overrightarrow{n}$ | Normal in World Space | N  
 
+TODO: about the distant radiance distribution  
+[Lower Hemisphere is Solid Color](https://dev.epicgames.com/documentation/en-us/unreal-engine/sky-light?application_version=4.27)  
+[Upper Hemisphere Only](https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@10.8/manual/Override-HDRI-Sky.html)  
+
 ## 1\. Diffuse Environment Lighting  
 
 Let $\displaystyle \operatorname{L}(\overrightarrow{\omega})$ be the distant radiance distribution of which the domain is in world space.  
