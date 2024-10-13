@@ -31,6 +31,7 @@ If you find there are any mistakes or improvements, please don't hesitate to con
     - NRC (Neural Radiance Cache) [Documentation](Rendering/Neural-Rendering/Neural-Radiance-Cache.html)  
 - Ray Tracing  
     - RTAO (Ray Traced Ambient Occlusion) [Documentation](Rendering/Ray-Tracing/Ray-Traced-Ambient-Occlusion.html) [Code](https://github.com/HanetakaChou/Ray-Traced-Ambient-Occlusion)  
+    - Path Tracing [Documentation](Rendering/Ray-Tracing/Path-Tracing.html)  [Code](https://github.com/HanetakaChou/Path-Tracing)      
     - ReSTIR (Reservoir-Based Spatiotemporal Importance Resampling) [Documentation](Rendering/Ray-Tracing/Reservoir-Based-Spatiotemporal-Importance-Resampling.html)  
     - DDGI (Dynamic Diffuse Global Illumination) [Documentation](Rendering/Ray-Tracing/Dynamic-Diffuse-Global-Illumination.html)  
     - Photon Mapping [Documentation](Rendering/Ray-Tracing/Photon-Mapping.html)  
