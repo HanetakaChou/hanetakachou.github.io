@@ -6,19 +6,18 @@
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/default.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
 </head>
 
 <body class="markdown-body">
-    <h1 dir="auto" id="cache-synchronization-1">Cache Synchronization</h1>
+    <h1 dir="auto" id="cache-synchronization">Cache Synchronization</h1>
     <p dir="auto">By <a
             href="https://gitlab.freedesktop.org/mesa/mesa/-/blob/22.3/src/amd/vulkan/radv_private.h#L1178">radv_cmd_flush_bits</a>,
         there are many different types of cache in the GPU.</p>
-    <p dir="auto">For example, we have a typical case where the texture is used as the color attachement first and used
-        as the sampled image later. When the texture is used as the color attachement, CB(Color Block) Cache and CB META
-        (Color Block Metadata) Cache are involved. But when the texture is used as the sampled image, L2 METADATA (Level
-        2 Metadata) cache will be involved. We need to flush all data in the CB Cache and CB META Cache to the memory
-        and invalidate all data in the L2 METADATA Cache.</p>
+    <p dir="auto">For example, we have a typical deferred shading case where the texture is used as the color
+        attachement first and used as the sampled image later. When the texture is used as the color attachement,
+        CB(Color Block) Cache and CB META (Color Block Metadata) Cache are involved. But when the texture is used as the
+        sampled image, L2 METADATA (Level 2 Metadata) cache will be involved. We need to flush all data in the CB Cache
+        and CB META Cache to the memory and invalidate all data in the L2 METADATA Cache.</p>
     <p dir="auto">Metadata is some extra data which is used to improve the performance of the texture. For AMD GPU, the
         <a href="https://gpuopen.com/learn/dcc-overview/">DCC</a> metadata can be used to perform the clear operation
         more efficiently on the color attachmemnt. And by &quot;Figure 23.13&quot; of <a

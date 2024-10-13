@@ -8,4 +8,4 @@ This tutorial is to introduce the usage of the console API. We assume that reade
 - [Pipeline State](Pipeline-State.html)  
 - [Cache Synchronization](Cache-Synchronization.html)  
 - [Resource Binding](Resource-Binding.html)  
-- [Memory Management](Memory-Management.html)  
+- [Resource Uploading](Resource-Uploading.html)  

@@ -1,6 +1,6 @@
 # DDGI (Dynamic Diffuse Global Illumination)  
 
-https://github.com/NVIDIAGameWorks/RTXGI-DDGI  
+[RTXGI DDGI SDK](https://github.com/NVIDIAGameWorks/RTXGI-DDGI)  
 
 https://morgan3d.github.io/articles/2019-04-01-ddgi/index.html  
 
@@ -14,4 +14,4 @@ The **visibility** information is the most important difference between **DDGI**
 
 Analogous to the **VSM (Variance Shader Map)**, the **Chebyshev's inequality** is used to compare the distance of the shading position with the "average" distance stored in the light probe to test the **visibility**.  
 
-TODO: According to the **VSM (Variance Shader Map)**, both the distance and the **squared** distance should be stored in the light probe. However, according to the [DDGIGetVolumeIrradiance](https://github.com/NVIDIAGameWorks/RTXGI-DDGI/blob/main/rtxgi-sdk/shaders/ddgi/Irradiance.hlsl#L65) of the **RTXGI SDK**, only the distance is stored in the light probe and the **squared** distance is calculated from the **sampled** distance. This may cause the "average" **squared** distance incorrect.  
+TODO: According to the **VSM (Variance Shader Map)**, both the distance and the **squared** distance should be stored in the light probe. However, according to the [DDGIGetVolumeIrradiance](https://github.com/NVIDIAGameWorks/RTXGI-DDGI/blob/main/rtxgi-sdk/shaders/ddgi/Irradiance.hlsl#L65) of the **RTXGI DDGI SDK**, only the distance is stored in the light probe and the **squared** distance is calculated from the **sampled** distance. This may cause the "average" **squared** distance incorrect.  

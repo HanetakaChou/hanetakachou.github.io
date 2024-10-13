@@ -33,6 +33,6 @@ set = 2               | N/A                    | per material descriptor set | t
 set = 2 binding = 0   | UNIFORM_BUFFER         | material arguments          | for example, the immutable uniform buffer owned by the material  
 set = 2 binding = 1   | COMBINED_IMAGE_SAMPLER | albedo map                  | the albedo map owned by the material  
 
-Evidently, by using this pipeline layout, the vkUpdateDescriptorSets is always used during initialization and NEVER used during rendering.  
+Evidently, by using this pipeline layout, the **vkUpdateDescriptorSets** is always used during initialization and NOT ever used during rendering.  
 
 In console, an analog of the **ID3D12RootSignature** in Direct3D12 can be used.  
