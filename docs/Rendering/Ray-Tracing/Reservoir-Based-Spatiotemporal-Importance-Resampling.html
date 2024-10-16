@@ -10,10 +10,10 @@
 </head>
 
 <body class="markdown-body">
-    <h1 dir="auto" id="restir-reservoir-based-spatiotemporal-importance-resampling-1">ReSTIR (Reservoir-Based
+    <h1 dir="auto" id="restir-reservoir-based-spatiotemporal-importance-resampling">ReSTIR (Reservoir-Based
         Spatiotemporal Importance Resampling)</h1>
-    <h2 dir="auto" id="reservoir-sampling-1">Reservoir Sampling</h2>
-    <h3 dir="auto" id="basic-reservoir-sampling-1">Basic Reservoir Sampling</h3>
+    <h2 dir="auto" id="reservoir-sampling">Reservoir Sampling</h2>
+    <h3 dir="auto" id="basic-reservoir-sampling">Basic Reservoir Sampling</h3>
     <p dir="auto">By &quot;A.2 Reservoir Sampling&quot; of <a
             href="https://www.pbr-book.org/4ed/Sampling_Algorithms/Reservoir_Sampling#">PBR Book V4</a>, we have the
         <strong>basic reservoir sampling</strong>.
@@ -165,8 +165,9 @@
                                                     class="vlist"
                                                     style="height:0.686em;"><span></span></span></span></span></span><span
                                         class="mclose nulldelimiter"></span></span></span></span></span></eq> of being
-                included in the final <strong>reservoir</strong>.<br>
-                And we would like to prove that at the iteration, when we have processed n = k + 1
+                included in the final <strong>reservoir</strong>.
+            </p>
+            <p dir="auto">And we would like to prove that at the iteration, when we have processed n = k + 1
                 <strong>samples</strong>, each <strong>sample</strong> from the <strong>stream</strong> has the equal
                 probability <eq><span class="katex"><span class="katex-mathml"><math
                                 xmlns="http://www.w3.org/1998/Math/MathML">
@@ -211,9 +212,270 @@
                                         class="mclose nulldelimiter"></span></span></span></span></span></eq> of being
                 included in the final <strong>reservoir</strong>.
             </p>
+            <p dir="auto">Evidently, the (k + 1)-th <strong>seen sample</strong> has the probability <eq><span
+                        class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                                <semantics>
+                                    <mrow>
+                                        <mstyle scriptlevel="0" displaystyle="true">
+                                            <mfrac>
+                                                <mn>1</mn>
+                                                <mrow>
+                                                    <mi>k</mi>
+                                                    <mo>+</mo>
+                                                    <mn>1</mn>
+                                                </mrow>
+                                            </mfrac>
+                                        </mstyle>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\displaystyle \frac{1}{k + 1}</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut"
+                                    style="height:2.09077em;vertical-align:-0.7693300000000001em;"></span><span
+                                    class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                    style="height:1.32144em;"><span style="top:-2.314em;"><span
+                                                            class="pstrut" style="height:3em;"></span><span
+                                                            class="mord"><span class="mord mathnormal"
+                                                                style="margin-right:0.03148em;">k</span><span
+                                                                class="mspace"
+                                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                                class="mbin">+</span><span class="mspace"
+                                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                                class="mord">1</span></span></span><span
+                                                        style="top:-3.23em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="frac-line"
+                                                            style="border-bottom-width:0.04em;"></span></span><span
+                                                        style="top:-3.677em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="mord"><span
+                                                                class="mord">1</span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.7693300000000001em;"><span></span></span></span></span></span><span
+                                        class="mclose nulldelimiter"></span></span></span></span></span></eq> of being
+                selected to replace the existing <strong>sample</strong> within the <strong>reservoir</strong> and thus
+                being included in the final <strong>reservoir</strong>.</p>
+            <p dir="auto">For the previous k <strong>seen samples</strong>, they have the probability <eq><span
+                        class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                                <semantics>
+                                    <mrow>
+                                        <mstyle scriptlevel="0" displaystyle="true">
+                                            <mfrac>
+                                                <mn>1</mn>
+                                                <mi>k</mi>
+                                            </mfrac>
+                                        </mstyle>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\displaystyle \frac{1}{k}</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span
+                                    class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                    style="height:1.32144em;"><span style="top:-2.314em;"><span
+                                                            class="pstrut" style="height:3em;"></span><span
+                                                            class="mord"><span class="mord mathnormal"
+                                                                style="margin-right:0.03148em;">k</span></span></span><span
+                                                        style="top:-3.23em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="frac-line"
+                                                            style="border-bottom-width:0.04em;"></span></span><span
+                                                        style="top:-3.677em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="mord"><span
+                                                                class="mord">1</span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.686em;"><span></span></span></span></span></span><span
+                                        class="mclose nulldelimiter"></span></span></span></span></span></eq> of being
+                included in the final <strong>reservoir</strong> at k-th iteration. At the same time, they have the
+                probability <eq><span class="katex"><span class="katex-mathml"><math
+                                xmlns="http://www.w3.org/1998/Math/MathML">
+                                <semantics>
+                                    <mrow>
+                                        <mstyle scriptlevel="0" displaystyle="true">
+                                            <mn>1</mn>
+                                            <mo>−</mo>
+                                            <mfrac>
+                                                <mn>1</mn>
+                                                <mrow>
+                                                    <mi>k</mi>
+                                                    <mo>+</mo>
+                                                    <mn>1</mn>
+                                                </mrow>
+                                            </mfrac>
+                                            <mo>=</mo>
+                                            <mfrac>
+                                                <mi>k</mi>
+                                                <mrow>
+                                                    <mi>k</mi>
+                                                    <mo>+</mo>
+                                                    <mn>1</mn>
+                                                </mrow>
+                                            </mfrac>
+                                        </mstyle>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\displaystyle 1 - \frac{1}{k + 1} =
+                                        \frac{k}{k + 1}</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span
+                                    class="mord">1</span><span class="mspace"
+                                    style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span
+                                    class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                                class="base"><span class="strut"
+                                    style="height:2.09077em;vertical-align:-0.7693300000000001em;"></span><span
+                                    class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                    style="height:1.32144em;"><span style="top:-2.314em;"><span
+                                                            class="pstrut" style="height:3em;"></span><span
+                                                            class="mord"><span class="mord mathnormal"
+                                                                style="margin-right:0.03148em;">k</span><span
+                                                                class="mspace"
+                                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                                class="mbin">+</span><span class="mspace"
+                                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                                class="mord">1</span></span></span><span
+                                                        style="top:-3.23em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="frac-line"
+                                                            style="border-bottom-width:0.04em;"></span></span><span
+                                                        style="top:-3.677em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="mord"><span
+                                                                class="mord">1</span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.7693300000000001em;"><span></span></span></span></span></span><span
+                                        class="mclose nulldelimiter"></span></span><span class="mspace"
+                                    style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                                    class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                                class="base"><span class="strut"
+                                    style="height:2.14077em;vertical-align:-0.7693300000000001em;"></span><span
+                                    class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                    style="height:1.37144em;"><span style="top:-2.314em;"><span
+                                                            class="pstrut" style="height:3em;"></span><span
+                                                            class="mord"><span class="mord mathnormal"
+                                                                style="margin-right:0.03148em;">k</span><span
+                                                                class="mspace"
+                                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                                class="mbin">+</span><span class="mspace"
+                                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                                class="mord">1</span></span></span><span
+                                                        style="top:-3.23em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="frac-line"
+                                                            style="border-bottom-width:0.04em;"></span></span><span
+                                                        style="top:-3.677em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="mord"><span
+                                                                class="mord mathnormal"
+                                                                style="margin-right:0.03148em;">k</span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.7693300000000001em;"><span></span></span></span></span></span><span
+                                        class="mclose nulldelimiter"></span></span></span></span></span></eq> of NOT
+                being replaced by the (k + 1)-th <strong>seen sample</strong> at (k + 1)-th iteration. This means that
+                they have the probability <eq><span class="katex"><span class="katex-mathml"><math
+                                xmlns="http://www.w3.org/1998/Math/MathML">
+                                <semantics>
+                                    <mrow>
+                                        <mstyle scriptlevel="0" displaystyle="true">
+                                            <mfrac>
+                                                <mn>1</mn>
+                                                <mi>k</mi>
+                                            </mfrac>
+                                            <mo>×</mo>
+                                            <mfrac>
+                                                <mi>k</mi>
+                                                <mrow>
+                                                    <mi>k</mi>
+                                                    <mo>+</mo>
+                                                    <mn>1</mn>
+                                                </mrow>
+                                            </mfrac>
+                                            <mo>=</mo>
+                                            <mfrac>
+                                                <mn>1</mn>
+                                                <mrow>
+                                                    <mi>k</mi>
+                                                    <mo>+</mo>
+                                                    <mn>1</mn>
+                                                </mrow>
+                                            </mfrac>
+                                        </mstyle>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\displaystyle \frac{1}{k} \times \frac{k}{k
+                                        + 1} = \frac{1}{k + 1}</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span
+                                    class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                    style="height:1.32144em;"><span style="top:-2.314em;"><span
+                                                            class="pstrut" style="height:3em;"></span><span
+                                                            class="mord"><span class="mord mathnormal"
+                                                                style="margin-right:0.03148em;">k</span></span></span><span
+                                                        style="top:-3.23em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="frac-line"
+                                                            style="border-bottom-width:0.04em;"></span></span><span
+                                                        style="top:-3.677em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="mord"><span
+                                                                class="mord">1</span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.686em;"><span></span></span></span></span></span><span
+                                        class="mclose nulldelimiter"></span></span><span class="mspace"
+                                    style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+                                    class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                                class="base"><span class="strut"
+                                    style="height:2.14077em;vertical-align:-0.7693300000000001em;"></span><span
+                                    class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                    style="height:1.37144em;"><span style="top:-2.314em;"><span
+                                                            class="pstrut" style="height:3em;"></span><span
+                                                            class="mord"><span class="mord mathnormal"
+                                                                style="margin-right:0.03148em;">k</span><span
+                                                                class="mspace"
+                                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                                class="mbin">+</span><span class="mspace"
+                                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                                class="mord">1</span></span></span><span
+                                                        style="top:-3.23em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="frac-line"
+                                                            style="border-bottom-width:0.04em;"></span></span><span
+                                                        style="top:-3.677em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="mord"><span
+                                                                class="mord mathnormal"
+                                                                style="margin-right:0.03148em;">k</span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.7693300000000001em;"><span></span></span></span></span></span><span
+                                        class="mclose nulldelimiter"></span></span><span class="mspace"
+                                    style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                                    class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                                class="base"><span class="strut"
+                                    style="height:2.09077em;vertical-align:-0.7693300000000001em;"></span><span
+                                    class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                    style="height:1.32144em;"><span style="top:-2.314em;"><span
+                                                            class="pstrut" style="height:3em;"></span><span
+                                                            class="mord"><span class="mord mathnormal"
+                                                                style="margin-right:0.03148em;">k</span><span
+                                                                class="mspace"
+                                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                                class="mbin">+</span><span class="mspace"
+                                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                                class="mord">1</span></span></span><span
+                                                        style="top:-3.23em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="frac-line"
+                                                            style="border-bottom-width:0.04em;"></span></span><span
+                                                        style="top:-3.677em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="mord"><span
+                                                                class="mord">1</span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.7693300000000001em;"><span></span></span></span></span></span><span
+                                        class="mclose nulldelimiter"></span></span></span></span></span></eq> of being
+                included in the final <strong>reservoir</strong> at (k + 1)-th iteration.</p>
         </blockquote>
     </blockquote>
-    <h2 dir="auto" id="references-1">References</h2>
+    <h2 dir="auto" id="references">References</h2>
     <p dir="auto">[Wyman 2023] <a href="https://intro-to-restir.cwyman.org/">Chris Wyman, Markus Kettunen, Daqi Lin,
             Benedikt Bitterli, Cem Yuksel, Wojciech Jarosz, Pawel Kozlowski, Giovanni Francesco. &quot;A Gentle
             Introduction to ReSTIR: Path Reuse in Real-time.&quot; SIGGRAPH 2023.</a></p>
