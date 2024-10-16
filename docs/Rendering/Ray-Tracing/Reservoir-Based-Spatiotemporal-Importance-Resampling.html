@@ -10,8 +10,84 @@
 </head>
 
 <body class="markdown-body">
-    <p dir="auto">&quot;A.2 Reservoir Sampling&quot; of <a
-            href="https://www.pbr-book.org/4ed/Sampling_Algorithms/Reservoir_Sampling#">PBR Book V4</a></p>
+    <h1 dir="auto" id="restir-reservoir-based-spatiotemporal-importance-resampling">ReSTIR (Reservoir-Based
+        Spatiotemporal Importance Resampling)</h1>
+    <h2 dir="auto" id="reservoir-sampling">Reservoir Sampling</h2>
+    <h3 dir="auto" id="basic-reservoir-sampling">Basic Reservoir Sampling</h3>
+    <p dir="auto">By &quot;A.2 Reservoir Sampling&quot; of <a
+            href="https://www.pbr-book.org/4ed/Sampling_Algorithms/Reservoir_Sampling#">PBR Book V4</a>, we have the
+        <strong>basic reservoir sampling</strong>.
+    </p>
+    <p dir="auto">We sequentially process each <strong>sample</strong> from the <strong>stream</strong>. The total
+        length of the <strong>stream</strong> can indeed be infinite which is too large to be stored in the memory.</p>
+    <p dir="auto">We assume that we have processed <strong>n</strong> <strong>samples</strong>. This means that the
+        number of the <strong>seen samples</strong> is <strong>n</strong>. For the <strong>basic reservoir
+            sampling</strong>, the <strong>reservoir</strong> can hold at most <strong>1</strong> <strong>reservoir
+            sample</strong>, and the first <strong>1</strong> <strong>seen</strong> <strong>sample</strong> is always
+        selected to initialize the <strong>reservoir</strong>. For each subsequent <strong>seen</strong>
+        <strong>candidate sample</strong>, we decide whether or not it should be selected to replace the existing
+        <strong>sample</strong> in the <strong>reservoir</strong> based on the probability <eq><span class="katex"><span
+                    class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mfrac>
+                                        <mn>1</mn>
+                                        <mi>n</mi>
+                                    </mfrac>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle \frac{1}{n}</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:2.00744em;vertical-align:-0.686em;"></span><span class="mord"><span
+                                class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord mathnormal">n</span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">1</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span></span></span></span></eq>.
+    </p>
+    <p dir="auto">We can prove by <strong>mathematical Induction</strong> that at any point, after processing
+        n <strong>samples</strong>, each <strong>sample</strong> from the <strong>stream</strong> has an equal
+        probability <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mfrac>
+                                        <mn>1</mn>
+                                        <mi>n</mi>
+                                    </mfrac>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle \frac{1}{n}</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:2.00744em;vertical-align:-0.686em;"></span><span class="mord"><span
+                                class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord mathnormal">n</span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">1</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span></span></span></span></eq> of being included
+        in the final <strong>reservoir</strong>.</p>
+    <h2 dir="auto" id="references">References</h2>
     <p dir="auto">[Wyman 2023] <a href="https://intro-to-restir.cwyman.org/">Chris Wyman, Markus Kettunen, Daqi Lin,
             Benedikt Bitterli, Cem Yuksel, Wojciech Jarosz, Pawel Kozlowski, Giovanni Francesco. &quot;A Gentle
             Introduction to ReSTIR: Path Reuse in Real-time.&quot; SIGGRAPH 2023.</a></p>
