@@ -2,24 +2,32 @@
 # ReSTIR (Reservoir-Based SpatioTemporal Importance Resampling)  
 
 
-## The Monte Carlo Estimator
+## Importance Sampling
 
-["2.1.3 The Monte Carlo Estimator"](https://pbr-book.org/4ed/Monte_Carlo_Integration/Monte_Carlo_Basics#TheMonteCarloEstimator) of "PBR Book V4"  
-["13.2 The Monte Carlo Estimator"](https://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/The_Monte_Carlo_Estimator#) of "PBR Book V3"  
+By "Exercise 5.64" of ["Statistic Inference 2nd Edition"](https://archived.stat.ufl.edu/casella/), we have the **importance sampling** estimator $\displaystyle \int \mathop{\mathrm{t}} (x) \mathop{\mathrm{r}} (x) \, dx \approx \frac{1}{n} \sum_{i=1}^n \frac{\mathop{\mathrm{t}} (X_i)}{\mathop{\mathrm{p}} (X_i)} \mathop{\mathrm{r}} (X_i)$ where the t is the **target distribution**, the r is any function, and the n **samples** X_i are generated from the **proposal distribution** p.  
+
+> Unbiased  
+>>  
+>> $\displaystyle \mathop{\mathrm{E_p}} \left( \frac{1}{n} \sum_{i=1}^n \frac{\mathop{\mathrm{t}} (X)}{\mathop{\mathrm{p}} (X)} \mathop{\mathrm{r}} (X)  \right) =  \frac{1}{n} \sum_{i=1}^n \mathop{\mathrm{E_p}} \left( \frac{\mathop{\mathrm{t}} (X)}{\mathop{\mathrm{p}} (X)} \mathop{\mathrm{r}} (X) \right) = \frac{1}{n} \sum_{i=1}^n \int \frac{\mathop{\mathrm{t}} (x)}{\mathop{\mathrm{p}} (x)} \mathop{\mathrm{r}} (x) \mathop{\mathrm{p}} (x) \, dx = \int \mathop{\mathrm{t}} (x) \mathop{\mathrm{r}} (x) \, dx = \mathop{\mathrm{E_t}} \left( \mathop{\mathrm{r}} (X) \right)$.  
+>  
+> Consistent  
+>> 
+>> By **LLN (Law of large numbers)**, we have $\displaystyle \lim \limits_{n \to \infty} \frac{1}{n} \sum_{i=1}^n \frac{\mathop{\mathrm{t}} (Y_i)}{\mathop{\mathrm{p}} (Y_i)} \mathop{\mathrm{r}} (Y_i) = \mathop{\mathrm{E_p}} \left( \frac{1}{n} \sum_{i=1}^n \frac{\mathop{\mathrm{t}} (Y)}{\mathop{\mathrm{p}} (Y)} \mathop{\mathrm{r}} (Y)  \right) = \int \mathop{\mathrm{t}} (x) \mathop{\mathrm{r}} (x) \, dx$.  
+
+By ["13.2 The Monte Carlo Estimator"](https://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/The_Monte_Carlo_Estimator#) of "PBR Book V3" and ["2.1.3 The Monte Carlo Estimator"](https://pbr-book.org/4ed/Monte_Carlo_Integration/Monte_Carlo_Basics#TheMonteCarloEstimator) of "PBR Book V4", we have the **Monte Carlo** estimator $\displaystyle \int \mathop{\mathrm{f}} (x) \, dx \approx \frac{1}{n} \sum_{i=1}^n \frac{\mathop{\mathrm{f}} (X_i)}{\mathop{\mathrm{p}} (X_i)}$ where the n **samples** X_i are generated from the **proposal distribution** p, and the f is any function.  
+
+> When $\displaystyle \mathop{\mathrm{f}} (x) > 0$, by applying $\displaystyle \mathop{\mathrm{r}} (X) =  {\| f \|}_{L^1} = \int | \mathop{\mathrm{f}} (x) | \, dx = \int \mathop{\mathrm{f}} (x) \, dx$ and $\displaystyle \mathop{\mathrm{t}} (X) = \frac{\mathop{\mathrm{f}} (X)}{{\| f \|}_{L^1}}$ to the **importance sampling** estimator, we have the **Monte Carlo** estimator $\displaystyle \int \mathop{\mathrm{f}} (x) \, dx = \int \mathop{\mathrm{t}} (x) \mathop{\mathrm{r}} (x) \, dx \approx \frac{1}{n} \sum_{i=1}^n \frac{\mathop{\mathrm{t}} (X_i)}{\mathop{\mathrm{p}} (X_i)} \mathop{\mathrm{r}} (X_i) = \frac{1}{n} \sum_{i=1}^n \frac{\frac{\mathop{\mathrm{f}} (X_i)}{{\| f \|}_{L^1}}}{\mathop{\mathrm{p}} (X_i)} {\| f \|}_{L^1} = \frac{1}{n} \sum_{i=1}^n \frac{\mathop{\mathrm{f}} (X_i)}{\mathop{\mathrm{p}} (X_i)}$ where the norm $\displaystyle {\| f \|}_{L^1}$ is the constant.  
+
+["2.2.2 Importance Sampling"](https://pbr-book.org/4ed/Monte_Carlo_Integration/Improving_Efficiency#ImportanceSampling) of "PBR Book V4"  
+[13.10 Importance Sampling](https://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling) of "PBR Book V3"  
+
 "The only limitation on p(x) is that it must be nonzero for all x where | f(x) | > 0 (namely f(x) \ne 0)"  // actually // otherwise the estimator will NOT be unbiased  
-
-$\displaystyle \mathop{\mathrm{E}} \left[ \frac{1}{N} \sum_{i = 1}^N \frac{\mathop{\mathrm{f}} (X_i)}{\mathop{\mathrm{p}} (X_i)} \right] = \frac{1}{N} \sum_{i = 1}^N \mathop{\mathrm{E}} \left[ \frac{\mathop{\mathrm{f}} (X_i)}{\mathop{\mathrm{p}} (X_i)} \right]$  
-when p(x) \ne 0 for all x where f(x) \ne 0, we have $\displaystyle \mathop{\mathrm{E}} \left[ \frac{\mathop{\mathrm{f}} (X_i)}{\mathop{\mathrm{p}} (X_i)} \right] = \int \frac{\mathop{\mathrm{f}} (x)}{\mathop{\mathrm{p}} (x)} \mathop{\mathrm{p}} (x) dx = \int \mathop{\mathrm{f}} (x) dx$  
 
 \[Wyman 2023\] supports  
 \mathop{\mathrm{supp}}(f) // set of all x where f(x) \ne 0  
 \mathop{\mathrm{supp}}(X) // set of all values x it can take with p(x) > 0 // namely p(x) \ne 0 // p(x) can Not < 0  
 \mathop{\mathrm{supp}}(X) \subset \mathop{\mathrm{supp}}(f) // to be unbiased  
 
-## Importance Sampling
-
-["2.2.2 Importance Sampling"](https://pbr-book.org/4ed/Monte_Carlo_Integration/Improving_Efficiency#ImportanceSampling) of "PBR Book V4"  
-[13.10 Importance Sampling](https://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling) of "PBR Book V3"  
 when PDF proportional to f(x) \propt // variance zero // we can use only one sample // called "perfect important sampling"  
 
 ![](Reservoir-Based-SpatioTemporal-Importance-Resampling-Importance-Sampling.png)  
@@ -72,7 +80,9 @@ We can prove by **mathematical Induction** that at any iteration, when we have p
 >> For the previous k **seen samples**, they have the probability $\displaystyle \frac{1}{k}$ of being included in the final **reservoir** at k-th iteration. At the same time, they have the probability $\displaystyle 1 - \frac{1}{k + 1} = \frac{k}{k + 1}$ of NOT being replaced by the (k + 1)-th **seen sample** at (k + 1)-th iteration. This means that they have the probability $\displaystyle \frac{1}{k} \times \frac{k}{k + 1} = \frac{1}{k + 1}$ of being included in the final **reservoir** at (k + 1)-th iteration.  
 
 
-## RIS (Resampled Importance Sampling)
+## RIS (Resampled Importance Sampling) / Sampling Importance Resampling (SIR)
+
+"Exercise 5.65" of "Statistic Inference"  
 
 \[Wyman 2023\]  
 
@@ -86,6 +96,11 @@ W_X = \frac{1}{\mathop{\mathrm{\hat{p}}}(X)} \sum_{i=1}^M w_i
 // target function = f(x) // output PDF approaches perfect importance samping   
 // not practical // we should use calculate integral first to generate M samples as per the PDF  
 // approximate perfect importance samping  
+
+produces samples approximately proportionally to  a target distribution  
+
+target function vs target PDF  
+PDF normalized (integrate to 1)  
 
 ## SpatioTemporal Reuse  
 

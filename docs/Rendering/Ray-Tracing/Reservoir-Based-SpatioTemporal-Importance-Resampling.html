@@ -11,13 +11,2046 @@
 
 <body class="markdown-body">
     <h1 dir="auto" id="restir-reservoir-based-spatiotemporal-importance-resampling">ReSTIR (Reservoir-Based
-        Spatiotemporal Importance Resampling)</h1>
+        SpatioTemporal Importance Resampling)</h1>
+    <h2 dir="auto" id="importance-sampling">Importance Sampling</h2>
+    <p dir="auto">By &quot;Exercise 5.64&quot; of <a href="https://archived.stat.ufl.edu/casella/">&quot;Statistic
+            Inference 2nd Edition&quot;</a>, we have the <strong>importance sampling</strong> estimator <eq><span
+                class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mo>∫</mo>
+                                    <mo>
+                                        <mi mathvariant="normal">t</mi>
+                                    </mo>
+                                    <mo stretchy="false">(</mo>
+                                    <mi>x</mi>
+                                    <mo stretchy="false">)</mo>
+                                    <mo>
+                                        <mi mathvariant="normal">r</mi>
+                                    </mo>
+                                    <mo stretchy="false">(</mo>
+                                    <mi>x</mi>
+                                    <mo stretchy="false">)</mo>
+                                    <mtext> </mtext>
+                                    <mi>d</mi>
+                                    <mi>x</mi>
+                                    <mo>≈</mo>
+                                    <mfrac>
+                                        <mn>1</mn>
+                                        <mi>n</mi>
+                                    </mfrac>
+                                    <munderover>
+                                        <mo>∑</mo>
+                                        <mrow>
+                                            <mi>i</mi>
+                                            <mo>=</mo>
+                                            <mn>1</mn>
+                                        </mrow>
+                                        <mi>n</mi>
+                                    </munderover>
+                                    <mfrac>
+                                        <mrow>
+                                            <mo>
+                                                <mi mathvariant="normal">t</mi>
+                                            </mo>
+                                            <mo stretchy="false">(</mo>
+                                            <msub>
+                                                <mi>X</mi>
+                                                <mi>i</mi>
+                                            </msub>
+                                            <mo stretchy="false">)</mo>
+                                        </mrow>
+                                        <mrow>
+                                            <mo>
+                                                <mi mathvariant="normal">p</mi>
+                                            </mo>
+                                            <mo stretchy="false">(</mo>
+                                            <msub>
+                                                <mi>X</mi>
+                                                <mi>i</mi>
+                                            </msub>
+                                            <mo stretchy="false">)</mo>
+                                        </mrow>
+                                    </mfrac>
+                                    <mo>
+                                        <mi mathvariant="normal">r</mi>
+                                    </mo>
+                                    <mo stretchy="false">(</mo>
+                                    <msub>
+                                        <mi>X</mi>
+                                        <mi>i</mi>
+                                    </msub>
+                                    <mo stretchy="false">)</mo>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle \int \mathop{\mathrm{t}} (x)
+                                \mathop{\mathrm{r}} (x) \, dx \approx \frac{1}{n} \sum_{i=1}^n \frac{\mathop{\mathrm{t}}
+                                (X_i)}{\mathop{\mathrm{p}} (X_i)} \mathop{\mathrm{r}} (X_i)</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:2.22225em;vertical-align:-0.86225em;"></span><span
+                            class="mop op-symbol large-op"
+                            style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span
+                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop mathrm"
+                            style="position:relative;top:0.05753999999999998em;">t</span><span
+                            class="mopen">(</span><span class="mord mathnormal">x</span><span
+                            class="mclose">)</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mop mathrm"
+                            style="position:relative;top:-0.03472em;">r</span><span class="mopen">(</span><span
+                            class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span
+                            class="mord mathnormal">d</span><span class="mord mathnormal">x</span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">≈</span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                        class="base"><span class="strut"
+                            style="height:2.929066em;vertical-align:-1.277669em;"></span><span class="mord"><span
+                                class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord mathnormal">n</span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">1</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span
+                                class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                        style="height:1.6513970000000002em;"><span
+                                            style="top:-1.872331em;margin-left:0em;"><span class="pstrut"
+                                                style="height:3.05em;"></span><span
+                                                class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span
+                                                        class="mord mathnormal mtight">i</span><span
+                                                        class="mrel mtight">=</span><span
+                                                        class="mord mtight">1</span></span></span></span><span
+                                            style="top:-3.050005em;"><span class="pstrut"
+                                                style="height:3.05em;"></span><span><span
+                                                    class="mop op-symbol large-op">∑</span></span></span><span
+                                            style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut"
+                                                style="height:3.05em;"></span><span
+                                                class="sizing reset-size6 size3 mtight"><span
+                                                    class="mord mathnormal mtight">n</span></span></span></span><span
+                                        class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                        style="height:1.277669em;"><span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span
+                                class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mop mathrm"
+                                                        style="position:relative;top:-0.13194em;">p</span><span
+                                                        class="mopen">(</span><span class="mord"><span
+                                                            class="mord mathnormal"
+                                                            style="margin-right:0.07847em;">X</span><span
+                                                            class="msupsub"><span class="vlist-t vlist-t2"><span
+                                                                    class="vlist-r"><span class="vlist"
+                                                                        style="height:0.31166399999999994em;"><span
+                                                                            style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span
+                                                                                class="pstrut"
+                                                                                style="height:2.7em;"></span><span
+                                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                                    class="mord mathnormal mtight">i</span></span></span></span><span
+                                                                        class="vlist-s">​</span></span><span
+                                                                    class="vlist-r"><span class="vlist"
+                                                                        style="height:0.15em;"><span></span></span></span></span></span></span><span
+                                                        class="mclose">)</span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mop mathrm"
+                                                        style="position:relative;top:0.05753999999999998em;">t</span><span
+                                                        class="mopen">(</span><span class="mord"><span
+                                                            class="mord mathnormal"
+                                                            style="margin-right:0.07847em;">X</span><span
+                                                            class="msupsub"><span class="vlist-t vlist-t2"><span
+                                                                    class="vlist-r"><span class="vlist"
+                                                                        style="height:0.31166399999999994em;"><span
+                                                                            style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span
+                                                                                class="pstrut"
+                                                                                style="height:2.7em;"></span><span
+                                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                                    class="mord mathnormal mtight">i</span></span></span></span><span
+                                                                        class="vlist-s">​</span></span><span
+                                                                    class="vlist-r"><span class="vlist"
+                                                                        style="height:0.15em;"><span></span></span></span></span></span></span><span
+                                                        class="mclose">)</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.936em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mop mathrm"
+                            style="position:relative;top:-0.03472em;">r</span><span class="mopen">(</span><span
+                            class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span
+                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.31166399999999994em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathnormal mtight">i</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
+                            class="mclose">)</span></span></span></span></eq> where the t is the <strong>target
+            distribution</strong>, the r is any function, and the n <strong>samples</strong> X_i are generated from the
+        <strong>proposal distribution</strong> p.
+    </p>
+    <blockquote dir="auto">
+        <p dir="auto">Unbiased</p>
+        <blockquote dir="auto">
+            <p dir="auto">
+                <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                                <semantics>
+                                    <mrow>
+                                        <mstyle scriptlevel="0" displaystyle="true">
+                                            <mo>
+                                                <msub>
+                                                    <mi mathvariant="normal">E</mi>
+                                                    <mi mathvariant="normal">p</mi>
+                                                </msub>
+                                            </mo>
+                                            <mrow>
+                                                <mo fence="true">(</mo>
+                                                <mfrac>
+                                                    <mn>1</mn>
+                                                    <mi>n</mi>
+                                                </mfrac>
+                                                <munderover>
+                                                    <mo>∑</mo>
+                                                    <mrow>
+                                                        <mi>i</mi>
+                                                        <mo>=</mo>
+                                                        <mn>1</mn>
+                                                    </mrow>
+                                                    <mi>n</mi>
+                                                </munderover>
+                                                <mfrac>
+                                                    <mrow>
+                                                        <mo>
+                                                            <mi mathvariant="normal">t</mi>
+                                                        </mo>
+                                                        <mo stretchy="false">(</mo>
+                                                        <mi>X</mi>
+                                                        <mo stretchy="false">)</mo>
+                                                    </mrow>
+                                                    <mrow>
+                                                        <mo>
+                                                            <mi mathvariant="normal">p</mi>
+                                                        </mo>
+                                                        <mo stretchy="false">(</mo>
+                                                        <mi>X</mi>
+                                                        <mo stretchy="false">)</mo>
+                                                    </mrow>
+                                                </mfrac>
+                                                <mo>
+                                                    <mi mathvariant="normal">r</mi>
+                                                </mo>
+                                                <mo stretchy="false">(</mo>
+                                                <mi>X</mi>
+                                                <mo stretchy="false">)</mo>
+                                                <mo fence="true">)</mo>
+                                            </mrow>
+                                            <mo>=</mo>
+                                            <mfrac>
+                                                <mn>1</mn>
+                                                <mi>n</mi>
+                                            </mfrac>
+                                            <munderover>
+                                                <mo>∑</mo>
+                                                <mrow>
+                                                    <mi>i</mi>
+                                                    <mo>=</mo>
+                                                    <mn>1</mn>
+                                                </mrow>
+                                                <mi>n</mi>
+                                            </munderover>
+                                            <mo>
+                                                <msub>
+                                                    <mi mathvariant="normal">E</mi>
+                                                    <mi mathvariant="normal">p</mi>
+                                                </msub>
+                                            </mo>
+                                            <mrow>
+                                                <mo fence="true">(</mo>
+                                                <mfrac>
+                                                    <mrow>
+                                                        <mo>
+                                                            <mi mathvariant="normal">t</mi>
+                                                        </mo>
+                                                        <mo stretchy="false">(</mo>
+                                                        <mi>X</mi>
+                                                        <mo stretchy="false">)</mo>
+                                                    </mrow>
+                                                    <mrow>
+                                                        <mo>
+                                                            <mi mathvariant="normal">p</mi>
+                                                        </mo>
+                                                        <mo stretchy="false">(</mo>
+                                                        <mi>X</mi>
+                                                        <mo stretchy="false">)</mo>
+                                                    </mrow>
+                                                </mfrac>
+                                                <mo>
+                                                    <mi mathvariant="normal">r</mi>
+                                                </mo>
+                                                <mo stretchy="false">(</mo>
+                                                <mi>X</mi>
+                                                <mo stretchy="false">)</mo>
+                                                <mo fence="true">)</mo>
+                                            </mrow>
+                                            <mo>=</mo>
+                                            <mfrac>
+                                                <mn>1</mn>
+                                                <mi>n</mi>
+                                            </mfrac>
+                                            <munderover>
+                                                <mo>∑</mo>
+                                                <mrow>
+                                                    <mi>i</mi>
+                                                    <mo>=</mo>
+                                                    <mn>1</mn>
+                                                </mrow>
+                                                <mi>n</mi>
+                                            </munderover>
+                                            <mo>∫</mo>
+                                            <mfrac>
+                                                <mrow>
+                                                    <mo>
+                                                        <mi mathvariant="normal">t</mi>
+                                                    </mo>
+                                                    <mo stretchy="false">(</mo>
+                                                    <mi>x</mi>
+                                                    <mo stretchy="false">)</mo>
+                                                </mrow>
+                                                <mrow>
+                                                    <mo>
+                                                        <mi mathvariant="normal">p</mi>
+                                                    </mo>
+                                                    <mo stretchy="false">(</mo>
+                                                    <mi>x</mi>
+                                                    <mo stretchy="false">)</mo>
+                                                </mrow>
+                                            </mfrac>
+                                            <mo>
+                                                <mi mathvariant="normal">r</mi>
+                                            </mo>
+                                            <mo stretchy="false">(</mo>
+                                            <mi>x</mi>
+                                            <mo stretchy="false">)</mo>
+                                            <mo>
+                                                <mi mathvariant="normal">p</mi>
+                                            </mo>
+                                            <mo stretchy="false">(</mo>
+                                            <mi>x</mi>
+                                            <mo stretchy="false">)</mo>
+                                            <mtext> </mtext>
+                                            <mi>d</mi>
+                                            <mi>x</mi>
+                                            <mo>=</mo>
+                                            <mo>∫</mo>
+                                            <mo>
+                                                <mi mathvariant="normal">t</mi>
+                                            </mo>
+                                            <mo stretchy="false">(</mo>
+                                            <mi>x</mi>
+                                            <mo stretchy="false">)</mo>
+                                            <mo>
+                                                <mi mathvariant="normal">r</mi>
+                                            </mo>
+                                            <mo stretchy="false">(</mo>
+                                            <mi>x</mi>
+                                            <mo stretchy="false">)</mo>
+                                            <mtext> </mtext>
+                                            <mi>d</mi>
+                                            <mi>x</mi>
+                                            <mo>=</mo>
+                                            <mo>
+                                                <msub>
+                                                    <mi mathvariant="normal">E</mi>
+                                                    <mi mathvariant="normal">t</mi>
+                                                </msub>
+                                            </mo>
+                                            <mrow>
+                                                <mo fence="true">(</mo>
+                                                <mo>
+                                                    <mi mathvariant="normal">r</mi>
+                                                </mo>
+                                                <mo stretchy="false">(</mo>
+                                                <mi>X</mi>
+                                                <mo stretchy="false">)</mo>
+                                                <mo fence="true">)</mo>
+                                            </mrow>
+                                        </mstyle>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\displaystyle \mathop{\mathrm{E_p}} \left(
+                                        \frac{1}{n} \sum_{i=1}^n \frac{\mathop{\mathrm{t}} (X)}{\mathop{\mathrm{p}} (X)}
+                                        \mathop{\mathrm{r}} (X) \right) = \frac{1}{n} \sum_{i=1}^n \mathop{\mathrm{E_p}}
+                                        \left( \frac{\mathop{\mathrm{t}} (X)}{\mathop{\mathrm{p}} (X)}
+                                        \mathop{\mathrm{r}} (X) \right) = \frac{1}{n} \sum_{i=1}^n \int
+                                        \frac{\mathop{\mathrm{t}} (x)}{\mathop{\mathrm{p}} (x)} \mathop{\mathrm{r}} (x)
+                                        \mathop{\mathrm{p}} (x) \, dx = \int \mathop{\mathrm{t}} (x) \mathop{\mathrm{r}}
+                                        (x) \, dx = \mathop{\mathrm{E_t}} \left( \mathop{\mathrm{r}} (X) \right)
+                                    </annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:3.027669em;vertical-align:-1.277669em;"></span><span
+                                    class="mop"><span class="mord"><span class="mord mathrm">E</span><span
+                                            class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                        class="vlist" style="height:0.15139200000000003em;"><span
+                                                            style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                                class="pstrut" style="height:2.7em;"></span><span
+                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                    class="mord mathrm mtight">p</span></span></span></span><span
+                                                        class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                        class="vlist"
+                                                        style="height:0.286108em;"><span></span></span></span></span></span></span></span><span
+                                    class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                                    class="minner"><span class="mopen delimcenter" style="top:0em;"><span
+                                            class="delimsizing size4">(</span></span><span class="mord"><span
+                                            class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                                class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                        style="height:1.32144em;"><span style="top:-2.314em;"><span
+                                                                class="pstrut" style="height:3em;"></span><span
+                                                                class="mord"><span
+                                                                    class="mord mathnormal">n</span></span></span><span
+                                                            style="top:-3.23em;"><span class="pstrut"
+                                                                style="height:3em;"></span><span class="frac-line"
+                                                                style="border-bottom-width:0.04em;"></span></span><span
+                                                            style="top:-3.677em;"><span class="pstrut"
+                                                                style="height:3em;"></span><span class="mord"><span
+                                                                    class="mord">1</span></span></span></span><span
+                                                        class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                        class="vlist"
+                                                        style="height:0.686em;"><span></span></span></span></span></span><span
+                                            class="mclose nulldelimiter"></span></span><span class="mspace"
+                                        style="margin-right:0.16666666666666666em;"></span><span
+                                        class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                    class="vlist" style="height:1.6513970000000002em;"><span
+                                                        style="top:-1.872331em;margin-left:0em;"><span class="pstrut"
+                                                            style="height:3.05em;"></span><span
+                                                            class="sizing reset-size6 size3 mtight"><span
+                                                                class="mord mtight"><span
+                                                                    class="mord mathnormal mtight">i</span><span
+                                                                    class="mrel mtight">=</span><span
+                                                                    class="mord mtight">1</span></span></span></span><span
+                                                        style="top:-3.050005em;"><span class="pstrut"
+                                                            style="height:3.05em;"></span><span><span
+                                                                class="mop op-symbol large-op">∑</span></span></span><span
+                                                        style="top:-4.3000050000000005em;margin-left:0em;"><span
+                                                            class="pstrut" style="height:3.05em;"></span><span
+                                                            class="sizing reset-size6 size3 mtight"><span
+                                                                class="mord mathnormal mtight">n</span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:1.277669em;"><span></span></span></span></span></span><span
+                                        class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                                        class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                                class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                        style="height:1.427em;"><span style="top:-2.314em;"><span
+                                                                class="pstrut" style="height:3em;"></span><span
+                                                                class="mord"><span class="mop mathrm"
+                                                                    style="position:relative;top:-0.13194em;">p</span><span
+                                                                    class="mopen">(</span><span class="mord mathnormal"
+                                                                    style="margin-right:0.07847em;">X</span><span
+                                                                    class="mclose">)</span></span></span><span
+                                                            style="top:-3.23em;"><span class="pstrut"
+                                                                style="height:3em;"></span><span class="frac-line"
+                                                                style="border-bottom-width:0.04em;"></span></span><span
+                                                            style="top:-3.677em;"><span class="pstrut"
+                                                                style="height:3em;"></span><span class="mord"><span
+                                                                    class="mop mathrm"
+                                                                    style="position:relative;top:0.05753999999999998em;">t</span><span
+                                                                    class="mopen">(</span><span class="mord mathnormal"
+                                                                    style="margin-right:0.07847em;">X</span><span
+                                                                    class="mclose">)</span></span></span></span><span
+                                                        class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                        class="vlist"
+                                                        style="height:0.936em;"><span></span></span></span></span></span><span
+                                            class="mclose nulldelimiter"></span></span><span class="mspace"
+                                        style="margin-right:0.16666666666666666em;"></span><span class="mop mathrm"
+                                        style="position:relative;top:-0.03472em;">r</span><span
+                                        class="mopen">(</span><span class="mord mathnormal"
+                                        style="margin-right:0.07847em;">X</span><span class="mclose">)</span><span
+                                        class="mclose delimcenter" style="top:0em;"><span
+                                            class="delimsizing size4">)</span></span></span><span class="mspace"
+                                    style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                                    class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                                class="base"><span class="strut"
+                                    style="height:2.929066em;vertical-align:-1.277669em;"></span><span
+                                    class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                    style="height:1.32144em;"><span style="top:-2.314em;"><span
+                                                            class="pstrut" style="height:3em;"></span><span
+                                                            class="mord"><span
+                                                                class="mord mathnormal">n</span></span></span><span
+                                                        style="top:-3.23em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="frac-line"
+                                                            style="border-bottom-width:0.04em;"></span></span><span
+                                                        style="top:-3.677em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="mord"><span
+                                                                class="mord">1</span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.686em;"><span></span></span></span></span></span><span
+                                        class="mclose nulldelimiter"></span></span><span class="mspace"
+                                    style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span
+                                        class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                style="height:1.6513970000000002em;"><span
+                                                    style="top:-1.872331em;margin-left:0em;"><span class="pstrut"
+                                                        style="height:3.05em;"></span><span
+                                                        class="sizing reset-size6 size3 mtight"><span
+                                                            class="mord mtight"><span
+                                                                class="mord mathnormal mtight">i</span><span
+                                                                class="mrel mtight">=</span><span
+                                                                class="mord mtight">1</span></span></span></span><span
+                                                    style="top:-3.050005em;"><span class="pstrut"
+                                                        style="height:3.05em;"></span><span><span
+                                                            class="mop op-symbol large-op">∑</span></span></span><span
+                                                    style="top:-4.3000050000000005em;margin-left:0em;"><span
+                                                        class="pstrut" style="height:3.05em;"></span><span
+                                                        class="sizing reset-size6 size3 mtight"><span
+                                                            class="mord mathnormal mtight">n</span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:1.277669em;"><span></span></span></span></span></span><span
+                                    class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                                    class="mop"><span class="mord"><span class="mord mathrm">E</span><span
+                                            class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                        class="vlist" style="height:0.15139200000000003em;"><span
+                                                            style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                                class="pstrut" style="height:2.7em;"></span><span
+                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                    class="mord mathrm mtight">p</span></span></span></span><span
+                                                        class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                        class="vlist"
+                                                        style="height:0.286108em;"><span></span></span></span></span></span></span></span><span
+                                    class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                                    class="minner"><span class="mopen delimcenter" style="top:0em;"><span
+                                            class="delimsizing size3">(</span></span><span class="mord"><span
+                                            class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                                class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                        style="height:1.427em;"><span style="top:-2.314em;"><span
+                                                                class="pstrut" style="height:3em;"></span><span
+                                                                class="mord"><span class="mop mathrm"
+                                                                    style="position:relative;top:-0.13194em;">p</span><span
+                                                                    class="mopen">(</span><span class="mord mathnormal"
+                                                                    style="margin-right:0.07847em;">X</span><span
+                                                                    class="mclose">)</span></span></span><span
+                                                            style="top:-3.23em;"><span class="pstrut"
+                                                                style="height:3em;"></span><span class="frac-line"
+                                                                style="border-bottom-width:0.04em;"></span></span><span
+                                                            style="top:-3.677em;"><span class="pstrut"
+                                                                style="height:3em;"></span><span class="mord"><span
+                                                                    class="mop mathrm"
+                                                                    style="position:relative;top:0.05753999999999998em;">t</span><span
+                                                                    class="mopen">(</span><span class="mord mathnormal"
+                                                                    style="margin-right:0.07847em;">X</span><span
+                                                                    class="mclose">)</span></span></span></span><span
+                                                        class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                        class="vlist"
+                                                        style="height:0.936em;"><span></span></span></span></span></span><span
+                                            class="mclose nulldelimiter"></span></span><span class="mspace"
+                                        style="margin-right:0.16666666666666666em;"></span><span class="mop mathrm"
+                                        style="position:relative;top:-0.03472em;">r</span><span
+                                        class="mopen">(</span><span class="mord mathnormal"
+                                        style="margin-right:0.07847em;">X</span><span class="mclose">)</span><span
+                                        class="mclose delimcenter" style="top:0em;"><span
+                                            class="delimsizing size3">)</span></span></span><span class="mspace"
+                                    style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                                    class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                                class="base"><span class="strut"
+                                    style="height:2.929066em;vertical-align:-1.277669em;"></span><span
+                                    class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                    style="height:1.32144em;"><span style="top:-2.314em;"><span
+                                                            class="pstrut" style="height:3em;"></span><span
+                                                            class="mord"><span
+                                                                class="mord mathnormal">n</span></span></span><span
+                                                        style="top:-3.23em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="frac-line"
+                                                            style="border-bottom-width:0.04em;"></span></span><span
+                                                        style="top:-3.677em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="mord"><span
+                                                                class="mord">1</span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.686em;"><span></span></span></span></span></span><span
+                                        class="mclose nulldelimiter"></span></span><span class="mspace"
+                                    style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span
+                                        class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                style="height:1.6513970000000002em;"><span
+                                                    style="top:-1.872331em;margin-left:0em;"><span class="pstrut"
+                                                        style="height:3.05em;"></span><span
+                                                        class="sizing reset-size6 size3 mtight"><span
+                                                            class="mord mtight"><span
+                                                                class="mord mathnormal mtight">i</span><span
+                                                                class="mrel mtight">=</span><span
+                                                                class="mord mtight">1</span></span></span></span><span
+                                                    style="top:-3.050005em;"><span class="pstrut"
+                                                        style="height:3.05em;"></span><span><span
+                                                            class="mop op-symbol large-op">∑</span></span></span><span
+                                                    style="top:-4.3000050000000005em;margin-left:0em;"><span
+                                                        class="pstrut" style="height:3.05em;"></span><span
+                                                        class="sizing reset-size6 size3 mtight"><span
+                                                            class="mord mathnormal mtight">n</span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:1.277669em;"><span></span></span></span></span></span><span
+                                    class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                                    class="mop op-symbol large-op"
+                                    style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span
+                                    class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                                    class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                    style="height:1.427em;"><span style="top:-2.314em;"><span
+                                                            class="pstrut" style="height:3em;"></span><span
+                                                            class="mord"><span class="mop mathrm"
+                                                                style="position:relative;top:-0.13194em;">p</span><span
+                                                                class="mopen">(</span><span
+                                                                class="mord mathnormal">x</span><span
+                                                                class="mclose">)</span></span></span><span
+                                                        style="top:-3.23em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="frac-line"
+                                                            style="border-bottom-width:0.04em;"></span></span><span
+                                                        style="top:-3.677em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="mord"><span
+                                                                class="mop mathrm"
+                                                                style="position:relative;top:0.05753999999999998em;">t</span><span
+                                                                class="mopen">(</span><span
+                                                                class="mord mathnormal">x</span><span
+                                                                class="mclose">)</span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.936em;"><span></span></span></span></span></span><span
+                                        class="mclose nulldelimiter"></span></span><span class="mspace"
+                                    style="margin-right:0.16666666666666666em;"></span><span class="mop mathrm"
+                                    style="position:relative;top:-0.03472em;">r</span><span class="mopen">(</span><span
+                                    class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace"
+                                    style="margin-right:0.16666666666666666em;"></span><span class="mop mathrm"
+                                    style="position:relative;top:-0.13194em;">p</span><span class="mopen">(</span><span
+                                    class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace"
+                                    style="margin-right:0.16666666666666666em;"></span><span
+                                    class="mord mathnormal">d</span><span class="mord mathnormal">x</span><span
+                                    class="mspace" style="margin-right:0.2777777777777778em;"></span><span
+                                    class="mrel">=</span><span class="mspace"
+                                    style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+                                    class="strut" style="height:2.22225em;vertical-align:-0.86225em;"></span><span
+                                    class="mop op-symbol large-op"
+                                    style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span
+                                    class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                                    class="mop mathrm"
+                                    style="position:relative;top:0.05753999999999998em;">t</span><span
+                                    class="mopen">(</span><span class="mord mathnormal">x</span><span
+                                    class="mclose">)</span><span class="mspace"
+                                    style="margin-right:0.16666666666666666em;"></span><span class="mop mathrm"
+                                    style="position:relative;top:-0.03472em;">r</span><span class="mopen">(</span><span
+                                    class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace"
+                                    style="margin-right:0.16666666666666666em;"></span><span
+                                    class="mord mathnormal">d</span><span class="mord mathnormal">x</span><span
+                                    class="mspace" style="margin-right:0.2777777777777778em;"></span><span
+                                    class="mrel">=</span><span class="mspace"
+                                    style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mop"><span class="mord"><span class="mord mathrm">E</span><span
+                                            class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                        class="vlist" style="height:0.2805559999999999em;"><span
+                                                            style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                                class="pstrut" style="height:2.7em;"></span><span
+                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                    class="mord mathrm mtight">t</span></span></span></span><span
+                                                        class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                        class="vlist"
+                                                        style="height:0.15em;"><span></span></span></span></span></span></span></span><span
+                                    class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                                    class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span
+                                        class="mop mathrm" style="position:relative;top:-0.03472em;">r</span><span
+                                        class="mopen">(</span><span class="mord mathnormal"
+                                        style="margin-right:0.07847em;">X</span><span class="mclose">)</span><span
+                                        class="mclose delimcenter" style="top:0em;">)</span></span></span></span></span>
+                </eq>.
+            </p>
+        </blockquote>
+        <p dir="auto">Consistent</p>
+        <blockquote dir="auto">
+            <p dir="auto">By <strong>LLN (Law of large numbers)</strong>, we have <eq><span class="katex"><span
+                            class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                                <semantics>
+                                    <mrow>
+                                        <mstyle scriptlevel="0" displaystyle="true">
+                                            <munder>
+                                                <mrow>
+                                                    <mi>lim</mi>
+                                                    <mo>⁡</mo>
+                                                </mrow>
+                                                <mrow>
+                                                    <mi>n</mi>
+                                                    <mo>→</mo>
+                                                    <mi mathvariant="normal">∞</mi>
+                                                </mrow>
+                                            </munder>
+                                            <mfrac>
+                                                <mn>1</mn>
+                                                <mi>n</mi>
+                                            </mfrac>
+                                            <munderover>
+                                                <mo>∑</mo>
+                                                <mrow>
+                                                    <mi>i</mi>
+                                                    <mo>=</mo>
+                                                    <mn>1</mn>
+                                                </mrow>
+                                                <mi>n</mi>
+                                            </munderover>
+                                            <mfrac>
+                                                <mrow>
+                                                    <mo>
+                                                        <mi mathvariant="normal">t</mi>
+                                                    </mo>
+                                                    <mo stretchy="false">(</mo>
+                                                    <msub>
+                                                        <mi>Y</mi>
+                                                        <mi>i</mi>
+                                                    </msub>
+                                                    <mo stretchy="false">)</mo>
+                                                </mrow>
+                                                <mrow>
+                                                    <mo>
+                                                        <mi mathvariant="normal">p</mi>
+                                                    </mo>
+                                                    <mo stretchy="false">(</mo>
+                                                    <msub>
+                                                        <mi>Y</mi>
+                                                        <mi>i</mi>
+                                                    </msub>
+                                                    <mo stretchy="false">)</mo>
+                                                </mrow>
+                                            </mfrac>
+                                            <mo>
+                                                <mi mathvariant="normal">r</mi>
+                                            </mo>
+                                            <mo stretchy="false">(</mo>
+                                            <msub>
+                                                <mi>Y</mi>
+                                                <mi>i</mi>
+                                            </msub>
+                                            <mo stretchy="false">)</mo>
+                                            <mo>=</mo>
+                                            <mo>
+                                                <msub>
+                                                    <mi mathvariant="normal">E</mi>
+                                                    <mi mathvariant="normal">p</mi>
+                                                </msub>
+                                            </mo>
+                                            <mrow>
+                                                <mo fence="true">(</mo>
+                                                <mfrac>
+                                                    <mn>1</mn>
+                                                    <mi>n</mi>
+                                                </mfrac>
+                                                <munderover>
+                                                    <mo>∑</mo>
+                                                    <mrow>
+                                                        <mi>i</mi>
+                                                        <mo>=</mo>
+                                                        <mn>1</mn>
+                                                    </mrow>
+                                                    <mi>n</mi>
+                                                </munderover>
+                                                <mfrac>
+                                                    <mrow>
+                                                        <mo>
+                                                            <mi mathvariant="normal">t</mi>
+                                                        </mo>
+                                                        <mo stretchy="false">(</mo>
+                                                        <mi>Y</mi>
+                                                        <mo stretchy="false">)</mo>
+                                                    </mrow>
+                                                    <mrow>
+                                                        <mo>
+                                                            <mi mathvariant="normal">p</mi>
+                                                        </mo>
+                                                        <mo stretchy="false">(</mo>
+                                                        <mi>Y</mi>
+                                                        <mo stretchy="false">)</mo>
+                                                    </mrow>
+                                                </mfrac>
+                                                <mo>
+                                                    <mi mathvariant="normal">r</mi>
+                                                </mo>
+                                                <mo stretchy="false">(</mo>
+                                                <mi>Y</mi>
+                                                <mo stretchy="false">)</mo>
+                                                <mo fence="true">)</mo>
+                                            </mrow>
+                                            <mo>=</mo>
+                                            <mo>∫</mo>
+                                            <mo>
+                                                <mi mathvariant="normal">t</mi>
+                                            </mo>
+                                            <mo stretchy="false">(</mo>
+                                            <mi>x</mi>
+                                            <mo stretchy="false">)</mo>
+                                            <mo>
+                                                <mi mathvariant="normal">r</mi>
+                                            </mo>
+                                            <mo stretchy="false">(</mo>
+                                            <mi>x</mi>
+                                            <mo stretchy="false">)</mo>
+                                            <mtext> </mtext>
+                                            <mi>d</mi>
+                                            <mi>x</mi>
+                                        </mstyle>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\displaystyle \lim \limits_{n \to \infty}
+                                        \frac{1}{n} \sum_{i=1}^n \frac{\mathop{\mathrm{t}} (Y_i)}{\mathop{\mathrm{p}}
+                                        (Y_i)} \mathop{\mathrm{r}} (Y_i) = \mathop{\mathrm{E_p}} \left( \frac{1}{n}
+                                        \sum_{i=1}^n \frac{\mathop{\mathrm{t}} (Y)}{\mathop{\mathrm{p}} (Y)}
+                                        \mathop{\mathrm{r}} (Y) \right) = \int \mathop{\mathrm{t}} (x)
+                                        \mathop{\mathrm{r}} (x) \, dx</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:2.929066em;vertical-align:-1.277669em;"></span><span
+                                    class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                class="vlist" style="height:0.69444em;"><span
+                                                    style="top:-2.4em;margin-left:0em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span
+                                                        class="sizing reset-size6 size3 mtight"><span
+                                                            class="mord mtight"><span
+                                                                class="mord mathnormal mtight">n</span><span
+                                                                class="mrel mtight">→</span><span
+                                                                class="mord mtight">∞</span></span></span></span><span
+                                                    style="top:-3em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span><span
+                                                            class="mop">lim</span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:0.7em;"><span></span></span></span></span></span><span
+                                    class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                                    class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                    style="height:1.32144em;"><span style="top:-2.314em;"><span
+                                                            class="pstrut" style="height:3em;"></span><span
+                                                            class="mord"><span
+                                                                class="mord mathnormal">n</span></span></span><span
+                                                        style="top:-3.23em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="frac-line"
+                                                            style="border-bottom-width:0.04em;"></span></span><span
+                                                        style="top:-3.677em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="mord"><span
+                                                                class="mord">1</span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.686em;"><span></span></span></span></span></span><span
+                                        class="mclose nulldelimiter"></span></span><span class="mspace"
+                                    style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span
+                                        class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                style="height:1.6513970000000002em;"><span
+                                                    style="top:-1.872331em;margin-left:0em;"><span class="pstrut"
+                                                        style="height:3.05em;"></span><span
+                                                        class="sizing reset-size6 size3 mtight"><span
+                                                            class="mord mtight"><span
+                                                                class="mord mathnormal mtight">i</span><span
+                                                                class="mrel mtight">=</span><span
+                                                                class="mord mtight">1</span></span></span></span><span
+                                                    style="top:-3.050005em;"><span class="pstrut"
+                                                        style="height:3.05em;"></span><span><span
+                                                            class="mop op-symbol large-op">∑</span></span></span><span
+                                                    style="top:-4.3000050000000005em;margin-left:0em;"><span
+                                                        class="pstrut" style="height:3.05em;"></span><span
+                                                        class="sizing reset-size6 size3 mtight"><span
+                                                            class="mord mathnormal mtight">n</span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:1.277669em;"><span></span></span></span></span></span><span
+                                    class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                                    class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                    style="height:1.427em;"><span style="top:-2.314em;"><span
+                                                            class="pstrut" style="height:3em;"></span><span
+                                                            class="mord"><span class="mop mathrm"
+                                                                style="position:relative;top:-0.13194em;">p</span><span
+                                                                class="mopen">(</span><span class="mord"><span
+                                                                    class="mord mathnormal"
+                                                                    style="margin-right:0.22222em;">Y</span><span
+                                                                    class="msupsub"><span class="vlist-t vlist-t2"><span
+                                                                            class="vlist-r"><span class="vlist"
+                                                                                style="height:0.31166399999999994em;"><span
+                                                                                    style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span
+                                                                                        class="pstrut"
+                                                                                        style="height:2.7em;"></span><span
+                                                                                        class="sizing reset-size6 size3 mtight"><span
+                                                                                            class="mord mathnormal mtight">i</span></span></span></span><span
+                                                                                class="vlist-s">​</span></span><span
+                                                                            class="vlist-r"><span class="vlist"
+                                                                                style="height:0.15em;"><span></span></span></span></span></span></span><span
+                                                                class="mclose">)</span></span></span><span
+                                                        style="top:-3.23em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="frac-line"
+                                                            style="border-bottom-width:0.04em;"></span></span><span
+                                                        style="top:-3.677em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="mord"><span
+                                                                class="mop mathrm"
+                                                                style="position:relative;top:0.05753999999999998em;">t</span><span
+                                                                class="mopen">(</span><span class="mord"><span
+                                                                    class="mord mathnormal"
+                                                                    style="margin-right:0.22222em;">Y</span><span
+                                                                    class="msupsub"><span class="vlist-t vlist-t2"><span
+                                                                            class="vlist-r"><span class="vlist"
+                                                                                style="height:0.31166399999999994em;"><span
+                                                                                    style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span
+                                                                                        class="pstrut"
+                                                                                        style="height:2.7em;"></span><span
+                                                                                        class="sizing reset-size6 size3 mtight"><span
+                                                                                            class="mord mathnormal mtight">i</span></span></span></span><span
+                                                                                class="vlist-s">​</span></span><span
+                                                                            class="vlist-r"><span class="vlist"
+                                                                                style="height:0.15em;"><span></span></span></span></span></span></span><span
+                                                                class="mclose">)</span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.936em;"><span></span></span></span></span></span><span
+                                        class="mclose nulldelimiter"></span></span><span class="mspace"
+                                    style="margin-right:0.16666666666666666em;"></span><span class="mop mathrm"
+                                    style="position:relative;top:-0.03472em;">r</span><span class="mopen">(</span><span
+                                    class="mord"><span class="mord mathnormal"
+                                        style="margin-right:0.22222em;">Y</span><span class="msupsub"><span
+                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                    style="height:0.31166399999999994em;"><span
+                                                        style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span
+                                                            class="pstrut" style="height:2.7em;"></span><span
+                                                            class="sizing reset-size6 size3 mtight"><span
+                                                                class="mord mathnormal mtight">i</span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.15em;"><span></span></span></span></span></span></span><span
+                                    class="mclose">)</span><span class="mspace"
+                                    style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                                    class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                                class="base"><span class="strut"
+                                    style="height:3.027669em;vertical-align:-1.277669em;"></span><span class="mop"><span
+                                        class="mord"><span class="mord mathrm">E</span><span class="msupsub"><span
+                                                class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                        style="height:0.15139200000000003em;"><span
+                                                            style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                                class="pstrut" style="height:2.7em;"></span><span
+                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                    class="mord mathrm mtight">p</span></span></span></span><span
+                                                        class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                        class="vlist"
+                                                        style="height:0.286108em;"><span></span></span></span></span></span></span></span><span
+                                    class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                                    class="minner"><span class="mopen delimcenter" style="top:0em;"><span
+                                            class="delimsizing size4">(</span></span><span class="mord"><span
+                                            class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                                class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                        style="height:1.32144em;"><span style="top:-2.314em;"><span
+                                                                class="pstrut" style="height:3em;"></span><span
+                                                                class="mord"><span
+                                                                    class="mord mathnormal">n</span></span></span><span
+                                                            style="top:-3.23em;"><span class="pstrut"
+                                                                style="height:3em;"></span><span class="frac-line"
+                                                                style="border-bottom-width:0.04em;"></span></span><span
+                                                            style="top:-3.677em;"><span class="pstrut"
+                                                                style="height:3em;"></span><span class="mord"><span
+                                                                    class="mord">1</span></span></span></span><span
+                                                        class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                        class="vlist"
+                                                        style="height:0.686em;"><span></span></span></span></span></span><span
+                                            class="mclose nulldelimiter"></span></span><span class="mspace"
+                                        style="margin-right:0.16666666666666666em;"></span><span
+                                        class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                    class="vlist" style="height:1.6513970000000002em;"><span
+                                                        style="top:-1.872331em;margin-left:0em;"><span class="pstrut"
+                                                            style="height:3.05em;"></span><span
+                                                            class="sizing reset-size6 size3 mtight"><span
+                                                                class="mord mtight"><span
+                                                                    class="mord mathnormal mtight">i</span><span
+                                                                    class="mrel mtight">=</span><span
+                                                                    class="mord mtight">1</span></span></span></span><span
+                                                        style="top:-3.050005em;"><span class="pstrut"
+                                                            style="height:3.05em;"></span><span><span
+                                                                class="mop op-symbol large-op">∑</span></span></span><span
+                                                        style="top:-4.3000050000000005em;margin-left:0em;"><span
+                                                            class="pstrut" style="height:3.05em;"></span><span
+                                                            class="sizing reset-size6 size3 mtight"><span
+                                                                class="mord mathnormal mtight">n</span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:1.277669em;"><span></span></span></span></span></span><span
+                                        class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                                        class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                                class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                        style="height:1.427em;"><span style="top:-2.314em;"><span
+                                                                class="pstrut" style="height:3em;"></span><span
+                                                                class="mord"><span class="mop mathrm"
+                                                                    style="position:relative;top:-0.13194em;">p</span><span
+                                                                    class="mopen">(</span><span class="mord mathnormal"
+                                                                    style="margin-right:0.22222em;">Y</span><span
+                                                                    class="mclose">)</span></span></span><span
+                                                            style="top:-3.23em;"><span class="pstrut"
+                                                                style="height:3em;"></span><span class="frac-line"
+                                                                style="border-bottom-width:0.04em;"></span></span><span
+                                                            style="top:-3.677em;"><span class="pstrut"
+                                                                style="height:3em;"></span><span class="mord"><span
+                                                                    class="mop mathrm"
+                                                                    style="position:relative;top:0.05753999999999998em;">t</span><span
+                                                                    class="mopen">(</span><span class="mord mathnormal"
+                                                                    style="margin-right:0.22222em;">Y</span><span
+                                                                    class="mclose">)</span></span></span></span><span
+                                                        class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                        class="vlist"
+                                                        style="height:0.936em;"><span></span></span></span></span></span><span
+                                            class="mclose nulldelimiter"></span></span><span class="mspace"
+                                        style="margin-right:0.16666666666666666em;"></span><span class="mop mathrm"
+                                        style="position:relative;top:-0.03472em;">r</span><span
+                                        class="mopen">(</span><span class="mord mathnormal"
+                                        style="margin-right:0.22222em;">Y</span><span class="mclose">)</span><span
+                                        class="mclose delimcenter" style="top:0em;"><span
+                                            class="delimsizing size4">)</span></span></span><span class="mspace"
+                                    style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                                    class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                                class="base"><span class="strut"
+                                    style="height:2.22225em;vertical-align:-0.86225em;"></span><span
+                                    class="mop op-symbol large-op"
+                                    style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span
+                                    class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                                    class="mop mathrm"
+                                    style="position:relative;top:0.05753999999999998em;">t</span><span
+                                    class="mopen">(</span><span class="mord mathnormal">x</span><span
+                                    class="mclose">)</span><span class="mspace"
+                                    style="margin-right:0.16666666666666666em;"></span><span class="mop mathrm"
+                                    style="position:relative;top:-0.03472em;">r</span><span class="mopen">(</span><span
+                                    class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace"
+                                    style="margin-right:0.16666666666666666em;"></span><span
+                                    class="mord mathnormal">d</span><span
+                                    class="mord mathnormal">x</span></span></span></span></eq>.</p>
+        </blockquote>
+    </blockquote>
+    <p dir="auto">By <a
+            href="https://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/The_Monte_Carlo_Estimator#">&quot;13.2 The
+            Monte Carlo Estimator&quot;</a> of &quot;PBR Book V3&quot; and <a
+            href="https://pbr-book.org/4ed/Monte_Carlo_Integration/Monte_Carlo_Basics#TheMonteCarloEstimator">&quot;2.1.3
+            The Monte Carlo Estimator&quot;</a> of &quot;PBR Book V4&quot;, we have the <strong>Monte Carlo</strong>
+        estimator <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mo>∫</mo>
+                                    <mo>
+                                        <mi mathvariant="normal">f</mi>
+                                    </mo>
+                                    <mo stretchy="false">(</mo>
+                                    <mi>x</mi>
+                                    <mo stretchy="false">)</mo>
+                                    <mtext> </mtext>
+                                    <mi>d</mi>
+                                    <mi>x</mi>
+                                    <mo>≈</mo>
+                                    <mfrac>
+                                        <mn>1</mn>
+                                        <mi>n</mi>
+                                    </mfrac>
+                                    <munderover>
+                                        <mo>∑</mo>
+                                        <mrow>
+                                            <mi>i</mi>
+                                            <mo>=</mo>
+                                            <mn>1</mn>
+                                        </mrow>
+                                        <mi>n</mi>
+                                    </munderover>
+                                    <mfrac>
+                                        <mrow>
+                                            <mo>
+                                                <mi mathvariant="normal">f</mi>
+                                            </mo>
+                                            <mo stretchy="false">(</mo>
+                                            <msub>
+                                                <mi>X</mi>
+                                                <mi>i</mi>
+                                            </msub>
+                                            <mo stretchy="false">)</mo>
+                                        </mrow>
+                                        <mrow>
+                                            <mo>
+                                                <mi mathvariant="normal">p</mi>
+                                            </mo>
+                                            <mo stretchy="false">(</mo>
+                                            <msub>
+                                                <mi>X</mi>
+                                                <mi>i</mi>
+                                            </msub>
+                                            <mo stretchy="false">)</mo>
+                                        </mrow>
+                                    </mfrac>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle \int \mathop{\mathrm{f}} (x) \, dx
+                                \approx \frac{1}{n} \sum_{i=1}^n \frac{\mathop{\mathrm{f}} (X_i)}{\mathop{\mathrm{p}}
+                                (X_i)}</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:2.22225em;vertical-align:-0.86225em;"></span><span
+                            class="mop op-symbol large-op"
+                            style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span
+                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop mathrm"
+                            style="margin-right:0.07778em;position:relative;top:0.09721999999999997em;">f</span><span
+                            class="mopen">(</span><span class="mord mathnormal">x</span><span
+                            class="mclose">)</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span
+                            class="mord mathnormal">d</span><span class="mord mathnormal">x</span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">≈</span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                        class="base"><span class="strut"
+                            style="height:2.929066em;vertical-align:-1.277669em;"></span><span class="mord"><span
+                                class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord mathnormal">n</span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">1</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span
+                                class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                        style="height:1.6513970000000002em;"><span
+                                            style="top:-1.872331em;margin-left:0em;"><span class="pstrut"
+                                                style="height:3.05em;"></span><span
+                                                class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span
+                                                        class="mord mathnormal mtight">i</span><span
+                                                        class="mrel mtight">=</span><span
+                                                        class="mord mtight">1</span></span></span></span><span
+                                            style="top:-3.050005em;"><span class="pstrut"
+                                                style="height:3.05em;"></span><span><span
+                                                    class="mop op-symbol large-op">∑</span></span></span><span
+                                            style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut"
+                                                style="height:3.05em;"></span><span
+                                                class="sizing reset-size6 size3 mtight"><span
+                                                    class="mord mathnormal mtight">n</span></span></span></span><span
+                                        class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                        style="height:1.277669em;"><span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span
+                                class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mop mathrm"
+                                                        style="position:relative;top:-0.13194em;">p</span><span
+                                                        class="mopen">(</span><span class="mord"><span
+                                                            class="mord mathnormal"
+                                                            style="margin-right:0.07847em;">X</span><span
+                                                            class="msupsub"><span class="vlist-t vlist-t2"><span
+                                                                    class="vlist-r"><span class="vlist"
+                                                                        style="height:0.31166399999999994em;"><span
+                                                                            style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span
+                                                                                class="pstrut"
+                                                                                style="height:2.7em;"></span><span
+                                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                                    class="mord mathnormal mtight">i</span></span></span></span><span
+                                                                        class="vlist-s">​</span></span><span
+                                                                    class="vlist-r"><span class="vlist"
+                                                                        style="height:0.15em;"><span></span></span></span></span></span></span><span
+                                                        class="mclose">)</span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mop mathrm"
+                                                        style="margin-right:0.07778em;position:relative;top:0.09721999999999997em;">f</span><span
+                                                        class="mopen">(</span><span class="mord"><span
+                                                            class="mord mathnormal"
+                                                            style="margin-right:0.07847em;">X</span><span
+                                                            class="msupsub"><span class="vlist-t vlist-t2"><span
+                                                                    class="vlist-r"><span class="vlist"
+                                                                        style="height:0.31166399999999994em;"><span
+                                                                            style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span
+                                                                                class="pstrut"
+                                                                                style="height:2.7em;"></span><span
+                                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                                    class="mord mathnormal mtight">i</span></span></span></span><span
+                                                                        class="vlist-s">​</span></span><span
+                                                                    class="vlist-r"><span class="vlist"
+                                                                        style="height:0.15em;"><span></span></span></span></span></span></span><span
+                                                        class="mclose">)</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.936em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span></span></span></span></eq> where the n
+        <strong>samples</strong> X_i are generated from the <strong>proposal distribution</strong> p, and the f is any
+        function.
+    </p>
+    <blockquote dir="auto">
+        <p dir="auto">When <eq><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle scriptlevel="0" displaystyle="true">
+                                        <mo>
+                                            <mi mathvariant="normal">f</mi>
+                                        </mo>
+                                        <mo stretchy="false">(</mo>
+                                        <mi>x</mi>
+                                        <mo stretchy="false">)</mo>
+                                        <mo>&gt;</mo>
+                                        <mn>0</mn>
+                                    </mstyle>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\displaystyle \mathop{\mathrm{f}} (x) &gt; 0
+                                </annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:1em;vertical-align:-0.25em;"></span><span class="mop mathrm"
+                                style="margin-right:0.07778em;position:relative;top:0.09721999999999997em;">f</span><span
+                                class="mopen">(</span><span class="mord mathnormal">x</span><span
+                                class="mclose">)</span><span class="mspace"
+                                style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span
+                                class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                            class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span
+                                class="mord">0</span></span></span></span></eq>, by applying <eq><span
+                    class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle scriptlevel="0" displaystyle="true">
+                                        <mo>
+                                            <mi mathvariant="normal">r</mi>
+                                        </mo>
+                                        <mo stretchy="false">(</mo>
+                                        <mi>X</mi>
+                                        <mo stretchy="false">)</mo>
+                                        <mo>=</mo>
+                                        <msub>
+                                            <mrow>
+                                                <mi mathvariant="normal">∥</mi>
+                                                <mi>f</mi>
+                                                <mi mathvariant="normal">∥</mi>
+                                            </mrow>
+                                            <msup>
+                                                <mi>L</mi>
+                                                <mn>1</mn>
+                                            </msup>
+                                        </msub>
+                                        <mo>=</mo>
+                                        <mo>∫</mo>
+                                        <mi mathvariant="normal">∣</mi>
+                                        <mo>
+                                            <mi mathvariant="normal">f</mi>
+                                        </mo>
+                                        <mo stretchy="false">(</mo>
+                                        <mi>x</mi>
+                                        <mo stretchy="false">)</mo>
+                                        <mi mathvariant="normal">∣</mi>
+                                        <mtext> </mtext>
+                                        <mi>d</mi>
+                                        <mi>x</mi>
+                                        <mo>=</mo>
+                                        <mo>∫</mo>
+                                        <mo>
+                                            <mi mathvariant="normal">f</mi>
+                                        </mo>
+                                        <mo stretchy="false">(</mo>
+                                        <mi>x</mi>
+                                        <mo stretchy="false">)</mo>
+                                        <mtext> </mtext>
+                                        <mi>d</mi>
+                                        <mi>x</mi>
+                                    </mstyle>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\displaystyle \mathop{\mathrm{r}} (X) = {\| f
+                                    \|}_{L^1} = \int | \mathop{\mathrm{f}} (x) | \, dx = \int \mathop{\mathrm{f}} (x) \,
+                                    dx</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:1em;vertical-align:-0.25em;"></span><span class="mop mathrm"
+                                style="position:relative;top:-0.03472em;">r</span><span class="mopen">(</span><span
+                                class="mord mathnormal" style="margin-right:0.07847em;">X</span><span
+                                class="mclose">)</span><span class="mspace"
+                                style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                                class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                            class="base"><span class="strut"
+                                style="height:1.0497em;vertical-align:-0.29969999999999997em;"></span><span
+                                class="mord"><span class="mord"><span class="mord">∥</span><span class="mord mathnormal"
+                                        style="margin-right:0.10764em;">f</span><span class="mord">∥</span></span><span
+                                    class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                class="vlist" style="height:0.22272000000000003em;"><span
+                                                    style="top:-2.4003em;margin-right:0.05em;"><span class="pstrut"
+                                                        style="height:2.7em;"></span><span
+                                                        class="sizing reset-size6 size3 mtight"><span
+                                                            class="mord mtight"><span class="mord mtight"><span
+                                                                    class="mord mathnormal mtight">L</span><span
+                                                                    class="msupsub"><span class="vlist-t"><span
+                                                                            class="vlist-r"><span class="vlist"
+                                                                                style="height:0.7463142857142857em;"><span
+                                                                                    style="top:-2.786em;margin-right:0.07142857142857144em;"><span
+                                                                                        class="pstrut"
+                                                                                        style="height:2.5em;"></span><span
+                                                                                        class="sizing reset-size3 size1 mtight"><span
+                                                                                            class="mord mtight">1</span></span></span></span></span></span></span></span></span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:0.29969999999999997em;"><span></span></span></span></span></span></span><span
+                                class="mspace" style="margin-right:0.2777777777777778em;"></span><span
+                                class="mrel">=</span><span class="mspace"
+                                style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+                                class="strut" style="height:2.22225em;vertical-align:-0.86225em;"></span><span
+                                class="mop op-symbol large-op"
+                                style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span
+                                class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                                class="mord">∣</span><span class="mspace"
+                                style="margin-right:0.16666666666666666em;"></span><span class="mop mathrm"
+                                style="margin-right:0.07778em;position:relative;top:0.09721999999999997em;">f</span><span
+                                class="mopen">(</span><span class="mord mathnormal">x</span><span
+                                class="mclose">)</span><span class="mord">∣</span><span class="mspace"
+                                style="margin-right:0.16666666666666666em;"></span><span
+                                class="mord mathnormal">d</span><span class="mord mathnormal">x</span><span
+                                class="mspace" style="margin-right:0.2777777777777778em;"></span><span
+                                class="mrel">=</span><span class="mspace"
+                                style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+                                class="strut" style="height:2.22225em;vertical-align:-0.86225em;"></span><span
+                                class="mop op-symbol large-op"
+                                style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span
+                                class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                                class="mop mathrm"
+                                style="margin-right:0.07778em;position:relative;top:0.09721999999999997em;">f</span><span
+                                class="mopen">(</span><span class="mord mathnormal">x</span><span
+                                class="mclose">)</span><span class="mspace"
+                                style="margin-right:0.16666666666666666em;"></span><span
+                                class="mord mathnormal">d</span><span
+                                class="mord mathnormal">x</span></span></span></span></eq> and <eq><span
+                    class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle scriptlevel="0" displaystyle="true">
+                                        <mo>
+                                            <mi mathvariant="normal">t</mi>
+                                        </mo>
+                                        <mo stretchy="false">(</mo>
+                                        <mi>X</mi>
+                                        <mo stretchy="false">)</mo>
+                                        <mo>=</mo>
+                                        <mfrac>
+                                            <mrow>
+                                                <mo>
+                                                    <mi mathvariant="normal">f</mi>
+                                                </mo>
+                                                <mo stretchy="false">(</mo>
+                                                <mi>X</mi>
+                                                <mo stretchy="false">)</mo>
+                                            </mrow>
+                                            <msub>
+                                                <mrow>
+                                                    <mi mathvariant="normal">∥</mi>
+                                                    <mi>f</mi>
+                                                    <mi mathvariant="normal">∥</mi>
+                                                </mrow>
+                                                <msup>
+                                                    <mi>L</mi>
+                                                    <mn>1</mn>
+                                                </msup>
+                                            </msub>
+                                        </mfrac>
+                                    </mstyle>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\displaystyle \mathop{\mathrm{t}} (X) =
+                                    \frac{\mathop{\mathrm{f}} (X)}{{\| f \|}_{L^1}}</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:1em;vertical-align:-0.25em;"></span><span class="mop mathrm"
+                                style="position:relative;top:0.05753999999999998em;">t</span><span
+                                class="mopen">(</span><span class="mord mathnormal"
+                                style="margin-right:0.07847em;">X</span><span class="mclose">)</span><span
+                                class="mspace" style="margin-right:0.2777777777777778em;"></span><span
+                                class="mrel">=</span><span class="mspace"
+                                style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+                                class="strut" style="height:2.4127em;vertical-align:-0.9857em;"></span><span
+                                class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                        class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="mord"><span
+                                                            class="mord"><span class="mord"><span
+                                                                    class="mord">∥</span><span class="mord mathnormal"
+                                                                    style="margin-right:0.10764em;">f</span><span
+                                                                    class="mord">∥</span></span><span
+                                                                class="msupsub"><span class="vlist-t vlist-t2"><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.22272000000000003em;"><span
+                                                                                style="top:-2.4003em;margin-right:0.05em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:2.7em;"></span><span
+                                                                                    class="sizing reset-size6 size3 mtight"><span
+                                                                                        class="mord mtight"><span
+                                                                                            class="mord mtight"><span
+                                                                                                class="mord mathnormal mtight">L</span><span
+                                                                                                class="msupsub"><span
+                                                                                                    class="vlist-t"><span
+                                                                                                        class="vlist-r"><span
+                                                                                                            class="vlist"
+                                                                                                            style="height:0.7463142857142857em;"><span
+                                                                                                                style="top:-2.786em;margin-right:0.07142857142857144em;"><span
+                                                                                                                    class="pstrut"
+                                                                                                                    style="height:2.5em;"></span><span
+                                                                                                                    class="sizing reset-size3 size1 mtight"><span
+                                                                                                                        class="mord mtight">1</span></span></span></span></span></span></span></span></span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.29969999999999997em;"><span></span></span></span></span></span></span></span></span><span
+                                                    style="top:-3.23em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="frac-line"
+                                                        style="border-bottom-width:0.04em;"></span></span><span
+                                                    style="top:-3.677em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="mord"><span
+                                                            class="mop mathrm"
+                                                            style="margin-right:0.07778em;position:relative;top:0.09721999999999997em;">f</span><span
+                                                            class="mopen">(</span><span class="mord mathnormal"
+                                                            style="margin-right:0.07847em;">X</span><span
+                                                            class="mclose">)</span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:0.9857em;"><span></span></span></span></span></span><span
+                                    class="mclose nulldelimiter"></span></span></span></span></span></eq> to the
+            <strong>importance sampling</strong> estimator, we have the <strong>Monte Carlo</strong> estimator <eq><span
+                    class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle scriptlevel="0" displaystyle="true">
+                                        <mo>∫</mo>
+                                        <mo>
+                                            <mi mathvariant="normal">f</mi>
+                                        </mo>
+                                        <mo stretchy="false">(</mo>
+                                        <mi>x</mi>
+                                        <mo stretchy="false">)</mo>
+                                        <mtext> </mtext>
+                                        <mi>d</mi>
+                                        <mi>x</mi>
+                                        <mo>=</mo>
+                                        <mo>∫</mo>
+                                        <mo>
+                                            <mi mathvariant="normal">t</mi>
+                                        </mo>
+                                        <mo stretchy="false">(</mo>
+                                        <mi>x</mi>
+                                        <mo stretchy="false">)</mo>
+                                        <mo>
+                                            <mi mathvariant="normal">r</mi>
+                                        </mo>
+                                        <mo stretchy="false">(</mo>
+                                        <mi>x</mi>
+                                        <mo stretchy="false">)</mo>
+                                        <mtext> </mtext>
+                                        <mi>d</mi>
+                                        <mi>x</mi>
+                                        <mo>≈</mo>
+                                        <mfrac>
+                                            <mn>1</mn>
+                                            <mi>n</mi>
+                                        </mfrac>
+                                        <munderover>
+                                            <mo>∑</mo>
+                                            <mrow>
+                                                <mi>i</mi>
+                                                <mo>=</mo>
+                                                <mn>1</mn>
+                                            </mrow>
+                                            <mi>n</mi>
+                                        </munderover>
+                                        <mfrac>
+                                            <mrow>
+                                                <mo>
+                                                    <mi mathvariant="normal">t</mi>
+                                                </mo>
+                                                <mo stretchy="false">(</mo>
+                                                <msub>
+                                                    <mi>X</mi>
+                                                    <mi>i</mi>
+                                                </msub>
+                                                <mo stretchy="false">)</mo>
+                                            </mrow>
+                                            <mrow>
+                                                <mo>
+                                                    <mi mathvariant="normal">p</mi>
+                                                </mo>
+                                                <mo stretchy="false">(</mo>
+                                                <msub>
+                                                    <mi>X</mi>
+                                                    <mi>i</mi>
+                                                </msub>
+                                                <mo stretchy="false">)</mo>
+                                            </mrow>
+                                        </mfrac>
+                                        <mo>
+                                            <mi mathvariant="normal">r</mi>
+                                        </mo>
+                                        <mo stretchy="false">(</mo>
+                                        <msub>
+                                            <mi>X</mi>
+                                            <mi>i</mi>
+                                        </msub>
+                                        <mo stretchy="false">)</mo>
+                                        <mo>=</mo>
+                                        <mfrac>
+                                            <mn>1</mn>
+                                            <mi>n</mi>
+                                        </mfrac>
+                                        <munderover>
+                                            <mo>∑</mo>
+                                            <mrow>
+                                                <mi>i</mi>
+                                                <mo>=</mo>
+                                                <mn>1</mn>
+                                            </mrow>
+                                            <mi>n</mi>
+                                        </munderover>
+                                        <mfrac>
+                                            <mfrac>
+                                                <mrow>
+                                                    <mo>
+                                                        <mi mathvariant="normal">f</mi>
+                                                    </mo>
+                                                    <mo stretchy="false">(</mo>
+                                                    <msub>
+                                                        <mi>X</mi>
+                                                        <mi>i</mi>
+                                                    </msub>
+                                                    <mo stretchy="false">)</mo>
+                                                </mrow>
+                                                <msub>
+                                                    <mrow>
+                                                        <mi mathvariant="normal">∥</mi>
+                                                        <mi>f</mi>
+                                                        <mi mathvariant="normal">∥</mi>
+                                                    </mrow>
+                                                    <msup>
+                                                        <mi>L</mi>
+                                                        <mn>1</mn>
+                                                    </msup>
+                                                </msub>
+                                            </mfrac>
+                                            <mrow>
+                                                <mo>
+                                                    <mi mathvariant="normal">p</mi>
+                                                </mo>
+                                                <mo stretchy="false">(</mo>
+                                                <msub>
+                                                    <mi>X</mi>
+                                                    <mi>i</mi>
+                                                </msub>
+                                                <mo stretchy="false">)</mo>
+                                            </mrow>
+                                        </mfrac>
+                                        <msub>
+                                            <mrow>
+                                                <mi mathvariant="normal">∥</mi>
+                                                <mi>f</mi>
+                                                <mi mathvariant="normal">∥</mi>
+                                            </mrow>
+                                            <msup>
+                                                <mi>L</mi>
+                                                <mn>1</mn>
+                                            </msup>
+                                        </msub>
+                                        <mo>=</mo>
+                                        <mfrac>
+                                            <mn>1</mn>
+                                            <mi>n</mi>
+                                        </mfrac>
+                                        <munderover>
+                                            <mo>∑</mo>
+                                            <mrow>
+                                                <mi>i</mi>
+                                                <mo>=</mo>
+                                                <mn>1</mn>
+                                            </mrow>
+                                            <mi>n</mi>
+                                        </munderover>
+                                        <mfrac>
+                                            <mrow>
+                                                <mo>
+                                                    <mi mathvariant="normal">f</mi>
+                                                </mo>
+                                                <mo stretchy="false">(</mo>
+                                                <msub>
+                                                    <mi>X</mi>
+                                                    <mi>i</mi>
+                                                </msub>
+                                                <mo stretchy="false">)</mo>
+                                            </mrow>
+                                            <mrow>
+                                                <mo>
+                                                    <mi mathvariant="normal">p</mi>
+                                                </mo>
+                                                <mo stretchy="false">(</mo>
+                                                <msub>
+                                                    <mi>X</mi>
+                                                    <mi>i</mi>
+                                                </msub>
+                                                <mo stretchy="false">)</mo>
+                                            </mrow>
+                                        </mfrac>
+                                    </mstyle>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\displaystyle \int \mathop{\mathrm{f}} (x) \,
+                                    dx = \int \mathop{\mathrm{t}} (x) \mathop{\mathrm{r}} (x) \, dx \approx \frac{1}{n}
+                                    \sum_{i=1}^n \frac{\mathop{\mathrm{t}} (X_i)}{\mathop{\mathrm{p}} (X_i)}
+                                    \mathop{\mathrm{r}} (X_i) = \frac{1}{n} \sum_{i=1}^n \frac{\frac{\mathop{\mathrm{f}}
+                                    (X_i)}{{\| f \|}_{L^1}}}{\mathop{\mathrm{p}} (X_i)} {\| f \|}_{L^1} = \frac{1}{n}
+                                    \sum_{i=1}^n \frac{\mathop{\mathrm{f}} (X_i)}{\mathop{\mathrm{p}} (X_i)}
+                                </annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:2.22225em;vertical-align:-0.86225em;"></span><span
+                                class="mop op-symbol large-op"
+                                style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span
+                                class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                                class="mop mathrm"
+                                style="margin-right:0.07778em;position:relative;top:0.09721999999999997em;">f</span><span
+                                class="mopen">(</span><span class="mord mathnormal">x</span><span
+                                class="mclose">)</span><span class="mspace"
+                                style="margin-right:0.16666666666666666em;"></span><span
+                                class="mord mathnormal">d</span><span class="mord mathnormal">x</span><span
+                                class="mspace" style="margin-right:0.2777777777777778em;"></span><span
+                                class="mrel">=</span><span class="mspace"
+                                style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+                                class="strut" style="height:2.22225em;vertical-align:-0.86225em;"></span><span
+                                class="mop op-symbol large-op"
+                                style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span
+                                class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                                class="mop mathrm" style="position:relative;top:0.05753999999999998em;">t</span><span
+                                class="mopen">(</span><span class="mord mathnormal">x</span><span
+                                class="mclose">)</span><span class="mspace"
+                                style="margin-right:0.16666666666666666em;"></span><span class="mop mathrm"
+                                style="position:relative;top:-0.03472em;">r</span><span class="mopen">(</span><span
+                                class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace"
+                                style="margin-right:0.16666666666666666em;"></span><span
+                                class="mord mathnormal">d</span><span class="mord mathnormal">x</span><span
+                                class="mspace" style="margin-right:0.2777777777777778em;"></span><span
+                                class="mrel">≈</span><span class="mspace"
+                                style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+                                class="strut" style="height:2.929066em;vertical-align:-1.277669em;"></span><span
+                                class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                        class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                style="height:1.32144em;"><span style="top:-2.314em;"><span
+                                                        class="pstrut" style="height:3em;"></span><span
+                                                        class="mord"><span
+                                                            class="mord mathnormal">n</span></span></span><span
+                                                    style="top:-3.23em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="frac-line"
+                                                        style="border-bottom-width:0.04em;"></span></span><span
+                                                    style="top:-3.677em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="mord"><span
+                                                            class="mord">1</span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:0.686em;"><span></span></span></span></span></span><span
+                                    class="mclose nulldelimiter"></span></span><span class="mspace"
+                                style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.6513970000000002em;"><span
+                                                style="top:-1.872331em;margin-left:0em;"><span class="pstrut"
+                                                    style="height:3.05em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight"><span
+                                                            class="mord mathnormal mtight">i</span><span
+                                                            class="mrel mtight">=</span><span
+                                                            class="mord mtight">1</span></span></span></span><span
+                                                style="top:-3.050005em;"><span class="pstrut"
+                                                    style="height:3.05em;"></span><span><span
+                                                        class="mop op-symbol large-op">∑</span></span></span><span
+                                                style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut"
+                                                    style="height:3.05em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathnormal mtight">n</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:1.277669em;"><span></span></span></span></span></span><span
+                                class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                                class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                        class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="mord"><span
+                                                            class="mop mathrm"
+                                                            style="position:relative;top:-0.13194em;">p</span><span
+                                                            class="mopen">(</span><span class="mord"><span
+                                                                class="mord mathnormal"
+                                                                style="margin-right:0.07847em;">X</span><span
+                                                                class="msupsub"><span class="vlist-t vlist-t2"><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.31166399999999994em;"><span
+                                                                                style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:2.7em;"></span><span
+                                                                                    class="sizing reset-size6 size3 mtight"><span
+                                                                                        class="mord mathnormal mtight">i</span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
+                                                            class="mclose">)</span></span></span><span
+                                                    style="top:-3.23em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="frac-line"
+                                                        style="border-bottom-width:0.04em;"></span></span><span
+                                                    style="top:-3.677em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="mord"><span
+                                                            class="mop mathrm"
+                                                            style="position:relative;top:0.05753999999999998em;">t</span><span
+                                                            class="mopen">(</span><span class="mord"><span
+                                                                class="mord mathnormal"
+                                                                style="margin-right:0.07847em;">X</span><span
+                                                                class="msupsub"><span class="vlist-t vlist-t2"><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.31166399999999994em;"><span
+                                                                                style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:2.7em;"></span><span
+                                                                                    class="sizing reset-size6 size3 mtight"><span
+                                                                                        class="mord mathnormal mtight">i</span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
+                                                            class="mclose">)</span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:0.936em;"><span></span></span></span></span></span><span
+                                    class="mclose nulldelimiter"></span></span><span class="mspace"
+                                style="margin-right:0.16666666666666666em;"></span><span class="mop mathrm"
+                                style="position:relative;top:-0.03472em;">r</span><span class="mopen">(</span><span
+                                class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span
+                                    class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                class="vlist" style="height:0.31166399999999994em;"><span
+                                                    style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span
+                                                        class="pstrut" style="height:2.7em;"></span><span
+                                                        class="sizing reset-size6 size3 mtight"><span
+                                                            class="mord mathnormal mtight">i</span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:0.15em;"><span></span></span></span></span></span></span><span
+                                class="mclose">)</span><span class="mspace"
+                                style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                                class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                            class="base"><span class="strut"
+                                style="height:3.250529em;vertical-align:-1.277669em;"></span><span class="mord"><span
+                                    class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                        class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                style="height:1.32144em;"><span style="top:-2.314em;"><span
+                                                        class="pstrut" style="height:3em;"></span><span
+                                                        class="mord"><span
+                                                            class="mord mathnormal">n</span></span></span><span
+                                                    style="top:-3.23em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="frac-line"
+                                                        style="border-bottom-width:0.04em;"></span></span><span
+                                                    style="top:-3.677em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="mord"><span
+                                                            class="mord">1</span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:0.686em;"><span></span></span></span></span></span><span
+                                    class="mclose nulldelimiter"></span></span><span class="mspace"
+                                style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.6513970000000002em;"><span
+                                                style="top:-1.872331em;margin-left:0em;"><span class="pstrut"
+                                                    style="height:3.05em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight"><span
+                                                            class="mord mathnormal mtight">i</span><span
+                                                            class="mrel mtight">=</span><span
+                                                            class="mord mtight">1</span></span></span></span><span
+                                                style="top:-3.050005em;"><span class="pstrut"
+                                                    style="height:3.05em;"></span><span><span
+                                                        class="mop op-symbol large-op">∑</span></span></span><span
+                                                style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut"
+                                                    style="height:3.05em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathnormal mtight">n</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:1.277669em;"><span></span></span></span></span></span><span
+                                class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                                class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                        class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                style="height:1.9728599999999998em;"><span style="top:-2.324em;"><span
+                                                        class="pstrut" style="height:3.01em;"></span><span
+                                                        class="mord"><span class="mop mathrm"
+                                                            style="position:relative;top:-0.13194em;">p</span><span
+                                                            class="mopen">(</span><span class="mord"><span
+                                                                class="mord mathnormal"
+                                                                style="margin-right:0.07847em;">X</span><span
+                                                                class="msupsub"><span class="vlist-t vlist-t2"><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.31166399999999994em;"><span
+                                                                                style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:2.7em;"></span><span
+                                                                                    class="sizing reset-size6 size3 mtight"><span
+                                                                                        class="mord mathnormal mtight">i</span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
+                                                            class="mclose">)</span></span></span><span
+                                                    style="top:-3.2399999999999998em;"><span class="pstrut"
+                                                        style="height:3.01em;"></span><span class="frac-line"
+                                                        style="border-bottom-width:0.04em;"></span></span><span
+                                                    style="top:-3.97286em;"><span class="pstrut"
+                                                        style="height:3.01em;"></span><span class="mord"><span
+                                                            class="mord"><span class="mopen nulldelimiter"></span><span
+                                                                class="mfrac"><span class="vlist-t vlist-t2"><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:1.01em;"><span
+                                                                                style="top:-2.655em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="sizing reset-size6 size3 mtight"><span
+                                                                                        class="mord mtight"><span
+                                                                                            class="mord mtight"><span
+                                                                                                class="mord mtight"><span
+                                                                                                    class="mord mtight">∥</span><span
+                                                                                                    class="mord mathnormal mtight"
+                                                                                                    style="margin-right:0.10764em;">f</span><span
+                                                                                                    class="mord mtight">∥</span></span><span
+                                                                                                class="msupsub"><span
+                                                                                                    class="vlist-t vlist-t2"><span
+                                                                                                        class="vlist-r"><span
+                                                                                                            class="vlist"
+                                                                                                            style="height:0.3448em;"><span
+                                                                                                                style="top:-2.3447999999999998em;margin-right:0.07142857142857144em;"><span
+                                                                                                                    class="pstrut"
+                                                                                                                    style="height:2.6703142857142854em;"></span><span
+                                                                                                                    class="sizing reset-size3 size1 mtight"><span
+                                                                                                                        class="mord mtight"><span
+                                                                                                                            class="mord mtight"><span
+                                                                                                                                class="mord mathnormal mtight">L</span><span
+                                                                                                                                class="msupsub"><span
+                                                                                                                                    class="vlist-t"><span
+                                                                                                                                        class="vlist-r"><span
+                                                                                                                                            class="vlist"
+                                                                                                                                            style="height:0.9384399999999999em;"><span
+                                                                                                                                                style="top:-2.93844em;margin-right:0.1em;"><span
+                                                                                                                                                    class="pstrut"
+                                                                                                                                                    style="height:2.64444em;"></span><span
+                                                                                                                                                    class="mord mtight">1</span></span></span></span></span></span></span></span></span></span></span><span
+                                                                                                            class="vlist-s">​</span></span><span
+                                                                                                        class="vlist-r"><span
+                                                                                                            class="vlist"
+                                                                                                            style="height:0.32551428571428564em;"><span></span></span></span></span></span></span></span></span></span><span
+                                                                                style="top:-3.23em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="frac-line"
+                                                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                                                style="top:-3.485em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="sizing reset-size6 size3 mtight"><span
+                                                                                        class="mord mtight"><span
+                                                                                            class="mop mathrm mtight"
+                                                                                            style="margin-right:0.07778em;position:relative;top:0.09721999999999997em;">f</span><span
+                                                                                            class="mopen mtight">(</span><span
+                                                                                            class="mord mtight"><span
+                                                                                                class="mord mathnormal mtight"
+                                                                                                style="margin-right:0.07847em;">X</span><span
+                                                                                                class="msupsub"><span
+                                                                                                    class="vlist-t vlist-t2"><span
+                                                                                                        class="vlist-r"><span
+                                                                                                            class="vlist"
+                                                                                                            style="height:0.3280857142857143em;"><span
+                                                                                                                style="top:-2.357em;margin-left:-0.07847em;margin-right:0.07142857142857144em;"><span
+                                                                                                                    class="pstrut"
+                                                                                                                    style="height:2.5em;"></span><span
+                                                                                                                    class="sizing reset-size3 size1 mtight"><span
+                                                                                                                        class="mord mathnormal mtight">i</span></span></span></span><span
+                                                                                                            class="vlist-s">​</span></span><span
+                                                                                                        class="vlist-r"><span
+                                                                                                            class="vlist"
+                                                                                                            style="height:0.143em;"><span></span></span></span></span></span></span><span
+                                                                                            class="mclose mtight">)</span></span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.5728599999999999em;"><span></span></span></span></span></span><span
+                                                                class="mclose nulldelimiter"></span></span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:0.936em;"><span></span></span></span></span></span><span
+                                    class="mclose nulldelimiter"></span></span><span class="mord"><span
+                                    class="mord"><span class="mord">∥</span><span class="mord mathnormal"
+                                        style="margin-right:0.10764em;">f</span><span class="mord">∥</span></span><span
+                                    class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                class="vlist" style="height:0.22272000000000003em;"><span
+                                                    style="top:-2.4003em;margin-right:0.05em;"><span class="pstrut"
+                                                        style="height:2.7em;"></span><span
+                                                        class="sizing reset-size6 size3 mtight"><span
+                                                            class="mord mtight"><span class="mord mtight"><span
+                                                                    class="mord mathnormal mtight">L</span><span
+                                                                    class="msupsub"><span class="vlist-t"><span
+                                                                            class="vlist-r"><span class="vlist"
+                                                                                style="height:0.7463142857142857em;"><span
+                                                                                    style="top:-2.786em;margin-right:0.07142857142857144em;"><span
+                                                                                        class="pstrut"
+                                                                                        style="height:2.5em;"></span><span
+                                                                                        class="sizing reset-size3 size1 mtight"><span
+                                                                                            class="mord mtight">1</span></span></span></span></span></span></span></span></span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:0.29969999999999997em;"><span></span></span></span></span></span></span><span
+                                class="mspace" style="margin-right:0.2777777777777778em;"></span><span
+                                class="mrel">=</span><span class="mspace"
+                                style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+                                class="strut" style="height:2.929066em;vertical-align:-1.277669em;"></span><span
+                                class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                        class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                style="height:1.32144em;"><span style="top:-2.314em;"><span
+                                                        class="pstrut" style="height:3em;"></span><span
+                                                        class="mord"><span
+                                                            class="mord mathnormal">n</span></span></span><span
+                                                    style="top:-3.23em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="frac-line"
+                                                        style="border-bottom-width:0.04em;"></span></span><span
+                                                    style="top:-3.677em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="mord"><span
+                                                            class="mord">1</span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:0.686em;"><span></span></span></span></span></span><span
+                                    class="mclose nulldelimiter"></span></span><span class="mspace"
+                                style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.6513970000000002em;"><span
+                                                style="top:-1.872331em;margin-left:0em;"><span class="pstrut"
+                                                    style="height:3.05em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight"><span
+                                                            class="mord mathnormal mtight">i</span><span
+                                                            class="mrel mtight">=</span><span
+                                                            class="mord mtight">1</span></span></span></span><span
+                                                style="top:-3.050005em;"><span class="pstrut"
+                                                    style="height:3.05em;"></span><span><span
+                                                        class="mop op-symbol large-op">∑</span></span></span><span
+                                                style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut"
+                                                    style="height:3.05em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathnormal mtight">n</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:1.277669em;"><span></span></span></span></span></span><span
+                                class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                                class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                        class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="mord"><span
+                                                            class="mop mathrm"
+                                                            style="position:relative;top:-0.13194em;">p</span><span
+                                                            class="mopen">(</span><span class="mord"><span
+                                                                class="mord mathnormal"
+                                                                style="margin-right:0.07847em;">X</span><span
+                                                                class="msupsub"><span class="vlist-t vlist-t2"><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.31166399999999994em;"><span
+                                                                                style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:2.7em;"></span><span
+                                                                                    class="sizing reset-size6 size3 mtight"><span
+                                                                                        class="mord mathnormal mtight">i</span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
+                                                            class="mclose">)</span></span></span><span
+                                                    style="top:-3.23em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="frac-line"
+                                                        style="border-bottom-width:0.04em;"></span></span><span
+                                                    style="top:-3.677em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="mord"><span
+                                                            class="mop mathrm"
+                                                            style="margin-right:0.07778em;position:relative;top:0.09721999999999997em;">f</span><span
+                                                            class="mopen">(</span><span class="mord"><span
+                                                                class="mord mathnormal"
+                                                                style="margin-right:0.07847em;">X</span><span
+                                                                class="msupsub"><span class="vlist-t vlist-t2"><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.31166399999999994em;"><span
+                                                                                style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:2.7em;"></span><span
+                                                                                    class="sizing reset-size6 size3 mtight"><span
+                                                                                        class="mord mathnormal mtight">i</span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
+                                                            class="mclose">)</span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:0.936em;"><span></span></span></span></span></span><span
+                                    class="mclose nulldelimiter"></span></span></span></span></span></eq> where the norm
+            <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle scriptlevel="0" displaystyle="true">
+                                        <msub>
+                                            <mrow>
+                                                <mi mathvariant="normal">∥</mi>
+                                                <mi>f</mi>
+                                                <mi mathvariant="normal">∥</mi>
+                                            </mrow>
+                                            <msup>
+                                                <mi>L</mi>
+                                                <mn>1</mn>
+                                            </msup>
+                                        </msub>
+                                    </mstyle>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\displaystyle {\| f \|}_{L^1}</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:1.0497em;vertical-align:-0.29969999999999997em;"></span><span
+                                class="mord"><span class="mord"><span class="mord">∥</span><span class="mord mathnormal"
+                                        style="margin-right:0.10764em;">f</span><span class="mord">∥</span></span><span
+                                    class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                class="vlist" style="height:0.22272000000000003em;"><span
+                                                    style="top:-2.4003em;margin-right:0.05em;"><span class="pstrut"
+                                                        style="height:2.7em;"></span><span
+                                                        class="sizing reset-size6 size3 mtight"><span
+                                                            class="mord mtight"><span class="mord mtight"><span
+                                                                    class="mord mathnormal mtight">L</span><span
+                                                                    class="msupsub"><span class="vlist-t"><span
+                                                                            class="vlist-r"><span class="vlist"
+                                                                                style="height:0.7463142857142857em;"><span
+                                                                                    style="top:-2.786em;margin-right:0.07142857142857144em;"><span
+                                                                                        class="pstrut"
+                                                                                        style="height:2.5em;"></span><span
+                                                                                        class="sizing reset-size3 size1 mtight"><span
+                                                                                            class="mord mtight">1</span></span></span></span></span></span></span></span></span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:0.29969999999999997em;"><span></span></span></span></span></span></span></span></span></span>
+            </eq> is the constant.
+        </p>
+    </blockquote>
+    <p dir="auto"><a
+            href="https://pbr-book.org/4ed/Monte_Carlo_Integration/Improving_Efficiency#ImportanceSampling">&quot;2.2.2
+            Importance Sampling&quot;</a> of &quot;PBR Book V4&quot;<br>
+        <a href="https://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling">13.10 Importance
+            Sampling</a> of &quot;PBR Book V3&quot;
+    </p>
+    <p dir="auto">&quot;The only limitation on p(x) is that it must be nonzero for all x where | f(x) | &gt; 0 (namely
+        f(x) \ne 0)&quot; // actually // otherwise the estimator will NOT be unbiased</p>
+    <p dir="auto">[Wyman 2023] supports<br>
+        \mathop{\mathrm{supp}}(f) // set of all x where f(x) \ne 0<br>
+        \mathop{\mathrm{supp}}(X) // set of all values x it can take with p(x) &gt; 0 // namely p(x) \ne 0 // p(x) can
+        Not &lt; 0<br>
+        \mathop{\mathrm{supp}}(X) \subset \mathop{\mathrm{supp}}(f) // to be unbiased</p>
+    <p dir="auto">when PDF proportional to f(x) \propt // variance zero // we can use only one sample // called
+        &quot;perfect important sampling&quot;</p>
+    <p dir="auto"><img src="Reservoir-Based-SpatioTemporal-Importance-Resampling-Importance-Sampling.png" alt=""
+            data-src="Reservoir-Based-SpatioTemporal-Importance-Resampling-Importance-Sampling.png"></p>
+    <h2 dir="auto" id="mis-multiple-importance-sampling">MIS (Multiple Importance Sampling)</h2>
+    <p dir="auto"><a
+            href="https://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling#MultipleImportanceSampling">&quot;13.10.1
+            Multiple Importance Sampling&quot;</a> of &quot;PBR Book V3&quot;<br>
+        <a href="https://pbr-book.org/4ed/Monte_Carlo_Integration/Improving_Efficiency#MultipleImportanceSampling">&quot;2.2.3
+            Multiple Importance Sampling&quot;</a> of &quot;PBR Book V4&quot;
+    </p>
+    <p dir="auto">// example // balance heuristic</p>
+    <p dir="auto">// balance heuristic // one pdf = 0 // not all pdf = 0 // weight not zero</p>
+    <p dir="auto">// the domain one pdf not cover f(x) will not be detrimental</p>
+    <p dir="auto">// the union of the domains of all pdfs cover f(x) // enough</p>
+    <p dir="auto"><img src="Reservoir-Based-SpatioTemporal-Importance-Resampling-Multiple-Importance-Sampling.png"
+            alt="" data-src="Reservoir-Based-SpatioTemporal-Importance-Resampling-Multiple-Importance-Sampling.png"></p>
+    <p dir="auto">// TODO: \sum \mathop\mathrm w (x) = 1 // across all proposal distributions not all sample<br>
+        // Perhaps not necessary to be unbiased</p>
+    <p dir="auto">// TODO: \mathop\mathrm w_i = 0 when \mathop\mathrm p_k (x) = 0 for all k proposal distributions //
+        but actually such sample x will not be generated</p>
     <h2 dir="auto" id="reservoir-sampling">Reservoir Sampling</h2>
     <h3 dir="auto" id="basic-reservoir-sampling">Basic Reservoir Sampling</h3>
-    <p dir="auto">By &quot;A.2 Reservoir Sampling&quot; of <a
-            href="https://www.pbr-book.org/4ed/Sampling_Algorithms/Reservoir_Sampling#">PBR Book V4</a>, we have the
-        <strong>basic reservoir sampling</strong>.
-    </p>
+    <p dir="auto">By <a href="https://www.pbr-book.org/4ed/Sampling_Algorithms/Reservoir_Sampling#">&quot;A.2 Reservoir
+            Sampling&quot;</a> of &quot;PBR Book V4&quot;, we have the <strong>basic reservoir sampling</strong>.</p>
     <p dir="auto">We sequentially process each <strong>sample</strong> from the <strong>stream</strong>. The total
         length of the <strong>stream</strong> can indeed be infinite which is too large to be stored in the memory.</p>
     <p dir="auto">We assume that we have processed <strong>n</strong> <strong>samples</strong>. This means that the
@@ -475,6 +2508,25 @@
                 included in the final <strong>reservoir</strong> at (k + 1)-th iteration.</p>
         </blockquote>
     </blockquote>
+    <h2 dir="auto" id="ris-resampled-importance-sampling--sampling-importance-resampling-sir">RIS (Resampled Importance
+        Sampling) / Sampling Importance Resampling (SIR)</h2>
+    <p dir="auto">&quot;Exercise 5.65&quot; of &quot;Statistic Inference&quot;</p>
+    <p dir="auto">[Wyman 2023]</p>
+    <p dir="auto">generate M samples as per PDF p(x)<br>
+        choose one sample X_i from these M samples proportional to w_i // P = \frac{w_i}{\sum_n=1^M w_n}<br>
+        W_X unbiased contribution weight (estimate of (\frac{1}{M} f(x)?) 1/p(x)) // I = f(X) W_x = \frac{1}{M} f(x)
+        \frac{1}{\mathop{\mathrm{p}}(x)}<br>
+        // target function: \mathop{\mathrm{\hat{p}}}(X)<br>
+        w_i = \frac{1}{M} \frac{\mathop{\mathrm{\hat{p}}}(X_i)}{\mathop{\mathrm{p}}(X_i)}<br>
+        W_X = \frac{1}{\mathop{\mathrm{\hat{p}}}(X)} \sum_{i=1}^M w_i<br>
+        // out PDF is p(X) = \frac{\mathop{\mathrm{\hat{p}}}(X)}{\int \mathop{\mathrm{\hat{p}}}(X)}<br>
+        // target function = f(x) // output PDF approaches perfect importance samping<br>
+        // not practical // we should use calculate integral first to generate M samples as per the PDF<br>
+        // approximate perfect importance samping</p>
+    <p dir="auto">produces samples approximately proportionally to a target distribution</p>
+    <p dir="auto">target function vs target PDF<br>
+        PDF normalized (integrate to 1)</p>
+    <h2 dir="auto" id="spatiotemporal-reuse">SpatioTemporal Reuse</h2>
     <h2 dir="auto" id="references">References</h2>
     <p dir="auto">[Wyman 2023] <a href="https://intro-to-restir.cwyman.org/">Chris Wyman, Markus Kettunen, Daqi Lin,
             Benedikt Bitterli, Cem Yuksel, Wojciech Jarosz, Pawel Kozlowski, Giovanni Francesco. &quot;A Gentle
