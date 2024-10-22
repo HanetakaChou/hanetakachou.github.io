@@ -10,9 +10,9 @@
 </head>
 
 <body class="markdown-body">
-    <h1 dir="auto" id="restir-reservoir-based-spatiotemporal-importance-resampling">ReSTIR (Reservoir-Based
+    <h1 dir="auto" id="restir-reservoir-based-spatiotemporal-importance-resampling-1">ReSTIR (Reservoir-Based
         SpatioTemporal Importance Resampling)</h1>
-    <h2 dir="auto" id="importance-sampling">Importance Sampling</h2>
+    <h2 dir="auto" id="importance-sampling-1">Importance Sampling</h2>
     <p dir="auto">By &quot;Exercise 5.64&quot; of <a href="https://archived.stat.ufl.edu/casella/">&quot;Statistic
             Inference 2nd Edition&quot;</a>, we have the <strong>importance sampling</strong> estimator <eq><span
                 class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -197,8 +197,7 @@
                                             style="height:0.15em;"><span></span></span></span></span></span></span><span
                             class="mclose">)</span></span></span></span></eq> where the t is the <strong>target
             distribution</strong>, the r is any function, and the n <strong>samples</strong> X_i are generated from the
-        <strong>proposal distribution</strong> p.
-    </p>
+        <strong>proposal distribution</strong> p.</p>
     <blockquote dir="auto">
         <p dir="auto">Unbiased</p>
         <blockquote dir="auto">
@@ -710,7 +709,7 @@
                                                     </mo>
                                                     <mo stretchy="false">(</mo>
                                                     <msub>
-                                                        <mi>Y</mi>
+                                                        <mi>X</mi>
                                                         <mi>i</mi>
                                                     </msub>
                                                     <mo stretchy="false">)</mo>
@@ -721,7 +720,7 @@
                                                     </mo>
                                                     <mo stretchy="false">(</mo>
                                                     <msub>
-                                                        <mi>Y</mi>
+                                                        <mi>X</mi>
                                                         <mi>i</mi>
                                                     </msub>
                                                     <mo stretchy="false">)</mo>
@@ -764,7 +763,7 @@
                                                             <mi mathvariant="normal">t</mi>
                                                         </mo>
                                                         <mo stretchy="false">(</mo>
-                                                        <mi>Y</mi>
+                                                        <mi>X</mi>
                                                         <mo stretchy="false">)</mo>
                                                     </mrow>
                                                     <mrow>
@@ -772,7 +771,7 @@
                                                             <mi mathvariant="normal">p</mi>
                                                         </mo>
                                                         <mo stretchy="false">(</mo>
-                                                        <mi>Y</mi>
+                                                        <mi>X</mi>
                                                         <mo stretchy="false">)</mo>
                                                     </mrow>
                                                 </mfrac>
@@ -780,7 +779,7 @@
                                                     <mi mathvariant="normal">r</mi>
                                                 </mo>
                                                 <mo stretchy="false">(</mo>
-                                                <mi>Y</mi>
+                                                <mi>X</mi>
                                                 <mo stretchy="false">)</mo>
                                                 <mo fence="true">)</mo>
                                             </mrow>
@@ -804,10 +803,10 @@
                                         </mstyle>
                                     </mrow>
                                     <annotation encoding="application/x-tex">\displaystyle \lim \limits_{n \to \infty}
-                                        \frac{1}{n} \sum_{i=1}^n \frac{\mathop{\mathrm{t}} (Y_i)}{\mathop{\mathrm{p}}
-                                        (Y_i)} \mathop{\mathrm{r}} (Y_i) = \mathop{\mathrm{E_p}} \left( \frac{1}{n}
-                                        \sum_{i=1}^n \frac{\mathop{\mathrm{t}} (Y)}{\mathop{\mathrm{p}} (Y)}
-                                        \mathop{\mathrm{r}} (Y) \right) = \int \mathop{\mathrm{t}} (x)
+                                        \frac{1}{n} \sum_{i=1}^n \frac{\mathop{\mathrm{t}} (X_i)}{\mathop{\mathrm{p}}
+                                        (X_i)} \mathop{\mathrm{r}} (Y_i) = \mathop{\mathrm{E_p}} \left( \frac{1}{n}
+                                        \sum_{i=1}^n \frac{\mathop{\mathrm{t}} (X)}{\mathop{\mathrm{p}} (X)}
+                                        \mathop{\mathrm{r}} (X) \right) = \int \mathop{\mathrm{t}} (x)
                                         \mathop{\mathrm{r}} (x) \, dx</annotation>
                                 </semantics>
                             </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
@@ -871,11 +870,11 @@
                                                                 style="position:relative;top:-0.13194em;">p</span><span
                                                                 class="mopen">(</span><span class="mord"><span
                                                                     class="mord mathnormal"
-                                                                    style="margin-right:0.22222em;">Y</span><span
+                                                                    style="margin-right:0.07847em;">X</span><span
                                                                     class="msupsub"><span class="vlist-t vlist-t2"><span
                                                                             class="vlist-r"><span class="vlist"
                                                                                 style="height:0.31166399999999994em;"><span
-                                                                                    style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span
+                                                                                    style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span
                                                                                         class="pstrut"
                                                                                         style="height:2.7em;"></span><span
                                                                                         class="sizing reset-size6 size3 mtight"><span
@@ -893,11 +892,11 @@
                                                                 style="position:relative;top:0.05753999999999998em;">t</span><span
                                                                 class="mopen">(</span><span class="mord"><span
                                                                     class="mord mathnormal"
-                                                                    style="margin-right:0.22222em;">Y</span><span
+                                                                    style="margin-right:0.07847em;">X</span><span
                                                                     class="msupsub"><span class="vlist-t vlist-t2"><span
                                                                             class="vlist-r"><span class="vlist"
                                                                                 style="height:0.31166399999999994em;"><span
-                                                                                    style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span
+                                                                                    style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span
                                                                                         class="pstrut"
                                                                                         style="height:2.7em;"></span><span
                                                                                         class="sizing reset-size6 size3 mtight"><span
@@ -985,7 +984,7 @@
                                                                 class="mord"><span class="mop mathrm"
                                                                     style="position:relative;top:-0.13194em;">p</span><span
                                                                     class="mopen">(</span><span class="mord mathnormal"
-                                                                    style="margin-right:0.22222em;">Y</span><span
+                                                                    style="margin-right:0.07847em;">X</span><span
                                                                     class="mclose">)</span></span></span><span
                                                             style="top:-3.23em;"><span class="pstrut"
                                                                 style="height:3em;"></span><span class="frac-line"
@@ -995,7 +994,7 @@
                                                                     class="mop mathrm"
                                                                     style="position:relative;top:0.05753999999999998em;">t</span><span
                                                                     class="mopen">(</span><span class="mord mathnormal"
-                                                                    style="margin-right:0.22222em;">Y</span><span
+                                                                    style="margin-right:0.07847em;">X</span><span
                                                                     class="mclose">)</span></span></span></span><span
                                                         class="vlist-s">​</span></span><span class="vlist-r"><span
                                                         class="vlist"
@@ -1004,7 +1003,7 @@
                                         style="margin-right:0.16666666666666666em;"></span><span class="mop mathrm"
                                         style="position:relative;top:-0.03472em;">r</span><span
                                         class="mopen">(</span><span class="mord mathnormal"
-                                        style="margin-right:0.22222em;">Y</span><span class="mclose">)</span><span
+                                        style="margin-right:0.07847em;">X</span><span class="mclose">)</span><span
                                         class="mclose delimcenter" style="top:0em;"><span
                                             class="delimsizing size4">)</span></span></span><span class="mspace"
                                     style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
@@ -1183,8 +1182,7 @@
                                             style="height:0.936em;"><span></span></span></span></span></span><span
                                 class="mclose nulldelimiter"></span></span></span></span></span></eq> where the n
         <strong>samples</strong> X_i are generated from the <strong>proposal distribution</strong> p, and the f is any
-        function.
-    </p>
+        function.</p>
     <blockquote dir="auto">
         <p dir="auto">When <eq><span class="katex"><span class="katex-mathml"><math
                             xmlns="http://www.w3.org/1998/Math/MathML">
@@ -2010,8 +2008,7 @@
                                                                                             class="mord mtight">1</span></span></span></span></span></span></span></span></span></span></span></span><span
                                                 class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                                 style="height:0.29969999999999997em;"><span></span></span></span></span></span></span></span></span></span>
-            </eq> is the constant.
-        </p>
+            </eq> is the constant.</p>
     </blockquote>
     <p dir="auto"><a
             href="https://pbr-book.org/4ed/Monte_Carlo_Integration/Improving_Efficiency#ImportanceSampling">&quot;2.2.2
@@ -2030,7 +2027,7 @@
         &quot;perfect important sampling&quot;</p>
     <p dir="auto"><img src="Reservoir-Based-SpatioTemporal-Importance-Resampling-Importance-Sampling.png" alt=""
             data-src="Reservoir-Based-SpatioTemporal-Importance-Resampling-Importance-Sampling.png"></p>
-    <h2 dir="auto" id="mis-multiple-importance-sampling">MIS (Multiple Importance Sampling)</h2>
+    <h2 dir="auto" id="mis-multiple-importance-sampling-1">MIS (Multiple Importance Sampling)</h2>
     <p dir="auto"><a
             href="https://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling#MultipleImportanceSampling">&quot;13.10.1
             Multiple Importance Sampling&quot;</a> of &quot;PBR Book V3&quot;<br>
@@ -2047,8 +2044,8 @@
         // Perhaps not necessary to be unbiased</p>
     <p dir="auto">// TODO: \mathop\mathrm w_i = 0 when \mathop\mathrm p_k (x) = 0 for all k proposal distributions //
         but actually such sample x will not be generated</p>
-    <h2 dir="auto" id="reservoir-sampling">Reservoir Sampling</h2>
-    <h3 dir="auto" id="basic-reservoir-sampling">Basic Reservoir Sampling</h3>
+    <h2 dir="auto" id="reservoir-sampling-1">Reservoir Sampling</h2>
+    <h3 dir="auto" id="basic-reservoir-sampling-1">Basic Reservoir Sampling</h3>
     <p dir="auto">By <a href="https://www.pbr-book.org/4ed/Sampling_Algorithms/Reservoir_Sampling#">&quot;A.2 Reservoir
             Sampling&quot;</a> of &quot;PBR Book V4&quot;, we have the <strong>basic reservoir sampling</strong>.</p>
     <p dir="auto">We sequentially process each <strong>sample</strong> from the <strong>stream</strong>. The total
@@ -2087,8 +2084,7 @@
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
                                             style="height:0.686em;"><span></span></span></span></span></span><span
                                 class="mclose nulldelimiter"></span></span></span></span></span></eq> of selecting it to
-        replace the existing <strong>sample</strong> within the <strong>reservoir</strong>.
-    </p>
+        replace the existing <strong>sample</strong> within the <strong>reservoir</strong>.</p>
     <p dir="auto">We can prove by <strong>mathematical Induction</strong> that at any iteration, when we have processed
         n <strong>samples</strong>, each <strong>sample</strong> from the <strong>stream</strong> has the equal
         probability <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -2161,8 +2157,7 @@
                                 class="base"><span class="strut"
                                     style="height:0.64444em;vertical-align:0em;"></span><span
                                     class="mord">1</span></span></span></span></eq> of being included in the final
-                <strong>reservoir</strong>.
-            </p>
+                <strong>reservoir</strong>.</p>
         </blockquote>
         <p dir="auto">Inductive Step</p>
         <blockquote dir="auto">
@@ -2198,8 +2193,7 @@
                                                     class="vlist"
                                                     style="height:0.686em;"><span></span></span></span></span></span><span
                                         class="mclose nulldelimiter"></span></span></span></span></span></eq> of being
-                included in the final <strong>reservoir</strong>.
-            </p>
+                included in the final <strong>reservoir</strong>.</p>
             <p dir="auto">And we would like to prove that at the iteration, when we have processed n = k + 1
                 <strong>samples</strong>, each <strong>sample</strong> from the <strong>stream</strong> has the equal
                 probability <eq><span class="katex"><span class="katex-mathml"><math
@@ -2243,8 +2237,7 @@
                                                     class="vlist"
                                                     style="height:0.7693300000000001em;"><span></span></span></span></span></span><span
                                         class="mclose nulldelimiter"></span></span></span></span></span></eq> of being
-                included in the final <strong>reservoir</strong>.
-            </p>
+                included in the final <strong>reservoir</strong>.</p>
             <p dir="auto">Evidently, the (k + 1)-th <strong>seen sample</strong> has the probability <eq><span
                         class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                                 <semantics>
@@ -2508,8 +2501,8 @@
                 included in the final <strong>reservoir</strong> at (k + 1)-th iteration.</p>
         </blockquote>
     </blockquote>
-    <h2 dir="auto" id="ris-resampled-importance-sampling--sampling-importance-resampling-sir">RIS (Resampled Importance
-        Sampling) / Sampling Importance Resampling (SIR)</h2>
+    <h2 dir="auto" id="ris-resampled-importance-sampling--sampling-importance-resampling-sir-1">RIS (Resampled
+        Importance Sampling) / Sampling Importance Resampling (SIR)</h2>
     <p dir="auto">&quot;Exercise 5.65&quot; of &quot;Statistic Inference&quot;</p>
     <p dir="auto">[Wyman 2023]</p>
     <p dir="auto">generate M samples as per PDF p(x)<br>
@@ -2526,8 +2519,8 @@
     <p dir="auto">produces samples approximately proportionally to a target distribution</p>
     <p dir="auto">target function vs target PDF<br>
         PDF normalized (integrate to 1)</p>
-    <h2 dir="auto" id="spatiotemporal-reuse">SpatioTemporal Reuse</h2>
-    <h2 dir="auto" id="references">References</h2>
+    <h2 dir="auto" id="spatiotemporal-reuse-1">SpatioTemporal Reuse</h2>
+    <h2 dir="auto" id="references-1">References</h2>
     <p dir="auto">[Wyman 2023] <a href="https://intro-to-restir.cwyman.org/">Chris Wyman, Markus Kettunen, Daqi Lin,
             Benedikt Bitterli, Cem Yuksel, Wojciech Jarosz, Pawel Kozlowski, Giovanni Francesco. &quot;A Gentle
             Introduction to ReSTIR: Path Reuse in Real-time.&quot; SIGGRAPH 2023.</a></p>
