@@ -4,7 +4,7 @@
 
 ## Importance Sampling
 
-By "Exercise 5.64" of ["Statistic Inference 2nd Edition"](https://archived.stat.ufl.edu/casella/), we have the **importance sampling** estimator $\displaystyle \int \mathop{\mathrm{t}} (x) \mathop{\mathrm{r}} (x) \, dx \approx \frac{1}{n} \sum_{i=1}^n \frac{\mathop{\mathrm{t}} (X_i)}{\mathop{\mathrm{p}} (X_i)} \mathop{\mathrm{r}} (X_i)$ where the t is the **target distribution**, the r is any function, and the n **samples** X_i are generated from the **proposal distribution** p.  
+By "Exercise 5.64" of ["Statistic Inference 2nd Edition"](https://archived.stat.ufl.edu/casella/), we have the **importance sampling** estimator $\displaystyle \int \mathop{\mathrm{t}} (x) \mathop{\mathrm{r}} (x) \, dx \approx \frac{1}{n} \sum_{i=1}^n \frac{\mathop{\mathrm{t}} (X_i)}{\mathop{\mathrm{p}} (X_i)} \mathop{\mathrm{r}} (X_i)$ where the t is the **target distribution**, the r is any function, and the n **samples** $\displaystyle X_i$ are generated from the **proposal distribution** p.  
 
 > Unbiased  
 >>  
@@ -16,7 +16,10 @@ By "Exercise 5.64" of ["Statistic Inference 2nd Edition"](https://archived.stat.
 
 By ["13.2 The Monte Carlo Estimator"](https://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/The_Monte_Carlo_Estimator#) of "PBR Book V3" and ["2.1.3 The Monte Carlo Estimator"](https://pbr-book.org/4ed/Monte_Carlo_Integration/Monte_Carlo_Basics#TheMonteCarloEstimator) of "PBR Book V4", we have the **Monte Carlo** estimator $\displaystyle \int \mathop{\mathrm{f}} (x) \, dx \approx \frac{1}{n} \sum_{i=1}^n \frac{\mathop{\mathrm{f}} (X_i)}{\mathop{\mathrm{p}} (X_i)}$ where the n **samples** X_i are generated from the **proposal distribution** p, and the f is any function.  
 
-> When $\displaystyle \mathop{\mathrm{f}} (x) > 0$, by applying $\displaystyle \mathop{\mathrm{r}} (X) =  {\| f \|}_{L^1} = \int | \mathop{\mathrm{f}} (x) | \, dx = \int \mathop{\mathrm{f}} (x) \, dx$ and $\displaystyle \mathop{\mathrm{t}} (X) = \frac{\mathop{\mathrm{f}} (X)}{{\| f \|}_{L^1}}$ to the **importance sampling** estimator, we have the **Monte Carlo** estimator $\displaystyle \int \mathop{\mathrm{f}} (x) \, dx = \int \mathop{\mathrm{t}} (x) \mathop{\mathrm{r}} (x) \, dx \approx \frac{1}{n} \sum_{i=1}^n \frac{\mathop{\mathrm{t}} (X_i)}{\mathop{\mathrm{p}} (X_i)} \mathop{\mathrm{r}} (X_i) = \frac{1}{n} \sum_{i=1}^n \frac{\frac{\mathop{\mathrm{f}} (X_i)}{{\| f \|}_{L^1}}}{\mathop{\mathrm{p}} (X_i)} {\| f \|}_{L^1} = \frac{1}{n} \sum_{i=1}^n \frac{\mathop{\mathrm{f}} (X_i)}{\mathop{\mathrm{p}} (X_i)}$ where the norm $\displaystyle {\| f \|}_{L^1}$ is the constant.  
+>  
+>> For $\displaystyle \mathop{\mathrm{f}} (x) \ge 0$, by substituting the constant $\displaystyle \mathop{\mathrm{r}} (X) =  {\| f \|}_{L^1} = \int | \mathop{\mathrm{f}} (x) | \, dx = \int \mathop{\mathrm{f}} (x) \, dx$, and the normalized $\displaystyle \mathop{\mathrm{t}} (X) = \frac{\mathop{\mathrm{f}} (X)}{{\| f \|}_{L^1}}$ into the **importance sampling** estimator, we have the **Monte Carlo** estimator $\displaystyle \int \mathop{\mathrm{f}} (x) \, dx = \int \mathop{\mathrm{t}} (x) \mathop{\mathrm{r}} (x) \, dx \approx \frac{1}{n} \sum_{i=1}^n \frac{\mathop{\mathrm{t}} (X_i)}{\mathop{\mathrm{p}} (X_i)} \mathop{\mathrm{r}} (X_i) = \frac{1}{n} \sum_{i=1}^n \frac{\displaystyle \frac{\displaystyle \mathop{\mathrm{f}} (X_i)}{\displaystyle {\| f \|}_{L^1}}}{\displaystyle \mathop{\mathrm{p}} (X_i)} {\| f \|}_{L^1} = \frac{1}{n} \sum_{i=1}^n \frac{\mathop{\mathrm{f}} (X_i)}{\mathop{\mathrm{p}} (X_i)}$.  
+>  
+>> For more general case, we may split the integral into the positive part and the negative part, and calculate each part separately. 
 
 ["2.2.2 Importance Sampling"](https://pbr-book.org/4ed/Monte_Carlo_Integration/Improving_Efficiency#ImportanceSampling) of "PBR Book V4"  
 [13.10 Importance Sampling](https://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling) of "PBR Book V3"  
@@ -80,9 +83,14 @@ We can prove by **mathematical Induction** that at any iteration, when we have p
 >> For the previous k **seen samples**, they have the probability $\displaystyle \frac{1}{k}$ of being included in the final **reservoir** at k-th iteration. At the same time, they have the probability $\displaystyle 1 - \frac{1}{k + 1} = \frac{k}{k + 1}$ of NOT being replaced by the (k + 1)-th **seen sample** at (k + 1)-th iteration. This means that they have the probability $\displaystyle \frac{1}{k} \times \frac{k}{k + 1} = \frac{1}{k + 1}$ of being included in the final **reservoir** at (k + 1)-th iteration.  
 
 
-## RIS (Resampled Importance Sampling) / Sampling Importance Resampling (SIR)
+## Sampling Importance Resampling (SIR) / Weighted Bootstrap
 
-"Exercise 5.65" of "Statistic Inference"  
+By "Exercise 5.65" of ["Statistic Inference 2nd Edition"](https://archived.stat.ufl.edu/casella/), we have the **Sampling Importance Resampling (SIR)** / **Weighted Bootstrap** estimator $\displaystyle \int \mathop{\mathrm{t}} (x) \mathop{\mathrm{r}} (x) \, dx \approx \frac{1}{n} \sum_{j=1}^n \mathop{\mathrm{r}} (Y_j)$ where the  m **samples** $\displaystyle X_i$ are first generated from the **proposal distribution** p, and the n **samples** $\displaystyle Y_j$ are then generated from the **discrete distribution** on these m **samples** $\displaystyle X_i$ where the **PMF (Probability Mass Function)** is $\displaystyle  \mathop{\mathrm{P}} (Y = X_i) = w_i = \frac{\displaystyle \frac{\mathop{\mathrm{t}} (X_i)}{\mathop{\mathrm{p}} (X_i)}}{\displaystyle \sum_{k=1}^m \frac{\mathop{\mathrm{t}} (X_k)}{\mathop{\mathrm{p}} (X_k)}}$.  
+
+
+
+
+RIS (Resampled Importance Sampling)  
 
 \[Wyman 2023\]  
 
