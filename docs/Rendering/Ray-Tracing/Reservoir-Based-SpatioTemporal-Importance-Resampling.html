@@ -10,9 +10,9 @@
 </head>
 
 <body class="markdown-body">
-    <h1 dir="auto" id="restir-reservoir-based-spatiotemporal-importance-resampling-1">ReSTIR (Reservoir-Based
+    <h1 dir="auto" id="restir-reservoir-based-spatiotemporal-importance-resampling">ReSTIR (Reservoir-Based
         SpatioTemporal Importance Resampling)</h1>
-    <h2 dir="auto" id="importance-sampling-1">Importance Sampling</h2>
+    <h2 dir="auto" id="importance-sampling">Importance Sampling</h2>
     <p dir="auto">By &quot;Exercise 5.64&quot; of <a href="https://archived.stat.ufl.edu/casella/">&quot;Statistic
             Inference 2nd Edition&quot;</a>, we have the <strong>importance sampling</strong> estimator <eq><span
                 class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -726,7 +726,7 @@
         </blockquote>
         <p dir="auto">Consistent</p>
         <blockquote dir="auto">
-            <p dir="auto">By <strong>LLN (Law of large numbers)</strong>, we have <eq><span class="katex"><span
+            <p dir="auto">By <strong>LLN (Law of Large Numbers)</strong>, we have <eq><span class="katex"><span
                             class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                                 <semantics>
                                     <mrow>
@@ -1907,7 +1907,7 @@
         only one sample // called &quot;perfect important sampling&quot;</p>
     <p dir="auto"><img src="Reservoir-Based-SpatioTemporal-Importance-Resampling-Importance-Sampling.png" alt=""
             data-src="Reservoir-Based-SpatioTemporal-Importance-Resampling-Importance-Sampling.png"></p>
-    <h2 dir="auto" id="mis-multiple-importance-sampling-1">MIS (Multiple Importance Sampling)</h2>
+    <h2 dir="auto" id="mis-multiple-importance-sampling">MIS (Multiple Importance Sampling)</h2>
     <p dir="auto"><a
             href="https://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling#MultipleImportanceSampling">&quot;13.10.1
             Multiple Importance Sampling&quot;</a> of &quot;PBR Book V3&quot;<br>
@@ -1924,8 +1924,8 @@
         // Perhaps not necessary to be unbiased</p>
     <p dir="auto">// TODO: \mathop\mathrm w_i = 0 when \mathop\mathrm p_k (x) = 0 for all k proposal distributions //
         but actually such sample x will not be generated</p>
-    <h2 dir="auto" id="reservoir-sampling-1">Reservoir Sampling</h2>
-    <h3 dir="auto" id="basic-reservoir-sampling-1">Basic Reservoir Sampling</h3>
+    <h2 dir="auto" id="reservoir-sampling">Reservoir Sampling</h2>
+    <h3 dir="auto" id="basic-reservoir-sampling">Basic Reservoir Sampling</h3>
     <p dir="auto">By <a href="https://www.pbr-book.org/4ed/Sampling_Algorithms/Reservoir_Sampling#">&quot;A.2 Reservoir
             Sampling&quot;</a> of &quot;PBR Book V4&quot;, we have the <strong>basic reservoir sampling</strong>.</p>
     <p dir="auto">We sequentially process each <strong>sample</strong> from the <strong>stream</strong>. The total
@@ -2385,8 +2385,11 @@
                 included in the final <strong>reservoir</strong> at (k + 1)-th iteration.</p>
         </blockquote>
     </blockquote>
-    <h2 dir="auto" id="sampling-importance-resampling-sir--weighted-bootstrap-1">Sampling Importance Resampling (SIR) /
-        Weighted Bootstrap</h2>
+    <h3 dir="auto" id="weighted-reservoir-sampling">Weighted Reservoir Sampling</h3>
+    <p dir="auto">By <a href="https://www.pbr-book.org/4ed/Sampling_Algorithms/Reservoir_Sampling#">&quot;A.2 Reservoir
+            Sampling&quot;</a> of &quot;PBR Book V4&quot;, we have the <strong>weighted reservoir sampling</strong>.</p>
+    <h2 dir="auto" id="ris-resampled-importance-sampling--sampling-importance-resampling-sir--weighted-bootstrap">RIS
+        (Resampled Importance Sampling) / Sampling Importance Resampling (SIR) / Weighted Bootstrap</h2>
     <p dir="auto">By &quot;Exercise 5.65&quot; of <a href="https://archived.stat.ufl.edu/casella/">&quot;Statistic
             Inference 2nd Edition&quot;</a>, we have the <strong>Sampling Importance Resampling (SIR)</strong> /
         <strong>Weighted Bootstrap</strong> estimator <eq><span class="katex"><span class="katex-mathml"><math
@@ -2861,7 +2864,34 @@
                                 class="mclose nulldelimiter"></span></span></span></span></span></eq>.
     </p>
     <blockquote dir="auto">
-        <p dir="auto">The samples Y are approximately from the <strong>PDF</strong> t</p>
+        <p dir="auto">The n <strong>samples</strong>
+            <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle scriptlevel="0" displaystyle="true">
+                                        <msub>
+                                            <mi>Y</mi>
+                                            <mi>j</mi>
+                                        </msub>
+                                    </mstyle>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\displaystyle Y_j</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span
+                                    class="mord mathnormal" style="margin-right:0.22222em;">Y</span><span
+                                    class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                class="vlist" style="height:0.311664em;"><span
+                                                    style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span
+                                                        class="pstrut" style="height:2.7em;"></span><span
+                                                        class="sizing reset-size6 size3 mtight"><span
+                                                            class="mord mathnormal mtight"
+                                                            style="margin-right:0.05724em;">j</span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span>
+            </eq> from the <strong>discrete distribution</strong> are approximately generated from the the
+            <strong>target distribution</strong> with the <strong>PDF</strong> t.
+        </p>
         <blockquote dir="auto">
             <p dir="auto">By <strong>importance sampling</strong>, we have <eq><span class="katex"><span
                             class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -2921,7 +2951,7 @@
                                             </mo>
                                             <mo stretchy="false">(</mo>
                                             <msub>
-                                                <mi>Y</mi>
+                                                <mi>X</mi>
                                                 <mi>i</mi>
                                             </msub>
                                             <mo stretchy="false">)</mo>
@@ -2961,7 +2991,7 @@
                                     </mrow>
                                     <annotation encoding="application/x-tex">\displaystyle \lim \limits_{n \to \infty}
                                         \frac{1}{m} \sum_{i=1}^m \frac{\mathop{\mathrm{t}} (X_i)}{\mathop{\mathrm{p}}
-                                        (X_i)} \mathop{\mathrm{r}} (Y_i) = \int \mathop{\mathrm{t}} (x)
+                                        (X_i)} \mathop{\mathrm{r}} (X_i) = \int \mathop{\mathrm{t}} (x)
                                         \mathop{\mathrm{r}} (x) \, dx = \mathop{\mathrm{E_t}} ( \mathop{\mathrm{r}} (X)
                                         )</annotation>
                                 </semantics>
@@ -3068,10 +3098,10 @@
                                     style="margin-right:0.16666666666666666em;"></span><span class="mop mathrm"
                                     style="position:relative;top:-0.03472em;">r</span><span class="mopen">(</span><span
                                     class="mord"><span class="mord mathnormal"
-                                        style="margin-right:0.22222em;">Y</span><span class="msupsub"><span
+                                        style="margin-right:0.07847em;">X</span><span class="msupsub"><span
                                             class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
                                                     style="height:0.31166399999999994em;"><span
-                                                        style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span
+                                                        style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span
                                                             class="pstrut" style="height:2.7em;"></span><span
                                                             class="sizing reset-size6 size3 mtight"><span
                                                                 class="mord mathnormal mtight">i</span></span></span></span><span
@@ -3533,7 +3563,7 @@
                                     class="strut" style="height:0.64444em;vertical-align:0em;"></span><span
                                     class="mord">1</span></span></span></span></eq>.
             </p>
-            <p dir="auto">By <strong>LLN (Law of large numbers)</strong>, we have <eq><span class="katex"><span
+            <p dir="auto">By <strong>LLN (Law of Large Numbers)</strong>, we have <eq><span class="katex"><span
                             class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                                 <semantics>
                                     <mrow>
@@ -6124,8 +6154,7 @@
             </p>
         </blockquote>
     </blockquote>
-    <p dir="auto">RIS (Resampled Importance Sampling)</p>
-    <p dir="auto">[Wyman 2023]</p>
+    <p dir="auto">[Wyman 2023] RIS (Resampled Importance Sampling)</p>
     <p dir="auto">generate M samples as per PDF p(x)<br>
         choose one sample X_i from these M samples proportional to w_i // P = \frac{w_i}{\sum_n=1^M w_n}<br>
         W_X unbiased contribution weight (estimate of (\frac{1}{M} f(x)?) 1/p(x)) // I = f(X) W_x = \frac{1}{M} f(x)
@@ -6140,8 +6169,8 @@
     <p dir="auto">produces samples approximately proportionally to a target distribution</p>
     <p dir="auto">target function vs target PDF<br>
         PDF normalized (integrate to 1)</p>
-    <h2 dir="auto" id="spatiotemporal-reuse-1">SpatioTemporal Reuse</h2>
-    <h2 dir="auto" id="references-1">References</h2>
+    <h2 dir="auto" id="spatiotemporal-reuse">SpatioTemporal Reuse</h2>
+    <h2 dir="auto" id="references">References</h2>
     <p dir="auto">[Wyman 2023] <a href="https://intro-to-restir.cwyman.org/">Chris Wyman, Markus Kettunen, Daqi Lin,
             Benedikt Bitterli, Cem Yuksel, Wojciech Jarosz, Pawel Kozlowski, Giovanni Francesco. &quot;A Gentle
             Introduction to ReSTIR: Path Reuse in Real-time.&quot; SIGGRAPH 2023.</a></p>

@@ -12,7 +12,7 @@ By "Exercise 5.64" of ["Statistic Inference 2nd Edition"](https://archived.stat.
 >  
 > Consistent  
 >> 
->> By **LLN (Law of large numbers)**, we have $\displaystyle \lim \limits_{n \to \infty} \frac{1}{n} \sum_{i=1}^n \frac{\mathop{\mathrm{t}} (X_i)}{\mathop{\mathrm{p}} (X_i)} \mathop{\mathrm{r}} (Y_i) = \mathop{\mathrm{E_p}} \left( \frac{1}{n} \sum_{i=1}^n \frac{\mathop{\mathrm{t}} (X)}{\mathop{\mathrm{p}} (X)} \mathop{\mathrm{r}} (X)  \right) = \int \mathop{\mathrm{t}} (x) \mathop{\mathrm{r}} (x) \, dx = \mathop{\mathrm{E_t}} ( \mathop{\mathrm{r}} (X) )$.  
+>> By **LLN (Law of Large Numbers)**, we have $\displaystyle \lim \limits_{n \to \infty} \frac{1}{n} \sum_{i=1}^n \frac{\mathop{\mathrm{t}} (X_i)}{\mathop{\mathrm{p}} (X_i)} \mathop{\mathrm{r}} (Y_i) = \mathop{\mathrm{E_p}} \left( \frac{1}{n} \sum_{i=1}^n \frac{\mathop{\mathrm{t}} (X)}{\mathop{\mathrm{p}} (X)} \mathop{\mathrm{r}} (X)  \right) = \int \mathop{\mathrm{t}} (x) \mathop{\mathrm{r}} (x) \, dx = \mathop{\mathrm{E_t}} ( \mathop{\mathrm{r}} (X) )$.  
 
 By ["13.2 The Monte Carlo Estimator"](https://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/The_Monte_Carlo_Estimator#) of "PBR Book V3" and ["2.1.3 The Monte Carlo Estimator"](https://pbr-book.org/4ed/Monte_Carlo_Integration/Monte_Carlo_Basics#TheMonteCarloEstimator) of "PBR Book V4", we have the **Monte Carlo** estimator $\displaystyle \int \mathop{\mathrm{f}} (x) \, dx \approx \frac{1}{n} \sum_{i=1}^n \frac{\mathop{\mathrm{f}} (X_i)}{\mathop{\mathrm{p}} (X_i)}$ where the f is any function, and the n **samples** $\displaystyle X_i$ are generated from the **proposal distribution** with the **PDF** p.  
 
@@ -79,26 +79,27 @@ We can prove by **mathematical Induction** that at any iteration, when we have p
 >>  
 >> For the previous k **seen samples**, they have the probability $\displaystyle \frac{1}{k}$ of being included in the final **reservoir** at k-th iteration. At the same time, they have the probability $\displaystyle 1 - \frac{1}{k + 1} = \frac{k}{k + 1}$ of NOT being replaced by the (k + 1)-th **seen sample** at (k + 1)-th iteration. This means that they have the probability $\displaystyle \frac{1}{k} \times \frac{k}{k + 1} = \frac{1}{k + 1}$ of being included in the final **reservoir** at (k + 1)-th iteration.  
 
+### Weighted Reservoir Sampling  
 
-## Sampling Importance Resampling (SIR) / Weighted Bootstrap
+By ["A.2 Reservoir Sampling"](https://www.pbr-book.org/4ed/Sampling_Algorithms/Reservoir_Sampling#) of "PBR Book V4", we have the **weighted reservoir sampling**.  
+
+## RIS (Resampled Importance Sampling) / Sampling Importance Resampling (SIR) / Weighted Bootstrap
 
 By "Exercise 5.65" of ["Statistic Inference 2nd Edition"](https://archived.stat.ufl.edu/casella/), we have the **Sampling Importance Resampling (SIR)** / **Weighted Bootstrap** estimator $\displaystyle \int \mathop{\mathrm{t}} (x) \mathop{\mathrm{r}} (x) \, dx \approx \frac{1}{n} \sum_{j=1}^n \mathop{\mathrm{r}} (Y_j)$ where the **target distribution** has the **PDF** t, the r is any function, the m **samples** $\displaystyle X_i$ are generated from the **proposal distribution** with the **PDF** p, and the n **samples** $\displaystyle Y_j$ are then generated from the **discrete distribution** on these m **samples** $\displaystyle X_i$ with the **PMF (Probability Mass Function)** $\displaystyle w_i = \mathop{\mathrm{P}} (Y = X_i) = \frac{\displaystyle \frac{\mathop{\mathrm{t}} (X_i)}{\mathop{\mathrm{p}} (X_i)}}{\displaystyle \sum_{k=1}^m \frac{\mathop{\mathrm{t}} (X_k)}{\mathop{\mathrm{p}} (X_k)}}$.  
 
-> The samples Y are approximately from the **PDF** t  
+> The n **samples** $\displaystyle Y_j$ from the **discrete distribution** are approximately generated from the the **target distribution** with the **PDF** t.  
 >>
->> By **importance sampling**, we have $\displaystyle \lim \limits_{n \to \infty} \frac{1}{m} \sum_{i=1}^m \frac{\mathop{\mathrm{t}} (X_i)}{\mathop{\mathrm{p}} (X_i)} \mathop{\mathrm{r}} (Y_i) = \int \mathop{\mathrm{t}} (x) \mathop{\mathrm{r}} (x) \, dx = \mathop{\mathrm{E_t}} ( \mathop{\mathrm{r}} (X) )$.  
+>> By **importance sampling**, we have $\displaystyle \lim \limits_{n \to \infty} \frac{1}{m} \sum_{i=1}^m \frac{\mathop{\mathrm{t}} (X_i)}{\mathop{\mathrm{p}} (X_i)} \mathop{\mathrm{r}} (X_i) = \int \mathop{\mathrm{t}} (x) \mathop{\mathrm{r}} (x) \, dx = \mathop{\mathrm{E_t}} ( \mathop{\mathrm{r}} (X) )$.  
 >>  
 >> $\displaystyle \mathop{\mathrm{E_p}} \left( \frac{1}{m} \sum_{k=1}^m \frac{\mathop{\mathrm{t}} (X)}{\mathop{\mathrm{p}} (X)} \right) = \frac{1}{m} \sum_{k=1}^m \mathop{\mathrm{E_p}} \left( \frac{\mathop{\mathrm{t}} (X)}{\mathop{\mathrm{p}} (X)} \right) = \mathop{\mathrm{E_p}} \left( \frac{\mathop{\mathrm{t}} (X)}{\mathop{\mathrm{p}} (X)} \right) = \int \frac{\mathop{\mathrm{t}} (x)}{\mathop{\mathrm{p}} (x)} \mathop{\mathrm{p}} (x) \, dx = \int \mathop{\mathrm{t}} (x) \, dx = 1$.  
 >>
->> By **LLN (Law of large numbers)**, we have $\displaystyle \lim \limits_{m \to \infty} \frac{1}{m} \sum_{k=1}^m \frac{\mathop{\mathrm{t}} (X)}{\mathop{\mathrm{p}} (X)} = \mathop{\mathrm{E_p}} \left( \frac{1}{m} \sum_{k=1}^m \frac{\mathop{\mathrm{t}} (X)}{\mathop{\mathrm{p}} (X)} \right) = 1$.  
+>> By **LLN (Law of Large Numbers)**, we have $\displaystyle \lim \limits_{m \to \infty} \frac{1}{m} \sum_{k=1}^m \frac{\mathop{\mathrm{t}} (X)}{\mathop{\mathrm{p}} (X)} = \mathop{\mathrm{E_p}} \left( \frac{1}{m} \sum_{k=1}^m \frac{\mathop{\mathrm{t}} (X)}{\mathop{\mathrm{p}} (X)} \right) = 1$.  
 >>  
 >> $\displaystyle \mathop{\mathrm{E_w}} \left( \frac{1}{n} \sum_{j=1}^n \mathop{\mathrm{r}} (Y) \right) = \frac{1}{n} \sum_{j=1}^n  \mathop{\mathrm{E_w}} ( \mathop{\mathrm{r}} (Y) ) = \mathop{\mathrm{E_w}} ( \mathop{\mathrm{r}} (Y) ) = \sum_{i=1}^m w_i \mathop{\mathrm{r}} (X_i) = \sum_{i=1}^m \frac{\displaystyle \frac{\mathop{\mathrm{t}} (X_i)}{\mathop{\mathrm{p}} (X_i)}}{\displaystyle \sum_{k=1}^m \frac{\mathop{\mathrm{t}} (X_k)}{\mathop{\mathrm{p}} (X_k)}} \mathop{\mathrm{r}} (X_i) = \frac{\displaystyle \sum_{i=1}^m \frac{\mathop{\mathrm{t}} (X_i)}{\mathop{\mathrm{p}} (X_i)} \mathop{\mathrm{r}} (X_i)}{\displaystyle \sum_{k=1}^m \frac{\mathop{\mathrm{t}} (X_k)}{\mathop{\mathrm{p}} (X_k)}} = \frac{\displaystyle \frac{1}{m} \sum_{i=1}^m \frac{\mathop{\mathrm{t}} (X_i)}{\mathop{\mathrm{p}} (X_i)} \mathop{\mathrm{r}} (X_i)}{\displaystyle \frac{1}{m} \sum_{k=1}^m \frac{\mathop{\mathrm{t}} (X_k)}{\mathop{\mathrm{p}} (X_k)}}$.  
 >>  
 >> $\displaystyle \lim \limits_{m \to \infty} \mathop{\mathrm{E_w}} \left( \frac{1}{n} \sum_{j=1}^n \mathop{\mathrm{r}} (Y) \right) = \lim \limits_{m \to \infty} \frac{\displaystyle \frac{1}{m} \sum_{i=1}^m \frac{\mathop{\mathrm{t}} (X_i)}{\mathop{\mathrm{p}} (X_i)} \mathop{\mathrm{r}} (X_i)}{\displaystyle \frac{1}{m} \sum_{k=1}^m \frac{\mathop{\mathrm{t}} (X_k)}{\mathop{\mathrm{p}} (X_k)}} = \frac{\displaystyle \lim \limits_{m \to \infty} \frac{1}{m} \sum_{i=1}^m \frac{\mathop{\mathrm{t}} (X_i)}{\mathop{\mathrm{p}} (X_i)} \mathop{\mathrm{r}} (X_i)}{\displaystyle \lim \limits_{m \to \infty} \frac{1}{m} \sum_{k=1}^m \frac{\mathop{\mathrm{t}} (X_k)}{\mathop{\mathrm{p}} (X_k)}} = \frac{\displaystyle \int \mathop{\mathrm{t}} (x) \mathop{\mathrm{r}} (x) \, dx}{1} = \int \mathop{\mathrm{t}} (x) \mathop{\mathrm{r}} (x) \, dx = \mathop{\mathrm{E_t}} ( \mathop{\mathrm{r}} (X) )$.  
 
-RIS (Resampled Importance Sampling)  
-
-\[Wyman 2023\]  
+\[Wyman 2023\]  RIS (Resampled Importance Sampling)
 
 generate M samples as per PDF p(x)  
 choose one sample X_i from these M samples proportional to w_i // P = \frac{w_i}{\sum_n=1^M w_n}   
