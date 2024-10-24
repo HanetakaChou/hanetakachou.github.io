@@ -1905,6 +1905,99 @@
             </p>
         </blockquote>
     </blockquote>
+    <p dir="auto">By <a href="https://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling">13.10
+            Importance Sampling</a> of &quot;PBR Book V3&quot; and <a
+            href="https://pbr-book.org/4ed/Monte_Carlo_Integration/Improving_Efficiency#ImportanceSampling">&quot;2.2.2
+            Importance Sampling&quot;</a> of &quot;PBR Book V4&quot;, for f is always non-negative, when the
+        <strong>proposal distribution</strong> <strong>PDF</strong> p is proportional to f (namely, <eq><span
+                class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mo>
+                                        <mi mathvariant="normal">p</mi>
+                                    </mo>
+                                    <mo stretchy="false">(</mo>
+                                    <mi>X</mi>
+                                    <mo stretchy="false">)</mo>
+                                    <mo>=</mo>
+                                    <mfrac>
+                                        <mstyle scriptlevel="0" displaystyle="true">
+                                            <mo>
+                                                <mi mathvariant="normal">f</mi>
+                                            </mo>
+                                            <mo stretchy="false">(</mo>
+                                            <mi>X</mi>
+                                            <mo stretchy="false">)</mo>
+                                        </mstyle>
+                                        <mstyle scriptlevel="0" displaystyle="true">
+                                            <msub>
+                                                <mrow>
+                                                    <mi mathvariant="normal">∥</mi>
+                                                    <mi>f</mi>
+                                                    <mi mathvariant="normal">∥</mi>
+                                                </mrow>
+                                                <mn>1</mn>
+                                            </msub>
+                                        </mstyle>
+                                    </mfrac>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle \mathop{\mathrm{p}} (X) =
+                                \frac{\displaystyle \mathop{\mathrm{f}} (X)}{\displaystyle {\| f \|}_1}</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span class="mop mathrm"
+                            style="position:relative;top:-0.13194em;">p</span><span class="mopen">(</span><span
+                            class="mord mathnormal" style="margin-right:0.07847em;">X</span><span
+                            class="mclose">)</span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                        class="base"><span class="strut" style="height:2.4127em;vertical-align:-0.9857em;"></span><span
+                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord"><span class="mord"><span class="mord">∥</span><span
+                                                                class="mord mathnormal"
+                                                                style="margin-right:0.10764em;">f</span><span
+                                                                class="mord">∥</span></span><span class="msupsub"><span
+                                                                class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                                        class="vlist" style="height:0.151408em;"><span
+                                                                            style="top:-2.4003em;margin-right:0.05em;"><span
+                                                                                class="pstrut"
+                                                                                style="height:2.7em;"></span><span
+                                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                                    class="mord mtight">1</span></span></span></span><span
+                                                                        class="vlist-s">​</span></span><span
+                                                                    class="vlist-r"><span class="vlist"
+                                                                        style="height:0.29969999999999997em;"><span></span></span></span></span></span></span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mop mathrm"
+                                                        style="margin-right:0.07778em;position:relative;top:0.09721999999999997em;">f</span><span
+                                                        class="mopen">(</span><span class="mord mathnormal"
+                                                        style="margin-right:0.07847em;">X</span><span
+                                                        class="mclose">)</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.9857em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span></span></span></span></eq>), the
+        <strong>variance</strong> is zero and only one sample is sufficient.
+    </p>
+    <h2 dir="auto" id="mis-multiple-importance-sampling">MIS (Multiple Importance Sampling)</h2>
+    <p dir="auto"><a
+            href="https://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling#MultipleImportanceSampling">&quot;13.10.1
+            Multiple Importance Sampling&quot;</a> of &quot;PBR Book V3&quot;<br>
+        <a href="https://pbr-book.org/4ed/Monte_Carlo_Integration/Improving_Efficiency#MultipleImportanceSampling">&quot;2.2.3
+            Multiple Importance Sampling&quot;</a> of &quot;PBR Book V4&quot;
+    </p>
+    <p dir="auto">// example // balance heuristic</p>
+    <p dir="auto">// balance heuristic // one pdf = 0 // not all pdf = 0 // weight not zero</p>
+    <p dir="auto">// the domain one pdf not cover f(x) will not be detrimental</p>
+    <p dir="auto">// the union of the domains of all pdfs cover f(x) // enough</p>
     <p dir="auto"><a
             href="https://pbr-book.org/4ed/Monte_Carlo_Integration/Improving_Efficiency#ImportanceSampling">&quot;2.2.2
             Importance Sampling&quot;</a> of &quot;PBR Book V4&quot;<br>
@@ -1918,10 +2011,643 @@
         \mathop{\mathrm{supp}}(X) // set of all values x it can take with p(x) &gt; 0 // namely p(x) \ne 0 // p(x) can
         Not &lt; 0<br>
         \mathop{\mathrm{supp}}(X) \subset \mathop{\mathrm{supp}}(f) // to be unbiased</p>
-    <p dir="auto">when PDF proportional to f(x) // f(x) should be non-negative // \propt // variance zero // we can use
-        only one sample // called &quot;perfect important sampling&quot;</p>
     <p dir="auto"><img src="Reservoir-Based-SpatioTemporal-Importance-Resampling-Importance-Sampling.png" alt=""
             data-src="Reservoir-Based-SpatioTemporal-Importance-Resampling-Importance-Sampling.png"></p>
+    <p dir="auto"><img src="Reservoir-Based-SpatioTemporal-Importance-Resampling-Multiple-Importance-Sampling.png"
+            alt="" data-src="Reservoir-Based-SpatioTemporal-Importance-Resampling-Multiple-Importance-Sampling.png"></p>
+    <p dir="auto">// TODO: \sum \mathop\mathrm w (x) = 1 // across all proposal distributions not all sample<br>
+        // Perhaps not necessary to be unbiased</p>
+    <p dir="auto">// TODO: \mathop\mathrm w_i = 0 when \mathop\mathrm p_k (x) = 0 for all k proposal distributions //
+        but actually such sample x will not be generated</p>
+    <h2 dir="auto" id="reservoir-sampling">Reservoir Sampling</h2>
+    <h3 dir="auto" id="basic-reservoir-sampling">Basic Reservoir Sampling</h3>
+    <p dir="auto">By <a href="https://www.pbr-book.org/4ed/Sampling_Algorithms/Reservoir_Sampling#">&quot;A.2 Reservoir
+            Sampling&quot;</a> of &quot;PBR Book V4&quot;, we have the <strong>basic reservoir sampling</strong>.</p>
+    <p dir="auto">We sequentially process each <strong>sample</strong> from the <strong>stream</strong>. The total
+        length of the <strong>stream</strong> can indeed be infinite which is too large to be stored in the memory.</p>
+    <p dir="auto">We assume that we have processed <strong>n</strong> <strong>samples</strong>. This means that the
+        number of the <strong>seen samples</strong> is <strong>n</strong>. For the <strong>basic reservoir
+            sampling</strong>, the <strong>reservoir</strong> can hold at most <strong>1</strong> <strong>reservoir
+            sample</strong>, and the first <strong>1</strong> <strong>seen</strong> <strong>sample</strong> is always
+        selected to initialize the <strong>reservoir</strong>. For each subsequent <strong>seen</strong>
+        <strong>candidate sample</strong>, we have the probability <eq><span class="katex"><span
+                    class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mfrac>
+                                        <mn>1</mn>
+                                        <mi>n</mi>
+                                    </mfrac>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle \frac{1}{n}</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:2.00744em;vertical-align:-0.686em;"></span><span class="mord"><span
+                                class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord mathnormal">n</span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">1</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span></span></span></span></eq> of selecting it to
+        replace the existing <strong>sample</strong> within the <strong>reservoir</strong>.
+    </p>
+    <p dir="auto">We can prove by <strong>mathematical Induction</strong> that at any iteration, when we have processed
+        n <strong>samples</strong>, each <strong>sample</strong> from the <strong>stream</strong> has the equal
+        probability <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mfrac>
+                                        <mn>1</mn>
+                                        <mi>n</mi>
+                                    </mfrac>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle \frac{1}{n}</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:2.00744em;vertical-align:-0.686em;"></span><span class="mord"><span
+                                class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord mathnormal">n</span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">1</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span></span></span></span></eq> of being included
+        in the final <strong>reservoir</strong>.</p>
+    <blockquote dir="auto">
+        <p dir="auto">Base Case</p>
+        <blockquote dir="auto">
+            <p dir="auto">At the iteration, when we have processed n = 1 <strong>sample</strong>, each
+                <strong>sample</strong> has the equal probability <eq><span class="katex"><span
+                            class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                                <semantics>
+                                    <mrow>
+                                        <mstyle scriptlevel="0" displaystyle="true">
+                                            <mfrac>
+                                                <mn>1</mn>
+                                                <mn>1</mn>
+                                            </mfrac>
+                                            <mo>=</mo>
+                                            <mn>1</mn>
+                                        </mstyle>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\displaystyle \frac{1}{1} = 1</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span
+                                    class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                    style="height:1.32144em;"><span style="top:-2.314em;"><span
+                                                            class="pstrut" style="height:3em;"></span><span
+                                                            class="mord"><span class="mord">1</span></span></span><span
+                                                        style="top:-3.23em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="frac-line"
+                                                            style="border-bottom-width:0.04em;"></span></span><span
+                                                        style="top:-3.677em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="mord"><span
+                                                                class="mord">1</span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.686em;"><span></span></span></span></span></span><span
+                                        class="mclose nulldelimiter"></span></span><span class="mspace"
+                                    style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                                    class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                                class="base"><span class="strut"
+                                    style="height:0.64444em;vertical-align:0em;"></span><span
+                                    class="mord">1</span></span></span></span></eq> of being included in the final
+                <strong>reservoir</strong>.
+            </p>
+        </blockquote>
+        <p dir="auto">Inductive Step</p>
+        <blockquote dir="auto">
+            <p dir="auto">We assume that at the iteration, when we have processed n = k <strong>samples</strong>, each
+                <strong>sample</strong> from the <strong>stream</strong> has the equal probability <eq><span
+                        class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                                <semantics>
+                                    <mrow>
+                                        <mstyle scriptlevel="0" displaystyle="true">
+                                            <mfrac>
+                                                <mn>1</mn>
+                                                <mi>k</mi>
+                                            </mfrac>
+                                        </mstyle>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\displaystyle \frac{1}{k}</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span
+                                    class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                    style="height:1.32144em;"><span style="top:-2.314em;"><span
+                                                            class="pstrut" style="height:3em;"></span><span
+                                                            class="mord"><span class="mord mathnormal"
+                                                                style="margin-right:0.03148em;">k</span></span></span><span
+                                                        style="top:-3.23em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="frac-line"
+                                                            style="border-bottom-width:0.04em;"></span></span><span
+                                                        style="top:-3.677em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="mord"><span
+                                                                class="mord">1</span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.686em;"><span></span></span></span></span></span><span
+                                        class="mclose nulldelimiter"></span></span></span></span></span></eq> of being
+                included in the final <strong>reservoir</strong>.
+            </p>
+            <p dir="auto">And we would like to prove that at the iteration, when we have processed n = k + 1
+                <strong>samples</strong>, each <strong>sample</strong> from the <strong>stream</strong> has the equal
+                probability <eq><span class="katex"><span class="katex-mathml"><math
+                                xmlns="http://www.w3.org/1998/Math/MathML">
+                                <semantics>
+                                    <mrow>
+                                        <mstyle scriptlevel="0" displaystyle="true">
+                                            <mfrac>
+                                                <mn>1</mn>
+                                                <mrow>
+                                                    <mi>k</mi>
+                                                    <mo>+</mo>
+                                                    <mn>1</mn>
+                                                </mrow>
+                                            </mfrac>
+                                        </mstyle>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\displaystyle \frac{1}{k + 1}</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut"
+                                    style="height:2.09077em;vertical-align:-0.7693300000000001em;"></span><span
+                                    class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                    style="height:1.32144em;"><span style="top:-2.314em;"><span
+                                                            class="pstrut" style="height:3em;"></span><span
+                                                            class="mord"><span class="mord mathnormal"
+                                                                style="margin-right:0.03148em;">k</span><span
+                                                                class="mspace"
+                                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                                class="mbin">+</span><span class="mspace"
+                                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                                class="mord">1</span></span></span><span
+                                                        style="top:-3.23em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="frac-line"
+                                                            style="border-bottom-width:0.04em;"></span></span><span
+                                                        style="top:-3.677em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="mord"><span
+                                                                class="mord">1</span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.7693300000000001em;"><span></span></span></span></span></span><span
+                                        class="mclose nulldelimiter"></span></span></span></span></span></eq> of being
+                included in the final <strong>reservoir</strong>.
+            </p>
+            <p dir="auto">Evidently, the (k + 1)-th <strong>seen sample</strong> has the probability <eq><span
+                        class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                                <semantics>
+                                    <mrow>
+                                        <mstyle scriptlevel="0" displaystyle="true">
+                                            <mfrac>
+                                                <mn>1</mn>
+                                                <mrow>
+                                                    <mi>k</mi>
+                                                    <mo>+</mo>
+                                                    <mn>1</mn>
+                                                </mrow>
+                                            </mfrac>
+                                        </mstyle>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\displaystyle \frac{1}{k + 1}</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut"
+                                    style="height:2.09077em;vertical-align:-0.7693300000000001em;"></span><span
+                                    class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                    style="height:1.32144em;"><span style="top:-2.314em;"><span
+                                                            class="pstrut" style="height:3em;"></span><span
+                                                            class="mord"><span class="mord mathnormal"
+                                                                style="margin-right:0.03148em;">k</span><span
+                                                                class="mspace"
+                                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                                class="mbin">+</span><span class="mspace"
+                                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                                class="mord">1</span></span></span><span
+                                                        style="top:-3.23em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="frac-line"
+                                                            style="border-bottom-width:0.04em;"></span></span><span
+                                                        style="top:-3.677em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="mord"><span
+                                                                class="mord">1</span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.7693300000000001em;"><span></span></span></span></span></span><span
+                                        class="mclose nulldelimiter"></span></span></span></span></span></eq> of being
+                selected to replace the existing <strong>sample</strong> within the <strong>reservoir</strong> and thus
+                being included in the final <strong>reservoir</strong>.</p>
+            <p dir="auto">For the previous k <strong>seen samples</strong>, they have the probability <eq><span
+                        class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                                <semantics>
+                                    <mrow>
+                                        <mstyle scriptlevel="0" displaystyle="true">
+                                            <mfrac>
+                                                <mn>1</mn>
+                                                <mi>k</mi>
+                                            </mfrac>
+                                        </mstyle>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\displaystyle \frac{1}{k}</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span
+                                    class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                    style="height:1.32144em;"><span style="top:-2.314em;"><span
+                                                            class="pstrut" style="height:3em;"></span><span
+                                                            class="mord"><span class="mord mathnormal"
+                                                                style="margin-right:0.03148em;">k</span></span></span><span
+                                                        style="top:-3.23em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="frac-line"
+                                                            style="border-bottom-width:0.04em;"></span></span><span
+                                                        style="top:-3.677em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="mord"><span
+                                                                class="mord">1</span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.686em;"><span></span></span></span></span></span><span
+                                        class="mclose nulldelimiter"></span></span></span></span></span></eq> of being
+                included in the final <strong>reservoir</strong> at k-th iteration. At the same time, they have the
+                probability <eq><span class="katex"><span class="katex-mathml"><math
+                                xmlns="http://www.w3.org/1998/Math/MathML">
+                                <semantics>
+                                    <mrow>
+                                        <mstyle scriptlevel="0" displaystyle="true">
+                                            <mn>1</mn>
+                                            <mo>−</mo>
+                                            <mfrac>
+                                                <mn>1</mn>
+                                                <mrow>
+                                                    <mi>k</mi>
+                                                    <mo>+</mo>
+                                                    <mn>1</mn>
+                                                </mrow>
+                                            </mfrac>
+                                            <mo>=</mo>
+                                            <mfrac>
+                                                <mi>k</mi>
+                                                <mrow>
+                                                    <mi>k</mi>
+                                                    <mo>+</mo>
+                                                    <mn>1</mn>
+                                                </mrow>
+                                            </mfrac>
+                                        </mstyle>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\displaystyle 1 - \frac{1}{k + 1} =
+                                        \frac{k}{k + 1}</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span
+                                    class="mord">1</span><span class="mspace"
+                                    style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span
+                                    class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                                class="base"><span class="strut"
+                                    style="height:2.09077em;vertical-align:-0.7693300000000001em;"></span><span
+                                    class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                    style="height:1.32144em;"><span style="top:-2.314em;"><span
+                                                            class="pstrut" style="height:3em;"></span><span
+                                                            class="mord"><span class="mord mathnormal"
+                                                                style="margin-right:0.03148em;">k</span><span
+                                                                class="mspace"
+                                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                                class="mbin">+</span><span class="mspace"
+                                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                                class="mord">1</span></span></span><span
+                                                        style="top:-3.23em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="frac-line"
+                                                            style="border-bottom-width:0.04em;"></span></span><span
+                                                        style="top:-3.677em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="mord"><span
+                                                                class="mord">1</span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.7693300000000001em;"><span></span></span></span></span></span><span
+                                        class="mclose nulldelimiter"></span></span><span class="mspace"
+                                    style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                                    class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                                class="base"><span class="strut"
+                                    style="height:2.14077em;vertical-align:-0.7693300000000001em;"></span><span
+                                    class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                    style="height:1.37144em;"><span style="top:-2.314em;"><span
+                                                            class="pstrut" style="height:3em;"></span><span
+                                                            class="mord"><span class="mord mathnormal"
+                                                                style="margin-right:0.03148em;">k</span><span
+                                                                class="mspace"
+                                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                                class="mbin">+</span><span class="mspace"
+                                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                                class="mord">1</span></span></span><span
+                                                        style="top:-3.23em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="frac-line"
+                                                            style="border-bottom-width:0.04em;"></span></span><span
+                                                        style="top:-3.677em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="mord"><span
+                                                                class="mord mathnormal"
+                                                                style="margin-right:0.03148em;">k</span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.7693300000000001em;"><span></span></span></span></span></span><span
+                                        class="mclose nulldelimiter"></span></span></span></span></span></eq> of NOT
+                being replaced by the (k + 1)-th <strong>seen sample</strong> at (k + 1)-th iteration. This means that
+                they have the probability <eq><span class="katex"><span class="katex-mathml"><math
+                                xmlns="http://www.w3.org/1998/Math/MathML">
+                                <semantics>
+                                    <mrow>
+                                        <mstyle scriptlevel="0" displaystyle="true">
+                                            <mfrac>
+                                                <mn>1</mn>
+                                                <mi>k</mi>
+                                            </mfrac>
+                                            <mo>×</mo>
+                                            <mfrac>
+                                                <mi>k</mi>
+                                                <mrow>
+                                                    <mi>k</mi>
+                                                    <mo>+</mo>
+                                                    <mn>1</mn>
+                                                </mrow>
+                                            </mfrac>
+                                            <mo>=</mo>
+                                            <mfrac>
+                                                <mn>1</mn>
+                                                <mrow>
+                                                    <mi>k</mi>
+                                                    <mo>+</mo>
+                                                    <mn>1</mn>
+                                                </mrow>
+                                            </mfrac>
+                                        </mstyle>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\displaystyle \frac{1}{k} \times \frac{k}{k
+                                        + 1} = \frac{1}{k + 1}</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span
+                                    class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                    style="height:1.32144em;"><span style="top:-2.314em;"><span
+                                                            class="pstrut" style="height:3em;"></span><span
+                                                            class="mord"><span class="mord mathnormal"
+                                                                style="margin-right:0.03148em;">k</span></span></span><span
+                                                        style="top:-3.23em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="frac-line"
+                                                            style="border-bottom-width:0.04em;"></span></span><span
+                                                        style="top:-3.677em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="mord"><span
+                                                                class="mord">1</span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.686em;"><span></span></span></span></span></span><span
+                                        class="mclose nulldelimiter"></span></span><span class="mspace"
+                                    style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+                                    class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                                class="base"><span class="strut"
+                                    style="height:2.14077em;vertical-align:-0.7693300000000001em;"></span><span
+                                    class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                    style="height:1.37144em;"><span style="top:-2.314em;"><span
+                                                            class="pstrut" style="height:3em;"></span><span
+                                                            class="mord"><span class="mord mathnormal"
+                                                                style="margin-right:0.03148em;">k</span><span
+                                                                class="mspace"
+                                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                                class="mbin">+</span><span class="mspace"
+                                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                                class="mord">1</span></span></span><span
+                                                        style="top:-3.23em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="frac-line"
+                                                            style="border-bottom-width:0.04em;"></span></span><span
+                                                        style="top:-3.677em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="mord"><span
+                                                                class="mord mathnormal"
+                                                                style="margin-right:0.03148em;">k</span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.7693300000000001em;"><span></span></span></span></span></span><span
+                                        class="mclose nulldelimiter"></span></span><span class="mspace"
+                                    style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                                    class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                                class="base"><span class="strut"
+                                    style="height:2.09077em;vertical-align:-0.7693300000000001em;"></span><span
+                                    class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                    style="height:1.32144em;"><span style="top:-2.314em;"><span
+                                                            class="pstrut" style="height:3em;"></span><span
+                                                            class="mord"><span class="mord mathnormal"
+                                                                style="margin-right:0.03148em;">k</span><span
+                                                                class="mspace"
+                                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                                class="mbin">+</span><span class="mspace"
+                                                                style="margin-right:0.2222222222222222em;"></span><span
+                                                                class="mord">1</span></span></span><span
+                                                        style="top:-3.23em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="frac-line"
+                                                            style="border-bottom-width:0.04em;"></span></span><span
+                                                        style="top:-3.677em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="mord"><span
+                                                                class="mord">1</span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.7693300000000001em;"><span></span></span></span></span></span><span
+                                        class="mclose nulldelimiter"></span></span></span></span></span></eq> of being
+                included in the final <strong>reservoir</strong> at (k + 1)-th iteration.</p>
+        </blockquote>
+    </blockquote>
+    <h3 dir="auto" id="k-sized-reservoir-sampling">K-Sized Reservoir Sampling</h3>
+    <p dir="auto">The difference is that the <strong>reservoir</strong> can hold at most <strong>k</strong> <s>(instead
+            of 1)</s> <strong>reservoir sample</strong>, and the first <strong>k</strong> <s>(instead of 1)</s>
+        <strong>seen</strong> <strong>sample</strong> is always selected to initialize the <strong>reservoir</strong>.
+        For each subsequent <strong>seen</strong> <strong>candidate sample</strong>, we have the probability <eq><span
+                class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mfrac>
+                                        <mi>k</mi>
+                                        <mi>n</mi>
+                                    </mfrac>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle \frac{k}{n}</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:2.05744em;vertical-align:-0.686em;"></span><span class="mord"><span
+                                class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.37144em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord mathnormal">n</span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord mathnormal"
+                                                        style="margin-right:0.03148em;">k</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span></span></span></span></eq> <s>(instead of
+            <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle scriptlevel="0" displaystyle="true">
+                                        <mfrac>
+                                            <mn>1</mn>
+                                            <mi>n</mi>
+                                        </mfrac>
+                                    </mstyle>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\displaystyle \frac{1}{n}</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:2.00744em;vertical-align:-0.686em;"></span><span class="mord"><span
+                                    class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                        class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                style="height:1.32144em;"><span style="top:-2.314em;"><span
+                                                        class="pstrut" style="height:3em;"></span><span
+                                                        class="mord"><span
+                                                            class="mord mathnormal">n</span></span></span><span
+                                                    style="top:-3.23em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="frac-line"
+                                                        style="border-bottom-width:0.04em;"></span></span><span
+                                                    style="top:-3.677em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="mord"><span
+                                                            class="mord">1</span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:0.686em;"><span></span></span></span></span></span><span
+                                    class="mclose nulldelimiter"></span></span></span></span></span></eq>)
+        </s> of
+        selecting it to replace the existing <strong>sample</strong> within the <strong>reservoir</strong>.
+    </p>
+    <p dir="auto">When we have processed n <strong>samples</strong>, each <strong>sample</strong> from the
+        <strong>stream</strong> has the equal probability <eq><span class="katex"><span class="katex-mathml"><math
+                        xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <mfrac>
+                                        <mi>k</mi>
+                                        <mi>n</mi>
+                                    </mfrac>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle \frac{k}{n}</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:2.05744em;vertical-align:-0.686em;"></span><span class="mord"><span
+                                class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.37144em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord mathnormal">n</span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord mathnormal"
+                                                        style="margin-right:0.03148em;">k</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span></span></span></span></eq> <s>(instead of
+            <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle scriptlevel="0" displaystyle="true">
+                                        <mfrac>
+                                            <mn>1</mn>
+                                            <mi>n</mi>
+                                        </mfrac>
+                                    </mstyle>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\displaystyle \frac{1}{n}</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:2.00744em;vertical-align:-0.686em;"></span><span class="mord"><span
+                                    class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                        class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                style="height:1.32144em;"><span style="top:-2.314em;"><span
+                                                        class="pstrut" style="height:3em;"></span><span
+                                                        class="mord"><span
+                                                            class="mord mathnormal">n</span></span></span><span
+                                                    style="top:-3.23em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="frac-line"
+                                                        style="border-bottom-width:0.04em;"></span></span><span
+                                                    style="top:-3.677em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="mord"><span
+                                                            class="mord">1</span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:0.686em;"><span></span></span></span></span></span><span
+                                    class="mclose nulldelimiter"></span></span></span></span></span></eq>)
+        </s> of being
+        included in the final <strong>reservoir</strong>.
+    </p>
+    <h3 dir="auto" id="weighted-reservoir-sampling">Weighted Reservoir Sampling</h3>
+    <p dir="auto">By <a href="https://www.pbr-book.org/4ed/Sampling_Algorithms/Reservoir_Sampling#">&quot;A.2 Reservoir
+            Sampling&quot;</a> of &quot;PBR Book V4&quot;, we have the <strong>weighted reservoir sampling</strong>.</p>
+    <p dir="auto">The difference is that each <strong>seen sample</strong> has the probability according to the
+        <strong>weight</strong> <s>(instead of the constant <eq><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle scriptlevel="0" displaystyle="true">
+                                        <mfrac>
+                                            <mn>1</mn>
+                                            <mi>n</mi>
+                                        </mfrac>
+                                    </mstyle>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\displaystyle \frac{1}{n}</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:2.00744em;vertical-align:-0.686em;"></span><span class="mord"><span
+                                    class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                        class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                style="height:1.32144em;"><span style="top:-2.314em;"><span
+                                                        class="pstrut" style="height:3em;"></span><span
+                                                        class="mord"><span
+                                                            class="mord mathnormal">n</span></span></span><span
+                                                    style="top:-3.23em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="frac-line"
+                                                        style="border-bottom-width:0.04em;"></span></span><span
+                                                    style="top:-3.677em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="mord"><span
+                                                            class="mord">1</span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:0.686em;"><span></span></span></span></span></span><span
+                                    class="mclose nulldelimiter"></span></span></span></span></span></eq>)</s> of being
+        selected to replace the existing <strong>sample</strong> within the <strong>reservoir</strong>.
+    </p>
+    <p dir="auto">Each <strong>sample</strong> from the <strong>stream</strong> has the probability proportional to the
+        <strong>weight</strong> of being included in the final <strong>reservoir</strong>.
+    </p>
     <h2 dir="auto" id="ris-resampled-importance-sampling--sir-sampling-importance-resampling--weighted-bootstrap">RIS
         (Resampled Importance Sampling) / SIR (Sampling Importance Resampling) / Weighted Bootstrap</h2>
     <p dir="auto">By &quot;Exercise 5.65&quot; of <a href="https://archived.stat.ufl.edu/casella/">&quot;Statistic
@@ -8809,8 +9535,39 @@
                                                     style="height:2.84351em;"><span></span></span></span></span></span><span
                                         class="mclose nulldelimiter"></span></span></span></span></span></eq>.
             </p>
-            <p dir="auto">Since X and Y are independent, we have <eq><span class="katex"><span
-                            class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+            <p dir="auto">Since X and Y are independent, and the <strong>target function</strong>
+                <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                                <semantics>
+                                    <mrow>
+                                        <mstyle scriptlevel="0" displaystyle="true">
+                                            <mo>
+                                                <mover accent="true">
+                                                    <mi mathvariant="normal">p</mi>
+                                                    <mo>^</mo>
+                                                </mover>
+                                            </mo>
+                                        </mstyle>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\displaystyle \mathop{\mathrm{\hat{p}}}
+                                    </annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut"
+                                    style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span
+                                    class="mop"><span class="mord accent"><span class="vlist-t vlist-t2"><span
+                                                class="vlist-r"><span class="vlist" style="height:0.69444em;"><span
+                                                        style="top:-3em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span
+                                                            class="mord mathrm">p</span></span><span
+                                                        style="top:-3em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="accent-body"
+                                                            style="left:-0.25em;"><span
+                                                                class="mord mathrm">^</span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.19444em;"><span></span></span></span></span></span></span></span></span></span>
+                </eq> is always non-negative, we have <eq><span class="katex"><span class="katex-mathml"><math
+                                xmlns="http://www.w3.org/1998/Math/MathML">
                                 <semantics>
                                     <mrow>
                                         <mstyle scriptlevel="0" displaystyle="true">
@@ -9533,7 +10290,8 @@
                                                     class="vlist-s">​</span></span><span class="vlist-r"><span
                                                     class="vlist"
                                                     style="height:0.29969999999999997em;"><span></span></span></span></span></span></span></span></span></span>
-                </eq>.</p>
+                </eq>.
+            </p>
             <p dir="auto">By <strong>Law of Total Expectation</strong>, we have <eq><span class="katex"><span
                             class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                                 <semantics>
@@ -10427,54 +11185,136 @@
                                     class="mord mathnormal">x</span></span></span></span></eq>.</p>
         </blockquote>
     </blockquote>
-    <h2 dir="auto" id="mis-multiple-importance-sampling">MIS (Multiple Importance Sampling)</h2>
-    <p dir="auto"><a
-            href="https://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling#MultipleImportanceSampling">&quot;13.10.1
-            Multiple Importance Sampling&quot;</a> of &quot;PBR Book V3&quot;<br>
-        <a href="https://pbr-book.org/4ed/Monte_Carlo_Integration/Improving_Efficiency#MultipleImportanceSampling">&quot;2.2.3
-            Multiple Importance Sampling&quot;</a> of &quot;PBR Book V4&quot;
-    </p>
-    <p dir="auto">// example // balance heuristic</p>
-    <p dir="auto">// balance heuristic // one pdf = 0 // not all pdf = 0 // weight not zero</p>
-    <p dir="auto">// the domain one pdf not cover f(x) will not be detrimental</p>
-    <p dir="auto">// the union of the domains of all pdfs cover f(x) // enough</p>
-    <p dir="auto"><img src="Reservoir-Based-SpatioTemporal-Importance-Resampling-Multiple-Importance-Sampling.png"
-            alt="" data-src="Reservoir-Based-SpatioTemporal-Importance-Resampling-Multiple-Importance-Sampling.png"></p>
-    <p dir="auto">// TODO: \sum \mathop\mathrm w (x) = 1 // across all proposal distributions not all sample<br>
-        // Perhaps not necessary to be unbiased</p>
-    <p dir="auto">// TODO: \mathop\mathrm w_i = 0 when \mathop\mathrm p_k (x) = 0 for all k proposal distributions //
-        but actually such sample x will not be generated</p>
-    <h2 dir="auto" id="reservoir-sampling">Reservoir Sampling</h2>
-    <h3 dir="auto" id="basic-reservoir-sampling">Basic Reservoir Sampling</h3>
-    <p dir="auto">By <a href="https://www.pbr-book.org/4ed/Sampling_Algorithms/Reservoir_Sampling#">&quot;A.2 Reservoir
-            Sampling&quot;</a> of &quot;PBR Book V4&quot;, we have the <strong>basic reservoir sampling</strong>.</p>
-    <p dir="auto">We sequentially process each <strong>sample</strong> from the <strong>stream</strong>. The total
-        length of the <strong>stream</strong> can indeed be infinite which is too large to be stored in the memory.</p>
-    <p dir="auto">We assume that we have processed <strong>n</strong> <strong>samples</strong>. This means that the
-        number of the <strong>seen samples</strong> is <strong>n</strong>. For the <strong>basic reservoir
-            sampling</strong>, the <strong>reservoir</strong> can hold at most <strong>1</strong> <strong>reservoir
-            sample</strong>, and the first <strong>1</strong> <strong>seen</strong> <strong>sample</strong> is always
-        selected to initialize the <strong>reservoir</strong>. For each subsequent <strong>seen</strong>
-        <strong>candidate sample</strong>, we have the probability <eq><span class="katex"><span
-                    class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <p dir="auto">By [Wyman 2023], the part <eq><span class="katex"><span class="katex-mathml"><math
+                        xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
                                 <mstyle scriptlevel="0" displaystyle="true">
+                                    <mo>
+                                        <msub>
+                                            <mi mathvariant="normal">W</mi>
+                                            <mi mathvariant="normal">Y</mi>
+                                        </msub>
+                                    </mo>
+                                    <mo>=</mo>
                                     <mfrac>
                                         <mn>1</mn>
-                                        <mi>n</mi>
+                                        <mstyle scriptlevel="0" displaystyle="true">
+                                            <mo>
+                                                <mover accent="true">
+                                                    <mi mathvariant="normal">p</mi>
+                                                    <mo>^</mo>
+                                                </mover>
+                                            </mo>
+                                            <mo stretchy="false">(</mo>
+                                            <msub>
+                                                <mi>Y</mi>
+                                                <mi>j</mi>
+                                            </msub>
+                                            <mo stretchy="false">)</mo>
+                                        </mstyle>
                                     </mfrac>
+                                    <mrow>
+                                        <mo fence="true">(</mo>
+                                        <mfrac>
+                                            <mn>1</mn>
+                                            <mi>m</mi>
+                                        </mfrac>
+                                        <munderover>
+                                            <mo>∑</mo>
+                                            <mrow>
+                                                <mi>i</mi>
+                                                <mo>=</mo>
+                                                <mn>1</mn>
+                                            </mrow>
+                                            <mi>m</mi>
+                                        </munderover>
+                                        <mfrac>
+                                            <mstyle scriptlevel="0" displaystyle="true">
+                                                <mo>
+                                                    <mover accent="true">
+                                                        <mi mathvariant="normal">p</mi>
+                                                        <mo>^</mo>
+                                                    </mover>
+                                                </mo>
+                                                <mo stretchy="false">(</mo>
+                                                <msub>
+                                                    <mi>X</mi>
+                                                    <mi>i</mi>
+                                                </msub>
+                                                <mo stretchy="false">)</mo>
+                                            </mstyle>
+                                            <mstyle scriptlevel="0" displaystyle="true">
+                                                <mo>
+                                                    <mi mathvariant="normal">p</mi>
+                                                </mo>
+                                                <mo stretchy="false">(</mo>
+                                                <msub>
+                                                    <mi>X</mi>
+                                                    <mi>i</mi>
+                                                </msub>
+                                                <mo stretchy="false">)</mo>
+                                            </mstyle>
+                                        </mfrac>
+                                        <mo fence="true">)</mo>
+                                    </mrow>
                                 </mstyle>
                             </mrow>
-                            <annotation encoding="application/x-tex">\displaystyle \frac{1}{n}</annotation>
+                            <annotation encoding="application/x-tex">\displaystyle \mathop{\mathrm{W_Y}} =
+                                \frac{1}{\displaystyle \mathop{\mathrm{\hat{p}}} (Y_j)} \left( \frac{1}{m} \sum_{i=1}^m
+                                \frac{\displaystyle \mathop{ \mathrm{\hat{p}}} (X_i)}{\displaystyle \mathop{\mathrm{p}}
+                                (X_i)} \right)</annotation>
                         </semantics>
                     </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
-                            style="height:2.00744em;vertical-align:-0.686em;"></span><span class="mord"><span
-                                class="mopen nulldelimiter"></span><span class="mfrac"><span
+                            style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mop"><span
+                                class="mord"><span class="mord mathrm" style="margin-right:0.01389em;">W</span><span
+                                    class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                class="vlist" style="height:0.32833099999999993em;"><span
+                                                    style="top:-2.5500000000000003em;margin-left:-0.01389em;margin-right:0.05em;"><span
+                                                        class="pstrut" style="height:2.7em;"></span><span
+                                                        class="sizing reset-size6 size3 mtight"><span
+                                                            class="mord mathrm mtight"
+                                                            style="margin-right:0.025em;">Y</span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:0.15em;"><span></span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span><span
+                            class="mrel">=</span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+                            class="strut" style="height:3.027669em;vertical-align:-1.277669em;"></span><span
+                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
                                     class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
                                             style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut"
                                                     style="height:3em;"></span><span class="mord"><span
-                                                        class="mord mathnormal">n</span></span></span><span
+                                                        class="mop"><span class="mord accent"><span
+                                                                class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                                        class="vlist" style="height:0.69444em;"><span
+                                                                            style="top:-3em;"><span class="pstrut"
+                                                                                style="height:3em;"></span><span
+                                                                                class="mord mathrm">p</span></span><span
+                                                                            style="top:-3em;"><span class="pstrut"
+                                                                                style="height:3em;"></span><span
+                                                                                class="accent-body"
+                                                                                style="left:-0.25em;"><span
+                                                                                    class="mord mathrm">^</span></span></span></span><span
+                                                                        class="vlist-s">​</span></span><span
+                                                                    class="vlist-r"><span class="vlist"
+                                                                        style="height:0.19444em;"><span></span></span></span></span></span></span><span
+                                                        class="mopen">(</span><span class="mord"><span
+                                                            class="mord mathnormal"
+                                                            style="margin-right:0.22222em;">Y</span><span
+                                                            class="msupsub"><span class="vlist-t vlist-t2"><span
+                                                                    class="vlist-r"><span class="vlist"
+                                                                        style="height:0.311664em;"><span
+                                                                            style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span
+                                                                                class="pstrut"
+                                                                                style="height:2.7em;"></span><span
+                                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                                    class="mord mathnormal mtight"
+                                                                                    style="margin-right:0.05724em;">j</span></span></span></span><span
+                                                                        class="vlist-s">​</span></span><span
+                                                                    class="vlist-r"><span class="vlist"
+                                                                        style="height:0.286108em;"><span></span></span></span></span></span></span><span
+                                                        class="mclose">)</span></span></span><span
                                                 style="top:-3.23em;"><span class="pstrut"
                                                     style="height:3em;"></span><span class="frac-line"
                                                     style="border-bottom-width:0.04em;"></span></span><span
@@ -10482,432 +11322,184 @@
                                                     style="height:3em;"></span><span class="mord"><span
                                                         class="mord">1</span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:0.686em;"><span></span></span></span></span></span><span
-                                class="mclose nulldelimiter"></span></span></span></span></span></eq> of selecting it to
-        replace the existing <strong>sample</strong> within the <strong>reservoir</strong>.
-    </p>
-    <p dir="auto">We can prove by <strong>mathematical Induction</strong> that at any iteration, when we have processed
-        n <strong>samples</strong>, each <strong>sample</strong> from the <strong>stream</strong> has the equal
-        probability <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                                            style="height:0.972108em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="minner"><span
+                                class="mopen delimcenter" style="top:0em;"><span
+                                    class="delimsizing size4">(</span></span><span class="mord"><span
+                                    class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                        class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                style="height:1.32144em;"><span style="top:-2.314em;"><span
+                                                        class="pstrut" style="height:3em;"></span><span
+                                                        class="mord"><span
+                                                            class="mord mathnormal">m</span></span></span><span
+                                                    style="top:-3.23em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="frac-line"
+                                                        style="border-bottom-width:0.04em;"></span></span><span
+                                                    style="top:-3.677em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="mord"><span
+                                                            class="mord">1</span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:0.686em;"><span></span></span></span></span></span><span
+                                    class="mclose nulldelimiter"></span></span><span class="mspace"
+                                style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.6513970000000002em;"><span
+                                                style="top:-1.872331em;margin-left:0em;"><span class="pstrut"
+                                                    style="height:3.05em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight"><span
+                                                            class="mord mathnormal mtight">i</span><span
+                                                            class="mrel mtight">=</span><span
+                                                            class="mord mtight">1</span></span></span></span><span
+                                                style="top:-3.050005em;"><span class="pstrut"
+                                                    style="height:3.05em;"></span><span><span
+                                                        class="mop op-symbol large-op">∑</span></span></span><span
+                                                style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut"
+                                                    style="height:3.05em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathnormal mtight">m</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:1.277669em;"><span></span></span></span></span></span><span
+                                class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                                class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                        class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="mord"><span
+                                                            class="mop mathrm"
+                                                            style="position:relative;top:-0.13194em;">p</span><span
+                                                            class="mopen">(</span><span class="mord"><span
+                                                                class="mord mathnormal"
+                                                                style="margin-right:0.07847em;">X</span><span
+                                                                class="msupsub"><span class="vlist-t vlist-t2"><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.31166399999999994em;"><span
+                                                                                style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:2.7em;"></span><span
+                                                                                    class="sizing reset-size6 size3 mtight"><span
+                                                                                        class="mord mathnormal mtight">i</span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
+                                                            class="mclose">)</span></span></span><span
+                                                    style="top:-3.23em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="frac-line"
+                                                        style="border-bottom-width:0.04em;"></span></span><span
+                                                    style="top:-3.677em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="mord"><span
+                                                            class="mop"><span class="mord accent"><span
+                                                                    class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                                            class="vlist"
+                                                                            style="height:0.69444em;"><span
+                                                                                style="top:-3em;"><span class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="mord mathrm">p</span></span><span
+                                                                                style="top:-3em;"><span class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="accent-body"
+                                                                                    style="left:-0.25em;"><span
+                                                                                        class="mord mathrm">^</span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.19444em;"><span></span></span></span></span></span></span><span
+                                                            class="mopen">(</span><span class="mord"><span
+                                                                class="mord mathnormal"
+                                                                style="margin-right:0.07847em;">X</span><span
+                                                                class="msupsub"><span class="vlist-t vlist-t2"><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.31166399999999994em;"><span
+                                                                                style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:2.7em;"></span><span
+                                                                                    class="sizing reset-size6 size3 mtight"><span
+                                                                                        class="mord mathnormal mtight">i</span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
+                                                            class="mclose">)</span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:0.936em;"><span></span></span></span></span></span><span
+                                    class="mclose nulldelimiter"></span></span><span class="mclose delimcenter"
+                                style="top:0em;"><span
+                                    class="delimsizing size4">)</span></span></span></span></span></span></eq> from the
+        formula is also called the <strong>unbiased contribution weight</strong>.</p>
+    <p dir="auto">// TODO: MIS</p>
+    <p dir="auto">By [Wyman 2023], we use the <strong>weighted reservoir sampling</strong> to generate n
+        <strong>samples</strong>
+        <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
                                 <mstyle scriptlevel="0" displaystyle="true">
-                                    <mfrac>
-                                        <mn>1</mn>
-                                        <mi>n</mi>
-                                    </mfrac>
+                                    <msub>
+                                        <mi>Y</mi>
+                                        <mi>i</mi>
+                                    </msub>
                                 </mstyle>
                             </mrow>
-                            <annotation encoding="application/x-tex">\displaystyle \frac{1}{n}</annotation>
+                            <annotation encoding="application/x-tex">\displaystyle Y_i</annotation>
                         </semantics>
                     </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
-                            style="height:2.00744em;vertical-align:-0.686em;"></span><span class="mord"><span
-                                class="mopen nulldelimiter"></span><span class="mfrac"><span
-                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                            style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut"
-                                                    style="height:3em;"></span><span class="mord"><span
-                                                        class="mord mathnormal">n</span></span></span><span
-                                                style="top:-3.23em;"><span class="pstrut"
-                                                    style="height:3em;"></span><span class="frac-line"
-                                                    style="border-bottom-width:0.04em;"></span></span><span
-                                                style="top:-3.677em;"><span class="pstrut"
-                                                    style="height:3em;"></span><span class="mord"><span
-                                                        class="mord">1</span></span></span></span><span
+                            style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span
+                                class="mord mathnormal" style="margin-right:0.22222em;">Y</span><span
+                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.31166399999999994em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathnormal mtight">i</span></span></span></span><span
                                             class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-                                            style="height:0.686em;"><span></span></span></span></span></span><span
-                                class="mclose nulldelimiter"></span></span></span></span></span></eq> of being included
-        in the final <strong>reservoir</strong>.</p>
-    <blockquote dir="auto">
-        <p dir="auto">Base Case</p>
-        <blockquote dir="auto">
-            <p dir="auto">At the iteration, when we have processed n = 1 <strong>sample</strong>, each
-                <strong>sample</strong> has the equal probability <eq><span class="katex"><span
-                            class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
-                                <semantics>
-                                    <mrow>
-                                        <mstyle scriptlevel="0" displaystyle="true">
-                                            <mfrac>
-                                                <mn>1</mn>
-                                                <mn>1</mn>
-                                            </mfrac>
-                                            <mo>=</mo>
-                                            <mn>1</mn>
-                                        </mstyle>
-                                    </mrow>
-                                    <annotation encoding="application/x-tex">\displaystyle \frac{1}{1} = 1</annotation>
-                                </semantics>
-                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
-                                    class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span
-                                    class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
-                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                                    style="height:1.32144em;"><span style="top:-2.314em;"><span
-                                                            class="pstrut" style="height:3em;"></span><span
-                                                            class="mord"><span class="mord">1</span></span></span><span
-                                                        style="top:-3.23em;"><span class="pstrut"
-                                                            style="height:3em;"></span><span class="frac-line"
-                                                            style="border-bottom-width:0.04em;"></span></span><span
-                                                        style="top:-3.677em;"><span class="pstrut"
-                                                            style="height:3em;"></span><span class="mord"><span
-                                                                class="mord">1</span></span></span></span><span
-                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
-                                                    class="vlist"
-                                                    style="height:0.686em;"><span></span></span></span></span></span><span
-                                        class="mclose nulldelimiter"></span></span><span class="mspace"
-                                    style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-                                    class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-                                class="base"><span class="strut"
-                                    style="height:0.64444em;vertical-align:0em;"></span><span
-                                    class="mord">1</span></span></span></span></eq> of being included in the final
-                <strong>reservoir</strong>.
-            </p>
-        </blockquote>
-        <p dir="auto">Inductive Step</p>
-        <blockquote dir="auto">
-            <p dir="auto">We assume that at the iteration, when we have processed n = k <strong>samples</strong>, each
-                <strong>sample</strong> from the <strong>stream</strong> has the equal probability <eq><span
-                        class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
-                                <semantics>
-                                    <mrow>
-                                        <mstyle scriptlevel="0" displaystyle="true">
-                                            <mfrac>
-                                                <mn>1</mn>
-                                                <mi>k</mi>
-                                            </mfrac>
-                                        </mstyle>
-                                    </mrow>
-                                    <annotation encoding="application/x-tex">\displaystyle \frac{1}{k}</annotation>
-                                </semantics>
-                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
-                                    class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span
-                                    class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
-                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                                    style="height:1.32144em;"><span style="top:-2.314em;"><span
-                                                            class="pstrut" style="height:3em;"></span><span
-                                                            class="mord"><span class="mord mathnormal"
-                                                                style="margin-right:0.03148em;">k</span></span></span><span
-                                                        style="top:-3.23em;"><span class="pstrut"
-                                                            style="height:3em;"></span><span class="frac-line"
-                                                            style="border-bottom-width:0.04em;"></span></span><span
-                                                        style="top:-3.677em;"><span class="pstrut"
-                                                            style="height:3em;"></span><span class="mord"><span
-                                                                class="mord">1</span></span></span></span><span
-                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
-                                                    class="vlist"
-                                                    style="height:0.686em;"><span></span></span></span></span></span><span
-                                        class="mclose nulldelimiter"></span></span></span></span></span></eq> of being
-                included in the final <strong>reservoir</strong>.
-            </p>
-            <p dir="auto">And we would like to prove that at the iteration, when we have processed n = k + 1
-                <strong>samples</strong>, each <strong>sample</strong> from the <strong>stream</strong> has the equal
-                probability <eq><span class="katex"><span class="katex-mathml"><math
-                                xmlns="http://www.w3.org/1998/Math/MathML">
-                                <semantics>
-                                    <mrow>
-                                        <mstyle scriptlevel="0" displaystyle="true">
-                                            <mfrac>
-                                                <mn>1</mn>
-                                                <mrow>
-                                                    <mi>k</mi>
-                                                    <mo>+</mo>
-                                                    <mn>1</mn>
-                                                </mrow>
-                                            </mfrac>
-                                        </mstyle>
-                                    </mrow>
-                                    <annotation encoding="application/x-tex">\displaystyle \frac{1}{k + 1}</annotation>
-                                </semantics>
-                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
-                                    class="strut"
-                                    style="height:2.09077em;vertical-align:-0.7693300000000001em;"></span><span
-                                    class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
-                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                                    style="height:1.32144em;"><span style="top:-2.314em;"><span
-                                                            class="pstrut" style="height:3em;"></span><span
-                                                            class="mord"><span class="mord mathnormal"
-                                                                style="margin-right:0.03148em;">k</span><span
-                                                                class="mspace"
-                                                                style="margin-right:0.2222222222222222em;"></span><span
-                                                                class="mbin">+</span><span class="mspace"
-                                                                style="margin-right:0.2222222222222222em;"></span><span
-                                                                class="mord">1</span></span></span><span
-                                                        style="top:-3.23em;"><span class="pstrut"
-                                                            style="height:3em;"></span><span class="frac-line"
-                                                            style="border-bottom-width:0.04em;"></span></span><span
-                                                        style="top:-3.677em;"><span class="pstrut"
-                                                            style="height:3em;"></span><span class="mord"><span
-                                                                class="mord">1</span></span></span></span><span
-                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
-                                                    class="vlist"
-                                                    style="height:0.7693300000000001em;"><span></span></span></span></span></span><span
-                                        class="mclose nulldelimiter"></span></span></span></span></span></eq> of being
-                included in the final <strong>reservoir</strong>.
-            </p>
-            <p dir="auto">Evidently, the (k + 1)-th <strong>seen sample</strong> has the probability <eq><span
-                        class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
-                                <semantics>
-                                    <mrow>
-                                        <mstyle scriptlevel="0" displaystyle="true">
-                                            <mfrac>
-                                                <mn>1</mn>
-                                                <mrow>
-                                                    <mi>k</mi>
-                                                    <mo>+</mo>
-                                                    <mn>1</mn>
-                                                </mrow>
-                                            </mfrac>
-                                        </mstyle>
-                                    </mrow>
-                                    <annotation encoding="application/x-tex">\displaystyle \frac{1}{k + 1}</annotation>
-                                </semantics>
-                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
-                                    class="strut"
-                                    style="height:2.09077em;vertical-align:-0.7693300000000001em;"></span><span
-                                    class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
-                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                                    style="height:1.32144em;"><span style="top:-2.314em;"><span
-                                                            class="pstrut" style="height:3em;"></span><span
-                                                            class="mord"><span class="mord mathnormal"
-                                                                style="margin-right:0.03148em;">k</span><span
-                                                                class="mspace"
-                                                                style="margin-right:0.2222222222222222em;"></span><span
-                                                                class="mbin">+</span><span class="mspace"
-                                                                style="margin-right:0.2222222222222222em;"></span><span
-                                                                class="mord">1</span></span></span><span
-                                                        style="top:-3.23em;"><span class="pstrut"
-                                                            style="height:3em;"></span><span class="frac-line"
-                                                            style="border-bottom-width:0.04em;"></span></span><span
-                                                        style="top:-3.677em;"><span class="pstrut"
-                                                            style="height:3em;"></span><span class="mord"><span
-                                                                class="mord">1</span></span></span></span><span
-                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
-                                                    class="vlist"
-                                                    style="height:0.7693300000000001em;"><span></span></span></span></span></span><span
-                                        class="mclose nulldelimiter"></span></span></span></span></span></eq> of being
-                selected to replace the existing <strong>sample</strong> within the <strong>reservoir</strong> and thus
-                being included in the final <strong>reservoir</strong>.</p>
-            <p dir="auto">For the previous k <strong>seen samples</strong>, they have the probability <eq><span
-                        class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
-                                <semantics>
-                                    <mrow>
-                                        <mstyle scriptlevel="0" displaystyle="true">
-                                            <mfrac>
-                                                <mn>1</mn>
-                                                <mi>k</mi>
-                                            </mfrac>
-                                        </mstyle>
-                                    </mrow>
-                                    <annotation encoding="application/x-tex">\displaystyle \frac{1}{k}</annotation>
-                                </semantics>
-                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
-                                    class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span
-                                    class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
-                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                                    style="height:1.32144em;"><span style="top:-2.314em;"><span
-                                                            class="pstrut" style="height:3em;"></span><span
-                                                            class="mord"><span class="mord mathnormal"
-                                                                style="margin-right:0.03148em;">k</span></span></span><span
-                                                        style="top:-3.23em;"><span class="pstrut"
-                                                            style="height:3em;"></span><span class="frac-line"
-                                                            style="border-bottom-width:0.04em;"></span></span><span
-                                                        style="top:-3.677em;"><span class="pstrut"
-                                                            style="height:3em;"></span><span class="mord"><span
-                                                                class="mord">1</span></span></span></span><span
-                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
-                                                    class="vlist"
-                                                    style="height:0.686em;"><span></span></span></span></span></span><span
-                                        class="mclose nulldelimiter"></span></span></span></span></span></eq> of being
-                included in the final <strong>reservoir</strong> at k-th iteration. At the same time, they have the
-                probability <eq><span class="katex"><span class="katex-mathml"><math
-                                xmlns="http://www.w3.org/1998/Math/MathML">
-                                <semantics>
-                                    <mrow>
-                                        <mstyle scriptlevel="0" displaystyle="true">
-                                            <mn>1</mn>
-                                            <mo>−</mo>
-                                            <mfrac>
-                                                <mn>1</mn>
-                                                <mrow>
-                                                    <mi>k</mi>
-                                                    <mo>+</mo>
-                                                    <mn>1</mn>
-                                                </mrow>
-                                            </mfrac>
-                                            <mo>=</mo>
-                                            <mfrac>
-                                                <mi>k</mi>
-                                                <mrow>
-                                                    <mi>k</mi>
-                                                    <mo>+</mo>
-                                                    <mn>1</mn>
-                                                </mrow>
-                                            </mfrac>
-                                        </mstyle>
-                                    </mrow>
-                                    <annotation encoding="application/x-tex">\displaystyle 1 - \frac{1}{k + 1} =
-                                        \frac{k}{k + 1}</annotation>
-                                </semantics>
-                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
-                                    class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span
-                                    class="mord">1</span><span class="mspace"
-                                    style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span
-                                    class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
-                                class="base"><span class="strut"
-                                    style="height:2.09077em;vertical-align:-0.7693300000000001em;"></span><span
-                                    class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
-                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                                    style="height:1.32144em;"><span style="top:-2.314em;"><span
-                                                            class="pstrut" style="height:3em;"></span><span
-                                                            class="mord"><span class="mord mathnormal"
-                                                                style="margin-right:0.03148em;">k</span><span
-                                                                class="mspace"
-                                                                style="margin-right:0.2222222222222222em;"></span><span
-                                                                class="mbin">+</span><span class="mspace"
-                                                                style="margin-right:0.2222222222222222em;"></span><span
-                                                                class="mord">1</span></span></span><span
-                                                        style="top:-3.23em;"><span class="pstrut"
-                                                            style="height:3em;"></span><span class="frac-line"
-                                                            style="border-bottom-width:0.04em;"></span></span><span
-                                                        style="top:-3.677em;"><span class="pstrut"
-                                                            style="height:3em;"></span><span class="mord"><span
-                                                                class="mord">1</span></span></span></span><span
-                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
-                                                    class="vlist"
-                                                    style="height:0.7693300000000001em;"><span></span></span></span></span></span><span
-                                        class="mclose nulldelimiter"></span></span><span class="mspace"
-                                    style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-                                    class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-                                class="base"><span class="strut"
-                                    style="height:2.14077em;vertical-align:-0.7693300000000001em;"></span><span
-                                    class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
-                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                                    style="height:1.37144em;"><span style="top:-2.314em;"><span
-                                                            class="pstrut" style="height:3em;"></span><span
-                                                            class="mord"><span class="mord mathnormal"
-                                                                style="margin-right:0.03148em;">k</span><span
-                                                                class="mspace"
-                                                                style="margin-right:0.2222222222222222em;"></span><span
-                                                                class="mbin">+</span><span class="mspace"
-                                                                style="margin-right:0.2222222222222222em;"></span><span
-                                                                class="mord">1</span></span></span><span
-                                                        style="top:-3.23em;"><span class="pstrut"
-                                                            style="height:3em;"></span><span class="frac-line"
-                                                            style="border-bottom-width:0.04em;"></span></span><span
-                                                        style="top:-3.677em;"><span class="pstrut"
-                                                            style="height:3em;"></span><span class="mord"><span
-                                                                class="mord mathnormal"
-                                                                style="margin-right:0.03148em;">k</span></span></span></span><span
-                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
-                                                    class="vlist"
-                                                    style="height:0.7693300000000001em;"><span></span></span></span></span></span><span
-                                        class="mclose nulldelimiter"></span></span></span></span></span></eq> of NOT
-                being replaced by the (k + 1)-th <strong>seen sample</strong> at (k + 1)-th iteration. This means that
-                they have the probability <eq><span class="katex"><span class="katex-mathml"><math
-                                xmlns="http://www.w3.org/1998/Math/MathML">
-                                <semantics>
-                                    <mrow>
-                                        <mstyle scriptlevel="0" displaystyle="true">
-                                            <mfrac>
-                                                <mn>1</mn>
-                                                <mi>k</mi>
-                                            </mfrac>
-                                            <mo>×</mo>
-                                            <mfrac>
-                                                <mi>k</mi>
-                                                <mrow>
-                                                    <mi>k</mi>
-                                                    <mo>+</mo>
-                                                    <mn>1</mn>
-                                                </mrow>
-                                            </mfrac>
-                                            <mo>=</mo>
-                                            <mfrac>
-                                                <mn>1</mn>
-                                                <mrow>
-                                                    <mi>k</mi>
-                                                    <mo>+</mo>
-                                                    <mn>1</mn>
-                                                </mrow>
-                                            </mfrac>
-                                        </mstyle>
-                                    </mrow>
-                                    <annotation encoding="application/x-tex">\displaystyle \frac{1}{k} \times \frac{k}{k
-                                        + 1} = \frac{1}{k + 1}</annotation>
-                                </semantics>
-                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
-                                    class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span
-                                    class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
-                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                                    style="height:1.32144em;"><span style="top:-2.314em;"><span
-                                                            class="pstrut" style="height:3em;"></span><span
-                                                            class="mord"><span class="mord mathnormal"
-                                                                style="margin-right:0.03148em;">k</span></span></span><span
-                                                        style="top:-3.23em;"><span class="pstrut"
-                                                            style="height:3em;"></span><span class="frac-line"
-                                                            style="border-bottom-width:0.04em;"></span></span><span
-                                                        style="top:-3.677em;"><span class="pstrut"
-                                                            style="height:3em;"></span><span class="mord"><span
-                                                                class="mord">1</span></span></span></span><span
-                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
-                                                    class="vlist"
-                                                    style="height:0.686em;"><span></span></span></span></span></span><span
-                                        class="mclose nulldelimiter"></span></span><span class="mspace"
-                                    style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
-                                    class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
-                                class="base"><span class="strut"
-                                    style="height:2.14077em;vertical-align:-0.7693300000000001em;"></span><span
-                                    class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
-                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                                    style="height:1.37144em;"><span style="top:-2.314em;"><span
-                                                            class="pstrut" style="height:3em;"></span><span
-                                                            class="mord"><span class="mord mathnormal"
-                                                                style="margin-right:0.03148em;">k</span><span
-                                                                class="mspace"
-                                                                style="margin-right:0.2222222222222222em;"></span><span
-                                                                class="mbin">+</span><span class="mspace"
-                                                                style="margin-right:0.2222222222222222em;"></span><span
-                                                                class="mord">1</span></span></span><span
-                                                        style="top:-3.23em;"><span class="pstrut"
-                                                            style="height:3em;"></span><span class="frac-line"
-                                                            style="border-bottom-width:0.04em;"></span></span><span
-                                                        style="top:-3.677em;"><span class="pstrut"
-                                                            style="height:3em;"></span><span class="mord"><span
-                                                                class="mord mathnormal"
-                                                                style="margin-right:0.03148em;">k</span></span></span></span><span
-                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
-                                                    class="vlist"
-                                                    style="height:0.7693300000000001em;"><span></span></span></span></span></span><span
-                                        class="mclose nulldelimiter"></span></span><span class="mspace"
-                                    style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-                                    class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-                                class="base"><span class="strut"
-                                    style="height:2.09077em;vertical-align:-0.7693300000000001em;"></span><span
-                                    class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
-                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-                                                    style="height:1.32144em;"><span style="top:-2.314em;"><span
-                                                            class="pstrut" style="height:3em;"></span><span
-                                                            class="mord"><span class="mord mathnormal"
-                                                                style="margin-right:0.03148em;">k</span><span
-                                                                class="mspace"
-                                                                style="margin-right:0.2222222222222222em;"></span><span
-                                                                class="mbin">+</span><span class="mspace"
-                                                                style="margin-right:0.2222222222222222em;"></span><span
-                                                                class="mord">1</span></span></span><span
-                                                        style="top:-3.23em;"><span class="pstrut"
-                                                            style="height:3em;"></span><span class="frac-line"
-                                                            style="border-bottom-width:0.04em;"></span></span><span
-                                                        style="top:-3.677em;"><span class="pstrut"
-                                                            style="height:3em;"></span><span class="mord"><span
-                                                                class="mord">1</span></span></span></span><span
-                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
-                                                    class="vlist"
-                                                    style="height:0.7693300000000001em;"><span></span></span></span></span></span><span
-                                        class="mclose nulldelimiter"></span></span></span></span></span></eq> of being
-                included in the final <strong>reservoir</strong> at (k + 1)-th iteration.</p>
-        </blockquote>
-    </blockquote>
-    <h3 dir="auto" id="weighted-reservoir-sampling">Weighted Reservoir Sampling</h3>
-    <p dir="auto">By <a href="https://www.pbr-book.org/4ed/Sampling_Algorithms/Reservoir_Sampling#">&quot;A.2 Reservoir
-            Sampling&quot;</a> of &quot;PBR Book V4&quot;, we have the <strong>weighted reservoir sampling</strong>.</p>
+                                            style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
+        </eq> from the <strong>discrete distribution</strong> on these m <strong>samples</strong>
+        <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <msub>
+                                        <mi>X</mi>
+                                        <mi>i</mi>
+                                    </msub>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle X_i</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span
+                                class="mord mathnormal" style="margin-right:0.07847em;">X</span><span
+                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.31166399999999994em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathnormal mtight">i</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
+        </eq> with the probabilities proportional to the <strong>weights</strong> <strong>PMF</strong>
+        <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mstyle scriptlevel="0" displaystyle="true">
+                                    <msub>
+                                        <mi>w</mi>
+                                        <mi>i</mi>
+                                    </msub>
+                                </mstyle>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\displaystyle w_i</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span
+                                class="mord mathnormal" style="margin-right:0.02691em;">w</span><span
+                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.31166399999999994em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathnormal mtight">i</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
+        </eq>.
+    </p>
     <h2 dir="auto" id="spatiotemporal-reuse">SpatioTemporal Reuse</h2>
     <h2 dir="auto" id="references">References</h2>
     <p dir="auto">[Wyman 2023] <a href="https://intro-to-restir.cwyman.org/">Chris Wyman, Markus Kettunen, Daqi Lin,
