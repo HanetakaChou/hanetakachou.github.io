@@ -18,8 +18,34 @@ echo 'options nouveau modeset=0' >> /etc/modprobe.d/blacklist-nouveau.conf
 update-initramfs -u
 update-grub
 
-# lsmod | grep nouveau
+lsmod | grep nouveau
 ```  
+
+[Arch Linux - NVIDIA](https://wiki.archlinux.org/title/NVIDIA)  
+[NVIDIA - Modesetting](https://download.nvidia.com/XFree86/Linux-x86_64/555.58.02/README/kms.html)  
+```bash
+
+# Nvidia modesetting support. 
+# Set to 0 or comment to disable kernel modesetting support. 
+# This must be disabled in case of Mosaic or SLI.
+
+# CentOS
+echo 'options nvidia-drm modeset=0 fbdev=0' > /etc/modprobe.d/nvidia-modeset.conf
+echo 'options nvidia NVreg_DynamicPowerManagement=0x02' > /etc/modprobe.d/nvidia-power-management.conf
+dracut --force
+grub2-mkconfig -o /boot/efi/EFI/centos/grub.cfg  
+
+cat /sys/module/nvidia_drm/parameters/modeset
+```
+
+[NVIDIA - Persistence Daemon](https://docs.nvidia.com/deploy/driver-persistence/index.html#persistence-daemon)  
+```bash
+nvidia-persistenced --user HanetakaChou  
+# systemctl status nvidia-persistenced
+
+# nvidia-smi -pm 1
+# nvidia-smi -pm 0
+```
 
 [NVIDIA - Package Manager Installation](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#package-manager-installation)  
 ```bash

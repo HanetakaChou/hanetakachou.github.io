@@ -29,7 +29,31 @@ update-grub
 update-initramfs -u
 update-grub
 
-<span class="hljs-comment"># lsmod | grep nouveau</span>
+lsmod | grep nouveau
+</code></pre>
+    <p dir="auto"><a href="https://wiki.archlinux.org/title/NVIDIA">Arch Linux - NVIDIA</a><br>
+        <a href="https://download.nvidia.com/XFree86/Linux-x86_64/555.58.02/README/kms.html">NVIDIA - Modesetting</a>
+    </p>
+    <pre><code class="code-line language-bash" dir="auto">
+<span class="hljs-comment"># Nvidia modesetting support. </span>
+<span class="hljs-comment"># Set to 0 or comment to disable kernel modesetting support. </span>
+<span class="hljs-comment"># This must be disabled in case of Mosaic or SLI.</span>
+
+<span class="hljs-comment"># CentOS</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;options nvidia-drm modeset=0 fbdev=0&#x27;</span> &gt; /etc/modprobe.d/nvidia-modeset.conf
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;options nvidia NVreg_DynamicPowerManagement=0x02&#x27;</span> &gt; /etc/modprobe.d/nvidia-power-management.conf
+dracut --force
+grub2-mkconfig -o /boot/efi/EFI/centos/grub.cfg  
+
+<span class="hljs-built_in">cat</span> /sys/module/nvidia_drm/parameters/modeset
+</code></pre>
+    <p dir="auto"><a href="https://docs.nvidia.com/deploy/driver-persistence/index.html#persistence-daemon">NVIDIA -
+            Persistence Daemon</a></p>
+    <pre><code class="code-line language-bash" dir="auto">nvidia-persistenced --user HanetakaChou  
+<span class="hljs-comment"># systemctl status nvidia-persistenced</span>
+
+<span class="hljs-comment"># nvidia-smi -pm 1</span>
+<span class="hljs-comment"># nvidia-smi -pm 0</span>
 </code></pre>
     <p dir="auto"><a
             href="https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#package-manager-installation">NVIDIA
