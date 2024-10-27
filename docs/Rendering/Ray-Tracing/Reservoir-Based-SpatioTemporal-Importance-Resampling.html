@@ -10,10 +10,10 @@
 </head>
 
 <body class="markdown-body">
-    <h1 dir="auto" id="restir-reservoir-based-spatiotemporal-importance-resampling-1">ReSTIR (Reservoir-Based
+    <h1 dir="auto" id="restir-reservoir-based-spatiotemporal-importance-resampling">ReSTIR (Reservoir-Based
         SpatioTemporal Importance Resampling)</h1>
-    <h2 dir="auto" id="reservoir-based-importance-resampling-1">Reservoir-Based Importance Resampling</h2>
-    <h3 dir="auto" id="importance-sampling-1">Importance Sampling</h3>
+    <h2 dir="auto" id="1-sir-sampling-importance-resampling">1. SIR (Sampling Importance Resampling)</h2>
+    <h3 dir="auto" id="1-1-importance-sampling">1-1. Importance Sampling</h3>
     <p dir="auto">By &quot;Exercise 5.64&quot; of <a href="https://archived.stat.ufl.edu/casella/">&quot;Statistic
             Inference 2nd Edition&quot;</a>, we have the <strong>importance sampling</strong> estimator <eq><span
                 class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -1988,7 +1988,7 @@
                                 class="mclose nulldelimiter"></span></span></span></span></span></eq>), the
         <strong>variance</strong> is zero and only one sample is sufficient.
     </p>
-    <h3 dir="auto" id="mis-multiple-importance-sampling-2">MIS (Multiple Importance Sampling)</h3>
+    <h3 dir="auto" id="1-2-mis-multiple-importance-sampling">1-2. MIS (Multiple Importance Sampling)</h3>
     <p dir="auto">By <a
             href="https://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling#MultipleImportanceSampling">&quot;13.10.1
             Multiple Importance Sampling&quot;</a> of &quot;PBR Book V3&quot; and <a
@@ -8756,8 +8756,8 @@
                         class="base"><span class="strut" style="height:0.31em;vertical-align:0em;"></span><span
                             class="minner">⋯</span></span></span></span></eq>.
     </p>
-    <h3 dir="auto" id="reservoir-sampling-1">Reservoir Sampling</h3>
-    <h4 dir="auto" id="basic-reservoir-sampling-1">Basic Reservoir Sampling</h4>
+    <h3 dir="auto" id="1-3-reservoir-sampling">1-3. Reservoir Sampling</h3>
+    <h4 dir="auto" id="1-3-1-basic-reservoir-sampling">1-3-1. Basic Reservoir Sampling</h4>
     <p dir="auto">By <a href="https://www.pbr-book.org/4ed/Sampling_Algorithms/Reservoir_Sampling#">&quot;A.2 Reservoir
             Sampling&quot;</a> of &quot;PBR Book V4&quot;, we have the <strong>basic reservoir sampling</strong>.</p>
     <p dir="auto">We sequentially process each <strong>sample</strong> from the <strong>stream</strong>. The total
@@ -9208,7 +9208,7 @@
                 included in the final <strong>reservoir</strong> at (t + 1)-th iteration.</p>
         </blockquote>
     </blockquote>
-    <h4 dir="auto" id="k-sized-reservoir-sampling-1">K-Sized Reservoir Sampling</h4>
+    <h4 dir="auto" id="1-3-2-k-sized-reservoir-sampling">1-3-2. K-Sized Reservoir Sampling</h4>
     <p dir="auto">The difference is that the <strong>reservoir</strong> can hold at most <strong>k</strong> <s>(instead
             of 1)</s> <strong>reservoir sample</strong>, and the first <strong>k</strong> <s>(instead of 1)</s>
         <strong>seen</strong> <strong>sample</strong> is always selected to initialize the <strong>reservoir</strong>.
@@ -9337,7 +9337,7 @@
         </s> of being
         included in the final <strong>reservoir</strong>.
     </p>
-    <h4 dir="auto" id="weighted-reservoir-sampling-2">Weighted Reservoir Sampling</h4>
+    <h4 dir="auto" id="1-3-3-weighted-reservoir-sampling">1-3-3. Weighted Reservoir Sampling</h4>
     <p dir="auto">By <a href="https://www.pbr-book.org/4ed/Sampling_Algorithms/Reservoir_Sampling#">&quot;A.2 Reservoir
             Sampling&quot;</a> of &quot;PBR Book V4&quot;, we have the <strong>weighted reservoir sampling</strong>.</p>
     <p dir="auto">The difference is that each <strong>seen sample</strong> has the probability according to the
@@ -9377,8 +9377,8 @@
     <p dir="auto">Each <strong>sample</strong> from the <strong>stream</strong> has the probability proportional to the
         <strong>weight</strong> of being included in the final <strong>reservoir</strong>.
     </p>
-    <h3 dir="auto" id="ris-resampled-importance-sampling--sir-sampling-importance-resampling--weighted-bootstrap-1">RIS
-        (Resampled Importance Sampling) / SIR (Sampling Importance Resampling) / Weighted Bootstrap</h3>
+    <h3 dir="auto" id="1-4-ris-resampled-importance-sampling--sir-sampling-importance-resampling--weighted-bootstrap">
+        1-4. RIS (Resampled Importance Sampling) / SIR (Sampling Importance Resampling) / Weighted Bootstrap</h3>
     <p dir="auto">By &quot;Exercise 5.65&quot; of <a href="https://archived.stat.ufl.edu/casella/">&quot;Statistic
             Inference 2nd Edition&quot;</a>, we have the <strong>SIR (sampling importance resampling)</strong> /
         <strong>weighted bootstrap</strong> estimator <eq><span class="katex"><span class="katex-mathml"><math
@@ -18153,7 +18153,7 @@
                                 style="top:0em;"><span
                                     class="delimsizing size4">)</span></span></span></span></span></span></eq> within
         the formula is also called the <strong>unbiased contribution weight</strong>.</p>
-    <h4 dir="auto" id="mis-multiple-importance-sampling-3">MIS (multiple importance sampling)</h4>
+    <h4 dir="auto" id="1-4-1-mis-multiple-importance-sampling">1-4-1. MIS (multiple importance sampling)</h4>
     <p dir="auto">By [Wyman 2023], we use the <strong>MIS (multiple importance sampling)</strong> to generate (<eq><span
                 class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
@@ -21605,7 +21605,7 @@
                                             style="height:2.8603700000000005em;"><span></span></span></span></span></span><span
                                 class="mclose nulldelimiter"></span></span></span></span></span></eq>.
     </p>
-    <h4 dir="auto" id="weighted-reservoir-sampling-3">Weighted Reservoir Sampling</h4>
+    <h4 dir="auto" id="1-4-2-weighted-reservoir-sampling">1-4-2. Weighted Reservoir Sampling</h4>
     <p dir="auto">By [Wyman 2023], we use the <strong>weighted reservoir sampling</strong> to generate n
         <strong>samples</strong>
         <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -21681,8 +21681,8 @@
                                             style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
         </eq>.
     </p>
-    <h2 dir="auto" id="spatiotemporal-1">SpatioTemporal</h2>
-    <h2 dir="auto" id="references-1">References</h2>
+    <h2 dir="auto" id="2-spatiotemporal">2. SpatioTemporal</h2>
+    <h2 dir="auto" id="references">References</h2>
     <p dir="auto">[Wyman 2023] <a href="https://intro-to-restir.cwyman.org/">Chris Wyman, Markus Kettunen, Daqi Lin,
             Benedikt Bitterli, Cem Yuksel, Wojciech Jarosz, Pawel Kozlowski, Giovanni Francesco. &quot;A Gentle
             Introduction to ReSTIR: Path Reuse in Real-time.&quot; SIGGRAPH 2023.</a></p>

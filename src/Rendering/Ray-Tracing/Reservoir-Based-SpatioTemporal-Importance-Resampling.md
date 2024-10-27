@@ -1,9 +1,9 @@
 
 # ReSTIR (Reservoir-Based SpatioTemporal Importance Resampling)  
 
-## Reservoir-Based Importance Resampling
+## 1\. SIR (Sampling Importance Resampling)
 
-### Importance Sampling
+### 1-1\. Importance Sampling
 
 By "Exercise 5.64" of ["Statistic Inference 2nd Edition"](https://archived.stat.ufl.edu/casella/), we have the **importance sampling** estimator $\displaystyle \int \mathop{\mathrm{t}} (x) \mathop{\mathrm{r}} (x) \, dx \approx \frac{1}{n} \sum_{i=1}^n \frac{\mathop{\mathrm{t}} (X_i)}{\mathop{\mathrm{p}} (X_i)} \mathop{\mathrm{r}} (X_i)$ where the **target distribution** has the **PDF (Probability Density Function)** t, the r is any function, and the n **samples** $\displaystyle X_i$ are generated from the **proposal distribution** with the **PDF** p.  
 
@@ -21,7 +21,7 @@ By ["13.2 The Monte Carlo Estimator"](https://www.pbr-book.org/3ed-2018/Monte_Ca
 
 By [13.10 Importance Sampling](https://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling) of "PBR Book V3" and ["2.2.2 Importance Sampling"](https://pbr-book.org/4ed/Monte_Carlo_Integration/Improving_Efficiency#ImportanceSampling) of "PBR Book V4", for f is always non-negative, when the **proposal distribution** **PDF** p is proportional to f (namely, $\displaystyle \mathop{\mathrm{p}} (X) = \frac{\displaystyle \mathop{\mathrm{f}} (X)}{\displaystyle {\| f \|}_1}$), the **variance** is zero and only one sample is sufficient.  
 
-### MIS (Multiple Importance Sampling)
+### 1-2\. MIS (Multiple Importance Sampling)
 
 By ["13.10.1 Multiple Importance Sampling"](https://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling#MultipleImportanceSampling) of "PBR Book V3" and ["2.2.3 Multiple Importance Sampling"](https://pbr-book.org/4ed/Monte_Carlo_Integration/Improving_Efficiency#MultipleImportanceSampling) of "PBR Book V4", we have **MIS (multiple importance sampling)** estimator $\displaystyle \int \mathop{\mathrm{f}} (x) \, dx \approx \frac{1}{n_a} \sum_{i=1}^{n_a} \mathop{\mathrm{w_a}} (X_{a, i}) \frac{\mathop{\mathrm{f}} (X_{a, i})}{\mathop{\mathrm{p_a}} (X_{a, i})} + \frac{1}{n_b} \sum_{i=1}^{n_b} \mathop{\mathrm{w_b}} (X_{b, i}) \frac{\mathop{\mathrm{f}} (X_{b, i})}{\mathop{\mathrm{p_b}} (X_{b, i})}$ where f is any function, the $\displaystyle n_a$ **samples** $\displaystyle X_{a, i}$ are generated from the **proposal distribution** with the **PDF** $\displaystyle p_a$ and the **balance heuristic** **weight** $\displaystyle \mathop{\mathrm{w_a}} (X_{a, i}) = \frac{\displaystyle n_a \mathop{\mathrm{p_a}} (X_{a, i})}{\displaystyle n_a \mathop{\mathrm{p_a}} (X_{a, i}) + n_b \mathop{\mathrm{p_b}} (X_{a, i})}$, and the $\displaystyle n_b$ **samples** $\displaystyle X_{b, i}$ are generated from the **proposal distribution** with the **PDF** $\displaystyle p_b$ and the **balance heuristic** **weight** $\displaystyle \mathop{\mathrm{w_b}} (X_{b, i}) = \frac{\displaystyle n_b \mathop{\mathrm{p_b}} (X_{b, i})}{\displaystyle n_a \mathop{\mathrm{p_a}} (X_{b, i}) + n_b \mathop{\mathrm{p_b}} (X_{b, i})}$.  
 
@@ -37,9 +37,9 @@ For more general case, we may have multiple **proposal distribution** $\displays
 
 And we have the more general **balance heuristic** **weights** $\displaystyle \mathop{\mathrm{w_a}} (X_{a, i}) = \frac{\displaystyle n_a \mathop{\mathrm{p_a}} (X_{a, i})}{\displaystyle n_a \mathop{\mathrm{p_a}} (X_{a, i}) + n_b \mathop{\mathrm{p_b}} (X_{a, i}) + n_c \mathop{\mathrm{p_c}} (X_{a, i}) + \cdots} \, \mathop{\mathrm{w_b}} (X_{a, i}) = \frac{\displaystyle n_b \mathop{\mathrm{p_b}} (X_{a, i})}{\displaystyle n_a \mathop{\mathrm{p_a}} (X_{a, i}) + n_b \mathop{\mathrm{p_b}} (X_{a, i}) + n_c \mathop{\mathrm{p_c}} (X_{a, i}) + \cdots} \, \mathop{\mathrm{w_c}} (X_{a, i}) = \frac{\displaystyle n_c \mathop{\mathrm{p_c}} (X_{a, i})}{\displaystyle n_a \mathop{\mathrm{p_a}} (X_{a, i}) + n_b \mathop{\mathrm{p_b}} (X_{a, i}) + n_c \mathop{\mathrm{p_c}} (X_{a, i}) + \cdots} \,  + \cdots$.  
 
-### Reservoir Sampling  
+### 1-3\. Reservoir Sampling  
 
-#### Basic Reservoir Sampling  
+#### 1-3-1\. Basic Reservoir Sampling  
 
 By ["A.2 Reservoir Sampling"](https://www.pbr-book.org/4ed/Sampling_Algorithms/Reservoir_Sampling#) of "PBR Book V4", we have the **basic reservoir sampling**.  
    
@@ -63,13 +63,13 @@ We can prove by **mathematical Induction** that at any iteration, when we have p
 >>  
 >> For the previous t **seen samples**, they have the probability $\displaystyle \frac{1}{t}$ of being included in the final **reservoir** at t-th iteration. At the same time, they have the probability $\displaystyle 1 - \frac{1}{t + 1} = \frac{t}{t + 1}$ of NOT being replaced by the (t + 1)-th **seen sample** at (t + 1)-th iteration. This means that they have the probability $\displaystyle \frac{1}{t} \times \frac{t}{t + 1} = \frac{1}{t + 1}$ of being included in the final **reservoir** at (t + 1)-th iteration.  
 
-#### K-Sized Reservoir Sampling  
+#### 1-3-2\. K-Sized Reservoir Sampling  
 
 The difference is that the **reservoir** can hold at most **k** ~~(instead of 1)~~ **reservoir sample**, and the first **k** ~~(instead of 1)~~ **seen** **sample** is always selected to initialize the **reservoir**. For each subsequent **seen** **candidate sample**, we have the probability $\displaystyle \frac{k}{n}$  ~~(instead of $\displaystyle \frac{1}{n}$)~~ of selecting it to replace the existing **sample** within the **reservoir**.
 
 When we have processed n **samples**, each **sample** from the **stream** has the equal probability $\displaystyle \frac{k}{n}$ ~~(instead of $\displaystyle \frac{1}{n}$)~~ of being included in the final **reservoir**.
 
-#### Weighted Reservoir Sampling  
+#### 1-3-3\. Weighted Reservoir Sampling  
 
 By ["A.2 Reservoir Sampling"](https://www.pbr-book.org/4ed/Sampling_Algorithms/Reservoir_Sampling#) of "PBR Book V4", we have the **weighted reservoir sampling**.  
 
@@ -77,7 +77,7 @@ The difference is that each **seen sample** has the probability according to the
   
 Each **sample** from the **stream** has the probability proportional to the **weight** of being included in the final **reservoir**.
 
-### RIS (Resampled Importance Sampling) / SIR (Sampling Importance Resampling) / Weighted Bootstrap  
+### 1-4\. RIS (Resampled Importance Sampling) / SIR (Sampling Importance Resampling) / Weighted Bootstrap  
 
 By "Exercise 5.65" of ["Statistic Inference 2nd Edition"](https://archived.stat.ufl.edu/casella/), we have the **SIR (sampling importance resampling)** / **weighted bootstrap** estimator $\displaystyle \int \mathop{\mathrm{t}} (x) \mathop{\mathrm{r}} (x) \, dx \approx \frac{1}{n} \sum_{j=1}^n \mathop{\mathrm{r}} (Y_j)$ where the **target distribution** has the **PDF** t, the r is any function, the m **samples** $\displaystyle X_i$ are generated from the **proposal distribution** with the **PDF** p, and the n **samples** $\displaystyle Y_j$ are then generated from the **discrete distribution** on these m **samples** $\displaystyle X_i$ with the **PMF (Probability Mass Function)** $\displaystyle w_i = \mathop{\mathrm{P}} (Y = X_i) = \frac{\displaystyle \frac{\mathop{\mathrm{t}} (X_i)}{\mathop{\mathrm{p}} (X_i)}}{\displaystyle \sum_{k=1}^m \frac{\mathop{\mathrm{t}} (X_k)}{\mathop{\mathrm{p}} (X_k)}}$.  
 
@@ -107,15 +107,15 @@ By \[Wyman 2023\], we have the **RIS (resampled importance sampling)** estimator
 
 By \[Wyman 2023\], the part $\displaystyle \mathop{\mathrm{W_Y}} = \frac{1}{\displaystyle \mathop{\mathrm{\hat{p}}} (Y_j)} \left( \frac{1}{m} \sum_{i=1}^m \frac{\displaystyle \mathop{ \mathrm{\hat{p}}} (X_i)}{\displaystyle \mathop{\mathrm{p}} (X_i)} \right)$ within the formula is also called the **unbiased contribution weight**.
 
-#### MIS (multiple importance sampling)  
+#### 1-4-1\. MIS (multiple importance sampling)  
 
 By \[Wyman 2023\], we use the **MIS (multiple importance sampling)** to generate ($\displaystyle m_a$ + $\displaystyle m_b$) **samples** $\displaystyle X_{a, i}$ and $\displaystyle X_{b, i}$ from multiple **proposal distributions** $\displaystyle p_a$ and $\displaystyle p_b$, and we have the estimator $\displaystyle \frac{1}{n} \sum_{j=1}^n \left( \frac{\displaystyle \mathop{\mathrm{f}} (Y_j)}{\displaystyle \mathop{\mathrm{\hat{p}}} (Y_j)} \left( \frac{1}{m_a} \sum_{i=1}^{m_a} \mathop{\mathrm{w_a}} (X_{a, i}) \frac{\displaystyle \mathop{ \mathrm{\hat{p}}} (X_{a, i})}{\displaystyle \mathop{\mathrm{p_a}} (X_{a, i})} + \frac{1}{m_b} \sum_{i=1}^{m_b} \mathop{\mathrm{w_b}} (X_{b, i}) \frac{\displaystyle \mathop{ \mathrm{\hat{p}}} (X_{b, i})}{\displaystyle \mathop{\mathrm{p_b}} (X_{b, i})} \right) \right)  \approx \int \mathop{\mathrm{f}} (x) \, dx$ where $\displaystyle m_a$ **samples** $\displaystyle X_{a, i}$ are generated from **proposal distribution** with the **PDF** $\displaystyle p_a$ and the **balance heuristic** **weight** $\displaystyle \mathop{\mathrm{w_a}} (X_{a, i}) = \frac{\displaystyle m_a \mathop{\mathrm{p_a}} (X_{a, i})}{\displaystyle m_a \mathop{\mathrm{p_a}} (X_{a, i}) + m_b \mathop{\mathrm{p_b}} (X_{a, i})}$, $\displaystyle m_b$ **samples** $\displaystyle X_{b, i}$ are generated from **proposal distribution** with the **PDF** $\displaystyle p_b$ and the **balance heuristic** **weight** $\displaystyle \mathop{\mathrm{w_b}} (X_{b, i}) = \frac{\displaystyle m_b \mathop{\mathrm{p_b}} (X_{b, i})}{\displaystyle m_a \mathop{\mathrm{p_a}} (X_{b, i}) + m_b \mathop{\mathrm{p_b}} (X_{b, i})}$, and the n **samples** $\displaystyle Y_j$ are then generated from the **discrete distribution** on these ($\displaystyle m_a$ + $\displaystyle m_b$) **samples** $\displaystyle X_{a, i}$ and $\displaystyle X_{b, i}$ with the **PMF** $\displaystyle w_{a, i} = \mathop{\mathrm{P}} (Y = X_{a, i}) = \frac{\displaystyle \frac{1}{m_a} \mathop{\mathrm{w_a}} (X_{a, i}) \frac{\displaystyle \mathop{ \mathrm{\hat{p}}} (X_{a, i})}{\displaystyle \mathop{\mathrm{p_a}} (X_{a, i})} }{\displaystyle \frac{1}{m_a} \sum_{k=1}^{m_a} \mathop{\mathrm{w_a}} (X_{a, k}) \frac{\displaystyle \mathop{ \mathrm{\hat{p}}} (X_{a, k})}{\displaystyle \mathop{\mathrm{p_a}} (X_{a, k})} + \frac{1}{m_b} \sum_{k=1}^{m_b} \mathop{\mathrm{w_b}} (X_{b, k}) \frac{\displaystyle \mathop{ \mathrm{\hat{p}}} (X_{b, k})}{\displaystyle \mathop{\mathrm{p_b}} (X_{b, k})} }$ and $\displaystyle w_{b, i} = \mathop{\mathrm{P}} (Y = X_{b, i}) = \frac{\displaystyle \frac{1}{m_b} \mathop{\mathrm{w_b}} (X_{b, i}) \frac{\displaystyle \mathop{ \mathrm{\hat{p}}} (X_{b, i})}{\displaystyle \mathop{\mathrm{p_a}} (X_{b, i})} }{\displaystyle \frac{1}{m_a} \sum_{k=1}^{m_a} \mathop{\mathrm{w_a}} (X_{a, k}) \frac{\displaystyle \mathop{ \mathrm{\hat{p}}} (X_{a, k})}{\displaystyle \mathop{\mathrm{p_a}} (X_{a, k})} + \frac{1}{m_b} \sum_{k=1}^{m_b} \mathop{\mathrm{w_b}} (X_{b, k}) \frac{\displaystyle \mathop{ \mathrm{\hat{p}}} (X_{b, k})}{\displaystyle \mathop{\mathrm{p_b}} (X_{b, k})} }$.   
 
-#### Weighted Reservoir Sampling  
+#### 1-4-2\. Weighted Reservoir Sampling  
 
 By \[Wyman 2023\], we use the **weighted reservoir sampling** to generate n **samples** $\displaystyle Y_i$ from the **discrete distribution** on these m **samples** $\displaystyle X_i$ with the probabilities proportional to the **weights** **PMF** $\displaystyle w_i$.   
 
-## SpatioTemporal  
+## 2\. SpatioTemporal  
 
 ## References  
 
