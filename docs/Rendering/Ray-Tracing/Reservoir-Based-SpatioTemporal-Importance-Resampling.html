@@ -8756,28 +8756,6 @@
                         class="base"><span class="strut" style="height:0.31em;vertical-align:0em;"></span><span
                             class="minner">⋯</span></span></span></span></eq>.
     </p>
-    <p dir="auto"><img src="Reservoir-Based-SpatioTemporal-Importance-Resampling-Importance-Sampling.png" alt=""
-            data-src="Reservoir-Based-SpatioTemporal-Importance-Resampling-Importance-Sampling.png"></p>
-    <p dir="auto"><img src="Reservoir-Based-SpatioTemporal-Importance-Resampling-Multiple-Importance-Sampling.png"
-            alt="" data-src="Reservoir-Based-SpatioTemporal-Importance-Resampling-Multiple-Importance-Sampling.png"></p>
-    <p dir="auto">[Wyman 2023] supports<br>
-        \mathop{\mathrm{supp}}(f) // set of all x where f(x) \ne 0<br>
-        \mathop{\mathrm{supp}}(X) // set of all values x it can take with p(x) &gt; 0 // namely p(x) \ne 0 // p(x) can
-        Not &lt; 0<br>
-        \mathop{\mathrm{supp}}(X) \subset \mathop{\mathrm{supp}}(f) // to be unbiased</p>
-    <p dir="auto">// balance heuristic // one pdf = 0 // not all pdf = 0 // weight not zero</p>
-    <p dir="auto">// the domain one pdf not cover f(x) will not be detrimental</p>
-    <p dir="auto">// the union of the domains of all pdfs cover f(x) // enough</p>
-    <p dir="auto"><a
-            href="https://pbr-book.org/4ed/Monte_Carlo_Integration/Improving_Efficiency#ImportanceSampling">&quot;2.2.2
-            Importance Sampling&quot;</a> of &quot;PBR Book V4&quot;<br>
-        <a href="https://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling">13.10 Importance
-            Sampling</a> of &quot;PBR Book V3&quot;
-    </p>
-    <p dir="auto">&quot;The only limitation on p(x) is that it must be nonzero for all x where | f(x) | &gt; 0 (namely
-        f(x) \ne 0)&quot; // actually // otherwise the estimator will NOT be unbiased</p>
-    <p dir="auto">// TODO: \mathop\mathrm w_i = 0 when \mathop\mathrm p_k (x) = 0 for all k proposal distributions //
-        but actually such sample x will not be generated</p>
     <h3 dir="auto" id="reservoir-sampling">Reservoir Sampling</h3>
     <h4 dir="auto" id="basic-reservoir-sampling">Basic Reservoir Sampling</h4>
     <p dir="auto">By <a href="https://www.pbr-book.org/4ed/Sampling_Algorithms/Reservoir_Sampling#">&quot;A.2 Reservoir

@@ -37,28 +37,6 @@ For more general case, we may have multiple **proposal distribution** $\displays
 
 And we have the more general **balance heuristic** **weights** $\displaystyle \mathop{\mathrm{w_a}} (X_{a, i}) = \frac{\displaystyle n_a \mathop{\mathrm{p_a}} (X_{a, i})}{\displaystyle n_a \mathop{\mathrm{p_a}} (X_{a, i}) + n_b \mathop{\mathrm{p_b}} (X_{a, i}) + n_c \mathop{\mathrm{p_c}} (X_{a, i}) + \cdots} \, \mathop{\mathrm{w_b}} (X_{a, i}) = \frac{\displaystyle n_b \mathop{\mathrm{p_b}} (X_{a, i})}{\displaystyle n_a \mathop{\mathrm{p_a}} (X_{a, i}) + n_b \mathop{\mathrm{p_b}} (X_{a, i}) + n_c \mathop{\mathrm{p_c}} (X_{a, i}) + \cdots} \, \mathop{\mathrm{w_c}} (X_{a, i}) = \frac{\displaystyle n_c \mathop{\mathrm{p_c}} (X_{a, i})}{\displaystyle n_a \mathop{\mathrm{p_a}} (X_{a, i}) + n_b \mathop{\mathrm{p_b}} (X_{a, i}) + n_c \mathop{\mathrm{p_c}} (X_{a, i}) + \cdots} \,  + \cdots$.  
 
-![](Reservoir-Based-SpatioTemporal-Importance-Resampling-Importance-Sampling.png)  
-
-![](Reservoir-Based-SpatioTemporal-Importance-Resampling-Multiple-Importance-Sampling.png)  
-
-\[Wyman 2023\] supports  
-\mathop{\mathrm{supp}}(f) // set of all x where f(x) \ne 0  
-\mathop{\mathrm{supp}}(X) // set of all values x it can take with p(x) > 0 // namely p(x) \ne 0 // p(x) can Not < 0  
-\mathop{\mathrm{supp}}(X) \subset \mathop{\mathrm{supp}}(f) // to be unbiased  
-
-// balance heuristic // one pdf = 0 // not all pdf = 0 // weight not zero  
-
-// the domain one pdf not cover f(x) will not be detrimental  
-
-// the union of the domains of all pdfs cover f(x) // enough 
-
-["2.2.2 Importance Sampling"](https://pbr-book.org/4ed/Monte_Carlo_Integration/Improving_Efficiency#ImportanceSampling) of "PBR Book V4"  
-[13.10 Importance Sampling](https://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling) of "PBR Book V3"  
-
-"The only limitation on p(x) is that it must be nonzero for all x where | f(x) | > 0 (namely f(x) \ne 0)"  // actually // otherwise the estimator will NOT be unbiased  
-
-// TODO: \mathop\mathrm w_i = 0 when \mathop\mathrm p_k (x) = 0 for all k proposal distributions  // but actually such sample x will not be generated  
-
 ### Reservoir Sampling  
 
 #### Basic Reservoir Sampling  
