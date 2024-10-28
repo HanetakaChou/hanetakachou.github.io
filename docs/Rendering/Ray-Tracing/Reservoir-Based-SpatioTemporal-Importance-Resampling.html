@@ -12,7 +12,7 @@
 <body class="markdown-body">
     <h1 dir="auto" id="restir-reservoir-based-spatiotemporal-importance-resampling">ReSTIR (Reservoir-Based
         SpatioTemporal Importance Resampling)</h1>
-    <h2 dir="auto" id="1-sir-sampling-importance-resampling">1. SIR (Sampling Importance Resampling)</h2>
+    <h2 dir="auto" id="1-importance-resampling">1. Importance Resampling</h2>
     <h3 dir="auto" id="1-1-importance-sampling">1-1. Importance Sampling</h3>
     <p dir="auto">By &quot;Exercise 5.64&quot; of <a href="https://archived.stat.ufl.edu/casella/">&quot;Statistic
             Inference 2nd Edition&quot;</a>, we have the <strong>importance sampling</strong> estimator <eq><span
@@ -6887,7 +6887,7 @@
                                     class="mord mathnormal">x</span></span></span></span></eq>.</p>
         </blockquote>
     </blockquote>
-    <p dir="auto">For more general case, we may have multiple <strong>proposal distribution</strong>
+    <p dir="auto">For more general case, we may have multiple <strong>proposal distributions</strong>
         <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
@@ -8756,18 +8756,123 @@
                         class="base"><span class="strut" style="height:0.31em;vertical-align:0em;"></span><span
                             class="minner">⋯</span></span></span></span></eq>.
     </p>
+    <h4 dir="auto" id="1-2-1-stratified-sampling">1-2-1. Stratified Sampling</h4>
+    <p dir="auto">For the case where the domain of these multiple K <strong>proposal distributions</strong> do NOT
+        overlap each other and these K <strong>weights</strong>
+        <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mo>
+                                    <msub>
+                                        <mi mathvariant="normal">w</mi>
+                                        <mi mathvariant="normal">a</mi>
+                                    </msub>
+                                </mo>
+                                <mo>=</mo>
+                                <mo>
+                                    <msub>
+                                        <mi mathvariant="normal">w</mi>
+                                        <mi mathvariant="normal">b</mi>
+                                    </msub>
+                                </mo>
+                                <mo>=</mo>
+                                <mo>
+                                    <msub>
+                                        <mi mathvariant="normal">w</mi>
+                                        <mi mathvariant="normal">c</mi>
+                                    </msub>
+                                </mo>
+                                <mo>=</mo>
+                                <mo>⋯</mo>
+                                <mo>=</mo>
+                                <mfrac>
+                                    <mn>1</mn>
+                                    <mi>K</mi>
+                                </mfrac>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\mathop{\mathrm{w_a}} = \mathop{\mathrm{w_b}} =
+                                \mathop{\mathrm{w_c}} = \cdots = \frac{1}{K}</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mop"><span
+                                class="mord"><span class="mord mathrm" style="margin-right:0.01389em;">w</span><span
+                                    class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                class="vlist" style="height:0.151392em;"><span
+                                                    style="top:-2.5500000000000003em;margin-left:-0.01389em;margin-right:0.05em;"><span
+                                                        class="pstrut" style="height:2.7em;"></span><span
+                                                        class="sizing reset-size6 size3 mtight"><span
+                                                            class="mord mathrm mtight">a</span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:0.15em;"><span></span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span><span
+                            class="mrel">=</span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+                            class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span
+                            class="mop"><span class="mord"><span class="mord mathrm"
+                                    style="margin-right:0.01389em;">w</span><span class="msupsub"><span
+                                        class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                style="height:0.33610799999999996em;"><span
+                                                    style="top:-2.5500000000000003em;margin-left:-0.01389em;margin-right:0.05em;"><span
+                                                        class="pstrut" style="height:2.7em;"></span><span
+                                                        class="sizing reset-size6 size3 mtight"><span
+                                                            class="mord mathrm mtight">b</span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:0.15em;"><span></span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span><span
+                            class="mrel">=</span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+                            class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span
+                            class="mop"><span class="mord"><span class="mord mathrm"
+                                    style="margin-right:0.01389em;">w</span><span class="msupsub"><span
+                                        class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                style="height:0.151392em;"><span
+                                                    style="top:-2.5500000000000003em;margin-left:-0.01389em;margin-right:0.05em;"><span
+                                                        class="pstrut" style="height:2.7em;"></span><span
+                                                        class="sizing reset-size6 size3 mtight"><span
+                                                            class="mord mathrm mtight">c</span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:0.15em;"><span></span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span><span
+                            class="mrel">=</span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+                            class="strut" style="height:0.36687em;vertical-align:0em;"></span><span
+                            class="minner">⋯</span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                        class="base"><span class="strut" style="height:1.190108em;vertical-align:-0.345em;"></span><span
+                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span
+                                                    class="pstrut" style="height:3em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight"><span class="mord mathnormal mtight"
+                                                            style="margin-right:0.07153em;">K</span></span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.394em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight"><span
+                                                            class="mord mtight">1</span></span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.345em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span></span></span></span></eq>, the <strong>MIS
+            (multiple importance sampling)</strong> degenerates to the <strong>stratified sampling</strong> of which
+        each <strong>stratum</strong> corresponds to the domain of each <strong>proposal distribution</strong>.
+    </p>
     <h3 dir="auto" id="1-3-reservoir-sampling">1-3. Reservoir Sampling</h3>
-    <h4 dir="auto" id="1-3-1-basic-reservoir-sampling">1-3-1. Basic Reservoir Sampling</h4>
     <p dir="auto">By <a href="https://www.pbr-book.org/4ed/Sampling_Algorithms/Reservoir_Sampling#">&quot;A.2 Reservoir
-            Sampling&quot;</a> of &quot;PBR Book V4&quot;, we have the <strong>basic reservoir sampling</strong>.</p>
+            Sampling&quot;</a> of &quot;PBR Book V4&quot;, we have the <strong>basic</strong> <strong>reservoir
+            sampling</strong>.</p>
     <p dir="auto">We sequentially process each <strong>sample</strong> from the <strong>stream</strong>. The total
         length of the <strong>stream</strong> can indeed be infinite which is too large to be stored in the memory.</p>
     <p dir="auto">We assume that we have processed <strong>n</strong> <strong>samples</strong>. This means that the
-        number of the <strong>seen samples</strong> is <strong>n</strong>. For the <strong>basic reservoir
-            sampling</strong>, the <strong>reservoir</strong> can hold at most <strong>1</strong> <strong>reservoir
-            sample</strong>, and the first <strong>1</strong> <strong>seen</strong> <strong>sample</strong> is always
-        selected to initialize the <strong>reservoir</strong>. For each subsequent <strong>seen</strong>
-        <strong>candidate sample</strong>, we have the probability <eq><span class="katex"><span
+        number of the <strong>seen samples</strong> is <strong>n</strong>. For the <strong>basic</strong>
+        <strong>reservoir sampling</strong>, the <strong>reservoir</strong> can hold at most <strong>1</strong>
+        <strong>reservoir sample</strong>, and the first <strong>1</strong> <strong>seen</strong>
+        <strong>sample</strong> is always selected to initialize the <strong>reservoir</strong>. For each subsequent
+        <strong>seen</strong> <strong>candidate sample</strong>, we have the probability <eq><span class="katex"><span
                     class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
                         <semantics>
                             <mrow>
@@ -9208,7 +9313,7 @@
                 included in the final <strong>reservoir</strong> at (t + 1)-th iteration.</p>
         </blockquote>
     </blockquote>
-    <h4 dir="auto" id="1-3-2-k-sized-reservoir-sampling">1-3-2. K-Sized Reservoir Sampling</h4>
+    <h4 dir="auto" id="1-3-1-k-sized-reservoir-sampling">1-3-1. K-Sized Reservoir Sampling</h4>
     <p dir="auto">The difference is that the <strong>reservoir</strong> can hold at most <strong>k</strong> <s>(instead
             of 1)</s> <strong>reservoir sample</strong>, and the first <strong>k</strong> <s>(instead of 1)</s>
         <strong>seen</strong> <strong>sample</strong> is always selected to initialize the <strong>reservoir</strong>.
@@ -9337,7 +9442,7 @@
         </s> of being
         included in the final <strong>reservoir</strong>.
     </p>
-    <h4 dir="auto" id="1-3-3-weighted-reservoir-sampling">1-3-3. Weighted Reservoir Sampling</h4>
+    <h4 dir="auto" id="1-3-2-weighted-reservoir-sampling">1-3-2. Weighted Reservoir Sampling</h4>
     <p dir="auto">By <a href="https://www.pbr-book.org/4ed/Sampling_Algorithms/Reservoir_Sampling#">&quot;A.2 Reservoir
             Sampling&quot;</a> of &quot;PBR Book V4&quot;, we have the <strong>weighted reservoir sampling</strong>.</p>
     <p dir="auto">The difference is that each <strong>seen sample</strong> has the probability according to the
@@ -9377,8 +9482,8 @@
     <p dir="auto">Each <strong>sample</strong> from the <strong>stream</strong> has the probability proportional to the
         <strong>weight</strong> of being included in the final <strong>reservoir</strong>.
     </p>
-    <h3 dir="auto" id="1-4-ris-resampled-importance-sampling--sir-sampling-importance-resampling--weighted-bootstrap">
-        1-4. RIS (Resampled Importance Sampling) / SIR (Sampling Importance Resampling) / Weighted Bootstrap</h3>
+    <h3 dir="auto" id="1-4-sir-sampling-importance-resampling--weighted-bootstrap--ris-resampled-importance-sampling">
+        1-4. SIR (Sampling Importance Resampling) / Weighted Bootstrap / RIS (Resampled Importance Sampling)</h3>
     <p dir="auto">By &quot;Exercise 5.65&quot; of <a href="https://archived.stat.ufl.edu/casella/">&quot;Statistic
             Inference 2nd Edition&quot;</a>, we have the <strong>SIR (sampling importance resampling)</strong> /
         <strong>weighted bootstrap</strong> estimator <eq><span class="katex"><span class="katex-mathml"><math
