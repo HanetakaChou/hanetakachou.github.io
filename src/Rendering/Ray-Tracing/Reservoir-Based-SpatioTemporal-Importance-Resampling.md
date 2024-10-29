@@ -1,4 +1,3 @@
-
 # ReSTIR (Reservoir-Based SpatioTemporal Importance Resampling)  
 
 ## 1\. Importance Resampling  
@@ -118,6 +117,13 @@ By \[Wyman 2023\], we use the **MIS (multiple importance sampling)** to generate
 By \[Wyman 2023\], we use the **weighted reservoir sampling** to generate n **samples** $\displaystyle Y_i$ from the **discrete distribution** on these m **samples** $\displaystyle X_i$ with the probabilities proportional to the **weights** **PMF** $\displaystyle w_i$.   
 
 ## 2\. SpatioTemporal  
+
+```mermaid
+graph TD
+    A --> B
+    B --> C
+    C --> A
+```
 
 ## References  
 
