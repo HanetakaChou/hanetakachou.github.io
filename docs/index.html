@@ -70,11 +70,11 @@ You should have received a copy of the GNU Lesser General Public License along w
 
         let fileName = urlParams.get('file');
 
-        if (!fileName) {
+        if (fileName) {
             fileName = 'index.md'
         }
 
-        fetch(fileName)
+        fetch(`assets/${fileName}`)
             .then(response => response.text())
             .then(markdownContent => {
                 document.getElementById("markdown-content").innerHTML = md.render(markdownContent);
