@@ -4,8 +4,7 @@
 <head>
     <meta charset="utf-8">
 
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css/github-markdown.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
 
     <style>
@@ -31,7 +30,7 @@
         import markdownIt from 'https://cdn.jsdelivr.net/npm/markdown-it/+esm';
         import markdownItKatex from 'https://cdn.jsdelivr.net/npm/@vscode/markdown-it-katex/+esm';
         import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/+esm';
-        import { instance as viz } from 'https://cdn.jsdelivr.net/npm/@viz-js/viz/+esm'
+        import { instance } from 'https://cdn.jsdelivr.net/npm/@viz-js/viz/+esm'
 
         function markdownItMermaidGraphviz(md, options) {
             const defaultRender = md.renderer.rules.fence || function (tokens, idx, options, env, self) {
@@ -60,15 +59,16 @@
             .then(response => response.text())
             .then(markdownContent => {
                 document.getElementById("markdown-content").innerHTML = md.render(markdownContent);
-
+            })
+            .then(() => {
                 mermaid.init();
 
-                document.querySelectorAll(".graphviz")
-                    .forEach(element => {
-                        viz.renderSVGElement(element.textContent)
-                            .then(svg => {
-                                element.innerHTML = svg.outerHTML;
-                            });
+                instance()
+                    .then(viz => {
+                        document.querySelectorAll(".graphviz")
+                            .forEach(element => {
+                                element.innerHTML = viz.renderSVGElement(element.textContent).outerHTML;
+                            })
                     });
             });
     </script>
