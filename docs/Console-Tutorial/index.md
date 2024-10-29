@@ -4,8 +4,8 @@ This tutorial is to introduce the usage of the console API. We assume that reade
 
 ## Contents  
 
-- [Command Buffer](Command-Buffer.html)  
-- [Pipeline State](Pipeline-State.html)  
-- [Cache Synchronization](Cache-Synchronization.html)  
-- [Resource Binding](Resource-Binding.html)  
-- [Resource Uploading](Resource-Uploading.html)  
+- [Command Buffer](./index?file=Console-Tutorial/Command-Buffer.md)  
+- [Pipeline State](./index?file=Console-Tutorial/Pipeline-State.md)  
+- [Cache Synchronization](./index?file=Console-Tutorial/Cache-Synchronization.md)  
+- [Resource Binding](./index?file=Console-Tutorial/Resource-Binding.md)  
+- [Resource Uploading](./index?file=Console-Tutorial/Resource-Uploading.md)  
