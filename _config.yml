@@ -1,1 +1,2 @@
-markdown: none
+exclude:
+  - "*.md"
