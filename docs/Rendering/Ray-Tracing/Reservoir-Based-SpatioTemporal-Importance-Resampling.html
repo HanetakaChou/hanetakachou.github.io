@@ -14,6 +14,12 @@
             justify-content: center;
             align-items: center;
         }
+
+        .graphviz {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     </style>
 </head>
 
@@ -24,37 +30,46 @@
     <script type="module">
         import markdownIt from 'https://cdn.jsdelivr.net/npm/markdown-it/+esm';
         import markdownItKatex from 'https://cdn.jsdelivr.net/npm/@vscode/markdown-it-katex/+esm';
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/+esm';
+        import { instance as viz } from 'https://cdn.jsdelivr.net/npm/@viz-js/viz/+esm'
 
-        function markdownItMermaid(md, options) {
+        function markdownItMermaidGraphviz(md, options) {
             const defaultRender = md.renderer.rules.fence || function (tokens, idx, options, env, self) {
                 return self.renderToken(tokens, idx, options);
             };
 
             md.renderer.rules.fence = function (tokens, idx, options, env, self) {
                 const token = tokens[idx];
-
-                if (token.info.trim() === 'mermaid') {
-                    const content = token.content;
-                    return `<div class="mermaid">${content}</div>`;
+                const tokenInfo = token.info.trim();
+                const tokenContent = token.content;
+                if (tokenInfo === 'mermaid') {
+                    return `<div class="mermaid">${tokenContent}</div>`;
+                }
+                else if (tokenInfo === 'graphviz') {
+                    return `<div class="graphviz">${tokenContent}</div>`;
                 }
                 else {
                     return defaultRender(tokens, idx, options, env, self);
-
                 }
             };
         }
 
-        const md = markdownIt().use(markdownItKatex.default).use(markdownItMermaid);
-
-        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/+esm';
+        const md = markdownIt().use(markdownItKatex.default).use(markdownItMermaidGraphviz);
 
         fetch('https://raw.githubusercontent.com/HanetakaChou/hanetakachou.github.io/refs/heads/master/src/Rendering/Ray-Tracing/Reservoir-Based-SpatioTemporal-Importance-Resampling.md')
             .then(response => response.text())
             .then(markdownContent => {
-                const htmlContent = md.render(markdownContent);
-                document.getElementById("markdown-content").innerHTML = htmlContent;
+                document.getElementById("markdown-content").innerHTML = md.render(markdownContent);
 
                 mermaid.init();
+
+                document.querySelectorAll(".graphviz")
+                    .forEach(element => {
+                        viz.renderSVGElement(element.textContent)
+                            .then(svg => {
+                                element.innerHTML = svg.outerHTML;
+                            });
+                    });
             });
     </script>
 

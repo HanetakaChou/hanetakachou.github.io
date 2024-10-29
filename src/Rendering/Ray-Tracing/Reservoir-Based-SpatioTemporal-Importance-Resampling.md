@@ -125,6 +125,14 @@ By \[Wyman 2023\], we use the **weighted reservoir sampling** to generate n **sa
     C --> A
 ```
 
+```graphviz
+digraph G {
+    A -> B;
+    B -> C;
+    C -> A;
+}
+```
+
 ## References  
 
 \[Wyman 2023\] [Chris Wyman, Markus Kettunen, Daqi Lin, Benedikt Bitterli, Cem Yuksel, Wojciech Jarosz, Pawel Kozlowski, Giovanni Francesco. "A Gentle Introduction to ReSTIR: Path Reuse in Real-time." SIGGRAPH 2023.](https://intro-to-restir.cwyman.org/)  
