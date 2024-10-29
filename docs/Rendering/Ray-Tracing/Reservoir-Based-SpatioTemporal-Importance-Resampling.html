@@ -55,7 +55,7 @@
 
         const md = markdownIt().use(markdownItKatex.default).use(markdownItMermaidGraphviz);
 
-        fetch('https://raw.githubusercontent.com/HanetakaChou/hanetakachou.github.io/refs/heads/master/src/Rendering/Ray-Tracing/Reservoir-Based-SpatioTemporal-Importance-Resampling.md')
+        fetch('Reservoir-Based-SpatioTemporal-Importance-Resampling.md')
             .then(response => response.text())
             .then(markdownContent => {
                 document.getElementById("markdown-content").innerHTML = md.render(markdownContent);
