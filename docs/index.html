@@ -74,7 +74,7 @@ You should have received a copy of the GNU Lesser General Public License along w
             fileName = 'index.md'
         }
 
-        fetch(`assets/${fileName}`)
+        fetch(`https://raw.githubusercontent.com/HanetakaChou/hanetakachou.github.io/refs/heads/master/${fileName}`)
             .then(response => response.text())
             .then(markdownContent => {
                 document.getElementById("markdown-content").innerHTML = md.render(markdownContent);
