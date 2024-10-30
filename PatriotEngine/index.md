@@ -1,5 +1,5 @@
 # PatriotEngine  
 
-[Scene.md](./index?file=PatriotEngine/Scene.md)  
+[Scene.md](./index.html?file=PatriotEngine/Scene.md)  
 
-[Streaming.md](./index?file=PatriotEngine/Streaming.md)  
+[Streaming.md](./index.html?file=PatriotEngine/Streaming.md)  

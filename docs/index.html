@@ -43,8 +43,21 @@ You should have received a copy of the GNU Lesser General Public License along w
         import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/+esm';
         import { instance } from 'https://cdn.jsdelivr.net/npm/@viz-js/viz/+esm'
 
+        mermaid.initialize({ startOnLoad: false });
+
+        let pathName = new URLSearchParams(window.location.search).get('file');
+        let dirName = '';
+        if (pathName) {
+            const segments = pathName.split('/');
+            segments.pop();
+            dirName = segments.join('/');
+        }
+        else {
+            pathName = 'index.md';
+        }
+
         function markdownItMermaidGraphviz(md, options) {
-            const defaultRender = md.renderer.rules.fence || function (tokens, idx, options, env, self) {
+            const defaultFenceRender = md.renderer.rules.fence || function (tokens, idx, options, env, self) {
                 return self.renderToken(tokens, idx, options);
             };
 
@@ -59,48 +72,48 @@ You should have received a copy of the GNU Lesser General Public License along w
                     return `<div class="graphviz">${tokenContent}</div>`;
                 }
                 else {
-                    return defaultRender(tokens, idx, options, env, self);
+                    return defaultFenceRender(tokens, idx, options, env, self);
                 }
+            };
+
+            const defaultImageRender = md.renderer.rules.image || function (tokens, idx, options, env, self) {
+                return self.renderToken(tokens, idx, options);
+            };
+
+            md.renderer.rules.image = function (tokens, idx, options, env, self) {
+                const token = tokens[idx];
+                const srcIndex = token.attrIndex("src");
+
+                if (srcIndex >= 0) {
+                    const originalSrc = token.attrs[srcIndex][1];
+                    token.attrs[srcIndex][1] = `https://raw.githubusercontent.com/HanetakaChou/hanetakachou.github.io/refs/heads/master/${dirName ? dirName + '/' : ''}${originalSrc}`;
+                }
+
+                return defaultImageRender(tokens, idx, options, env, self);
             };
         }
 
         const md = markdownIt().use(markdownItKatex.default).use(markdownItMermaidGraphviz);
 
-        let pathName = new URLSearchParams(window.location.search).get('file');
-        let dirName = '';
-        if (pathName) {
-            let segments = pathName.split('/');
-            segments.pop();
-            dirName = segments.join('/');
-        }
-        else {
-            pathName = 'index.md';
-        }
-
         fetch(`https://raw.githubusercontent.com/HanetakaChou/hanetakachou.github.io/refs/heads/master/${pathName}`)
-            .then(response => response.text())
+            .then(response => {
+                return response.text();
+            })
             .then(markdownText => {
-                const markdownHTML = md.render(markdownText);
-
-                const tempDiv = document.createElement('div');
-                tempDiv.innerHTML = markdownHTML;
-
-                tempDiv.querySelectorAll('img[src]')
-                    .forEach(img => {
-                        img.src = `https://raw.githubusercontent.com/HanetakaChou/hanetakachou.github.io/refs/heads/master/${dirName}/${img.getAttribute('src')}`;
-                    });
-
-                document.getElementById("markdown-content").innerHTML = tempDiv.innerHTML;
+                return md.render(markdownText);
+            })
+            .then(markdownHTML => {
+                document.getElementById("markdown-content").innerHTML = markdownHTML;
             })
             .then(() => {
                 mermaid.init();
-
+            })
+            .then(() => {
                 instance()
                     .then(viz => {
-                        document.querySelectorAll(".graphviz")
-                            .forEach(element => {
-                                element.innerHTML = viz.renderSVGElement(element.textContent).outerHTML;
-                            })
+                        for (let element of document.getElementsByClassName("graphviz")) {
+                            element.innerHTML = viz.renderSVGElement(element.textContent).outerHTML;
+                        }
                     });
             });
     </script>
