@@ -1,5 +1,12 @@
 # Path Tracing  
 
+## Throughput
+
+## Delta Distribution  
+
+["14.4.5 Delta Distributions in the Integrand"](https://pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/The_Light_Transport_Equation#DeltaDistributionsintheIntegrand) of "PBR Book V3"  
+["13.1.5 Delta Distributions in the Integrand"](https://pbr-book.org/4ed/Light_Transport_I_Surface_Reflection/The_Light_Transport_Equation#DeltaDistributionsintheIntegrand) of "PBR Book V4"
+
 ## Texture Sampling and Antialiasing  
 
 ### Ray Differentials  

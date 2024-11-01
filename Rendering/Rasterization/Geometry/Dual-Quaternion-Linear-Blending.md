@@ -380,15 +380,15 @@ Here is HLSL code of DLB (Dual quaternion Linear Blending).
 //
 // DLB (Dual quaternion Linear Blending)
 //
-float2x4 dual_quaternion_linear_blending(in float2x4 q[MAX_BONE_COUNT], in uint4 blend_indices, in float4 blend_weights)
+float2x4 dual_quaternion_linear_blending(in float2x4 q_indices_x, in float2x4 q_indices_y, in float2x4 q_indices_z, in float2x4 q_indices_w, in float4 weights)
 {
 #if 1
 	// NOTE:
 	// The original DLB does NOT check the sign of the inner product of the unit quaternion q_x_0 and q_y_0(q_z_0 q_w_0).
 	// However, since the unit quaternion q and -q represent the same rotation transform, we may get the result of which the real part is zero.
-	float2x4 b = blend_weights.x * q[blend_indices.x] + blend_weights.y * sign(dot(q[blend_indices.x][0], q[blend_indices.y][0])) * q[blend_indices.y] + blend_weights.z * sign(dot(q[blend_indices.x][0], q[blend_indices.z][0])) * q[blend_indices.z] + blend_weights.w * sign(dot(q[blend_indices.x][0], q[blend_indices.w][0])) * q[blend_indices.w];
+	float2x4 b = weights.x * q_indices_x + weights.y * sign(dot(q_indices_x[0], q_indices_y[0])) * q_indices_y + weights.z * sign(dot(q_indices_x[0], q_indices_z[0])) * q_indices_z + weights.w * sign(dot(q_indices_x[0], q_indices_w[0])) * q_indices_w;
 #else
-	float2x4 b = blend_weights.x * g_dualquat[blend_indices.x] + blend_weights.y * g_dualquat[blend_indices.y] + blend_weights.z * g_dualquat[blend_indices.z] + blend_weights.w * g_dualquat[blend_indices.w];
+	float2x4 b = weights.x * q_indices_x + weights.y * q_indices_y + weights.z * q_indices_z + weights.w * q_indices_w;
 #endif
 
 	// "4 Implementation Notes" of [Ladislav Kavan, Steven Collins, Jiri Zara, Carol O'Sullivan. "Geometric Skinning with Approximate Dual Quaternion Blending." SIGGRAPH 2008.](http://www.cs.utah.edu/~ladislav/kavan08geometric/kavan08geometric.html)
