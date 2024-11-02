@@ -65,7 +65,7 @@ If you find there are any mistakes or improvements, please don't hesitate to con
 
 ## Compute Vision
 
-- DLSS (Deep Learning Super Sampling) [Documentation](./index.html?Compute-Vision/Deep-Learning-Super-Sampling.md)  
+- DLSS (Deep Learning Super Sampling) [Documentation](./index.html?file=Compute-Vision/Deep-Learning-Super-Sampling.md)  
 
 ## MATLAB  
 
