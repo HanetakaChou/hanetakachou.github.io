@@ -13,7 +13,7 @@ You should have received a copy of the GNU Lesser General Public License along w
 
 ## Acknowledgment  
 
-If you find there are any mistakes or improvements, please don't hesitate to contact me by [email](mailto:HanetakaChou@outlook.com).  
+If you find there are any mistakes or improvements, please don't hesitate to post [issues](https://github.com/HanetakaChou/hanetakachou.github.io/issues).  
 
 ## C Plus Plus  
 
@@ -26,13 +26,14 @@ If you find there are any mistakes or improvements, please don't hesitate to con
 ## Rendering (Image Synthesis)  
 
 - Neural Rendering
-    - Neural Texture Mapping [Documentation](./index.html?file=Rendering/Neural-Rendering/Neural-Texture-Mapping.md) [Code](https://github.com/HanetakaChou/Neural-Texture-Mapping)      
     - NeRFs (Neural Radiance Fields) [Documentation](./index.html?file=Rendering/Neural-Rendering/Neural-Radiance-Fields.md)  
     - NRC (Neural Radiance Cache) [Documentation](./index.html?file=Rendering/Neural-Rendering/Neural-Radiance-Cache.md)  
+    - Neural Texture Mapping [Documentation](./index.html?file=Rendering/Neural-Rendering/Neural-Texture-Mapping.md) [Code](https://github.com/HanetakaChou/Neural-Texture-Mapping)          
 - Ray Tracing  
-    - RTAO (Ray Traced Ambient Occlusion) [Documentation](./index.html?file=Rendering/Ray-Tracing/Ray-Traced-Ambient-Occlusion.md) [Code](https://github.com/HanetakaChou/Ray-Traced-Ambient-Occlusion)  
     - Path Tracing [Documentation](./index.html?file=Rendering/Ray-Tracing/Path-Tracing.md)  [Code](https://github.com/HanetakaChou/Path-Tracing)      
     - ReSTIR (Reservoir-Based Spatiotemporal Importance Resampling) [Documentation](./index.html?file=Rendering/Ray-Tracing/Reservoir-Based-SpatioTemporal-Importance-Resampling.md)  
+    - SHaRC (Spatially Hashed Radiance Cache) [Documentation](./index.html?file=Rendering/Ray-Tracing/Spatially-Hashed-Radiance-Cache.md)
+    - RTAO (Ray Traced Ambient Occlusion) [Documentation](./index.html?file=Rendering/Ray-Tracing/Ray-Traced-Ambient-Occlusion.md) [Code](https://github.com/HanetakaChou/Ray-Traced-Ambient-Occlusion)  
     - DDGI (Dynamic Diffuse Global Illumination) [Documentation](./index.html?file=Rendering/Ray-Tracing/Dynamic-Diffuse-Global-Illumination.md)  
     - Photon Mapping [Documentation](./index.html?file=Rendering/Ray-Tracing/Photon-Mapping.md)  
 - Rasterization  
