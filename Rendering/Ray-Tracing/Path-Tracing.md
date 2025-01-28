@@ -14,9 +14,9 @@ The difference is that the $\displaystyle \mathop{\mathrm{f}} (\overrightarrow{p
 
 By ["5.6 Surface Reflection"](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Surface_Reflection) of [PBR Book V3](https://www.pbr-book.org/3ed-2018/contents) and ["4.3 Surface Reflection"](https://www.pbr-book.org/4ed/Radiometry,_Spectra,_and_Color/Surface_Reflection) of [PBR Book V4](https://www.pbr-book.org/4ed/contents), we have the relationship $\displaystyle \mathop{\mathrm{BSDF}} (\overrightarrow{p}, \overrightarrow{\omega_i}, \overrightarrow{\omega_o}) = \begin{cases} \mathop{\mathrm{BRDF}} (\overrightarrow{p}, \overrightarrow{\omega_i}, \overrightarrow{\omega_o}) & \overrightarrow{\omega_i} \text{ and }\overrightarrow{\omega_o} \text{ same hemisphere} \\ \mathop{\mathrm{BTDF}} (\overrightarrow{p}, \overrightarrow{\omega_i}, \overrightarrow{\omega_o}) & \overrightarrow{\omega_i} \text{ and }\overrightarrow{\omega_o} \text{ NOT same hemisphere} \end{cases}$. This is the reason why the $\displaystyle | \cos \theta_i |$ is used for the [PBR Book](https://www.pbr-book.org/) version, while the $\displaystyle \max (0, \cos \theta_i )$ is used for the [Real-Time Rendering Fourth Edition](http://www.realtimerendering.com/) version.  
 
-![](Path-Tracing-1.png)  
-
 The condition, whether $\displaystyle \overrightarrow{\omega_i}$ and $\displaystyle \overrightarrow{\omega_o}$ are in the same hemisphere, is checked by [BSDF::f](https://pbr-book.org/3ed-2018/Materials/BSDFs) of [PBR Book V3](https://www.pbr-book.org/3ed-2018/contents) and [*BxDF::f](https://pbr-book.org/4ed/Reflection_Models/Dielectric_BSDF) of [PBR Book V4](https://www.pbr-book.org/4ed/contents).   
+
+![](Path-Tracing-1.png)  
 
 ### Participating Media  
 
