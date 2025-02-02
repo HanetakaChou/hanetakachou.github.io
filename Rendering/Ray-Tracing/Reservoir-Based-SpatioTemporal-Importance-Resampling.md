@@ -42,13 +42,15 @@ For the case where the domain of these multiple K **proposal distributions** do 
 
 ### 1-3\. Reservoir Sampling  
 
-By ["A.2 Reservoir Sampling"](https://www.pbr-book.org/4ed/Sampling_Algorithms/Reservoir_Sampling#) of "PBR Book V4", we have the **basic** **reservoir sampling**.  
+#### 1-3-1\. Uniform Reservoir Sampling  
+
+By ["A.2 Reservoir Sampling"](https://www.pbr-book.org/4ed/Sampling_Algorithms/Reservoir_Sampling#) of "PBR Book V4", we have the **uniform reservoir sampling**.  
    
 We sequentially process each **sample** from the **stream**. The total length of the **stream** can indeed be infinite which is too large to be stored in the memory.   
 
 We assume that we have processed **n** **samples**. This means that the number of the **seen samples** is **n**. For the **basic** **reservoir sampling**, the **reservoir** can hold at most **1** **reservoir sample**, and the first **1** **seen** **sample** is always selected to initialize the **reservoir**. For each subsequent **seen** **candidate sample**, we have the probability $\displaystyle \frac{1}{n}$ of selecting it to replace the existing **sample** within the **reservoir**.  
 
-We can prove by **mathematical Induction** that at any iteration, when we have processed n **samples**, each **sample** from the **stream** has the equal probability $\displaystyle \frac{1}{n}$ of being included in the final **reservoir**.  
+We can prove by **mathematical Induction** that at any iteration, when we have processed n **samples**, each **sample** from the **stream** has the equal probability $\displaystyle \frac{1}{n}$ of being included in the final **reservoir**. Equivalently, these **n** samples are generated from the **discrete distribution** with the **PMF** $\displaystyle \mathop{\mathrm{P}} (Y = X_i) = \frac{1}{n}$.  
 
 > Base Case  
 >>
@@ -64,19 +66,13 @@ We can prove by **mathematical Induction** that at any iteration, when we have p
 >>  
 >> For the previous t **seen samples**, they have the probability $\displaystyle \frac{1}{t}$ of being included in the final **reservoir** at t-th iteration. At the same time, they have the probability $\displaystyle 1 - \frac{1}{t + 1} = \frac{t}{t + 1}$ of NOT being replaced by the (t + 1)-th **seen sample** at (t + 1)-th iteration. This means that they have the probability $\displaystyle \frac{1}{t} \times \frac{t}{t + 1} = \frac{1}{t + 1}$ of being included in the final **reservoir** at (t + 1)-th iteration.  
 
-#### 1-3-1\. K-Sized Reservoir Sampling  
-
-The difference is that the **reservoir** can hold at most **k** ~~(instead of 1)~~ **reservoir sample**, and the first **k** ~~(instead of 1)~~ **seen** **sample** is always selected to initialize the **reservoir**. For each subsequent **seen** **candidate sample**, we have the probability $\displaystyle \frac{k}{n}$  ~~(instead of $\displaystyle \frac{1}{n}$)~~ of selecting it to replace the existing **sample** within the **reservoir**.
-
-When we have processed n **samples**, each **sample** from the **stream** has the equal probability $\displaystyle \frac{k}{n}$ ~~(instead of $\displaystyle \frac{1}{n}$)~~ of being included in the final **reservoir**.
-
 #### 1-3-2\. Weighted Reservoir Sampling  
 
 By ["A.2 Reservoir Sampling"](https://www.pbr-book.org/4ed/Sampling_Algorithms/Reservoir_Sampling#) of "PBR Book V4", we have the **weighted reservoir sampling**.  
 
-The difference is that each **seen sample** has the probability according to the **weight** ~~(instead of the constant $\displaystyle \frac{k}{n}$)~~ of being selected to replace the existing **sample** within the **reservoir**.  
+The difference is that each **seen sample** has the probability according to the **weight** ~~(instead of the constant $\displaystyle \frac{1}{n}$)~~ of being selected to replace the existing **sample** within the **reservoir**.  
   
-Each **sample** from the **stream** has the probability proportional to the **weight** of being included in the final **reservoir**.
+Each **sample** from the **stream** has the probability proportional to the **weight** of being included in the final **reservoir**. Equivalently, these **n** samples are generated from the **discrete distribution** with the **PMF** $\displaystyle \mathop{\mathrm{P}} (Y = X_i) = \frac{\displaystyle w_i}{\displaystyle \sum_{k=1}^n w_k}$.  
 
 ### 1-4\. SIR (Sampling Importance Resampling) / Weighted Bootstrap / RIS (Resampled Importance Sampling)  
 
