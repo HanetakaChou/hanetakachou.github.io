@@ -88,6 +88,18 @@ only the last step Next Event Estimation requires the dA // other vertices use d
 
 bounce number - geometric distribution // sample Light (last vertex) does not need russian rulleto // only required by sample BSDF  
 
+## Diffuse BRDF vs Specular BRDF  
+
+https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#complete-model  
+
+can we trace two paths and use metallic as weight to blend them together?  
+
+Diffuse: PBRT DiffuseBxDF  
+Specular (without transmission): PBRT ConductorBxDF   
+Specular (with transmission): PBRT DielectricBxDF  
+
+investigate ReSTIR to find more?  
+
 ## Delta Distribution  
 
 ["14.4.5 Delta Distributions in the Integrand"](https://pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/The_Light_Transport_Equation#DeltaDistributionsintheIntegrand) of "PBR Book V3"  
