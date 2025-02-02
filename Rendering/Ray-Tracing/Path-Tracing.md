@@ -36,16 +36,6 @@ By ["Light transport and the rendering equation"](http://www-graphics.stanford.e
 
 SPP (samples per pixel)  
 
-### Surface Form  
-
-By ["Equation (5.6)"](https://pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals) of [PBR Book V3](https://www.pbr-book.org/3ed-2018/contents) and ["Equation (4.9)"](https://pbr-book.org/4ed/Radiometry,_Spectra,_and_Color/Working_with_Radiometric_Integrals) of [PBR Book V4](https://www.pbr-book.org/4ed/contents), we have the relationship $\displaystyle d\omega = \frac{\cos\theta}{r^2} dA$.  
-
-![](Path-Tracing-4.png)  
-
-By ["Figure 14.15"](https://pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/The_Light_Transport_Equation) of [PBR Book V3](https://www.pbr-book.org/3ed-2018/contents) and ["Figure 13.2"](https://www.pbr-book.org/4ed/Light_Transport_I_Surface_Reflection/The_Light_Transport_Equation) of [PBR Book V4](https://www.pbr-book.org/4ed/contents), we have 
-
-only the last step Next Event Estimation requires the dA // other vertices use domega  
-
 #### Throughput
 
 ###  
@@ -82,6 +72,28 @@ only the last step Next Event Estimation requires the dA // other vertices use d
 //  
 // MIS (sampleBSDF + sampleLight)  
 //   
+
+previous vertices all based on solid angle  
+
+Surface Form // used by last vertex  
+
+the intergral domain is the area of the whole scene surface  
+
+
+By ["Equation (5.6)"](https://pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals) of [PBR Book V3](https://www.pbr-book.org/3ed-2018/contents) and ["Equation (4.9)"](https://pbr-book.org/4ed/Radiometry,_Spectra,_and_Color/Working_with_Radiometric_Integrals) of [PBR Book V4](https://www.pbr-book.org/4ed/contents), we have the relationship $\displaystyle d\omega = \frac{\cos\theta}{r^2} dA$.  
+
+![](Path-Tracing-4.png)  
+
+By ["Figure 14.15"](https://pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/The_Light_Transport_Equation) of [PBR Book V3](https://www.pbr-book.org/3ed-2018/contents) and ["Figure 13.2"](https://www.pbr-book.org/4ed/Light_Transport_I_Surface_Reflection/The_Light_Transport_Equation) of [PBR Book V4](https://www.pbr-book.org/4ed/contents), we have 
+
+
+we define the PMF:  
+PMF = 0 when no light or emmisive surface  
+PMF = (uniform / based on power weight) when light or emmisive surface (PBR Book V4: 12.6 Light Sampling)  
+
+introduce MIS and Resevior here  
+
+only the last step Next Event Estimation requires the dA // other vertices use domega  
 
 
 ### russian rulleto  
