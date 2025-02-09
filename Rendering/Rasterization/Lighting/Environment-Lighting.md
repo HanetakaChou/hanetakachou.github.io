@@ -19,8 +19,10 @@ $\displaystyle \overrightarrow{n}$ | Normal in World Space | N
 
 ## 1\. Light  
 
-Let $\displaystyle \operatorname{L}(\overrightarrow{\omega})$ be the distant radiance distribution of which the domain is in world space.  
+Let $\displaystyle \operatorname{L}(\overrightarrow{\omega})$ be the distant radiance distribution which is represented by the image **environment map**.  
 
+By "10.4 Environment Mapping" [Real-Time Rendering Fourth Edition](https://www.realtimerendering.com/), there are many approaches to project the points on the sphere surface into the 2D texture coordinates, e.g. **cube map** (supported directly by Vulkan/Direct3D APIs),  **latitude-longitude map** (supported by PBRT V3), **octahedron map** (supported by PBRT V4) etc.  
+  
 TODO:   
 [Lower Hemisphere is Solid Color](https://dev.epicgames.com/documentation/en-us/unreal-engine/sky-light?application_version=4.27)  
 [Upper Hemisphere Only](https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@10.8/manual/Override-HDRI-Sky.html)  
@@ -32,7 +34,7 @@ TODO: octahedron mapping
 
 ## 2\. Interaction with Diffuse Material (Lambert)  
 
-Let $\displaystyle \operatorname{L}(\overrightarrow{\omega})$ be the distant radiance distribution of which the domain is in world space.  
+Let $\displaystyle \operatorname{L}(\overrightarrow{\omega})$ be the distant radiance distribution of which the domain $\displaystyle \overrightarrow{\omega}$ is in world space.  
 
 Let $\displaystyle \overrightarrow{n}$ be the normal in world space and $\displaystyle \overrightarrow{\omega_i}$ be the incident direction in tangent space (where the normal direction is the Z axis $\displaystyle \begin{bmatrix}0 & 0 & 1\end{bmatrix}$). Evidently, the incident direction in world space can be calculated as $\displaystyle \operatorname{R}(\overrightarrow{n}) \overrightarrow{\omega_i}$ where $\displaystyle \operatorname{R}(\overrightarrow{n})$ is the rotation matrix depending on the normal direction $\displaystyle \overrightarrow{n}$ in world space. And we have the incident radiance $\displaystyle \operatorname{L_i}( \overrightarrow{\omega_i}) = \operatorname{L}(\operatorname{R}(\overrightarrow{n}) \overrightarrow{\omega_i})$.  
 
@@ -53,33 +55,56 @@ Analogous to the **convolution theorem**,  by \[Ramamoorthi 2001 A\], we have $\
 >> By "Equation \(23\)" of \[Ramamoorthi 2001 A\], we have $\displaystyle \operatorname{D_{m0}^l}(\operatorname{R}(\overrightarrow{n})) = \sqrt{\frac{4 \pi}{2l + 1}} \operatorname{\Upsilon_l^m}(\overrightarrow{n})$, and we have $\displaystyle \operatorname{E}(\overrightarrow{n}) = \sum_{l = 0}^{\infin} \sum_{m = -l}^l L_l^m A_l \operatorname{D_{m0}^l}(\operatorname{R}(\overrightarrow{n})) = \sum_{l = 0}^{\infin} \sum_{m = -l}^l \sqrt{\frac{4 \pi}{2l + 1}} L_l^m A_l \operatorname{\Upsilon_l^m}(\overrightarrow{n})$.  
 >    
 
-### 2-2\. Cubemap Texel Solid Angle
+### 2-2\. Distortion  
 
-We merely use **numerical quadrature** rather than **Monte Carlo integration** to integrate over the cubemap. But it should be noted that the solid angle subtended by each texel of the cubemap is NOT the same. Let u and v be the texcoord of the cubemap. By "5.5.3 Integrals over Area" of [PBRT Book V3](https://pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#IntegralsoverArea) and "4.2.3 Integrals over Area" of [PBR Book V4](https://pbr-book.org/4ed/Radiometry,_Spectra,_and_Color/Working_with_Radiometric_Integrals#IntegralsoverArea), we have $\displaystyle d\omega = \frac{dA \cos \theta}{r^2} = dA \cdot \cos \theta \cdot \frac{1}{r^2} = \frac{(1 - (-1)) \cdot (1 - (-1))}{\text{cubesize\_u} \cdot \text{cubesize\_v}} \cdot \frac{1}{\sqrt{1^2 + u^2 +v^2}} \cdot \frac{1}{1^2 + u^2 +v^2} = \frac{1}{\text{cubesize\_u} \cdot \text{cubesize\_v}} \cdot \frac{4}{\sqrt{1^2 + u^2 +v^2} \cdot (1^2 + u^2 +v^2)}$. Actually the pseudo code ```fWt = 4/(sqrt(fTmp)*fTmp)``` by "Projection from Cube Maps" of \[Sloan 2008\] is exactly the $\displaystyle \frac{4}{\sqrt{1^2 + u^2 +v^2} \cdot (1^2 + u^2 +v^2)}$. The common divisor $\displaystyle \frac{1}{\text{cubesize\_u} \cdot \text{cubesize\_v}}$ can be reduced, and thus is NOT calculated by \[Sloan 2008\]. The solid angle is calculated by [SHProjectCubeMap](https://github.com/microsoft/DirectXMath/blob/jul2018b/SHMath/DirectXSHD3D11.cpp#L341) in DirectXMath and [DiffuseIrradianceCopyPS](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/ReflectionEnvironmentShaders.usf#L448) in UnrealEngine.  
+We merely use **numerical quadrature** rather than **Monte Carlo integration** to integrate over the environment map. But it should be noted that the **solid angle** subtended by each **texel** of the environment map is NOT the same.   
 
-Here is the MATLAB code which verifies the meaning of "fWt = 4/(sqrt(fTmp)*fTmp)".
+#### 2-2-1\. Cube Map  
+
+Let u and v be the 2D texture coordinate of the cube face.  
+
+By "5.5.3 Integrals over Area" of [PBRT Book V3](https://pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#IntegralsoverArea) and "4.2.3 Integrals over Area" of [PBR Book V4](https://pbr-book.org/4ed/Radiometry,_Spectra,_and_Color/Working_with_Radiometric_Integrals#IntegralsoverArea), we have $\displaystyle d\omega = \frac{dA \cos \theta}{r^2} = dA \cdot \cos \theta \cdot \frac{1}{r^2} = \frac{(1 - (-1)) \cdot (1 - (-1))}{\text{cube\_face\_width} \cdot \text{cube\_face\_height}} \cdot \frac{1}{\sqrt{1^2 + u^2 +v^2}} \cdot \frac{1}{1^2 + u^2 +v^2} = \frac{1}{\text{cube\_face\_width} \cdot \text{cube\_face\_height}} \cdot \frac{4}{\sqrt{1^2 + u^2 +v^2} \cdot (1^2 + u^2 +v^2)}$.   
+
+Actually, the pseudo code ```fWt = 4/(sqrt(fTmp)*fTmp)``` by "Projection from Cube Maps" of \[Sloan 2008\] is exactly the $\displaystyle \frac{4}{\sqrt{1^2 + u^2 +v^2} \cdot (1^2 + u^2 +v^2)}$. The common divisor $\displaystyle \frac{1}{\text{cubesize\_u} \cdot \text{cubesize\_v}}$ can be reduced, and thus is NOT calculated by \[Sloan 2008\].   
+
+The texel solid angle of the cube map is calculated by [SHProjectCubeMap](https://github.com/microsoft/DirectXMath/blob/jul2018b/SHMath/DirectXSHD3D11.cpp#L341) in DirectXMath and [DiffuseIrradianceCopyPS](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/ReflectionEnvironmentShaders.usf#L448) in UnrealEngine.  
+
+Here is the MATLAB code to visualize the texel solid angle ```fWt = 4/(sqrt(fTmp)*fTmp)```.  
+
+![](Environment-Lighting-Cube-Map-Texel-Solid-Angle.png)  
+
 ```MATLAB
-% retrieved by "textureSize(GLSL)" or "GetDimensions(HLSL)".
-cube_size_u = single(4096.0);
-cube_size_v = single(4096.0);
+% resolution retrieved by "textureSize(GLSL)" or "GetDimensions(HLSL)".
+cube_face_width = single(512.0);
+cube_face_height = single(512.0);
 
-[ index_u, index_v ] = meshgrid((single(0.0) : (cube_size_u - single(1.0))), (single(0.0) : (cube_size_v - single(1.0))));
-u = (index_u + single(0.5)) ./ cube_size_u .* single(2.0) - single(1.0);
-v = (index_v + single(0.5)) ./ cube_size_u .* single(2.0) - single(1.0);
+% calculate the uv at the center of each texel  
+[ width_index, height_index ] = meshgrid((single(0.0) : (cube_face_width - single(1.0))), (single(0.0) : (cube_face_height - single(1.0))));
+u = (width_index + single(0.5)) ./ cube_face_width .* single(2.0) - single(1.0);
+v = (height_index + single(0.5)) ./ cube_face_height .* single(2.0) - single(1.0);
 
+% calculate the texel solid angle of each texel within the cube face
 % the common divisor "1/(cube_size_u*cube_size_v)" can be reduced, and thus is NOT calculated in the "fWt = 4/(sqrt(fTmp)*fTmp)".
-d_a = (single(1.0) - single(-1.0)) .* (single(1.0) - single(-1.0)) ./ cube_size_u ./ cube_size_v;
-r_2 = single(1.0) .* single(1.0) + single(u) .* single(u) + single(v) .* single(v);
+d_a = (single(1.0) - single(-1.0)) * (single(1.0) - single(-1.0));
+r_2 = single(1.0) * single(1.0) + single(u) .* single(u) + single(v) .* single(v);
 cos_theta = single(1.0) ./ sqrt(r_2);
 d_omega = single(d_a) .* single(cos_theta) ./ single(r_2);
 
-% "numerical_omega" and "analytic_omega" are expected to be the same.
-numerical_omega = sum(sum(d_omega));
-analytical_omega = single(4.0) .* single(pi) .* single(1.0) .* single(1.0) / single(6.0);
+max_d_omega = max(d_omega(:));
 
-% output: "numerical:2.094395 analytic_omega:2.094395".
-printf("numerical:%f analytical:%f\n", numerical_omega, analytical_omega);
-```  
+% output: "max solid angle: 4.000000" // u = 0 v = 0
+printf("max solid angle:%f \n", max_d_omega);
+
+image_data = uint8(255 * (d_omega / max_d_omega));
+imwrite(image_data, 'Environment-Lighting-Cube-Map-Texel-Solid-Angle.png');
+
+numerical_omega = sum(sum(d_omega)) / texture_size_width / texture_size_height;
+% output: "numerical:2.094395" // 4 * PI / 6
+printf("numerical:%f \n", numerical_omega);
+```    
+
+#### 2-2-2\. Octahedral Map  
+
 
 ### 2-3\. Clamped Cosine  
 

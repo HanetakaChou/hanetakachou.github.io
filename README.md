@@ -40,18 +40,14 @@ If you find there are any mistakes or improvements, please don't hesitate to pos
     - Geometry  
         - HLOD [Documentation](./index.html?file=Rendering/Rasterization/Geometry/HLOD.md)  
         - Masked Occlusion Culling [Documentation](./index.html?file=Rendering/Rasterization/Geometry/Masked-Occlusion-Culling.md)  
-        - Projector Function  
-            - Cube Mapping [Documentation](./index.html?file=Rendering/Rasterization/Geometry/Projector-Function/Cube-Mapping.md)  
-            - Dual Paraboloid Mapping [Documentation](./index.html?file=Rendering/Rasterization/Geometry/Projector-Function/Dual-Paraboloid-Mapping.md) [Code-VK](https://github.com/HanetakaChou/Rendering/tree/Dual-Paraboloid-Mapping-VK)  
-            - Octahedron Mapping [Documentation](./index.html?file=Rendering/Rasterization/Geometry/Projector-Function/Octahedron-Mapping.md) [Code](https://github.com/HanetakaChou/Octahedron-Mapping)  
         - DLB (Dual quaternion Linear Blending) [Documentation](./index.html?file=Rendering/Rasterization/Geometry/Dual-Quaternion-Linear-Blending.md) [Code](https://github.com/HanetakaChou/Dual-Quaternion-Linear-Blending)  
         - Ocean [Documentation](./index.html?file=Rendering/Rasterization/Geometry/Ocean.md)  
         - Hair Animation [Documentation](./index.html?file=Rendering/Rasterization/Geometry/Hair-Animation.md)  
         - Grass [Documentation](./index.html?file=Rendering/Rasterization/Geometry/Grass.md)  
         - Billboard [Documentation](./index.html?file=Rendering/Rasterization/Geometry/Billboard.md)  
     - Lighting  
-        - LTC (Linearly Transformed Cosines) [Documentation](./index.html?file=Rendering/Rasterization/Lighting/Linearly-Transformed-Cosines.md) [Code](https://github.com/HanetakaChou/Linearly-Transformed-Cosines)    
-        - SSS (Subsurface Scattering) [Documentation](./index.html?file=Rendering/Rasterization/Lighting/Subsurface-Scattering.md) [Code](https://github.com/HanetakaChou/Subsurface-Scattering)  
+        - LTC (Area Lighting | Linearly Transformed Cosines) [Documentation](./index.html?file=Rendering/Rasterization/Lighting/Linearly-Transformed-Cosines.md) [Code](https://github.com/HanetakaChou/Linearly-Transformed-Cosines)    
+        - SSS (Skin Material | Subsurface Scattering) [Documentation](./index.html?file=Rendering/Rasterization/Lighting/Subsurface-Scattering.md) [Code](https://github.com/HanetakaChou/Subsurface-Scattering)  
         - Environment Lighting [Documentation](./index.html?file=Rendering/Rasterization/Lighting/Environment-Lighting.md) [Code](https://github.com/HanetakaChou/Environment-Lighting)  
         - Hair Rendering [Documentation](./index.html?file=Rendering/Rasterization/Lighting/Hair-Rendering.md)  
         - Volume Rendering [Documentation](./index.html?file=Rendering/Rasterization/Lighting/Volume-Rendering.md)  
