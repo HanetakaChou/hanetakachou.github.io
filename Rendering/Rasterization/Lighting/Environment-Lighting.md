@@ -55,23 +55,23 @@ Analogous to the **convolution theorem**,  by \[Ramamoorthi 2001 A\], we have $\
 >> By "Equation \(23\)" of \[Ramamoorthi 2001 A\], we have $\displaystyle \operatorname{D_{m0}^l}(\operatorname{R}(\overrightarrow{n})) = \sqrt{\frac{4 \pi}{2l + 1}} \operatorname{\Upsilon_l^m}(\overrightarrow{n})$, and we have $\displaystyle \operatorname{E}(\overrightarrow{n}) = \sum_{l = 0}^{\infin} \sum_{m = -l}^l L_l^m A_l \operatorname{D_{m0}^l}(\operatorname{R}(\overrightarrow{n})) = \sum_{l = 0}^{\infin} \sum_{m = -l}^l \sqrt{\frac{4 \pi}{2l + 1}} L_l^m A_l \operatorname{\Upsilon_l^m}(\overrightarrow{n})$.  
 >    
 
-### 2-2\. Texel Solid Angle  
-
+### 2-2\. Environment Map Distortion  
+ 
 We merely use **numerical quadrature** rather than **Monte Carlo integration** to integrate over the environment map. But it should be noted that the **solid angle** subtended by each **texel** of the environment map is NOT the same.   
 
 #### 2-2-1\. Cube Map  
 
-Let u and v be the 2D texture coordinate of the cube face.  
+Let ndc_x and ndc_y be the 2D normalized device coordinate within the same cube face.  
 
-By "5.5.3 Integrals over Area" of [PBRT Book V3](https://pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#IntegralsoverArea) and "4.2.3 Integrals over Area" of [PBR Book V4](https://pbr-book.org/4ed/Radiometry,_Spectra,_and_Color/Working_with_Radiometric_Integrals#IntegralsoverArea), we have $\displaystyle d\omega = \frac{dA \cos \theta}{r^2} = dA \cdot \cos \theta \cdot \frac{1}{r^2} = \frac{(1 - (-1)) \cdot (1 - (-1))}{\text{cube\_face\_width} \cdot \text{cube\_face\_height}} \cdot \frac{1}{\sqrt{1^2 + u^2 +v^2}} \cdot \frac{1}{1^2 + u^2 +v^2} = \frac{1}{\text{cube\_face\_width} \cdot \text{cube\_face\_height}} \cdot \frac{4}{\sqrt{1^2 + u^2 +v^2} \cdot (1^2 + u^2 +v^2)}$.   
+By "5.5.3 Integrals over Area" of [PBRT Book V3](https://pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#IntegralsoverArea) and "4.2.3 Integrals over Area" of [PBR Book V4](https://pbr-book.org/4ed/Radiometry,_Spectra,_and_Color/Working_with_Radiometric_Integrals#IntegralsoverArea), we have $\displaystyle d\omega = \frac{dA \cos \theta}{r^2} = dA \cdot \cos \theta \cdot \frac{1}{r^2} = \frac{(1 - (-1)) \cdot (1 - (-1))}{\text{cube\_face\_width} \cdot \text{cube\_face\_height}} \cdot \frac{1}{\sqrt{1^2 + {\text{ndc\_x}}^2 +{\text{ndc\_y}}^2}} \cdot \frac{1}{1^2 + {\text{ndc\_x}}^2 +{\text{ndc\_y}}^2} = \frac{4}{\sqrt{1^2 + {\text{ndc\_x}}^2 +{\text{ndc\_y}}^2} \cdot (1^2 + {\text{ndc\_x}}^2 +{\text{ndc\_y}}^2)} \cdot \frac{1}{\text{cube\_face\_width} \cdot \text{cube\_face\_height}}$.   
 
-Actually, the pseudo code ```fWt = 4/(sqrt(fTmp)*fTmp)``` by "Projection from Cube Maps" of \[Sloan 2008\] is exactly the $\displaystyle \frac{4}{\sqrt{1^2 + u^2 +v^2} \cdot (1^2 + u^2 +v^2)}$. The common divisor $\displaystyle \frac{1}{\text{cubesize\_u} \cdot \text{cubesize\_v}}$ can be reduced, and thus is NOT calculated by \[Sloan 2008\].   
+Actually, the pseudo code ```fWt = 4/(sqrt(fTmp)*fTmp)``` by "Projection from Cube Maps" of \[Sloan 2008\] is exactly the $\displaystyle \frac{4}{\sqrt{1^2 + {\text{ndc\_x}}^2 +{\text{ndc\_y}}^2} \cdot (1^2 + {\text{ndc\_x}}^2 +{ndc_y}^2)}$. The common divisor $\displaystyle \frac{1}{\text{cubesize\_u} \cdot \text{cubesize\_v}}$ can be reduced, and thus is NOT calculated by \[Sloan 2008\].   
 
-The texel solid angle of the cube map is calculated by [SHProjectCubeMap](https://github.com/microsoft/DirectXMath/blob/jul2018b/SHMath/DirectXSHD3D11.cpp#L341) in DirectXMath and [DiffuseIrradianceCopyPS](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/ReflectionEnvironmentShaders.usf#L448) in UnrealEngine.  
+The solid angle subtended by each texel of the cube map is calculated by [SHProjectCubeMap](https://github.com/microsoft/DirectXMath/blob/jul2018b/SHMath/DirectXSHD3D11.cpp#L341) in DirectXMath and [DiffuseIrradianceCopyPS](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/ReflectionEnvironmentShaders.usf#L448) in UnrealEngine.  
 
-Here is the MATLAB code to visualize the texel solid angle of the cube face ```fWt = 4/(sqrt(fTmp)*fTmp)```.  
+Here is the MATLAB code to visualize the solid angle subtended by each texel within the same cube face ```fWt = 4/(sqrt(fTmp)*fTmp)```.  
 
-![](Environment-Lighting-Cube-Map-Texel-Solid-Angle.png)  
+![](Environment-Lighting-Cube-Map-Texel-Solid-Angle-Weight.png)  
 
 ```MATLAB
 % cube face resolution
@@ -79,29 +79,91 @@ cube_face_width = single(512.0);
 cube_face_height = single(512.0);
 
 [ width_index, height_index ] = meshgrid((single(0.0) : (cube_face_width - single(1.0))), (single(0.0) : (cube_face_height - single(1.0))));
-u = (width_index + single(0.5)) ./ cube_face_width .* single(2.0) - single(1.0);
-v = (height_index + single(0.5)) ./ cube_face_height .* single(2.0) - single(1.0);
+ndc_x = (width_index + single(0.5)) ./ cube_face_width .* single(2.0) - single(1.0);
+ndc_y = (height_index + single(0.5)) ./ cube_face_height .* single(2.0) - single(1.0);
 
-% calculate the texel solid angle of each texel within the cube face
-% the common divisor "1/(cube_size_u*cube_size_v)" can be reduced, and thus is NOT calculated in the "fWt = 4/(sqrt(fTmp)*fTmp)".
+% calculate the texel solid angle of each texel within the same cube face
+% the common divisor "1/(cube_size_u*cube_size_v)" can be reduced, and thus is NOT calculated in the "fWt = 4/(sqrt(fTmp)*fTmp)"
 d_a = (single(1.0) - single(-1.0)) * (single(1.0) - single(-1.0));
-r_2 = single(1.0) * single(1.0) + single(u) .* single(u) + single(v) .* single(v);
+r_2 = single(1.0) .* single(1.0) + single(ndc_x) .* single(ndc_x) + single(ndc_y) .* single(ndc_y);
 cos_theta = single(1.0) ./ sqrt(r_2);
 d_omega = single(d_a) .* single(cos_theta) ./ single(r_2);
 
 max_d_omega = max(max(d_omega));
-% output: "max solid angle: 3.999954" // u = 0 v = 0
-printf("max solid angle:%f \n", max_d_omega);
+% output: "max solid angle: 3.999954" // ndc_x = 0 ndc_y = 0
+printf("max solid angle: %f \n", max_d_omega);
 
-image_data = uint8(255 * (d_omega / max_d_omega));
-imwrite(image_data, 'cube_map_texel_solid_angle.png');
+min_d_omega = min(min(d_omega));
+% output: "min solid angle: 0.772814"
+printf("min solid angle: %f \n", min_d_omega);
+
+solid_angle_weight_image = uint8(255 * (d_omega - min_d_omega) / (max_d_omega - min_d_omega));
+imwrite(solid_angle_weight_image, 'Environment-Lighting-Cube-Map-Texel-Solid-Angle-Weight.png');
 
 sum_d_omega = sum(sum(d_omega)) / cube_face_width / cube_face_height;
-% output: "numerical:2.094397" // 4 * PI / 6
-printf("numerical: %f \n", sum_d_omega);
+% output: "sum solid angle: 2.094397" // 4 * PI / 6
+printf("sum solid angle: %f \n", sum_d_omega);
 ```    
 
-#### 2-2-2\. Octahedral Map  
+#### 2-2-2\. Octahedron Map  
+
+Let ndc_x and ndc_y be the 2D normalized device coordinate.  
+
+By "5.5.3 Integrals over Area" of [PBRT Book V3](https://pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#IntegralsoverArea) and "4.2.3 Integrals over Area" of [PBR Book V4](https://pbr-book.org/4ed/Radiometry,_Spectra,_and_Color/Working_with_Radiometric_Integrals#IntegralsoverArea), we have $\displaystyle d\omega = \frac{d A_{\text{OCT}} \cos \theta}{r^2} = d A_{\text{OCT}} \cdot \cos \theta \cdot \frac{1}{r^2} = (\sqrt{3} \cdot dA_{\text{NDC}}) \cdot \cos \theta \cdot \frac{1}{r^2} = (\sqrt{3} \cdot \frac{(1 - (-1)) \cdot (1 - (-1))}{\text{texture\_width} \cdot \text{texture\_height}}) \cdot \frac{\frac{1}{\sqrt{3}}(|\text{oct\_x}| + |\text{oct\_y}| + |\text{oct\_z}|)}{\sqrt{{\text{oct\_x}}^2 + {\text{oct\_y}}^2 + {\text{oct\_z}}^2}} \cdot \frac{1}{{\text{oct\_x}}^2 + {\text{oct\_y}}^2 + {\text{oct\_z}}^2} = \frac{4 (|\text{oct\_x}| + |\text{oct\_y}| + |\text{oct\_z}|)}{\sqrt{{\text{oct\_x}}^2 + {\text{oct\_y}}^2 + {\text{oct\_z}}^2} \cdot ({\text{oct\_x}}^2 + {\text{oct\_y}}^2 + {\text{oct\_z}}^2)} \cdot \frac{1}{\text{texture\_width} \cdot \text{texture\_height}}$  
+
+Here is the MATLAB code to visualize the solid angle subtended by each texel.  
+
+![](Environment-Lighting-Octahedron-Map-Texel-Solid-Weight.png)  
+
+```MATLAB
+% texture resolution
+texture_width = single(512.0);
+texture_height = single(512.0);
+
+[ width_index, height_index ] = meshgrid((single(0.0) : (texture_width - single(1.0))), (single(0.0) : (texture_height - single(1.0))));
+ndc_x = (width_index + single(0.5)) ./ texture_width .* single(2.0) - single(1.0);
+ndc_y = (height_index + single(0.5)) ./ texture_height .* single(2.0) - single(1.0);
+
+% octahedron unmap
+octahedron_surface_z = single(1.0) - abs(ndc_x) - abs(ndc_y);
+
+upper_hemisphere = (octahedron_surface_z > 0);
+
+octahedron_surface_x = zeros(size(upper_hemisphere));
+octahedron_surface_y = zeros(size(upper_hemisphere));
+
+octahedron_surface_x(find(upper_hemisphere)) = ndc_x(find(upper_hemisphere));
+octahedron_surface_y(find(upper_hemisphere)) = ndc_y(find(upper_hemisphere));
+
+octahedron_surface_x(find(~upper_hemisphere)) = (single(1.0) - abs(ndc_y(find(~upper_hemisphere)))) .* (single(ndc_x(find(~upper_hemisphere)) >= single(0.0)) * single(2.0) - single(1.0));
+octahedron_surface_y(find(~upper_hemisphere)) = (single(1.0) - abs(ndc_x(find(~upper_hemisphere)))) .* (single(ndc_y(find(~upper_hemisphere)) >= single(0.0)) * single(2.0) - single(1.0));
+
+% surf(octahedron_surface_x, octahedron_surface_y, octahedron_surface_z, 'EdgeColor', 'none');
+
+% calculate the texel solid angle of each texel within the cube face
+% the common divisor "1/(texture_width*texture_height)" can be reduced, and thus is NOT calculated here
+d_a = (single(1.0) - single(-1.0)) * (single(1.0) - single(-1.0));
+r_2 = single(octahedron_surface_x) .* single(octahedron_surface_x) + single(octahedron_surface_y) .* single(octahedron_surface_y) + single(octahedron_surface_z) .* single(octahedron_surface_z);
+cos_theta = (abs(octahedron_surface_x) + abs(octahedron_surface_y) + abs(octahedron_surface_z)) ./ sqrt(r_2);
+d_omega = single(d_a) .* single(cos_theta) ./ single(r_2);
+
+max_d_omega = max(max(d_omega));
+% output: "max solid angle: 20.784372"
+printf("min solid angle: %f \n", max_d_omega);
+
+min_d_omega = min(min(d_omega));
+% output: "min solid angle: 4.023506" // ndc_x = 0 ndc_y = 0
+printf("min solid angle: %f \n", min_d_omega);
+
+% surf(ndc_x, ndc_y, d_omega, 'EdgeColor', 'none');
+
+solid_angle_weight_image = uint8(255 * (d_omega - min_d_omega) / (max_d_omega - min_d_omega));
+imwrite(solid_angle_weight_image, 'Environment-Lighting-Octahedron-Map-Texel-Solid-Weight.png');
+
+sum_d_omega = sum(sum(d_omega)) / texture_width / texture_height;
+% output: "sum solid angle: 12.566369" // 4 * PI
+printf("sum solid angle: %f \n", sum_d_omega);
+```
 
 ### 2-3\. Clamped Cosine  
 
