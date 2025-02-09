@@ -21,7 +21,7 @@ $\displaystyle \overrightarrow{n}$ | Normal in World Space | N
 
 Let $\displaystyle \operatorname{L}(\overrightarrow{\omega})$ be the distant radiance distribution which is represented by the image **environment map**.  
 
-By "10.4 Environment Mapping" [Real-Time Rendering Fourth Edition](https://www.realtimerendering.com/), there are many approaches to project the points on the sphere surface into the 2D texture coordinates, e.g. **cube map** (supported directly by Vulkan/Direct3D APIs),  **latitude-longitude map** (supported by PBRT V3), **octahedron map** (supported by PBRT V4) etc.  
+By "10.4 Environment Mapping" [Real-Time Rendering Fourth Edition](https://www.realtimerendering.com/), there are many approaches to project the points on the sphere surface into the 2D texture coordinates, e.g. **cube map** (supported directly by Vulkan/Direct3D APIs),  **latitude-longitude map** (supported by PBRT V3), **octahedron map** (supported by PBRT V4), etc.  
   
 TODO:   
 [Lower Hemisphere is Solid Color](https://dev.epicgames.com/documentation/en-us/unreal-engine/sky-light?application_version=4.27)  
@@ -55,7 +55,7 @@ Analogous to the **convolution theorem**,  by \[Ramamoorthi 2001 A\], we have $\
 >> By "Equation \(23\)" of \[Ramamoorthi 2001 A\], we have $\displaystyle \operatorname{D_{m0}^l}(\operatorname{R}(\overrightarrow{n})) = \sqrt{\frac{4 \pi}{2l + 1}} \operatorname{\Upsilon_l^m}(\overrightarrow{n})$, and we have $\displaystyle \operatorname{E}(\overrightarrow{n}) = \sum_{l = 0}^{\infin} \sum_{m = -l}^l L_l^m A_l \operatorname{D_{m0}^l}(\operatorname{R}(\overrightarrow{n})) = \sum_{l = 0}^{\infin} \sum_{m = -l}^l \sqrt{\frac{4 \pi}{2l + 1}} L_l^m A_l \operatorname{\Upsilon_l^m}(\overrightarrow{n})$.  
 >    
 
-### 2-2\. Distortion  
+### 2-2\. Texel Solid Angle  
 
 We merely use **numerical quadrature** rather than **Monte Carlo integration** to integrate over the environment map. But it should be noted that the **solid angle** subtended by each **texel** of the environment map is NOT the same.   
 
@@ -69,16 +69,15 @@ Actually, the pseudo code ```fWt = 4/(sqrt(fTmp)*fTmp)``` by "Projection from Cu
 
 The texel solid angle of the cube map is calculated by [SHProjectCubeMap](https://github.com/microsoft/DirectXMath/blob/jul2018b/SHMath/DirectXSHD3D11.cpp#L341) in DirectXMath and [DiffuseIrradianceCopyPS](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/ReflectionEnvironmentShaders.usf#L448) in UnrealEngine.  
 
-Here is the MATLAB code to visualize the texel solid angle ```fWt = 4/(sqrt(fTmp)*fTmp)```.  
+Here is the MATLAB code to visualize the texel solid angle of the cube face ```fWt = 4/(sqrt(fTmp)*fTmp)```.  
 
 ![](Environment-Lighting-Cube-Map-Texel-Solid-Angle.png)  
 
 ```MATLAB
-% resolution retrieved by "textureSize(GLSL)" or "GetDimensions(HLSL)".
+% cube face resolution
 cube_face_width = single(512.0);
 cube_face_height = single(512.0);
 
-% calculate the uv at the center of each texel  
 [ width_index, height_index ] = meshgrid((single(0.0) : (cube_face_width - single(1.0))), (single(0.0) : (cube_face_height - single(1.0))));
 u = (width_index + single(0.5)) ./ cube_face_width .* single(2.0) - single(1.0);
 v = (height_index + single(0.5)) ./ cube_face_height .* single(2.0) - single(1.0);
@@ -90,21 +89,19 @@ r_2 = single(1.0) * single(1.0) + single(u) .* single(u) + single(v) .* single(v
 cos_theta = single(1.0) ./ sqrt(r_2);
 d_omega = single(d_a) .* single(cos_theta) ./ single(r_2);
 
-max_d_omega = max(d_omega(:));
-
-% output: "max solid angle: 4.000000" // u = 0 v = 0
+max_d_omega = max(max(d_omega));
+% output: "max solid angle: 3.999954" // u = 0 v = 0
 printf("max solid angle:%f \n", max_d_omega);
 
 image_data = uint8(255 * (d_omega / max_d_omega));
-imwrite(image_data, 'Environment-Lighting-Cube-Map-Texel-Solid-Angle.png');
+imwrite(image_data, 'cube_map_texel_solid_angle.png');
 
-numerical_omega = sum(sum(d_omega)) / texture_size_width / texture_size_height;
-% output: "numerical:2.094395" // 4 * PI / 6
-printf("numerical:%f \n", numerical_omega);
+sum_d_omega = sum(sum(d_omega)) / cube_face_width / cube_face_height;
+% output: "numerical:2.094397" // 4 * PI / 6
+printf("numerical: %f \n", sum_d_omega);
 ```    
 
 #### 2-2-2\. Octahedral Map  
-
 
 ### 2-3\. Clamped Cosine  
 
