@@ -40,7 +40,7 @@ If you find there are any mistakes or improvements, please don't hesitate to pos
     - Geometry  
         - HLOD [Documentation](./index.html?file=Rendering/Rasterization/Geometry/HLOD.md)  
         - Masked Occlusion Culling [Documentation](./index.html?file=Rendering/Rasterization/Geometry/Masked-Occlusion-Culling.md)  
-        - DLB (Dual quaternion Linear Blending) [Documentation](./index.html?file=Rendering/Rasterization/Geometry/Dual-Quaternion-Linear-Blending.md) [Code](https://github.com/HanetakaChou/Dual-Quaternion-Linear-Blending)  
+        - DLB (Skin Deformation | Dual Quaternion Linear Blending) [Documentation](./index.html?file=Rendering/Rasterization/Geometry/Dual-Quaternion-Linear-Blending.md) [Code](https://github.com/HanetakaChou/Dual-Quaternion-Linear-Blending)  
         - Ocean [Documentation](./index.html?file=Rendering/Rasterization/Geometry/Ocean.md)  
         - Hair Animation [Documentation](./index.html?file=Rendering/Rasterization/Geometry/Hair-Animation.md)  
         - Grass [Documentation](./index.html?file=Rendering/Rasterization/Geometry/Grass.md)  
