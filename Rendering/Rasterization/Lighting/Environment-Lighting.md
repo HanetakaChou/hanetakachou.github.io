@@ -97,7 +97,8 @@ min_d_omega = min(min(d_omega));
 % output: "min solid angle: 0.772814"
 printf("min solid angle: %f \n", min_d_omega);
 
-solid_angle_weight_image = uint8(255 * (d_omega - min_d_omega) / (max_d_omega - min_d_omega));
+% solid_angle_weight_image = uint8(255 * (d_omega - min_d_omega) / (max_d_omega - min_d_omega));
+solid_angle_weight_image = uint8(255 * (d_omega / max_d_omega));
 imwrite(solid_angle_weight_image, 'Environment-Lighting-Cube-Map-Texel-Solid-Angle-Weight.png');
 
 sum_d_omega = sum(sum(d_omega)) / cube_face_width / cube_face_height;
@@ -157,7 +158,8 @@ printf("min solid angle: %f \n", min_d_omega);
 
 % surf(ndc_x, ndc_y, d_omega, 'EdgeColor', 'none');
 
-solid_angle_weight_image = uint8(255 * (d_omega - min_d_omega) / (max_d_omega - min_d_omega));
+% solid_angle_weight_image = uint8(255 * (d_omega - min_d_omega) / (max_d_omega - min_d_omega));
+solid_angle_weight_image = uint8(255 * (d_omega / max_d_omega));
 imwrite(solid_angle_weight_image, 'Environment-Lighting-Octahedron-Map-Texel-Solid-Weight.png');
 
 sum_d_omega = sum(sum(d_omega)) / texture_width / texture_height;
