@@ -21,14 +21,14 @@ $\displaystyle \overrightarrow{n}$ | Normal in World Space | N
 
 Let $\displaystyle \operatorname{L}(\overrightarrow{\omega})$ be the distant radiance distribution which is represented by the image **environment map**.  
 
-By "10.4 Environment Mapping" [Real-Time Rendering Fourth Edition](https://www.realtimerendering.com/), there are many approaches to project the points on the sphere surface into the 2D texture coordinates, e.g. **cube map** (supported directly by Vulkan/Direct3D APIs),  **latitude-longitude map** (supported by PBRT V3), **octahedron map** (supported by PBRT V4), etc.  
+By "10.4 Environment Mapping" [Real-Time Rendering Fourth Edition](https://www.realtimerendering.com/), there are many approaches to project the points on the sphere surface into the 2D texture coordinates, e.g. **cube map** (supported directly by Vulkan/Direct3D APIs),  **latitude-longitude map** (supported by PBRT V3), **octahedral map** (supported by PBRT V4), etc.  
   
 TODO:   
 [Lower Hemisphere is Solid Color](https://dev.epicgames.com/documentation/en-us/unreal-engine/sky-light?application_version=4.27)  
 [Upper Hemisphere Only](https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@10.8/manual/Override-HDRI-Sky.html)  
 [Upper Hemisphere Lux Value](https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@10.8/manual/Override-HDRI-Sky.html)  
 
-TODO: octahedron mapping  
+TODO: octahedral mapping  
 "16.6 Compression and Precision" of [Real-Time Rendering Fourth Edition](https://www.realtimerendering.com/)  
 ["12.5.2 Image Infinite Lights"](https://pbr-book.org/4ed/Light_Sources/Infinite_Area_Lights) of [PBR Book V4](https://pbr-book.org/4ed/contents)  
 
@@ -105,7 +105,7 @@ sum_d_omega = sum(sum(d_omega_mul_texture_size)) / texture_width / texture_heigh
 printf("sum solid angle: %f \n", sum_d_omega);
 ```    
 
-#### 2-2-2\. Octahedron Map  
+#### 2-2-2\. Octahedral Map  
 
 Let ```ndc_x``` and ```ndc_y``` be the 2D normalized device coordinate.  
 
@@ -113,7 +113,7 @@ By "5.5.3 Integrals over Area" of [PBRT Book V3](https://pbr-book.org/3ed-2018/C
 
 Here is the MATLAB code to visualize the solid angle subtended by each texel.  
 
-![](Environment-Lighting-Octahedron-Map-Texel-Solid-Weight.png)  
+![](Environment-Lighting-Octahedral-Map-Texel-Solid-Weight.png)  
 
 ```MATLAB
 % texture size
@@ -124,7 +124,7 @@ texture_height = single(512.0);
 ndc_x = (width_index + single(0.5)) ./ texture_width .* single(2.0) - single(1.0);
 ndc_y = (height_index + single(0.5)) ./ texture_height .* single(2.0) - single(1.0);
 
-% octahedron unmap
+% octahedral unmap
 octahedron_surface_z = single(1.0) - abs(ndc_x) - abs(ndc_y);
 
 upper_hemisphere = (octahedron_surface_z > 0);
@@ -159,7 +159,7 @@ printf("min solid angle weight: %f \n", min_d_omega_mul_texture_size);
 % surf(ndc_x, ndc_y, d_omega_mul_texture_size, 'EdgeColor', 'none');
 
 solid_angle_weight_image = uint8(255 * (d_omega_mul_texture_size / max_d_omega_mul_texture_size));
-imwrite(solid_angle_weight_image, 'Environment-Lighting-Octahedron-Map-Texel-Solid-Weight.png');
+imwrite(solid_angle_weight_image, 'Environment-Lighting-Octahedral-Map-Texel-Solid-Weight.png');
 
 sum_d_omega = sum(sum(d_omega_mul_texture_size)) / texture_width / texture_height;
 % output: "sum solid angle: 12.566369" // 4 * PI
