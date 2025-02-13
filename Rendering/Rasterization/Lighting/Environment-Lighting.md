@@ -183,7 +183,7 @@ Here is the MATLAB code to visualize the solid angle subtended by each texel.
 
 ```MATLAB
 % texture size of each cube face
-texture_width = single(512.0);
+texture_width = single(1024.0);
 texture_height = single(512.0);
 
 [ width_index, height_index ] = meshgrid((single(0.0) : (texture_width - single(1.0))), (single(0.0) : (texture_height - single(1.0))));
