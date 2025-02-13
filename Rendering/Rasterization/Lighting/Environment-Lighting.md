@@ -21,7 +21,7 @@ $\displaystyle \overrightarrow{n}$ | Normal in World Space | N
 
 Let $\displaystyle \operatorname{L}(\overrightarrow{\omega})$ be the distant radiance distribution which is represented by the image **environment map**.  
 
-By "10.4 Environment Mapping" [Real-Time Rendering Fourth Edition](https://www.realtimerendering.com/), there are many approaches to project the points on the sphere surface into the 2D texture coordinates, e.g. **cube map** (supported directly by Vulkan/Direct3D APIs),  **latitude-longitude map** (supported by PBRT V3), **octahedral map** (supported by PBRT V4), etc.  
+By "10.4 Environment Mapping" [Real-Time Rendering Fourth Edition](https://www.realtimerendering.com/), there are many approaches to project the points on the sphere surface into the 2D texture coordinates, e.g. **cube map** (supported directly by Vulkan/Direct3D APIs),  **equirectangular (latitude-longitude) map** (supported by PBRT V3), **octahedral map** (supported by PBRT V4), etc.  
   
 TODO:   
 [Lower Hemisphere is Solid Color](https://dev.epicgames.com/documentation/en-us/unreal-engine/sky-light?application_version=4.27)  
@@ -79,8 +79,10 @@ texture_width = single(512.0);
 texture_height = single(512.0);
 
 [ width_index, height_index ] = meshgrid((single(0.0) : (texture_width - single(1.0))), (single(0.0) : (texture_height - single(1.0))));
-ndc_x = (width_index + single(0.5)) ./ texture_width .* single(2.0) - single(1.0);
-ndc_y = (height_index + single(0.5)) ./ texture_height .* single(2.0) - single(1.0);
+uv_x = (width_index + single(0.5)) ./ texture_width;
+uv_y = (height_index + single(0.5)) ./ texture_height;
+ndc_x = uv_x .* single(2.0) + single(-1.0);
+ndc_y = uv_y .* single(-2.0) + single(1.0);
 
 % calculate the texel solid angle weight of each texel within the same cube face
 % the common factor "1 / (texture_width * texture_height)" is extracted, and thus is NOT calculated in the "fWt = 4/(sqrt(fTmp)*fTmp)"
@@ -121,8 +123,10 @@ texture_width = single(512.0);
 texture_height = single(512.0);
 
 [ width_index, height_index ] = meshgrid((single(0.0) : (texture_width - single(1.0))), (single(0.0) : (texture_height - single(1.0))));
-ndc_x = (width_index + single(0.5)) ./ texture_width .* single(2.0) - single(1.0);
-ndc_y = (height_index + single(0.5)) ./ texture_height .* single(2.0) - single(1.0);
+uv_x = (width_index + single(0.5)) ./ texture_width;
+uv_y = (height_index + single(0.5)) ./ texture_height;
+ndc_x = uv_x .* single(2.0) + single(-1.0);
+ndc_y = uv_y .* single(-2.0) + single(1.0);
 
 % octahedral unmap
 octahedron_surface_z = single(1.0) - abs(ndc_x) - abs(ndc_y);
@@ -140,7 +144,7 @@ octahedron_surface_y(find(~upper_hemisphere)) = (single(1.0) - abs(ndc_x(find(~u
 
 % surf(octahedron_surface_x, octahedron_surface_y, octahedron_surface_z, 'EdgeColor', 'none');
 
-% calculate the texel solid angle weight of each texel within the cube face
+% calculate the texel solid angle weight of each texel
 % the common factor "1 / (texture_width * texture_height)" is extracted, and thus is NOT calculated here
 d_a_mul_texture_size = (single(1.0) - single(-1.0)) * (single(1.0) - single(-1.0));
 r_2 = single(octahedron_surface_x) .* single(octahedron_surface_x) + single(octahedron_surface_y) .* single(octahedron_surface_y) + single(octahedron_surface_z) .* single(octahedron_surface_z);
@@ -163,6 +167,49 @@ imwrite(solid_angle_weight_image, 'Environment-Lighting-Octahedral-Map-Texel-Sol
 
 sum_d_omega = sum(sum(d_omega_mul_texture_size)) / texture_width / texture_height;
 % output: "sum solid angle: 12.566369" // 4 * PI
+printf("sum solid angle: %f \n", sum_d_omega);
+```
+
+#### 2-2-3\. Equirectangular (Latitude-Longitude) Map  
+
+Let ```uv_x``` and ```uv_y``` be the 2D texture coordinate.  
+
+By "5.5.2 Integrals over Spherical Coordinates" of [PBRT Book V3](https://pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#IntegralsoverSphericalCoordinates) and "
+4.2.2 Integrals over Spherical Coordinates" of [PBR Book V4](https://pbr-book.org/4ed/Radiometry,_Spectra,_and_Color/Working_with_Radiometric_Integrals#IntegralsoverSphericalCoordinates), we have $\displaystyle d\omega = \sin \theta \cdot d \theta \cdot d \phi = \sin (\pi \cdot \text{uv\_y}) \cdot \frac{\pi}{\text{texture\_width}} \cdot \frac{2 \pi}{\text{texture\_height}} = 2 {\pi}^2 \sin (\pi \cdot \text{uv\_y}) \cdot \frac{1}{\text{texture\_width} \cdot \text{texture\_height}}$  
+
+Here is the MATLAB code to visualize the solid angle subtended by each texel.  
+
+![](Environment-Lighting-Equirectangular-Texel-Solid-Angle-Weight.png)  
+
+```MATLAB
+% texture size of each cube face
+texture_width = single(512.0);
+texture_height = single(512.0);
+
+[ width_index, height_index ] = meshgrid((single(0.0) : (texture_width - single(1.0))), (single(0.0) : (texture_height - single(1.0))));
+% uv_x = (width_index + single(0.5)) ./ texture_width;
+uv_y = (height_index + single(0.5)) ./ texture_height;
+
+% calculate the texel solid angle weight of each texel
+% the common factor "1 / (texture_width * texture_height)" is extracted, and thus is NOT calculated in the "fWt = 4/(sqrt(fTmp)*fTmp)"
+sin_theta = sin(single(pi) .* uv_y);
+d_theta = single(pi);
+d_phi = single(pi) .* single(2.0);
+d_omega_mul_texture_size = single(sin_theta) .* single(d_theta) .* single(d_phi);
+
+max_d_omega_mul_texture_size = max(max(d_omega_mul_texture_size));
+% output: "max solid angle weight: 19.739117" // uv_y = 0.5 (ndc_y = 0)
+printf("max solid angle weight: %f \n", max_d_omega_mul_texture_size);
+
+min_d_omega_mul_texture_size = min(min(d_omega_mul_texture_size));
+% output: "min solid angle weight: 0.060557"
+printf("min solid angle weight: %f \n", min_d_omega_mul_texture_size);
+
+solid_angle_weight_image = uint8(255 * (d_omega_mul_texture_size / max_d_omega_mul_texture_size));
+imwrite(solid_angle_weight_image, 'Environment-Lighting-Equirectangular-Texel-Solid-Angle-Weight.png');
+
+sum_d_omega = sum(sum(d_omega_mul_texture_size)) / texture_width / texture_height;
+% output: "sum solid angle: 12.566404" // 4 * PI
 printf("sum solid angle: %f \n", sum_d_omega);
 ```
 
