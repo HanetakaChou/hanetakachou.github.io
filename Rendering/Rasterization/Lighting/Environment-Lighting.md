@@ -21,16 +21,74 @@ $\displaystyle \overrightarrow{n}$ | Normal in World Space | N
 
 Let $\displaystyle \operatorname{L}(\overrightarrow{\omega})$ be the distant radiance distribution which is represented by the image **environment map**.  
 
-By "10.4 Environment Mapping" [Real-Time Rendering Fourth Edition](https://www.realtimerendering.com/), there are many approaches to project the points on the sphere surface into the 2D texture coordinates, e.g. **cube map** (supported directly by Vulkan/Direct3D APIs),  **equirectangular (latitude-longitude) map** (supported by PBRT V3), **octahedral map** (supported by PBRT V4), etc.  
+### 1-1\. Environment Mapping  
+
+By "10.4 Environment Mapping" [Real-Time Rendering Fourth Edition](https://www.realtimerendering.com/), there are many approaches to project the points on the sphere surface into the 2D texture coordinates, e.g. **cube map** (supported directly by Vulkan/Direct3D APIs),  [equirectangular (latitude-longitude) map](https://pbr-book.org/3ed-2018/Light_Sources/Infinite_Area_Lights) (supported by [PBR Book V3](https://pbr-book.org/3ed-2018/contents)), [octahedral map](https://pbr-book.org/4ed/Light_Sources/Infinite_Area_Lights#ImageInfiniteLights) (supported by [PBR Book V4](https://pbr-book.org/4ed/contents)), etc.  
   
-TODO:   
+#### 1-1-1\. Octahedral Mapping  
+By "16.6 Compression and Precision" of [Real-Time Rendering Fourth Edition](https://www.realtimerendering.com/) and ["12.5.2 Image Infinite Lights"](https://pbr-book.org/4ed/Light_Sources/Infinite_Area_Lights#ImageInfiniteLights) of [PBR Book V4](https://pbr-book.org/4ed/contents), we have the octahedral mapping.  
+
+The basic idea of the octahedral mapping is to first use the **Manhattan distance** (namely, L1 norm) to project the points on the sphere surface into the octahedron surface, and then use the orthogonal projection to project the points on the octahedron surface into the XOY plane.  
+
+By \[Cigolle 2014\], we have the HLSL code of the octahedral mapping.  
+
+```HLSL
+float2 octahedral_map(float3 position_sphere_surface)
+{
+    float manhattan_norm = abs(position_sphere_surface.x) + abs(position_sphere_surface.y) + abs(position_sphere_surface.z);
+
+    float3 position_octahedron_surface = position_sphere_surface * (1.0 / manhattan_norm);
+
+    float2 position_ndc_space = (position_octahedron_surface.z > 0.0) ? position_octahedron_surface.xy : float2((1.0 - abs(position_octahedron_surface.y)) * ((position_octahedron_surface.x >= 0.0) ? 1.0 : -1.0), (1.0 - abs(position_octahedron_surface.x)) * ((position_octahedron_surface.y >= 0.0) ? 1.0 : -1.0));
+
+    return position_ndc_space;
+}
+
+float3 octahedral_unmap(float2 position_ndc_space)
+{
+    float position_octahedron_surface_z = 1.0 - abs(position_ndc_space.x) - abs(position_ndc_space.y);
+
+    float2 position_octahedron_surface_xy = (position_octahedron_surface_z >= 0.0) ? position_ndc_space : float2((1.0 - abs(position_ndc_space.y)) * ((position_ndc_space.x >= 0.0) ? 1.0 : -1.0), (1.0 - abs(position_ndc_space.x)) * ((position_ndc_space.y >= 0.0) ? 1.0 : -1.0));
+
+    float3 position_sphere_surface = normalize(float3(position_octahedron_surface_xy, position_octahedron_surface_z));
+
+    return position_sphere_surface;
+}
+```  
+
+#### 1-1-2\. Equirectangular Mapping  
+
+By "10.4.1 Latitude-Longitude Mapping" of [Real-Time Rendering Fourth Edition](https://www.realtimerendering.com/) and ["12.6 Infinite Area Lights"](https://pbr-book.org/3ed-2018/Light_Sources/Infinite_Area_Lights) of [PBR Book V3](https://pbr-book.org/3ed-2018/contents), we have the equirectangular mapping.  
+
+```HLSL  
+#define M_PI 3.141592653589793238462643
+
+float2 equirectangular_map(float3 omega)
+{
+    float theta = acos(omega.z);
+    float _temp_phi = atan2(omega.y, omega.x);
+    float phi = (_temp_phi > 0.0) ? _temp_phi : (_temp_phi + M_PI * 2.0);
+    return float2(phi * (1.0 / (M_PI * 2.0)), theta * (1.0 / M_PI));
+}
+
+float3 equirectangular_unmap(float2 uv)
+{
+    float phi = uv.x * (M_PI * 2.0);
+    float theta = uv.y * M_PI;
+    float sin_phi = sin(phi);
+    float cos_phi = cos(phi);
+    float sin_theta = sin(theta);
+    float cos_theta = cos(theta);
+    return float3(sin_theta * cos_phi, sin_theta * sin_phi, cos_theta);
+}
+```  
+
+### 1-2\. Hemisphere  
+
+TODO: there are some cases in the industry, where only half of the sphere surface is involved; but why?   
 [Lower Hemisphere is Solid Color](https://dev.epicgames.com/documentation/en-us/unreal-engine/sky-light?application_version=4.27)  
 [Upper Hemisphere Only](https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@10.8/manual/Override-HDRI-Sky.html)  
 [Upper Hemisphere Lux Value](https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@10.8/manual/Override-HDRI-Sky.html)  
-
-TODO: octahedral mapping  
-"16.6 Compression and Precision" of [Real-Time Rendering Fourth Edition](https://www.realtimerendering.com/)  
-["12.5.2 Image Infinite Lights"](https://pbr-book.org/4ed/Light_Sources/Infinite_Area_Lights) of [PBR Book V4](https://pbr-book.org/4ed/contents)  
 
 ## 2\. Interaction with Diffuse Material (Lambert)  
 
@@ -113,6 +171,29 @@ Let ```ndc_x``` and ```ndc_y``` be the 2D normalized device coordinate.
 
 By "5.5.3 Integrals over Area" of [PBRT Book V3](https://pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#IntegralsoverArea) and "4.2.3 Integrals over Area" of [PBR Book V4](https://pbr-book.org/4ed/Radiometry,_Spectra,_and_Color/Working_with_Radiometric_Integrals#IntegralsoverArea), we have $\displaystyle d\omega = \frac{d A_{\text{OCT}} \cos \theta}{r^2} = d A_{\text{OCT}} \cdot \cos \theta \cdot \frac{1}{r^2} = (\sqrt{3} \cdot dA_{\text{NDC}}) \cdot \cos \theta \cdot \frac{1}{r^2} = (\sqrt{3} \cdot \frac{(1 - (-1)) \cdot (1 - (-1))}{\text{texture\_width} \cdot \text{texture\_height}}) \cdot \frac{\frac{1}{\sqrt{3}}(|\text{oct\_x}| + |\text{oct\_y}| + |\text{oct\_z}|)}{\sqrt{{\text{oct\_x}}^2 + {\text{oct\_y}}^2 + {\text{oct\_z}}^2}} \cdot \frac{1}{{\text{oct\_x}}^2 + {\text{oct\_y}}^2 + {\text{oct\_z}}^2} = \frac{4 (|\text{oct\_x}| + |\text{oct\_y}| + |\text{oct\_z}|)}{\sqrt{{\text{oct\_x}}^2 + {\text{oct\_y}}^2 + {\text{oct\_z}}^2} \cdot ({\text{oct\_x}}^2 + {\text{oct\_y}}^2 + {\text{oct\_z}}^2)} \cdot \frac{1}{\text{texture\_width} \cdot \text{texture\_height}}$  
 
+```HLSL  
+float octahedral_map_solid_angle_weight(float2 position_ndc_space)
+{
+    float position_octahedron_surface_z = 1.0 - abs(position_ndc_space.x) - abs(position_ndc_space.y);
+
+    float2 position_octahedron_surface_xy = (position_octahedron_surface_z >= 0.0) ? position_ndc_space : float2((1.0 - abs(position_ndc_space.y)) * ((position_ndc_space.x >= 0.0) ? 1.0 : -1.0), (1.0 - abs(position_ndc_space.x)) * ((position_ndc_space.y >= 0.0) ? 1.0 : -1.0));
+    
+    float3 position_octahedron_surface = float3(position_octahedron_surface_xy, position_octahedron_surface_z);
+
+    // the common divisor "1 / (texture_width * texture_height)" can be reduced, and thus is NOT calculated here
+    float d_a_mul_texture_size = (1.0 - (-1.0)) * (1.0 - (-1.0));
+
+    float r_2 = dot(position_octahedron_surface, position_octahedron_surface);
+    
+    // technically, this term should be "sqrt(3) * cos_theta"
+    float cos_theta = (abs(position_octahedron_surface.x) + abs(position_octahedron_surface.y) + abs(position_octahedron_surface.z)) / sqrt(r_2);
+    
+    float d_omega_mul_texture_size = d_a_mul_texture_size * cos_theta / r_2;
+
+    return d_omega_mul_texture_size;
+}
+```  
+
 Here is the MATLAB code to visualize the solid angle subtended by each texel.  
 
 ![](Environment-Lighting-Octahedral-Map-Texel-Solid-Weight.png)  
@@ -176,6 +257,20 @@ Let ```uv_x``` and ```uv_y``` be the 2D texture coordinate.
 
 By "5.5.2 Integrals over Spherical Coordinates" of [PBRT Book V3](https://pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#IntegralsoverSphericalCoordinates) and "
 4.2.2 Integrals over Spherical Coordinates" of [PBR Book V4](https://pbr-book.org/4ed/Radiometry,_Spectra,_and_Color/Working_with_Radiometric_Integrals#IntegralsoverSphericalCoordinates), we have $\displaystyle d\omega = \sin \theta \cdot d \theta \cdot d \phi = \sin (\pi \cdot \text{uv\_y}) \cdot \frac{\pi}{\text{texture\_width}} \cdot \frac{2 \pi}{\text{texture\_height}} = 2 {\pi}^2 \sin (\pi \cdot \text{uv\_y}) \cdot \frac{1}{\text{texture\_width} \cdot \text{texture\_height}}$  
+
+```HLSL  
+#define M_PI 3.141592653589793238462643
+
+float equirectangular_solid_angle_weight(float2 uv)
+{
+    float theta = uv.y * M_PI;
+    float sin_theta = sin(theta);
+    float d_theta = M_PI;
+    float d_phi = M_PI * 2.0;
+    float d_omega_mul_texture_size = sin_theta * d_theta * d_phi;
+    return d_omega_mul_texture_size;
+}
+```  
 
 Here is the MATLAB code to visualize the solid angle subtended by each texel.  
 
@@ -413,6 +508,7 @@ The **Hammersley sequence** is calculated by [Hammersley](https://github.com/Epi
 \[Colbert 2007\] [Mark Colbert, Jaroslav Krivanek. "GPU-Based Importance Sampling." GPU Gems 3.](https://developer.nvidia.com/gpugems/gpugems3/part-iii-rendering/chapter-20-gpu-based-importance-sampling)  
 \[Sloan 2008\] [Peter-Pike Sloan. "Stupid Spherical Harmonics (SH) Tricks." GDC 2008.](http://www.ppsloan.org/publications/StupidSH36.pdf)  
 \[Karis 2013\] [Brian Karis. "Real Shading in Unreal Engine 4." SIGGRAPH 2013.](https://cdn2.unrealengine.com/Resources/files/2013SiggraphPresentationsNotes-26915738.pdf)  
+\[Cigolle 2014\] [Zina Cigolle, Sam Donow, Daniel Evangelakos, Michael Mara, Morgan McGuire, Quirin Meyer. "A Survey of Efficient Representations for Independent Unit Vectors." JCGT 2014.](https://jcgt.org/published/0003/02/01/)  
 \[Hable 2014\] [John Hable. "Simple and Fast Spherical Harmonic Rotation." Filmic Worlds Blog 2014.](http://filmicworlds.com/blog/simple-and-fast-spherical-harmonic-rotation/)  
 \[Lagarde 2014\] [Sebastian Lagarde, Charles Rousiers. "Moving Frostbite to PBR." SIGGRAPH 2014.](https://www.ea.com/frostbite/news/moving-frostbite-to-pb)  
 \[Heitz 2014\] [Eric Heitz. "Understanding the Masking-Shadowing Function in Microfacet-Based BRDFs." JCGT 2014.](https://jcgt.org/published/0003/02/03/)  
