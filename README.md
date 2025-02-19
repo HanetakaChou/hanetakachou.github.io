@@ -23,6 +23,10 @@ If you find there are any mistakes or improvements, please don't hesitate to pos
 
 - Console Tutorial (PS5 AGC API) [Documentation](./Console-Tutorial/index.html)  
 
+## Animation  
+
+- IK (Inverse Kinematics) [Documentation](./index.html?file=Animation/Inverse-Kinematics.md)  
+
 ## Rendering (Image Synthesis)  
 
 - Neural Rendering

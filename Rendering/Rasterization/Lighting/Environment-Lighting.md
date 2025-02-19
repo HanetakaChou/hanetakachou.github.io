@@ -19,7 +19,7 @@ $\displaystyle \overrightarrow{n}$ | Normal in World Space | N
 
 ## 1\. Light  
 
-Let $\displaystyle \operatorname{L}(\overrightarrow{\omega})$ be the distant radiance distribution which is represented by the image **environment map**.  
+Let $\displaystyle \operatorname{L}(\overrightarrow{\omega})$ be the distant radiance distribution which is represented by the **environment map** image.  
 
 ### 1-1\. Environment Mapping  
 
@@ -169,7 +169,7 @@ printf("sum solid angle: %f \n", sum_d_omega);
 
 Let ```ndc_x``` and ```ndc_y``` be the 2D normalized device coordinate.  
 
-By "5.5.3 Integrals over Area" of [PBR Book V3](https://pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#IntegralsoverArea) and "4.2.3 Integrals over Area" of [PBR Book V4](https://pbr-book.org/4ed/Radiometry,_Spectra,_and_Color/Working_with_Radiometric_Integrals#IntegralsoverArea), we have $\displaystyle d\omega = \frac{d A_{\text{OCT}} \cos \theta}{r^2} = d A_{\text{OCT}} \cdot \cos \theta \cdot \frac{1}{r^2} = (\sqrt{3} \cdot dA_{\text{NDC}}) \cdot \cos \theta \cdot \frac{1}{r^2} = (\sqrt{3} \cdot \frac{(1 - (-1)) \cdot (1 - (-1))}{\text{texture\_width} \cdot \text{texture\_height}}) \cdot \frac{\frac{1}{\sqrt{3}}(|\text{oct\_x}| + |\text{oct\_y}| + |\text{oct\_z}|)}{\sqrt{{\text{oct\_x}}^2 + {\text{oct\_y}}^2 + {\text{oct\_z}}^2}} \cdot \frac{1}{{\text{oct\_x}}^2 + {\text{oct\_y}}^2 + {\text{oct\_z}}^2} = \frac{4 (|\text{oct\_x}| + |\text{oct\_y}| + |\text{oct\_z}|)}{\sqrt{{\text{oct\_x}}^2 + {\text{oct\_y}}^2 + {\text{oct\_z}}^2} \cdot ({\text{oct\_x}}^2 + {\text{oct\_y}}^2 + {\text{oct\_z}}^2)} \cdot \frac{1}{\text{texture\_width} \cdot \text{texture\_height}}$  
+By "5.5.3 Integrals over Area" of [PBR Book V3](https://pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#IntegralsoverArea) and "4.2.3 Integrals over Area" of [PBR Book V4](https://pbr-book.org/4ed/Radiometry,_Spectra,_and_Color/Working_with_Radiometric_Integrals#IntegralsoverArea), we have $\displaystyle d\omega = \frac{d A_{\text{OCT}} \cos \theta}{r^2} = \frac{(\sqrt{3} \cdot dA_{\text{NDC}}) \cos \theta}{r^2} = (\sqrt{3} \cdot dA_{\text{NDC}}) \cdot \cos \theta \cdot \frac{1}{r^2} = (\sqrt{3} \cdot \frac{(1 - (-1)) \cdot (1 - (-1))}{\text{texture\_width} \cdot \text{texture\_height}}) \cdot \frac{\frac{1}{\sqrt{3}}(|\text{oct\_x}| + |\text{oct\_y}| + |\text{oct\_z}|)}{\sqrt{{\text{oct\_x}}^2 + {\text{oct\_y}}^2 + {\text{oct\_z}}^2}} \cdot \frac{1}{{\text{oct\_x}}^2 + {\text{oct\_y}}^2 + {\text{oct\_z}}^2} = \frac{4 (|\text{oct\_x}| + |\text{oct\_y}| + |\text{oct\_z}|)}{\sqrt{{\text{oct\_x}}^2 + {\text{oct\_y}}^2 + {\text{oct\_z}}^2} \cdot ({\text{oct\_x}}^2 + {\text{oct\_y}}^2 + {\text{oct\_z}}^2)} \cdot \frac{1}{\text{texture\_width} \cdot \text{texture\_height}}$  
 
 ```HLSL  
 float octahedral_map_solid_angle_weight(float2 position_ndc_space)
@@ -256,7 +256,7 @@ printf("sum solid angle: %f \n", sum_d_omega);
 Let ```uv_x``` and ```uv_y``` be the 2D texture coordinate.  
 
 By "5.5.2 Integrals over Spherical Coordinates" of [PBR Book V3](https://pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#IntegralsoverSphericalCoordinates) and "
-4.2.2 Integrals over Spherical Coordinates" of [PBR Book V4](https://pbr-book.org/4ed/Radiometry,_Spectra,_and_Color/Working_with_Radiometric_Integrals#IntegralsoverSphericalCoordinates), we have $\displaystyle d\omega = \sin \theta \cdot d \theta \cdot d \phi = \sin (\pi \cdot \text{uv\_y}) \cdot \frac{\pi}{\text{texture\_width}} \cdot \frac{2 \pi}{\text{texture\_height}} = 2 {\pi}^2 \sin (\pi \cdot \text{uv\_y}) \cdot \frac{1}{\text{texture\_width} \cdot \text{texture\_height}}$  
+4.2.2 Integrals over Spherical Coordinates" of [PBR Book V4](https://pbr-book.org/4ed/Radiometry,_Spectra,_and_Color/Working_with_Radiometric_Integrals#IntegralsoverSphericalCoordinates), we have $\displaystyle d\omega = \sin \theta \cdot d \theta \cdot d \phi = \sin (\pi \cdot \text{uv\_y}) \cdot \frac{\pi}{\text{texture\_height}} \cdot \frac{2 \pi}{\text{texture\_width}} = 2 {\pi}^2 \sin (\pi \cdot \text{uv\_y}) \cdot \frac{1}{\text{texture\_width} \cdot \text{texture\_height}}$  
 
 ```HLSL  
 #define M_PI 3.141592653589793238462643
@@ -265,9 +265,9 @@ float equirectangular_solid_angle_weight(float2 uv)
 {
     float theta = uv.y * M_PI;
     float sin_theta = sin(theta);
-    float d_theta = M_PI;
-    float d_phi = M_PI * 2.0;
-    float d_omega_mul_texture_size = sin_theta * d_theta * d_phi;
+    float d_theta_mul_texture_height = M_PI;
+    float d_phi_mul_texture_width = M_PI * 2.0;
+    float d_omega_mul_texture_size = sin_theta * d_theta_mul_texture_height * d_phi_mul_texture_width;
     return d_omega_mul_texture_size;
 }
 ```  
@@ -288,9 +288,9 @@ uv_y = (height_index + single(0.5)) ./ texture_height;
 % calculate the texel solid angle weight of each texel
 % the common factor "1 / (texture_width * texture_height)" is extracted, and thus is NOT calculated in the "fWt = 4/(sqrt(fTmp)*fTmp)"
 sin_theta = sin(single(pi) .* uv_y);
-d_theta = single(pi);
-d_phi = single(pi) .* single(2.0);
-d_omega_mul_texture_size = single(sin_theta) .* single(d_theta) .* single(d_phi);
+d_theta_mul_texture_height = single(pi);
+d_phi_mul_texture_width = single(pi) .* single(2.0);
+d_omega_mul_texture_size = single(sin_theta) .* single(d_theta_mul_texture_height) .* single(d_phi_mul_texture_width);
 
 max_d_omega_mul_texture_size = max(max(d_omega_mul_texture_size));
 % output: "max solid angle weight: 19.739117" // uv_y = 0.5 (ndc_y = 0)
