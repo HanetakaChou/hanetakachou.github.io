@@ -44,12 +44,14 @@ You should have received a copy of the GNU Lesser General Public License along w
         import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/+esm';
         import { instance } from 'https://cdn.jsdelivr.net/npm/@viz-js/viz/+esm'
         import hljs from 'https://cdn.jsdelivr.net/npm/highlight.js/lib/core/+esm'
+        import plaintext from 'https://cdn.jsdelivr.net/npm/highlight.js/lib/languages/plaintext/+esm'
         import cpp from 'https://cdn.jsdelivr.net/npm/highlight.js/lib/languages/cpp/+esm'
         import matlab from 'https://cdn.jsdelivr.net/npm/highlight.js/lib/languages/matlab/+esm'
         import glsl from 'https://cdn.jsdelivr.net/npm/highlight.js/lib/languages/glsl/+esm'
 
         mermaid.initialize({ startOnLoad: false });
 
+        hljs.registerLanguage('plaintext', plaintext);
         hljs.registerLanguage('cpp', cpp);
         hljs.registerLanguage('matlab', matlab);
         hljs.registerLanguage('glsl', glsl);
