@@ -40,6 +40,7 @@ You should have received a copy of the GNU Lesser General Public License along w
 
     <script type="module">
         import markdownIt from 'https://cdn.jsdelivr.net/npm/markdown-it/+esm';
+        import markdownItTaskLists from 'https://cdn.jsdelivr.net/npm/markdown-it-task-list/+esm';
         import markdownItKatex from 'https://cdn.jsdelivr.net/npm/@vscode/markdown-it-katex/+esm';
         import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/+esm';
         import { instance } from 'https://cdn.jsdelivr.net/npm/@viz-js/viz/+esm'
@@ -105,7 +106,7 @@ You should have received a copy of the GNU Lesser General Public License along w
             };
         }
 
-        const md = markdownIt().use(markdownItKatex.default).use(markdownItMermaidGraphviz);
+        const md = markdownIt().use(markdownItTaskLists.default).use(markdownItKatex.default).use(markdownItMermaidGraphviz);
 
         fetch(`https://raw.githubusercontent.com/HanetakaChou/hanetakachou.github.io/refs/heads/master/${pathName}`)
             .then(response => {
