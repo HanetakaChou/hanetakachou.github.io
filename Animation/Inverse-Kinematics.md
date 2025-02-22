@@ -1,5 +1,9 @@
 # IK (Inverse Kinematics)  
 
+## Biped Foot IK  
+
+sample animation -> 
+
 ## Quadruped Foot IK  
 
 ### Linear Regression    

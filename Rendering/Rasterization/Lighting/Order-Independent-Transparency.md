@@ -337,7 +337,7 @@ Bavoil proposed two hardware proposals the "Fragment Scheduling" and the "Progra
 The fragment scheduling corresponds to the RasterOrderView/FragmentShaderInterlock/RasterOrderGroup(14.[D 2015], 15.[D 2017]) at present which is generally suitable to the desktop GPU.  
 
 The pseudo code to implement the K-Buffer by the fragment scheduling is generally as the following:   
-```c++  
+```cpp  
     // This part of code doesn't need to be mutually exclusive
     calcalte lighting and shading ... 
                                                 
@@ -371,7 +371,7 @@ The programmable blending, which is generally suitable for the mobile GPU, corre
 The programmable blending allows the fragment shader to perform RMW as an atomic operation on the color attachment. The hardware guarantees the mutual exclusion of the fragments corresponding to the same pixel automatically.  
 
 We can enable the MRT and implement the K-Buffer by programmable blending. We assume that one pixel corresponds to four [C A Z] fragments in the K-Buffer and the related Metal code is generally as the following:    
-```c++  
+```cpp  
     struct KBuffer_ColorAttachment  
     {
         //In general, [[color(0)]] is used to store the CFinal

@@ -4,7 +4,7 @@ The half vector H is the microsurface normal $\displaystyle \omega_m$ in the for
 
 According to the "9.8 BRDF Models for Surface Reflection" of [Real-Time Rendering Fourth Edition](https://www.realtimerendering.com/), \[Hammon 2017\] proposed a method to calculate the NdotH and LdotH without the knowledge of the half vector H itself.
 
-```GLSL
+```glsl
     // |L + V|^2 = L^2 + V^2 + 2L·V = 1 + 1 + 2L·V
     // N·H = N·((L + V)/(|L + V|)) = (N·L + N·V)/(|L + V|)
     // L·H = L·((L + V)/(|L + V|)) = (L^2 + L·V)/(|L + V|)

@@ -17,6 +17,7 @@ You should have received a copy of the GNU Lesser General Public License along w
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css/github-markdown.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js/styles/github.min.css">
 
     <style>
         .mermaid {
@@ -42,8 +43,17 @@ You should have received a copy of the GNU Lesser General Public License along w
         import markdownItKatex from 'https://cdn.jsdelivr.net/npm/@vscode/markdown-it-katex/+esm';
         import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/+esm';
         import { instance } from 'https://cdn.jsdelivr.net/npm/@viz-js/viz/+esm'
+        import hljs from 'https://cdn.jsdelivr.net/npm/highlight.js/lib/core/+esm'
+        import cpp from 'https://cdn.jsdelivr.net/npm/highlight.js/lib/languages/cpp/+esm'
+        import matlab from 'https://cdn.jsdelivr.net/npm/highlight.js/lib/languages/matlab/+esm'
+        import glsl from 'https://cdn.jsdelivr.net/npm/highlight.js/lib/languages/glsl/+esm'
 
         mermaid.initialize({ startOnLoad: false });
+
+        hljs.registerLanguage('cpp', cpp);
+        hljs.registerLanguage('matlab', matlab);
+        hljs.registerLanguage('glsl', glsl);
+        hljs.registerLanguage('hlsl', glsl);
 
         let pathName = new URLSearchParams(window.location.search).get('file');
         let dirName = '';
@@ -115,6 +125,9 @@ You should have received a copy of the GNU Lesser General Public License along w
                             element.innerHTML = viz.renderSVGElement(element.textContent).outerHTML;
                         }
                     });
+            })
+            .then(() => {
+                hljs.highlightAll();
             });
     </script>
 

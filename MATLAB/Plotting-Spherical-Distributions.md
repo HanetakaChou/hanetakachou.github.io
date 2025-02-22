@@ -2,7 +2,7 @@ The following typical spherical distributions are plotted by the [GNU Octave](ht
 
 ## NDF Trowbridge-Reitz  
 
-```MATLAB
+```matlab
 % user-interface roughness parameter
 r = 0.5;
 
@@ -41,7 +41,7 @@ title ("NDF GGX");
 
 ## G1 Trowbridge-Reitz  
 
-```MATLAB
+```matlab
 % user-interface roughness parameter
 r = 0.5;
 
@@ -88,7 +88,7 @@ title ("G1 GGX");
 
 ## Weak White Furnace Test Trowbridge-Reitz  
 
-```MATLAB
+```matlab
 % user-interface roughness parameter
 r = 0.5;
 
@@ -191,7 +191,7 @@ title ("Weak White Furnace Test GGX");
 
 ## BRDF Trowbridge-Reitz  
 
-```MATLAB
+```matlab
 % user-interface roughness parameter
 r = 0.83666;
 
@@ -262,7 +262,7 @@ title ("BRDF GGX");
 
 ## SH (Spherical Harmonics)  
 
-```MATLAB
+```matlab
 % 'dir' is treated as the domain of the spherical distribution
 [dir_x, dir_y, dir_z] = sphere(256 - 1);
 

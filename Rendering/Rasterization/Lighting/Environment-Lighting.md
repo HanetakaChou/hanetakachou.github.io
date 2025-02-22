@@ -32,7 +32,7 @@ The basic idea of the octahedral mapping is to first use the **Manhattan distanc
 
 By \[Cigolle 2014\], we have the HLSL code of the octahedral mapping.  
 
-```HLSL
+```hlsl
 float2 octahedral_map(float3 position_sphere_surface)
 {
     float manhattan_norm = abs(position_sphere_surface.x) + abs(position_sphere_surface.y) + abs(position_sphere_surface.z);
@@ -60,7 +60,7 @@ float3 octahedral_unmap(float2 position_ndc_space)
 
 By "10.4.1 Latitude-Longitude Mapping" of [Real-Time Rendering Fourth Edition](https://www.realtimerendering.com/) and ["12.6 Infinite Area Lights"](https://pbr-book.org/3ed-2018/Light_Sources/Infinite_Area_Lights) of [PBR Book V3](https://pbr-book.org/3ed-2018/contents), we have the equirectangular mapping.  
 
-```HLSL  
+```hlsl  
 #define M_PI 3.141592653589793238462643
 
 float2 equirectangular_map(float3 omega)
@@ -131,7 +131,7 @@ Here is the MATLAB code to visualize the solid angle subtended by each texel wit
 
 ![](Environment-Lighting-Cube-Map-Texel-Solid-Angle-Weight.png)  
 
-```MATLAB
+```matlab
 % texture size of each cube face
 texture_width = single(512.0);
 texture_height = single(512.0);
@@ -171,7 +171,7 @@ Let ```ndc_x``` and ```ndc_y``` be the 2D normalized device coordinate.
 
 By "5.5.3 Integrals over Area" of [PBR Book V3](https://pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#IntegralsoverArea) and "4.2.3 Integrals over Area" of [PBR Book V4](https://pbr-book.org/4ed/Radiometry,_Spectra,_and_Color/Working_with_Radiometric_Integrals#IntegralsoverArea), we have $\displaystyle d\omega = \frac{d A_{\text{OCT}} \cos \theta}{r^2} = \frac{(\sqrt{3} \cdot dA_{\text{NDC}}) \cos \theta}{r^2} = (\sqrt{3} \cdot dA_{\text{NDC}}) \cdot \cos \theta \cdot \frac{1}{r^2} = (\sqrt{3} \cdot \frac{(1 - (-1)) \cdot (1 - (-1))}{\text{texture\_width} \cdot \text{texture\_height}}) \cdot \frac{\frac{1}{\sqrt{3}}(|\text{oct\_x}| + |\text{oct\_y}| + |\text{oct\_z}|)}{\sqrt{{\text{oct\_x}}^2 + {\text{oct\_y}}^2 + {\text{oct\_z}}^2}} \cdot \frac{1}{{\text{oct\_x}}^2 + {\text{oct\_y}}^2 + {\text{oct\_z}}^2} = \frac{4 (|\text{oct\_x}| + |\text{oct\_y}| + |\text{oct\_z}|)}{\sqrt{{\text{oct\_x}}^2 + {\text{oct\_y}}^2 + {\text{oct\_z}}^2} \cdot ({\text{oct\_x}}^2 + {\text{oct\_y}}^2 + {\text{oct\_z}}^2)} \cdot \frac{1}{\text{texture\_width} \cdot \text{texture\_height}}$  
 
-```HLSL  
+```hlsl  
 float octahedral_map_solid_angle_weight(float2 position_ndc_space)
 {
     float position_octahedron_surface_z = 1.0 - abs(position_ndc_space.x) - abs(position_ndc_space.y);
@@ -198,7 +198,7 @@ Here is the MATLAB code to visualize the solid angle subtended by each texel.
 
 ![](Environment-Lighting-Octahedral-Map-Texel-Solid-Weight.png)  
 
-```MATLAB
+```matlab
 % texture size
 texture_width = single(512.0);
 texture_height = single(512.0);
@@ -258,7 +258,7 @@ Let ```uv_x``` and ```uv_y``` be the 2D texture coordinate.
 By "5.5.2 Integrals over Spherical Coordinates" of [PBR Book V3](https://pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#IntegralsoverSphericalCoordinates) and "
 4.2.2 Integrals over Spherical Coordinates" of [PBR Book V4](https://pbr-book.org/4ed/Radiometry,_Spectra,_and_Color/Working_with_Radiometric_Integrals#IntegralsoverSphericalCoordinates), we have $\displaystyle d\omega = \sin \theta \cdot d \theta \cdot d \phi = \sin (\pi \cdot \text{uv\_y}) \cdot \frac{\pi}{\text{texture\_height}} \cdot \frac{2 \pi}{\text{texture\_width}} = 2 {\pi}^2 \sin (\pi \cdot \text{uv\_y}) \cdot \frac{1}{\text{texture\_width} \cdot \text{texture\_height}}$  
 
-```HLSL  
+```hlsl  
 #define M_PI 3.141592653589793238462643
 
 float equirectangular_solid_angle_weight(float2 uv)
@@ -276,7 +276,7 @@ Here is the MATLAB code to visualize the solid angle subtended by each texel.
 
 ![](Environment-Lighting-Equirectangular-Texel-Solid-Angle-Weight.png)  
 
-```MATLAB
+```matlab
 % texture size of each cube face
 texture_width = single(1024.0);
 texture_height = single(512.0);
