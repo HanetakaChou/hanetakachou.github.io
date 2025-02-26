@@ -12,8 +12,18 @@ position control
 
 ### 1-3\. CCD (Cyclical Coordinate Descent) IK  
 
+```cpp
+static inline void XM_CALLCONV internal_ik_ccd_solve(uint32_t const in_iteration, float const in_gain, DirectX::XMVECTOR in_target_position_model_space, uint32_t const in_chain_joint_count, DirectX::XMMATRIX *const inout_chain_model_space)
+{
+    for (uint32_t iteration_index = 0U; iteration_index < in_iteration; ++iteration_index)
+    {
+        internal_ik_ccd_solve_iteration(in_gain, in_target_position_model_space, in_chain_joint_count, inout_chain_model_space);
+    }
+}
+```  
+
 ```cpp  
-static inline void XM_CALLCONV internal_ik_ccd_solver_iteration(float const in_gain,  DirectX::XMVECTOR in_target_position_model_space, uint32_t const in_chain_joint_count, DirectX::XMMATRIX *const inout_pose_model_space)
+static inline void XM_CALLCONV internal_ik_ccd_solve_iteration(float const in_gain,  DirectX::XMVECTOR in_target_position_model_space, uint32_t const in_chain_joint_count, DirectX::XMMATRIX *const inout_pose_model_space)
 {
     // NOTE: the model space of all children of the end effector should also be marked as invalid
 
