@@ -109,7 +109,7 @@ extern void ik_two_joints_solve(float const in_ball_and_socket_joint_gain, Direc
 
             float cos_current = DirectX::XMVectorGetX(DirectX::XMVector3Dot(v1_in_plane, v2_in_plane)) / (v1_in_plane_length * v2_in_plane_length);
 
-            assert(DirectX::XMVectorGetX(DirectX::XMVector3Dot(DirectX::XMVector3Normalize(DirectX::XMVector3Cross(v1_in_plane, v2_in_plane)), hinge_joint_axis_model_space)) > (1.0F - 1E-6F));
+            assert(DirectX::XMVectorGetX(DirectX::XMVector3Dot(hinge_joint_axis_model_space, DirectX::XMVector3Normalize(DirectX::XMVector3Cross(v1_in_plane, v2_in_plane)))) > (1.0F - 1E-6F));
 
             float cos_different;
             float sin_different;
@@ -191,7 +191,7 @@ extern void ik_two_joints_solve(float const in_ball_and_socket_joint_gain, Direc
 
             DirectX::XMVECTOR end_effector_model_space_direction = DirectX::XMVector3Normalize(DirectX::XMVectorSubtract(end_effector_model_space_translation, ball_and_socket_joint_model_space_translation));
 
-            DirectX::XMVECTOR target_model_space_direction = DirectX::XMVector3Normalize(DirectX::XMVectorSubtract(DirectX::XMLoadFloat3(&in_target_position_model_space), ball_and_socket_joint_model_space_translation));
+            DirectX::XMVECTOR target_model_space_direction = DirectX::XMVector3Normalize(from_ball_and_socket_joint_to_target_model_space_translation);
 
             assert(in_ball_and_socket_joint_gain >= 0.0F);
             assert(in_ball_and_socket_joint_gain <= 1.0F);
