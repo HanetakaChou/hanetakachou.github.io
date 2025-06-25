@@ -13,7 +13,7 @@ According to the "9.8 BRDF Models for Surface Reflection" of [Real-Time Renderin
     // ⇒ L·H = 0.5 * |L + V| = (0.5 * |L + V|^2)/(|L + V|) =(0.5 * (1 + 1 + 2L·V))/(|L + V|) = 1/(|L + V|) + (L·V)/(|L + V|)
     // UE: [Init](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/BRDF.ush#L31)
     // U3D: [GetBSDFAngle](https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.core/ShaderLibrary/CommonLighting.hlsl#L361)
-    highp float invLenH = inversesqrt(2.0 + 2.0 * NdotL);
+    highp float invLenH = inversesqrt(2.0 + 2.0 * VdotL);
     highp float NdotH = clamp((NdotL + NdotV) * invLenH, 0.0, 1.0);
     highp float LdotH = clamp(invLenH * VdotL + invLenH, 0.0, 1.0);
 ```
