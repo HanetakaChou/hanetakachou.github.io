@@ -35,6 +35,8 @@ By \[Cigolle 2014\], we have the HLSL code of the octahedral mapping.
 ```hlsl
 float2 octahedral_map(float3 position_sphere_surface)
 {
+    // NOTE: positions on the sphere surface should have already been normalized
+
     float manhattan_norm = abs(position_sphere_surface.x) + abs(position_sphere_surface.y) + abs(position_sphere_surface.z);
 
     float3 position_octahedron_surface = position_sphere_surface * (1.0 / manhattan_norm);
@@ -65,15 +67,23 @@ By "10.4.1 Latitude-Longitude Mapping" of [Real-Time Rendering Fourth Edition](h
 
 float2 equirectangular_map(float3 omega)
 {
+    // NOTE: omega should have already been normalized
+
     float theta = acos(omega.z);
-    float _temp_phi = atan2(omega.y, omega.x);
-    float phi = (_temp_phi > 0.0) ? _temp_phi : (_temp_phi + M_PI * 2.0);
-    return float2(phi * (1.0 / (M_PI * 2.0)), theta * (1.0 / M_PI));
+    float phi = atan2(omega.y, omega.x);
+    return float2((phi + M_PI) * (1.0 / (M_PI * 2.0)), theta * (1.0 / M_PI));
 }
 
 float3 equirectangular_unmap(float2 uv)
 {
-    float phi = uv.x * (M_PI * 2.0);
+    // Khronos ANARI 
+    // 5.7.2 HDRI
+    //
+    // direction
+    //
+    // the center of the texture should be mapped to (1, 0, 0) 
+
+    float phi = uv.x * (M_PI * 2.0) - M_PI;
     float theta = uv.y * M_PI;
     float sin_phi = sin(phi);
     float cos_phi = cos(phi);
