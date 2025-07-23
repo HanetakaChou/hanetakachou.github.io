@@ -163,7 +163,7 @@ And since the value reconstructed from SH basis is form factor rather than irrad
 
 #### A-3-1\. Light Distribution
 
-By "SH Light Sources" of \[Green 2003\], the light position is at the Z axis and the light distribution at the shading position is $\displaystyle \operatorname{L}(\overrightarrow{\omega}) = \begin{cases} 1 & \theta < \alpha \\ 0 & \theta \geq \alpha \end{cases}$ where $\displaystyle \alpha$ is the cone angle.  
+By "SH Light Sources" of \[Green 2003\], we have the uniform light distribution at the shading position is $\displaystyle \operatorname{L}(\overrightarrow{\omega}) = \begin{cases} 1 & \theta < \alpha \\ 0 & \theta \geq \alpha \end{cases}$ where $\displaystyle \alpha$ is the cone angle.  
 
 ![](Light-Propagation-Volumes-1.png)  
 
@@ -219,21 +219,26 @@ However, according to result by \[Kaplanyan 2009\], we have ```vResult.xyzw = ha
 
 #### A-3-5\. SH Irradiance  
 
-Another **mistake** by "11.1 Arbitrary Rotation of function with circularly symmetry around Z" of \[Kaplanyan 2009\] is that we should first rotate the light distribution and then muliply the transfer function when we calculate the SH coeffecients of the integration $\displaystyle \operatorname{F}(\mathrm{R}) = \int_{\mathrm{S}^2} \operatorname{L}(\mathrm{R}\overrightarrow{\omega}) \frac{1}{\pi} \max(0, \cos \theta) \, d\overrightarrow{\omega}$.  
+Another **mistake** by "11.1 Arbitrary Rotation of function with circularly symmetry around Z" of \[Kaplanyan 2009\] is that we should first rotate the light distribution and then muliply the transfer function when we calculate the SH coeffecients of the integration $\displaystyle \operatorname{F}(\mathrm{R}) = \int_{\mathrm{S}^2} \operatorname{L}(\mathrm{R}\overrightarrow{\omega}) \frac{1}{\pi} \max(0, \cos \theta) \, d\overrightarrow{\omega}$ where the rotation matrix $\displaystyle \mathrm{R}$ is deduced from ```NdotL```.  
 
-For l = 0, we have $\displaystyle \mathrm{F}_0^0 = \operatorname{D_0}(\mathrm{R}) \mathrm{L}_0 \mathrm{T}_0 = \mathrm{L}_0 T_0$.  
+For l = 0, we have $\displaystyle \mathrm{F}_0^0 = \operatorname{D_0}(\mathrm{R}) \mathrm{L}_0^0 \mathrm{T}_0^0 = \mathrm{L}_0^0 \mathrm{T}_0^0$.  
 
-For l = 1, we have $\displaystyle \begin{bmatrix} \mathrm{F}_1^{-1} \\ \mathrm{F}_1^0 \\ \mathrm{F}_1^1 \end{bmatrix} = \left( \operatorname{D_1}(\mathrm{R}) \begin{bmatrix} 0 \\ \mathrm{L}_1 \\ 0 \end{bmatrix} \right)  \begin{bmatrix} 0 \\ \mathrm{T}_0 \\ 0 \end{bmatrix}$. This means that $\displaystyle \mathrm{F}_1^{-1} = 0$, $\displaystyle \mathrm{F}_1^0 = z L_1 T_0 = z \mathrm{L}_1^0 \mathrm{T}_1^0$ and $\displaystyle \mathrm{F}_1^1 = 0$.  
+For l = 1, we have $\displaystyle \begin{bmatrix} \mathrm{F}_1^{-1} \\ \mathrm{F}_1^0 \\ \mathrm{F}_1^1 \end{bmatrix} = \left( \operatorname{D_1}(\mathrm{R}) \begin{bmatrix} \mathrm{L}_1^{-1} \\ \mathrm{L}_1^0 \\ \mathrm{L}_1^1 \end{bmatrix} \right)  \begin{bmatrix} \mathrm{T}_1^{-1} \\ \mathrm{T}_1^0 \\ \mathrm{T}_1^1 \end{bmatrix}$. This means that $\displaystyle \mathrm{F}_1^{-1} = 0$, $\displaystyle \mathrm{F}_1^0 = {(\operatorname{D_1}(\mathrm{R}))}_{11} \mathrm{L}_1^0 \mathrm{T}_1^0 = {(\mathrm{R} \begin{bmatrix} 0 & 0 & 1 \end{bmatrix})}_z \mathrm{L}_1^0 \mathrm{T}_1^0$ and $\displaystyle \mathrm{F}_1^1 = 0$.  
 
-Actually, our result is consistent with "A-2-1\. SH Convolution" $\displaystyle \mathrm{F}_l^m = \sqrt{\frac{4 \pi}{2l + 1}} \mathrm{L}_l^m \mathrm{T}_l^m \operatorname{\Upsilon_l^m}(\mathrm{R} \begin{bmatrix} 0 & 0 & 1 \end{bmatrix})$.  
+Actually, our result is consistent with "A-2-1\. SH Convolution" $\displaystyle \mathrm{F}_l^m = \frac{1}{\pi} \operatorname{E}(\mathrm{R}) = \sqrt{\frac{4 \pi}{2l + 1}} \mathrm{L}_l^m (\frac{1}{\pi} \mathrm{A}_l) \operatorname{\Upsilon_l^m}(\mathrm{R} \begin{bmatrix} 0 & 0 & 1 \end{bmatrix}) = \sqrt{\frac{4 \pi}{2l + 1}} \mathrm{L}_l^m \mathrm{T}_l^0 \operatorname{\Upsilon_l^m}(\mathrm{R} \begin{bmatrix} 0 & 0 & 1 \end{bmatrix})$.  
 
-For l = 0 and m = 0, we have $\displaystyle \mathrm{F}_0^0 = (2 \sqrt{\pi}) \mathrm{L}_0 \mathrm{T}_0 (\frac{1}{2 \sqrt{\pi}}) = \mathrm{L}_0 T_0$.  
+For l = 0 and m = 0, we have $\displaystyle \mathrm{F}_0^0 = (2 \sqrt{\pi}) \mathrm{L}_0 \mathrm{T}_0 (\frac{1}{2 \sqrt{\pi}}) = \mathrm{L}_0^0 \mathrm{T}_0^0$.  
 
-For l = 1 and m = -1, we have $\displaystyle \mathrm{F}_0^{-1} = \sqrt{\frac{4 \pi}{2l + 1}} \mathrm{L}_1^{-1} \mathrm{T}_1^{-1} \operatorname{\Upsilon_l^m}(\mathrm{R} \begin{bmatrix} 0 & 0 & 1 \end{bmatrix}) = \sqrt{\frac{4 \pi}{2l + 1}} \cdot 0 \cdot 0  \cdot\operatorname{\Upsilon_l^m}(\mathrm{R} \begin{bmatrix} 0 & 0 & 1 \end{bmatrix}) = 0$.  
+For l = 1 and m = -1, we have $\displaystyle \mathrm{F}_0^{-1} = \sqrt{\frac{4 \pi}{2l + 1}} \mathrm{L}_1^{-1} \mathrm{T}_1^{-1} \operatorname{\Upsilon_1^{-1}}(\mathrm{R} \begin{bmatrix} 0 & 0 & 1 \end{bmatrix}) = \sqrt{\frac{4 \pi}{2l + 1}} \cdot 0 \cdot 0  \cdot\operatorname{\Upsilon_1^{-1}}(\mathrm{R} \begin{bmatrix} 0 & 0 & 1 \end{bmatrix}) = 0$.  
 
-For l = 1 and m = 0, we have $\displaystyle \mathrm{F}_0^0 = (\frac{2 \sqrt{\pi}}{\sqrt{3}}) \mathrm{L}_1^0 \mathrm{T}_1^0 (\frac{\sqrt{3}}{2 \sqrt{\pi}} z) = z \mathrm{L}_1^0 \mathrm{T}_1^0$.  
+For l = 1 and m = 0, we have $\displaystyle \mathrm{F}_0^0 = (\frac{2 \sqrt{\pi}}{\sqrt{3}}) \mathrm{L}_1^0 \mathrm{T}_1^0 \operatorname{\Upsilon_1^0}(\mathrm{R} \begin{bmatrix} 0 & 0 & 1 \end{bmatrix}) = (\frac{2 \sqrt{\pi}}{\sqrt{3}}) \mathrm{L}_1^0 \mathrm{T}_1^0 (\frac{\sqrt{3}}{2 \sqrt{\pi}} {(\mathrm{R} \begin{bmatrix} 0 & 0 & 1 \end{bmatrix})}_z) = {(\mathrm{R} \begin{bmatrix} 0 & 0 & 1 \end{bmatrix})}_z \mathrm{L}_1^0 \mathrm{T}_1^0$.  
 
-For l = 1 and m = 1, we have $\displaystyle \mathrm{F}_0^1 = \sqrt{\frac{4 \pi}{2l + 1}} \mathrm{L}_1^1 \mathrm{T}_1^1 \operatorname{\Upsilon_l^m}(\mathrm{R} \begin{bmatrix} 0 & 0 & 1 \end{bmatrix}) = \sqrt{\frac{4 \pi}{2l + 1}} \cdot 0 \cdot 0  \cdot\operatorname{\Upsilon_l^m}(\mathrm{R} \begin{bmatrix} 0 & 0 & 1 \end{bmatrix}) = 0$.  
+For l = 1 and m = 1, we have $\displaystyle \mathrm{F}_0^1 = \sqrt{\frac{4 \pi}{2l + 1}} \mathrm{L}_1^1 \mathrm{T}_1^1 \operatorname{\Upsilon_1^{-1}}(\mathrm{R} \begin{bmatrix} 0 & 0 & 1 \end{bmatrix}) = \sqrt{\frac{4 \pi}{2l + 1}} \cdot 0 \cdot 0  \cdot\operatorname{\Upsilon_1^{-1}}(\mathrm{R} \begin{bmatrix} 0 & 0 & 1 \end{bmatrix}) = 0$.  
+
+TODO: the distribution of directional light is not uniform within the cone angle?  
+
+
+and then we rotate the form factor L_0T_0 -N.y NdotL L_1T_1 N.z NdotL L_1T_1 -N.x NdotL L_1T_1
 
 ## References  
 \[Ramamoorthi 2001 A\] [Ravi Ramamoorthi, Pat Hanrahan. "On the Relationship between Radiance and Irradiance: Determining the illumination from images of a convex Lambertian object." JOSA 2001.](https://graphics.stanford.edu/papers/invlamb/)  
