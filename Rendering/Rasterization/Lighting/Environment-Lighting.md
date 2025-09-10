@@ -10,12 +10,12 @@ Notation | Description | Shader Code Convention
 :-: | :-: | :-:  
 $\displaystyle \overrightarrow{\omega_i}$ | Incident Direction in Tangent Space | L  
 $\displaystyle \overrightarrow{\omega_o}$ | Outgoing Direction in Tangent Space | V  
+$\displaystyle \overrightarrow{\omega_h}$ | Half Vector in Tangent Space | H  
+$\displaystyle \overrightarrow{n}$ | Normal in World Space | N  
 $\displaystyle \operatorname{f}(\overrightarrow{\omega_i}, \overrightarrow{\omega_o})$ | BRDF | N/A
 $\displaystyle \operatorname{L_i}( \overrightarrow{\omega_i})$ | Incident Radiance | N/A
 $\displaystyle \operatorname{L_o}( \overrightarrow{\omega_o})$ | Outgoing Radiance | N/A  
-$\displaystyle \max(0, \cos \theta_i)$ | Clamped Cosine | clamp(dot(N, L), 0.0, 1.0)  
-$\displaystyle \overrightarrow{\omega_h}$ | Half Vector in Tangent Space | H  
-$\displaystyle \overrightarrow{n}$ | Normal in World Space | N  
+$\displaystyle \max(0, \cos \theta_i)$ | Clamped Cosine | NdotL  
 
 ## 1\. Light  
 
