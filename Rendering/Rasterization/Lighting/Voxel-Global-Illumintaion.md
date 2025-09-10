@@ -1,5 +1,31 @@
 # VXGI (Voxel Global Illumintaion)  
 
+Notation | Description | Shader Code Convention  
+:-: | :-: | :-:  
+$\displaystyle \overrightarrow{p}$ | Surface Position in World Space | N/A  
+$\displaystyle \overrightarrow{\omega_i}$ | Incident Direction in Tangent Space | L  
+$\displaystyle \overrightarrow{\omega_o}$ | Outgoing Direction in Tangent Space | V  
+$\displaystyle \overrightarrow{\omega_h}$ | Half Vector in Tangent Space | H  
+$\displaystyle \overrightarrow{n}$ | Normal in World Space | N  
+$\displaystyle \operatorname{f}(\overrightarrow{p}, \overrightarrow{\omega_i}, \overrightarrow{\omega_o})$ | BRDF | N/A  
+$\displaystyle \operatorname{L_i}(\overrightarrow{p}, \overrightarrow{\omega_i})$ | Incident Radiance | N/A
+$\displaystyle \operatorname{L_o}(\overrightarrow{p}, \overrightarrow{\omega_o})$ | Outgoing Radiance | N/A  
+$\displaystyle \max(0, \cos \theta_i)$ | Clamped Cosine | NdotL  
+
+
+## 1\. Photon Mapping  
+
+We assume that $\displaystyle \operatorname{L_i}(\overrightarrow{p}, \overrightarrow{\omega_i})$ is indicent radiance distribution on position-direction space $\displaystyle \operatorname{B_r}(\overrightarrow{p_0}) \times \mathrm{S}^2$ (of which $\displaystyle \operatorname{B_r}(\overrightarrow{p_0})$ is the neighborhood with center $\displaystyle \overrightarrow{p_0}$ and radius r, and $\displaystyle \mathrm{S}^2$ is the sphere).  
+
+Evidently, we have the total flux over the whole neighborhood $\displaystyle \mathrm{\Phi} = \int_{\operatorname{B_r}(\overrightarrow{p_0})} \int_{\mathrm{S}^2} \operatorname{L_i}(\overrightarrow{p}, \overrightarrow{\omega_i}) \max(0, \cos \theta_i) \, d \omega \, d \operatorname{A}(\overrightarrow{p})$. And we have the normalized PDF $\displaystyle \operatorname{p}(\overrightarrow{p}, \overrightarrow{\omega_i}) = \frac{\operatorname{L_i}(\overrightarrow{p}, \overrightarrow{\omega_i}) \max(0, \cos \theta_i)}{\mathrm{\Phi}}$.  
+
+We assume that within the neighborhood are N samples (namely, photons) $\displaystyle \operatorname{\Delta\Phi}(\overrightarrow{p_j})$ such that the expectation $\displaystyle \operatorname{\mathbb{E}_p}\left(\sum_{j=1}^N \operatorname{\Delta\Phi}(\overrightarrow{p_j}) \right) = \int_{\operatorname{B_r}(\overrightarrow{p_0})} \int_{\mathrm{S}^2} \operatorname{L_i}(\overrightarrow{p}, \overrightarrow{\omega_i}) \max(0, \cos \theta_i) \, d \omega \, d \operatorname{A}(\overrightarrow{p}) = \mathrm{\Phi}$.  
+
+By "Equation 16.7" of [PBR Book V3](https://www.pbr-book.org/3ed-2018/Light_Transport_III_Bidirectional_Methods/Stochastic_Progressive_Photon_Mapping#TheoreticalBasisforParticleTracing), given the uniform kernel $\displaystyle \operatorname{K}(\overrightarrow{p_0}, \overrightarrow{p}) = \frac{1}{\operatorname{Area}(\operatorname{B_r}(\overrightarrow{p_0}))}$, we have the expectation $\displaystyle \operatorname{\mathbb{E}_p}\left(\sum_{j=1}^N \operatorname{K}(\overrightarrow{p_0}, \overrightarrow{p}) \operatorname{f}(\overrightarrow{p}, \overrightarrow{\omega_i}, \overrightarrow{\omega_o}) \operatorname{\Delta\Phi}(\overrightarrow{p_j}) \right) = \int_{\operatorname{B_r}(\overrightarrow{p_0})} \int_{\mathrm{S}^2} \operatorname{K}(\overrightarrow{p_0}, \overrightarrow{p}) \operatorname{f}(\overrightarrow{p}, \overrightarrow{\omega_i}, \overrightarrow{\omega_o}) \operatorname{L_i}(\overrightarrow{p}, \overrightarrow{\omega_i}) \max(0, \cos \theta_i) \, d \omega \, d \operatorname{A}(\overrightarrow{p})$.
+
+By "Equation 16.9" of [PBR Book V3](https://pbr-book.org/3ed-2018/Light_Transport_III_Bidirectional_Methods/Stochastic_Progressive_Photon_Mapping#PhotonMapping), since $\displaystyle \operatorname{K}(\overrightarrow{p_0}, \overrightarrow{p})$ is the dirac delta distribution, we have that $\displaystyle \lim\limits_{r \rightarrow 0} \operatorname{\mathbb{E}_p}\left(\sum_{j=1}^N \operatorname{K}(\overrightarrow{p_0}, \overrightarrow{p}) \operatorname{f}(\overrightarrow{p}, \overrightarrow{\omega_i}, \overrightarrow{\omega_o}) \operatorname{\Delta\Phi}(\overrightarrow{p_j}) \right) = \int_{\mathrm{S}^2} \operatorname{f}(\overrightarrow{p}, \overrightarrow{\omega_i}, \overrightarrow{\omega_o}) \operatorname{L_i}(\overrightarrow{p_0}, \overrightarrow{\omega_i}) \max(0, \cos \theta_i) \, d \omega = \operatorname{L_o}(\overrightarrow{p_0}, \overrightarrow{\omega_o})$ which is exactly the "Equation 7.6" of \[Jensen 2001\].  
+
+
 ## 1\. Workflow  
 
 ### 1-1\. Photon Mapping  
@@ -11,6 +37,8 @@ By "7.5 Photon Gathering" of \[Jensen 2001\], "38.2.2 Final Gathering" of \[Hach
 | **Photon Tracing** | **Rendering / Radiance-Estimate** | **Rendering / Final Gathering** |  
 | :-: | :-: | :-: |  
 | ![](Voxel-Global-Illumintaion-Photon-Mapping-Photon-Tracing.png) | ![](Voxel-Global-Illumintaion-Photon-Mapping-Rendering-Radiance-Estimate.png) | ![](Voxel-Global-Illumintaion-Photon-Mapping-Rendering-Final-Gathering.png) |  
+
+By ""
 
 ### 1-2\. VXGI (Voxel Global Illumintaion)  
 
@@ -43,7 +71,7 @@ Figure | ![](Voxel-Global-Illumintaion-Clipmap-Logical-Structure-0-0.png) | ![](
 Clipmap Level Index | 0 | 1 | 2 | 2 | 2  
 Mipmap Level Index | 0 | 0 | 0 | 1 | 2  
 Voxel Size | 1 | 2 | 4 | 8 | 16  
-Texture Size (Voxel Count) | 4 | 4 | 4 | 2 | 1  
+Texture Size (Voxel Count Per Dimension) | 4 | 4 | 4 | 2 | 1  
 Volume | $\displaystyle (1 \times 4)^3 = 64$ | $\displaystyle (2 \times 4)^3 = 512$ | $\displaystyle (4 \times 4)^3 = 4096$ | $\displaystyle (8 \times 2)^3 = 4096$ | $\displaystyle (16 \times 1)^3 = 4096$  
 
 #### 2-1-4\. Clipmap Physical Structure  
