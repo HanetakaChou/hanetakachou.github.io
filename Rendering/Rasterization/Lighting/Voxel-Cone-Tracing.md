@@ -65,7 +65,7 @@ By \[Takeshige 2015\], the same pixel may intersect multiple voxels in view dept
 
 ### 2-3\. Premultiplied Alpha
 
-As we state above, during voxelization, the $\displaystyle \mathrm{BRDF} \cdot \mathrm{E_N}$ part of the photon mapping formula is calculated. And then this partial formula ($\displaystyle \mathrm{C_k} = \mathrm{BRDF} \cdot \mathrm{E_N}$) will be multiplied by the voxel opacity ($\displaystyle \mathrm{A_k}$) to calculate the premultiplied alpha (\[Dunn 2014\]) color ($\displaystyle \mathrm{A_k} \mathrm{C_k}$) which is stored in voxels.  
+As we state above, during voxelization, the $\displaystyle \mathrm{BRDF} \cdot \mathrm{E_N}$ part of the photon mapping formula is calculated. And then, this partial formula ($\displaystyle \mathrm{BRDF} \cdot \mathrm{E_N}$) is multiplied by the voxel opacity ($\displaystyle \mathrm{A_k}$) to calculate the premultiplied alpha (\[Dunn 2014\]) value to be stored in voxels.  
 
 ## 3\. Cone Tracing  
 
@@ -97,9 +97,9 @@ We assume that the front edge of the current sphere touches exactly the back edg
 
 ![](Voxel-Cone-Tracing-5.png)  
 
-By [Crassin 2011] and [Dunn 2014], the **under operator** is used to calculated the incident radiance ($\displaystyle \sum \mathrm{V_{k-1}} \mathrm{A_k} \mathrm{C_k}$) and transparency (namely, visibility function $\displaystyle \mathrm{V_{k-1}} = \prod \mathrm{A_{k-1}}$). 
+By [Crassin 2011] and [Dunn 2014], we assume that the transmittance ($\displaystyle \mathrm{A_k}$) is fixed for each segment along the $\displaystyle \mathrm{ConeHeightIncrement} = \mathrm{ConeHeight_{Next}} - \mathrm{ConeHeight_{Current}}$, and the **under operator** is used to calculated the incident radiance ($\displaystyle \sum \mathrm{V_{k-1}} (\mathrm{A_k} \mathrm{C_k}$)) and transparency (namely, visibility function $\displaystyle \mathrm{V_{k-1}} = \prod \mathrm{A_{k-1}}$). 
 
-We assume that the transparency is fixed for each segment along the $\displaystyle \mathrm{ConeHeightIncrement} = \mathrm{ConeHeight_{Next}} - \mathrm{ConeHeight_{Current}}$. By "Equation 11.3" of [PBR Book V3](https://pbr-book.org/3ed-2018/Volume_Scattering/Volume_Scattering_Processes) and "Equation 11.7" of [PBR Book V4](https://pbr-book.org/4ed/Volume_Scattering/Transmittance), according to Beer's Law, we can calculate the transmittance ($\displaystyle \mathrm{A_k}$) along the **ConeHeightIncrement** based on the opacity sampled from voxels that $\displaystyle \mathrm{A_k} = 1 - {(1 - \mathrm{SampledOpacity})}^{\displaystyle \frac{\mathrm{ConeDiameter}}{\mathrm{ConeHeightIncrement}}}$.  
+By "Equation 11.3" of [PBR Book V3](https://pbr-book.org/3ed-2018/Volume_Scattering/Volume_Scattering_Processes) and "Equation 11.7" of [PBR Book V4](https://pbr-book.org/4ed/Volume_Scattering/Transmittance), according to Beer's Law, we can calculate the transmittance ($\displaystyle \mathrm{A_k}$) along the **ConeHeightIncrement** based on the opacity sampled from voxels that $\displaystyle \mathrm{A_k} = 1 - {(1 - \mathrm{SampledOpacity})}^{\displaystyle \frac{\mathrm{ConeDiameter}}{\mathrm{ConeHeightIncrement}}}$.  
 
 > Proof  
 > 
@@ -111,7 +111,11 @@ We assume that the transparency is fixed for each segment along the $\displaysty
 >   
 > This means that $\displaystyle \mathrm{A_k} = 1 - {(1 - \mathrm{SampledOpacity})}^{\displaystyle \frac{\mathrm{ConeDiameter}}{\mathrm{ConeHeightIncrement}}}$ which is oblivious to the attenuation/extinction $\sigma_t$.  
 
-As we state above, 
+As we state above, during voxelization, the $\displaystyle \mathrm{BRDF} \cdot \mathrm{E_N}$ part of the photon mapping formula is calculated, and the premultiplied alpha value is stored in voxels. And now, during cone tracing, only the $\displaystyle \frac{1}{{\mathrm{ConeDiameter}}^2} \cdot {\mathrm{VoxelSize}}^2$ part of the photon mapping formula need to be calculated to have the premultiplied alpha color ($\displaystyle \mathrm{A_k} \mathrm{C_k}$), and we can have the incident radiance ($\displaystyle \sum \mathrm{V_{k-1}} (\mathrm{A_k} \mathrm{C_k})$).  
+
+It should be noted that we need to reconstruct the arbitrary **−ConeDirection** $\displaystyle \mathop{\mathrm{L_o}}(\mathrm{VoxelPosition}, -\mathrm{ConeDirection})$, but only a limited number of **VoxelOutgoingDirection**s $\displaystyle \operatorname{L_o}(\mathrm{VoxelPosition}, \mathrm{VoxelOutgoingDirection})$ can be stored in each voxel.  
+
+TODO: **Spherical Gaussians**  
 
 ## References  
 \[Jensen 2001\] [Henrik Jensen. "Realistic Image Synthesis Using Photon Mapping." AK Peters 2001.](http://www.graphics.stanford.edu/papers/jensen_book/)  
