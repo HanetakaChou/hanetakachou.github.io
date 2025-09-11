@@ -51,9 +51,11 @@ The traditional implementation (e.g. \[Takeshige 2015\]) may depend on the geome
 
 ![](Voxel-Cone-Tracing-1.png)  
 
-By \[Takeshige 2015\], the same pixel may intersect multiple voxels in view depth direction. And this is the reason why we need to enable the [MSAA](https://learn.microsoft.com/en-us/windows/win32/api/d3d11/ne-d3d11-d3d11_standard_multisample_quality_levels) to check the opacity contribution of each sample within the same pixel to different voxels. In practice, the [Conservative Rasterization](https://learn.microsoft.com/en-us/windows/win32/direct3d11/conservative-rasterization) is NOT necessary, and MSAA is a better alternative.  
+By \[Takeshige 2015\], the same pixel may intersect multiple voxels in view depth direction. And this is the reason why we need to enable the [MSAA](https://learn.microsoft.com/en-us/windows/win32/api/d3d11/ne-d3d11-d3d11_standard_multisample_quality_levels) to check the opacity contribution of each sample, within the same pixel, to different voxels. In practice, the [Conservative Rasterization](https://learn.microsoft.com/en-us/windows/win32/direct3d11/conservative-rasterization) is NOT necessary, and MSAA is a better alternative.  
 
 ![](Voxel-Cone-Tracing-2.png)  
+
+As we state above, during voxelization, the $\displaystyle \mathrm{BRDF} \cdot \mathrm{E_N}$ part of the photon mapping formula is calculated. And then this partial formula ($\displaystyle \mathrm{C_k} = \mathrm{BRDF} \cdot \mathrm{E_N}$) will be multiplied by the voxel **opacity** ($\displaystyle \mathrm{A_k}$) to calculate the **premultiplied alpha** (\[Dunn 2014\]) color ($\displaystyle \mathrm{A_k} \mathrm{C_k}$) which is stored in voxels.  
 
 ## 3\. Cone Tracing  
 
