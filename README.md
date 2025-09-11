@@ -52,7 +52,7 @@ If you find there are any mistakes or improvements, please don't hesitate to pos
         - Hair Rendering [Documentation](./index.html?file=Rendering/Rasterization/Lighting/Hair-Rendering.md)  
         - Volume Rendering [Documentation](./index.html?file=Rendering/Rasterization/Lighting/Volume-Rendering.md)  
         - LPV (Light Propagation Volumes) [Documentation](./index.html?file=Rendering/Rasterization/Lighting/Light-Propagation-Volumes.md) [Code](https://github.com/HanetakaChou/Light-Propagation-Volumes)  
-        - VXGI (Voxel Global Illumintaion) [Documentation](./index.html?file=Rendering/Rasterization/Lighting/Voxel-Global-Illumintaion.md) [Code](https://github.com/HanetakaChou/Voxel-Global-Illumintaion)  
+        - VCT (Voxel Cone Tracing) [Documentation](./index.html?file=Rendering/Rasterization/Lighting/Voxel-Cone-Tracing.md) [Code](https://github.com/HanetakaChou/Voxel-Cone-Tracing)  
         - OIT (Order Independent Transparency) [Documentation](./index.html?file=Rendering/Rasterization/Lighting/Order-Independent-Transparency.md) [Code](https://github.com/HanetakaChou/Order-Independent-Transparency)  
         - HFTS (Hybrid Frustum Traced Shadows) [Documentation](./index.html?file=Rendering/Rasterization/Lighting/Hybrid-Frustum-Traced-Shadows.md) [Code](https://github.com/HanetakaChou/Hybrid-Frustum-Traced-Shadows)  
         - BRDF [Documentation](./index.html?file=Rendering/Rasterization/Lighting/BRDF.md)    
