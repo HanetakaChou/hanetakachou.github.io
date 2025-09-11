@@ -37,7 +37,7 @@ Given N photons at position $\displaystyle \overrightarrow{p_j}$ within the neig
 
 By "Equation 16.15" of [PBR Book V3](https://pbr-book.org/3ed-2018/Light_Transport_III_Bidirectional_Methods/Stochastic_Progressive_Photon_Mapping#AccumulatingPhotonContributions), in real time rendering, we have the approximation of the $\displaystyle \operatorname{\Delta\Phi}(\overrightarrow{p_j})$ at position $\displaystyle \overrightarrow{p_j}$ that $\displaystyle \operatorname{\Delta\Phi}(\overrightarrow{p_j}) \approx \operatorname{E_N}(\overrightarrow{p_j}) \cdot \mathrm{PhotonArea} = \operatorname{E_L}(\overrightarrow{p_j}) \cdot \mathrm{NdotL} \cdot \mathrm{PhotonArea}$.  
 
-In voxel cone tracing, we store only one photon in each voxel, and we have $\displaystyle \mathrm{NeighborhoodArea} = {\mathrm{ConeBaseDiameter}}^2$ and $\displaystyle \mathrm{PhotonArea} = {\mathrm{VoxelSize}}^2$. This means that we have the approximation of the outgoing radiance at **VoxelPosition** and **VoxelOutgoingDirection** that $\displaystyle \operatorname{L_o}(\mathrm{VoxelPosition}, \mathrm{VoxelOutgoingDirection}) \approx \frac{1}{{\mathrm{ConeBaseDiameter}}^2} \cdot \operatorname{BRDF}(\mathrm{VoxelPosition}, \mathrm{VoxelOutgoingDirection}) \cdot \operatorname{E_N}(\mathrm{VoxelPosition}) \cdot {\mathrm{VoxelSize}}^2$. During the **voxelization** step, the $\displaystyle \operatorname{BRDF}(\mathrm{VoxelPosition}, \mathrm{VoxelOutgoingDirection}) \cdot \operatorname{E_N}(\mathrm{VoxelPosition})$ part of the formula is calculated and store in voxels. During the **cone tracing** step, the $\displaystyle \frac{1}{{\mathrm{ConeBaseDiameter}}^2} \cdot {\mathrm{VoxelSize}}^2$ part of the formula is calculated on the fly.  
+In voxel cone tracing, we store only one photon in each voxel, and we have $\displaystyle \mathrm{NeighborhoodArea} = {\mathrm{ConeDiameter}}^2$ and $\displaystyle \mathrm{PhotonArea} = {\mathrm{VoxelSize}}^2$. This means that we have the approximation of the outgoing radiance at **VoxelPosition** and **VoxelOutgoingDirection** that $\displaystyle \operatorname{L_o}(\mathrm{VoxelPosition}, \mathrm{VoxelOutgoingDirection}) \approx \frac{1}{{\mathrm{ConeDiameter}}^2} \cdot \operatorname{BRDF}(\mathrm{VoxelPosition}, \mathrm{VoxelOutgoingDirection}) \cdot \operatorname{E_N}(\mathrm{VoxelPosition}) \cdot {\mathrm{VoxelSize}}^2$. During the **voxelization** step, the $\displaystyle \operatorname{BRDF}(\mathrm{VoxelPosition}, \mathrm{VoxelOutgoingDirection}) \cdot \operatorname{E_N}(\mathrm{VoxelPosition})$ part of the formula is calculated and store in voxels. During the **cone tracing** step, the $\displaystyle \frac{1}{{\mathrm{ConeDiameter}}^2} \cdot {\mathrm{VoxelSize}}^2$ part of the formula is calculated on the fly.  
 
 ### 1-2\. Spherical Function
 
@@ -57,7 +57,7 @@ The traditional implementation (e.g. \[Takeshige 2015\]) may depend on the geome
 
 ![](Voxel-Cone-Tracing-1.png)  
 
-### 2-2\. Opacity  
+### 2-2\. Multi Sample  
 
 By \[Takeshige 2015\], the same pixel may intersect multiple voxels in view depth direction. And this is the reason why we need to enable the [MSAA](https://learn.microsoft.com/en-us/windows/win32/api/d3d11/ne-d3d11-d3d11_standard_multisample_quality_levels) to check the opacity contribution of each sample, within the same pixel, to different voxels. In practice, the [Conservative Rasterization](https://learn.microsoft.com/en-us/windows/win32/direct3d11/conservative-rasterization) is NOT necessary, and MSAA is a better alternative.  
 
@@ -75,8 +75,7 @@ The idea of cone tracing is intrinsically to approximate the ray of **ConeDirect
 
 By sampling the PDF (Probability Density Function), just like how we calculate the ray direction in ray tracing, we can calculate the **ConeDirection** in cone tracing.  
 
-By "20.3 Quasirandom Low-Discrepancy Sequences" of [Colbert 2007] and "13.8.2 Quasi Monte Carlo" of PBRT-V3, the low-discrepancy sequence is the better alternative than pseudo-random sequence  
-
+By "20.3 Quasirandom Low-Discrepancy Sequences" of \[Colbert 2007\], "13.8.2 Quasi Monte Carlo" of [PBR Book V3](https://pbr-book.org/3ed-2018/Monte_Carlo_Integration/Careful_Sample_Placement#QuasiMonteCarlo) and "8.2.2 Low Discrepancy and Quasi Monte Carlo" of [PBR Book V4](https://pbr-book.org/4ed/Sampling_and_Reconstruction/Sampling_and_Integration#LowDiscrepancyandQuasiMonteCarlo), the low discrepancy sequence is the better alternative than pseudo random sequence.  
   
 ![](Voxel-Cone-Tracing-3.png)  
 
@@ -86,31 +85,33 @@ By "20.4 Mipmap Filtered Samples" of \[Colbert 2007\],  we have that $\displayst
 
 ### 3-2\. Self Intersection  
 
-TODO
-
 By \[Wachter 2019\], "3.9.5 Robust Spawned Ray Origins" of [PBR Book V3](https://pbr-book.org/3ed-2018/Shapes/Managing_Rounding_Error#RobustSpawnedRayOrigins) and "6.8.6 Robust Spawned Ray Origins" of [PBR Book V4](https://pbr-book.org/4ed/Shapes/Managing_Rounding_Error#RobustSpawnedRayOrigins), we should offset the ray origin to avoid self intersection.  
+
+TODO 
 
 ### 3-3\. Iteration  
 
-By "Figure 11.12" of [Real-Time Rendering Fourth Edition](http://www.realtimerendering.com/), the cone tracing is approximated by intersecting the scene surface with a series of spheres of which the radius is the increasing cone base radius. 
+By "Figure 11.12" of [Real-Time Rendering Fourth Edition](http://www.realtimerendering.com/), cone tracing is approximated by intersecting the scene surface with a series of spheres (of which radii follow the increasing cone base radius).  
 
-// TODO  
+We assume that the front edge of the current sphere touches exactly the back edge of the next sphere. And we have that $\displaystyle \mathrm{ConeHeight_{Next}} - \mathrm{ConeRadius_{Next}} = \mathrm{ConeHeight_{Current}} + \mathrm{ConeRadius_{Current}}$. Since $\displaystyle \mathrm{ConeRadius_{Next}} = \mathrm{ConeHeight_{Next}} * \mathrm{ConeRatio}$ and $\displaystyle \mathrm{ConeRadius_{Current}} = \mathrm{ConeHeight_{Current}} * \mathrm{ConeRatio}$, we have the recusive formula that $\displaystyle \mathrm{ConeHeight_{Next}} = \frac{\mathrm{ConeHeight_{Current}} + \mathrm{ConeHeight_{Current}} * \mathrm{ConeRatio}}{1 - \mathrm{ConeRatio}}$.  
 
-Beer's Law  
+![](Voxel-Cone-Tracing-5.png)  
 
-Under Operator 
+By [Crassin 2011] and [Dunn 2014], the **under operator** is used to calculated the incident radiance ($\displaystyle \sum \mathrm{V_{k-1}} \mathrm{A_k} \mathrm{C_k}$) and transparency (namely, visibility function $\displaystyle \mathrm{V_{k-1}} = \prod \mathrm{A_{k-1}}$). 
 
-By \[Crassin 2011\], the **under operator** is used to calculated the final color $\displaystyle \mathrm{C}_\mathrm{Final}$ and the final occlusion $\displaystyle \mathrm{A}_\mathrm{Final}$.  
+We assume that the transparency is fixed for each segment along the $\displaystyle \mathrm{ConeHeightIncrement} = \mathrm{ConeHeight_{Next}} - \mathrm{ConeHeight_{Current}}$. By "Equation 11.3" of [PBR Book V3](https://pbr-book.org/3ed-2018/Volume_Scattering/Volume_Scattering_Processes) and "Equation 11.7" of [PBR Book V4](https://pbr-book.org/4ed/Volume_Scattering/Transmittance), according to Beer's Law, we can calculate the transmittance ($\displaystyle \mathrm{A_k}$) along the **ConeHeightIncrement** based on the opacity sampled from voxels that $\displaystyle \mathrm{A_k} = 1 - {(1 - \mathrm{SampledOpacity})}^{\displaystyle \frac{\mathrm{ConeDiameter}}{\mathrm{ConeHeightIncrement}}}$.  
 
-By \[Dunn 2014\], we have the recursive form of the **under operator**.  
-$\displaystyle \mathrm{C}_\mathrm{Final}^{0} = 0$  
-$\displaystyle \mathrm{A}_\mathrm{Final}^{0} = 0$  
-$\displaystyle \mathrm{C}_\mathrm{Final}^{n + 1} = \mathrm{C}_\mathrm{Final}^{n} + (1 - \mathrm{A}_\mathrm{Final}^{n}) \cdot \mathrm{C}_{n}$  
-$\displaystyle \mathrm{A}_\mathrm{Final}^{n + 1} = \mathrm{A}_\mathrm{Final}^{n} + (1 - \mathrm{A}_\mathrm{Final}^{n}) \cdot \mathrm{A}_{n}$  
+> Proof  
+> 
+> We assume that the volume is homogeneous with the attenuation/extinction $\sigma_t$.  
+>  
+> For sampled opacity, we have that $\displaystyle 1 - \mathrm{SampledOpacity} = \mathrm{SampledTransmittance} = \exp (\sigma_t \cdot \mathrm{ConeDiameter})$.  
+>  
+> For transmittance ($\displaystyle \mathrm{A_k}$) along the **ConeHeightIncrement**, we have that $\displaystyle 1 - \mathrm{A_k} = \mathrm{ConeHeightIncrementTransmittance} = \exp (\sigma_t \cdot \mathrm{ConeHeightIncrement})$.  
+>   
+> This means that $\displaystyle \mathrm{A_k} = 1 - {(1 - \mathrm{SampledOpacity})}^{\displaystyle \frac{\mathrm{ConeDiameter}}{\mathrm{ConeHeightIncrement}}}$ which is oblivious to the attenuation/extinction $\sigma_t$.  
 
-Actually, the explicit form of the **under operator** can be proved by mathematical induction.  
-$\displaystyle \mathrm{A}_\mathrm{Final}^{n + 1} = 1 - \prod_{i = 0}^{n} \left\lparen 1 - \mathrm{A}_{i} \right\rparen$  
-$\displaystyle \mathrm{C}_\mathrm{Final}^{n + 1} = \sum_{i = 0}^{n} \left\lparen \left\lparen \prod_{\mathrm{Z}_{j} \operatorname{Nearer} \mathrm{Z}_{i}} \left\lparen 1 - \mathrm{A}_{j} \right\rparen \right\rparen \cdot \mathrm{C}_{i} \right\rparen$  
+As we state above, 
 
 ## References  
 \[Jensen 2001\] [Henrik Jensen. "Realistic Image Synthesis Using Photon Mapping." AK Peters 2001.](http://www.graphics.stanford.edu/papers/jensen_book/)  
@@ -119,4 +120,3 @@ $\displaystyle \mathrm{C}_\mathrm{Final}^{n + 1} = \sum_{i = 0}^{n} \left\lparen
 \[Crassin 2011\] [Cyril Crassin, Fabrice Neyret, Miguel Sainz, Simon Green, Elmar Eisemann. "Interactive Indirect Illumination Using Voxel Cone Tracing." SIGGRAPH 2011.](https://research.nvidia.com/publication/interactive-indirect-illumination-using-voxel-cone-tracing)  
 \[Dunn 2014\] [Alex Dunn. "Transparency (or Translucency) Rendering." NVIDIA GameWorks Blog 2014.](https://developer.nvidia.com/content/transparency-or-translucency-rendering)   
 \[Takeshige 2015\] [Masaya Takeshige. "The Basics of GPU Voxelization." NVIDIA GameWorks Blog 2015.](https://developer.nvidia.com/content/basics-gpu-voxelization)  
-\[Heitz 2017\] [Eric Heitz. "Geometric Derivation of the Irradiance of Polygonal Lights." Technical report 2017.](https://hal.archives-ouvertes.fr/hal-01458129)  
