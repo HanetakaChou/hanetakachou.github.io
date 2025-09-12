@@ -37,13 +37,15 @@ Given N photons at position $\displaystyle \overrightarrow{p_j}$ within the neig
 
 By "Equation 16.15" of [PBR Book V3](https://pbr-book.org/3ed-2018/Light_Transport_III_Bidirectional_Methods/Stochastic_Progressive_Photon_Mapping#AccumulatingPhotonContributions), in real time rendering, we have the approximation of the $\displaystyle \operatorname{\Delta\Phi}(\overrightarrow{p_j})$ at position $\displaystyle \overrightarrow{p_j}$ that $\displaystyle \operatorname{\Delta\Phi}(\overrightarrow{p_j}) \approx \operatorname{E_N}(\overrightarrow{p_j}) \cdot \mathrm{PhotonArea} = \operatorname{E_L}(\overrightarrow{p_j}) \cdot \mathrm{NdotL} \cdot \mathrm{PhotonArea}$.  
 
-In voxel cone tracing, we store only one photon in each voxel, and we have $\displaystyle \mathrm{NeighborhoodArea} = {\mathrm{ConeDiameter}}^2$ and $\displaystyle \mathrm{PhotonArea} = {\mathrm{VoxelSize}}^2$. This means that we have the approximation of the outgoing radiance at **VoxelPosition** and **VoxelOutgoingDirection** that $\displaystyle \operatorname{L_o}(\mathrm{VoxelPosition}, \mathrm{VoxelOutgoingDirection}) \approx \frac{1}{{\mathrm{ConeDiameter}}^2} \cdot \operatorname{BRDF}(\mathrm{VoxelPosition}, \mathrm{VoxelOutgoingDirection}) \cdot \operatorname{E_N}(\mathrm{VoxelPosition}) \cdot {\mathrm{VoxelSize}}^2$. During the **voxelization** step, the $\displaystyle \operatorname{BRDF}(\mathrm{VoxelPosition}, \mathrm{VoxelOutgoingDirection}) \cdot \operatorname{E_N}(\mathrm{VoxelPosition})$ part of the formula is calculated and store in voxels. During the **cone tracing** step, the $\displaystyle \frac{1}{{\mathrm{ConeDiameter}}^2} \cdot {\mathrm{VoxelSize}}^2$ part of the formula is calculated on the fly.  
+In voxel cone tracing, we store only one photon in each voxel, and we have $\displaystyle \mathrm{NeighborhoodArea} = {\mathrm{ConeDiameter}}^2$ and $\displaystyle \mathrm{PhotonArea} = {\mathrm{VoxelSize}}^2$. This means that we have the approximation of the outgoing radiance at voxel position in voxel outgoing direction that $\displaystyle \operatorname{L_o}(\mathrm{VoxelPosition}, \mathrm{VoxelOutgoingDirection}) \approx \frac{1}{{\mathrm{ConeDiameter}}^2} \cdot \operatorname{BRDF}(\mathrm{VoxelPosition}, \mathrm{VoxelOutgoingDirection}) \cdot \operatorname{E_N}(\mathrm{VoxelPosition}) \cdot {\mathrm{VoxelSize}}^2$. During the **voxelization** step, the $\displaystyle \operatorname{BRDF}(\mathrm{VoxelPosition}, \mathrm{VoxelOutgoingDirection}) \cdot \operatorname{E_N}(\mathrm{VoxelPosition})$ part of the formula is calculated and store in voxels. During the **cone tracing** step, the $\displaystyle \frac{1}{{\mathrm{ConeDiameter}}^2} \cdot {\mathrm{VoxelSize}}^2$ part of the formula is calculated on the fly.  
 
-### 1-2\. Spherical Function
+### 1-2\. Spherical Gaussians
 
 By "Figure 11.1" of [Real-Time Rendering Fourth Edition](http://www.realtimerendering.com/), ["Figure 14.14"](https://pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/The_Light_Transport_Equation) of [PBR Book V3](https://www.pbr-book.org/3ed-2018/contents) and ["Figure 13.1"](https://www.pbr-book.org/4ed/Light_Transport_I_Surface_Reflection/The_Light_Transport_Equation) of [PBR Book V4](https://www.pbr-book.org/4ed/contents), by assuming no **participating media**, we have the relationship $\displaystyle \mathop{\mathrm{L_i}}(\overrightarrow{p}, \overrightarrow{\omega_i}) = \mathop{\mathrm{L_o}}(\mathop{\mathrm{t}}(\overrightarrow{p}, \overrightarrow{\omega_i}), -\overrightarrow{\omega_i})$ where $\displaystyle \mathop{\mathrm{t}}(\overrightarrow{p}, \overrightarrow{\omega})$ is the ray-casting function. This means that the incident radiance $\displaystyle \mathop{\mathrm{L_i}}(\overrightarrow{p}, \overrightarrow{\omega_i})$ at one position $\displaystyle \overrightarrow{p}$ is exactly the outgoing radiance $\displaystyle \mathop{\mathrm{L_o}}(\mathop{\mathrm{t}}(\overrightarrow{p}, \overrightarrow{\omega_i}), -\overrightarrow{\omega_i})$ at another position $\displaystyle \mathop{\mathrm{t}}(\overrightarrow{p}, \overrightarrow{\omega_i})$.  
 
-In voxel cone tracing, we have $\displaystyle \mathop{\mathrm{L_i}}(\mathrm{ConeApexPosition}, \mathrm{ConeDirection}) = \mathop{\mathrm{L_o}}(\mathrm{VoxelPosition}, -\mathrm{ConeDirection})$. The **−ConeDirection** is arbitrary but only a limited number of **VoxelOutgoingDirection**s can be stored in each voxel. At this moment, we store 6 **VoxelOutgoingDirection**s in each voxel, and these directions will be treated as the 3x3 octahedral map when we reconstruct the arbitrary **−ConeDirection**.  
+In voxel cone tracing, we need to calculate the outgoing radiance $\displaystyle \mathop{\mathrm{L_o}}(\mathrm{VoxelPosition}, -\mathrm{ConeAxisDirection})$ in arbitrary negative cone axis direction. However, in each voxel, we can only store $\displaystyle \operatorname{L_o}(\mathrm{VoxelPosition}, \mathrm{VoxelOutgoingDirection})$ in a limited number of voxel outgoing directions.  
+
+At this moment, we store 6 voxel outgoing directions in each voxel, and these directions will be treated as the 3x3 octahedral map when we reconstruct the arbitrary negative cone axis direction.  
 
 TODO: **Spherical Gaussians**  
 
@@ -65,21 +67,21 @@ By \[Takeshige 2015\], the same pixel may intersect multiple voxels in view dept
 
 ### 2-3\. Premultiplied Alpha
 
-As we state above, during voxelization, the $\displaystyle \mathrm{BRDF} \cdot \mathrm{E_N}$ part of the photon mapping formula is calculated. And then, this partial formula ($\displaystyle \mathrm{BRDF} \cdot \mathrm{E_N}$) is multiplied by the voxel opacity ($\displaystyle \mathrm{A_k}$) to calculate the premultiplied alpha (\[Dunn 2014\]) value to be stored in voxels.  
+As we state above, during the voxelization step, the $\displaystyle \mathrm{BRDF} \cdot \mathrm{E_N}$ part of the photon mapping formula is calculated. And then, the premultiplied alpha (\[Dunn 2014\]) value $\displaystyle \mathrm{BRDF} \cdot \mathrm{E_N} \cdot \mathrm{VoxelOpacity}$ is calculate and stored in voxels.  
 
 ## 3\. Cone Tracing  
 
 ### 3-1\. Monte Carlo Method
 
-The idea of cone tracing is intrinsically to approximate the ray of **ConeDirection** by the cone, which can be considered as the average of multiple rays within the cone aperture angle.  
+The idea of cone tracing is intrinsically to approximate the ray of cone axis direction by the cone, which can be considered as the average of multiple rays within the cone aperture angle.  
 
-By sampling the PDF (Probability Density Function), just like how we calculate the ray direction in ray tracing, we can calculate the **ConeDirection** in cone tracing.  
+By sampling the PDF (Probability Density Function), just like how we calculate the ray direction in ray tracing, we can calculate the cone axis direction in cone tracing.  
 
 By "20.3 Quasirandom Low-Discrepancy Sequences" of \[Colbert 2007\], "13.8.2 Quasi Monte Carlo" of [PBR Book V3](https://pbr-book.org/3ed-2018/Monte_Carlo_Integration/Careful_Sample_Placement#QuasiMonteCarlo) and "8.2.2 Low Discrepancy and Quasi Monte Carlo" of [PBR Book V4](https://pbr-book.org/4ed/Sampling_and_Reconstruction/Sampling_and_Integration#LowDiscrepancyandQuasiMonteCarlo), the low discrepancy sequence is the better alternative than pseudo random sequence.  
   
 ![](Voxel-Cone-Tracing-3.png)  
 
-By "20.4 Mipmap Filtered Samples" of \[Colbert 2007\],  we have that $\displaystyle \mathrm{ConeSolidAngle} = \min \left( \frac{1}{\text{N}} \cdot \frac{1}{\operatorname{PDF}(\mathrm{ConeDirection})}, 2 \pi \right)$. And by [Solid Angle for Cone](https://en.wikipedia.org/wiki/Solid_angle#Solid_angles_for_common_objects), we have that $\displaystyle \cos \left( \mathrm{ConeHalfAngle} \right) = 1 - \frac{\mathrm{ConeSolidAngle}}{2 \pi}$. And then, we have that $\displaystyle \mathrm{ConeRatio} = \tan \left( \mathrm{ConeHalfAngle} \right) = \frac{\sqrt{1 - \cos^2 \left( \mathrm{ConeHalfAngle} \right)}}{\cos \left( \mathrm{ConeHalfAngle} \right)}$.  
+By "20.4 Mipmap Filtered Samples" of \[Colbert 2007\],  we have the cone solid angle that $\displaystyle \mathrm{ConeSolidAngle} = \min \left( \frac{1}{\text{N}} \cdot \frac{1}{\operatorname{PDF}(\mathrm{ConeAxisDirection})}, 2 \pi \right)$. And by [Solid Angle for Cone](https://en.wikipedia.org/wiki/Solid_angle#Solid_angles_for_common_objects), we have the cone ratio that $\displaystyle \mathrm{ConeRatio} = \tan \left( \mathrm{ConeHalfAngle} \right) = \frac{\sqrt{1 - \cos^2 \left( \mathrm{ConeHalfAngle} \right)}}{\cos \left( \mathrm{ConeHalfAngle} \right)}$ where $\displaystyle \cos \left( \mathrm{ConeHalfAngle} \right) = 1 - \frac{\mathrm{ConeSolidAngle}}{2 \pi}$.  
 
 ![](Voxel-Cone-Tracing-4.png)  
 
@@ -91,29 +93,38 @@ TODO
 
 ### 3-3\. Iteration  
 
-By "Figure 11.12" of [Real-Time Rendering Fourth Edition](http://www.realtimerendering.com/), cone tracing is approximated by intersecting the scene surface with a series of spheres (of which radii follow the increasing cone base radius).  
+By "Figure 11.12" of [Real-Time Rendering Fourth Edition](http://www.realtimerendering.com/), cone tracing is approximated by intersecting the scene surface with sphere with cone radius. We have the cone height recursive formula that $\displaystyle \mathrm{ConeHeight_{Next}} = \frac{\mathrm{ConeHeight_{Current}} + \mathrm{ConeHeight_{Current}} * \mathrm{ConeRatio}}{1 - \mathrm{ConeRatio}}$ and the cone height increment for each iteration that $\displaystyle \mathrm{ConeHeightIncrement} = \mathrm{ConeHeight_{Next}} - \mathrm{ConeHeight_{Current}}$.  
 
-We assume that the front edge of the current sphere touches exactly the back edge of the next sphere. And we have that $\displaystyle \mathrm{ConeHeight_{Next}} - \mathrm{ConeRadius_{Next}} = \mathrm{ConeHeight_{Current}} + \mathrm{ConeRadius_{Current}}$. Since $\displaystyle \mathrm{ConeRadius_{Next}} = \mathrm{ConeHeight_{Next}} * \mathrm{ConeRatio}$ and $\displaystyle \mathrm{ConeRadius_{Current}} = \mathrm{ConeHeight_{Current}} * \mathrm{ConeRatio}$, we have the recusive formula that $\displaystyle \mathrm{ConeHeight_{Next}} = \frac{\mathrm{ConeHeight_{Current}} + \mathrm{ConeHeight_{Current}} * \mathrm{ConeRatio}}{1 - \mathrm{ConeRatio}}$.  
+> Proof  
+>  
+>  We assume that the front edge of the current sphere touches exactly the back edge of the next sphere, and we have that $\displaystyle \mathrm{ConeHeight_{Next}} - \mathrm{ConeRadius_{Next}} = \mathrm{ConeHeight_{Current}} + \mathrm{ConeRadius_{Current}}$.  
+>  
+> Since $\displaystyle \mathrm{ConeRadius_{Next}} = \mathrm{ConeHeight_{Next}} * \mathrm{ConeRatio}$ and $\displaystyle \mathrm{ConeRadius_{Current}} = \mathrm{ConeHeight_{Current}} * \mathrm{ConeRatio}$, we have that $\displaystyle \mathrm{ConeHeight_{Next}} * \mathrm{ConeRatio} - \mathrm{ConeRadius_{Next}} = \mathrm{ConeHeight_{Current}} + \mathrm{ConeHeight_{Current}} * \mathrm{ConeRatio}$.  
+>  
+> This means that $\displaystyle \mathrm{ConeHeight_{Next}} = \frac{\mathrm{ConeHeight_{Current}} + \mathrm{ConeHeight_{Current}} * \mathrm{ConeRatio}}{1 - \mathrm{ConeRatio}}$.  
 
 ![](Voxel-Cone-Tracing-5.png)  
 
-By [Crassin 2011] and [Dunn 2014], we assume that the transmittance ($\displaystyle \mathrm{A_k}$) is fixed for each segment along the $\displaystyle \mathrm{ConeHeightIncrement} = \mathrm{ConeHeight_{Next}} - \mathrm{ConeHeight_{Current}}$, and the **under operator** is used to calculated the incident radiance ($\displaystyle \sum \mathrm{V_{k-1}} (\mathrm{A_k} \mathrm{C_k}$)) and transparency (namely, visibility function $\displaystyle \mathrm{V_{k-1}} = \prod \mathrm{A_{k-1}}$). 
+By [Crassin 2011] and [Dunn 2014], the **under operator** is used to calculated the visibility function $\displaystyle \mathrm{V_k} = \prod (1 - \mathrm{A_k})$ and the incident radiance $\displaystyle \sum \mathrm{V_{k-1}} (\mathrm{A_k} \mathrm{C_k}$) at cone apex position in cone axis direction.  
 
-By "Equation 11.3" of [PBR Book V3](https://pbr-book.org/3ed-2018/Volume_Scattering/Volume_Scattering_Processes) and "Equation 11.7" of [PBR Book V4](https://pbr-book.org/4ed/Volume_Scattering/Transmittance), according to Beer's Law, we can calculate the transmittance ($\displaystyle \mathrm{A_k}$) along the **ConeHeightIncrement** based on the opacity sampled from voxels that $\displaystyle \mathrm{A_k} = 1 - {(1 - \mathrm{SampledOpacity})}^{\displaystyle \frac{\mathrm{ConeDiameter}}{\mathrm{ConeHeightIncrement}}}$.  
+By "Equation 11.3" of [PBR Book V3](https://pbr-book.org/3ed-2018/Volume_Scattering/Volume_Scattering_Processes) and "Equation 11.7" of [PBR Book V4](https://pbr-book.org/4ed/Volume_Scattering/Transmittance), according to Beer's Law, we can calculate the opacity for each cone height increment based on the opacity sampled from voxels that $\displaystyle \mathrm{A_k} = 1 - {(1 - \mathrm{SampledOpacity})}^{\displaystyle \frac{\mathrm{ConeDiameter}}{\mathrm{ConeHeightIncrement}}}$. We assume that the visibility function is piecewise constant along the cone axis direction for each cone height increment, and we have the visibility function that $\displaystyle \mathrm{V_k} = \prod (1 - \mathrm{A_k}) = \prod \mathrm{{\left[ {(1 - \mathrm{SampledOpacity})}^{\displaystyle \frac{\mathrm{ConeDiameter}}{\mathrm{ConeHeightIncrement}}} \right]}_k}$.  
 
 > Proof  
 > 
 > We assume that the volume is homogeneous with the attenuation/extinction $\sigma_t$.  
 >  
-> For sampled opacity, we have that $\displaystyle 1 - \mathrm{SampledOpacity} = \mathrm{SampledTransmittance} = \exp (\sigma_t \cdot \mathrm{ConeDiameter})$.  
+> For the opacity sampled from voxels, we have that $\displaystyle 1 - \mathrm{SampledOpacity} = \mathrm{SampledTransmittance} = \exp (\sigma_t \cdot \mathrm{ConeDiameter})$.  
 >  
-> For transmittance ($\displaystyle \mathrm{A_k}$) along the **ConeHeightIncrement**, we have that $\displaystyle 1 - \mathrm{A_k} = \mathrm{ConeHeightIncrementTransmittance} = \exp (\sigma_t \cdot \mathrm{ConeHeightIncrement})$.  
+> For the opacity for each cone height increment, we have that $\displaystyle 1 - \mathrm{A_k} = \mathrm{ConeHeightIncrementTransmittance} = \exp (\sigma_t \cdot \mathrm{ConeHeightIncrement})$.  
 >   
 > This means that $\displaystyle \mathrm{A_k} = 1 - {(1 - \mathrm{SampledOpacity})}^{\displaystyle \frac{\mathrm{ConeDiameter}}{\mathrm{ConeHeightIncrement}}}$ which is oblivious to the attenuation/extinction $\sigma_t$.  
 
-As we state above, during voxelization, the $\displaystyle \mathrm{BRDF} \cdot \mathrm{E_N}$ part of the photon mapping formula is calculated, and the premultiplied alpha value is stored in voxels. And now, during cone tracing, only the $\displaystyle \frac{1}{{\mathrm{ConeDiameter}}^2} \cdot {\mathrm{VoxelSize}}^2$ part of the photon mapping formula need to be calculated to have the premultiplied alpha color ($\displaystyle \mathrm{A_k} \mathrm{C_k}$), and we can have the incident radiance ($\displaystyle \sum \mathrm{V_{k-1}} (\mathrm{A_k} \mathrm{C_k})$).  
+As we state above, during the voxelization step, the $\displaystyle \mathrm{BRDF} \cdot \mathrm{E_N}$ part of the photon mapping formula is calculated, and the premultiplied alpha value $\displaystyle \mathrm{BRDF} \cdot \mathrm{E_N} \cdot \mathrm{VoxelOpacity}$ is stored in voxels. And now, during the cone tracing step, the $\displaystyle \frac{1}{{\mathrm{ConeDiameter}}^2} \cdot {\mathrm{VoxelSize}}^2$ part of the photon mapping formula is calculated, and we have the premultiplied alpha color $\displaystyle \mathrm{A_k} \mathrm{C_k} = \mathrm{VoxelOpacity} \cdot \left( \frac{1}{{\mathrm{ConeDiameter}}^2} \cdot \mathrm{BRDF} \cdot \mathrm{E_N} \cdot {\mathrm{VoxelSize}}^2 \right)$. And then we have the incident radiance that $\displaystyle \sum \mathrm{V_{k-1}} (\mathrm{A_k} \mathrm{C_k}) = \sum \mathrm{V_{k-1}} \mathrm{{\left[ \mathrm{VoxelOpacity} \cdot \left( \frac{1}{{\mathrm{ConeDiameter}}^2} \cdot \mathrm{BRDF} \cdot \mathrm{E_N} \cdot {\mathrm{VoxelSize}}^2 \right) \right]}_k}$.  
 
-It should be noted that we need to reconstruct the arbitrary **−ConeDirection** $\displaystyle \mathop{\mathrm{L_o}}(\mathrm{VoxelPosition}, -\mathrm{ConeDirection})$, but only a limited number of **VoxelOutgoingDirection**s $\displaystyle \operatorname{L_o}(\mathrm{VoxelPosition}, \mathrm{VoxelOutgoingDirection})$ can be stored in each voxel.  
+By "Equation 11.11" of [Real-Time Rendering Fourth Edition](http://www.realtimerendering.com/), the visibility function is not sufficient to describe the ambient occlusion, since the opacity contribution should decrease with distance. The  
+
+
+It should be noted that we need to calculate the outgoing radiance $\displaystyle \mathop{\mathrm{L_o}}(\mathrm{VoxelPosition}, -\mathrm{ConeAxisDirection})$ in arbitrary negative cone axis direction, but, in each voxel, we can only store $\displaystyle \operatorname{L_o}(\mathrm{VoxelPosition}, \mathrm{VoxelOutgoingDirection})$ in a limited number of voxel outgoing directions. 
 
 TODO: **Spherical Gaussians**  
 
