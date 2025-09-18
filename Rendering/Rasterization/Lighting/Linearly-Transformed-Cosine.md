@@ -2,11 +2,10 @@
 
 Notation | Description | Shader Code Convention  
 :-: | :-: | :-:  
-$\displaystyle \operatorname{D_C}$ | (Original) (Normalized) Clamped Cosine Distribution | NdotL  
-$\displaystyle \operatorname{D_{LTC}}$ | LTC (Linearly Transformed Cosine) Distribution | N/A  
+$\displaystyle \operatorname{D}$ | (Original) (Normalized) Clamped Cosine Distribution | NdotL  
+$\displaystyle \operatorname{D_{LT}}$ | LTC (Linearly Transformed Cosine) Distribution | N/A  
 $\displaystyle \overrightarrow{\omega_i}$ | Incident Direction in Tangent Space | L  
 $\displaystyle \overrightarrow{\omega_o}$ | Outgoing Direction in Tangent Space | V  
-$\displaystyle \overrightarrow{\omega_h}$ | Half Vector in Tangent Space | H  
 $\displaystyle \overrightarrow{n}$ | Normal in World Space | N  
 $\displaystyle \operatorname{f}(\overrightarrow{\omega_i}, \overrightarrow{\omega_o})$ | BRDF | N/A
 $\displaystyle \operatorname{L_i}( \overrightarrow{\omega_i})$ | Incident Radiance | N/A
@@ -22,12 +21,14 @@ However, by \[Lagarde 2014\], the material roughness should be modified to hide 
 
 ## 1\. Clamped Cosine    
 
-The **clamped cosine distribution** is defined as $\displaystyle \operatorname{D_C}(\omega) = \frac{1}{\pi} \max(0, \cos \theta)$ in tangent space. By "Figure 5.13" of [PBR Book V3](https://pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#IntegralsoverProjectedSolidAngle), we have $\displaystyle \int_\Omega \operatorname{D_C} \, d\omega = \frac{1}{\pi} \int_\Omega \max(0, \cos \theta) \, d\omega = \frac{1}{\pi} \int_\Omega 1 \, d\omega^{\perp} = \frac{1}{\pi} \cdot \pi = 1$. This means that $\displaystyle \operatorname{D_C}$ is **normalized**.
+In tangent space, the (normalized) **clamped cosine** distribution is defined as $\displaystyle \operatorname{D} (\overrightarrow{\omega}) = \frac{1}{\pi} \max(0, \cos \theta)$. By "Figure 5.13" of [PBR Book V3](https://pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#IntegralsoverProjectedSolidAngle), we have $\displaystyle \int_\Omega \operatorname{D} \, d \overrightarrow{\omega} = \frac{1}{\pi} \int_\Omega \max(0, \cos \theta) \, d \overrightarrow{\omega} = \frac{1}{\pi} \int_\Omega 1 \, d \overrightarrow{\omega^{\perp}} = \frac{1}{\pi} \cdot \pi = 1$. This means that the clamped cosine distribution $\displaystyle \operatorname{D} (\overrightarrow{\omega})$ is **normalized**.  
 
 ### 1-1\. Closed-Form Integral  
-We assume that the vertices $\displaystyle \overrightarrow{p_1}, \overrightarrow{p_2}, \ldots, \overrightarrow{p_n}$ of the polygon $\displaystyle \mathrm{P_C}$ are in the tangent space, normalized, and located in the upper hemisphere. By \[Heitz 2017\], the clamped cosine integral over the polygon $\displaystyle \operatorname{F}(\mathrm{P_C}) = \int_{\mathrm{P_C}} \operatorname{D_C} \, d\omega_o$ is closed-form $\displaystyle \operatorname{F}(\mathrm{P_C}) = \frac{1}{2\pi} \sum_{i \, j}^n \arccos(\overrightarrow{p_i} \cdot \overrightarrow{p_j}) (\operatorname{normalize}(\overrightarrow{p_i} \times \overrightarrow{p_j}) \cdot \overrightarrow{(0, 0, 1)})$. Note that the **winding order** of the vertices implies the direction of the resulting vector $\displaystyle \overrightarrow{p_i} \times \overrightarrow{p_j}$ and thus the facing of the polygon.  
+We assume that the vertices $\displaystyle \overrightarrow{p_1}, \overrightarrow{p_2}, \ldots, \overrightarrow{p_n}$ of the polygon $\displaystyle \mathrm{P}$ are in the tangent space, normalized, and located in the upper hemisphere. By \[Heitz 2017\], the clamped cosine integral over the polygon $\displaystyle \operatorname{F}(\mathrm{P}) = \int_{\mathrm{P}} \operatorname{D} \, d\omega_o$ is closed-form $\displaystyle \operatorname{F}(\mathrm{P}) = \frac{1}{2\pi} \sum_{i \, j}^n \arccos(\overrightarrow{p_i} \cdot \overrightarrow{p_j}) (\operatorname{normalize}(\overrightarrow{p_i} \times \overrightarrow{p_j}) \cdot \overrightarrow{(0, 0, 1)})$. Note that the **winding order** of the vertices implies the direction of the resulting vector $\displaystyle \overrightarrow{p_i} \times \overrightarrow{p_j}$ and thus the facing of the polygon.  
 
-It should be noted that it is **form factor** rather than **irradiance** that \[Heitz 2017\] calculates. Although the terms **irradiance** and **form factor** may be interchangeably used, technically **irradiance** should NOT be divided by $\displaystyle \pi$. This means that $\displaystyle \operatorname{E}(\mathrm{P_C}) = \pi \operatorname{F}(\mathrm{P_C})$.  
+![](Linearly-Transformed-Cosine-1.png)
+
+It should be noted that it is **form factor** rather than **irradiance** that \[Heitz 2017\] calculates. Although the terms **irradiance** and **form factor** may be interchangeably used, technically **irradiance** should NOT be divided by $\displaystyle \pi$. This means that $\displaystyle \operatorname{E}(\mathrm{P}) = \pi \operatorname{F}(\mathrm{P})$.  
 
 ### 1-2\. Branch Divergence
 
@@ -39,7 +40,7 @@ By [Stephen 2016], using the linear fit, this formula by \[Snyder 1996\] can be 
 
 The integral over the sphere is calculated by the [genSphereTab](https://github.com/selfshadow/ltc_code/blob/master/fit/fitLTC.cpp#L307) in the WebGL Demo by \[Stephen 2016\], [PolygonIrradianceFromVectorFormFactor](https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.high-definition/Runtime/Material/Lit/Lit.hlsl#L1630) in Unity3D, and [SphereHorizonCosWrap](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/CapsuleLight.ush#L95) in UE4.
 
-By \[Stephen 2016\], the **vector form factor** over the polygon can be calculated as $\displaystyle \overrightarrow{\operatorname{F}}(\mathrm{P_C}) = \frac{1}{2\pi} \sum_{i \, j}^n \arccos(\overrightarrow{p_i} \cdot \overrightarrow{p_j}) \operatorname{normalize}(\overrightarrow{p_i} \times \overrightarrow{p_j})$ even if the vertices are NOT in the upper hemisphere.  
+By \[Stephen 2016\], the **vector form factor** over the polygon can be calculated as $\displaystyle \overrightarrow{\operatorname{F}}(\mathrm{P}) = \frac{1}{2\pi} \sum_{i \, j}^n \arccos(\overrightarrow{p_i} \cdot \overrightarrow{p_j}) \operatorname{normalize}(\overrightarrow{p_i} \times \overrightarrow{p_j})$ even if the vertices are NOT in the upper hemisphere.  
 
 Analogous to the term **vector irradiance** of which the direction is the direction where a flat surface can receive the highest irradiance, the term **vector form factor** over the sphere is the vector of which the direction is towards the center of the sphere and the length is $\displaystyle \operatorname{F} = \frac{1}{\pi} \int_0^{2\pi} \int_0^\alpha \cos \theta \sin \theta \, d \theta d \phi  = \sin^2(\sigma)$ where $\displaystyle \sigma$ is the angular extent.   
 
@@ -47,25 +48,39 @@ By \[Snyder 1996\], a proxy sphere with the same vector form factor can be intro
 
 The integral over the polygon is calculated by the [LTC_Evaluate](https://github.com/selfshadow/ltc_code/blob/master/webgl/shaders/ltc/ltc_quad.fs#L274) in the WebGL Demo provided by \[Stephen 2016\], [EvaluateBSDF_Rect](https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.high-definition/Runtime/Material/Lit/Lit.hlsl#L1764) in Unity3D, and [RectIrradianceLambert](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/RectLight.ush#L108) and [RectGGXApproxLTC](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/RectLight.ush#L442) in UE4.  
 
-## 2\. LTC  
+## 2\. LTC (Linearly Transformed Cosine)  
 
-We assume that M is the linear transform matrix, $\displaystyle \overrightarrow{\omega}$ is the (original) direction in tangent space, and $\displaystyle \overrightarrow{\omega_{LT}} = \operatorname{normalize}(M \overrightarrow{\omega})$ is the linear transform direction in tangent space. By "Appendix A" of \[Heitz 2016\], we have closed-form relationship between $d \overrightarrow{\omega}$ and $d \overrightarrow{\omega_{LT}}$ that $\displaystyle \frac{d \omega}{d \omega_{LT}}(\overrightarrow{\omega_{LT}}) = \frac{|M^{-1}|}{{\| M^{-1} \overrightarrow{\omega_{LT}} \|}^3}$ where $\displaystyle |M^{-1}|$ is the determinant of $\displaystyle M^{-1}$ and $\displaystyle \| M^{-1} \overrightarrow{\omega_{LT}} \|$ is the norm of $\displaystyle M^{-1} \overrightarrow{\omega_{LT}}$.  
+We assume that M is the linear transform matrix, $\displaystyle \overrightarrow{\omega}$ is the (original) direction in tangent space, and $\displaystyle \overrightarrow{\omega_{LT}} = \operatorname{normalize}(M \overrightarrow{\omega}) = \frac{\displaystyle M \overrightarrow{\omega}}{\displaystyle \| M \overrightarrow{\omega} \|}$ is the linearly transformed direction in tangent space. The **linearly transformed cosine** distribution is defined as $\displaystyle \operatorname{D_{LT}}(\overrightarrow{\omega_{LT}}) = \operatorname{D} (\overrightarrow{\omega}) \frac{d \overrightarrow{\omega}}{d \overrightarrow{\omega_{LT}}}$. By integration by substitution, we have that $\displaystyle \int_{\Omega} \operatorname{D_{LT}}(\overrightarrow{\omega_{LT}}) \, d \overrightarrow{\omega_{LT}} = \int_{\Omega} \operatorname{D} (\overrightarrow{\omega}) \frac{d \overrightarrow{\omega}}{d \overrightarrow{\omega_{LT}}} \, d \overrightarrow{\omega_{LT}} = \int_{\Omega} \operatorname{D}(\overrightarrow{\omega}) \, d \overrightarrow{\omega} = 1$. This means that the linearly transformed cosine distribution $\displaystyle \operatorname{D_{LT}} (\overrightarrow{\omega_{LT}})$ is **normalized**.  
+
+### 2-1\. Closed-Form Jacobian  
+
+By "Appendix A" of \[Heitz 2016\], we have closed-form relationship between $d \overrightarrow{\omega}$ and $d \overrightarrow{\omega_{LT}}$ that $\displaystyle \frac{d \overrightarrow{\omega}}{d \overrightarrow{\omega_{LT}}}(\overrightarrow{\omega_{LT}}) = \frac{|M^{-1}|}{{\| M^{-1} \overrightarrow{\omega_{LT}} \|}^3}$ where $\displaystyle |M^{-1}|$ is the determinant of $\displaystyle M^{-1}$ and $\displaystyle \| M^{-1} \overrightarrow{\omega_{LT}} \|$ is the norm of $\displaystyle M^{-1} \overrightarrow{\omega_{LT}}$.  
 
 > Proof  
+>  
+> The normalized vectors $\displaystyle \overrightarrow{\omega}$ and $\displaystyle \overrightarrow{\omega_{LT}}$ are corresponding to the directions. The solid angles $\displaystyle d \overrightarrow{\omega}$ and $\displaystyle d \overrightarrow{\omega_{LT}}$ are corresponding to area on the sphere surface.  
+>  
+> ![](Linearly-Transformed-Cosine-2.png)  
+> The orthonormal vectors $\displaystyle \omega_1$ and $\displaystyle \omega_2$ are corresponding to the principal curvatures of the Gaussian curvature.  
+>  
+> ![](Linearly-Transformed-Cosine-3.png)  
+> By "Equation 5.6" of [PBR Book V3](https://pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#IntegralsoverArea), we have $\displaystyle d \overrightarrow{\omega_{LT}} = \frac{(A d \overrightarrow{\omega}) \cos\theta}{r^2}$ where the A is the ratio, and the $\displaystyle A d \overrightarrow{\omega}$ is the area subtended by the solid angle $\displaystyle d \overrightarrow{\omega_{LT}}$.  
+>  
+> ![](Linearly-Transformed-Cosine-4.png)  
+>  
+> $\displaystyle \mathrm{A} = \| (M \overrightarrow{\omega}) \times (M \overrightarrow{\omega}) \|$  
+> $\displaystyle \cos \theta = \left< \frac{M \overrightarrow{\omega}}{\| M \overrightarrow{\omega} \|}, \frac{(M \overrightarrow{\omega}) \times (M \overrightarrow{\omega})}{\| (M \overrightarrow{\omega}) \times (M \overrightarrow{\omega}) \|} \right>$  
+> $\displaystyle \mathrm{r} = \| M \overrightarrow{\omega} \|$
+
+  
+## 3\. BRDF Cosine Approximation  
+
+By "Equation 5.9" of [PBR Book V3](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Surface_Reflection#TheBRDF), we have the reflectance equation $\displaystyle  \operatorname{L_o}(\overrightarrow{\omega_o}) = \int_{\mathrm{P}} \operatorname{f}(\overrightarrow{\omega_i}, \overrightarrow{\omega_o}) \cdot \operatorname{L_i}(\overrightarrow{\omega_i}) \cdot max(0, \cos \theta_i) \, d\overrightarrow{\omega_i}$.  
 
 
-### 2-1\. LTSD   
-We assume that M is the linear transform matrix, and $\displaystyle \omega = \operatorname{normalize}(M \omega_o)$.  For the arbitrary **original distribution** $\displaystyle \operatorname{D_o}(\omega_o)$, the corresponding **LTSD \(linearly transformed spherical distribution\)** $\displaystyle \operatorname{D}(\omega)$ is defined as $\displaystyle \operatorname{D}(\omega) = \operatorname{D_o}(\omega_o) \frac{d\omega_o}{d\omega}$. Evidently, we have $\displaystyle \omega_o = \operatorname{normalize}(M^{-1} \omega)$. And the relationship between $\displaystyle d\omega_o$ and $\displaystyle d\omega$ is closed-form $\displaystyle \frac{d\omega_o}{d\omega} = \frac{|M^{-1}|}{{\|M^{-1}w\|}^3}$. The proof of this closed-form formula is provided in "Appendix A" of \[Heitz 2016\]. Note that $\displaystyle \omega_o$ and $\displaystyle \omega$ are **vectors** which represent the **direction**, while $\displaystyle d\omega_o$ and $\displaystyle d\omega$ are **solid angles** which represent the **area** on the **sphere surface**. By "Equation (5.6)" of [PBR Book](https://pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#IntegralsoverArea), we have $\displaystyle d\omega = \frac{(A d\omega_o) \cos\theta}{r^2}$ where the A is the ratio, and the $\displaystyle A d\omega_o$ is the area subtended by the solid angle $\displaystyle d\omega$.  
-
-### 2-2\. LTC  
-When the **clamped cosine** $\displaystyle \operatorname{D_o}(\omega_o) = \frac{1}{\pi} (\cos \theta_o)^+$ is used as the **original distribution** $\displaystyle \operatorname{D_o}(\omega_o)$, the corresponding **LTSD \(linearly transformed spherical distribution\)** $\displaystyle \operatorname{D}(\omega)$ is called the **LTC \(linearly transformed cosine\)**.  
-
-### 2-3\. Shading with Constant Polygonal Lights  
-When the $\displaystyle \operatorname{L_l}(\omega_l)$ is assumed to be constant $\displaystyle L_l$, we have $\displaystyle \operatorname{L_v}(\omega_v) = \int_{P} \operatorname{BRDF}(\omega_v, \omega_l) \operatorname{L_l}(\omega_l) |\cos \theta_l| \, d\omega_l = L_l \int_{P} \operatorname{BRDF}(\omega_v, \omega_l) |\cos \theta_l| \, d\omega_l$.  
-
-## 3\. Approximation  
-### 3-1\. Approximation GGX
 By the "Equation (5.9)" of the [PBR Book](https://pbr-book.org/3ed-2018/Color_and_Radiometry/Surface_Reflection#TheBRDF), we have $\displaystyle \operatorname{L_v}(\omega_v) = \int_{P} \operatorname{f}(\omega_v, \omega_l) \operatorname{L_l}(\omega_l) (\cos \theta_l)^+ \, d\omega_l$. And we use **non-linear optimization** to approximate the BRDF cosine by LTC. The [fitting](https://github.com/selfshadow/ltc_code/blob/master/fit/fitLTC.cpp) code  
+
+### 3-1\. Isotripic TrowBridge-Reitz BRDF Cosine Approximation 
 
 ### 3-1\. LUT UV
 Since the GGX BRDF is isotropic, the distribution can be determined by the outgoing direction $\displaystyle \omega_v$ and the roughness $\displaystyle \alpha$, which are used as the UV of the LUTs. 
