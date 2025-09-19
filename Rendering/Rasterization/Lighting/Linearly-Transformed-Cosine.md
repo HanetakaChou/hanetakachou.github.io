@@ -99,9 +99,9 @@ The LUT of \[Stephen 2016\] is called [ltc_2](https://github.com/selfshadow/ltc_
 
 ### 3-2\. Median Vector (First Spherical Moment)  
 
-By "Equation 15.16" of [PBR Book V3](https://www.pbr-book.org/3ed-2018/Light_Transport_II_Volume_Rendering/Subsurface_Scattering_Using_the_Diffusion_Equation#DiffusionTheory) and \[Heitz 2016\], we have the **first spherical moment** (namely, **median vector**) of the BRDF cosine $\displaystyle \mu_1 = \int_\Omega \overrightarrow{\omega_i} \cdot \operatorname{f}(\overrightarrow{\omega_i}, \overrightarrow{\omega_o}) \cdot max(0, \cos \theta_i) \, d \overrightarrow{\omega_i}$.  
+By "Equation 15.16" of [PBR Book V3](https://www.pbr-book.org/3ed-2018/Light_Transport_II_Volume_Rendering/Subsurface_Scattering_Using_the_Diffusion_Equation#DiffusionTheory) and \[Heitz 2016\], we have the **first spherical moment** (namely, **median vector**) of the BRDF cosine $\displaystyle \overrightarrow{\mu_1} = \int_\Omega \overrightarrow{\omega_i} \cdot \operatorname{f}(\overrightarrow{\omega_i}, \overrightarrow{\omega_o}) \cdot max(0, \cos \theta_i) \, d \overrightarrow{\omega_i}$.  
 
-By \[Heitz 2016\], the median vector of clamped cosine is the surface normal. This means that we should define the linear (rotation) transform matrix $\displaystyle \mathrm{M_1}$ to make the median vector of LTC align with the first spherical moment vector of the BRDF cosine $\displaystyle \mu_1$ first before we tweak the whole linear transform matrix $\displaystyle \mathrm{M} = \mathrm{M_1} \cdot \mathrm{M_2}$ further of the LTC.  
+By \[Heitz 2016\], the median vector of clamped cosine is the surface normal. This means that we should define the linear (rotation) transform matrix $\displaystyle \mathrm{M_1}$ to make the median vector of LTC align with the first spherical moment of the BRDF cosine $\displaystyle \overrightarrow{\mu_1}$ first before we tweak the whole linear transform matrix $\displaystyle \mathrm{M} = \mathrm{M_1} \cdot \mathrm{M_2}$ further of the LTC.  
 
 The median vector is calculated by [computeAvgTerms](https://github.com/selfshadow/ltc_code/blob/master/fit/fitLTC.cpp#L34) in the WebGL Demo by \[Stephen 2016\].   
 
