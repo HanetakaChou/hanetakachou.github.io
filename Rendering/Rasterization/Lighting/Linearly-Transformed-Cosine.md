@@ -86,7 +86,7 @@ The albedo $\displaystyle \operatorname{\rho_{hd}} (\overrightarrow{\omega_o})$ 
   
 For any given outgoing direction $\displaystyle \overrightarrow{\omega_o}$ and BRDF $\displaystyle \operatorname{f}(\overrightarrow{\omega_i}, \overrightarrow{\omega_o})$, if we can find the linear transform matrix M to approximate the normalized BRDF cosine by LTC that $\displaystyle \frac{\operatorname{f}(\overrightarrow{\omega_i}, \overrightarrow{\omega_o}) \cdot max(0, \cos \theta_i)}{\operatorname{\rho_{hd}} (\overrightarrow{\omega_o})} \approx  \operatorname{D_{LT}}(\overrightarrow{\omega_i}) = \operatorname{D} \left( \frac{M^{-1} \overrightarrow{\omega_i}}{\| M^{-1} \overrightarrow{\omega_i} \|} \right) \frac{|M^{-1}|}{{\| M^{-1} \overrightarrow{\omega_i} \|}^3}$, by [Integration by Substitution](https://en.wikipedia.org/wiki/Integration_by_substitution), we can have the closed-form integral of the BRDF cosine over the polygon that $\displaystyle \int_{\mathrm{P}} \operatorname{f}(\overrightarrow{\omega_i}, \overrightarrow{\omega_o}) \cdot max(0, \cos \theta_i) \, d\overrightarrow{\omega_i} = \operatorname{\rho_{hd}} (\overrightarrow{\omega_o}) \int_{\mathrm{P}} \frac{\operatorname{f}(\overrightarrow{\omega_i}, \overrightarrow{\omega_o}) \cdot max(0, \cos \theta_i)}{\operatorname{\rho_{hd}} (\overrightarrow{\omega_o})} \, d \overrightarrow{\omega_i} \approx \operatorname{\rho_{hd}} (\overrightarrow{\omega_o}) \int_{\mathrm{P}} \operatorname{D_{LT}}(\overrightarrow{\omega_{LT}}) \, d \overrightarrow{\omega_{LT}} = \operatorname{\rho_{hd}} \cdot (\overrightarrow{\omega_o}) \int_{\mathrm{P}} \operatorname{D} (\overrightarrow{\omega}) \frac{d \overrightarrow{\omega}}{d \overrightarrow{\omega_{LT}}} \, d \overrightarrow{\omega_{LT}} = \operatorname{\rho_{hd}} (\overrightarrow{\omega_o}) \cdot \int_{\mathrm{P_{LT}}} \operatorname{D} (\overrightarrow{\omega}) \, d \overrightarrow{\omega} = \operatorname{\rho_{hd}} (\overrightarrow{\omega_o}) \cdot \operatorname{F}(\mathrm{P_{LT}})$ wbere $\displaystyle \mathrm{P_{LT}} = M^{-1} \mathrm{P}$ is linearly transformed polygon and $\displaystyle \operatorname{F}(\mathrm{P_{LT}})$ is closed-form by \[Heitz 2017\].  
 
-### 3-1\. Norm (Zeroth Moment)  
+### 3-1\. Norm (Zeroth Spherical Moment)  
 
 By "8.4.3 Masking and Shadowing" of [PBR Book V3](https://pbr-book.org/3ed-2018/Reflection_Models/Microfacet_Models#MaskingandShadowing) and "9.6.3 The Masking-Shadowing Function" of [PBR Book V4](https://pbr-book.org/4ed/Reflection_Models/Roughness_Using_Microfacet_Theory#TheMasking-ShadowingFunction), due to masking and shadowing, the norm of BRDF cosine $\displaystyle \operatorname{\rho_{hd}} (\overrightarrow{\omega_o})$ can be less than one.  
 
@@ -97,19 +97,30 @@ By "Equation 9" of \[Karis 2013\], [LTC Fresnel Approximation](https://blog.self
 The LUT of \[Stephen 2016\] is called [ltc_2](https://github.com/selfshadow/ltc_code/blob/master/webgl/shaders/ltc/ltc_quad.fs#L26) in the WebGL Demo provided by \[Heitz 2016\] and [LTCAmpTexture](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/RectLight.ush#L437) in UE4. The LUT of \[Karis 2013\] is called [PreIntegratedGF](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/BRDF.ush#L467) in UE4 and [_PreIntegratedFGD_GGXDisneyDiffuse](https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.high-definition/Runtime/Material/PreIntegratedFGD/PreIntegratedFGD.hlsl#L3) in Unity3D.  
 
 
-### 3-2\. Median Vector (First Moment)  
+### 3-2\. Median Vector (First Spherical Moment)  
 
-By "Equation 15.16" of [PBR Book V3](https://www.pbr-book.org/3ed-2018/Light_Transport_II_Volume_Rendering/Subsurface_Scattering_Using_the_Diffusion_Equation#DiffusionTheory), we have the **first moment** of the BRDF cosine 
+By "Equation 15.16" of [PBR Book V3](https://www.pbr-book.org/3ed-2018/Light_Transport_II_Volume_Rendering/Subsurface_Scattering_Using_the_Diffusion_Equation#DiffusionTheory) and \[Heitz 2016\], we have the **first spherical moment** (namely, **median vector**) of the BRDF cosine $\displaystyle \mu_1 = \int_\Omega \overrightarrow{\omega_i} \cdot \operatorname{f}(\overrightarrow{\omega_i}, \overrightarrow{\omega_o}) \cdot max(0, \cos \theta_i) \, d \overrightarrow{\omega_i}$.  
+
+By \[Heitz 2016\], the median vector of clamped cosine is the surface normal. This means that we should define the linear transform matrix $\displaystyle \mathrm{M_1}$ to make the median vector of LTC align with the **first spherical moment** of the BRDF cosine $\displaystyle \mu_1$ first before we tweak the whole linear transform matrix $\displaystyle \mathrm{M} = \mathrm{M_1} \cdot \mathrm{M_2}$ further of the LTC.  
 
 ### 3-3\. Optimization  
 
-Nonlinear Optimization (Nelder–Mead Method) 
+Based on the **MoM (Method of Moments)**, according to our intuition, we may find another linear transform matrix $\displaystyle \mathrm{M_2}$ such that the whole linear transform matrix $\displaystyle \mathrm{M} = \mathrm{M_1} \cdot \mathrm{M_2}$ can make the **second spherical moments** of BRDF cosine and LTC align with each other.  
 
-And we use **non-linear optimization** to approximate the BRDF cosine by LTC. The [fitting](https://github.com/selfshadow/ltc_code/blob/master/fit/fitLTC.cpp) code  
+However, the second spherical moment is a tensor, which may be too complex to be used in rendering. By \[Heitz 2016\], we use the $\displaystyle \mathrm{L}^3$ error function $\displaystyle \operatorname{J}(\mathrm{M_2}) = \int_\Omega {\left( \left| \operatorname{f}(\overrightarrow{\omega_i}, \overrightarrow{\omega_o}) \cdot max(0, \cos \theta_i) - \operatorname{D_{LT}}(\overrightarrow{\omega_i}) \right| \right)}^3 \, d \overrightarrow{\omega_i}$ and the **Nelder–Mead Method** nonlinear optimization.  
 
-Isotripic TrowBridge-Reitz BRDF Cosine Approximation  
+The $\displaystyle \mathrm{L}^3$ error function is calculated by [computeError](https://github.com/selfshadow/ltc_code/blob/master/fit/fitLTC.cpp#L78) in the WebGL Demo by \[Stephen 2016\]. The Nelder–Mead Method nonlinear optimization is calculated by [NelderMead](https://github.com/selfshadow/ltc_code/blob/master/fit/nelder_mead.h#L26) in the WebGL Demo by \[Stephen 2016\] and [fminsearch](https://github.com/gnu-octave/octave/blob/default/scripts/optimization/fminsearch.m) in GNU Octave.  
 
-The first moment of clamped cosine 
+### 3-4\. Isotropic TrowBridge-Reitz BRDF  
+
+For isotropic BRDF, the azimuth of the outgoing direction does NOT matter, and we only need to consider the zenith of the outgoing direction.  
+
+According to the convention, we assume that the surface normal is the Z axis $\displaystyle \begin{bmatrix} 0, 0, 1 \end{bmatrix}$, and the outgoing direction is in the XOZ plane $\displaystyle \begin{bmatrix} \sin\theta, 0, \cos\theta \end{bmatrix}$.  
+
+For isotropic TrowBridge-Reitz BRDF, the precalculated value can be determined by the combination of the azimuth of the outgoing direction $$ 
+
+For an isotropic BRDF, the first spherical moment is in the same plane as the surface normal and the outgoing direction.  
+
 
 // LUT UV
 Since the GGX BRDF is isotropic, the distribution can be determined by the outgoing direction $\displaystyle \omega_v$ and the roughness $\displaystyle \alpha$, which are used as the UV of the LUTs. 
@@ -120,13 +131,8 @@ Note that the LUTs are precomputed by assuming that the vectors are in the tange
 // LUT M
 Actually, when M is the scaling transformation $\displaystyle M = \lambda I$, we have $\displaystyle \frac{d\omega_o}{d\omega} = \frac{|M^{-1}|}{{\|M^{-1}w\|}^3} = \frac{\frac{1}{{\lambda}^3}}{{(\frac{1}{\lambda})}^3} = 1$, and thus the LTSC is scale invariant. And since GGX BRDF is planar symmetry and isotropic, by \[Heitz 2016\], the M can be represented by only 4 parameters. The the inverse $\displaystyle M^{-1} = \begin{bmatrix} 1 & 0 & G \\ 0 & B & 0 \\ A & 0 & R \end{bmatrix}$, which is used when rendering, is stored in the LUT. This LUT is called the [ltc_1](https://github.com/selfshadow/ltc_code/blob/master/webgl/shaders/ltc/ltc_quad.fs#L26) in the WebGL Demo provided by \[Stephen 2016\].  
 
-### 3-4\. LUT (Look-Up Table)  
-
-dF/du  
-
-azimuth   
-zenith  
-
+dF/du be constant // reduce linear interpolation error  
+ 
 ## 4\. Light  
 
 ### 4-1\. Integration over Polygons  
