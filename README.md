@@ -28,7 +28,7 @@ If you find there are any mistakes or improvements, please don't hesitate to pos
 - Rasterization  
     - Lighting  
         - LTC (Area Lighting | Linearly Transformed Cosine) [Documentation](./index.html?file=Rendering/Rasterization/Lighting/Linearly-Transformed-Cosine.md) [Code](https://github.com/HanetakaChou/Linearly-Transformed-Cosine)    
-        - Environment Lighting (SH (Spherical Harmonics) + LTC (Linearly Transformed Cosine)) [Documentation](./index.html?file=Rendering/Rasterization/Lighting/Environment-Lighting.md) [Code](https://github.com/HanetakaChou/Environment-Lighting)  
+        - SH (Environment Lighting | Spherical Harmonics) [Documentation](./index.html?file=Rendering/Rasterization/Lighting/Environment-Lighting.md) [Code](https://github.com/HanetakaChou/Environment-Lighting)  
         - VCT (Global Illumination | Voxel Cone Tracing) [Documentation](./index.html?file=Rendering/Rasterization/Lighting/Voxel-Cone-Tracing.md) [Code](https://github.com/HanetakaChou/Voxel-Cone-Tracing)  
     - Material      
         - SSS (Skin Material | Subsurface Scattering) [Documentation](./index.html?file=Rendering/Rasterization/Material/Subsurface-Scattering.md) [Code](https://github.com/HanetakaChou/Subsurface-Scattering)  
