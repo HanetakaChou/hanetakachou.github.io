@@ -1,4 +1,4 @@
-# Environment Lighting  
+# SH (Spherical-Harmonic)  
 
 Notation | Description | Shader Code Convention  
 :-: | :-: | :-:  
@@ -154,7 +154,7 @@ The solid angle subtended by each texel of the cube map is calculated by [SHProj
 
 Here is the MATLAB code to visualize the solid angle subtended by each texel within the same cube face ```fWt = 4/(sqrt(fTmp)*fTmp)```.  
 
-![](Environment-Lighting-Cube-Map-Texel-Solid-Angle-Weight.png)  
+![](Spherical-Harmonic-Cube-Map-Texel-Solid-Angle-Weight.png)  
 
 ```matlab
 % texture size of each cube face
@@ -183,7 +183,7 @@ min_d_omega_mul_texture_size = min(min(d_omega_mul_texture_size));
 printf("min solid angle weight: %f \n", min_d_omega_mul_texture_size);
 
 solid_angle_weight_image = uint8(255 * (d_omega_mul_texture_size / max_d_omega_mul_texture_size));
-imwrite(solid_angle_weight_image, 'Environment-Lighting-Cube-Map-Texel-Solid-Angle-Weight.png');
+imwrite(solid_angle_weight_image, 'Spherical-Harmonic-Cube-Map-Texel-Solid-Angle-Weight.png');
 
 sum_d_omega = sum(sum(d_omega_mul_texture_size)) / texture_width / texture_height;
 % output: "sum solid angle: 2.094397" // 4 * PI / 6
@@ -221,7 +221,7 @@ float octahedral_map_solid_angle_weight(float2 position_ndc_space)
 
 Here is the MATLAB code to visualize the solid angle subtended by each texel.  
 
-![](Environment-Lighting-Octahedral-Map-Texel-Solid-Weight.png)  
+![](Spherical-Harmonic-Octahedral-Map-Texel-Solid-Weight.png)  
 
 ```matlab
 % texture size
@@ -269,7 +269,7 @@ printf("min solid angle weight: %f \n", min_d_omega_mul_texture_size);
 % surf(ndc_x, ndc_y, d_omega_mul_texture_size, 'EdgeColor', 'none');
 
 solid_angle_weight_image = uint8(255 * (d_omega_mul_texture_size / max_d_omega_mul_texture_size));
-imwrite(solid_angle_weight_image, 'Environment-Lighting-Octahedral-Map-Texel-Solid-Weight.png');
+imwrite(solid_angle_weight_image, 'Spherical-Harmonic-Octahedral-Map-Texel-Solid-Weight.png');
 
 sum_d_omega = sum(sum(d_omega_mul_texture_size)) / texture_width / texture_height;
 % output: "sum solid angle: 12.566369" // 4 * PI
@@ -299,7 +299,7 @@ float equirectangular_solid_angle_weight(float2 uv)
 
 Here is the MATLAB code to visualize the solid angle subtended by each texel.  
 
-![](Environment-Lighting-Equirectangular-Texel-Solid-Angle-Weight.png)  
+![](Spherical-Harmonic-Equirectangular-Texel-Solid-Angle-Weight.png)  
 
 ```matlab
 % texture size of each cube face
@@ -326,7 +326,7 @@ min_d_omega_mul_texture_size = min(min(d_omega_mul_texture_size));
 printf("min solid angle weight: %f \n", min_d_omega_mul_texture_size);
 
 solid_angle_weight_image = uint8(255 * (d_omega_mul_texture_size / max_d_omega_mul_texture_size));
-imwrite(solid_angle_weight_image, 'Environment-Lighting-Equirectangular-Texel-Solid-Angle-Weight.png');
+imwrite(solid_angle_weight_image, 'Spherical-Harmonic-Equirectangular-Texel-Solid-Angle-Weight.png');
 
 sum_d_omega = sum(sum(d_omega_mul_texture_size)) / texture_width / texture_height;
 % output: "sum solid angle: 12.566404" // 4 * PI
@@ -346,6 +346,9 @@ l | $\displaystyle \sqrt{\frac{4 \pi}{2l + 1}}$ | $\displaystyle \mathrm{T}_l$ |
 0 | $\displaystyle 2 \sqrt{\pi}$ | $\displaystyle \frac{1}{2 \sqrt{\pi}}$ | 1  
 1 | $\displaystyle \frac{2 \sqrt{\pi}}{\sqrt{3}}$ | $\displaystyle \frac{\sqrt{3}}{2 \sqrt{\pi}} \cdot \frac{2}{3}$ | $\displaystyle \frac{2}{3}$  
 2 | $\displaystyle \frac{2 \sqrt{\pi}}{\sqrt{5}}$ | $\displaystyle \frac{\sqrt{5}}{2 \sqrt{\pi}} \cdot \frac{1}{4}$ | $\displaystyle \frac{1}{4}$  
+3 | $\displaystyle \frac{2 \sqrt{\pi}}{\sqrt{7}}$  | $\displaystyle 0$ | $\displaystyle 0$  
+4 | $\displaystyle \frac{2 \sqrt{\pi}}{3}$  | $\displaystyle \frac{3}{2 \sqrt{\pi}} \cdot - \frac{1}{24}$ | $\displaystyle -\frac{1}{24}$  
+5 | $\displaystyle \frac{2 \sqrt{\pi}}{\sqrt{11}}$  | $\displaystyle 0$ | $\displaystyle 0$  
 
 By "Appendix A10" of \[Sloan 2008\], a more efficient approach is proposed to reconstruct from SH basis than \[Ramamoorthi 2001 B\]. This approach is used by [SampleSH9](https://github.com/Unity-Technologies/Graphics/blob/v10.8.0/com.unity.render-pipelines.core/ShaderLibrary/EntityLighting.hlsl#L37) in Unity3D and [GetSkySHDiffuse](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/ReflectionEnvironmentShared.ush#L79) in UnrealEngine.  
 
@@ -382,6 +385,8 @@ Analogous to the diffuse environment lighting, we have that $\displaystyle \oper
 
 Evidently, $\displaystyle \mathrm{L}_l^m$ is the same SH coefficients used in diffuse Environment lighting, $\displaystyle \mathrm{T}_l^m$ can be precomputed and stored in the LUT, and $\displaystyle {\left( \operatorname{D}_l(\operatorname{R}(\overrightarrow{v}, \overrightarrow{n})) \right)}_{m, i}$ is closed-form.  
 
+Evidently, the $\displaystyle \operatorname{T}_l^m (\overrightarrow{v}, \overrightarrow{n})$ SH coefficient of the constant basis function ($\displaystyle l =0$ and $\displaystyle m = 0$) must be $\displaystyle \frac{1}{2 \sqrt{\pi}}$ and is NOT required to be stored in the LUT.  
+
 For isotropic BRDF, the azimuth of the outgoing direction does NOT matter, and we only need to consider the zenith of the outgoing direction.  
 
 According to the convention, we assume that the surface normal is the Z axis $\displaystyle \begin{bmatrix} 0, 0, 1 \end{bmatrix}$, and the outgoing direction is in the XOZ plane $\displaystyle \begin{bmatrix} \sin\theta, 0, \cos\theta \end{bmatrix}$.  
@@ -402,17 +407,26 @@ By "Appendix A2" of \[Sloan 2008\], we have the **polynomial forms** of SH basis
 
 Note that the direction vector $\displaystyle \overrightarrow{\omega} = \begin{bmatrix} x & y & z\end{bmatrix}$ should be **normalized** before using the polynomial forms. By "13.5.3 Spherical Coordinates" of [PBR Book V3](https://pbr-book.org/3ed-2018/Monte_Carlo_Integration/Transforming_between_Distributions#SphericalCoordinates) and "Spherical Coordinates" of "3.8.3 Spherical Parameterizations" of [PBR Book V4](https://pbr-book.org/4ed/Geometry_and_Transformations/Spherical_Geometry#x3-SphericalCoordinates), we have $\displaystyle \overrightarrow{\omega} = \begin{bmatrix} x & y & z\end{bmatrix} = \begin{bmatrix} \sin \theta \cos \phi & \sin \theta \sin \phi & \cos \theta \end{bmatrix}$ where $\displaystyle \phi$ is azimuth and $\displaystyle \theta$ is zenith (in physics, while in mathmatics $\displaystyle \theta$ is the azimuth and $\displaystyle \phi$ is the zenith).   
 
-l  |  m  | $\displaystyle \operatorname{\Upsilon}_l^m(\overrightarrow{\omega})$  
+l | m  | $\displaystyle \operatorname{\Upsilon}_l^m(\overrightarrow{\omega})$  
 :-: | :-: | :-:  
-0  |  0  | $\displaystyle \frac{1}{2 \sqrt{\pi}} = 0.282094791773878140$       
-1  | -1  | $\displaystyle - \frac{\sqrt{3}}{2 \sqrt{\pi}} y = -0.488602511902919920 y$     
-1  |  0  | $\displaystyle \frac{\sqrt{3}}{2 \sqrt{\pi}} z = 0.488602511902919920 z$     
-1  |  1  | $\displaystyle - \frac{\sqrt{3}}{2 \sqrt{\pi}} x = -0.488602511902919920 x$     
-2  | -2  | $\displaystyle \frac{\sqrt{15}}{2 \sqrt{\pi}} x y = 1.092548430592079200 x y$  
-2  | -1  | $\displaystyle - \frac{\sqrt{15}}{2 \sqrt{\pi}} y z = -1.092548430592079200 y z$    
-2  |  0  | $\displaystyle \frac{3 \sqrt{5}}{4 \sqrt{\pi}} z^2 - \frac{\sqrt{5}}{4 \sqrt{\pi}} = 0.946174695757560080 z^2 - 0.315391565252520050$     
-2  |  1  | $\displaystyle - \frac{\sqrt{15}}{2 \sqrt{\pi}} x z = -1.092548430592079200 x z$       
-2  |  2  | $\displaystyle \frac{\sqrt{15}}{4 \sqrt{\pi}} (x^2 - y^2) = 0.546274215296039590 (x^2 - y^2)$  
+0 |  0  | $\displaystyle \frac{1}{2 \sqrt{\pi}} = 0.282094791773878140$       
+1 | -1  | $\displaystyle - \frac{\sqrt{3}}{2 \sqrt{\pi}} y = -0.488602511902919920 y$     
+1 |  0  | $\displaystyle \frac{\sqrt{3}}{2 \sqrt{\pi}} z = 0.488602511902919920 z$     
+1 |  1  | $\displaystyle - \frac{\sqrt{3}}{2 \sqrt{\pi}} x = -0.488602511902919920 x$     
+2 | -2  | $\displaystyle \frac{\sqrt{15}}{4 \sqrt{\pi}} 2 x y = 0.546274215296039590 \cdot 2 x y$  
+2 | -1  | $\displaystyle - \frac{\sqrt{15}}{2 \sqrt{\pi}} y z = -1.092548430592079200 y z$    
+2 |  0  | $\displaystyle \frac{3 \sqrt{5}}{4 \sqrt{\pi}} z^2 - \frac{\sqrt{5}}{4 \sqrt{\pi}} = 0.946174695757560080 z^2 - 0.315391565252520050$     
+2 |  1  | $\displaystyle - \frac{\sqrt{15}}{2 \sqrt{\pi}} x z = -1.092548430592079200 x z$       
+2 |  2  | $\displaystyle \frac{\sqrt{15}}{4 \sqrt{\pi}} (x^2 - y^2) = 0.546274215296039590 (x^2 - y^2)$  
+4 | -4  | $\displaystyle \frac{3 \sqrt{35}}{16 \sqrt{\pi}} 4 x y (x^2 - y^2) = 0.625835735449176030 \cdot 4 x y (x^2 - y^2)$  
+4 | -3  | $\displaystyle \frac{3 \sqrt{2} \sqrt{35}}{8 \sqrt{\pi}} (3 x^2 - y^2) y z = -1.770130769779930200 (3 x^2 - y^2) y z$  
+4 | -2  | $\displaystyle \frac{21 \sqrt{5}}{8 \sqrt{\pi}} 2 x y z^2 + (-\frac{3 \sqrt{5}}{8 \sqrt{\pi}}) 2 x y = 3.311611435151459800 \cdot 2 x y z^2 + (-0.473087347878779980) \cdot 2 x y$  
+4 | -1  | $\displaystyle (-\frac{21 \sqrt{2} \sqrt{5}}{8 \sqrt{\pi}}) y z^3 + \frac{9 \sqrt{2} \sqrt{5}}{8 \sqrt{\pi}} y z = (-4.683325804901024000) y z^3 + 2.007139630671867200 y z$  
+4 |  0  | $\displaystyle \frac{105}{16 \sqrt{\pi}} z^4 + (-\frac{90}{16 \sqrt{\pi}}) z^2 + \frac{9}{16 \sqrt{\pi}} = 1.984313483298443000 \cdot 1.865881662950577000 z^4 + (1.984313483298443000 \cdot (-1.119528997770346200) + (-1.006230589874905300) \cdot 0.946174695757560080) z^2 + (-1.006230589874905300) \cdot (-0.315391565252520050)$  
+4 |  1  | $\displaystyle (-\frac{21 \sqrt{2} \sqrt{5}}{8 \sqrt{\pi}}) x z^3 + \frac{9 \sqrt{2} \sqrt{5}}{8 \sqrt{\pi}} x z = (-4.683325804901024000) x z^3 + 2.007139630671867200 x z$  
+4 |  2  | $\displaystyle \frac{21 \sqrt{5}}{8 \sqrt{\pi}} (x^2 - y^2) z^2 + (-\frac{3 \sqrt{5}}{8 \sqrt{\pi}}) (x^2 - y^2) = 3.311611435151459800 \cdot (x^2 - y^2) z^2 + (-0.473087347878779980) \cdot (x^2 - y^2) = $  
+4 |  3  | $\displaystyle  \frac{3 \sqrt{2} \sqrt{35}}{8 \sqrt{\pi}} \cdot x (x^2 - 3 y^2) z = -1.770130769779930200 \cdot x (x^2 - 3 y^2) z$  
+4 |  4  | $\displaystyle \frac{3 \sqrt{35}}{16 \sqrt{\pi}} (x^4 - 6 x^2 y^2 + y^4) = 0.625835735449176030 (x^4 - 6 x^2 y^2 + y^4)$  
 
 #### A-1-2\. SH Rotation
 
