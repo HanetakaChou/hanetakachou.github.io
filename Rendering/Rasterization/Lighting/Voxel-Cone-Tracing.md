@@ -12,7 +12,9 @@ $\displaystyle \operatorname{L_o}(\overrightarrow{p}, \overrightarrow{\omega_o})
 $\displaystyle \max(0, \cos \theta_i)$ | Clamped Cosine | NdotL  
 
 
-## 1\. Photon Mapping  
+## 1\. Voxel Photon  
+
+### 1-1\. Photon Mapping  
 
 By "4.3 Overview" of \[Jensen 2001\] and \[Hachisuka 2005\], the **photon mapping** is composed of two steps: **photon tracing** and **rendering**. During the **photon tracing** step, the **photon rays** are traced from the light sources, and the lighting information of the intersection positions of these **photon rays** is recorded as the photons. During the **rendering** step, the **primary rays** are traced from the camera and the **final gather rays** are traced from the [**final gather points**](http://docs.autodesk.com/MENTALRAY/2015/ENU/mental-ray-help/files/manual/node52.html), and the lighting information of the neighboring photons of the intersection positions of these **primary rays** or **final gather rays** is used to approximate the lighting of these intersection points.  
 
@@ -36,6 +38,16 @@ By "Equation 16.15" of [PBR Book V3](https://pbr-book.org/3ed-2018/Light_Transpo
 
 In voxel cone tracing, we store only one photon in each voxel, and we have $\displaystyle \mathrm{NeighborhoodArea} = {\mathrm{ConeDiameter}}^2$ and $\displaystyle \mathrm{PhotonArea} = {\mathrm{VoxelSize}}^2$. This means that we have the approximation of the outgoing radiance at voxel position in voxel outgoing direction that $\displaystyle \operatorname{L_o}(\mathrm{VoxelPosition}, \mathrm{VoxelOutgoingDirection}) \approx \frac{1}{{\mathrm{ConeDiameter}}^2} \cdot \operatorname{BRDF}(\mathrm{VoxelPosition}, \mathrm{VoxelOutgoingDirection}) \cdot \operatorname{E_N}(\mathrm{VoxelPosition}) \cdot {\mathrm{VoxelSize}}^2$. During the **voxelization** step, the $\displaystyle \operatorname{BRDF}(\mathrm{VoxelPosition}, \mathrm{VoxelOutgoingDirection}) \cdot \operatorname{E_N}(\mathrm{VoxelPosition})$ part of the formula is calculated and store in voxels. During the **cone tracing** step, the $\displaystyle \frac{1}{{\mathrm{ConeDiameter}}^2} \cdot {\mathrm{VoxelSize}}^2$ part of the formula is calculated on the fly.  
 
+### 1-2\. Spherical Function
+
+By "Figure 11.1" of [Real-Time Rendering Fourth Edition](http://www.realtimerendering.com/), ["Figure 14.14"](https://pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/The_Light_Transport_Equation) of [PBR Book V3](https://www.pbr-book.org/3ed-2018/contents) and ["Figure 13.1"](https://www.pbr-book.org/4ed/Light_Transport_I_Surface_Reflection/The_Light_Transport_Equation) of [PBR Book V4](https://www.pbr-book.org/4ed/contents), by assuming no **participating media**, we have the relationship $\displaystyle \mathop{\mathrm{L_i}}(\overrightarrow{p}, \overrightarrow{\omega_i}) = \mathop{\mathrm{L_o}}(\mathop{\mathrm{t}}(\overrightarrow{p}, \overrightarrow{\omega_i}), -\overrightarrow{\omega_i})$ where $\displaystyle \mathop{\mathrm{t}}(\overrightarrow{p}, \overrightarrow{\omega})$ is the ray-casting function. This means that the incident radiance $\displaystyle \mathop{\mathrm{L_i}}(\overrightarrow{p}, \overrightarrow{\omega_i})$ at one position $\displaystyle \overrightarrow{p}$ is exactly the outgoing radiance $\displaystyle \mathop{\mathrm{L_o}}(\mathop{\mathrm{t}}(\overrightarrow{p}, \overrightarrow{\omega_i}), -\overrightarrow{\omega_i})$ at another position $\displaystyle \mathop{\mathrm{t}}(\overrightarrow{p}, \overrightarrow{\omega_i})$.  
+
+In voxel cone tracing, we need to calculate the outgoing radiance $\displaystyle \mathop{\mathrm{L_o}}(\mathrm{VoxelPosition}, -\mathrm{ConeAxisDirection})$ in arbitrary negative cone axis direction. However, in each voxel, we can only store $\displaystyle \operatorname{L_o}(\mathrm{VoxelPosition}, \mathrm{VoxelOutgoingDirection})$ in a limited number of voxel outgoing directions.  
+
+By "10.4.4 Other Projections" of [Real-Time Rendering Fourth Edition](http://www.realtimerendering.com/), ["3.8.3 Spherical Parameterizations"](https://www.pbr-book.org/4ed/Geometry_and_Transformations/Spherical_Geometry#x3-OctahedralEncoding) of [PBR Book V4](https://www.pbr-book.org/4ed/contents), we use the 4x4 **octahadral map** to store 16 voxel outgoing directions in each voxel during the voxelization step, and we reconstruct the arbitrary negative cone axis direction based on these 16 voxel outgoing directions during the cone tracing step.  
+
+TODO: **Spherical Gaussians** investigation ???  
+
 ## 2\. Voxelization  
 
 ### 2-1\. View Direction
@@ -55,17 +67,6 @@ By \[Takeshige 2015\], the same pixel may intersect multiple voxels in view dept
 ### 2-3\. Premultiplied Alpha
 
 As we state above, during the voxelization step, the $\displaystyle \mathrm{BRDF} \cdot \mathrm{E_N}$ part of the photon mapping formula is calculated. And then, the premultiplied alpha (\[Dunn 2014\]) value $\displaystyle \mathrm{BRDF} \cdot \mathrm{E_N} \cdot \mathrm{VoxelOpacity}$ is calculate and stored in voxels.  
-
-### 2-4\. Spherical Function
-
-By "Figure 11.1" of [Real-Time Rendering Fourth Edition](http://www.realtimerendering.com/), ["Figure 14.14"](https://pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/The_Light_Transport_Equation) of [PBR Book V3](https://www.pbr-book.org/3ed-2018/contents) and ["Figure 13.1"](https://www.pbr-book.org/4ed/Light_Transport_I_Surface_Reflection/The_Light_Transport_Equation) of [PBR Book V4](https://www.pbr-book.org/4ed/contents), by assuming no **participating media**, we have the relationship $\displaystyle \mathop{\mathrm{L_i}}(\overrightarrow{p}, \overrightarrow{\omega_i}) = \mathop{\mathrm{L_o}}(\mathop{\mathrm{t}}(\overrightarrow{p}, \overrightarrow{\omega_i}), -\overrightarrow{\omega_i})$ where $\displaystyle \mathop{\mathrm{t}}(\overrightarrow{p}, \overrightarrow{\omega})$ is the ray-casting function. This means that the incident radiance $\displaystyle \mathop{\mathrm{L_i}}(\overrightarrow{p}, \overrightarrow{\omega_i})$ at one position $\displaystyle \overrightarrow{p}$ is exactly the outgoing radiance $\displaystyle \mathop{\mathrm{L_o}}(\mathop{\mathrm{t}}(\overrightarrow{p}, \overrightarrow{\omega_i}), -\overrightarrow{\omega_i})$ at another position $\displaystyle \mathop{\mathrm{t}}(\overrightarrow{p}, \overrightarrow{\omega_i})$.  
-
-In voxel cone tracing, we need to calculate the outgoing radiance $\displaystyle \mathop{\mathrm{L_o}}(\mathrm{VoxelPosition}, -\mathrm{ConeAxisDirection})$ in arbitrary negative cone axis direction. However, in each voxel, we can only store $\displaystyle \operatorname{L_o}(\mathrm{VoxelPosition}, \mathrm{VoxelOutgoingDirection})$ in a limited number of voxel outgoing directions.  
-
-At this moment, we use 4x4 octahadral map to store 16 voxel outgoing directions in each voxel, and we reconstruct the arbitrary negative cone axis direction based on these 16 voxel outgoing directions.  
-
-TODO: **Spherical Gaussians**  
-
 
 ## 3\. Cone Tracing  
 
@@ -120,10 +121,6 @@ By "Equation 11.3" of [PBR Book V3](https://pbr-book.org/3ed-2018/Volume_Scatter
 As we state above, during the voxelization step, the $\displaystyle \mathrm{BRDF} \cdot \mathrm{E_N}$ part of the photon mapping formula is calculated, and the premultiplied alpha value $\displaystyle \mathrm{BRDF} \cdot \mathrm{E_N} \cdot \mathrm{VoxelOpacity}$ is stored in voxels. And now, during the cone tracing step, the $\displaystyle \frac{1}{{\mathrm{ConeDiameter}}^2} \cdot {\mathrm{VoxelSize}}^2$ part of the photon mapping formula is calculated, and we have the premultiplied alpha color $\displaystyle \mathrm{A_k} \mathrm{C_k} = \mathrm{VoxelOpacity} \cdot \left( \frac{1}{{\mathrm{ConeDiameter}}^2} \cdot \mathrm{BRDF} \cdot \mathrm{E_N} \cdot {\mathrm{VoxelSize}}^2 \right)$. And then we have the incident radiance that $\displaystyle \sum \mathrm{V_{k-1}} (\mathrm{A_k} \mathrm{C_k}) = \sum \mathrm{V_{k-1}} \mathrm{{\left[ \mathrm{VoxelOpacity} \cdot \left( \frac{1}{{\mathrm{ConeDiameter}}^2} \cdot \mathrm{BRDF} \cdot \mathrm{E_N} \cdot {\mathrm{VoxelSize}}^2 \right) \right]}_k}$.  
 
 By "Equation 11.11" of [Real-Time Rendering Fourth Edition](http://www.realtimerendering.com/), the visibility function is not sufficient to describe the ambient occlusion, since the opacity contribution should decrease with distance. The normalized kernel [exponential distribution](https://en.wikipedia.org/wiki/Exponential_distribution) is used to weight the visibility function and we have the distance mapping function $\displaystyle \mathrm{V^{\prime}} = \int \lambda \exp (- \lambda t) \cdot \operatorname{V}(t) \, dt$ where λ is the rate parameter and t is the cone height. Since the visibility function is piecewise constant, according to Newton Leibniz theorem, we have that $\displaystyle \mathrm{V^{\prime}} = \int \lambda \exp (- \lambda t) \cdot \operatorname{V}(t) \, dt = \sum \mathrm{V_k} \cdot \int_{\mathrm{ConeHeight_{k-1}}}^{\mathrm{ConeHeight_k}} \lambda \exp (- \lambda t) \, dt = \sum \mathrm{V_k} \cdot ((- \exp (- \lambda \cdot \mathrm{ConeHeight_k})) - (- \exp (- \lambda \cdot \mathrm{ConeHeight_{k-1}})))$ where $\displaystyle -\exp (- \lambda t)$ is the antiderivative of $\displaystyle \lambda \exp (- \lambda t)$.  
-
-It should be noted that we need to calculate the outgoing radiance $\displaystyle \mathop{\mathrm{L_o}}(\mathrm{VoxelPosition}, -\mathrm{ConeAxisDirection})$ in arbitrary negative cone axis direction, but, in each voxel, we can only store $\displaystyle \operatorname{L_o}(\mathrm{VoxelPosition}, \mathrm{VoxelOutgoingDirection})$ in a limited number of voxel outgoing directions. 
-
-TODO: **Spherical Gaussians**  
 
 ## References  
 \[Jensen 2001\] [Henrik Jensen. "Realistic Image Synthesis Using Photon Mapping." AK Peters 2001.](http://www.graphics.stanford.edu/papers/jensen_book/)  
