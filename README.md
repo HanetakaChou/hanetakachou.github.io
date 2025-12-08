@@ -43,3 +43,8 @@ If you find there are any mistakes or improvements, please don't hesitate to pos
 
 - Neural Rendering  
     - Neural Texture Mapping [Documentation](./index.html?file=Rendering/Neural-Rendering/Neural-Texture-Mapping.md) [Code](https://github.com/HanetakaChou/Neural-Texture-Mapping)  
+
+## Linux  
+
+- GPU  
+    - [NVIDIA](./index.html?file=Linux/GPU/NVIDIA.md)  

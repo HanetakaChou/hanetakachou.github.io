@@ -72,8 +72,10 @@ yum module install nvidia-driver:555-dkms
 
 yum install nvidia-driver-libs.i686
 
-yum install cuda-runtime-12-5
-# yum install cuda-runtime-12-6
+# yum install cuda-runtime-12-5
+yum install cuda-runtime-12-9
+
+yum install libcudnn9-cuda-12
 
 # cd /usr/src/nvidia-555.42.06
 # dkms install nvidia/555.42.06
@@ -120,4 +122,8 @@ env __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia glxinfo
 env __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia steam & disown
 
 nvidia-smi
+
+export TF_CPP_MIN_LOG_LEVEL=0
+export TF_CPP_MAX_VLOG_LEVEL=3
+python -c "import tensorflow as tf; print(tf.config.list_physical_devices('GPU'))"
 ```
