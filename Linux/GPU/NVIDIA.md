@@ -70,15 +70,21 @@ yum module install nvidia-driver:555-dkms
 # yum module install nvidia-driver:560-open
 # yum module install nvidia-driver:open-dkms
 
-yum install nvidia-driver-libs.i686
+yum install nvidia-driver-libs.i686  
 
-# yum install cuda-runtime-12-5
-yum install cuda-runtime-12-9
+# yum install cuda-runtime-12-5  
+yum install cuda-runtime-12-9  
 
-yum install libcudnn9-cuda-12
+yum install libcudnn9-cuda-12  
 
-# cd /usr/src/nvidia-555.42.06
-# dkms install nvidia/555.42.06
+yum install libcusparselt0-cuda-12  
+
+yum install cuda-cupti-12-9  
+
+yum install libnccl-2.28.9-1+cuda12.9  
+
+# cd /usr/src/nvidia-555.42.06  
+# dkms install nvidia/555.42.06  
 
 # Debian
 apt install nvidia-driver
@@ -126,4 +132,6 @@ nvidia-smi
 export TF_CPP_MIN_LOG_LEVEL=0
 export TF_CPP_MAX_VLOG_LEVEL=3
 python -c "import tensorflow as tf; print(tf.config.list_physical_devices('GPU'))"
+
+python -c "import torch; print(torch.cuda.is_available())"
 ```
