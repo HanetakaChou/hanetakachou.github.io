@@ -68,6 +68,8 @@ By \[Takeshige 2015\], the same pixel may intersect multiple voxels in view dept
 
 As we state above, during the voxelization step, the $\displaystyle \mathrm{BRDF} \cdot \mathrm{E_N}$ part of the photon mapping formula is calculated. And then, the premultiplied alpha (\[Dunn 2014\]) value $\displaystyle \mathrm{BRDF} \cdot \mathrm{E_N} \cdot \mathrm{VoxelOpacity}$ is calculate and stored in voxels.  
 
+It should be noted that we have to calculate the premultiplied alpha value during the voxelization step. This is because the same voxel can be occupied by multiple triangles, but the alpha should only contribute to the color of the same triangle. During the cone tracing step, the alpha and the color of the triangles that occupy the same voxel have been accumulated, making it NOT possible to distinguish them.  
+
 ## 3\. Cone Tracing  
 
 ### 3-1\. Monte Carlo Method
